@@ -1,0 +1,40 @@
+// The IDL file for IExample3.DLL
+//
+// {6C5A4C1A-87B3-44c1-8286-78000B2173EF} = Type library's GUID
+// {6AFACEB2-9298-4d4b-80C1-F027C07B1A1E} = IExample3 object's GUID
+// {CFADB388-9563-4591-AABB-BE7794AEC17C} = IExample3 VTable's GUID
+// {F69902B1-20A0-4e99-97ED-CD671AA87B5C} = Ports Collections's GUID
+
+[uuid(6C5A4C1A-87B3-44c1-8286-78000B2173EF), version(1.0), helpstring("IExample3 COM server")]
+library IExample3
+{
+    importlib("STDOLE2.TLB");
+
+    [uuid(F69902B1-20A0-4e99-97ED-CD671AA87B5C), helpstring("ICollection object"), oleautomation, object]
+    interface ICollection : IDispatch
+    {
+        [propget, id(1), helpstring("Returns the count of items in the collection")]
+        HRESULT Count([out, retval] long *);
+        [propget, id(DISPID_VALUE), helpstring("Returns the item (at the specified index) of the collection")]
+        HRESULT Item([in] long, [out, retval] VARIANT *);
+        [propget, id(DISPID_NEWENUM), restricted]
+        HRESULT _NewEnum([out, retval] IUnknown **);
+    };
+
+    [uuid(CFADB388-9563-4591-AABB-BE7794AEC17C), dual, oleautomation, hidden, nonextensible]
+    interface IExample3VTbl : IDispatch
+    {
+        [helpstring("Sets the test string.")]
+        [id(1), propput] HRESULT Buffer([in] BSTR);
+        [helpstring("Gets the test string.")]
+        [id(1), propget] HRESULT Buffer([out, retval] BSTR *);
+        [helpstring("Gets the enumeration for our hardware ports.")]
+        [id(2), propget] HRESULT Ports([out, retval] IDispatch **);
+    };
+
+    [uuid(6AFACEB2-9298-4d4b-80C1-F027C07B1A1E), helpstring("IExample3 object."), appobject]
+    coclass IExample3
+    {
+        [default] interface IExample3VTbl;
+    }
+}

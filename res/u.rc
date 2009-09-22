@@ -1,0 +1,25 @@
+#include <windows.h>
+
+// Icons
+
+#ifndef IDI_APP
+#define IDI_APP  10
+#endif
+
+#ifndef IDI_ULIB
+#define IDI_ULIB 20
+#endif
+
+#ifdef MINGW_RC
+
+IDI_APP ICON DISCARDABLE "u.ico"
+
+IDI_ULIB ICON DISCARDABLE "ulib.ico"
+
+//
+// Manifest resources
+//
+//1                   RT_MANIFEST   "manifest.xml"
+1                   24   "manifest.xml"
+
+#endif
