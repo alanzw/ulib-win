@@ -1,0 +1,21 @@
+UBlogger:
+
+input : c/batch/shell code
+
+ouput : colored and highligted html code
+
+requirement:
+
+1 text pasrsing
+
+2 text processing
+
+3 html element building
+
+4 configuration and user-customized styles
+
+extra:
+
+1 clipboard monitoring and operation
+
+2 file input and batch jobs
