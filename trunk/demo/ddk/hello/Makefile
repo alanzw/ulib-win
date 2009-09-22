@@ -15,7 +15,8 @@ BINDIR = $(TOPDIR)/bin
 #
 CFLAGS = -DHU_DEBUG
 CXXFLAGS =
-LDFLAGS = -Wl,--subsystem=native,--image-base=0x10000,--file-alignment=0x1000,--section-alignment=0x1000,--entry=_DriverEntry -nostartfiles -nostdlib -lntoskrnl
+#LDFLAGS = -Wl,--subsystem=native,--image-base=0x10000,--file-alignment=0x1000,--section-alignment=0x1000,--entry=_DriverEntry@8 -nostartfiles -nostdlib -lntoskrnl
+LDFLAGS = -s -nostartfiles -Wl,-nostdlib -shared -Wl,--entry,_DriverEntry@8 -Wl,--file-alignment,0x0080 -Wl,--section-alignment,0x0080 -Wl,--image-base,0x00010000 -lntoskrnl
 INC = -I"$(INCDIR)/inc"
 LIB = -L"$(LIBDIR)/lib"
 
