@@ -26,7 +26,9 @@ RES = ${RC:.rc=.res}
 #
 HEADER = $(INCDIR)/udialogx.h \
          utaskman.h \
-         utabchild.h
+         utabchild.h \
+         uusagebar.h \
+         uusagegraph.h
 #
 all: $(BIN)
 

@@ -46,11 +46,11 @@ public:
     }
 
 
-	virtual BOOL onPaint()
-	{
-		PAINTSTRUCT ps;
-		HDC hdc;
-		hdc = BeginPaint(m_hSelf, &ps);
+    virtual BOOL onPaint()
+    {
+        PAINTSTRUCT ps;
+        HDC hdc;
+        hdc = BeginPaint(m_hSelf, &ps);
 
         RECT rcClient = {0};
         this->getClientRect(&rcClient);
@@ -68,9 +68,9 @@ public:
 
         drawGraph(hdc, &rcBar);
 
-		EndPaint(m_hSelf, &ps);
+        EndPaint(m_hSelf, &ps);
 
-		return FALSE;
+        return FALSE;
     }
 
     void updateUsage()
@@ -92,12 +92,15 @@ private:
         int h = lpRect->bottom - lpRect->top;
 
         huys::ULine ul(lpRect->left, lpRect->top+10, lpRect->right, lpRect->top+10);
-        ul.setLineColor(huys::green);
-        ul.setLineWidth(1);
+        ul.setLineColor(huys::blueviolet);
+        //ul.setLineWidth(1);
         ul.Draw(hdc);
 
-        ul.offsetY(10);
-        ul.Draw(hdc);
+        while (ul.getStartY() <= lpRect->bottom - 10)
+        {
+            ul.offsetY(10);
+            ul.Draw(hdc);
+        }
     }
 
     void drawGraph(HDC hdc, LPRECT lpRect)
