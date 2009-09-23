@@ -45,11 +45,11 @@ public:
         return  bRet;
     }
 
-	virtual BOOL onPaint()
-	{
-		PAINTSTRUCT ps;
-		HDC hdc;
-		hdc = BeginPaint(m_hSelf, &ps);
+    virtual BOOL onPaint()
+    {
+        PAINTSTRUCT ps;
+        HDC hdc;
+        hdc = BeginPaint(m_hSelf, &ps);
 
         RECT rcClient = {0};
         this->getClientRect(&rcClient);
@@ -65,9 +65,9 @@ public:
 
         drawBar(hdc, &rcBar);
 
-		EndPaint(m_hSelf, &ps);
+        EndPaint(m_hSelf, &ps);
 
-		return FALSE;
+        return FALSE;
     }
 
     void updateUsage()
@@ -89,6 +89,15 @@ private:
         ur.setFilledColor(huys::green);
         ur.setFilledStyle(BS_SOLID);
         ur.Draw(hdc);
+
+        huys::ULine ul(lpRect->left, lpRect->bottom, lpRect->right, lpRect->bottom);
+        ul.setLineColor(huys::black);
+
+        while (ul.getStartY() > lpRect->top)
+        {
+            ul.offsetY(-5);
+            ul.Draw(hdc);
+        }
     }
 };
 

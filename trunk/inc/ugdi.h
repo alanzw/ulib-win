@@ -56,6 +56,11 @@ public:
     void SetEndPnt(int x, int y);
     void offsetX(int x);
     void offsetY(int y);
+
+    int getStartX() {return m_nStartX;}
+    int getStartY() {return m_nStartY;}
+    int getEndX() {return m_nEndX;}
+    int getEndY() {return m_nEndY;}
 private:
     int m_nStartX;
     int m_nStartY;
@@ -95,6 +100,11 @@ public:
     void shrinkTo(int nWidth, int nHeight);
 
     void offset(int nX, int nY = 0);
+
+    int getStartX() {return m_nStartX;}
+    int getStartY() {return m_nStartY;}
+    int getEndX() {return m_nEndX;}
+    int getEndY() {return m_nEndY;}
 private:
     int m_nStartX;
     int m_nStartY;
