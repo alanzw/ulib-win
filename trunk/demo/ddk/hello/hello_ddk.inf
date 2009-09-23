@@ -1,0 +1,44 @@
+;;;
+;;; hello_ddk
+;;;
+;;; Copyright (c) 2009, huys
+;;;
+
+[Version]
+signature =  "$Chicago$" 
+Class     =  NULL
+ClassGuid =  {00000000-0000-0000-0000-000000000000}  
+Provider  =  %HY_PROVIDER%
+DriverVer =  09/23/2009,0.0.0.1
+
+[DestinationDirs]
+HelloDDk.DriverFiles = 12     ;%windir%\system32\drivers
+
+[DefaultInstall]
+CopyFiles = HelloDDK.DriverFiles
+
+[DefaultInstall.Services]
+AddService = %HelloDDKServiceName%,,HelloDDK.Service
+ 
+[DefaultUninstall]
+DelFiles   = HelloDDK.DriverFiles
+
+[DefaultUninstall.Services]
+DelService = HelloDDK,0x200    ; Flags note to stop service first
+
+[HelloDDK.Service]
+DisplayName = %HelloDDKServiceName%
+Description = %HelloDDKServiceDesc%
+ServiceBinary = %12%\hello_ddk.sys  ;%windir%\system32\drivers\filespy.sys
+ServiceType  = 1      ;SERVICE_KERNEL_DRIVER
+StartType = 3      ;SERVICE_DEMAND_START
+ErrorControl = 1      ;SERVICE_ERROR_NORMAL
+
+[HelloDDK.DriverFiles]
+hello_ddk.sys
+
+[Strings]
+HY_PROVIDER         = "huys (huys@gmail.com)"
+HelloDDKServiceDesc = "hello_ddk service"
+HelloDDKServiceName = "HelloDDK"
+HelloDDKRegistry    = "system\currentcontrolset\services\HelloDDK"
