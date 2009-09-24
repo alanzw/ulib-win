@@ -72,6 +72,9 @@ public:
     //
     bool loadScript(LPCSTR sFileName);
 
+    void addMenu();
+    void subclassWnd(HWND hMsgWnd);
+    void focusWnd();
 private:
     char m_sFluentDir[MAX_PATH];
     char m_sFluentArch[10];
@@ -84,6 +87,8 @@ private:
 
     char *m_buf;
 
+    static WNDPROC m_OriginProc;
+    static LRESULT newWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
     char m_sStartupScriptFile[MAX_PATH];
 private:

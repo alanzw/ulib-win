@@ -11,7 +11,7 @@
 #ifndef U_HOOK_H
 #define  U_HOOK_H
 
-#include "ulib.h"
+#include "uobject.h"
 
 class ULIB_API UHook : public UUserObject
 {
@@ -33,6 +33,9 @@ ULIB_API BOOL clearMyHook();
 ULIB_API int getValue();
 ULIB_API void setValue(int val);
 
+ULIB_API BOOL setCBTHook(HWND hWnd, HWND hMsgWnd);
+ULIB_API WNDPROC getOldProc();
+
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus
 }
@@ -46,7 +49,7 @@ ULIB_API void setValue(int val);
 #endif
 
 //
-IMPLEMENT_MSG(UWM_MOUSEMOVE)
+IMPLEMENT_MSG(UWM_MOUSEMOVE);
 
 #endif // U_HOOK_H
 

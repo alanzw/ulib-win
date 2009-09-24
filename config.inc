@@ -25,6 +25,10 @@ GUI_OBJS =        \
     ucustomctrl.o \
     utrackbar.o   \
     umessageonlywindow.o \
+    utabctrl.o    \
+    ubasewindow.o \
+    utoolbar.o    \
+    usplashwnd.o  \
 
 
 SYSTEM_OBJS =     \
@@ -37,12 +41,14 @@ SYSTEM_OBJS =     \
     uevent.o      \
     ucritical.o   \
     usemaphore.o  \
-    umutex.o
+    umutex.o      \
+    utoolhelp.o   \
 
 
 GRAPHIC_OBJS =    \
     uglut.o       \
     udibapi.o     \
+    urecttracker.o\
 
 
 CONFIG_OBJS  =    \
@@ -55,7 +61,6 @@ OBJS = $(KENERL_OBJS)  $(GUI_OBJS) $(SYSTEM_OBJS) $(GRAPHIC_OBJS) $(CONFIG_OBJS)
        usys.o        \
        umenu.o       \
        uplugin.o     \
-       utoolbar.o    \
        uscrollbar.o  \
        urt.o         \
        utime.o       \
@@ -68,7 +73,6 @@ OBJS = $(KENERL_OBJS)  $(GUI_OBJS) $(SYSTEM_OBJS) $(GRAPHIC_OBJS) $(CONFIG_OBJS)
        uthread.o     \
        untservice.o  \
        udraglistbox.o\
-       utabctrl.o    \
        uclipboard.o  \
        uregkey.o     \
        urichedit.o   \
@@ -86,10 +90,8 @@ OBJS = $(KENERL_OBJS)  $(GUI_OBJS) $(SYSTEM_OBJS) $(GRAPHIC_OBJS) $(CONFIG_OBJS)
        usocket.o     \
        ulayout.o     \
        utooltip.o    \
-       usplashwnd.o  \
        uicon.o       \
        ulog.o        \
-       ubasewindow.o \
        uwinapp.o     \
        uregion.o     \
        ucmdline.o    \
@@ -98,4 +100,3 @@ OBJS = $(KENERL_OBJS)  $(GUI_OBJS) $(SYSTEM_OBJS) $(GRAPHIC_OBJS) $(CONFIG_OBJS)
        udc.o         \
        ushell.o      \
        umci.o        \
-       utoolhelp.o

@@ -1,16 +1,18 @@
 #ifndef U_PROCESS_H
 #define U_PROCESS_H
 
-#include "ulib.h"
+#include "uobject.h"
 
-class ULIB_API UProcess
+class ULIB_API UProcess : public UKernelObject
 {
 public:
     UProcess();
     ~UProcess();
+    
+    BOOL create(LPTSTR sCmdLine);
 private:
-    //STARTUPINFO si;
-    //PROCESS_INFORMATION pi;
+    STARTUPINFO m_si;
+    PROCESS_INFORMATION m_pi;
 protected:
 
 public:
@@ -18,6 +20,10 @@ public:
     static LPTSTR getCommadLine();
     static DWORD getCurrentProcessId() {return ::GetCurrentProcessId();}
     static HANDLE getCurrentProcess() {return ::GetCurrentProcess();}
+    static void getStartupInfo(STARTUPINFO *pSI)
+    {
+        ::GetStartupInfo(pSI);
+    };
 };
 
 

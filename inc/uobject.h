@@ -26,6 +26,11 @@ typedef struct tagUObject
     ///
     HANDLE m_hObj;
 
+    ///
+    BOOL isNull()
+    {
+        return NULL == m_hObj;
+    }
 } UObject, *UObjectPtr;
 
 class ULIB_API UUserObject : public UObject

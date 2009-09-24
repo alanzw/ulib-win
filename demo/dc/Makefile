@@ -3,9 +3,9 @@ include ../../make.inc
 
 #
 CFLAGS =
-CXXFLAGS += -DHU_DEBUG
+CXXFLAGS =
 INC = -I"../../inc"
-LIBS = -L"../../lib" -mwindows -luwin -luhook
+LIB = -L"../../lib" -mwindows -luwin
 
 #
 SRCDIR = ../../src
@@ -15,37 +15,35 @@ RESDIR = ../../res
 ICODIR = ../../ico
 BINDIR = ../../bin
 #
-OBJ =          \
- test_fluent.o \
- ufluent.o     \
- ufluentman.o  \
- ugambitman.o
+OBJ = test_dc.o
 
-BIN = test_fluent.exe
-RC  = fluent.rc
+BIN = test_dc.exe
+RC  = dc.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/udialogx.h \
-		 ufluent.h
+HEADER = $(INCDIR)/ucontrol.h \
+		 $(INCDIR)/ucombobox.h \
+		 $(INCDIR)/udialog.h
 #
 all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIBS)
+	$(CXX) -o $(BIN) $^ $(LIB)
 	cp -v $@ $(BINDIR)/$@
 
 #
-%.o : %.cpp $(HEADER)
+test_dc.o : test_dc.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
 
 #
 #$(RES) : $(RC) resource.h
 #	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-#
+
 .PHONY : test
 test :
-	$(BINDIR)/$(BIN)     
+	$(WINE) $(BINDIR)/$(BIN)
+
 #
 .PHONY : clean
 clean :

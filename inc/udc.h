@@ -34,14 +34,41 @@ public:
     bool attach(HDC hdc);
     bool dettach();
 
+	bool getDC(HWND hWnd);
+
     huys::Color setPenColor(huys::Color clr);
     huys::Color setBrushColor(huys::Color clr);
     huys::Color getPenColor();
     huys::Color getBrushColor();
 
     HGDIOBJ getCurObj(UINT uObjectType);
+
+	//
+	int setStretchBltMode(int iStretchMode);
+	BOOL stretchBlt(
+		int nXOriginDest,
+		int nYOriginDest,
+		int nWidthDest,
+		int nHeightDest,
+		HDC hdcSrc,
+		int nXOriginSrc,
+		int nYOriginSrc,
+		int nWidthSrc,
+		int nHeightSrc,
+		DWORD dwRop);
+	BOOL bitBlt(
+		int nXOriginDest,
+		int nYOriginDest,
+		int nWidthDest,
+		int nHeightDest,
+		HDC hdcSrc,
+		int nXOriginSrc,
+		int nYOriginSrc,
+		DWORD dwRop);
 private:
 };
+
+typedef UDevContext UDC;
 
 class ULIB_API UPaintDC : public UDevContext
 {
@@ -51,6 +78,13 @@ public:
 private:
     HWND m_hWnd;
     PAINTSTRUCT m_ps;
+};
+
+class ULIB_API UMemDC : public UDevContext
+{
+public:
+	UMemDC(HDC hdc);
+	~UMemDC();
 };
 
 #endif // U_DEVICE_CONTEXT_H

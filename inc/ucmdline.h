@@ -10,7 +10,7 @@ public:
 
     ~UCmdLine();
     //
-    LPTSTR * CommandLineToArgv(LPCTSTR lpCmdLine, int *lpArgc);
+    LPTSTR * CommandLineToArgv(LPCTSTR lpCmdLine, int *lpArgc); 
 protected:
 private:
 };
