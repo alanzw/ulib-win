@@ -134,7 +134,10 @@ SUBDIRS = \
           customctrl  \
           messageonly \
           sigslot     \
-          trackbar
+          trackbar    \
+          toolhelp    \
+          dc
+
 
 #
 all:

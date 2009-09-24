@@ -15,17 +15,20 @@
  *
  * =====================================================================================
  */
-
 #include <windows.h>
 #include <tchar.h>
 #include <cassert>
 #include <string>
+
+#include "umenu.h"
 
 #include "uthread.h"
 #include "ufluentman.h"
 #include "uprocessman.h"
 #include "umsg.h"
 #include "udllman.h"
+
+#include "uhook.h"
 
 //
 #define DEFAULT_STARTUP_FILE "G:\\huys\\ulib-win\\app\\ufluent\\fluent.scm"
@@ -34,6 +37,8 @@
 #define DEFAULT_FLUENT_ROOTDIR "C:\\Fluent.Inc"
 #define DEFAULT_FLUENT_ARCH    "ntx86"
 #define DEFAULT_FLUENT_BIDIR   "ntbin"
+
+#define FLUENT_EXECUTIVE_NAME "fl6326s.exe"
 
 //
 #define DEFAULT_FLUENT_TITLE_PRE "FLUENT"
@@ -296,5 +301,67 @@ bool UFluentMan::loadScript( LPCSTR sFileName )
     sprintf(sCmd, "(load \"%s\")", sFileName);
 
     return this->sendCmd(sCmd);
+}
+
+void UFluentMan::addMenu()
+{
+    HMENU hMenu = ::GetMenu(m_hFluentWnd);
+    if (!hMenu)
+    {
+        return;
+    }
+
+    //::AppendMenu(hMenu, MF_STRING, 11111, "Menu&1");
+    HMENU hPopMenu = ::CreateMenu();
+    ::AppendMenu(hPopMenu, MF_STRING, 11112, "CMenu&1");
+    ::AppendMenu(hPopMenu, MF_STRING, 11113, "CMenu&2");
+    ::AppendMenu(hMenu, MF_STRING|MF_POPUP, (UINT_PTR)hPopMenu, "Child");
+}
+
+LRESULT UFluentMan::newWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+    if (uMsg == WM_COMMAND)
+    {
+        switch (wParam)
+        {
+        case 11112:
+            {
+                ::MessageBox(hwnd, "hww1", "info", MB_OK);
+                return FALSE;
+            }
+        case 11113:
+            {
+                ::MessageBox(hwnd, "hww2", "info", MB_OK);
+                return FALSE;
+            }
+        default:
+            return CallWindowProc(getOldProc(), hwnd, uMsg, wParam, lParam);
+        }
+
+    }
+
+}
+
+WNDPROC UFluentMan::m_OriginProc = NULL;
+
+void UFluentMan::subclassWnd(HWND hMsgWnd)
+{
+    //UFluentMan::m_OriginProc =  (WNDPROC) SetWindowLong(m_hFluentWnd, GWL_WNDPROC, (LONG) UFluentMan::newWndProc);
+    setCBTHook(m_hFluentWnd, hMsgWnd);
+    //setCBTHook(m_hFluentWnd, hMsgWnd);
+    //BringWindowToTop(m_hFluentWnd);
+    //ShowWindow(m_hFluentWnd, SW_MINIMIZE);
+    //ShowWindow(m_hFluentWnd, SW_NORMAL);
+    SetWindowPos(m_hFluentWnd, HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE|SWP_NOREDRAW);
+    //ShowWindow(m_hFluentWnd, SW_MINIMIZE);
+    //ShowWindow(m_hFluentWnd, SW_NORMAL);
+    SetWindowPos(m_hFluentWnd, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE|SWP_NOREDRAW);
+    SetWindowPos(m_hFluentWnd, HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE|SWP_NOREDRAW);
+    //SetFocus(m_hFluentWnd);
+}
+
+void UFluentMan::focusWnd()
+{
+    SetWindowPos(m_hFluentWnd, HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE);
 }
 

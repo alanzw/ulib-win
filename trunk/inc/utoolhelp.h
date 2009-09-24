@@ -8,7 +8,10 @@ class ULIB_API UToolHelp
 public:
     UToolHelp();
     bool snapall();
-    bool listProcessModules( DWORD dwPID ); 
+    bool listProcesses();
+    bool listProcessModules( DWORD dwPID );
+    bool listProcessThreads( DWORD dwOwnerPID );
+    bool listHeaps(DWORD dwPID);
 protected:
 private:
     HANDLE m_hSnapshot;

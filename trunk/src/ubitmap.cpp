@@ -251,41 +251,40 @@ BOOL UBitmap::showTransparent(HDC &hdc, RECT &rc)
 
 BOOL UBitmap::createMappedBitmap(HINSTANCE hInst, UINT uImageID, huys::Color clrFrom, huys::Color clrTo )
 {
-	assert(NULL == m_hBitmap);
-	COLORMAP clrMap = {clrFrom, clrTo};
-	m_hBitmap = ::CreateMappedBitmap(hInst, uImageID, IMAGE_BITMAP, &clrMap, 1);
+    assert(NULL == m_hBitmap);
+    COLORMAP clrMap = {clrFrom, clrTo};
+    m_hBitmap = ::CreateMappedBitmap(hInst, uImageID, IMAGE_BITMAP, &clrMap, 1);
 
-	if (NULL == m_hBitmap)
-	{
-		return FALSE;
-	}
-	
+    if (NULL == m_hBitmap)
+    {
+        return FALSE;
+    }
 
-	// Get the color depth of the DIBSection
-	::GetObject(m_hBitmap, sizeof(BITMAP), &m_bi );
 
-	this->m_Height = m_bi.bmHeight;
-	this->m_Width  = m_bi.bmWidth;
+    // Get the color depth of the DIBSection
+    ::GetObject(m_hBitmap, sizeof(BITMAP), &m_bi );
 
-	return TRUE;
+    this->m_Height = m_bi.bmHeight;
+    this->m_Width  = m_bi.bmWidth;
+
+    return TRUE;
 }
 
 BOOL UBitmap::copyImage( HBITMAP hBitmap )
 {
-	return TRUE;
+    return TRUE;
 }
 
 BOOL UBitmap::destroyBitmap()
 {
-	if (m_hBitmap)
-	{
-		::DeleteObject( m_hBitmap );
-	}
+    if (m_hBitmap)
+    {
+        ::DeleteObject( m_hBitmap );
+    }
 
-	if (m_hPalette)
-	{
-		::DeleteObject( m_hPalette );
-	}
-	return TRUE;
+    if (m_hPalette)
+    {
+        ::DeleteObject( m_hPalette );
+    }
+    return TRUE;
 }
-

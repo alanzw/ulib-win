@@ -47,6 +47,11 @@ bool UDevContext::dettach()
     return true;
 }
 
+bool UDevContext::getDC( HWND hWnd )
+{
+	return NULL != (m_hObj = ::GetDC(hWnd));
+}
+
 huys::Color UDevContext::setPenColor(huys::Color clr)
 {
     return ::SetDCPenColor((HDC)m_hObj, clr);
@@ -74,6 +79,41 @@ HGDIOBJ UDevContext::getCurObj(UINT uObjectType)
     return ::GetCurrentObject((HDC)m_hObj, uObjectType);
 }
 
+int UDevContext::setStretchBltMode( int iStretchMode )
+{
+	return ::SetStretchBltMode(*this, iStretchMode);
+}
+
+BOOL UDevContext::stretchBlt( int nXOriginDest, 
+							  int nYOriginDest,
+							  int nWidthDest,
+							  int nHeightDest,
+							  HDC hdcSrc,
+							  int nXOriginSrc,
+							  int nYOriginSrc,
+							  int nWidthSrc,
+							  int nHeightSrc,
+							  DWORD dwRop )
+{
+	return ::StretchBlt(*this, nXOriginDest, nYOriginDest, 
+		nWidthDest, nHeightDest, hdcSrc,
+		nXOriginSrc, nYOriginSrc, nWidthSrc, nHeightSrc, dwRop );
+}
+
+BOOL UDevContext::bitBlt( int nXOriginDest, 
+							 int nYOriginDest,
+							 int nWidthDest,
+							 int nHeightDest,
+							 HDC hdcSrc,
+							 int nXOriginSrc,
+							 int nYOriginSrc,
+							 DWORD dwRop )
+{
+	return ::BitBlt(*this, nXOriginDest, nYOriginDest, 
+		nWidthDest, nHeightDest, hdcSrc,
+		nXOriginSrc, nYOriginSrc, dwRop );
+}
+
 UPaintDC::UPaintDC(HWND hWnd)
 {
     m_hWnd = hWnd;
@@ -83,4 +123,13 @@ UPaintDC::UPaintDC(HWND hWnd)
 UPaintDC::~UPaintDC()
 {
     ::EndPaint(m_hWnd, &m_ps);
+}
+
+UMemDC::UMemDC(HDC hdc)
+{
+	m_hObj = ::CreateCompatibleDC(hdc);
+}
+
+UMemDC::~UMemDC()
+{
 }

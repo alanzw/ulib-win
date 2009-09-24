@@ -82,6 +82,7 @@ public:
         CHECK_PTR(m_pUBtnOK);
         CHECK_PTR(m_pUBtnCancel);
         CHECK_PTR(m_pEditError);
+        CHECK_PTR(m_pEdit);
     }
 
     virtual BOOL onInit()
@@ -98,10 +99,10 @@ public:
 
         ::RegisterClassEx(&wcx);
 
-        UEditSuper ueEdit(m_hDlg, 2222, m_hInst);
-        ueEdit.create();
+        m_pEdit = new UEditSuper(m_hDlg, 2222, m_hInst);
+        m_pEdit->create();
         RECT rcEdit = {20, 20, 500, 200};
-        ueEdit.setPosition(&rcEdit);
+        m_pEdit->setPosition(&rcEdit);
 
         m_pEditError = new UEditSuper(m_hDlg, 2223, m_hInst);
         m_pEditError->create();
@@ -223,8 +224,11 @@ public:
     BOOL onOK()
     {
         TCHAR buf[256];
+        TCHAR bufError[256];
         m_pEditError->getText(buf);
-        showErrorByNum(atoi(buf));
+        //showErrorByNum(atoi(buf));
+        getErrorString(atoi(buf), bufError);
+        m_pEdit->setWindowText(bufError);
         return TRUE;
     }
 
@@ -246,10 +250,7 @@ private:
     UPushButton *m_pUBtnOK;
     UPushButton *m_pUBtnCancel;
     UEditSuper *m_pEditError;
+    UEditSuper *m_pEdit;
 };
 
-BEGIN_DLGAPP
-  UDialogExt dlg(hInstance, IDD_TEST);
-  dlg.create();
-END_DLGAPP
-
+UDLGAPP_T(UDialogExt, IDD_TEST);

@@ -70,16 +70,16 @@ void showError(const TCHAR *msg)
 }
 
 //
-void showErrorByNum(DWORD errorNum)
+void showErrorByNum(DWORD dwErrorNum)
 {
     TCHAR str[1000];
     TCHAR sysMsg[256];
 
-    getErrorString(errorNum, sysMsg);
+    getErrorString(dwErrorNum, sysMsg);
 
     // Display the message
     wsprintf(str, _T("failed with error %d (%s)"),
-        errorNum, sysMsg );
+        dwErrorNum, sysMsg );
     showMsg(str);
 }
 
@@ -95,18 +95,41 @@ DWORD WINAPI FormatMessage(
 );
 */
 
-void getErrorString(DWORD errorNum, TCHAR *lpBuffer)
+void getErrorString(DWORD dwErrorNum, TCHAR *lpBuffer)
 {
     TCHAR* p;
 
-    ::FormatMessage( FORMAT_MESSAGE_FROM_SYSTEM |
+    BOOL bOK = ::FormatMessage( FORMAT_MESSAGE_FROM_SYSTEM |
         FORMAT_MESSAGE_IGNORE_INSERTS,
         NULL,
-        errorNum,
+        dwErrorNum,
         MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
         lpBuffer,
         256,
         NULL );
+        
+    if (!bOK)
+    {
+        HMODULE hModule = ::LoadLibraryEx(_T("netmsg.dll"), NULL, DONT_RESOLVE_DLL_REFERENCES);
+        
+        if (NULL == hModule)
+        {
+            return;
+        }
+        
+        bOK = ::FormatMessage( FORMAT_MESSAGE_FROM_HMODULE |
+            FORMAT_MESSAGE_FROM_SYSTEM,
+            hModule,
+            dwErrorNum,
+            MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+            lpBuffer,
+            256,
+            NULL );
+        if (!bOK)
+        {
+            return;
+        }
+    }
 
     // Trim the end of the line and terminate it with a null
     p = lpBuffer;

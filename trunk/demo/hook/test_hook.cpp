@@ -29,7 +29,7 @@ LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
         WM_SETTEXT, (WPARAM)256, (LPARAM)str);
     delete[] str;
 
-	CallNextHookEx(hhookTest, nCode, wParam, lParam);
+    CallNextHookEx(hhookTest, nCode, wParam, lParam);
     return 0;
 
 }

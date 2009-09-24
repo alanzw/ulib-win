@@ -13,10 +13,10 @@ int ULIB_API showMsgFormat(const TCHAR * szCaption, const TCHAR * szFormat, ...)
 void ULIB_API showError(const TCHAR *msg);
 
 //
-void ULIB_API showErrorByNum(DWORD errorNum);
+void ULIB_API showErrorByNum(DWORD dwErrorNum);
 
 //
-void ULIB_API getErrorString(DWORD errorNum, TCHAR *lpBuffer);
+void ULIB_API getErrorString(DWORD dwErrorNum, TCHAR *lpBuffer);
 
 int ULIB_API LoadMessage(DWORD dwMsgId, PTSTR pszBuffer, UINT cchBuffer, ...);
 

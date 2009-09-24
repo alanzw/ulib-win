@@ -7,10 +7,32 @@
 #include "umsg.h"
 
 UProcess::UProcess()
-{}
+{
+    ::ZeroMemory( &m_si, sizeof(STARTUPINFO) );
+    m_si.cb = sizeof(STARTUPINFO);
+    m_si.dwFlags=STARTF_USESHOWWINDOW;
+    m_si.wShowWindow=SW_MAXIMIZE;
+
+	::ZeroMemory( &m_pi, sizeof(PROCESS_INFORMATION) );
+}
 
 UProcess::~UProcess()
 {}
+
+BOOL UProcess::create(LPTSTR sCmdLine)
+{
+    return ::CreateProcess(
+        NULL,
+        sCmdLine,
+        NULL,
+        NULL,
+        TRUE,
+        CREATE_NEW_CONSOLE| NORMAL_PRIORITY_CLASS,
+        NULL,
+        NULL,
+        &m_si,
+        &m_pi);
+}
 
 /*
 typedef struct _STARTUPINFO {

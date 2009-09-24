@@ -57,7 +57,7 @@ class ULIB_API UCFile
         UCFAM_RW_CREATE = 0x10,
         UCFAM_RW_APPEND = 0x20
     } UCFAccessMode;
-    
+
     typedef enum {
         UCFEM_TEXT,
         UCFEM_BINARY
@@ -87,18 +87,18 @@ public:
         fclose(m_pFile);
         return true;
     }
-    
+
     bool reopen(const char *mode)
     {
         freopen(m_sFilename, mode, m_pFile);
         return true;
     }
-    
+
     bool isOpen() const
     {
         return (NULL == m_pFile);
     }
-    
+
     bool read()
     {
         return true;
@@ -107,36 +107,36 @@ public:
     {
         return true;
     }
-    
+
     bool directStdOut(const char *mode)
     {
         m_pFile = freopen(m_sFilename, mode, stdout);
         return true;
     }
-    
+
     bool directStdErr(const char *mode)
     {
         m_pFile = freopen(m_sFilename, mode, stderr);
         return true;
     }
-    
+
     bool directStdIn(const char *mode)
     {
         m_pFile = freopen(m_sFilename, mode, stdin);
         return true;
     }
-    
+
     bool flush()
     {
         fflush(m_pFile);
         return true;
     }
-    
+
     bool seek(long int offset, int origin)
     {
         return (0 != fseek(m_pFile, offset, origin) );
     }
-    
+
     void rewind()
     {
         ::rewind(m_pFile);

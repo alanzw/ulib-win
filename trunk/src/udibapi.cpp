@@ -782,16 +782,15 @@ HBITMAP GetSrcBit(HDC hDC,DWORD BitWidth, DWORD BitHeight)
 {
     HDC hBufDC;
     HBITMAP hBitmap, hBitTemp;
-    //创建设备上下文(HDC)
     hBufDC = CreateCompatibleDC(hDC);
-    //创建HBITMAP
+    //
     hBitmap = CreateCompatibleBitmap(hDC, BitWidth, BitHeight);
     hBitTemp = (HBITMAP) SelectObject(hBufDC, hBitmap);
-    //得到位图缓冲区
+    //
     StretchBlt(hBufDC, 0, 0, BitWidth, BitHeight,hDC, 0, 0, BitWidth, BitHeight, SRCCOPY);
-    //得到最终的位图信息
+    //
     hBitmap = (HBITMAP) SelectObject(hBufDC, hBitTemp);
-    //释放内存
+    //
     DeleteObject(hBitTemp);
     ::DeleteDC(hBufDC);
     return hBitmap;
