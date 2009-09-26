@@ -32,7 +32,8 @@ HEADER =
 #
 SUBDIRS = u360safe uchart ukav uqq uscript utaskman \
           uwget uviewer ufluent usysadm ucontour ublogger \
-          usdp uctrls unetchat ubtnst udeskutil ugrid ulife
+          usdp uctrls unetchat ubtnst udeskutil ugrid ulife \
+          uterminal
 
 #
 .PHONY: all

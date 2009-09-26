@@ -1,8 +1,10 @@
 #include <windows.h>
 #include <tchar.h>
 #include <stdio.h>
-
+#include <assert.h>
 #include "plugin1.h"
+
+static UPlugin * s_ipp = NULL;
 
 UPlugin::UPlugin()
 : m_name("dynamic")
@@ -11,9 +13,9 @@ UPlugin::UPlugin()
 UPlugin::~UPlugin()
 {}
 
-string UPlugin::getName() const
+const char * UPlugin::getName() const
 {
-    return m_name;
+    return m_name.c_str();
 }
 
 void UPlugin::setName(const char *name)
@@ -39,5 +41,12 @@ void UPlugin::go()
 
 IPlugin *retrieveIPP()
 {
-    return new UPlugin;
+    assert(NULL == s_ipp);
+    return (s_ipp = new UPlugin);
 }
+
+void freeIPP()
+{
+    CHECK_PTR(s_ipp);
+}
+

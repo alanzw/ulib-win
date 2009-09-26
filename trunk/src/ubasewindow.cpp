@@ -163,6 +163,11 @@ BOOL UBaseWindow::onMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
         return onDestroy();
     case WM_TIMER:
         return onTimer(wParam, lParam);
+    case WM_ERASEBKGND:
+        {
+        if (FALSE != onEraseBkgnd((HDC)wParam)) return TRUE;
+        return defaultMessageHandler(uMessage, wParam, lParam);
+        }
     default:
         return defaultMessageHandler(uMessage, wParam, lParam);
     }
@@ -186,6 +191,7 @@ BOOL UBaseWindow::onPaint()
 
     return FALSE;
 }
+
 
 BOOL UBaseWindow::show()
 {

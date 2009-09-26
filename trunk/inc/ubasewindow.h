@@ -115,6 +115,11 @@ public:
      */
     virtual BOOL onClose();
 
+    //!!! WM_ERASEBKGND
+    //!!! An application should return nonzero if it erases the background;
+    //!!! otherwise, it should return zero.
+    virtual BOOL onEraseBkgnd(HDC hdc) {return FALSE;}
+
     //
     BOOL setTimer(UINT_PTR nIDEvent, UINT uElapse);
     BOOL killTimer(UINT_PTR nIDEvent);
@@ -196,7 +201,7 @@ private:
     LPCTSTR m_lpWindowTitle;
 
     RECT m_rcWindow;
-private:
+protected:
     bool registerWndClass();
 public:
     LRESULT WindowProc(UINT uMessage, WPARAM wParam, LPARAM lParam);

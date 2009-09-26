@@ -20,21 +20,21 @@ public:
     USet()
     {
     }
-    
+
     ~USet()
     {
     }
-    
+
     USet(const USet &s)
     {
     }
-    
+
     USet& operator=(const USet &s)
     {
         return *this;
     }
-    
-    
+
+
 private:
 };
 

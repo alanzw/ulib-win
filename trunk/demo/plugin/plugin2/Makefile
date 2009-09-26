@@ -39,11 +39,6 @@ plugin2.o : plugin2.cpp $(HEADER)
 	$(CXX) -fPIC -c -o $@ -DBUILD_DLL $< $(CXXFLAGS) $(INCS)
 
 #
-$(RES) : $(RC) resource.h
-	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-    
-
-#
 .PHONY : test
 test :
 	cd $(BINDIR) && ./$(BIN)

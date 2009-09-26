@@ -32,8 +32,6 @@ HEADER =
 #
 SUBDIRS =        \
       adt        \
-      algo       \
-      vec        \
       funcptr    \
       factory    \
       nonthrow   \
@@ -49,10 +47,6 @@ SUBDIRS =        \
 .PHONY: all
 all:
 	$(MAKEALL_SUBDIRS)
-#	for X in $(SUBDIRS);\
-#	do \
-#	  (cd $$X && $(MAKE)); \
-#	done
 
 #
 UDOC :
@@ -63,7 +57,4 @@ install :
 .PHONY: clean
 clean:
 	$(MAKECLEAN_SUBDIRS)
-#	for X in $(SUBDIRS);\
-#	do \
-#		(cd $$X && $(MAKE) clean); \
-#	done
+

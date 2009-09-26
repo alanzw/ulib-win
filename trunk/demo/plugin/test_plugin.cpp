@@ -1,10 +1,9 @@
 #include "resource.h"
 #include <windows.h>
 #include <iostream>
-
-using namespace std;
-
+#include <tchar.h>
 #include "uplugin.h"
+#include "udllman.h"
 
 char *lpsz_plugins[] =
 {
@@ -15,40 +14,22 @@ char *lpsz_plugins[] =
 
 int main(int argc, char *argv[])
 {
+    using std::cout;
+    using std::endl;
+    using std::cin;
     //
     int i = 0;
     char *pz = lpsz_plugins[0];
     while (pz != 0 )
     {
         cout << i << endl;
-        HMODULE hDll = ::LoadLibrary(pz);
 
-        if (!hDll)
-        {
-            cout << "Error in loading library: " << pz << endl;
-            return 2;
-        }
-
-        LPRetrieveIP pfun;
-
-
-        pfun = (LPRetrieveIP)GetProcAddress(hDll, "retrieveIPP");
-
-        if (!pfun)
-        {
-            cout << "Error in GetProcAddress: " << "retrieveIPP" << endl;
-            ::FreeLibrary(hDll);
-            return 1;
-        }
-
-        IPlugin *p = pfun();
-
+        UDllMan udm;
+        udm.load(pz);
+        IPlugin *p = udm.callFunc<IPlugin *>("retrieveIPP");
         p->go();
-
-        delete p;
-        ::FreeLibrary(hDll);
-
-        i++;
+        udm.callFunc<void>("freeIPP");
+        ++i;
         pz = lpsz_plugins[i];
 
     }

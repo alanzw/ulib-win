@@ -15,23 +15,16 @@
  *
  * =====================================================================================
  */
-
-#ifndef U_VISUAL_STYLES_H
-#define U_VISUAL_STYLES_H
-
+#define _WIN32_WINNT 0x0501
+ 
+#include <windows.h>
+#include <tchar.h>
+ 
 #include "ulib.h"
 
-#include "uxtheme.h"
+#include "uvisualstyle.h"
 
 namespace VisualStyles
 {
 
-inline BOOL isThemeActive()
-{
-    return ::IsThemeActive();
-}
-
 }; // namespace VisualStyles
-
-#endif // U_VISUAL_STYLES_H
-

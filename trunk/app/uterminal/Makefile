@@ -3,9 +3,9 @@ include ../../make.inc
 
 #
 CFLAGS =
-CXXFLAGS = 
+CXXFLAGS =
 INC = -I"../../inc"
-LIB = -L"../../lib" -mwindows -luwin
+LIBS = -L"../../lib" -mwindows -luwin
 
 #
 SRCDIR = ../../src
@@ -14,39 +14,38 @@ OBJDIR = ../../obj
 RESDIR = ../../res
 ICODIR = ../../ico
 BINDIR = ../../bin
-
 #
-OBJ = test_edit.o
+OBJ = test_terminal.o \
+      uterminal.o
 
-BIN = test_edit.exe
-RC  = edit.rc
+BIN = test_terminal.exe
+RC  = terminal.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/udialog.h  \
-         $(INCDIR)/ucontrol.h \
-         $(INCDIR)/uedit.h    \
-         ./ueditex.h
+HEADER = $(INCDIR)/ubasewindow.h \
+         $(INCDIR)/uwinapp.h     \
+         uterminal.h
 #
-all: $(BIN) 
+all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB)
-	cp $@ $(BINDIR)/$@
+	$(CXX) -o $(BIN) $^ $(LIBS)
+	cp -v $@ $(BINDIR)/$@
 
 #
-test_edit.o : test_edit.cpp $(HEADER)
+%.o : %.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
 
 #
 #$(RES) : $(RC) resource.h
 #	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-    
 #
 .PHONY : test
 test :
-	$(WINE) $(BINDIR)/$(BIN)
+	$(BINDIR)/$(BIN)     
 #
+.PHONY : clean
 clean :
-	$(RM) ${OBJ} ${BIN} $(RES)
+	$(RM) ${OBJ} ${RES} ${BIN}
 

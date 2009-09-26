@@ -37,10 +37,6 @@ test_anonymous.o : test_anonymous.cpp $(HEADER)
 $(OBJDIR)/upipe.o : $(SRCDIR)/upipe.cpp $(HEADER)
 	$(CXX) -c -o $@ -DWITHOUT_DLL $< $(CXXFLAGS) $(INC)
 
-#
-$(RES) : $(RC) resource.h
-	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-
 child.exe : child.cpp
 	$(CXX) -o $@ -DWITHOUT_DLL $< $(CXXFLAGS) $(INC) $(LIB)
 	

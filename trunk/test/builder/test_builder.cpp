@@ -23,21 +23,21 @@ struct PersistenceAttribute
 class DistrWorkPackage
 {
 public:
-    DistrWorkPackage(char *type)
+    DistrWorkPackage(const char *type)
     {
         sprintf(_desc, "Distributed Work Package for: %s", type);
     }
-    void setFile(char *f, char *v)
+    void setFile(const char *f, const char *v)
     {
         sprintf(_temp, "\n  File(%s): %s", f, v);
         strcat(_desc, _temp);
     }
-    void setQueue(char *q, char *v)
+    void setQueue(const char *q, const char *v)
     {
         sprintf(_temp, "\n  Queue(%s): %s", q, v);
         strcat(_desc, _temp);
     }
-    void setPathway(char *p, char *v)
+    void setPathway(const char *p, const char *v)
     {
         sprintf(_temp, "\n  Pathway(%s): %s", p, v);
         strcat(_desc, _temp);
@@ -53,9 +53,9 @@ public:
 class Builder
 {
 public:
-    virtual void configureFile(char*) = 0;
-    virtual void configureQueue(char*) = 0;
-    virtual void configurePathway(char*) = 0;
+    virtual void configureFile(const char*) = 0;
+    virtual void configureQueue(const char*) = 0;
+    virtual void configurePathway(const char*) = 0;
     DistrWorkPackage *getResult()
     {
         return _result;
@@ -71,15 +71,15 @@ public:
     {
         _result = new DistrWorkPackage("Unix");
     }
-    void configureFile(char *name)
+    void configureFile(const char *name)
     {
         _result->setFile("flatFile", name);
     }
-    void configureQueue(char *queue)
+    void configureQueue(const char *queue)
     {
         _result->setQueue("FIFO", queue);
     }
-    void configurePathway(char *type)
+    void configurePathway(const char *type)
     {
         _result->setPathway("thread", type);
     }
@@ -92,15 +92,15 @@ public:
     {
         _result = new DistrWorkPackage("Vms");
     }
-    void configureFile(char *name)
+    void configureFile(const char *name)
     {
         _result->setFile("ISAM", name);
     }
-    void configureQueue(char *queue)
+    void configureQueue(const char *queue)
     {
         _result->setQueue("priority", queue);
     }
-    void configurePathway(char *type)
+    void configurePathway(const char *type)
     {
         _result->setPathway("LWP", type);
     }

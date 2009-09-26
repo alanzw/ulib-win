@@ -24,7 +24,7 @@ public:
     UControl *fromHandle(HWND hwnd);
     UControl *fromID(HWND hParent, UINT nID);
 
-    virtual BOOL create()=0;
+    virtual BOOL create() {};
     virtual BOOL destroy();
     //
     BOOL enable() {return ::EnableWindow(m_hSelf, TRUE);}
@@ -95,7 +95,7 @@ public:
 
     //
     void setFont(HFONT hFont);
-	HFONT getFont();
+    HFONT getFont();
 
     /// Functions for message reflection
     virtual BOOL onNotify(WPARAM wParam, LPARAM lParam) {return FALSE;}
@@ -105,7 +105,7 @@ public:
     virtual BOOL onMeasureItem(WPARAM, LPARAM) {return FALSE;}
 
     //////////////////////////////////////////////////////////////////////////
-    virtual BOOL subclass(HWND hCtrl); 
+    virtual BOOL subclass(HWND hCtrl);
     virtual BOOL subclass(UINT nID, HWND hParent);
 protected:
 
@@ -119,9 +119,9 @@ protected:
 
     ///
     BOOL sendMsg(UINT, WPARAM =0, LPARAM =0);
-	
-	//////////////////////////////////////////////////////////////////////////
-	BOOL sendMsgParent(UINT uMessage, WPARAM wParam=0, LPARAM lParam=0);
+
+    //////////////////////////////////////////////////////////////////////////
+    BOOL sendMsgParent(UINT uMessage, WPARAM wParam=0, LPARAM lParam=0);
 
     ///
     BOOL setLong();
