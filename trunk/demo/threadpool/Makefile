@@ -15,12 +15,12 @@ RESDIR = ../../res
 ICODIR = ../../ico
 BINDIR = ../../bin
 #
-OBJ = test_ntservice.o
-BIN = test_ntservice.exe
-RC  = ntservice.rc
+OBJ = test_threadpool.o
+BIN = test_threadpool.exe
+RC  = threadpool.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/untservice.h
+HEADER = $(INCDIR)/uthread.h
 #
 all: $(BIN)
 
@@ -30,9 +30,9 @@ $(BIN) : $(OBJ) $(RES)
 	cp -vf $(BIN) $(BINDIR)/$(BIN)
 
 #
-test_ntservice.o : test_ntservice.cpp $(HEADER)
+test_threadpool.o : test_threadpool.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-    
+
 #
 .PHONY : test
 test :

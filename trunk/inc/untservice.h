@@ -19,8 +19,8 @@ public:
     UNTServiceMan();
     ~UNTServiceMan();
 
-
     BOOL installSvc(LPCTSTR lpSvcName);
+    BOOL deleteSvc(LPCTSTR lpSvcName);
     BOOL startSvc(LPCTSTR lpSvcName);
     BOOL stopSvc(LPCTSTR lpSvcName);
     int queryState(LPCTSTR lpSvcName);

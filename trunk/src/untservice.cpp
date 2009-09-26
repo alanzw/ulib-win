@@ -75,6 +75,53 @@ BOOL UNTServiceMan::installSvc(LPCTSTR lpSvcName)
     return TRUE;
 }
 
+BOOL UNTServiceMan::deleteSvc(LPCTSTR lpSvcName)
+{
+    SC_HANDLE schSCManager;
+    SC_HANDLE schService;
+    SERVICE_STATUS ssStatus; 
+
+    // Get a handle to the SCM database. 
+ 
+    schSCManager = OpenSCManager( 
+        NULL,                    // local computer
+        NULL,                    // ServicesActive database 
+        SC_MANAGER_ALL_ACCESS);  // full access rights 
+ 
+    if (NULL == schSCManager) 
+    {
+        printf("OpenSCManager failed (%d)\n", GetLastError());
+        return FALSE;
+    }
+
+    // Get a handle to the service.
+
+    schService = OpenService( 
+        schSCManager,       // SCM database 
+        lpSvcName,          // name of service 
+        DELETE);            // need delete access 
+ 
+    if (schService == NULL)
+    { 
+        printf("OpenService failed (%d)\n", GetLastError()); 
+        CloseServiceHandle(schSCManager);
+        return FALSE;
+    }
+
+    // Delete the service.
+ 
+    if (! DeleteService(schService) ) 
+    {
+        printf("DeleteService failed (%d)\n", GetLastError()); 
+    }
+    else printf("Service deleted successfully\n"); 
+ 
+    CloseServiceHandle(schService); 
+    CloseServiceHandle(schSCManager);
+    
+    return TRUE;
+}
+
 BOOL UNTServiceMan::startSvc(LPCTSTR lpSvcName)
 {
     return TRUE;

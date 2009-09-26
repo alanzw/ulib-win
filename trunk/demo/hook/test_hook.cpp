@@ -2,13 +2,14 @@
 
 #include <windows.h>
 #include <tchar.h>
-
-#include "udialog.h"
-#include "umsg.h"
-
 #include <stdio.h>
 
-HINSTANCE g_hInst;
+#include "udialogx.h"
+#include "udlgapp.h"
+#include "umsg.h"
+
+using huys::UDialogBox;
+
 HHOOK hhookTest;
 HWND g_hwnd = NULL;
 
@@ -36,7 +37,7 @@ LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 void startHook()
 {
-    hhookTest = SetWindowsHookEx(WH_MOUSE, MouseProc, g_hInst, 0);
+    hhookTest = SetWindowsHookEx(WH_MOUSE, MouseProc, ::GetModuleHandle(NULL), 0);
 }
 
 void stopHook()
@@ -49,23 +50,21 @@ void stopHook()
 }
 
 
-BOOL CALLBACK MyDlgProc(HWND hDlg, UINT message,
-                        WPARAM wParam, LPARAM lParam)
+class UDialogExt : public UDialogBox
 {
-    if (!g_hwnd)
+public:
+    UDialogExt(HINSTANCE hInst, UINT nID)
+    : UDialogBox(hInst, nID) {}
+
+    BOOL onInit()
     {
-        g_hwnd = hDlg;
+        this->sendChildMsg(IDC_RADIO_UNHOOK, (UINT)BM_SETCHECK, (WPARAM)BST_CHECKED, 0);
+        g_hwnd = m_hDlg;
+        return TRUE;
     }
-    switch (message)
+
+    BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
-    case WM_INITDIALOG :
-        SendMessage(GetDlgItem(hDlg, IDC_RADIO_UNHOOK),
-            (UINT) BM_SETCHECK,  (WPARAM)BST_CHECKED, 0);
-        break;
-    case WM_LBUTTONDOWN:
-        PostMessage(hDlg, WM_NCLBUTTONDOWN, (WPARAM)HTCAPTION, (LPARAM)lParam);
-        break;
-    case WM_COMMAND :
         switch (LOWORD (wParam))
         {
         case IDC_RADIO_HOOK:
@@ -75,26 +74,11 @@ BOOL CALLBACK MyDlgProc(HWND hDlg, UINT message,
         case IDC_RADIO_UNHOOK:
             stopHook();
             //showMsg("Stop HOOK!");
-            ::SendMessage(GetDlgItem(g_hwnd, IDC_EDIT_INFO),
-                WM_SETTEXT, (WPARAM)256, (LPARAM)"NULL!");
-            return TRUE;
+            return this->sendChildMsg(IDC_EDIT_INFO, WM_SETTEXT, (WPARAM)256, (LPARAM)"NULL!");
+        default:
+            return UDialogBox::onCommand(wParam, lParam);
         }
     }
-    return UDialogBox::DefaultDlgProc(hDlg, message, wParam, lParam);
-}
+};
 
-
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
-{
-    g_hInst = hInstance;
-
-    UDialogBox dialog(hInstance, IDD_DIALOG1, MyDlgProc);
-
-    dialog.create();
-
-    //g_hwnd = dialog.getHWND();
-
-
-    return 0;
-}
-
+UDLGAPP_T(UDialogExt, IDD_DIALOG1);

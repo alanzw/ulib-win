@@ -20,7 +20,9 @@ LRESULT CALLBACK DefaultClientChildWindowProc(HWND hWnd, UINT uMessage, WPARAM w
     if (uMessage == WM_NCCREATE) {
         // if this nMessage gets sent then a new window has just been created,
         // so we'll asociate its handle with its AbstractWindow instance pointer
-        ::SetWindowLong (hWnd, GWL_USERDATA, long((LPCREATESTRUCT(lParam))->lpCreateParams));
+        LPCREATESTRUCT lpCS = (LPCREATESTRUCT)lParam;
+        LPMDICREATESTRUCT lpMCS = (LPMDICREATESTRUCT)(lpCS->lpCreateParams);
+        ::SetWindowLong (hWnd, GWL_USERDATA, long(lpMCS->lParam));
     }
 
     pBaseWnd = reinterpret_cast<UBaseWindow *>(::GetWindowLong(hWnd, GWL_USERDATA));
@@ -45,8 +47,54 @@ public:
         setStyles(WS_CHILD | WS_CLIPCHILDREN | WS_VISIBLE);
     }
 
+    bool create()
+    {
+        if (!huys::UWindowClass::isWndClass(ClientChildWndClass, NULL))
+        {
+            if (!registerWndClass())
+            {
+                return false;
+            }
+        }
+
+       MDICREATESTRUCT mdicreate = {0};
+
+        mdicreate.szClass = ClientChildWndClass;
+        mdicreate.szTitle = TEXT ("Hello") ;
+        mdicreate.hOwner  = this->getInstance() ;
+        mdicreate.x       = 0 ;
+        mdicreate.y       = 0 ;
+        mdicreate.cx      = 200 ;
+        mdicreate.cy      = 200 ;
+        mdicreate.style   = 0 ;
+        mdicreate.lParam  = (LPARAM)this ;
+
+        ::SendMessage(getParent(),
+                       WM_MDICREATE,
+                       0,
+                       (LPARAM)&mdicreate
+                     );
+
+        return true;
+
+        //CreateMDIWindow(      
+        //    ClientChildWndClass,
+        //    _T("hello"),
+        //    getStyles(),
+        //    0,
+        //    0,
+        //    100,
+        //    100,
+        //    getParent(),
+        //    getInstance(),
+        //    (LPARAM)this
+        //    );
+        //return true;
+    }
+
     BOOL onClose()
     {
+        this->destroy();
         return 0;
     }
 
@@ -54,6 +102,11 @@ public:
     {
         uwc.setProcdure(&DefaultClientChildWindowProc);
         return FALSE;
+    }
+
+    virtual BOOL defaultMessageHandler(UINT uMessage, WPARAM wParam, LPARAM lParam)
+    {
+        return ::DefMDIChildProc(*this, uMessage, wParam, lParam);
     }
 };
 
@@ -64,6 +117,11 @@ public:
     : UBaseWindow(hParent, hInst)
     {
         setStyles(WS_CHILD | WS_CLIPCHILDREN | WS_VISIBLE);
+    }
+
+    ~UClientWindow()
+    {
+        CHECK_PTR(m_pClientChild);
     }
 
     bool create()
@@ -100,15 +158,14 @@ public:
         return 0;
     }
 
-    BOOL createChild(LPMDICREATESTRUCT lpMdicreate)
+    BOOL createChild()
     {
-        this->sendMsg( WM_MDICREATE,
-                       0,
-                       (LPARAM)lpMdicreate
-                     );
+        m_pClientChild = new UClientChildWindow(*this, getInstance());
+        return m_pClientChild->create();
     }
 private:
     CLIENTCREATESTRUCT m_clientcreate;
+    UClientChildWindow *m_pClientChild;
 };
 
 LRESULT CALLBACK DefaultFrameWindowProc(HWND hWnd, UINT uMessage, WPARAM wParam, LPARAM lParam)
@@ -136,6 +193,21 @@ LRESULT CALLBACK DefaultFrameWindowProc(HWND hWnd, UINT uMessage, WPARAM wParam,
 
     return ::DefFrameProc(hWnd, hClient, uMessage, wParam, lParam) ;
 }
+
+BOOL CALLBACK CloseEnumProc (HWND hwnd, LPARAM lParam)
+{
+    if (GetWindow (hwnd, GW_OWNER))         // Check for icon title
+        return TRUE ;
+
+    SendMessage (GetParent (hwnd), WM_MDIRESTORE, (WPARAM) hwnd, 0) ;
+
+    if (!SendMessage (hwnd, WM_QUERYENDSESSION, 0, 0))
+        return TRUE ;
+
+    SendMessage (GetParent (hwnd), WM_MDIDESTROY, (WPARAM) hwnd, 0) ;
+    return TRUE ;
+}
+
 
 class UFrameWindow : public UBaseWindow
 {
@@ -188,26 +260,27 @@ public:
         }
     }
 
+    BOOL onClose()
+    {
+        EnumChildWindows(getClientHWnd(), CloseEnumProc, 0) ;
+        return UBaseWindow::onClose();
+    }
+
     HWND getClientHWnd() const
     { return m_pClientWindow->getHandle(); }
+
+    virtual BOOL defaultMessageHandler(UINT uMessage, WPARAM wParam, LPARAM lParam)
+    {
+        HWND hClient = ::GetWindow(*this, GW_CHILD);
+        return ::DefFrameProc(*this, hClient, uMessage, wParam, lParam) ;
+    }
 private:
     UClientWindow *m_pClientWindow;
 private:
     BOOL onMenuNew()
     {
-        MDICREATESTRUCT mdicreate = {0};
 
-        mdicreate.szClass = ClientChildWndClass;
-        mdicreate.szTitle = TEXT ("Hello") ;
-        mdicreate.hOwner  = this->getInstance() ;
-        mdicreate.x       = 0 ;
-        mdicreate.y       = 0 ;
-        mdicreate.cx      = 200 ;
-        mdicreate.cy      = 200 ;
-        mdicreate.style   = 0 ;
-        mdicreate.lParam  = 0 ;
-
-        m_pClientWindow->createChild(&mdicreate);
+        m_pClientWindow->createChild();
 
         return FALSE;
     }
@@ -229,7 +302,7 @@ public:
         return true;
     }
 
-    bool run()
+    BOOL run()
     {
         m_pMainWindow->show();
         m_pMainWindow->update();

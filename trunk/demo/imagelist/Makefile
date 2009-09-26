@@ -36,9 +36,6 @@ $(BIN) : $(OBJ) $(RES)
 test_imagelist.o : test_imagelist.cpp $(HEADER)
 	$(CXX) -c -DBUILD_EXE -o $@ $< $(CXXFLAGS) $(INC)
 
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $< -o $@ -O coff -I"$(RESDIR)" -I"$(ICODIR)"
-#
 .PHONY : test
 test :
 	$(WINE) $(BINDIR)/$(BIN)
