@@ -1,6 +1,8 @@
 #include <string>
 #include <vector>
 
+#include <windows.h>
+
 #define ___USE_MT___
 
 template <class T>
@@ -80,11 +82,12 @@ public:
 
     static void destroy()
     {
-        std::vector<T* >::iterator first = T::get_list().begin();
-        std::vector<T* >::iterator last = T::get_list().end();
+        std::vector<T *>::iterator first = T::get_list().begin();
+        std::vector<T *>::iterator last = T::get_list().end();
         while (first != last)
         {
-            T* p = *first; ++first;
+            T *p = *first;
+            ++first;
             ::delete p;
         }
         T::get_list().erase(T::get_list().begin(), T::get_list().end());

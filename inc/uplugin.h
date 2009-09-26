@@ -3,15 +3,11 @@
 
 #include "ulib.h"
 
-#include <string>
-
-using std::string;
-
 UINTERFACE IPluginHost;
 
 UINTERFACE ULIB_API IPlugin
 {
-    virtual string getName() const = 0;
+    virtual const char * getName() const = 0;
     virtual void setName(const char *name) = 0;
     //
     virtual IPluginHost getHost() const = 0;
@@ -26,5 +22,6 @@ UINTERFACE ULIB_API IPluginHost
 };
 
 typedef IPlugin *(*LPRetrieveIP)();
+typedef void (*LPFreeIP)();
 
 #endif // U_PLUGIN_H

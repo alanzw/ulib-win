@@ -49,6 +49,7 @@ GRAPHIC_OBJS =    \
     uglut.o       \
     udibapi.o     \
     urecttracker.o\
+    uvisualstyle.o\
 
 
 CONFIG_OBJS  =    \

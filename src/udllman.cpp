@@ -15,6 +15,11 @@ UDllMan::~UDllMan()
     this->free();
 }
 
+UDllMan::UDllMan(const TCHAR *filepath)
+{
+    this->load(filepath);
+}
+
 int UDllMan::load(const TCHAR *filepath)
 {
     m_hDll = ::LoadLibrary(filepath);

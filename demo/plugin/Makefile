@@ -23,7 +23,11 @@ RES = ${RC:.rc=.res}
 HEADER = $(INCDIR)/uplugin.h \
          $(INCDIR)/ulib.h
 #
-all: $(BIN)
+SUBDIRS = plugin1 \
+          plugin2
+
+#
+all: $(BIN) plugins
 
 #
 $(BIN) : $(OBJ) $(RES)
@@ -34,16 +38,17 @@ $(BIN) : $(OBJ) $(RES)
 test_plugin.o : test_plugin.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INCS)
 
-#
-$(RES) : $(RC) resource.h
-	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-    
+
+plugins :
+	${MAKEALL_SUBDIRS}
 
 #
 .PHONY : test
 test :
-	cd $(BINDIR) && ./$(BIN)
+	$(WINE) $(BINDIR)/$(BIN)
 
 #
 clean :
 	$(RM) ${OBJ} ${RES} ${BIN}
+	$(MAKECLEAN_SUBDIRS)
+

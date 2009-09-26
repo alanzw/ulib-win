@@ -296,9 +296,6 @@ public:
 
                 oldpoint.x = x;
             }
-
-
-
         }
 
 

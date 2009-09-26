@@ -45,8 +45,6 @@ $(OBJDIR)/ucontrol.o : $(SRCDIR)/ucontrol.cpp $(HEADER)
 $(OBJDIR)/urichedit.o : $(SRCDIR)/urichedit.cpp $(HEADER)
 	$(CXX) -c -o $@ -DWITHOUT_DLL $< $(CXXFLAGS) $(INC)
 
-$(RES) : $(RC) resource.h
-	$(WINDRES) -i $< -o $@ -O coff -I"$(RESDIR)" -I"$(ICODIR)"
 #
 .PHONY : test
 test :

@@ -36,10 +36,10 @@ public:
 public:
     UList()
     {}
-    
+
     ~UList()
     {}
-    
+
 };
 
 }; // namespace ADT

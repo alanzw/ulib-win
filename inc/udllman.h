@@ -14,7 +14,32 @@ class ULIB_API UDllMan
 public:
     UDllMan();
     ~UDllMan();
+    explicit UDllMan(const TCHAR *filepath);
     int load(const TCHAR *filepath);
+
+    template <class TRet>
+    struct DllFunc0
+    {
+        typedef TRet (*pfType)();
+        static TRet call(LPCTSTR lpLibName, LPCTSTR lpProcName)
+        {
+            UDllMan udm;
+            udm.load(lpLibName);
+            pfType pfFoo = (pfType)udm.find(lpProcName);
+            return pfFoo();
+        }
+        static TRet callEx(UDllMan &udm, LPCSTR lpProcName)
+        {
+            pfType pfFoo = (pfType)udm.find(lpProcName);
+            return pfFoo();
+        }
+    };
+
+    template <typename T>
+    T callFunc(LPCTSTR lpProcName)
+    {
+        return DllFunc0<T>::callEx(*this, lpProcName);
+    }
 
     template <class TRet, class TPara>
     struct DllFunc

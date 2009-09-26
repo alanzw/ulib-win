@@ -156,9 +156,75 @@ int fibonacci_sequence(int n)
 
 /// QuickSort
 template <typename T>
-T quickSort(T a[])
+T *quicksort_basic(T *array, int lo, int hi)
 {
-    return T();
+    if (hi <= lo)
+    {
+        return array;
+    }
+
+//void quicksort_basic (int[] a, int lo, int hi)
+//{
+//  lo is the lower index, hi is the upper index
+//  of the region of array a that is to be sorted
+    //int i=lo, j=hi, h;
+    //int x=a[(lo+hi)/2];
+    int i = lo;
+    int j = hi;
+    int h = 0;
+    T x = array[(int)(lo/2+hi/2)];
+    //  partition
+    do
+    {
+        while (array[i]<x) i++;
+        while (array[j]>x) j--;
+        if (i<=j)
+        {
+            h=array[i];
+            array[i]=array[j];
+            array[j]=h;
+            i++;
+            j--;
+        }
+    } while (i<=j);
+
+    //  recursion
+    if (lo<j) quicksort_basic(array, lo, j);
+    if (i<hi) quicksort_basic(array, i, hi);
+
+    return array;
+}
+
+
+template <class T>
+int partition(T *array, int p, int r)
+{
+    T x = array[r];
+    int j = p - 1;
+    for (int i=p; i<r; ++i)
+    {
+        if (x <= array[i])
+        {
+            ++j;
+            std::swap(array[i], array[j]);
+        }
+    }
+    array[r] = array[j+1];
+    array[j+1] = x;
+
+    return (j+1);
+}
+
+
+template <class T>
+void quicksort_partition(T *array, int p, int r)
+{
+    if (p<r)
+    {
+        int q = partition<T>(array, p, r);
+        quicksort_partition(array, p, q-1);
+        quicksort_partition(array, q+1, r);
+    }
 }
 
 }; // namespace ADT

@@ -81,6 +81,21 @@ public:
         }
         uncheck_append(val);
     }
+
+    void cutTo(size_type n)
+    {
+        if (this->size() < n)
+        {
+            return;
+        }
+
+        avail = data + n;
+    }
+
+    bool isEmpty() const
+    {
+        return (0 == size());
+    }
 private:
     iterator data;
     iterator avail;

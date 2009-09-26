@@ -1,6 +1,8 @@
 #ifndef U_PLIUGIN_2_H
 #define U_PLIUGIN_2_H
 
+#include <string>
+
 #include "uplugin.h"
 /*
  * =====================================================================================
@@ -8,7 +10,7 @@
  *  Description:  The wapper for wondows plugin
  * =====================================================================================
  */
-class EXPORT UPlugin : public IPlugin
+class ULIB_API UPlugin : public IPlugin
 {
 public:
     /* ====================  LIFECYCLE     ======================================= */
@@ -17,7 +19,7 @@ public:
     /* ====================  OPERATORS     ======================================= */
 
     /* ====================  OPERATIONS    ======================================= */
-    virtual string getName() const;
+    virtual const char * getName() const;
     virtual void setName(const char *name);
     //
     virtual IPluginHost getHost() const;
@@ -33,7 +35,7 @@ public:
 protected:
 
 private:
-    string m_name;
+    std::string m_name;
     IPluginHost m_iph;
 }; /* -----  end of class  UPlugin  ----- */
 
@@ -42,7 +44,8 @@ private:
 extern "C" {
 #endif
  
-EXPORT IPlugin * retrieveIPP();
+ULIB_API IPlugin * retrieveIPP();
+ULIB_API void freeIPP();
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus
