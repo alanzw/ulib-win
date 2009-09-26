@@ -120,6 +120,7 @@ SUBDIRS = \
           winapp      \
           floatwnd    \
           cmdline     \
+          sdi         \
           mdi         \
           mci         \
           shell       \

@@ -61,6 +61,11 @@ public:
         m_wcx.lpszMenuName = lpMenuName;
     }
     
+    void setBKBrush(HBRUSH hBrush)
+    {
+        m_wcx.hbrBackground = hBrush;
+    }
+    
     static bool isWndClass(LPCTSTR lpWndClassName, HINSTANCE hInstance);
 protected:
     WNDCLASSEX m_wcx;

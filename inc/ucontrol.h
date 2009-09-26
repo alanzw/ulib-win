@@ -24,7 +24,7 @@ public:
     UControl *fromHandle(HWND hwnd);
     UControl *fromID(HWND hParent, UINT nID);
 
-    virtual BOOL create() {};
+    virtual BOOL create() { return FALSE; }
     virtual BOOL destroy();
     //
     BOOL enable() {return ::EnableWindow(m_hSelf, TRUE);}

@@ -42,7 +42,13 @@ SUBDIRS =        \
       delegate   \
       observer   \
       builder    \
-      objectpool
+      objectpool \
+      crtp       \
+      composite  \
+      command    \
+      visitor    \
+      state      \
+
 #
 .PHONY: all
 all:
