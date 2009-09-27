@@ -14,7 +14,7 @@ BINDIR = $(TOPDIR)/bin
 LIBDIR = $(TOPDIR)/lib
 
 #
-GDIPLUS_DIR = D:\GS\mingw4\include\gdiplus
+#GDIPLUS_DIR = D:\GS\mingw4\include\gdiplus
 
 #
 INC = -I"$(INCDIR)" -I"$(GDIPLUS_DIR)"

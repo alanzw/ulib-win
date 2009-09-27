@@ -34,13 +34,9 @@ test_ini.o : test_ini.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
 
 #
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-
-#
 .PHONY : test
 test :
 	$(WINE) $(BINDIR)/$(BIN)
 #
 clean :
-	$(RM) ${OBJ} ${RES} ${BIN}
+	$(RM) ${OBJ} ${RES} ${BIN} new_test.ini

@@ -54,6 +54,10 @@ public:
         {
             LOG_STRING("Failed with %s.", _sError);
         }
+        const char * what() const
+        {
+            return _sError;
+        }
     private:
         const char *_sError;
     };
@@ -63,10 +67,11 @@ public:
     ~UIni();
 
     bool parseFile(const char *sFilename);
-
+    bool parseIncFile(const char *sFilename);
     bool parse();
 
-    QueryError query(const char *name, char * &value);
+    //
+    QueryError query(const char *name, const char *&value);
 
     ParseState parseLine(const char *sLine);
 
@@ -81,7 +86,7 @@ public:
 
     bool read();
 
-    bool writeFile(const char *sFilename);
+    bool writeFile(const char *sFilename, bool bStripInc = false);
 
     bool write();
 
@@ -112,8 +117,13 @@ private:
         BaseEntry *prev() const
         { return _prev; }
 
+        virtual bool equals(const char *sText)
+        { return false; }
+
         virtual void get(const char *sp, const char *sp_end) = 0;
         virtual void print() = 0;
+        virtual EntryType type() = 0;
+        virtual bool write(FILE *f) = 0;
     private:
         BaseEntry *_prev;
         BaseEntry *_next;
@@ -167,23 +177,38 @@ private:
 
         void setSecname(const char *secname)
         { _secname = secname; }
-
+        */
         const char *key() const
         { return _key; }
 
         const char *value() const
         { return _value; }
 
+        bool isEnable() const
+        {
+            return (0 == strcmp("enable", _value) ||
+                0 == strcmp("yes", _value));
+        }
+
+        /*
         const char *secname() const
         { return _secname; }
         */
         void get(const char *sp, const char *sp_end)
         {
             const char *p = strchr(sp, '=') - 1;
+            const char *px = strchr(sp, ' ') - 1;
+            if (px < p)
+            {
+                p = px;
+            }
             int nSize = p - sp + 1;
             ::CopyMemory(_key, sp, nSize);
             ++p;
-            ++p;
+            while (' ' == p[0] || '=' == p[0])
+            {
+                ++p;
+            }
             nSize = sp_end - p + 1;
             ::CopyMemory(_value, p, nSize);
 
@@ -194,6 +219,16 @@ private:
         void print()
         {
             printf("%s --> %s\n", _key, _value);
+        }
+        virtual EntryType type()
+        {
+            return ET_KEYVALUE;
+        }
+
+        virtual bool write(FILE *f)
+        {
+            fprintf(f, "%s=%s\n", _key, _value);
+            return true;
         }
     private:
         char _key[MAX_PATH];
@@ -220,9 +255,25 @@ private:
             UINI_LOG("include --> %s\n", _sFilename);
         }
 
+        const char *getIncFilename() const
+        {
+            return _sFilename;
+        }
+
         void print()
         {
             printf("include --> %s\n" , _sFilename);
+        }
+
+        virtual EntryType type()
+        {
+            return ET_INCLUDE;
+        }
+
+        virtual bool write(FILE *f)
+        {
+            fprintf(f, ";include %s\n", _sFilename);
+            return true;
         }
     private:
         char _sFilename[MAX_PATH];
@@ -258,10 +309,32 @@ private:
              UINI_LOG("comment --> %s\n", _sText);
         }
 
+        virtual bool equals(const char *sText)
+        {
+            return (0 == strcmp(sText, _sText));
+        }
+
         void print()
         {
             printf("comment --> %s\n" , _sText);
         }
+
+        virtual EntryType type()
+        {
+            return ET_LCOMMENT;
+        }
+
+        const char *text() const
+        {
+            return _sText;
+        }
+
+        virtual bool write(FILE *f)
+        {
+            fprintf(f, ";%s\n", _sText);
+            return true;
+        }
+
     private:
         char *_sText;
         int _size;
@@ -290,6 +363,17 @@ private:
         {
             printf("section --> %s\n" , _sSecname);
         }
+
+        virtual EntryType type()
+        {
+            return ET_SECNAME;
+        }
+
+        virtual bool write(FILE *f)
+        {
+            fprintf(f, "[%s]\n", _sSecname);
+            return true;
+        }
     private:
         char _sSecname[MAX_PATH];
     };
@@ -306,7 +390,6 @@ private:
     ParseState _parse_state;
 
     FILE *m_pFile;
-
 private:
     int separateLine(const char *sLine);
 
