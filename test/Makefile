@@ -60,6 +60,7 @@ SUBDIRS =        \
       prototype  \
       adapter    \
       afactory   \
+      interpreter\
 
 #
 .PHONY: all

@@ -4,7 +4,7 @@
 
 #include <windows.h>
 #include <tchar.h>
-#include <gdiplus.h>
+#include <gdiplus/gdiPlus.h>
 
 #include "uwinapp.h"
 #include "ubasewindow.h"

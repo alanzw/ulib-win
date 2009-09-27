@@ -74,7 +74,7 @@ int UIni::separateLine(const char *sLine)
             ++sp;
         }
 
-        // Entry : include 
+        // Entry : include
         if ( strncmp("include ", sp, 8) ==0 )
         {
             sp += 8;
@@ -137,8 +137,8 @@ int UIni::separateLine(const char *sLine)
             continue;
         }
 
-         if (('/' == sp[0] && '/' == sp[1]))
-         {
+        if (('/' == sp[0] && '/' == sp[1]))
+        {
             sp += 2;
             sp_end = strchr(sp, '\0') - 1;
 
@@ -147,7 +147,7 @@ int UIni::separateLine(const char *sLine)
             //
             sp = sp_end + 1;
             continue;
-         }
+        }
         // paragraph comment
         if ( '/' == sp[0] && '*' == sp[1] )
         {
@@ -192,17 +192,17 @@ UIni::BaseEntry * UIni::addEntry(UIni::EntryType ei, const char *sp, const char 
         }
     case ET_SECNAME:
         {
-             pEntry = new UIni::SecnameEntry;
+            pEntry = new UIni::SecnameEntry;
             break;
         }
     case ET_LCOMMENT:
         {
-             pEntry = new UIni::CommentEntry;
+            pEntry = new UIni::CommentEntry;
             break;
         }
     case ET_KEYVALUE:
         {
-             pEntry = new UIni::KeyValueEntry;
+            pEntry = new UIni::KeyValueEntry;
             break;
         }
     default:
@@ -212,6 +212,11 @@ UIni::BaseEntry * UIni::addEntry(UIni::EntryType ei, const char *sp, const char 
     pEntry->get(sp, sp_end);
 
     this->appendEntry(pEntry);
+
+    if (ET_INCLUDE == pEntry->type())
+    {
+        this->parseIncFile(static_cast<UIni::IncludeEntry *>(pEntry)->getIncFilename());
+    }
 
     return pEntry;
 }
@@ -270,7 +275,7 @@ UIni::FileState UIni::getline( char *lpBuf, int nMax)
 bool UIni::open( const char *sFilename )
 {
     m_pFile = fopen(sFilename, "r");
- 
+
     if (0 == m_pFile)
     {
         throw UIni_Exception("fopen");
@@ -301,16 +306,26 @@ void UIni::printAll()
 
 bool UIni::parseFile( const char *sFilename )
 {
-  if (!this->open(sFilename))
-  {
-      return false;
-  }
+    if (!this->open(sFilename))
+    {
+        return false;
+    }
     char buf[512] = {0};
     while ( UIni::FS_OK == this->getline(buf, 512))
     {
         parseLine(buf);
     }
     this->close();
+    return true;
+}
+
+bool UIni::parseIncFile( const char *sFilename )
+{
+    FILE *pTemp = m_pFile;
+    this->parseLine(";===START==INCLUDE===");
+    this->parseFile(sFilename);
+    this->parseLine(";===END==INCLUDE===");
+    m_pFile = pTemp;
     return true;
 }
 
@@ -328,20 +343,37 @@ void UIni::deleteAll()
 {
     UIni::BaseEntry *pEntry = _first;
     UIni::BaseEntry *pEntryNext = 0;
-    
+
     while (0 != pEntry)
     {
         pEntryNext = pEntry->next();
         delete pEntry;
         pEntry = pEntryNext;
     }
-   
+
     _first = 0;
     _last = 0;
 }
 
-UIni::QueryError UIni::query( const char *name, char * &value )
+UIni::QueryError UIni::query( const char *name, const char * &value )
 {
+    UIni::BaseEntry *pEntry = NULL;
+
+    int count = 0;
+    for (pEntry=_first; pEntry != NULL; pEntry = pEntry->next(), ++count)
+    {
+        printf("Step to %d :: %d\n", count, pEntry->type());
+        if (ET_KEYVALUE == pEntry->type())
+        {
+            UIni::KeyValueEntry *pKVEntry = static_cast<UIni::KeyValueEntry *>(pEntry);
+            if (0 == strcmp(name, pKVEntry->key()))
+            {
+                value = pKVEntry->value();
+                return UIni::QE_FOUND;
+            }
+        }
+    }
+
     return UIni::QE_UNKOWN;
 }
 
@@ -350,4 +382,34 @@ UIni::BaseEntry * UIni::get( const char *name )
     return 0;
 }
 
+bool UIni::writeFile(const char *sFilename, bool bStripInc /*= false*/)
+{
+    FILE *pFile = fopen(sFilename, "w");
+
+    if (!pFile)
+    {
+        return false;
+    }
+
+    UIni::BaseEntry *pEntry = NULL;
+
+    for (pEntry=_first; pEntry != NULL; pEntry = pEntry->next())
+    {
+        printf("Step to :: %d\n", pEntry->type());
+
+        if (bStripInc)
+        {
+            if (ET_INCLUDE == pEntry->type() ||
+                pEntry->equals("===START==INCLUDE===") ||
+                pEntry->equals("===END==INCLUDE==="))
+            {
+                continue;
+            }
+        }
+
+        pEntry->write(pFile);
+    }
+    fclose(pFile);
+    return true;
+}
 

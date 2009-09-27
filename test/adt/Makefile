@@ -23,6 +23,7 @@ SUBDIRS = btree  \
           stack  \
           algo   \
           sort   \
+          pair   \
 
 #
 all:
