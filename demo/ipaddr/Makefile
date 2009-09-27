@@ -33,11 +33,8 @@ $(BIN) : $(OBJ) $(RES)
 	cp -v $@ $(BINDIR)/$@
 
 #
-test_ipaddr.o : test_ipaddr.cpp $(HEADER)
+%.o : %.cpp $(HEADER)
 	$(CXX) -c -DBUILD_EXE -o $@ $< $(CXXFLAGS) $(INC)
-
-$(RES) : $(RC) resource.h
-	$(WINDRES) -i $< -o $@ -DMINGW_RC -O coff -I"$(RESDIR)" -I"$(ICODIR)"
 #
 .PHONY : test
 test :

@@ -25,23 +25,10 @@ HEADER =
 SUBDIRS = hello
 #
 all:
-	for /d %%X in ($(SUBDIRS)) do $(MAKE) -C %%X
-#	for X in $(SUBDIRS);\
-#	do \
-#	  (cd $$X && $(MAKE) all); \
-#	done
-
-#
-.PHONY : test
-test :
-	$(WINE) $(BINDIR)/$(BIN)
+	$(MAKEALL_SUBDIRS)
 
  #
 .PHONY : clean
 clean :
-	for /d %%X in ($(SUBDIRS)) do $(MAKE) clean -C %%X
-#	for X in $(SUBDIRS);\
-#	do \
-#	  (cd $$X && $(MAKE) clean); \
-#	done
+	$(MAKECLEAN_SUBDIRS)
 

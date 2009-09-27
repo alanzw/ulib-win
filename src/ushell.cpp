@@ -17,24 +17,24 @@ namespace UShell
 HRESULT SimpleInvoke(HWND hwnd)
 {
     IFileDialog *pfd;
-    
+
     // CoCreate the dialog object.
-    HRESULT hr = CoCreateInstance(CLSID_FileOpenDialog, 
-                                  NULL, 
-                                  CLSCTX_INPROC_SERVER, 
+    HRESULT hr = CoCreateInstance(CLSID_FileOpenDialog,
+                                  NULL,
+                                  CLSCTX_INPROC_SERVER,
                                   IID_PPV_ARGS(&pfd));
-    
+
     if (SUCCEEDED(hr))
     {
         // Show the dialog
         hr = pfd->Show(hwnd);
-        
+
         if (SUCCEEDED(hr))
         {
             // Obtain the result of the user's interaction with the dialog.
             IShellItem *psiResult;
             hr = pfd->GetResult(&psiResult);
-            
+
             if (SUCCEEDED(hr))
             {
                 // Do something with the result.

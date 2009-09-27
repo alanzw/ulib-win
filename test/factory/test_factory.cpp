@@ -147,7 +147,7 @@ namespace dp_app
 class Document
 {
 public:
-    Document(char *fn)
+    Document(const char *fn)
     {
         strcpy(name, fn);
     }
@@ -165,7 +165,7 @@ private:
 class MyDocument: public Document
 {
 public:
-    MyDocument(char *fn): Document(fn){}
+    MyDocument(const char *fn): Document(fn){}
     void Open()
     {
         cout << "   MyDocument: Open()" << endl;
@@ -185,7 +185,7 @@ public:
         cout << "Application: ctor" << endl;
     }
     /* The client will call this "entry point" of the framework */
-    void NewDocument(char *name)
+    void NewDocument(const char *name)
     {
         cout << "Application: NewDocument()" << endl;
         /* Framework calls the "hole" reserved for client customization */
@@ -195,7 +195,7 @@ public:
     void OpenDocument(){}
     void ReportDocs();
     /* Framework declares a "hole" for the client to customize */
-    virtual Document *CreateDocument(char*) = 0;
+    virtual Document *CreateDocument(const char*) = 0;
   private:
     int _index;
     /* Framework uses Document's base class */
@@ -218,7 +218,7 @@ public:
         cout << "MyApplication: ctor" << endl;
     }
     /* Client defines Framework's "hole" */
-    Document *CreateDocument(char *fn)
+    Document *CreateDocument(const char *fn)
     {
         cout << "   MyApplication: CreateDocument()" << endl;
         return new MyDocument(fn);

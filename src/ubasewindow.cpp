@@ -76,7 +76,7 @@ bool UBaseWindow::create()
     {
         m_lpWindowClass = UBASEWNDCLASSNAME;
     }
-    
+
     if (!huys::UWindowClass::isWndClass(m_lpWindowClass, NULL))
     {
         if (!registerWndClass())
@@ -118,7 +118,7 @@ bool UBaseWindow::registerWndClass()
 
     //
     onPreRegisterWindowClass(uwc);
-    
+
     //
     if (NULL != m_lpMenuName)
     {

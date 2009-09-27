@@ -3,8 +3,8 @@
 #include <windows.h>
 #include <tchar.h>
 
-#include <GL/GL.h>
-#include <GL/GLU.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
 
 #include "udialogx.h"
 #include "udlgapp.h"

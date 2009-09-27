@@ -48,6 +48,18 @@ SUBDIRS =        \
       command    \
       visitor    \
       state      \
+      bridge     \
+      proxy      \
+      facade     \
+      decorator  \
+      flyweight  \
+      iterator   \
+      builder    \
+      strategy   \
+      mediator   \
+      prototype  \
+      adapter    \
+      afactory   \
 
 #
 .PHONY: all

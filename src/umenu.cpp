@@ -108,11 +108,11 @@ BOOL UMenu::setBmpByPos( int nPos, HBITMAP hBmpUnChked, HBITMAP hBmpChk)
 
 HMENU UMenu::getSubMenu( int nPos )
 {
-	return ::GetSubMenu(m_hMenu, nPos);
+    return ::GetSubMenu(m_hMenu, nPos);
 }
 
 BOOL UMenu::trackSubPopup( int nPos, UINT uFlag, int x, int y )
 {
-	HMENU hSubMenu = this->getSubMenu(nPos);
-	return ::TrackPopupMenu(hSubMenu, uFlag, x, y, NULL, m_hParent, NULL);
+    HMENU hSubMenu = this->getSubMenu(nPos);
+    return ::TrackPopupMenu(hSubMenu, uFlag, x, y, NULL, m_hParent, NULL);
 }

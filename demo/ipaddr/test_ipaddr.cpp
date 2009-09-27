@@ -47,10 +47,10 @@ public:
         m_pIPAddr->setPosition(&rcClient);
 
         m_pIPAddr->setAddress(127, 0, 0, 0);
-        
+
         m_pIPAddr->setFocus(1);
 
-		m_pIPAddr->clear();
+        m_pIPAddr->clear();
 
         return TRUE;
     }

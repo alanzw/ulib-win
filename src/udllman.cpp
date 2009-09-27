@@ -143,10 +143,10 @@ unsigned long GetTargetProcessIdFromWindow(char *className, char *windowName)
 
     targetWnd = FindWindow(className, windowName);
     GetWindowThreadProcessId(targetWnd, &pid);
-   
+
     return pid;
 }
-  
+
 unsigned long GetTargetThreadIdFromWindow(char *className, char *windowName)
 {
     HWND targetWnd;
@@ -172,7 +172,7 @@ unsigned long GetTargetThreadIdFromWindow(char *className, char *windowName)
         :"=r"(pTID)
         :
         :);
-    
+
 #endif
 
 
@@ -181,7 +181,134 @@ unsigned long GetTargetThreadIdFromWindow(char *className, char *windowName)
     CloseHandle(hProcess);
 
     return threadID;
-} 
+}
+
+BOOL injectLibW(DWORD dwPid, LPCWSTR sLibFile)
+{
+    BOOL fOk = FALSE;
+    HANDLE hProcess = NULL;
+    HANDLE hThread = NULL;
+    LPWSTR lpLibFileRemote = NULL;
+
+    //
+    hProcess = OpenProcess(
+        PROCESS_CREATE_THREAD | // For CreateRemoteThread
+        PROCESS_VM_OPERATION  | // For VirtualAllocEx/VirtualFreeEx
+        PROCESS_VM_WRITE,
+        FALSE,
+        dwPid);
+    if (NULL == hProcess)
+    {
+        return FALSE;
+    }
+
+
+    //
+    int cch = 1 + lstrlenW(sLibFile);
+    int cb = cch * sizeof(WCHAR);
+
+    //
+    lpLibFileRemote = (LPWSTR)VirtualAllocEx(hProcess, NULL, cb, MEM_COMMIT, PAGE_READWRITE);
+    if (NULL == lpLibFileRemote)
+    {
+        CloseHandle(hProcess);
+        return FALSE;
+    }
+
+    //
+    if (!WriteProcessMemory(hProcess, lpLibFileRemote, (PVOID)sLibFile, cb, NULL))
+    {
+        CloseHandle(hProcess);
+        return FALSE;
+    }
+
+    LPTHREAD_START_ROUTINE pfnThreadRtn =
+        (LPTHREAD_START_ROUTINE)GetProcAddress(GetModuleHandle(TEXT("Kernel32")), "LoadLibraryW");
+    if (NULL == pfnThreadRtn)
+    {
+        return FALSE;
+    }
+
+    //
+    hThread = CreateRemoteThread(
+        hProcess,
+        NULL,
+        0,
+        pfnThreadRtn,
+        lpLibFileRemote,
+        0,
+        NULL);
+
+    if (NULL == hThread)
+    {
+        return FALSE;
+    }
+
+    //
+    WaitForSingleObject(hThread, INFINITE);
+
+    fOk = TRUE;
+
+    // finally
+    if (NULL != lpLibFileRemote)
+    {
+        VirtualFreeEx(hProcess, lpLibFileRemote, 0, MEM_RELEASE);
+    }
+
+    if (NULL != hThread)
+    {
+        CloseHandle(hThread);
+    }
+
+    if (NULL != hProcess)
+    {
+        CloseHandle(hProcess);
+    }
+
+    return fOk;
+}
+
+BOOL injectLibA(DWORD dwPid, LPCSTR sLibFile)
+{
+    LPWSTR sLibFileW = new WCHAR[lstrlenA(sLibFile)+1];
+    //
+    wsprintfW(sLibFileW, L"%s", sLibFile);
+    //
+    return injectLibW(dwPid, sLibFileW);
+}
+
+BOOL ejectLibW(DWORD dwPid, LPCWSTR sLibFile)
+{
+    BOOL fOk = FALSE;
+    HANDLE hthSnapshot = NULL;
+    HANDLE hProcess = NULL;
+    HANDLE hThread = NULL;
+
+    //
+    hthSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, dwPid);
+    if (NULL == hthSnapshot)
+    {
+        return FALSE;
+    }
+
+    //
+    MODULEENTRY32W me = {sizeof(me)};
+    BOOL fFound = FALSE;
+    BOOL fMoreMods = Module32FirstW(hthSnapshot, &me);
+    for (; fMoreMods; fMoreMods = Module32NextW(hthSnapshot, &me))
+    {
+        fFound = (lstrcmpiW(me.szModule, sLibFile) == 0) ||
+            (lstrcmpiW(me.szExePath, sLibFile) == 0);
+        if (fFound)
+        {
+            break;
+        }
+    }
+
+    return fOk;
+}
+
+
 }; // namespace DLLInject
 
 }; // namespace huys
