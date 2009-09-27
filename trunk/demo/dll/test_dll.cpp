@@ -65,8 +65,8 @@ GetDllDirectoryW(
 int main(int argc, char *argv[])
 {
     try {
-        DEF_DLLFUNC(SetDllDirectory, BOOL, const TCHAR *);
-        DEF_DLLFUNC(GetDllDirectory, DWORD, DWORD, TCHAR *);
+        //DEF_DLLFUNC(SetDllDirectory, BOOL, const TCHAR *);
+        //DEF_DLLFUNC(GetDllDirectory, DWORD, DWORD, TCHAR *);
         UDllMan udm;
         udm.load(_T("kernel32.dll"));
 

@@ -15,14 +15,14 @@ UEvent::UEvent(LPCTSTR sName)
 bool UEvent::create()
 {
     m_hObj = ::CreateEvent(NULL , false , false , m_sName);
-    
+
     return (NULL != m_hObj);
 }
 
 bool UEvent::open()
 {
     m_hObj = ::OpenEvent(EVENT_ALL_ACCESS, false, m_sName);
-    
+
     return (NULL != m_hObj);
 }
 

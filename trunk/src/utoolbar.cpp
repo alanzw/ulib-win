@@ -76,45 +76,45 @@ BOOL UToolBar::setHotImageList(HIMAGELIST himl)
 
 DWORD UToolBar::getButtonSize()
 {
-	return this->sendMsg(TB_GETBUTTONSIZE);
+    return this->sendMsg(TB_GETBUTTONSIZE);
 }
 
 DWORD UToolBar::getButtonRect( int nId, LPRECT lpRect)
 {
-	return this->sendMsg(TB_GETBUTTONSIZE, (WPARAM)nId, (LPARAM)lpRect);
+    return this->sendMsg(TB_GETBUTTONSIZE, (WPARAM)nId, (LPARAM)lpRect);
 }
 
 BOOL UToolBar::hideButton( int nId )
 {
-	return this->sendMsg(TB_HIDEBUTTON, (WPARAM)nId, (LPARAM) MAKELONG (TRUE, 0));
+    return this->sendMsg(TB_HIDEBUTTON, (WPARAM)nId, (LPARAM) MAKELONG (TRUE, 0));
 }
 
 BOOL UToolBar::showButton( int nId )
 {
-	return this->sendMsg(TB_HIDEBUTTON, (WPARAM)nId, (LPARAM) MAKELONG (FALSE, 0));
+    return this->sendMsg(TB_HIDEBUTTON, (WPARAM)nId, (LPARAM) MAKELONG (FALSE, 0));
 }
 
 int UToolBar::getButtonCount()
 {
-	return this->sendMsg(TB_BUTTONCOUNT);
+    return this->sendMsg(TB_BUTTONCOUNT);
 }
 
 BOOL UToolBar::getString( int nIndex, LPTSTR lpText, BYTE cchMax )
 {
-	return this->sendMsg(TB_GETSTRING, MAKEWPARAM(cchMax, nIndex), (LPARAM)lpText);
+    return this->sendMsg(TB_GETSTRING, MAKEWPARAM(cchMax, nIndex), (LPARAM)lpText);
 }
 
 BOOL UToolBar::getButton( int nIndex, LPTBBUTTON lpTbBtn )
 {
-	return this->sendMsg(TB_GETBUTTON, (WPARAM)nIndex, (LPARAM)lpTbBtn);
+    return this->sendMsg(TB_GETBUTTON, (WPARAM)nIndex, (LPARAM)lpTbBtn);
 }
 
 BOOL UToolBar::getButtonInfo( UINT nID, LPTBBUTTONINFO lptbbi )
 {
-	return this->sendMsg(TB_GETBUTTONINFO, (WPARAM)nID, (LPARAM)lptbbi);
+    return this->sendMsg(TB_GETBUTTONINFO, (WPARAM)nID, (LPARAM)lptbbi);
 }
 
 BOOL UToolBar::getButtonText( UINT nID, LPTSTR lpszText )
 {
-	return this->sendMsg(TB_GETBUTTONTEXT, (WPARAM)nID, (LPARAM)lpszText);
+    return this->sendMsg(TB_GETBUTTONTEXT, (WPARAM)nID, (LPARAM)lpszText);
 }

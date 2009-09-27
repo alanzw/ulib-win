@@ -32,6 +32,7 @@ public:
     BOOL onInit()
     {
         m_pCTCtrl = new UCustomCtrl(m_hDlg, ID_UCTCTRL, m_hInst);
+        m_pCTCtrl->setStyles(WS_BORDER);
         m_pCTCtrl->setPos(20, 20, 260, 260);
         m_pCTCtrl->create();
         return TRUE;

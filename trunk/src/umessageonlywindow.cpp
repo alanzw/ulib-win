@@ -27,17 +27,17 @@ HWND UMessageOnlyWindow::findWindowEx( LPCTSTR lpszClass, LPCTSTR lpszWindow )
 
 BOOL UMessageOnlyWindow::onMessage( UINT uMessage, WPARAM wParam, LPARAM lParam )
 {
-	if (UMessageOnlyWindow::WM_CUSTOM_MSG == uMessage)
-	{
-		return this->msgHandler();
-	}
+    if (UMessageOnlyWindow::WM_CUSTOM_MSG == uMessage)
+    {
+        return this->msgHandler();
+    }
 
-	return UBaseWindow::onMessage(uMessage, wParam, lParam);
+    return UBaseWindow::onMessage(uMessage, wParam, lParam);
 }
 
 BOOL UMessageOnlyWindow::msgHandler()
 {
-	::showMsg(_T("Got it"), _T("Info"), HWND_DESKTOP);
-	return FALSE;
+    ::showMsg(_T("Got it"), _T("Info"), HWND_DESKTOP);
+    return FALSE;
 }
 

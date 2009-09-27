@@ -140,10 +140,12 @@ namespace DLLInject
     ULIB_API unsigned long GetTargetProcessIdFromProcname(char *procName);
 
     //! Using SetWindowsHookEx
-    unsigned long GetTargetProcessIdFromWindow(char *className, char *windowName);
+    ULIB_API unsigned long GetTargetProcessIdFromWindow(char *className, char *windowName);
     ULIB_API unsigned long GetTargetThreadIdFromWindow(char *className, char *windowName);
-    BOOL InjectDll(const char *dllName, DWORD dwTid);
 
+	ULIB_API BOOL injectLibW(DWORD dwPid, LPCWSTR sLibFile);
+	ULIB_API BOOL injectLibA(DWORD dwPid, LPCSTR sLibFile);
+	ULIB_API BOOL ejectLibW(DWORD dwPid, LPCWSTR sLibFile);
 }; // namespace DLLInject
 
 }; // namespace huys

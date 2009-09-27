@@ -9,8 +9,8 @@
 # The building environment
 ####################################
 
-PLATFORM = win32
-#PLATFORM = linux32
+#PLATFORM = win32
+PLATFORM = linux32
 
 ####################################
 # Under Linux, MinGW programs are
@@ -99,7 +99,7 @@ else
     CLEANUP = find . \( -name Thumbs.db -o -name *.aps \) -type f -print0 | xargs -0 /bin/rm -vf
     P7ZIP = 7z
     MAKEALL_SUBDIRS = for X in $(SUBDIRS);do (cd $$X && $(MAKE) all); done
-    CLEANALL_SUBDIRS = for X in $(SUBDIRS);do (cd $$X && $(MAKE) clean); done
+    MAKECLEAN_SUBDIRS = for X in $(SUBDIRS);do (cd $$X && $(MAKE) clean); done
 endif
 
 #

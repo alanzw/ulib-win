@@ -63,13 +63,13 @@ int USocket::send(SOCKET sock, const char *pack, int size)
 
 int USocket::send( const char *pack, int size )
 {
-	if (SOCKET_ERROR == ::send(m_socket, pack, size, 0))
-	{
-		printf("send failed: %d ", GetLastError());
-		return SOCKET_ERROR;
-	}
+    if (SOCKET_ERROR == ::send(m_socket, pack, size, 0))
+    {
+        printf("send failed: %d ", GetLastError());
+        return SOCKET_ERROR;
+    }
 
-	return 0;
+    return 0;
 }
 
 int USocket::create( int af, int type, int protocol )
@@ -141,7 +141,7 @@ int USocket::recv(SOCKET sock, char *buf, int nLen )
 
 int USocket::recv( char *buf, int nLen )
 {
-	return this->recv(m_socket, buf, nLen);
+    return this->recv(m_socket, buf, nLen);
 }
 
 int USocket::shutdown( int how )
@@ -205,11 +205,11 @@ int USocket::WSAAsyncSelect( HWND hwnd, UINT uMsg, long lEvent )
 
 int USocket::setsockopt( int level, int optname, const char *optval, int optlen )
 {
-	if (SOCKET_ERROR == ::setsockopt(m_socket, level, optname, optval, optlen))
-	{
-		printf("WSAAsyncSelect failed: %d ",  WSAGetLastError());
-		return SOCKET_ERROR;
-	}
-	return 0;	
+    if (SOCKET_ERROR == ::setsockopt(m_socket, level, optname, optval, optlen))
+    {
+        printf("WSAAsyncSelect failed: %d ",  WSAGetLastError());
+        return SOCKET_ERROR;
+    }
+    return 0;
 }
 

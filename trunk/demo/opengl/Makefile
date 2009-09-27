@@ -23,25 +23,14 @@ RES = ${RC:.rc=.res}
 #
 HEADER =
 #
-all:
-	(cd ex && $(MAKE) all)
-	(cd glctrl && $(MAKE) all)
-	(cd glwin && $(MAKE) all) 
-#
-#$(BIN) : $(OBJ) $(RES)
-#	$(CXX) -o $(BIN) $^ $(LIBS)
-#	cp -v $@ $(BINDIR)/$@
+SUBDIRS = ex      \
+          glctrl  \
+          glwin   \
 
 #
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-#
-.PHONY : test
-test :
-	$(WINE) $(BINDIR)/$(BIN)
+all:
+	$(MAKEALL_SUBDIRS)
 #
 .PHONY : clean
 clean :
-	(cd ex && $(MAKE) clean)
-	(cd glctrl && $(MAKE) clean)
-	(cd glwin && $(MAKE) clean) 
+	$(MAKECLEAN_SUBDIRS)

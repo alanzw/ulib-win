@@ -17,6 +17,9 @@
 namespace URegex
 {
 
+
+
+
 }; // namespace URegex
 
 #endif // U_REGEX_H

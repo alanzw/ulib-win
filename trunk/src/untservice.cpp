@@ -79,16 +79,16 @@ BOOL UNTServiceMan::deleteSvc(LPCTSTR lpSvcName)
 {
     SC_HANDLE schSCManager;
     SC_HANDLE schService;
-    SERVICE_STATUS ssStatus; 
+    SERVICE_STATUS ssStatus;
 
-    // Get a handle to the SCM database. 
- 
-    schSCManager = OpenSCManager( 
+    // Get a handle to the SCM database.
+
+    schSCManager = OpenSCManager(
         NULL,                    // local computer
-        NULL,                    // ServicesActive database 
-        SC_MANAGER_ALL_ACCESS);  // full access rights 
- 
-    if (NULL == schSCManager) 
+        NULL,                    // ServicesActive database
+        SC_MANAGER_ALL_ACCESS);  // full access rights
+
+    if (NULL == schSCManager)
     {
         printf("OpenSCManager failed (%d)\n", GetLastError());
         return FALSE;
@@ -96,29 +96,29 @@ BOOL UNTServiceMan::deleteSvc(LPCTSTR lpSvcName)
 
     // Get a handle to the service.
 
-    schService = OpenService( 
-        schSCManager,       // SCM database 
-        lpSvcName,          // name of service 
-        DELETE);            // need delete access 
- 
+    schService = OpenService(
+        schSCManager,       // SCM database
+        lpSvcName,          // name of service
+        DELETE);            // need delete access
+
     if (schService == NULL)
-    { 
-        printf("OpenService failed (%d)\n", GetLastError()); 
+    {
+        printf("OpenService failed (%d)\n", GetLastError());
         CloseServiceHandle(schSCManager);
         return FALSE;
     }
 
     // Delete the service.
- 
-    if (! DeleteService(schService) ) 
+
+    if (! DeleteService(schService) )
     {
-        printf("DeleteService failed (%d)\n", GetLastError()); 
+        printf("DeleteService failed (%d)\n", GetLastError());
     }
-    else printf("Service deleted successfully\n"); 
- 
-    CloseServiceHandle(schService); 
+    else printf("Service deleted successfully\n");
+
+    CloseServiceHandle(schService);
     CloseServiceHandle(schSCManager);
-    
+
     return TRUE;
 }
 

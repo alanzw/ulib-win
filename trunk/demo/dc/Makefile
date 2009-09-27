@@ -36,10 +36,6 @@ $(BIN) : $(OBJ) $(RES)
 test_dc.o : test_dc.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
 
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-
 .PHONY : test
 test :
 	$(WINE) $(BINDIR)/$(BIN)
@@ -47,5 +43,5 @@ test :
 #
 .PHONY : clean
 clean :
-	$(RM) ${OBJ} ${RES} ${BIN}
+	$(RM) ${OBJ} ${RES} ${BIN} *.bmp
 
