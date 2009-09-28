@@ -68,8 +68,33 @@ public:
         m_rcWindow.bottom = lpRect->bottom;
     }
 
+    void setPos(int x, int y, int cx, int cy)
+    {
+        m_rcWindow.left = x;
+        m_rcWindow.top = y;
+        m_rcWindow.right = x + cx;
+        m_rcWindow.bottom = y + cy;
+    }
+
+    //
+    BOOL setWindowPos(HWND hWndInsertAfter, int x, int y, int cx, int cy, UINT uFlag);
+
+    //
+    BOOL setWindowPlacement(WINDOWPLACEMENT *lpwndpl);
+    BOOL getWindowPlacement(WINDOWPLACEMENT *lpwndpl);
+    BOOL getWindowRect(LPRECT lpRect);
+    BOOL getClientRect(LPRECT lpRect);
+    //
+    BOOL moveWindow(int x, int y, int cx, int cy, BOOL bRepaint = FALSE);
+
+    /* !!! Default Message Handler Entry Point
+     *
+     */
     virtual BOOL defaultMessageHandler(UINT uMessage, WPARAM wParam, LPARAM lParam);
 
+    /// If the message need be filtered, it should return TRUE;
+    virtual BOOL filterMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
+    { return FALSE; }
     virtual BOOL onMessage(UINT uMessage, WPARAM wParam, LPARAM lParam);
     /* !!! WM_CREATE
      * If an application processes this message,

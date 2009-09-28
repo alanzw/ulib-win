@@ -105,7 +105,8 @@ bool USplashWindow::create()
     assert(UBaseWindow::create());
 
     ::MoveWindow( *this,
-                  rc.left, rc.top,
+                  rc.left,
+                  rc.top,
                   m_ubmp.getWidth(),
                   m_ubmp.getHeight(), 
                   TRUE
@@ -117,7 +118,7 @@ bool USplashWindow::create()
 bool USplashWindow::showSplash(DWORD dwDelayedTime)
 {
     //assert(this->registerWndClass());
-    assert(this->create());
+    this->create();
     //centerWindow();
     //CWindow::CenterWindow
     //this->create();
@@ -129,8 +130,7 @@ bool USplashWindow::showSplash(DWORD dwDelayedTime)
     show();
     ::SetForegroundWindow(*this);
     Sleep(dwDelayedTime);
-    ::DestroyWindow(*this);
-    setHandle(NULL);
+    this->killFlash();
 
     return true;
 }
@@ -149,7 +149,6 @@ void USplashWindow::onDraw(HDC hdc)
 {
     RECT rc;
     ::GetClientRect(*this, &rc);
-
     m_ubmp.showStretch(hdc, rc);
 }
 
@@ -160,6 +159,33 @@ BOOL USplashWindow::onTimer(WPARAM wParam, LPARAM lParam)
     setHandle(NULL);
 	return FALSE;
 }
+
+BOOL USplashWindow::filterMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
+{
+	if ((uMessage == WM_KEYDOWN	   ||
+		 uMessage == WM_SYSKEYDOWN	   ||
+		 uMessage == WM_LBUTTONDOWN   ||
+		 uMessage == WM_RBUTTONDOWN   ||
+		 uMessage == WM_MBUTTONDOWN   ||
+		 uMessage == WM_NCLBUTTONDOWN ||
+		 uMessage == WM_NCRBUTTONDOWN ||
+		 uMessage == WM_NCMBUTTONDOWN))
+	{
+		this->killFlash();
+		killTimer(ID_SPLASH_TIMER);
+		return TRUE;
+	}
+
+	return UBaseWindow::filterMessage(uMessage, wParam, lParam);
+}
+
+
+void USplashWindow::killFlash()
+{
+    ::DestroyWindow(*this);
+    setHandle(NULL);
+}
+
 
 /*
 void USplashWindow::centerWindow()

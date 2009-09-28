@@ -85,15 +85,13 @@ bool UBaseWindow::create()
         }
     }
 
-
     if (NULL == m_lpWindowTitle)
     {
         m_lpWindowTitle = _T("ubasewindow");
     }
 
-
     ::CreateWindowEx(
-        m_dwExStyles,                     // dwExStyle
+        m_dwExStyles,          // dwExStyle
         m_lpWindowClass,       // lpClassName
         m_lpWindowTitle,       // lpWindowName
         m_dwStyles,            // dwStyle
@@ -142,6 +140,11 @@ BOOL UBaseWindow::defaultMessageHandler(UINT uMessage, WPARAM wParam, LPARAM lPa
 
 BOOL UBaseWindow::onMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
 {
+    if (filterMessage(uMessage, wParam, lParam))
+    {
+        return FALSE;
+    }
+
     switch (uMessage)
     {
     // FIXME: WM_NCCREATE doesn't work here.
@@ -280,6 +283,37 @@ BOOL UBaseWindow::setWindowText(LPCTSTR lpText)
 {
     return this->sendMsg(WM_SETTEXT, 0, (LPARAM)lpText);
 }
+
+BOOL UBaseWindow::setWindowPos(HWND hWndInsertAfter, int x, int y, int cx, int cy, UINT uFlag)
+{
+	return ::SetWindowPos(m_hSelf, hWndInsertAfter, x, y, cx, cy, uFlag);
+}
+
+BOOL UBaseWindow::setWindowPlacement(WINDOWPLACEMENT *lpwndpl)
+{
+	return ::SetWindowPlacement(m_hSelf, lpwndpl);
+}
+
+BOOL UBaseWindow::getWindowPlacement(WINDOWPLACEMENT *lpwndpl)
+{
+	return ::GetWindowPlacement(m_hSelf, lpwndpl);
+}
+
+BOOL UBaseWindow::getWindowRect(LPRECT lpRect)
+{
+	return ::GetWindowRect(m_hSelf, lpRect);
+}
+
+BOOL UBaseWindow::getClientRect(LPRECT lpRect)
+{
+	return ::GetClientRect(m_hSelf, lpRect);;
+}
+
+BOOL UBaseWindow::moveWindow(int x, int y, int cx, int cy, BOOL bRepaint /*= FALSE*/)
+{
+	return ::MoveWindow(m_hSelf, x, y, cx, cy, bRepaint);
+}
+
 
 HWND UBaseWindow::setActive()
 {

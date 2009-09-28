@@ -57,7 +57,7 @@ public:
     bool loadFromResID(HINSTANCE hInst, UINT uID);
     //
     bool loadFromFile(LPCTSTR lpFileName);
-    
+
     //
     bool createCursor( HINSTANCE hInst,
                        int xHotSpot,
@@ -66,17 +66,17 @@ public:
                        int nHeight,
                        const VOID *pvANDPlane,
                        const VOID *pvXORPlane );
-                       
+
     //
     bool use();
     bool restore();
     //
     bool getClipCursor(LPRECT lpRect);
     bool clipCursor(const RECT *lpRect);
-    
+
     //
     bool copy(HCURSOR hCursor);
-    
+
     //
     bool setPos(int x, int y);
 private:

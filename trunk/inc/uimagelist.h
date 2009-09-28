@@ -14,10 +14,10 @@ public:
 
     virtual ~UImageList();
 
-	BOOL destroy();
+    BOOL destroy();
 
-	//
-	BOOL create(int cx, int cy, UINT uFlag, int nInitial, int nGrow);
+    //
+    BOOL create(int cx, int cy, UINT uFlag, int nInitial, int nGrow);
 
     //
     operator HIMAGELIST ()
@@ -28,25 +28,25 @@ public:
     BOOL drawIcon(int nIndex, HWND hwnd, int x, int y);
     //
     BOOL writeToStream(LPSTREAM lpStream);
-	BOOL readFromStream(LPSTREAM lpStream);
+    BOOL readFromStream(LPSTREAM lpStream);
     //
     int getIconNum() const;
     //
     HIMAGELIST getHandle() const;
 
-	//
-	//BOOL drawIndirect(IMAGELISTDRAWPARAMS *pimldp);
-	BOOL drawIndirect(HDC hdc, int nImage, LONG x, LONG y, LONG cx, LONG cy, 
-		UINT fStyle = ILD_NORMAL,
-		DWORD dwRop = SRCCOPY, 
-		COLORREF rgbBack = CLR_DEFAULT,
-		COLORREF rgbFore = CLR_DEFAULT);
-	//
-	int addMasked(HBITMAP hBitmap, COLORREF clrMask);
+    //
+    //BOOL drawIndirect(IMAGELISTDRAWPARAMS *pimldp);
+    BOOL drawIndirect(HDC hdc, int nImage, LONG x, LONG y, LONG cx, LONG cy,
+        UINT fStyle = ILD_NORMAL,
+        DWORD dwRop = SRCCOPY,
+        COLORREF rgbBack = CLR_DEFAULT,
+        COLORREF rgbFore = CLR_DEFAULT);
+    //
+    int addMasked(HBITMAP hBitmap, COLORREF clrMask);
 
-	//
-	BOOL setIconSize(int cx, int cy);
-	BOOL setImageCount(int nCount);
+    //
+    BOOL setIconSize(int cx, int cy);
+    BOOL setImageCount(int nCount);
 
 protected:
     HIMAGELIST m_hImageList;

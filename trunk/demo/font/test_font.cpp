@@ -68,8 +68,8 @@ public:
         font.select(hdc);
 
         // Display the text string.
-        TCHAR text[] = _T("Sample text");
-        TextOut(hdc, 10, 50, text, lstrlen(text));
+        const TCHAR *text = _T("A Fox Crosses A River!");
+        font.textOut(hdc, 10, 50, text, lstrlen(text));
 
         font.restore();
 

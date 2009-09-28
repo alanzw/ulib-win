@@ -13,6 +13,7 @@
 UFont::UFont()
 : UGDIObject()
 {
+	::ZeroMemory(&m_lf, sizeof(LOGFONT));
 }
 
 UFont::~UFont()
@@ -53,6 +54,16 @@ int UFont::drawEx(HDC hdc, LPTSTR lpchText, int nCount, LPRECT lpRect, UINT uFor
     return ::DrawTextEx(hdc, lpchText, nCount, lpRect, uFormat, lpDTParams);
 }
 
+BOOL UFont::textOut(HDC hdc, int x, int y, LPCTSTR lpString, int cbString)
+{
+	return ::TextOut(hdc, x, y, lpString, cbString);
+}
+
+BOOL UFont::extTextOut(HDC hdc, int x, int y, LPCTSTR lpString, int cbString, UINT fuOptions, const LPRECT lpRect, const INT *lpDx)
+{
+	return ::ExtTextOut(hdc, x, y, fuOptions, lpRect, lpString, cbString, lpDx);
+}
+
 int UFont::addFontResource(LPCTSTR lpszFilename)
 {
     return ::AddFontResource(lpszFilename);
@@ -82,8 +93,9 @@ bool UFont::useStockFont( StockFont sf )
     return (NULL != m_hObj);
 }
 
-void UFont::useLogFont( const LOGFONT &lf )
+bool UFont::useLogFont( const LOGFONT &lf )
 {
     ::CopyMemory(&m_lf, &lf, sizeof(LOGFONT));
-    createFont();
+    return (NULL != this->createFont());
 }
+

@@ -34,7 +34,7 @@ public:
     bool attach(HDC hdc);
     bool dettach();
 
-	bool getDC(HWND hWnd);
+    bool getDC(HWND hWnd);
 
     huys::Color setPenColor(huys::Color clr);
     huys::Color setBrushColor(huys::Color clr);
@@ -43,28 +43,28 @@ public:
 
     HGDIOBJ getCurObj(UINT uObjectType);
 
-	//
-	int setStretchBltMode(int iStretchMode);
-	BOOL stretchBlt(
-		int nXOriginDest,
-		int nYOriginDest,
-		int nWidthDest,
-		int nHeightDest,
-		HDC hdcSrc,
-		int nXOriginSrc,
-		int nYOriginSrc,
-		int nWidthSrc,
-		int nHeightSrc,
-		DWORD dwRop);
-	BOOL bitBlt(
-		int nXOriginDest,
-		int nYOriginDest,
-		int nWidthDest,
-		int nHeightDest,
-		HDC hdcSrc,
-		int nXOriginSrc,
-		int nYOriginSrc,
-		DWORD dwRop);
+    //
+    int setStretchBltMode(int iStretchMode);
+    BOOL stretchBlt(
+        int nXOriginDest,
+        int nYOriginDest,
+        int nWidthDest,
+        int nHeightDest,
+        HDC hdcSrc,
+        int nXOriginSrc,
+        int nYOriginSrc,
+        int nWidthSrc,
+        int nHeightSrc,
+        DWORD dwRop);
+    BOOL bitBlt(
+        int nXOriginDest,
+        int nYOriginDest,
+        int nWidthDest,
+        int nHeightDest,
+        HDC hdcSrc,
+        int nXOriginSrc,
+        int nYOriginSrc,
+        DWORD dwRop);
 private:
 };
 
@@ -83,8 +83,8 @@ private:
 class ULIB_API UMemDC : public UDevContext
 {
 public:
-	UMemDC(HDC hdc);
-	~UMemDC();
+    UMemDC(HDC hdc);
+    ~UMemDC();
 };
 
 #endif // U_DEVICE_CONTEXT_H
