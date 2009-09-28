@@ -1,15 +1,23 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-PYTHON_DIR  = D:/Progs/Python26
+#PYTHON_DIR  = D:/Progs/Python26
+PYTHON_DIR = C:/Python25
+PYTHON_LIB = -L$(PYTHON_DIR)/libs -lpython25
 PERL_INC = D:/Progs/Perl/lib/CORE
+PERL_LIB = -LD:/Progs/Perl/lib/CORE -lperl510
 TCL_DIR =
+THIRDPARTY_DIR = $(TOPDIR)/thirdparty
+THIRDPARTY_INC = $(THIRDPARTY_DIR)/include/lua
+THIRDPARTY_LIB = $(THIRDPARTY_DIR)/lib/liblua.a
 #
 CFLAGS =
 CXXFLAGS =
-INC = -I"../../inc" -I$(PYTHON_DIR)/include -I$(PERL_INC)
-LIBS = -L"../../lib" -mwindows -luwin -L$(PYTHON_DIR)/libs -lpython26 -LD:/Progs/Perl/lib/CORE -lperl510 -ltcl84
+INC = -I"../../inc" -I$(PYTHON_DIR)/include -I$(PERL_INC) -I$(THIRDPARTY_INC)
+LIBS = -L"../../lib" -mwindows -luwin -ltcl84  $(THIRDPARTY_LIB)
 
 #
 SRCDIR = ../../src
@@ -22,9 +30,10 @@ BINDIR = ../../bin
 OBJ = \
  test_script.o \
  uscript.o     \
- upython.o     \
- uperl.o       \
- utcl.o
+ utcl.o        \
+ ulua.o        \
+# upython.o     \
+# uperl.o       \
 
 BIN = test_script.exe
 RC  = script.rc
