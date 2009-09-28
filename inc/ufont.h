@@ -23,14 +23,15 @@ public:
     UFont();
     ~UFont();
 
-    void useLogFont(const LOGFONT &lf);
+    bool useLogFont(const LOGFONT &lf);
 
     bool useStockFont(StockFont sf);
 
     int draw(HDC hdc, LPCTSTR lpchText, int nCount, LPRECT lpRect, UINT uFormat);
     int drawEx(HDC hdc, LPTSTR lpchText, int nCount, LPRECT lpRect, UINT uFormat, LPDRAWTEXTPARAMS lpDTParams);
 
-
+	BOOL textOut(HDC hdc, int x, int y, LPCTSTR lpString, int cbString);
+	BOOL extTextOut(HDC hdc, int x, int y, LPCTSTR lpString, int cbString, UINT fuOptions, const LPRECT lpRect, const INT *lpDx);
 protected:
     LOGFONT m_lf;
     HFONT createFont();
