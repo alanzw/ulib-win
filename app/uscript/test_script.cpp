@@ -11,8 +11,18 @@
 #include "uedit.h"
 #include "ustatic.h"
 #include "ubutton.h"
+#include "ucombobox.h"
 
-#include "upython.h"
+//#include "upython.h"
+
+const char * g_InterpList[] = {
+	"python",
+	"perl",
+	"tcl",
+	"ruby",
+	"lua",
+	NULL
+};
 
 class UTransparentStatic : public UStatic
 {
@@ -83,7 +93,8 @@ class UDialogScript : public UDialogBox
 {
     enum {
         IDC_EDIT_CMD     = 10001,
-        IDC_BUTTON_CHECK = 10002
+        IDC_BUTTON_CHECK = 10002,
+        IDC_COMBO_INTERP = 10003
     };
 public:
     UDialogScript(HINSTANCE hInst, UINT nID)
@@ -98,10 +109,18 @@ public:
 
     virtual BOOL onInit()
     {
+		m_pCbInterp = new UComboBox(m_hDlg, IDC_COMBO_INTERP, m_hInst);
+		m_pCbInterp->setPos(50, 10, 100, 65);
+		m_pCbInterp->create();
 
-        RECT rcTitle = {50, 10, 250, 35};
+		for(int i = 0; g_InterpList[i] != NULL; ++i)
+		{
+			m_pCbInterp->addText(g_InterpList[i]);
+		}
+		
+        RECT rcTitle = {150, 10, 250, 35};
         m_pStaticTitle = new UTransparentStatic(m_hDlg);
-        m_pStaticTitle->setText(_T("Python Command"));
+        m_pStaticTitle->setText(_T("Command"));
         m_pStaticTitle->create();
         //us.modifyStyles(WS_EX_TRANSPARENT);
         m_pStaticTitle->setPosition(&rcTitle);
@@ -115,7 +134,7 @@ public:
         ::GetClientRect(m_hDlg, &rc);
         rc.left += 40;
         rc.right -= 40;
-        rc.top += 40;
+        rc.top += 50;
         rc.bottom = rc.top + 200;
         m_pEditCmd->setPosition(&rc);
 
@@ -149,9 +168,9 @@ public:
 
     BOOL onBnCheck()
     {
-        huys::UPython upy;
+        //huys::UPython upy;
 
-        if (upy.isReady())
+        //if (upy.isReady())
         {
             showMsg(_T("Python is OK"), _T("Info"), m_hDlg);
         }
@@ -177,6 +196,7 @@ private:
     UEdit *m_pEditCmd;
     UTransparentStatic *m_pStaticTitle;
     UPushButton *m_pButtonCheck;
+	UComboBox *m_pCbInterp;
 
 };
 
