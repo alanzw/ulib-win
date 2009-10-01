@@ -24,6 +24,7 @@ SUBDIRS = btree  \
           algo   \
           sort   \
           pair   \
+          string \
 
 #
 all:

@@ -1,23 +1,30 @@
 #ifndef U_MENU_H
 #define U_MENU_H
 
-#include "ulib.h"
+#include "uobject.h"
 
-//#include <vector>
-
-class ULIB_API UMenu
+class ULIB_API UMenu : public UUserObject
 {
 public:
     UMenu();
     virtual ~UMenu();
     virtual HMENU create();
     virtual HMENU createPopup();
+	//
+	virtual bool destroy();
+	
     //
     BOOL append(UINT uMenuItem, TCHAR *lpText);
     BOOL append(UINT uMenuItem, HBITMAP hbmp);
-    BOOL addSubMenu(UMenu *pSubMenu, TCHAR *lpText);
+    BOOL addSubMenu(HMENU hSubMenu, TCHAR *lpText);
     //
     BOOL load(HINSTANCE hInst, LPCSTR lpMenuName);
+	//
+	BOOL getMenu(HWND hWnd);
+
+	//
+	operator HMENU ()
+	{ return (HMENU)m_hObj; }
 
 	//
 	HMENU getSubMenu(int nPos);
@@ -30,15 +37,20 @@ public:
     //
     BOOL attach(HWND hParent);
     //
-    BOOL setMenuInfo(LPCMENUINFO lpc);
+    BOOL setMenuInfo(LPCMENUINFO lpcmi);
+	BOOL getMenuInfo(LPMENUINFO lpmi);
+    //
+    HMENU getHandle() const { return (HMENU)m_hObj;}
 
     //
-    HMENU getHandle() const { return m_hMenu;}
-
-    //
-    UINT getItemID(int nPos) const;
-    BOOL checkItemByID(UINT nId);
+    UINT getItemID(int nPos);
+    BOOL checkItemByID(UINT uId);
     BOOL checkItemByPos(int nPos);
+	BOOL uncheckItemByID(UINT uId);
+	BOOL uncheckItemByPos(UINT uPos);
+
+	BOOL isItemChecked(UINT uId);
+	BOOL isItemDisabled(UINT uId);
 
     //
     BOOL setBmpByID(UINT nId, HBITMAP hBmpUnChked, HBITMAP hBmpChk);
@@ -49,10 +61,22 @@ public:
     { return ::IsMenu(hMenu); }
 
     //
-    int getItemCount() const;
+    int getItemCount();
+
+	//
+	UINT getMenuStateByID(UINT uId);
+	UINT getMenuStateByPos(UINT uPos);
+
+	//
+	int getMenuStringByID(UINT uId, LPTSTR sText, int nMaxCount);
+	int getMenuStringByPos(UINT uPos, LPTSTR sText, int nMaxCount);
+
+	//
+	
 protected:
-    HMENU m_hMenu;
+    //HMENU m_hMenu;
     HWND m_hParent;
+	BOOL bManaged;
 private:
     //std::vector<UINT> m_childIds;
 };

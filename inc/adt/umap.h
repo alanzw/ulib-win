@@ -15,6 +15,18 @@ public:
     typedef const T* const_iterator;
     typedef size_t size_type;
     typedef T value_type;
+public:
+    UMap()
+    {
+
+    }
+
+    ~UMap()
+    {
+    }
+
+private:
+
 };
 
 }; // namespace adt

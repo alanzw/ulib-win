@@ -1,7 +1,7 @@
+#include <windows.h>
+#include <tchar.h>
 #include <string>
 #include <vector>
-
-#include <windows.h>
 
 #define ___USE_MT___
 
@@ -82,8 +82,8 @@ public:
 
     static void destroy()
     {
-        std::vector<T *>::iterator first = T::get_list().begin();
-        std::vector<T *>::iterator last = T::get_list().end();
+        typename std::vector<T *>::iterator first = T::get_list().begin();
+        typename std::vector<T *>::iterator last = T::get_list().end();
         while (first != last)
         {
             T *p = *first;
@@ -103,7 +103,7 @@ private:
     CRITICAL_SECTION _Crit;
 
     clsCrit(const clsCrit &); // NO NO NO NO! No copy constructor!!!
-    void operator=(const clsCrit &)
+    void operator=(const clsCrit &);
 
 public:
     clsCrit(void)
@@ -159,8 +159,8 @@ public:
     }
     virtual ~clsPointerArray(void)
     {
-        if (_nEntriesUsed)
-            _chk_utildebug(TEXT("WRN: objects left in pool!"));
+//        if (_nEntriesUsed)
+//            _chk_utildebug(TEXT("WRN: objects left in pool!"));
     }
 
     void* Get(void)

@@ -12,7 +12,7 @@ public:
     BOOL loadIconEx(HINSTANCE hInstance, LPCSTR lpIconName);
     BOOL loadIconEx(HINSTANCE hInstance, UINT nResId);
 
-    bool destroy();
+    virtual bool destroy();
 
     operator HICON ()
     {

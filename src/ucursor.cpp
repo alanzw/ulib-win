@@ -97,7 +97,7 @@ bool UCursor::clipCursor(const RECT *lpRect)
 
 bool UCursor::copy(HCURSOR hCursor)
 {
-	// !!! CopyCursor is a macro.
+    // !!! CopyCursor is a macro.
     m_hObj = CopyCursor(hCursor);
     return (NULL != m_hObj);
 }

@@ -22,9 +22,25 @@
 
 class ULIB_API UFileMapping : public UKernelObject
 {
+    enum {
+        BUFFER_SIZE = 256
+    };
 public:
     UFileMapping();
     ~UFileMapping();
+
+    //
+    BOOL create(LPCTSTR sMapFilename);
+    BOOL open(LPCTSTR sMapFilename);
+    //
+    BOOL mapViewOfFile();
+    BOOL unmapViewOfFile();
+    //
+    BOOL write(LPCTSTR lpText, int cbBytes);
+private:
+    TCHAR m_sMapFilename[BUFFER_SIZE];
+    //
+    LPSTR m_lpBuffer;
 };
 
 #endif // U_FILEMAPPING_H

@@ -23,7 +23,8 @@
 
 class ULIB_API UDeviceMan
 {
-    
+public:
+    UDeviceMan();
 };
 
 #endif // U_DEVICE_MAN_H

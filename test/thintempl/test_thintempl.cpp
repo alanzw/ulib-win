@@ -8,10 +8,10 @@ class VectorBase
     void insert(void *)
     {
     }
-    
+
     void *at(int index)
     {
-        
+
     }
 };
 

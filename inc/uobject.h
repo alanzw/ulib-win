@@ -41,7 +41,8 @@ public:
 
     bool load();
     bool create();
-    virtual bool destroy();
+	// 
+    virtual bool destroy() = 0;
 protected:
 private:
 };

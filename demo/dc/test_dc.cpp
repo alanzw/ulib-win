@@ -66,10 +66,10 @@ int CaptureAnImage(HWND hWnd, LPCTSTR sFilename)
     //HDC hdcScreen;
     //HDC hdcWindow;
     //HDC hdcMemDC = NULL;
-	
-	UDC udcScreen;
-	UDC udcWindow;
-	//UMemDC udcMem;
+    
+    UDC udcScreen;
+    UDC udcWindow;
+    //UMemDC udcMem;
 
     HBITMAP hbmScreen = NULL;
     BITMAP bmpScreen;
@@ -78,17 +78,17 @@ int CaptureAnImage(HWND hWnd, LPCTSTR sFilename)
     // area of the window.
     //hdcScreen = GetDC(NULL);
     //hdcWindow = GetDC(hWnd);
-	udcScreen.getDC(NULL);
-	udcWindow.getDC(hWnd);
+    udcScreen.getDC(NULL);
+    udcWindow.getDC(hWnd);
 
     // Create a compatible DC which is used in a BitBlt from the window DC
     //hdcMemDC = CreateCompatibleDC(hdcWindow);
-	UMemDC udcMem(udcWindow);
+    UMemDC udcMem(udcWindow);
 
     //if(!hdcMemDC)
     if (udcMem.isNull())
-	{
-		return -1;
+    {
+        return -1;
         //MessageBox(hWnd, _T("StretchBlt has failed"), _T("Failed"), MB_OK);
         //ReleaseDC(hWnd, hdcMemDC);
         //ReleaseDC(NULL,hdcScreen);
@@ -104,7 +104,7 @@ int CaptureAnImage(HWND hWnd, LPCTSTR sFilename)
 
     //This is the best stretch mode
     //SetStretchBltMode(hdcWindow,HALFTONE);
-	udcWindow.setStretchBltMode(HALFTONE);
+    udcWindow.setStretchBltMode(HALFTONE);
 
     //The source DC is the entire screen and the destination DC is the current window (HWND)
     //if(!StretchBlt(hdcWindow,
@@ -121,15 +121,15 @@ int CaptureAnImage(HWND hWnd, LPCTSTR sFilename)
     //    ReleaseDC(NULL,hdcScreen);
     //    ReleaseDC(hWnd,hdcWindow);
     //}
-	if (!udcWindow.stretchBlt( 0, 0, rcClient.right, rcClient.bottom,
-						  udcScreen,
-						  0,0,
-		                  GetSystemMetrics (SM_CXSCREEN),
-		                  GetSystemMetrics (SM_CYSCREEN),
-		                  SRCCOPY))
-	{
-		return -1;
-	}
+    if (!udcWindow.stretchBlt( 0, 0, rcClient.right, rcClient.bottom,
+                          udcScreen,
+                          0,0,
+                          GetSystemMetrics (SM_CXSCREEN),
+                          GetSystemMetrics (SM_CYSCREEN),
+                          SRCCOPY))
+    {
+        return -1;
+    }
 
     // Create a compatible bitmap from the Window DC
     hbmScreen = CreateCompatibleBitmap(udcWindow, rcClient.right-rcClient.left, rcClient.bottom-rcClient.top);
@@ -141,7 +141,7 @@ int CaptureAnImage(HWND hWnd, LPCTSTR sFilename)
         //ReleaseDC(hWnd, hdcMemDC);
         //ReleaseDC(NULL,hdcScreen);
         //ReleaseDC(hWnd,hdcWindow);
-		return -1;
+        return -1;
     }
 
     // Select the compatible bitmap into the compatible memory DC.
@@ -160,7 +160,7 @@ int CaptureAnImage(HWND hWnd, LPCTSTR sFilename)
         //ReleaseDC(hWnd, hdcMemDC);
         //ReleaseDC(NULL,hdcScreen);
         //ReleaseDC(hWnd,hdcWindow);
-		return -1;
+        return -1;
     }
 
 
