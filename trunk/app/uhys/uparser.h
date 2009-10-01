@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  ulist.h
+ *       Filename:  upaser.h
  *
- *    Description:  Class UList
+ *    Description:  
  *
  *        Version:  1.0
- *        Created:  2009-9-1 2:07:42
+ *        Created:  10/01/2009 02:46:38 AM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,37 +16,30 @@
  * =====================================================================================
  */
 
-#ifndef U_LIST_H
-#define U_LIST_H
+#include "adt/ustring.h"
+#include "adt/uvector.h"
 
 namespace huys
 {
 
-namespace ADT
+namespace ScriptEngine
 {
 
-template <class T>
-class UList
+typedef huys::ADT::UStringAnsi UStringA;
+typedef huys::ADT::UVector<UStringA> TokenVec;
+
+class UPaser
 {
 public:
-    typedef T* iterator;
-    typedef const T* const_iterator;
-    typedef size_t size_type;
-    typedef T value_type;
-public:
-    UList()
-    {}
-
-    ~UList()
-    {}
-
+    UPaser();
+    ~UPaser();
+    //
+    bool tokenize(const char *code);
 private:
-
+    TokenVec m_tokens;
 };
 
-}; // namespace ADT
+}; // namespace ScriptEngine
 
 }; // namespace huys
-
-#endif // U_LIST_H
 

@@ -64,8 +64,8 @@ int main (void)
     a.push_back (20);
 
     evaluate (a.begin(), a.end(), expr); // It is (50.00 + x) but does not look like it.
-    
-    evaluate (a.begin(), a.end(), x + l + x); 
+
+    evaluate (a.begin(), a.end(), x + l + x);
 
     return 0;
 }

@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  uqueue.h
+ *       Filename:  test_hys.cpp
  *
- *    Description:  queue
+ *    Description:  
  *
  *        Version:  1.0
- *        Created:  2009/7/2 20:53:25
+ *        Created:  10/01/2009 04:10:26 AM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,25 +16,19 @@
  * =====================================================================================
  */
 
-#ifndef HU_DEQUE_H
-#define HU_DEQUE_H
+#include "uengine.h"
 
-namespace huys
+int main()
 {
 
-namespace ADT
-{
+    huys::ScriptEngine::UEngine use;
 
-template <class T>
-class UDeque
-{
-public:
+    use.doString("prt Hello");
+    use.doString("prt Hello,2");
+    use.doString("%prt Hello,2");
+    use.doString("  ");
 
-};
+    use.doFile("test.hys");
 
-}; // namespace ADT
-
-}; // namespace huys
-
-#endif // HU_DEQUE_H
-
+    return 0;
+}

@@ -140,7 +140,8 @@ inline void STATIC_ASSERT_IMPL()
 
 
 /// verify that types are complete for increased safety
-template<class T> inline void checked_delete(T * x)
+template<class T>
+inline void checked_delete(T * x)
 {
     // intentionally complex - simplification causes regressions
     typedef char type_must_be_complete[ sizeof(T)? 1: -1 ];

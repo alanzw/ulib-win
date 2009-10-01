@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  ulist.h
+ *       Filename:  uengine.h
  *
- *    Description:  Class UList
+ *    Description:  
  *
  *        Version:  1.0
- *        Created:  2009-9-1 2:07:42
+ *        Created:  10/01/2009 04:10:43 AM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,37 +16,30 @@
  * =====================================================================================
  */
 
-#ifndef U_LIST_H
-#define U_LIST_H
+#ifndef U_ENGINE_H
+#define U_ENGINE_H
+
+#include "uparser.h"
 
 namespace huys
 {
-
-namespace ADT
+namespace ScriptEngine
 {
 
-template <class T>
-class UList
+class UEngine
 {
 public:
-    typedef T* iterator;
-    typedef const T* const_iterator;
-    typedef size_t size_type;
-    typedef T value_type;
-public:
-    UList()
-    {}
+    UEngine();
+    ~UEngine();
 
-    ~UList()
-    {}
-
+    void doString(const char *str);
+    void doFile(const char *filename);
 private:
-
+    UPaser m_parser;
 };
 
-}; // namespace ADT
-
+};
 }; // namespace huys
 
-#endif // U_LIST_H
+#endif // U_ENGINE_H
 

@@ -14,6 +14,8 @@
 #include "utabctrl.h"
 #include "ustatusbar.h"
 
+#include "umenu.h"
+
 using huys::UDialogBox;
 
 #include "utabchild.h"
@@ -58,6 +60,10 @@ public:
 
     virtual BOOL onInit()
     {
+        if (!m_UMainMenu.getMenu(m_hDlg))
+        {
+            return FALSE;
+        }
 
         HWND hTabTask;
         hTabTask = GetDlgItem(m_hDlg, IDC_TAB_TASK);
@@ -92,15 +98,15 @@ public:
         m_pTabChild[IDX_SVC]= new UTabChildSvc(m_hInst, IDD_SHEET_SVC, hTabTask);
         m_pTabChild[IDX_SVC]->create();
         m_pTabChild[IDX_SVC]->hide();
-        
+
         m_pTabChild[IDX_PRF]= new UTabChildPrf(m_hInst, IDD_SHEET_PRF, hTabTask);
         m_pTabChild[IDX_PRF]->create();
         m_pTabChild[IDX_PRF]->hide();
-        
+
         m_pTabChild[IDX_NET]= new UTabChildNetwork(m_hInst, IDD_SHEET_NET, hTabTask);
         m_pTabChild[IDX_NET]->create();
         m_pTabChild[IDX_NET]->hide();
-        
+
         m_pTabChild[IDX_USR]= new UTabChildUser(m_hInst, IDD_SHEET_USR, hTabTask);
         m_pTabChild[IDX_USR]->create();
         m_pTabChild[IDX_USR]->hide();
@@ -121,21 +127,21 @@ public:
         ::MoveWindow(m_pTabChild[IDX_PRF]->getHWND(), rc.left, rc.top, rc.right-rc.left, rc.bottom-rc.top, TRUE);
         ::MoveWindow(m_pTabChild[IDX_NET]->getHWND(), rc.left, rc.top, rc.right-rc.left, rc.bottom-rc.top, TRUE);
         ::MoveWindow(m_pTabChild[IDX_USR]->getHWND(), rc.left, rc.top, rc.right-rc.left, rc.bottom-rc.top, TRUE);
-        
-        
+
+
         m_pStatusBar = new UStatusBar(m_hDlg, IDC_STATUSBAR, m_hInst);
         m_pStatusBar->setPos(0, 100, 300, 100);
         m_pStatusBar->create();
-        
+
         m_pStatusBar->setMinHeight(16);
-        
+
         int aWidths[] = { 100, 250, 450 };
         m_pStatusBar->setParts(3, aWidths);
-        
+
         m_pStatusBar->setText(0, _T("Processes: "));
         m_pStatusBar->setText(1, _T("CPU Usage: "));
         m_pStatusBar->setText(2, _T("Memory Usage: "));
-        
+
         return TRUE;
     }
 
@@ -189,6 +195,8 @@ public:
 private:
     UTabChild *m_pTabChild[6];
     UStatusBar *m_pStatusBar;
+    //
+    UMenu m_UMainMenu;
 private:
     BOOL onTabSelChange()
     {
@@ -268,15 +276,26 @@ private:
 
     BOOL onMenuTopMost()
     {
-        HMENU hMenu = ::GetMenu(m_hDlg);
-        if (MF_CHECKED & ::GetMenuState(hMenu, IDM_ALWAYS_ON_TOP, MF_BYCOMMAND))
+        //HMENU hMenu = ::GetMenu(m_hDlg);
+        //if (MF_CHECKED & ::GetMenuState(hMenu, IDM_ALWAYS_ON_TOP, MF_BYCOMMAND))
+        //{
+        //    CheckMenuItem(hMenu, IDM_ALWAYS_ON_TOP, MF_BYCOMMAND|MF_UNCHECKED);
+        //    this->setNoTopMost();
+        //}
+        //else
+        //{
+        //    CheckMenuItem(hMenu, IDM_ALWAYS_ON_TOP, MF_BYCOMMAND|MF_CHECKED);
+        //    this->setTopMost();
+        //}
+
+        if (m_UMainMenu.isItemChecked(IDM_ALWAYS_ON_TOP))
         {
-            CheckMenuItem(hMenu, IDM_ALWAYS_ON_TOP, MF_BYCOMMAND|MF_UNCHECKED);
+            m_UMainMenu.uncheckItemByID(IDM_ALWAYS_ON_TOP);
             this->setNoTopMost();
         }
         else
         {
-            CheckMenuItem(hMenu, IDM_ALWAYS_ON_TOP, MF_BYCOMMAND|MF_CHECKED);
+            m_UMainMenu.checkItemByID(IDM_ALWAYS_ON_TOP);
             this->setTopMost();
         }
 

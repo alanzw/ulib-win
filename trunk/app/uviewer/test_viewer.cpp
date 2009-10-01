@@ -26,25 +26,12 @@ public:
         return TRUE;
     }
 
-    virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
+    virtual BOOL onEraseBkgnd(HDC hdc)
     {
-        BOOL result = UDialogBox::DialogProc(message, wParam, lParam);
-        switch (message)
-        {
-        case WM_ERASEBKGND:
-            {
-                // UBitmap ubm(_T("bk.bmp"));
-                // UBitmap ubm(IDB_BACKGROUND, m_hInst);
-                HDC hdc = (HDC)wParam;
-                RECT rc;
-                ::GetClientRect(m_hDlg, &rc);
-                //hdc = ::GetWindowDC(m_hDlg);
-                m_pBack->showStretch(hdc, rc);
-                //ReleaseDC(m_hDlg, hdc);
-                return TRUE;
-            }
-        }
-        return result;
+        RECT rc;
+        ::GetClientRect(m_hDlg, &rc);
+        m_pBack->showStretch(hdc, rc);
+        return TRUE;
     }
 private:
     UBitmap *m_pBack;

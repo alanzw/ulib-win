@@ -3,7 +3,7 @@
  *
  *       Filename:  test_mediator.cpp
  *
- *    Description:  
+ *    Description:
  *
  *        Version:  1.0
  *        Created:  09/27/2009 08:36:03 PM
@@ -142,5 +142,7 @@ int main()
         cout << "Exit[0], Filter[1], Dir[2], File[3], Selection[4]: ";
         cin >> i;
     }
+
+    return 0;
 }
 

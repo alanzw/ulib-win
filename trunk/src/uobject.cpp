@@ -40,11 +40,6 @@ bool UUserObject::create()
     return true;
 }
 
-bool UUserObject::destroy()
-{
-    return true;
-}
-
 UKernelObject::UKernelObject()
 {
     m_hObj = NULL;

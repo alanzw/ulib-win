@@ -92,6 +92,11 @@ public:
         avail = data + n;
     }
 
+    void zero()
+    {
+        cutTo(0);
+    }
+
     bool isEmpty() const
     {
         return (0 == size());

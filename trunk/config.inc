@@ -43,6 +43,8 @@ SYSTEM_OBJS =     \
     usemaphore.o  \
     umutex.o      \
     utoolhelp.o   \
+    ufilemapping.o\
+    umailslot.o   \
 
 
 GRAPHIC_OBJS =    \

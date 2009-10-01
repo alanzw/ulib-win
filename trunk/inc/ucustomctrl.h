@@ -28,9 +28,9 @@ public:
     virtual ~UCustomCtrl();
 
     virtual BOOL create();
-	virtual BOOL onLButtonDown(WPARAM wParam, LPARAM lParam);
-	virtual BOOL onLButtonUp(WPARAM wParam, LPARAM lParam);
-	virtual BOOL onMouseMove(WPARAM wParam, LPARAM lParam);
+    virtual BOOL onLButtonDown(WPARAM wParam, LPARAM lParam);
+    virtual BOOL onLButtonUp(WPARAM wParam, LPARAM lParam);
+    virtual BOOL onMouseMove(WPARAM wParam, LPARAM lParam);
 private:
 };
 

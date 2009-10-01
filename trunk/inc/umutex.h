@@ -31,13 +31,13 @@ public:
                    LPSECURITY_ATTRIBUTES lpMutexAttributes = NULL,
                    LPCTSTR lpName = NULL
                  );
-                 
+
     //
     HANDLE open( LPCTSTR lpName,
                  BOOL bInheritHandle = FALSE,
                  DWORD dwDesiredAccess = SYNCHRONIZE
                 );
-                 
+
     //
     BOOL release();
 };

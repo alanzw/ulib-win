@@ -1,3 +1,10 @@
+/*
+ * Command
+ *  -- Invoker
+ *  -- Client
+ *  -- Receiver
+ */
+
 #include <iostream>
 #include <string>
 

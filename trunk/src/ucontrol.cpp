@@ -344,12 +344,12 @@ void UControl::setFont( HFONT hFont )
 
 HFONT UControl::getFont()
 {
-	return (HFONT)this->sendMsg(WM_GETFONT);
+    return (HFONT)this->sendMsg(WM_GETFONT);
 }
 
 BOOL UControl::sendMsgParent( UINT uMessage, WPARAM wParam/*=0*/, LPARAM lParam/*=0*/ )
 {
-	return ::SendMessage(m_hParent, uMessage, wParam, lParam);
+    return ::SendMessage(m_hParent, uMessage, wParam, lParam);
 }
 
 BOOL UControl::onPaint()
@@ -358,13 +358,13 @@ BOOL UControl::onPaint()
  //   PAINTSTRUCT ps;
  //   HDC hdc;
  //   hdc = BeginPaint(m_hSelf, &ps);
-	////hdc = ::GetDC(m_hSelf);
- //   
-	//onDraw(hdc);
+    ////hdc = ::GetDC(m_hSelf);
+ //
+    //onDraw(hdc);
 
-	////::ReleaseDC(m_hSelf, hdc);
+    ////::ReleaseDC(m_hSelf, hdc);
  //   EndPaint(m_hSelf, &ps);
-	return FALSE;
+    return FALSE;
 }
 
 BOOL UControl::subclass( HWND hCtrl )

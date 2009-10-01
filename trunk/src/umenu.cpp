@@ -5,58 +5,69 @@
 #include "umenu.h"
 
 UMenu::UMenu()
+:bManaged(TRUE)
 {
     //m_childIds.clear();
 }
 
 UMenu::~UMenu()
 {
-    if (m_hMenu)
-    {
-        ::DestroyMenu(m_hMenu);
-    }
+    this->destroy();
 }
 
 HMENU UMenu::create()
 {
-    m_hMenu = ::CreateMenu();
+    m_hObj = ::CreateMenu();
     //
-    assert(m_hMenu);
-    return m_hMenu;
+    assert(m_hObj);
+    return (HMENU)*this;
 }
 
 HMENU UMenu::createPopup()
 {
-    m_hMenu = ::CreatePopupMenu();
+    m_hObj = ::CreatePopupMenu();
     //
-    assert(m_hMenu);
-    return m_hMenu;
-    m_hMenu = ::CreateMenu();
-    //
-    assert(m_hMenu);
-    return m_hMenu;
+    assert(m_hObj);
+    return (HMENU)*this;
+}
+
+bool UMenu::destroy()
+{
+    if (bManaged && m_hObj)
+    {
+        ::DestroyMenu(*this);
+    }
+    return true;
 }
 
 BOOL UMenu::append(UINT uMenuItem, TCHAR *lpszText)
 {
     //m_childIds.push_back(uMenuItem);
-    return ::AppendMenu(m_hMenu, MF_STRING, uMenuItem, lpszText);
+    return ::AppendMenu(*this, MF_STRING, uMenuItem, lpszText);
 }
 
 BOOL UMenu::append( UINT uMenuItem, HBITMAP hbmp )
 {
-    return ::AppendMenu(m_hMenu, MF_BITMAP, uMenuItem, (LPCTSTR) hbmp);
+    return ::AppendMenu(*this, MF_BITMAP, uMenuItem, (LPCTSTR) hbmp);
 }
 
 BOOL UMenu::load(HINSTANCE hInst, LPCSTR lpMenuName)
 {
-    m_hMenu = ::LoadMenu(hInst, lpMenuName);
+    m_hObj = ::LoadMenu(hInst, lpMenuName);
     return TRUE;
+}
+
+BOOL UMenu::getMenu(HWND hWnd)
+{
+    assert(NULL == m_hObj);
+    m_hObj = ::GetMenu(hWnd);
+    bManaged = FALSE;
+    return (NULL != m_hObj);
 }
 
 BOOL UMenu::trackPopup(UINT uFlag, int x, int y)
 {
-    return ::TrackPopupMenu(m_hMenu, uFlag, x, y, NULL, m_hParent, NULL);
+    return ::TrackPopupMenu(*this, uFlag, x, y, NULL, m_hParent, NULL);
 }
 
 BOOL UMenu::attach(HWND hParent)
@@ -65,50 +76,77 @@ BOOL UMenu::attach(HWND hParent)
     return TRUE;
 }
 
-BOOL UMenu::setMenuInfo(LPCMENUINFO lpc)
+BOOL UMenu::setMenuInfo(LPCMENUINFO lpcmi)
 {
-    return ::SetMenuInfo(m_hMenu, lpc);
+    return ::SetMenuInfo(*this, lpcmi);
 }
 
-BOOL UMenu::addSubMenu( UMenu *pSubMenu, TCHAR *lpText )
+BOOL UMenu::getMenuInfo(LPMENUINFO lpmi)
 {
-    return ::AppendMenu(m_hMenu, MF_STRING|MF_POPUP, (UINT_PTR)pSubMenu->m_hMenu, lpText);
+    return ::GetMenuInfo(*this, lpmi);
 }
 
-UINT UMenu::getItemID( int nPos ) const
+BOOL UMenu::addSubMenu( HMENU hSubMenu, TCHAR *lpText )
 {
-    return ::GetMenuItemID(m_hMenu, nPos);
+    return ::AppendMenu(*this, MF_STRING|MF_POPUP, (UINT_PTR)hSubMenu, lpText);
 }
 
-BOOL UMenu::checkItemByID( UINT nId )
+UINT UMenu::getItemID( int nPos )
 {
-    return ::CheckMenuItem(m_hMenu, nId, MF_CHECKED);
+    return ::GetMenuItemID(*this, nPos);
+}
+
+BOOL UMenu::checkItemByID( UINT uId )
+{
+    return ::CheckMenuItem(*this, uId, MF_CHECKED);
 }
 
 BOOL UMenu::checkItemByPos( int nPos )
 {
-    UINT nId = this->getItemID(nPos);
-    return ::CheckMenuItem(m_hMenu, nId, MF_CHECKED);
+    UINT uId = this->getItemID(nPos);
+    return ::CheckMenuItem(*this, uId, MF_CHECKED);
 }
 
-int UMenu::getItemCount() const
+BOOL UMenu::uncheckItemByID( UINT uId )
 {
-    return ::GetMenuItemCount(m_hMenu);
+    return ::CheckMenuItem(*this, uId, MF_BYCOMMAND|MF_UNCHECKED);
+}
+
+BOOL UMenu::uncheckItemByPos( UINT uPos )
+{
+    UINT uId = this->getItemID(uPos);
+    return ::CheckMenuItem(*this, uId, MF_BYPOSITION|MF_UNCHECKED);
+}
+
+
+BOOL UMenu::isItemChecked(UINT uId)
+{
+    return (MF_CHECKED & this->getMenuStateByID(uId));
+}
+
+BOOL UMenu::isItemDisabled(UINT uId)
+{
+    return (MF_DISABLED & this->getMenuStateByID(uId));
+}
+
+int UMenu::getItemCount()
+{
+    return ::GetMenuItemCount(*this);
 }
 
 BOOL UMenu::setBmpByID( UINT nId, HBITMAP hBmpUnChked, HBITMAP hBmpChk)
 {
-    return ::SetMenuItemBitmaps(m_hMenu, nId, MF_BYCOMMAND, hBmpUnChked, hBmpChk);
+    return ::SetMenuItemBitmaps(*this, nId, MF_BYCOMMAND, hBmpUnChked, hBmpChk);
 }
 
 BOOL UMenu::setBmpByPos( int nPos, HBITMAP hBmpUnChked, HBITMAP hBmpChk)
 {
-    return ::SetMenuItemBitmaps(m_hMenu, nPos, MF_BYPOSITION, hBmpUnChked, hBmpChk);
+    return ::SetMenuItemBitmaps(*this, nPos, MF_BYPOSITION, hBmpUnChked, hBmpChk);
 }
 
 HMENU UMenu::getSubMenu( int nPos )
 {
-    return ::GetSubMenu(m_hMenu, nPos);
+    return ::GetSubMenu(*this, nPos);
 }
 
 BOOL UMenu::trackSubPopup( int nPos, UINT uFlag, int x, int y )
@@ -116,3 +154,26 @@ BOOL UMenu::trackSubPopup( int nPos, UINT uFlag, int x, int y )
     HMENU hSubMenu = this->getSubMenu(nPos);
     return ::TrackPopupMenu(hSubMenu, uFlag, x, y, NULL, m_hParent, NULL);
 }
+
+UINT UMenu::getMenuStateByID(UINT uId)
+{
+    return ::GetMenuState(*this, uId, MF_BYCOMMAND);
+}
+
+UINT UMenu::getMenuStateByPos(UINT uPos)
+{
+    return ::GetMenuState(*this, uPos, MF_BYPOSITION);
+}
+
+int UMenu::getMenuStringByID(UINT uId, LPTSTR sText, int nMaxCount)
+{
+    return ::GetMenuString(*this, uId, sText, nMaxCount, MF_BYCOMMAND);
+}
+
+int UMenu::getMenuStringByPos(UINT uPos, LPTSTR sText, int nMaxCount)
+{
+    return ::GetMenuString(*this, uPos, sText, nMaxCount, MF_BYPOSITION);
+}
+
+
+
