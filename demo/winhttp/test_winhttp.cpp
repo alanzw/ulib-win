@@ -3,7 +3,6 @@
 #include <tchar.h>
 #include <stdio.h>
 
-
 #define __out_ecount(size)
 #define __out_ecount_full_opt(size)
 #define __in_ecount(size)
@@ -20,10 +19,12 @@ int main(int argc, char *argv[])
     DWORD dwSize = sizeof(DWORD);
 
     // Use WinHttpOpen to obtain an HINTERNET handle.
-    HINTERNET hSession = WinHttpOpen(L"A WinHTTP Example Program/1.0",
+    HINTERNET hSession = WinHttpOpen(
+        L"A WinHTTP Example Program/1.0",
         WINHTTP_ACCESS_TYPE_DEFAULT_PROXY,
         WINHTTP_NO_PROXY_NAME,
-        WINHTTP_NO_PROXY_BYPASS, 0);
+        WINHTTP_NO_PROXY_BYPASS,
+        0);
     if (hSession)
     {
 

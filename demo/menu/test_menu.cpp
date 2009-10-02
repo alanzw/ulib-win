@@ -85,7 +85,7 @@ public:
         upop.append(3335, S_QUIT);
 
         //::AppendMenu(umn.getHandle(), MF_STRING|MF_POPUP, (UINT_PTR)upop.getHandle(), S_POPUP);
-        umn.addSubMenu(&upop, S_POPUP);
+        umn.addSubMenu(upop, S_POPUP);
         //::CheckMenuItem(umn.getHandle(), 3333, MF_CHECKED);
         umn.checkItemByPos(0);
 

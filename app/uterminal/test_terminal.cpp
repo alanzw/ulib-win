@@ -14,13 +14,14 @@
 class UMyWindow : public UBaseWindow
 {
     enum {
-        ID_FILECTRL = 11002
+        ID_TERMINAL = 11002
     };
 public:
    UMyWindow()
    : UBaseWindow(NULL, ::GetModuleHandle(NULL))
    {
         this->setTitle(_T("UTerminal Test 0.0.1"));
+        this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
    }
 
    ~UMyWindow()
@@ -30,39 +31,52 @@ public:
    {
        this->setIconBig(IDI_APP);
 
-       ULifeCtrl uLifeCtrl(*this, ID_FILECTRL, this->getInstance());
-       uLifeCtrl.setPos(20, 20, 320, 320);
-       uLifeCtrl.create();
-
        return UBaseWindow::onCreate();
    }
 
     //
     virtual void onDraw(HDC hdc)
     {
-        
+
     }
-    
     //
     virtual BOOL onEraseBkgnd(HDC hdc)
     {
-		RECT rc = {0};
-		::GetClientRect(*this, &rc);
+        RECT rc = {0};
+        ::GetClientRect(*this, &rc);
         huys::URectangle urc(rc);
-		urc.setFilledColor(huys::black);
+        urc.setFilledColor(huys::black);
         urc.setFilledStyle(BS_SOLID);
-		urc.Draw(hdc);
+        urc.Draw(hdc);
         return TRUE;
+    }
+
+    //
+    virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
+    {
+        switch (LOWORD(wParam))
+        {
+        case IDM_ABOUT:
+            return onMenuAbout();
+        case IDM_EXIT:
+            return UBaseWindow::onClose();
+        default:
+            return UBaseWindow::onCommand(wParam, lParam);
+        }
+    }
+private:
+    BOOL onMenuAbout()
+    {
+        this->showMsg(_T("UTerminal v0.0.1"), _T("About"));
+        return FALSE;
     }
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
 {
     UWinApp app;
-    UBaseWindow *pWnd = new UMyWindow;
-    app.setMainWindow(pWnd);
+    app.setMainWindow(new UMyWindow);
     app.init(hInstance);
-    pWnd->setIconBig(IDI_APP);
     return app.run();
 }
 

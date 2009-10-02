@@ -106,5 +106,7 @@ int main()
     cout << "1 == 3 is " << (s1 == s3) << endl;
     cout << "1 == 4 is " << (s1 == s4) << endl;
     cout << "1 == 5 is " << (s1 == s5) << endl;
+
+    return 0;
 }
 

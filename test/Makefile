@@ -61,6 +61,8 @@ SUBDIRS =        \
       adapter    \
       afactory   \
       interpreter\
+      chainofresp\
+      templmethod\
 
 #
 .PHONY: all
