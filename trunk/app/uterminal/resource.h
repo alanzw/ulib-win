@@ -4,7 +4,7 @@
 
 #define IDI_APP                         1
 
-#define IDR_MENU_SDP                    200
+#define IDR_MENU_MAIN                   200
 #define IDM_NEW                         201
 #define IDM_EXIT                        202
 #define IDM_TOOLBAR                     203

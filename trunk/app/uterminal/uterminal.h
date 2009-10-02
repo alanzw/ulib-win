@@ -3,12 +3,12 @@
 
 #include "ustatic.h"
 
-class ULifeCtrl : public UStatic
+class UTerminal : public UStatic
 {
 public:
-    ULifeCtrl(HWND hParent, UINT nID, HINSTANCE hInst);
-    ULifeCtrl();
-    ~ULifeCtrl();
+    UTerminal(HWND hParent, UINT nID, HINSTANCE hInst);
+    UTerminal();
+    ~UTerminal();
 private:
 
 };

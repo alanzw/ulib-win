@@ -54,6 +54,11 @@ public:
     int shutdown(int how);
 
     int gethostname(char *buf, int len);
+    struct hostent* gethostbyname(const char *name);
+    struct hostent* gethostbyaddr(const char *addr, int len, int type);
+
+    //
+    unsigned long inet_addr(const char *cp);
     //
     int WSAAsyncSelect(HWND hwnd, UINT uMsg, long lEvent);
 

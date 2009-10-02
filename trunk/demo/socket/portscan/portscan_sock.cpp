@@ -21,6 +21,11 @@
 #include <stdio.h>
 #include "usocket.h"
 
+int scan_port(unsigned long ulAddr, int iPort)
+{
+    return 0;
+}
+
 int main(int argc, char *argv[])
 {
     USocket us;

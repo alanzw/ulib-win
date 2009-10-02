@@ -4,15 +4,15 @@
 
 #include "uterminal.h"
 
-ULifeCtrl::ULifeCtrl(HWND hParent, UINT nID, HINSTANCE hInst)
+UTerminal::UTerminal(HWND hParent, UINT nID, HINSTANCE hInst)
 : UStatic(hParent, nID, hInst)
 {
 }
 
-ULifeCtrl::ULifeCtrl()
+UTerminal::UTerminal()
 {
 }
 
-ULifeCtrl::~ULifeCtrl()
+UTerminal::~UTerminal()
 {}
 

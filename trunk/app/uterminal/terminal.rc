@@ -16,7 +16,7 @@
 //
 // Menu resources
 //
-IDR_MENU_SDP MENU
+IDR_MENU_MAIN MENU
 BEGIN
     POPUP "&File"
     BEGIN
@@ -34,7 +34,7 @@ BEGIN
     END
     POPUP "&Help" HELP
     BEGIN
-        MENUITEM "&About SDP", IDM_ABOUT
+        MENUITEM "&About UTerminal", IDM_ABOUT
     END
 END
 

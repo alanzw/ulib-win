@@ -164,6 +164,21 @@ int USocket::gethostname( char *buf, int len )
     return 0;
 }
 
+struct hostent * USocket::gethostbyname(const char *name)
+{
+    return ::gethostbyname(name);
+}
+
+struct hostent * USocket::gethostbyaddr(const char *addr, int len, int type)
+{
+    return ::gethostbyaddr(addr, len, type);
+}
+
+unsigned long USocket::inet_addr(const char *cp)
+{
+    return ::inet_addr(cp);
+}
+
 int USocket::connect( const struct sockaddr *s )
 {
     if (SOCKET_ERROR == ::connect(m_socket, s, sizeof(struct sockaddr)))
