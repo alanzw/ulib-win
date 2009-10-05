@@ -63,7 +63,11 @@ SUBDIRS =        \
       interpreter\
       chainofresp\
       templmethod\
+      template   \
+      policies   \
+      bntrick    \
 
+      
 #
 .PHONY: all
 all:

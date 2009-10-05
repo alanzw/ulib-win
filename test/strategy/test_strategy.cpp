@@ -3,7 +3,7 @@
  *
  *       Filename:  test_strategy.cpp
  *
- *    Description:  
+ *    Description:
  *
  *        Version:  1.0
  *        Created:  09/27/2009 08:40:33 PM
@@ -18,7 +18,7 @@
 
 #include <iostream>
 #include <fstream>
-#include <string>
+#include <cstring>
 
 using namespace std;
 
