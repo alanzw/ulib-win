@@ -11,7 +11,7 @@ public:
     virtual BOOL create();
 
     BOOL layout();
-    int DoInsertItem(int iInsertAfter, int nWidth, LPSTR lpsz);
+    int insertItem(int iInsertAfter, int nWidth, LPSTR lpsz);
 protected:
 private:
 };

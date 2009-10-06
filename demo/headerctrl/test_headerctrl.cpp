@@ -26,10 +26,10 @@ public:
     virtual BOOL onInit()
     {
         m_pHeadCtrl = new UHeaderCtrl(m_hDlg, ID_UHEADER, m_hInst);
+        m_pHeadCtrl->setPos(20, 20, 140, 140);
         m_pHeadCtrl->create();
-        m_pHeadCtrl->setRect(20, 20, 140, 140);
         m_pHeadCtrl->layout();
-        m_pHeadCtrl->DoInsertItem(0, 199, "bbbbb");
+        m_pHeadCtrl->insertItem(0, 199, "bbbbb");
 
         return TRUE;
     }

@@ -72,7 +72,7 @@ public:
 
     virtual BOOL onKillFocus()
     {
-        m_clr = huys::white;
+        m_clr = huys::green;
         ::InvalidateRect(m_hSelf, NULL, TRUE);
         return FALSE;
     }

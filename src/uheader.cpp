@@ -52,7 +52,7 @@ BOOL UHeaderCtrl::layout()
 // iInsertAfter - index of the previous item.
 // nWidth - width of the new item.
 // lpsz - address of the item string.
-int UHeaderCtrl::DoInsertItem(int iInsertAfter, int nWidth, LPSTR lpsz)
+int UHeaderCtrl::insertItem(int iInsertAfter, int nWidth, LPSTR lpsz)
 {
     HDITEM hdi;
     int index;
