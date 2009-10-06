@@ -54,7 +54,10 @@ BOOL UEdit::addLine(LPCTSTR sLine)
 {
     TCHAR buf[1024] = {0};
     this->getText(buf);
-    lstrcat(buf, "\n");
+    if ('\0' != buf[0])
+    {
+        lstrcat(buf, "\r\n");
+    }
     lstrcat(buf, sLine);
     return this->setText(buf);
 }
