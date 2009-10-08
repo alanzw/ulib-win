@@ -23,11 +23,13 @@ public:
     virtual BOOL initGL() { return TRUE;};
     virtual BOOL animate();
 protected:
-private:
-    virtual BOOL go();
 
     HDC m_hdc;
     HGLRC m_hrc;
+private:
+    virtual BOOL go();
+
+
 
     BOOL m_bQuit;
 };

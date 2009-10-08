@@ -41,7 +41,10 @@ SUBDIRS = hello      \
           poly       \
           bezcurve   \
           list       \
-          olympic
+          olympic    \
+          text       \
+          contour2d  \
+
 #
 all:
 	$(MAKEALL_SUBDIRS)
