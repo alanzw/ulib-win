@@ -44,6 +44,12 @@ SUBDIRS = hello      \
           olympic    \
           text       \
           contour2d  \
+          font       \
+          smooth     \
+          surface    \
+          quadric    \
+          texture    \
+          fog        \
 
 #
 all:

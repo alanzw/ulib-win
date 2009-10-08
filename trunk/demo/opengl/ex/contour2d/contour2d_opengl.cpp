@@ -3,10 +3,10 @@
 #include <windows.h>
 #include <tchar.h>
 
+#include <cstdio>
+
 #include <GL/gl.h>
 #include <GL/glu.h>
-
-#include <cstdio>
 
 #include "ugldialog.h"
 #include "udlgapp.h"
@@ -15,7 +15,7 @@
 
 using huys::UGLDialog;
 
-float rotqube = 0.0f;
+//float rotqube = 0.0f;
 
 GLfloat xmin = -600.0f;
 GLfloat xmax = 2600.0f;
@@ -45,16 +45,20 @@ public:
         int w = rc.right-rc.left;
         int h = rc.bottom-rc.top;
 
-        glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+        glViewport(0, 0, (GLsizei) w, (GLsizei) h);
         glMatrixMode (GL_PROJECTION);
         glLoadIdentity ();
         if (w <= h)
-            glOrtho (xmin, xmax, ymin*(GLfloat)h/(GLfloat)w,
-            ymax*(GLfloat)h/(GLfloat)w, -1.0, 1.0);
-        else
-            glOrtho (xmin*(GLfloat)w/(GLfloat)h,
-            xmax*(GLfloat)w/(GLfloat)h, ymin, ymax, -1.0, 1.0);
-        glMatrixMode(GL_MODELVIEW);
+        {
+            glOrtho(xmin, xmax, ymin*(GLfloat)h/(GLfloat)w,
+            	ymax*(GLfloat)h/(GLfloat)w, -1.0, 1.0);
+        }
+		else
+		{
+			glOrtho(xmin*(GLfloat)w/(GLfloat)h,
+            	xmax*(GLfloat)w/(GLfloat)h, ymin, ymax, -1.0, 1.0);
+		}
+		glMatrixMode(GL_MODELVIEW);
 
         glShadeModel(GL_SMOOTH);                            // Enable Smooth Shading
         glClearColor(0.0f, 0.0f, 0.0f, 0.5f);                // Black Background
@@ -63,7 +67,7 @@ public:
         glDepthFunc(GL_LEQUAL);                                // The Type Of Depth Testing To Do
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);    // Really Nice Perspective Calculations
 
-        readMesh();
+        this->readMesh();
 
         return TRUE;
     }
@@ -178,12 +182,12 @@ public:
         glLoadIdentity();
         glColor3f(1.0, 1.0, 1.0);
 
-
+		//
         drawLines();
 
         //UGlut::switchToSolid();
 
-        rotqube +=0.9f;            // Increase Angle
+        //rotqube +=0.9f;            // Increase Angle
 
         return TRUE;
     }

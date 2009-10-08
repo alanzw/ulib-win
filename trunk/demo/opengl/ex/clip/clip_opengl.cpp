@@ -12,13 +12,14 @@
 
 using huys::UGLDialog;
 
-float rotqube = 0.0f;
+//float rotqube = 0.0f;
 
 class MyGLDialog : public UGLDialog
 {
 public:
     MyGLDialog(HINSTANCE hInst, UINT nID)
-    : UGLDialog(hInst, nID){}
+    : UGLDialog(hInst, nID)
+    {}
 
     BOOL initGL()
     {
@@ -40,7 +41,6 @@ public:
 
         return TRUE;
     }
-
 
     virtual BOOL animate()
     {
@@ -69,11 +69,11 @@ public:
         // rotate the wire sphere so it's vertically
         // oriented
         //::glRotatef( 90.0f, 1.0f, 0.0f, 0.0f );
-        ::glColor3f( 1.0f, 0.0f, 0.0f );
-        ::gluSphere( qobj, 0.5, 20, 10);
+        glColor3f( 1.0f, 0.0f, 0.0f );
+        gluSphere( qobj, 0.5, 20, 10);
         glPopMatrix();
 
-        glFlush ();
+        glFlush();
 
         return TRUE;
     }

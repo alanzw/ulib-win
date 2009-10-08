@@ -3,10 +3,10 @@
 #include <windows.h>
 #include <tchar.h>
 
+#include <stdio.h>
+
 #include <GL/gl.h>
 #include <GL/glu.h>
-
-#include <stdio.h>
 
 #include "ugldialog.h"
 #include "udlgapp.h"
@@ -20,12 +20,13 @@ class MyGLDialog : public UGLDialog
 {
 public:
     MyGLDialog(HINSTANCE hInst, UINT nID)
-        : UGLDialog(hInst, nID)
+    : UGLDialog(hInst, nID)
     {
-        int i, j;
-        for (i = 0; i < 3; i++)
-            for (j = 0; j < 3; j ++)
-                board[i][j] = 0;
+        //int i, j;
+        //for (i = 0; i < 3; i++)
+        //    for (j = 0; j < 3; j ++)
+        //        board[i][j] = 0;
+        ::ZeroMemory((char *)board, sizeof(board));
     }
 
     /*  The nine squares are drawn.  In selection mode, each
@@ -36,18 +37,17 @@ public:
      */
     void drawSquares(GLenum mode)
     {
-        GLuint i, j;
-        for (i = 0; i < 3; i++) {
-            if (mode == GL_SELECT)
-                glLoadName (i);
-            for (j = 0; j < 3; j ++) {
-                if (mode == GL_SELECT)
-                    glPushName (j);
-                glColor3f ((GLfloat) i/3.0, (GLfloat) j/3.0,
-                    (GLfloat) board[i][j]/3.0);
+        GLuint i = 0;
+		GLuint j = 0;
+        for (i = 0; i < 3; i++)
+		{
+            if (mode == GL_SELECT) glLoadName (i);
+            for (j = 0; j < 3; j ++)
+			{
+                if (mode == GL_SELECT) glPushName (j);
+                glColor3f((GLfloat) i/3.0, (GLfloat) j/3.0, (GLfloat) board[i][j]/3.0);
                 glRecti (i, j, i+1, j+1);
-                if (mode == GL_SELECT)
-                    glPopName ();
+                if (mode == GL_SELECT) glPopName();
             }
         }
     }
@@ -64,11 +64,12 @@ public:
         ptr = (GLuint *) buffer;
         for (i = 0; i < hits; i++) {    /*  for each hit  */
             names = *ptr;
-            printf (" number of names for this hit = %d\n", names); ptr++;
+            printf(" number of names for this hit = %d\n", names); ptr++;
             printf("  z1 is %g;", (float) *ptr/0x7fffffff); ptr++;
             printf(" z2 is %g\n", (float) *ptr/0x7fffffff); ptr++;
-            printf ("   names are ");
-            for (j = 0; j < names; j++) { /*  for each name */
+            printf("   names are ");
+            for (j = 0; j < names; j++)
+			{ /*  for each name */
                 printf ("%d ", *ptr);
                 if (j == 0)  /*  set row and column  */
                     ii = *ptr;
@@ -76,7 +77,7 @@ public:
                     jj = *ptr;
                 ptr++;
             }
-            printf ("\n");
+            printf("\n");
             board[ii][jj] = (board[ii][jj] + 1) % 3;
         }
     }
@@ -135,11 +136,11 @@ public:
         glMatrixMode (GL_PROJECTION);
         glLoadIdentity ();
         if (w <= h)
-            glOrtho (-10.0, 10.0, -10.0*(GLfloat)h/(GLfloat)w,
-                10.0*(GLfloat)h/(GLfloat)w, -1.0, 1.0);
+            glOrtho (-5.0, 5.0, -5.0*(GLfloat)h/(GLfloat)w,
+                5.0*(GLfloat)h/(GLfloat)w, -1.0, 1.0);
         else
-            glOrtho (-10.0*(GLfloat)w/(GLfloat)h,
-                10.0*(GLfloat)w/(GLfloat)h, -10.0, 10.0, -1.0, 1.0);
+            glOrtho (-5.0*(GLfloat)w/(GLfloat)h,
+                5.0*(GLfloat)w/(GLfloat)h, -5.0, 5.0, -1.0, 1.0);
         glMatrixMode(GL_MODELVIEW);
 
         glShadeModel(GL_SMOOTH);                            // Enable Smooth Shading

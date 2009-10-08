@@ -18,7 +18,8 @@ class MyGLDialog : public UGLDialog
 {
 public:
     MyGLDialog(HINSTANCE hInst, UINT nID)
-    : UGLDialog(hInst, nID){}
+    : UGLDialog(hInst, nID)
+    {}
 
 	BOOL initGL()
 	{
@@ -47,7 +48,6 @@ public:
 		//glScalef(0.5f, 0.5f, 0.5f);
 
 		UGlut::switchToWireframe();
-
 
         //glTranslatef(0.0f, 0.0f,-7.0f);    // Translate Into The Screen 7.0 Units
         glRotatef(rotqube,0.0f,1.0f,0.0f);    // Rotate The cube around the Y axis
