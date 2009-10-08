@@ -181,6 +181,14 @@ void URectangle::SetEndPnt(int x, int y)
     this->m_nEndY = y;
 }
 
+void URectangle::SetRect(const RECT &rc)
+{
+    m_nStartX = rc.left;
+    m_nStartY = rc.top;
+    m_nEndX = rc.right;
+    m_nEndY = rc.bottom;
+}
+
 void URectangle::Draw(HDC hdc)
 {
     HPEN hNewPen;

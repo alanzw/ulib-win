@@ -94,6 +94,8 @@ public:
     void SetStartPnt(int x, int y);
     void SetEndPnt(POINT end);
     void SetEndPnt(int x, int y);
+    //
+    void SetRect(const RECT &rc);
 
     void moveCenterTo(int x, int y);
 
