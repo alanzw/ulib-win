@@ -30,7 +30,7 @@ class MyGLDialog : public UGLDialog
 
     GLboolean left;    /* left button currently down? */
     GLboolean right;   /* right button currently down? */
-    
+
     //
     float rotqube;
 public:
@@ -44,7 +44,7 @@ public:
         state   = 0;
         left  = GL_FALSE;
         right = GL_FALSE;
-        
+
         //
         rotqube = 0.0f;
     }
@@ -60,11 +60,11 @@ public:
         glClearDepth(1.0f);                                  // Depth Buffer Setup
         glEnable(GL_DEPTH_TEST);                             // Enables Depth Testing
         glDepthFunc(GL_LEQUAL);                              // The Type Of Depth Testing To Do
-        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);   // Really Nice Perspective Calculations       
-    
+        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);   // Really Nice Perspective Calculations
+
         return TRUE;
     }
-    
+
     virtual BOOL animate()
     {
         // Clear Screen And Depth Buffer
@@ -76,7 +76,7 @@ public:
         glTranslatef(trans[0], trans[1], trans[2]);
         glRotatef(rot[0], 1.0f, 0.0f, 0.0f);
         glRotatef(rot[1], 0.0f, 1.0f, 0.0f);
-        
+
         glBegin(GL_TRIANGLES);
 
 #define TOP glIndexi(1); glColor3f(1.0f, 0.0f, 0.0f); glVertex3i(0, 1, 0)
