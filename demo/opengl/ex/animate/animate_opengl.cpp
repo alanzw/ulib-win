@@ -16,18 +16,18 @@ class MyGLDialog : public UGLDialog
 {
 public:
     MyGLDialog(HINSTANCE hInst, UINT nID)
-        : UGLDialog(hInst, nID){}
-
+    : UGLDialog(hInst, nID)
+    {}
 
     virtual BOOL initGL()
     {
         RECT rc;
         ::GetClientRect(m_hDlg, &rc);
         //UGlut::ResizeScene(rc.right-rc.left, rc.bottom-rc.top);
-		glViewport (0, 0, (GLsizei) rc.right-rc.left, (GLsizei)rc.bottom-rc.top);
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		gluOrtho2D ((GLdouble)-2.0, (GLdouble)2, (GLdouble)-2.0, (GLdouble)2);
+        glViewport (0, 0, (GLsizei) rc.right-rc.left, (GLsizei)rc.bottom-rc.top);
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        gluOrtho2D ((GLdouble)-2.0, (GLdouble)2, (GLdouble)-2.0, (GLdouble)2);
 
         return TRUE;
     }
@@ -50,6 +50,8 @@ public:
           glVertex2i(1, -1);
         glEnd();
         glFlush();
+
+		return TRUE;
     }
 
     virtual BOOL onChar(WPARAM wParam, LPARAM lParam)

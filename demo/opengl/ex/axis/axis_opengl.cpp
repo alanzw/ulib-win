@@ -15,11 +15,13 @@ class MyGLDialog : public UGLDialog
 {
 public:
     MyGLDialog(HINSTANCE hInst, UINT nID)
-    : UGLDialog(hInst, nID){}
+    : UGLDialog(hInst, nID)
+    {}
 
     virtual BOOL initGL()
     {
         glViewport(0, 0, 100.0, 100.0);
+		return TRUE;
     }
 
     virtual BOOL animate()
@@ -30,7 +32,7 @@ public:
         //
         glBegin(GL_LINES);
 
-        //
+        //x
         glColor3f(1.f, 0.f, 0.f);
         glVertex3f(0.0f, 0.0f, 0.0f);
         glVertex3f(1.0f, 0.0f, 0.0f);
@@ -39,7 +41,7 @@ public:
         glVertex3f(1.0f, 0.0f, 0.0f);
         glVertex3f(0.9f, -0.1f, 0.0f);
 
-        //
+        //y
         glColor3f(0.f, 1.f, 0.f);
         glVertex3f(0.0f, 0.0f, 0.0f);
         glVertex3f(0.0f, 1.0f, 0.0f);
@@ -48,7 +50,7 @@ public:
         glVertex3f(0.0f, 1.0f, 0.0f);
         glVertex3f(-0.1f, 0.9f, 0.0f);
 
-        //
+        //z
         glColor3f(0.f, 0.f, 1.f);
         glVertex3f(0.0f, 0.0f, 0.0f);
         glVertex3f(0.0f, 0.0f, 1.0f);
@@ -59,6 +61,8 @@ public:
 
         //
         glEnd();
+
+		return TRUE;
     }
 };
 

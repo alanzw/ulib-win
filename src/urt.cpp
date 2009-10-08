@@ -2,7 +2,7 @@
 #include <tchar.h>
 
 /**
- * The running time OS checking.
+ * The runtime OS checking.
  *
  * @author huys
  */

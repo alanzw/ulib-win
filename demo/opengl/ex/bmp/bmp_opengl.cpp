@@ -15,18 +15,22 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////
 void BMP_Texture(UINT textureArray[], LPSTR sFileName, int ID)
 {
-    if(!sFileName)   return;
+    if(NULL == sFileName) return;
 
     HBITMAP hBMP;                                                        // Handle Of The Bitmap
-    BITMAP    bmp;
+    BITMAP bmp;
 
-    hBMP=(HBITMAP)LoadImage(GetModuleHandle(NULL), sFileName, IMAGE_BITMAP, 0, 0, LR_CREATEDIBSECTION | LR_LOADFROMFILE );
+    hBMP=(HBITMAP)LoadImage( GetModuleHandle(NULL), 
+							 sFileName,
+							 IMAGE_BITMAP,
+							 0,
+							 0,
+							 LR_CREATEDIBSECTION | LR_LOADFROMFILE );
 
     if (!hBMP)                                                            // Does The Bitmap Exist?
         return;
 
     ::GetObject(hBMP, sizeof(bmp), &bmp);
-
 
     glGenTextures(1, &textureArray[ID]);
     glBindTexture(GL_TEXTURE_2D, textureArray[ID]);
@@ -34,11 +38,10 @@ void BMP_Texture(UINT textureArray[], LPSTR sFileName, int ID)
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
 
-    DeleteObject(hBMP);                                                    // Delete The Object
+    ::DeleteObject(hBMP);                                                    // Delete The Object
 }
 
 using huys::UGLDialog;
-
 
 class MyGLDialog : public UGLDialog
 {
@@ -46,8 +49,7 @@ class MyGLDialog : public UGLDialog
 public:
     MyGLDialog(HINSTANCE hInst, UINT nID)
     : UGLDialog(hInst, nID)
-    {
-    }
+    {}
 
     BOOL initGL()
     {
@@ -78,9 +80,9 @@ public:
 
         glTranslatef(0, 0,-5.0f);
 
-    glBindTexture(GL_TEXTURE_2D, TextureArray[0]);
+    	glBindTexture(GL_TEXTURE_2D, TextureArray[0]);
 
-    glBegin(GL_QUADS);
+    	glBegin(GL_QUADS);
         // top left vertex
         glTexCoord2f(0.0f, 1.0f);
         glVertex3f(-1, 1, 0);
@@ -93,7 +95,8 @@ public:
         // top right vertex
         glTexCoord2f(1.0f, 1.0f);
         glVertex3f(1, 1, 0);
-    glEnd();
+		//
+    	glEnd();
 
         return TRUE;
     }

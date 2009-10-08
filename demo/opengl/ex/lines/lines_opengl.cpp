@@ -19,9 +19,8 @@ class MyGLDialog : public UGLDialog
 {
 public:
     MyGLDialog(HINSTANCE hInst, UINT nID)
-        : UGLDialog(hInst, nID)
-    {
-    }
+    : UGLDialog(hInst, nID)
+    {}
 
     BOOL initGL()
     {
@@ -45,13 +44,11 @@ public:
         glFrontFace(GL_CCW);
         glTranslatef(0.0f, 0.0f,-2.5f);    // Translate Into The Screen 7.0 Units
 
-
         glEnable (GL_LINE_SMOOTH);
         glEnable (GL_BLEND);
         glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glHint (GL_LINE_SMOOTH_HINT, GL_DONT_CARE);
         glLineWidth (1.5);
-
 
         return TRUE;
     }
@@ -79,7 +76,6 @@ public:
         glPopMatrix();
 
         glFlush();
-
 
         return TRUE;
     }

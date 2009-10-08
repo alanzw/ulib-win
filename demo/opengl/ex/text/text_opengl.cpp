@@ -2,7 +2,9 @@
 
 #include <windows.h>
 #include <tchar.h>
+
 #include <string.h>
+
 #include <GL/gl.h>
 #include <GL/glu.h>
 
@@ -19,7 +21,8 @@ class MyGLDialog : public UGLDialog
     GLYPHMETRICSFLOAT agmf[256];
 public:
     MyGLDialog(HINSTANCE hInst, UINT nID)
-        : UGLDialog(hInst, nID){}
+    : UGLDialog(hInst, nID)
+    {}
 
     BOOL initGL()
     {
@@ -39,7 +42,7 @@ public:
         //logfont.lfCharSet = ANSI_CHARSET;
         //logfont.lfOutPrecision = OUT_DEFAULT_PRECIS;
         //logfont.lfClipPrecision = CLIP_DEFAULT_PRECIS;
- :      //logfont.lfQuality = PROOF_QUALITY;
+        //logfont.lfQuality = PROOF_QUALITY;
         //logfont.lfPitchAndFamily = DEFAULT_PITCH || FF_ROMAN;
         //strcpy(logfont.lfFaceName,"Arial");
 

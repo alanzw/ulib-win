@@ -17,9 +17,8 @@ class MyGLDialog : public UGLDialog
     GLuint listName;
 public:
     MyGLDialog(HINSTANCE hInst, UINT nID)
-        : UGLDialog(hInst, nID)
-    {
-    }
+    : UGLDialog(hInst, nID)
+    {}
 
     BOOL initGL()
     {
