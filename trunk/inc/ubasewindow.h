@@ -153,7 +153,7 @@ public:
     BOOL show();
     BOOL update();
     BOOL destroy();
-
+    BOOL invalidate();
     //
     DWORD getStyles() const
     { return m_dwStyles; }

@@ -22,7 +22,7 @@ RES =
 #
 HEADER =
 
-SUBDIRS = hello
+SUBDIRS = hello graph
 #
 all:
 	$(MAKEALL_SUBDIRS)

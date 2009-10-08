@@ -206,6 +206,11 @@ BOOL UBaseWindow::update()
     return ::UpdateWindow(m_hSelf);
 }
 
+BOOL UBaseWindow::invalidate()
+{
+    return ::InvalidateRect(m_hSelf, NULL, TRUE);
+}
+
 BOOL UBaseWindow::destroy()
 {
     return ::DestroyWindow(m_hSelf);
