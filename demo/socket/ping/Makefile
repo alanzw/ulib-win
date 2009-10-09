@@ -16,6 +16,9 @@ ICODIR = ../../../ico
 BINDIR = ../../../bin
 
 #
+CMDARGS = 127.0.0.1
+
+#
 OBJ = ping_sock.o
 BIN = ping_sock.exe
 RC  = 
@@ -38,7 +41,7 @@ ping_sock.exe : ping_sock.o
 #
 .PHONY : test
 test :
-	$(WINE) $(BINDIR)/$(BIN)
+	$(WINE) $(BINDIR)/$(BIN) $(CMDARGS)
     
 #
 clean :

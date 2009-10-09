@@ -19,6 +19,15 @@
 #ifndef U_CONTOUR_H
 #define U_CONTOUR_H
 
+class ULengend
+{
+public:
+    ULegend();
+
+private:
+
+};
+
 class UContour
 {
 public:

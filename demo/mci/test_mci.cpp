@@ -17,6 +17,7 @@ public:
     UMyWindow(HINSTANCE hInst)
     : UBaseWindow(NULL, hInst)
     {
+        setTitle(_T("mci"));
     }
 
     BOOL onCreate()
