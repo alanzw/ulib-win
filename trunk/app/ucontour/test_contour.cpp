@@ -217,6 +217,7 @@ void GradientFill(HDC hdc, int x, int y, LPSTR text, COLORREF* color_array)
   }
 }
 
+
 using huys::UDialogBox;
 
 class UDialogContour : public UDialogBox
@@ -250,6 +251,8 @@ public:
         };
         GradientFill(hdc, rcGrid, clrs);
 
+		DrawLegend(hdc, 280, 30);
+
         drawGrid(hdc, rc);
     }
 
@@ -282,6 +285,20 @@ private:
         ul.offsetX(60);
         ul.Draw(hdc);
     }
+
+	//
+	void DrawLegend(HDC hdc, int x, int y)
+	{
+		RECT rc = { x, y, x+100, y+ 100};
+	
+		COLORREF clrs[] = {
+        	huys::white,
+        	huys::red,
+        	huys::red,
+        	huys::white
+    	};
+    	GradientFill(hdc, rc, clrs);
+	}
 
     huys::URectangle urc;
     huys::ULine ul;

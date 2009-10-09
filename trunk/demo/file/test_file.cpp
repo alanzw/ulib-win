@@ -6,6 +6,7 @@
 #include <commctrl.h>
 #include <tchar.h>
 #include <assert.h>
+#include <stdio.h>
 
 #include "udialogx.h"
 #include "udlgapp.h"
