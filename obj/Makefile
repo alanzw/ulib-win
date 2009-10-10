@@ -15,6 +15,8 @@ RESDIR = ../res
 DEMODIR = ../demo
 DOCDIR  = ../doc
 
+VPATH += $(INCDIR):$(INCDIR)/ole 
+
 #
 include ../config.inc
 
@@ -23,10 +25,10 @@ OBJS_SHARED = ${OBJS:.o=_d.o}
 #
 all : $(OBJS) $(OBJS_SHARED)
 
-%.o : $(SRCDIR)/%.cpp $(INCDIR)/%.h
+%.o : $(SRCDIR)/%.cpp %.h
 	$(CXX) -c -DBUILD_STATIC -o $@ $< -I$(INCDIR) $(CXXFLAGS)
 
-%_d.o : $(SRCDIR)/%.cpp $(INCDIR)/%.h
+%_d.o : $(SRCDIR)/%.cpp %.h
 	$(CXX) -fPIC -c -DBUILD_DLL -o $@ $< -I$(INCDIR) $(CXXFLAGS)
 
 #

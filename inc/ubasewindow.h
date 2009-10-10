@@ -27,8 +27,10 @@ public:
     UBaseWindow(HWND hParent = NULL, HINSTANCE hInst = NULL, LPCTSTR lpWindowClass = NULL);
     ~UBaseWindow();
 
+	//
     virtual bool create();
 
+	//
     operator HWND () const
     { return m_hSelf; }
 
@@ -55,11 +57,13 @@ public:
         this->m_lpWindowClass = lpWndClassName;
     }
 
+	//
     void setTitle(LPCTSTR lpTitle)
     {
         this->m_lpWindowTitle = lpTitle;
     }
 
+	//
     void setRect(RECT *lpRect)
     {
         m_rcWindow.left = lpRect->left;
