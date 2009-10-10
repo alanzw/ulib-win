@@ -5,7 +5,11 @@
 
 UEdit::UEdit(HWND hParent, UINT nResource, HINSTANCE hInst)
 :UControl(hParent, nResource, hInst)
-{};
+{}
+
+UEdit::UEdit(UBaseWindow *pWndParent, UINT nID)
+:UControl(pWndParent, nID)
+{}
 
 UEdit::~UEdit()
 {};

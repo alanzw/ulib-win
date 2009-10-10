@@ -9,9 +9,9 @@
 #include "../../res/u.rc"
 
 //
-// Icon resources
+// Bitmap resources
 //
-//IDI_VIEWER            ICON          "viewer.ico"
+IDB_BACKGROUND       BITMAP         "bk.bmp"
 
 //
 // Menu resources

@@ -13,6 +13,11 @@ UComboBox::UComboBox()
 : UControl()
 {}
 
+UComboBox::UComboBox(UBaseWindow *pWndParent, UINT nID)
+: UControl(pWndParent, nID)
+{}
+
+
 UComboBox::~UComboBox()
 {}
 

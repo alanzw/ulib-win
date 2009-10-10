@@ -8,6 +8,7 @@ class ULIB_API UComboBox : public UControl
 public:
     UComboBox(HWND hParent, UINT nResource, HINSTANCE hInst);
     UComboBox();
+	UComboBox(UBaseWindow *pWndParent, UINT nID);
     ~UComboBox();
 
     //

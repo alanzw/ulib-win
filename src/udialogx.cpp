@@ -23,6 +23,7 @@ UDialogBox::UDialogBox(HINSTANCE hInst, UINT nID, DLGPROC lpDialogFunc, HWND hPa
 UDialogBox::~UDialogBox()
 {
     // EndDialog(m_hDlg, 0);
+    
 }
 
 BOOL UDialogBox::create()

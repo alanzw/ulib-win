@@ -1,6 +1,11 @@
 #include <windows.h>
 #include <tchar.h>
+
 #include "ustatic.h"
+
+#ifndef IDC_STATIC
+#define IDC_STATIC -1
+#endif
 
 UStatic::UStatic(HWND hParent, UINT nResource, HINSTANCE hInst)
 : UControl(hParent, nResource, hInst),
@@ -8,6 +13,14 @@ UStatic::UStatic(HWND hParent, UINT nResource, HINSTANCE hInst)
 {
     m_dwStyles |= SS_SIMPLE;
 }
+
+UStatic::UStatic(UBaseWindow *pWndParent, LPCTSTR lpText)
+: UControl(pWndParent, IDC_STATIC),
+  m_pText(lpText)
+{
+	m_dwStyles |= SS_SIMPLE;
+}
+
 
 BOOL UStatic::setText( const TCHAR *pText )
 {

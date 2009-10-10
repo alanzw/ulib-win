@@ -21,6 +21,22 @@ m_bManaged(true)
     m_dwStyles = WS_CHILD | WS_VISIBLE;
 }
 
+UControl::UControl(UBaseWindow *pWinParent, UINT nID)
+: m_hParent(pWinParent->getHandle()),
+  m_nResourceID(nID),
+  m_hInstance(::GetModuleHandle(NULL)),
+  m_hSelf(0),
+  m_hPrevParent(0),
+  m_bManaged(true)
+{
+    m_rc.left   = 0;
+    m_rc.top    = 0;
+    m_rc.right  = 0;
+    m_rc.bottom = 0;
+
+    m_dwStyles = WS_CHILD | WS_VISIBLE;
+}
+
 UControl::UControl()
 :m_hParent(0),
 m_nResourceID(-1),

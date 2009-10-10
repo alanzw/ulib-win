@@ -3,12 +3,12 @@
 
 #include "ustatic.h"
 
-class ULifeCtrl : public UStatic
+class UContactCtrl : public UStatic
 {
 public:
-    ULifeCtrl(HWND hParent, UINT nID, HINSTANCE hInst);
-    ULifeCtrl();
-    ~ULifeCtrl();
+    UContactCtrl(HWND hParent, UINT nID, HINSTANCE hInst);
+    UContactCtrl();
+    ~UContactCtrl();
 private:
 
 };

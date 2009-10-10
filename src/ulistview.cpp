@@ -13,6 +13,11 @@ UListView::UListView(HWND hParent, UINT nID, HINSTANCE hInst)
 {
 }
 
+UListView::UListView(UBaseWindow *pWndParent, UINT nID)
+: UControl(pWndParent, nID)
+{
+}
+
 UListView::~UListView()
 {}
 
@@ -100,3 +105,19 @@ BOOL UListView::getColumn( int iCol, LPLVCOLUMN lplvc )
     assert(NULL != lplvc);
     return this->sendMsg(LVM_INSERTCOLUMN, (WPARAM)iCol, (LPARAM)lplvc);
 }
+
+BOOL UListView::setItem(int nIndex, LVITEM *lplvi)
+{
+	return this->sendMsg(LVM_SETITEMTEXT, (WPARAM)nIndex, (LPARAM)lplvi);
+}
+
+BOOL UListView::setItemText(int nIndex, int nSubIndex, LPTSTR lpText)
+{
+	LVITEM lstItem = {0};
+	lstItem.mask = LVIF_TEXT;
+	lstItem.iItem = nIndex;
+	lstItem.iSubItem = nSubIndex;
+	lstItem.pszText = lpText;
+	return this->setItem(nIndex, &lstItem);
+}
+
