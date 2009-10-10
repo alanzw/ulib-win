@@ -9,7 +9,9 @@ class ULIB_API UEdit : public UControl
 {
 public:
     UEdit(HWND hParent, UINT nResource, HINSTANCE hInst);
-    virtual ~UEdit();
+	UEdit() {}
+	UEdit(UBaseWindow *pWndParent, UINT nID);
+	virtual ~UEdit();
     //
     virtual BOOL create();
 

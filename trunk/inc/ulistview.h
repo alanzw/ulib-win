@@ -24,6 +24,7 @@ class ULIB_API UListView : public UControl
 public:
     UListView(HWND hParent, UINT nID, HINSTANCE hInst);
     UListView() {};
+	UListView(UBaseWindow *pWndParent, UINT nID);
     ~UListView();
     //
     virtual BOOL create();
@@ -44,6 +45,8 @@ public:
     virtual BOOL setImageListState(HIMAGELIST himl);
     virtual BOOL setImageListGroupHeader(HIMAGELIST himl);
     //
+    virtual BOOL setItem(int nIndex, LVITEM *lplvi);
+	virtual BOOL setItemText(int nIndex, int nSubIndex, LPTSTR lpText);
 protected:
 private:
 };

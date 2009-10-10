@@ -4,15 +4,15 @@
 
 #include "ucontact.h"
 
-ULifeCtrl::ULifeCtrl(HWND hParent, UINT nID, HINSTANCE hInst)
+UContactCtrl::UContactCtrl(HWND hParent, UINT nID, HINSTANCE hInst)
 : UStatic(hParent, nID, hInst)
 {
 }
 
-ULifeCtrl::ULifeCtrl()
+UContactCtrl::UContactCtrl()
 {
 }
 
-ULifeCtrl::~ULifeCtrl()
+UContactCtrl::~UContactCtrl()
 {}
 

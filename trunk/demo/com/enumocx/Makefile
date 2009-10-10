@@ -1,18 +1,21 @@
 #
-include ../../../make.inc
+TOPDIR = ../../..
+#
+include $(TOPDIR)/make.inc
 
 #
 CFLAGS =
 CXXFLAGS = 
-INCS = -I"../../../inc" -I"."
-LIBS = -L"../../../lib" -luwin
+INCS = -I"$(TOPDIR)/inc" -I"."
+LIBS = -L"$(TOPDIR)/lib" -luwin
 
 #
-SRCDIR = ../../../src
-INCDIR = ../../../inc
-OBJDIR = ../../../obj
-RESDIR = ../../../res
-ICODIR = ../../../ico
+SRCDIR = $(TOPDIR)/src
+INCDIR = $(TOPDIR)/inc
+OBJDIR = $(TOPDIR)/obj
+RESDIR = $(TOPDIR)/res
+ICODIR = $(TOPDIR)/ico
+BINDIR = $(TOPDIR)/bin
 #
 OBJ = enumocx.o
 BIN = enumocx.exe
@@ -31,11 +34,6 @@ enumocx.exe : enumocx.o
 #
 %.o : %.cpp
 	$(CXX) -c $< $(INCS) -DBUILD_EXE
-
-
-#
-$(RES) : $(RC) resource.h
-	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
 
 #
 .PHONY : test
