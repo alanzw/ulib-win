@@ -37,7 +37,8 @@ SUBDIRS = \
           var       \
           script    \
           collection\
-          enumocx
+          enumocx   \
+          devstudio \
 
 #
 .PHONY: all

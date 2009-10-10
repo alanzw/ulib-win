@@ -13,6 +13,7 @@ public:
     //
     virtual BOOL create();
 
+	//
     BOOL setText(const TCHAR *lpText);
     int  getText(TCHAR *lpText);
     BOOL clear();

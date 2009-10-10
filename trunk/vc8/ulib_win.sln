@@ -32,6 +32,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "toolbar", "toolbar.vcproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mdi", "mdi.vcproj", "{A14A3841-C7F1-4031-AEDB-5F21FD46226B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "devstuio", "devstudio.vcproj", "{A499B5CC-842E-40BB-BCAF-0559D55EE2A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -105,6 +107,12 @@ Global
 		{A14A3841-C7F1-4031-AEDB-5F21FD46226B}.Debug-static|Win32.Build.0 = Debug-static|Win32
 		{A14A3841-C7F1-4031-AEDB-5F21FD46226B}.Release|Win32.ActiveCfg = Release|Win32
 		{A14A3841-C7F1-4031-AEDB-5F21FD46226B}.Release|Win32.Build.0 = Release|Win32
+		{A499B5CC-842E-40BB-BCAF-0559D55EE2A0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A499B5CC-842E-40BB-BCAF-0559D55EE2A0}.Debug|Win32.Build.0 = Debug|Win32
+		{A499B5CC-842E-40BB-BCAF-0559D55EE2A0}.Debug-static|Win32.ActiveCfg = Debug-static|Win32
+		{A499B5CC-842E-40BB-BCAF-0559D55EE2A0}.Debug-static|Win32.Build.0 = Debug-static|Win32
+		{A499B5CC-842E-40BB-BCAF-0559D55EE2A0}.Release|Win32.ActiveCfg = Release|Win32
+		{A499B5CC-842E-40BB-BCAF-0559D55EE2A0}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
