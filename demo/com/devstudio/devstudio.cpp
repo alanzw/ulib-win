@@ -155,15 +155,20 @@ public:
     catch (huys::UOle::HEx & hex)
     {
         //hex.Display (20, 100, canvas);
+        lpText = "huys::UOle::HEx";
+        TextOut(hdc, 20, 100, lpText, strlen(lpText));
     }
     catch (char const * str)
     {
         //canvas.Text (10, 10, str);
+        TextOut(hdc, 10, 10, str, strlen(str));
     }
     catch (...)
     {
         //char msg [] = "Unknown exception";
         //canvas.Text (10, 10, msg);
+        lpText = "Unknown exception";
+        TextOut(hdc, 10, 10, lpText, strlen(lpText));
     }
 }
     //
@@ -177,7 +182,7 @@ public:
         RECT rc = {0};
         ::GetClientRect(*this, &rc);
         huys::URectangle urc(rc);
-        urc.setFilledColor(huys::black);
+        urc.setFilledColor(huys::aliceblue);
         urc.setFilledStyle(BS_SOLID);
         urc.Draw(hdc);
         return TRUE;
