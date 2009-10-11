@@ -19,7 +19,7 @@
 #ifndef U_OLE_H
 #define U_OLE_H
 
-#include "ulib.h"
+#include "udllman.h"
 
 namespace huys
 {
@@ -71,6 +71,47 @@ inline HRESULT CoCreateInstance( REFCLSID rclsid,
     return ::CoCreateInstance(rclsid, pUnkOuter, dwClsContext, riid, ppv);
 }
 
+inline HRESULT HuCoCreateInstance(
+	  LPCTSTR szDllName,
+	  REFCLSID rclsid,
+	  IUnknown* pUnkOuter,
+	  REFIID riid,
+	  LPVOID FAR* ppv)
+{
+	  HRESULT hr = REGDB_E_KEYMISSING;
+
+	  static UDllMan udm(szDllName);
+	
+	  //HMODULE hDll = ::LoadLibrary(szDllName);
+	  //if (hDll == 0)
+	  //	return hr;
+	
+	  //typedef HRESULT (__stdcall *pDllGetClassObject)( 
+	  //		REFCLSID rclsid, 
+      //		    REFIID riid,
+	  //	    LPVOID FAR* ppv);
+	
+	  //pDllGetClassObject GetClassObject = 
+	  //	 (pDllGetClassObject)::GetProcAddress(hDll, "DllGetClassObject");
+	  //if (GetClassObject == 0)
+	  //{
+	  //	::FreeLibrary(hDll);
+	  //	return hr;
+	  //}
+
+	  IClassFactory *pIFactory;
+	
+	  hr = udm.callFunc<HRESULT, REFCLSID, REFIID, LPVOID FAR*>("DllGetClassObject", rclsid, IID_IClassFactory, (LPVOID *)&pIFactory);
+	
+	  if (!SUCCEEDED(hr))
+		return hr;
+	
+	  hr = pIFactory->CreateInstance(pUnkOuter, riid, ppv);
+	  pIFactory->Release();
+	
+	  return hr;
+
+}
 
 //
 class ULIB_API UCoObject
