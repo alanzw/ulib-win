@@ -13,6 +13,7 @@ INCDIR = ../../../inc
 OBJDIR = ../../../obj
 RESDIR = ../../../res
 ICODIR = ../../../ico
+BINDIR = ../../../bin
 #
 OBJ = hello.o reg.o unreg.o test.o test_cpp.o
 BIN = hello.dll reg.exe unreg.exe test.exe test_cpp.exe
@@ -44,11 +45,15 @@ test_cpp.exe : test_cpp.o
 
 %.o : %.cpp
 	$(CXX) -c $<
-
+    
+test_noreg.exe : test_noreg.cpp
+	$(CXX) -o  $@ $< $(INC) $(LIB) -DBUILD_EXE -luwin -luuid -lole32 -loleaut32
+	cp -vf $@ $(BINDIR)/$@
 #
-$(RES) : $(RC) resource.h
-	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
+.PHONY : test
+test:
+	$(WINE) $(BINDIR)/test_noreg.exe
     
 #
 clean :
-	$(RM) ${OBJ} ${RES} ${BIN}
+	$(RM) ${OBJ} ${RES} ${BIN} test_noreg.exe

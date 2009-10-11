@@ -16,10 +16,10 @@ int main(int argc, char **argv)
     // We must initialize OLE before we do anything with COM objects. NOTE:
     // some COM components, such as the IE browser engine, require that you
     // use OleInitialize() instead. But our COM component doesn't require this
-    if (S_OK == ::CoInitialize(NULL))
+    if (S_OK == CoInitialize(NULL))
     {
         // Get IExample.DLL's IClassFactory
-        if ((hr = ::CoGetClassObject(
+        if ((hr = CoGetClassObject(
                         &CLSID_IExample,
                         CLSCTX_INPROC_SERVER,
                         NULL,
@@ -70,7 +70,7 @@ int main(int argc, char **argv)
         }
 
         // When finally done with OLE, free it
-        ::CoUninitialize();
+        CoUninitialize();
     }
     else
         MessageBox(0, "Can't initialize COM", "CoInitialize error", MB_OK|MB_ICONEXCLAMATION);

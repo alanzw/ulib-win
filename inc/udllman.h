@@ -89,6 +89,30 @@ public:
         return DllFunc2<T, TP1, TP2>::callEx(*this, lpProcName, para1, para2);
     }
 
+	template <class TRet, class TPara1, class TPara2, class TPara3>
+    struct DllFunc3
+    {
+        typedef TRet (*pfType)(TPara1, TPara2, TPara3);
+        static TRet call(LPCTSTR lpLibName, LPCTSTR lpProcName, TPara1 para1, TPara2 para2, TPara3 para3)
+        {
+            UDllMan udm;
+            udm.load(lpLibName);
+            pfType pfFoo = (pfType)udm.find(lpProcName);
+            return pfFoo(para1, para2, para3);
+        }
+        static TRet callEx(UDllMan &udm, LPCSTR lpProcName, TPara1 para1, TPara2 para2, TPara3 para3)
+        {
+            pfType pfFoo = (pfType)udm.find(lpProcName);
+            return pfFoo(para1, para2, para3);
+        }
+    };
+
+    template <typename T, typename TP1, typename TP2, typename TP3>
+    T callFunc(LPCTSTR lpProcName, TP1 para1, TP2 para2, TP3 para3)
+    {
+        return DllFunc3<T, TP1, TP2, TP3>::callEx(*this, lpProcName, para1, para2, para3);
+    }
+	
     FARPROC WINAPI find(const TCHAR *funcname);
 
     int free();
