@@ -9,30 +9,20 @@
 #include "../../res/u.rc"
 
 //
-// Menu resources
-//
-IDR_MAINMENU MENU
-BEGIN
-    POPUP "file(&f)"
-    BEGIN
-        MENUITEM "new(&n)", IDM_NEW
-    END
-    POPUP "help(&h)"
-    BEGIN
-        MENUITEM "about(&a)", IDM_ABOUT
-    END
-END
-
-//
 // Icon resources
 //
 //IDI_APP    ICON   MOVEABLE PURE LOADONCALL     "wnd.ico"
 
+
 //
-// Bitmap resources
+// Dialog resources
 //
-IDR_TOOLBAR1        BITMAP        "bitmap1.bmp"
-IDR_TOOLBAR1_HOT    BITMAP        "bitmap1_hot.bmp"
+IDD_TEST DIALOGEX 0,0,353,199
+STYLE DS_CENTER | DS_MODALFRAME | DS_SETFONT | WS_CAPTION | WS_POPUP | WS_SYSMENU 
+CAPTION "Test_DC"
+FONT 8,"MS Shell Dlg",400,0,0
+BEGIN
+END
 
 //
 // Version Information resources

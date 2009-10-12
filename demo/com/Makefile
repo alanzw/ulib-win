@@ -39,6 +39,8 @@ SUBDIRS = \
           collection\
           enumocx   \
           devstudio \
+          ipicture  \
+
 
 #
 .PHONY: all

@@ -137,7 +137,8 @@ SUBDIRS = \
           sigslot     \
           trackbar    \
           toolhelp    \
-          dc
+          dc          \
+          dock        \
 
 
 #

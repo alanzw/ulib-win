@@ -5,7 +5,7 @@ include ../../make.inc
 CFLAGS =
 CXXFLAGS =
 INC = -I"../../inc"
-LIB = -L"../../lib" -mwindows -luwin -lcomctl32
+LIB = -L"../../lib" -mwindows -luwin
 
 #
 SRCDIR = ../../src
@@ -15,14 +15,16 @@ RESDIR = ../../res
 ICODIR = ../../ico
 BINDIR = ../../bin
 #
-OBJ = \
- test_sdi.o
+OBJ = test_dock.o CWindowDock.o
 
-BIN = test_sdi.exe
-RC  = sdi.rc
+BIN = test_dock.exe
+RC  = dock.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/uwindowx.h
+HEADER = $(INCDIR)/ucontrol.h \
+		 $(INCDIR)/ucombobox.h \
+		 $(INCDIR)/udialog.h   \
+         CWindowDock.h
 #
 all: $(BIN)
 
@@ -32,20 +34,15 @@ $(BIN) : $(OBJ) $(RES)
 	cp -v $@ $(BINDIR)/$@
 
 #
-test_sdi.o : test_sdi.cpp $(HEADER)
+%.o : %.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
 
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-    
-#
 .PHONY : test
 test :
-	$(BINDIR)/$(BIN)
+	$(WINE) $(BINDIR)/$(BIN)
+
 #
 .PHONY : clean
 clean :
-	$(RM) ${OBJ} ${RES} ${BIN}
+	$(RM) ${OBJ} ${RES} ${BIN} *.bmp
 

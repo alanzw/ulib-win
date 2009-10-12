@@ -61,8 +61,8 @@ UBaseWindow::UBaseWindow( HWND hParent /*= NULL*/,
 {
     m_rcWindow.left = 0;
     m_rcWindow.top = 0;
-    m_rcWindow.right = 0;
-    m_rcWindow.bottom = 0;
+    m_rcWindow.right = 200;
+    m_rcWindow.bottom = 200;
 }
 
 UBaseWindow::~UBaseWindow()
@@ -95,10 +95,10 @@ bool UBaseWindow::create()
         m_lpWindowClass,       // lpClassName
         m_lpWindowTitle,       // lpWindowName
         m_dwStyles,            // dwStyle
-        CW_USEDEFAULT,         // x
-        CW_USEDEFAULT,         // y
-        CW_USEDEFAULT,         // Window Width
-        CW_USEDEFAULT,         // Height
+        m_rcWindow.left,         // x
+        m_rcWindow.top,         // y
+        m_rcWindow.right-m_rcWindow.left,         // Window Width
+        m_rcWindow.bottom-m_rcWindow.top,         // Height
         m_hParent,             // hParent
         NULL,                  // hMenu
         m_hInst,               // hInstance
