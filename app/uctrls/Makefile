@@ -23,7 +23,8 @@ RC  = ctrls.rc
 RES = ${RC:.rc=.res}
 #
 HEADER = $(INCDIR)/udialogx.h \
-          uctrls.h
+          uctrls.h \
+          ucollapse.h
 
 #
 all: $(BIN)

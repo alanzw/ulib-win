@@ -2,7 +2,7 @@
 #define U_BUTTON_H
 
 #include "ucontrol.h"
-
+#include "ubasewindow.h"
 //
 class UButton;
 
@@ -14,6 +14,7 @@ class ULIB_API UButton : public UControl
 public:
     UButton(HWND hParent, UINT nResource, HINSTANCE hInst);
     UButton() {}
+	UButton(UBaseWindow *pWndParent, UINT nID);
     virtual ~UButton();
     virtual BOOL create();
 
@@ -69,6 +70,7 @@ class ULIB_API UGroupBox : public UButton
 public:
     UGroupBox(HWND hParent, UINT nResource, HINSTANCE hInst);
     UGroupBox() {}
+	UGroupBox(UBaseWindow *pWndParent, UINT nID);
     virtual ~UGroupBox();
 protected:
 private:
@@ -113,6 +115,7 @@ class ULIB_API UOwnerDrawnButton : public UButton
 public:
     UOwnerDrawnButton(HWND hParent, UINT nResource, HINSTANCE hInst);
     UOwnerDrawnButton() {}
+    UOwnerDrawnButton(UBaseWindow *pWndParent, UINT nID);
     virtual ~UOwnerDrawnButton();
     virtual BOOL create();
     virtual BOOL onDrawItem(WPARAM,LPARAM);

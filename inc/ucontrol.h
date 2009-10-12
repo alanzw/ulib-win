@@ -135,8 +135,8 @@ protected:
     RECT m_rc;
     DWORD m_dwStyles;
 
+	//
     HWND m_hPrevParent;
-
 private:
     WNDPROC m_OriginProc;
 
