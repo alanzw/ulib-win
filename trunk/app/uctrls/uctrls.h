@@ -20,13 +20,10 @@
 #ifndef U_MYDIALOG_CTRLS_H
 #define U_MYDIALOG_CTRLS_H
 
-#include "udialogx.h"
-
 #include "umsg.h"
 
 #include "ubutton.h"
 #include "ustatic.h"
-
 
 #include "adt/uvector.h"
 
@@ -80,64 +77,6 @@ public:
         m_ctrls.push_back(pCtrl);
         return pCtrl;
     }
-};
-
-using huys::UDialogBox;
-
-class UDialogCtrls : public UDialogBox
-{
-public:
-    UDialogCtrls(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-        m_pCtrlFactory(0)
-    {}
-
-    ~UDialogCtrls()
-    {
-        CHECK_PTR(m_pCtrlFactory);
-    }
-
-    BOOL onInit()
-    {
-        return TRUE;
-    }
-
-    BOOL onRButtonDown(WPARAM wParam, LPARAM lParam)
-    {
-        if (0 == m_pCtrlFactory)
-        {
-            m_pCtrlFactory = new UButtonFactory;
-            RECT rc = {100, 100, 200, 200};
-            m_pCtrlFactory->create(m_hDlg, 333, TEXT("Button"), &rc);
-        }
-        return FALSE;
-    }
-
-    BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
-    {
-        if (0 == m_pCtrlFactory)
-        {
-            m_pCtrlFactory = new UStaticFactory;
-            RECT rc = {100, 100, 200, 200};
-            m_pCtrlFactory->create(m_hDlg, 333, TEXT("Static"), &rc);
-        }
-        return FALSE;
-    }
-
-    virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
-    {
-        switch ( LOWORD(wParam) )
-        {
-        case 333:
-            {
-                showMsg(_T("xxx"), _T("info"), m_hDlg);
-            }
-        default:
-            return UDialogBox::onCommand(wParam, lParam);
-        }
-    }
-private:
-    UCtrlFactory *m_pCtrlFactory;
 };
 
 #endif // U_MYDIALOG_CTRLS_H

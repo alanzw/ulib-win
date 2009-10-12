@@ -1,7 +1,9 @@
 #include <windows.h>
 #include <windowsx.h>
+#include <tchar.h>
 
 #include "udialogx.h"
+#include "umsg.h"
 
 namespace huys
 {
@@ -124,6 +126,24 @@ BOOL UDialogBox::modifyExStyles(DWORD dwStyle)
 
 BOOL UDialogBox::DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
+	BOOL bRet;
+	if (message == WM_CTLCOLORSTATIC || message == WM_CTLCOLOREDIT)
+	{
+		if ((bRet=UDialogBox::onCtrlColor(wParam, lParam)) != FALSE)
+		{
+			return bRet;
+		}
+	}
+
+	if (message == WM_DRAWITEM)
+	{
+		if ((bRet=UDialogBox::onDrawItem(wParam, lParam)) != FALSE)
+		{
+			return bRet;
+		}
+	}
+
+
     switch (message)
     {
     case WM_INITDIALOG:
@@ -210,8 +230,8 @@ BOOL UDialogBox::onCtrlColor(WPARAM wParam, LPARAM lParam)
 // Message Reflection
 BOOL UDialogBox::onDrawItem( WPARAM wParam, LPARAM lParam )
 {
-    HWND hwnd =  ((LPDRAWITEMSTRUCT) lParam)->hwndItem;
-    BOOL bRet = ::SendMessage(hwnd, WM_NOTIFY + WM_REFLECT_DRAWITEM, wParam, lParam);
+	HWND hwnd =  ((LPDRAWITEMSTRUCT) lParam)->hwndItem;
+	BOOL bRet = ::SendMessage(hwnd, WM_NOTIFY + WM_REFLECT_DRAWITEM, wParam, lParam);
     return bRet;
 }
 

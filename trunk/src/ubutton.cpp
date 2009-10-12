@@ -11,10 +11,17 @@ UButton::UButton(HWND hParent, UINT nResource, HINSTANCE hInst)
 :UControl(hParent, nResource, hInst)
 {
     m_dwStyles |= BS_DEFPUSHBUTTON;
-};
+}
+
+UButton::UButton(UBaseWindow * pWndParent,UINT nID)
+: UControl(pWndParent, nID)
+{
+	m_dwStyles |= BS_DEFPUSHBUTTON;
+}
+
 
 UButton::~UButton()
-{};
+{}
 
 BOOL UButton::create()
 {
@@ -87,6 +94,9 @@ BOOL URadioButton::uncheck()
     return this->sendMsg(BM_SETCHECK, (WPARAM)BST_UNCHECKED);
 }
 
+/*
+ *  GroupBox
+ */
 UGroupBox::UGroupBox(HWND hParent, UINT nResource, HINSTANCE hInst)
 : UButton(hParent, nResource, hInst)
 {
@@ -96,6 +106,13 @@ UGroupBox::UGroupBox(HWND hParent, UINT nResource, HINSTANCE hInst)
 
 UGroupBox::~UGroupBox()
 {}
+
+UGroupBox::UGroupBox(UBaseWindow *pWndParent, UINT nID)
+: UButton(pWndParent, nID)
+{
+    m_dwStyles &= ~BS_DEFPUSHBUTTON;
+    m_dwStyles |= BS_GROUPBOX;	
+}
 
 UIconButton::UIconButton(HWND hParent, UINT nResource, HINSTANCE hInst)
 : UButton(hParent, nResource, hInst)
@@ -210,6 +227,13 @@ UOwnerDrawnButton::UOwnerDrawnButton(HWND hParent, UINT nResource, HINSTANCE hIn
 {
     m_dwStyles &= ~BS_DEFPUSHBUTTON;
     m_dwStyles |= BS_OWNERDRAW;
+}
+
+UOwnerDrawnButton::UOwnerDrawnButton(UBaseWindow *pWndParent, UINT nID)
+: UButton(pWndParent, nID)
+{
+    m_dwStyles &= ~BS_DEFPUSHBUTTON;
+    m_dwStyles |= BS_OWNERDRAW;  
 }
 
 UOwnerDrawnButton::~UOwnerDrawnButton()
