@@ -8,14 +8,14 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
 {
-	UMessageOnlyWindow umsgwnd;
+    UMessageOnlyWindow umsgwnd;
 
-	umsgwnd.create();
+    umsgwnd.create();
 
-	umsgwnd.sendMsg(UMessageOnlyWindow::WM_CUSTOM_MSG);
+    umsgwnd.sendMsg(UMessageOnlyWindow::WM_CUSTOM_MSG);
 
-	Sleep(1000);
+    Sleep(1000);
 
-	return 0;
+    return 0;
 }
 

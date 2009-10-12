@@ -47,7 +47,7 @@ public:
 
     BOOL onInit()
     {
-        // Sub Controls should comes before UCollapseGroupBox
+        // Sub Controls should be created before UCollapseGroupBox
         m_pButton = new UButton(m_hDlg, 2222, m_hInst);
         m_pButton->setPos(250, 250, 30, 30);
         m_pButton->create();

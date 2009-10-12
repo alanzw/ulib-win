@@ -132,7 +132,7 @@ public:
         m_pImageBtn->setTextColor(huys::blue);
         m_pImageBtn->setAlignMode(UImageButton::TEXT_INCLUDE | UImageButton::IMAGE_RIGHT | UImageButton::IMAGE_VCENTER);
         m_pImageBtn->create();
-        m_pImageBtn->setWindowText(_T("ImageButton"));
+        m_pImageBtn->setWindowText(_T("ÎÒ°®Äã"));
         m_pImageBtn->setButtomImage(IDB_IMAGE, huys::magenta);
         return TRUE;
     }
