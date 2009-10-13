@@ -23,6 +23,7 @@ public:
         w(0), h(0)
     {
         this->setTitle(_T("IPicture Test 0.0.1"));
+        this->setPos(100, 100, 800, 600);
     }
 
     ~UIPicWindow()

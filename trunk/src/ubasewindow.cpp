@@ -59,10 +59,14 @@ UBaseWindow::UBaseWindow( HWND hParent /*= NULL*/,
   m_lpWindowTitle(NULL),
   m_lpWindowClass(lpWindowClass)
 {
-    m_rcWindow.left = 0;
-    m_rcWindow.top = 0;
-    m_rcWindow.right = 200;
-    m_rcWindow.bottom = 200;
+//    m_rcWindow.left = 0;
+//    m_rcWindow.top = 0;
+//    m_rcWindow.right = 200;
+//    m_rcWindow.bottom = 200;
+      m_rcWindow.left = CW_USEDEFAULT;
+      m_rcWindow.top = CW_USEDEFAULT;
+      m_rcWindow.right = m_rcWindow.left + CW_USEDEFAULT;
+      m_rcWindow.bottom = m_rcWindow.top + CW_USEDEFAULT;
 }
 
 UBaseWindow::~UBaseWindow()
