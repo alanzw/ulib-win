@@ -139,6 +139,7 @@ SUBDIRS = \
           toolhelp    \
           dc          \
           dock        \
+          splitter    \
 
 
 #
