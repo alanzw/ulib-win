@@ -148,6 +148,9 @@ public:
     //!!! An application should return nonzero if it erases the background;
     //!!! otherwise, it should return zero.
     virtual BOOL onEraseBkgnd(HDC hdc) {return FALSE;}
+    
+    //
+    virtual BOOL onSize(WPARAM wParam, LPARAM lParam) {return FALSE;}
 
     //
     BOOL setTimer(UINT_PTR nIDEvent, UINT uElapse);

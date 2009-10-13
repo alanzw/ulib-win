@@ -175,6 +175,8 @@ BOOL UBaseWindow::onMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
         if (FALSE != onEraseBkgnd((HDC)wParam)) return TRUE;
         return defaultMessageHandler(uMessage, wParam, lParam);
         }
+    case WM_SIZE:
+        return onSize(wParam, lParam);
     default:
         return defaultMessageHandler(uMessage, wParam, lParam);
     }
