@@ -78,6 +78,19 @@ public:
         //{
         //    this->sendMsg(WM_NCACTIVATE, TRUE, (LONG)-1);
         //}
+        
+        if (WM_COMMAND == uMessage)
+        {
+            switch (LOWORD (wParam))
+            {
+            case IDM_NEW:
+            case IDM_ABOUT:
+                ::SendMessage(getParent(), WM_COMMAND, wParam, lParam);
+                return FALSE;
+            default:
+                break;
+            }
+        }
 
         return UBaseWindow::onMessage(uMessage, wParam, lParam);
     }
@@ -119,16 +132,17 @@ public:
 
         //
         RECT rect;
-        hwnd = getParent();
-        ::GetClientRect(hwnd, &rect);
-        ::SendMessage(hwnd, WM_SIZE,  SIZE_RESTORED, MAKELPARAM(rect.right-rect.left,rect.bottom-rect.top));
+        HWND hParent = getParent();
+        ::GetClientRect(hParent, &rect);
+        ::SendMessage(hParent, WM_SIZE,  SIZE_RESTORED, MAKELPARAM(rect.right-rect.left,rect.bottom-rect.top));
 
         //RECT rect;
-        ::SetRect(&rect, 0, 0, 100, 100);
+        //::SetRect(&rect, 0, 0, 100, 100);
         ::AdjustWindowRectEx(&rect, POPUP_STYLES, FALSE, POPUP_EXSTYLES);
 
         int nFrameWidth  = rect.right  - rect.left;
-        int nFrameHeight = rect.bottom - rect.top;
+        //int nFrameHeight = rect.bottom - rect.top;
+        int nFrameHeight = 60;
 
         ::SetWindowPos(hwnd, HWND_TOP,
             0,
@@ -158,7 +172,7 @@ public:
         this->setTitle(_T("Test SDI"));
         this->setMenu(MAKEINTRESOURCE(IDR_MAINMENU));
         this->setStyles(WS_OVERLAPPEDWINDOW|WS_CLIPCHILDREN);
-        this->setExStyles(WS_EX_CLIENTEDGE);
+        //this->setExStyles(WS_EX_CLIENTEDGE);
    }
 
    ~UMyWindow()
@@ -208,8 +222,25 @@ public:
    {
         static_cast<UMyDockWindow *>(m_dwin[0])->goDock();
    }
+
+   BOOL onSize(WPARAM wParam, LPARAM lParam)
+       {
+           RECT rc = {0};
+        int width  = LOWORD(lParam);
+        int height = HIWORD(lParam);
+        ::SetRect(&rc, 0, 0, width, height);
+
+        if (m_dwin.size() > 0)
+        {
+            hdwp = ::BeginDeferWindowPos(1);
+            ::DeferWindowPos(hdwp, *m_dwin[0], 0, rc.left, rc.top, width, 1, SWP_NOZORDER);
+            ::EndDeferWindowPos(hdwp);
+        }
+        return FALSE;
+   }
 private:
     DockWnds m_dwin;
+    HDWP hdwp;
 };
 
 

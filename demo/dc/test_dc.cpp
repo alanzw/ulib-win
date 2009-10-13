@@ -14,7 +14,7 @@ int CaptureAnImage(HWND hWnd, LPCTSTR sFilename = _T("C:\\default_cap.bmp"));
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
-{   
+{
     enum {
         ID_UBUTTON = 11
     };
@@ -66,7 +66,7 @@ int CaptureAnImage(HWND hWnd, LPCTSTR sFilename)
     //HDC hdcScreen;
     //HDC hdcWindow;
     //HDC hdcMemDC = NULL;
-    
+
     UDC udcScreen;
     UDC udcWindow;
     //UMemDC udcMem;

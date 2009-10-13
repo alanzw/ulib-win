@@ -2,8 +2,8 @@
 include ../../make.inc
 
 #
-CFLAGS =
-CXXFLAGS =
+CFLAGS +=
+CXXFLAGS +=
 INC = -I"../../inc"
 LIB = -L"../../lib" -mwindows -luwin -lcomctl32
 
