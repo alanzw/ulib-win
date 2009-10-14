@@ -39,12 +39,8 @@ $(BIN) : $(OBJ) $(RES)
 
 #
 themometer.o : themometer.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
+	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS)
 
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-#
 .PHONY : test
 test :
 	$(WINE) $(BINDIR)/$(BIN)

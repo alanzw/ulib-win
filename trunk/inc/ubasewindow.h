@@ -27,10 +27,10 @@ public:
     UBaseWindow(HWND hParent = NULL, HINSTANCE hInst = NULL, LPCTSTR lpWindowClass = NULL);
     ~UBaseWindow();
 
-	//
+    //
     virtual bool create();
 
-	//
+    //
     operator HWND () const
     { return m_hSelf; }
 
@@ -57,13 +57,13 @@ public:
         this->m_lpWindowClass = lpWndClassName;
     }
 
-	//
+    //
     void setTitle(LPCTSTR lpTitle)
     {
         this->m_lpWindowTitle = lpTitle;
     }
 
-	//
+    //
     void setRect(RECT *lpRect)
     {
         m_rcWindow.left = lpRect->left;
@@ -148,7 +148,7 @@ public:
     //!!! An application should return nonzero if it erases the background;
     //!!! otherwise, it should return zero.
     virtual BOOL onEraseBkgnd(HDC hdc) {return FALSE;}
-    
+
     //
     virtual BOOL onSize(WPARAM wParam, LPARAM lParam) {return FALSE;}
 

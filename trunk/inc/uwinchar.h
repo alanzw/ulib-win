@@ -15,10 +15,10 @@ namespace huys
     using ::CharLower;
 
     /// DWORD CharLowerBuff(LPTSTR lpsz, DWORD cchLength)
-    using ::CharUpperBuffer;
+    using ::CharUpperBuff;
 
     /// DWORD CharUpperBuff(LPTSTR lpsz, DWORD cchLength)
-    using ::CharLowerBuffer;
+    using ::CharLowerBuff;
 
     ///
     using ::CharNext;
@@ -30,8 +30,8 @@ namespace huys
 
     /// BOOL CharToOem(LPCSTR lpszSrc, LPSTR lpszDst)
     using ::CharToOem;
-    /// BOOL CharToOemBuffer(LPCSTR lpszSrc, LPSTR lpszDst, DWORD cchDstLength)
-    using ::CharToOemBuffer;
+    /// BOOL CharToOemBuff(LPCSTR lpszSrc, LPSTR lpszDst, DWORD cchDstLength)
+    using ::CharToOemBuff;
 
     /// int CompareString(
     ///     LCID Locale,
@@ -43,7 +43,8 @@ namespace huys
     /// );
     using ::CompareString;
 
-    using ::CompareStringEx;
+    // VISTA and above
+    //using ::CompareStringEx;
 
     /// int FoldString(
     ///     DWORD dwMapFlags,

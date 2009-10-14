@@ -4,18 +4,19 @@
 
 #include <windows.h>
 #include <tchar.h>
+
 #include <gdiplus/gdiPlus.h>
 
-#include "uwinapp.h"
 #include "ubasewindow.h"
+#include "uwinapp.h"
 
 using namespace Gdiplus;
 
 class GDIPlusWindow : public UBaseWindow
 {
 public:
-    GDIPlusWindow(HINSTANCE hInst = ::GetModuleHandle(NULL))
-        : UBaseWindow(NULL, hInst)
+    GDIPlusWindow()
+    : UBaseWindow(NULL, NULL)
     {
         setTitle(_T("GDIPlus Window"));
     }
@@ -68,6 +69,17 @@ public:
         graphics.DrawLine(&pen, 20, 175, 300, 175);
     }
 
+    BOOL onChar(WPARAM wParam, LPARAM lParam)
+    {
+        switch (wParam)
+        {
+        case VK_ESCAPE:
+            return UBaseWindow::onClose();
+        default:
+            return UBaseWindow::onChar(wParam, lParam);
+        }
+    }
+
 private:
     void startGDIPlus()
     {
@@ -86,7 +98,6 @@ private:
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
 {
-    //UDXWinapp app;
     UWinApp app;
     app.setMainWindow(new GDIPlusWindow);
     app.init(hInstance);

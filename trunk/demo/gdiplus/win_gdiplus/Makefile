@@ -38,8 +38,8 @@ $(BIN) : $(OBJ) $(RES)
 	cp -v $@ $(BINDIR)/$@
 
 #
-dlg_gdiplus.o : dlg_gdiplus.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
+%.o : %.cpp $(HEADER)
+	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS)
 
 #
 #$(RES) : $(RC) resource.h

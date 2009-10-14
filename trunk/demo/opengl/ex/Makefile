@@ -50,6 +50,7 @@ SUBDIRS = hello      \
           quadric    \
           texture    \
           fog        \
+          dib        \
 
 #
 all:
