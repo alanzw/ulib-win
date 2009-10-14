@@ -14,37 +14,54 @@ class UMyWindow : public UBaseWindow
         ID_BN_ST = 1002
     };
 public:
-   UMyWindow()
-   : UBaseWindow(NULL, ::GetModuleHandle(NULL))
-   {
+    UMyWindow()
+    : UBaseWindow(NULL, ::GetModuleHandle(NULL))
+    {
         this->setTitle(_T("UBtnST Test 0.0.1"));
-   }
+    }
 
-   ~UMyWindow()
-   {}
+    ~UMyWindow()
+    {
+        CHECK_PTR(m_pBnSt);
+    }
 
-   BOOL onCreate()
-   {
-       this->setIconBig(IDI_APP);
+    BOOL onCreate()
+    {
+        this->setIconBig(IDI_APP);
 
+        m_pBnSt = new UButtonST(this, ID_BN_ST);
+        m_pBnSt->setPos(20, 20, 100, 100);
+        m_pBnSt->create();
+        m_pBnSt->setWindowText(_T("BtnST"));
 
-       UButtonST bnSt(*this, ID_BN_ST, this->getInstance());
-       bnSt.setPos(20, 20, 100, 100);
-       bnSt.create();
-       bnSt.setWindowText(_T("BtnST"));
-
-       return UBaseWindow::onCreate();
-   }
+        return UBaseWindow::onCreate();
+    }
+    
+    BOOL onCommand(WPARAM wParam, LPARAM lParam)
+    {
+        switch (LOWORD (wParam))
+        {
+        case ID_BN_ST:
+            return onBnSt();
+        default:
+            return UBaseWindow::onCommand(wParam, lParam);
+        }
+    }
+private:
+    UButtonST *m_pBnSt;
+    
+private:
+    BOOL onBnSt()
+    {
+        return FALSE;
+    }
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
 {
     UWinApp app;
-    UBaseWindow *pWnd = new UMyWindow;
-    pWnd->setTitle(_T("Test UBtnST"));
-    app.setMainWindow(pWnd);
+    app.setMainWindow(new UMyWindow);
     app.init(hInstance);
-    pWnd->setIconBig(IDI_APP);
     return app.run();
 }
 

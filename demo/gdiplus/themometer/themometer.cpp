@@ -10,11 +10,12 @@
 #include "uwinapp.h"
 #include "ubasewindow.h"
 #include "ustatic.h"
+
 using namespace Gdiplus;
 
 // Fahrenheit To Celsius
 static inline double F2C(double dF){return((dF - 32) / 1.8);}
-// Celsius To Fahrenheit 
+// Celsius To Fahrenheit
 static inline double C2F(double dC){return((dC * 1.8) + 32);}
 
 class UThemoMeter : public UStatic
@@ -46,6 +47,21 @@ public:
         return  bRet;
     }
 
+    BOOL onPaint()
+    {
+        //!! BeginPaint will eat previous control text drawing or other actions
+        PAINTSTRUCT ps;
+        HDC hdc;
+        hdc = BeginPaint(m_hSelf, &ps);
+        ////hdc = ::GetDC(m_hSelf);
+        //
+        onDraw(hdc);
+
+        ////::ReleaseDC(m_hSelf, hdc);
+        EndPaint(m_hSelf, &ps);
+        return FALSE;
+    }
+    
     void onDraw(HDC hdc)
     {
         RECT rcClient = {0};
@@ -88,23 +104,23 @@ public:
         float fTmpWidth = (float)( w/ 5.0);
 
         // Get bulb dimensions
-        RectF rBulb((float)ptCenter.X - (float)fTmpWidth,    
+        RectF rBulb((float)ptCenter.X - (float)fTmpWidth,
             (float)rcClient.bottom - (float)((fTmpWidth*2) + 25),
             (float)fTmpWidth*2, (float)fTmpWidth*2);
 
         // Draw the bulb
-        LinearGradientBrush brKnob(rBulb, 
-            OffsetColor(clrFore, 55), 
-            OffsetColor(clrFore, -55), 
+        LinearGradientBrush brKnob(rBulb,
+            OffsetColor(clrFore, 55),
+            OffsetColor(clrFore, -55),
             LinearGradientModeHorizontal);
-        gfxMem.FillEllipse(&brKnob, rBulb);                         
+        gfxMem.FillEllipse(&brKnob, rBulb);
         gfxMem.DrawEllipse(&outlinePen, rBulb);
 
         // Get cylinder coordinates
         RectF rCylinder(
-            (float)ptCenter.X - (float)fTmpWidth/2,    
+            (float)ptCenter.X - (float)fTmpWidth/2,
             (float)rcClient.top + (m_bDrawTics ? 25 : 10), // 25 pixels on top for F/C
-            (float)fTmpWidth, 
+            (float)fTmpWidth,
             (float)rBulb.GetTop() - rcClient.top - (m_bDrawTics ? 20 : 5)); // 5 pixel overlap over bulb
 
         // Make sure we have positive values to work with
@@ -115,14 +131,14 @@ public:
 
         // Draw the cylinder
         FillCylinder(&gfxMem, rCylinder, &fillBrush, clrOutline);
-        if(fVal > 0) 
+        if(fVal > 0)
         {
             // Calculate full rectangle
             float fPctFull = ((fVal / fRange) * 100);
             float fPixFull = ((rCylinder.Height / 100) * fPctFull);
             RectF rFull(
-                (float)rCylinder.GetLeft(), 
-                (float)rCylinder.GetBottom() - fPixFull, 
+                (float)rCylinder.GetLeft(),
+                (float)rCylinder.GetBottom() - fPixFull,
                 (float)rCylinder.Width, (float)fPixFull);
             FillCylinder(&gfxMem, rFull, &brKnob, clrOutline);
         }
@@ -155,7 +171,7 @@ public:
                 gfxMem.DrawLine(&scalePen, ptStart, ptEnd);
                 swprintf(strDegree, L"%d", lMarkVal);
                 ptText = PointF((float)rCylinder.GetRight() + 30, (float)y);
-                gfxMem.DrawString(strDegree, (int)wcslen(strDegree), 
+                gfxMem.DrawString(strDegree, (int)wcslen(strDegree),
                     &fntMark, ptText, &strfmtMark, &blackBrush);
                 lMarkVal -= m_iLargeTicFreq;
             }
@@ -174,7 +190,7 @@ public:
             fPixPerDegree = rCylinder.Height / fRange;
             fMarkFreq = fPixPerDegree * m_iLargeTicFreq;
             lMarkVal = (long)F2C(m_dRangeMax);
-            // Round celsius value to a multiple of 10 
+            // Round celsius value to a multiple of 10
             int iMod = lMarkVal % 10;
             //if(iMod != 0)
             //    iMod = (10 - iMod);
@@ -192,8 +208,8 @@ public:
                 ptEnd = Point((int)rCylinder.GetLeft() - 3, (int)iCy);
                 gfxMem.DrawLine(&scalePen, ptStart, ptEnd);
                 swprintf(strDegree, L"%d", lMarkVal);
-                gfxMem.DrawString(strDegree, (int)wcslen(strDegree), 
-                    &fntMark, PointF((float)rCylinder.GetLeft() - 15, 
+                gfxMem.DrawString(strDegree, (int)wcslen(strDegree),
+                    &fntMark, PointF((float)rCylinder.GetLeft() - 15,
                     (float)iCy), &strfmtMark, &blackBrush);
                 lMarkVal -= m_iLargeTicFreq;
             }
@@ -227,10 +243,10 @@ public:
             swprintf(strValue, L"%.01f F", m_dVal);
         else
             swprintf(strValue, L"%.01f C", F2C(m_dVal));
-        gfxMem.DrawString(strValue, (int)wcslen(strValue), 
+        gfxMem.DrawString(strValue, (int)wcslen(strValue),
             &fntText, rText, &strfmtText, &blackBrush);
 
-        // Update screen                    
+        // Update screen
         gfx.DrawImage(&bmMem, 0, 0);
     }
 
@@ -245,7 +261,7 @@ private:
     int            m_iLargeTicFreq;
     BOOL        m_bDisplayF;
 
-    void FillCylinder(Graphics* pGfx, RectF rcClient, 
+    void FillCylinder(Graphics* pGfx, RectF rcClient,
         Brush* pFillBrush, Color cOutlineColor)
     {
         RectF rTopPlane(rcClient.X, rcClient.Y - 5, rcClient.Width, 5);
@@ -254,19 +270,19 @@ private:
         Pen penOutline(cOutlineColor);
         // Draw body
         GraphicsPath gfxPath;
-        gfxPath.AddArc(rTopPlane, 0, 180); 
-        gfxPath.AddArc(rBottomPlane, 180, -180); 
+        gfxPath.AddArc(rTopPlane, 0, 180);
+        gfxPath.AddArc(rBottomPlane, 180, -180);
         gfxPath.CloseFigure();
         // Fill body
         pGfx->FillPath(pFillBrush, &gfxPath);
         // Outline body
         pGfx->DrawPath(&penOutline, &gfxPath);
         // Draw top plane
-        gfxPath.Reset(); 
-        gfxPath.AddEllipse(rTopPlane); 
-        // Fill top plane 
-        pGfx->FillPath(pFillBrush, &gfxPath); 
-        // Outline top plane 
+        gfxPath.Reset();
+        gfxPath.AddEllipse(rTopPlane);
+        // Fill top plane
+        pGfx->FillPath(pFillBrush, &gfxPath);
+        // Outline top plane
         pGfx->DrawPath(&penOutline, &gfxPath);
     }
     //=================================================
@@ -281,7 +297,7 @@ private:
         short sOffsetG = sOffset;
         short sOffsetB = sOffset;
 
-        if((sOffset < -255) || (sOffset > 255))    
+        if((sOffset < -255) || (sOffset > 255))
             return clr;
 
         // Get RGB components of specified color
@@ -296,7 +312,7 @@ private:
                 sOffsetR = (255 - bRed);
             if((bGreen + sOffset) > 255)
                 sOffsetG = (255 - bGreen);
-            if((bBlue + sOffset) > 255)    
+            if((bBlue + sOffset) > 255)
                 sOffsetB = (255 - bBlue);
 
             sOffset = min(min(sOffsetR, sOffsetG), sOffsetB);
@@ -313,7 +329,7 @@ private:
             sOffset = max(max(sOffsetR, sOffsetG), sOffsetB);
         }
 
-        return Color(clr.GetAlpha(), (BYTE)(bRed + sOffset), 
+        return Color(clr.GetAlpha(), (BYTE)(bRed + sOffset),
             (BYTE)(bGreen + sOffset), (BYTE)(bBlue + sOffset));
     }
 };
@@ -321,11 +337,11 @@ private:
 class GDIPlusWindow : public UBaseWindow
 {
     enum {
-        ID_THEMOMETER = 11112
+        ID_THEMOMETER = 5112
     };
 public:
     GDIPlusWindow(HINSTANCE hInst = ::GetModuleHandle(NULL))
-        : UBaseWindow(NULL, hInst)
+    : UBaseWindow(NULL, hInst)
     {
         this->setTitle(_T("GDIPlus Window"));
     }

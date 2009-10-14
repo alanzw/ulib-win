@@ -36,6 +36,16 @@ int UListBox::deleteString(int nIndex)
     return this->sendMsg(LB_DELETESTRING, (WPARAM)nIndex, 0);
 }
 
+int UListBox::getCurSel()
+{
+    return this->sendMsg(LB_GETCURSEL);
+}
+
+int UListBox::getText(int nIndex, char *sText)
+{
+    return this->sendMsg(LB_GETTEXT, (WPARAM)nIndex, (WPARAM)sText);
+}
+
 int UListBox::setColumnWidth(DWORD pixels)
 {
     this->sendMsg(LB_SETHORIZONTALEXTENT, 600);

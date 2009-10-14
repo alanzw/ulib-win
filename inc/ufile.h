@@ -47,6 +47,8 @@ private:
     TCHAR m_sFilename[MAX_PATH];
 };
 
+#ifdef USE_C_FILE
+
 class ULIB_API UCFile
 {
     typedef enum {
@@ -150,6 +152,8 @@ class ULIB_API UCTempFile
 {
 
 };
+
+#endif // USE_C_FILE
 
 #endif // U_FILE_H
 

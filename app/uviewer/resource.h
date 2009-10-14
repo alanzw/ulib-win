@@ -6,3 +6,6 @@
 #define IDD_VIEWER                        102
 
 #define IDB_BACKGROUND                    501
+
+#define IDC_LIST_IMAGES                   1001
+#define IDC_STATIC_IMAGE                  1002

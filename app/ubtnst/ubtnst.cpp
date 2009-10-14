@@ -13,6 +13,11 @@ UButtonST::UButtonST()
 {
 }
 
+UButtonST::UButtonST(UBaseWindow *pWndParent, UINT nID)
+: UButton(pWndParent, nID)
+{
+}
+
 UButtonST::~UButtonST()
 {}
 

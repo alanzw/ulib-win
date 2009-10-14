@@ -8,7 +8,7 @@
 void UFileMan::printFile(const TCHAR *filename)
 {
     FILE *phile;
-    char foo[10];
+    char foo[20];
     int i;
 
     phile = fopen(filename, "r");
@@ -34,7 +34,7 @@ void UFileMan::printFile(const TCHAR *filename)
 bool UFileMan::isFileReady(const TCHAR *pszFileName)
 {
     WIN32_FIND_DATA findData;
-    HANDLE hFind;
+    HANDLE hFind = INVALID_HANDLE_VALUE;
 
     hFind = FindFirstFile(pszFileName, &findData);
 
@@ -43,6 +43,38 @@ bool UFileMan::isFileReady(const TCHAR *pszFileName)
         return FALSE;
     }
 
+    FindClose(hFind);
+    return TRUE;
+}
+
+bool UFileMan::listDirFiles(const TCHAR *dir)
+{
+    if (NULL == dir)
+    {
+        return FALSE;
+    }
+
+    WIN32_FIND_DATA findData;
+    HANDLE hFind = INVALID_HANDLE_VALUE;
+    
+    hFind = FindFirstFile(dir, &findData);
+    if ( INVALID_HANDLE_VALUE == hFind)
+    {
+        return FALSE;
+    }
+    
+    // Check if it is a directory
+    if (findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+    {
+        return FALSE;
+    }
+    
+    printf("Files in %s\n", dir);
+    while (0 != FindNextFile(hFind, &findData))
+    {
+        printf("\t%s\n", findData.cFileName);
+    }
+    
     FindClose(hFind);
     return TRUE;
 }

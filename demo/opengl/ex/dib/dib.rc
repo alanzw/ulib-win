@@ -6,30 +6,23 @@
 #include "windows.h"
 
 
-#include "../../res/u.rc"
+#include "../../../../res/u.rc"
+
 //
 // Icon resources
 //
-IDI_VIEWER            ICON          "viewer.ico"
+//IDI_APP    ICON   MOVEABLE PURE LOADONCALL     "wnd.ico"
 
-
-//
-// Bitmap resources
-//
-IDB_BACKGROUND       BITMAP         "back.bmp"
 
 //
 // Dialog resources
 //
-IDD_VIEWER DIALOGEX 0,0,500,300
+IDD_TEST DIALOGEX 0,0,300,250
 STYLE DS_CENTER | DS_MODALFRAME | DS_SETFONT | WS_CAPTION | WS_POPUP | WS_SYSMENU
-CAPTION "Viewer 0.1"
-FONT 8,"Ms Shell Dlg",400,0,0
+CAPTION "Test_OpenGL"
+FONT 8,"MS Shell Dlg",400,0,0
 BEGIN
-    LISTBOX         IDC_LIST_IMAGES,20,45,100,190,WS_TABSTOP | LBS_NOTIFY | WS_VSCROLL | LBS_NOINTEGRALHEIGHT | LBS_SORT
-    CONTROL         "",IDC_STATIC_IMAGE,WC_STATIC,SS_BLACKFRAME,140,40,330,195
 END
-
 
 //
 // Version Information resources
@@ -41,5 +34,3 @@ END
     FILETYPE        VFT_UNKNOWN
 BEGIN
 END
-
-
