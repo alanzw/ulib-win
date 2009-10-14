@@ -66,7 +66,8 @@ SUBDIRS =        \
       template   \
       policies   \
       bntrick    \
-
+      metafunc   \
+      
       
 #
 .PHONY: all

@@ -15,10 +15,10 @@ public:
         Print( Message() );
     }
 };
- 
- 
+
+
 #include <iostream>
- 
+
 class HelloWorld_OutputPolicy_WriteToCout
 {
  protected:
@@ -28,10 +28,10 @@ class HelloWorld_OutputPolicy_WriteToCout
         std::cout << message << std::endl;
     }
 };
- 
- 
+
+
 #include <string>
- 
+
 class HelloWorld_LanguagePolicy_English
 {
  protected:
@@ -40,7 +40,7 @@ class HelloWorld_LanguagePolicy_English
         return "Hello, World!";
     }
 };
- 
+
 class HelloWorld_LanguagePolicy_German
 {
  protected:
@@ -49,8 +49,8 @@ class HelloWorld_LanguagePolicy_German
         return "Hallo Welt!";
     }
 };
- 
- 
+
+
 int main()
 {
     /* example 1 */
@@ -61,12 +61,12 @@ int main()
             HelloWorld_LanguagePolicy_English
         >
             my_hello_world_type;
- 
+
     my_hello_world_type hello_world;
     hello_world.Run(); // Prints "Hello, World!"
- 
- 
-   /* example 2 
+
+
+   /* example 2
     * does the same but uses another policy, the language has changed
     */
     typedef
@@ -75,9 +75,9 @@ int main()
             HelloWorld_LanguagePolicy_German
         >
             my_other_hello_world_type;
- 
+
     my_other_hello_world_type hello_world2;
     hello_world2.Run(); // Prints "Hallo Welt!"
 
-	return 0;
+    return 0;
 }

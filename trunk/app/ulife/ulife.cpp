@@ -13,6 +13,12 @@ ULifeCtrl::ULifeCtrl()
 {
 }
 
+ULifeCtrl::ULifeCtrl(UBaseWindow *pWndParent, UINT nID)
+: UStatic(pWndParent, "")
+{
+    m_nResourceID = nID;
+}
+
 ULifeCtrl::~ULifeCtrl()
 {}
 
