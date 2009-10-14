@@ -34,15 +34,25 @@ public:
 
        return UBaseWindow::onCreate();
    }
+
+    BOOL onChar(WPARAM wParam, LPARAM lParam)
+    {
+        switch (wParam)
+        {
+        case VK_ESCAPE:
+            return UBaseWindow::onClose();
+        default:
+            return UBaseWindow::onChar(wParam, lParam);
+        }
+    }
+
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
 {
     UWinApp app;
-    UMyWindow *pWnd = new UMyWindow;
-    app.setMainWindow(pWnd);
+    app.setMainWindow(new UMyWindow);
     app.init(hInstance);
-    pWnd->setIconBig(IDI_APP);
     return app.run();
 }
 
