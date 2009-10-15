@@ -3,7 +3,7 @@
  *
  *       Filename:  funcptr.h
  *
- *    Description:  
+ *    Description:
  *
  *        Version:  1.0
  *        Created:  2009-7-10 5:08:22

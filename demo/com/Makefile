@@ -40,6 +40,7 @@ SUBDIRS = \
           enumocx   \
           devstudio \
           ipicture  \
+          istream   \
 
 
 #

@@ -52,7 +52,7 @@ public:
         }
     }
 
-    virtual ~UString()
+    ~UString()
     {
         if (m_pBuf)
         {
