@@ -35,8 +35,8 @@ class UList
 private:
     struct ListNode {
         ListNode *_next;
-		ListNode *_prev;
-		T _value;
+        ListNode *_prev;
+        T _value;
     };
 public:
     typedef T value_type;
@@ -90,11 +90,11 @@ public:
         return 0==_size;
     }
 
-	size_type size() const
-	{
-		return _size;
-	}
-	
+    size_type size() const
+    {
+        return _size;
+    }
+
     reference front()
     {
         assert(!empty());
@@ -129,23 +129,23 @@ public:
 
     }
 private:
-	_Alloc _allocator;
+    _Alloc _allocator;
     node_type *_head;
     size_type _size;
 
 private:
-	node_type * _buynode(node_type * next = 0, node_type * prev = 0)
-	{
-		node_type * p = (node_type *)_allocator.allocate(1 * sizeof (ListNode));
-		p->_next = next != 0 ? next : p;
-		p->_prev = prev != 0 ? prev : p;
-		return p;
-	}
+    node_type * _buynode(node_type * next = 0, node_type * prev = 0)
+    {
+        node_type * p = (node_type *)_allocator.allocate(1 * sizeof (ListNode));
+        p->_next = next != 0 ? next : p;
+        p->_prev = prev != 0 ? prev : p;
+        return p;
+    }
 
-	void _freenode(node_type *x)
-	{
-		_allocator.deallocate(x, 1);
-	}
+    void _freenode(node_type *x)
+    {
+        _allocator.deallocate(x, 1);
+    }
 };
 
 }; // namespace ADT

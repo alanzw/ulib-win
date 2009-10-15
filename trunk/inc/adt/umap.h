@@ -7,14 +7,14 @@ namespace huys
 namespace adt
 {
 
-template <typename T>
+template <typename Tk, typename Ty, class _Alloc = std::allocator<Ty> >
 class UMap
 {
 public:
-    typedef T* iterator;
-    typedef const T* const_iterator;
+    typedef Ty* iterator;
+    typedef const Ty* const_iterator;
     typedef size_t size_type;
-    typedef T value_type;
+    typedef Ty value_type;
 public:
     UMap()
     {

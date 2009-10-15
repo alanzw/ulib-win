@@ -15,7 +15,7 @@ using std::max;
 using std::uninitialized_copy;
 using std::uninitialized_fill;
 
-template <typename T>
+template <typename T, class _Alloc = std::allocator<T> >
 class UVector
 {
 public:
@@ -23,6 +23,8 @@ public:
     typedef const T* const_iterator;
     typedef size_t size_type;
     typedef T value_type;
+    typedef T & reference_type;
+    typedef const T & const_ref_type;
 
     UVector()
     {
@@ -63,8 +65,8 @@ public:
     //
     size_type size() const { return avail-data; }
 
-    T & operator[](size_type i) { return data[i]; }
-    const T& operator[](size_type i) const { return data[i]; }
+    reference_type operator[](size_type i) { return data[i]; }
+    const_ref_type operator[](size_type i) const { return data[i]; }
 
     //
     iterator begin() { return data; }
@@ -80,6 +82,30 @@ public:
             grow();
         }
         uncheck_append(val);
+    }
+
+    reference_type at(size_type n)
+    {
+        assert(n>=0 && n<size());
+        return data[n];
+    }
+
+    const_ref_type at(size_type n) const
+    {
+        assert(n>=0 && n<size());
+        return data[n];
+    }
+
+    void assign(size_type num, const_ref_type val)
+    {
+        uncreate();
+        create(num, val);
+    }
+
+    void assign(iterator start, iterator end)
+    {
+        uncreate();
+        create(start, end);
     }
 
     void cutTo(size_type n)
@@ -107,7 +133,8 @@ private:
     iterator limit;
 
     //
-    allocator<T> alloc;
+    //allocator<T> alloc;
+    _Alloc alloc;
 
     //
     void create()

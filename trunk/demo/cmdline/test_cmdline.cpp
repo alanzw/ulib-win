@@ -45,7 +45,7 @@ public:
         {
             m_pEdit->addLine(sArgv[i]);
         }
-        
+
         return TRUE;
     }
 private:
