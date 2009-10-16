@@ -23,8 +23,8 @@ CFLAGS +=
 CXXFLAGS += $(INC)
 LDFLAGS += $(LIBS)
 #
-OBJ = win_gdiplus.o
-BIN = win_gdiplus.exe
+OBJ = button_gdiplus.o
+BIN = button_gdiplus.exe
 RC  = gdiplus.rc
 RES = ${RC:.rc=.res}
 #
@@ -41,10 +41,6 @@ $(BIN) : $(OBJ) $(RES)
 %.o : %.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS)
 
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-#
 .PHONY : test
 test :
 	$(WINE) $(BINDIR)/$(BIN)

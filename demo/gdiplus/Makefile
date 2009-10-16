@@ -25,7 +25,8 @@ HEADER =
 
 SUBDIRS = dlg_gdiplus      \
           win_gdiplus      \
-          themometer          
+          themometer       \
+          button_gdiplus   \
 
 #
 all:
