@@ -16,30 +16,30 @@
 #include "colors.h"
 #include "ugdi.h"
 
-#include "ole/uole.h"
+#include "com/ucom.h"
 
-using huys::UOle::BString;
-using huys::UOle::CString;
+using huys::UCOM::BString;
+using huys::UCOM::CString;
 
-class USmartActiveDocument: public huys::UOle::UDispObject
+class USmartActiveDocument: public huys::UCOM::UDispObject
 {
 public:
-    USmartActiveDocument (huys::UOle::USmartObjFace<IApplication, &IID_IApplication> & app)
+    USmartActiveDocument (huys::UCOM::USmartObjFace<IApplication, &IID_IApplication> & app)
     {
         HRESULT hr = app->get_ActiveDocument (&_iDisp);
         if (FAILED (hr))
-            throw huys::UOle::HEx (hr, "get_ActiveDocument failed");
+            throw huys::UCOM::HEx (hr, "get_ActiveDocument failed");
     }
 };
 
-class SSelection: public huys::UOle::UDispObject
+class SSelection: public huys::UCOM::UDispObject
 {
 public:
-    SSelection (huys::UOle::USmartObjFace<ITextDocument, &IID_ITextDocument> & doc)
+    SSelection (huys::UCOM::USmartObjFace<ITextDocument, &IID_ITextDocument> & doc)
     {
         HRESULT hr = doc->get_Selection (&_iDisp);
         if (FAILED (hr))
-            throw huys::UOle::HEx (hr, "get_Selection failed");
+            throw huys::UCOM::HEx (hr, "get_Selection failed");
     }
 };
 
@@ -73,9 +73,9 @@ public:
         CLSID idMsDev;
         HRESULT hr = ::CLSIDFromProgID (L"MSDEV.APPLICATION", &idMsDev);
         if (FAILED (hr))
-            throw huys::UOle::HEx (hr, "Couldn't convert prog id to class id");
-        huys::UOle::USmartObject obj (idMsDev, true);
-        huys::UOle::USmartObjFace<IApplication, &IID_IApplication> app (obj);
+            throw huys::UCOM::HEx (hr, "Couldn't convert prog id to class id");
+        huys::UCOM::USmartObject obj (idMsDev, true);
+        huys::UCOM::USmartObjFace<IApplication, &IID_IApplication> app (obj);
 
         VARIANT_BOOL b = VARIANT_TRUE;
         app->put_Visible (b);
@@ -106,7 +106,7 @@ public:
             y += 20;
 
             // Get vtable interface for this document
-            huys::UOle::USmartObjFace<IGenericDocument, &IID_IGenericDocument> doc (docObj);
+            huys::UCOM::USmartObjFace<IGenericDocument, &IID_IGenericDocument> doc (docObj);
 
             BString bPath;
             doc->get_FullName (bPath.GetPointer ());
@@ -136,9 +136,9 @@ public:
 
             if (type.IsEqual ("Text"))
             {
-                huys::UOle::USmartObjFace<ITextDocument, &IID_ITextDocument> text (docObj);
+                huys::UCOM::USmartObjFace<ITextDocument, &IID_ITextDocument> text (docObj);
                 SSelection selObj (text);
-                huys::UOle::USmartObjFace<ITextSelection, &IID_ITextSelection> sel (selObj);
+                huys::UCOM::USmartObjFace<ITextSelection, &IID_ITextSelection> sel (selObj);
                 long line;
                 sel->get_CurrentLine (&line);
                 //canvas.Text (20, y, "CurrentLine:");
@@ -152,11 +152,11 @@ public:
             }
         }
     }
-    catch (huys::UOle::HEx & hex)
+    catch (huys::UCOM::HEx & hex)
     {
-        //hex.Display (20, 100, canvas);
-        lpText = "huys::UOle::HEx";
-        TextOut(hdc, 20, 100, lpText, strlen(lpText));
+        hex.display (20, 100, hdc);
+        //lpText = "huys::UCOM::HEx";
+        //TextOut(hdc, 20, 100, lpText, strlen(lpText));
     }
     catch (char const * str)
     {
