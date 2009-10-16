@@ -20,7 +20,7 @@ GDIPLUS_DIR = D:\GS\mingw4\include\gdiplus
 INC = -I"$(INCDIR)" -I"$(GDIPLUS_DIR)"
 LIBS = -L"$(LIBDIR)" -mwindows -luwin -lgdiplus
 CFLAGS += 
-CXXFLAGS += $(INC) -DBUILD_EXE
+CXXFLAGS += $(INC)
 LDFLAGS += $(LIBS)
 #
 OBJ = themometer.o
