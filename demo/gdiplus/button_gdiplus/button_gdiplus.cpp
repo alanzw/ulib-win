@@ -9,17 +9,18 @@
 
 #include "ubasewindow.h"
 #include "uwinapp.h"
-#include "ubutton.h"
 
 using namespace Gdiplus;
 
-class UGDIPlusButton : public UButton
+class UGDIPlusButton : public UBaseWindow
 {
 public:
     UGDIPlusButton(UBaseWindow *pWndParent, UINT nID)
-    : UButton(pWndParent, nID),
-    m_hRgn(0), m_pCachedBitmap(0),
-    m_bMouseOver(FALSE), m_bTracking(FALSE), m_bMouseClicked(FALSE)
+        : UBaseWindow(*pWndParent, NULL, _T("UGDIPLUSBUTTON")),
+        m_hRgn(0), m_pCachedBitmap(0),
+        m_bMouseOver(FALSE),
+        m_bTracking(FALSE),
+        m_bMouseClicked(FALSE)
     {
     }
 
@@ -27,44 +28,38 @@ public:
     {
     }
 
-    BOOL create()
-    {
-        BOOL bRet = UButton::create();
-        bRet &= this->subclassProc();
-        return bRet;
-    }
+    //virtual BOOL onPaint(WPARAM wParam, LPARAM lParam)
+    //{
 
-    virtual BOOL onPaint(WPARAM wParam, LPARAM lParam)
-    {
+    //    PAINTSTRUCT ps;
+    //    HDC hdc;
+    //    hdc = BeginPaint(m_hSelf, &ps);
 
-        PAINTSTRUCT ps;
-        HDC hdc;
-        hdc = BeginPaint(m_hSelf, &ps);
+    //    Graphics graphics(hdc);
 
-        Graphics graphics(hdc);
+    //    // Only redraw the control if the buffer is dirty
+    //    //if (m_bDirtyBuffer)
+    //    //{
+    //    //DrawButton(graphics);
+    //    //    m_bDirtyBuffer = FALSE;
+    //    //}
 
-        // Only redraw the control if the buffer is dirty
-        //if (m_bDirtyBuffer)
-        //{
-        DrawButton(graphics);
-        //    m_bDirtyBuffer = FALSE;
-        //}
+    //    //graphics.DrawCachedBitmap(m_pCachedBitmap, 0, 0);
 
-        graphics.DrawCachedBitmap(m_pCachedBitmap, 0, 0);
-
-         EndPaint(m_hSelf, &ps);
-        return FALSE;
-    }
+    //    EndPaint(m_hSelf, &ps);
+    //    return FALSE;
+    //}
 
     BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
     {
         m_bMouseClicked = !m_bMouseClicked;
-
-        InvalidateRect(m_hSelf, NULL, TRUE);
+        //InvalidateRect(m_hSelf, NULL, TRUE);
+        this->invalidate();
         return FALSE;
     }
 
-    BOOL onMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
+    BOOL filterMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
+    //BOOL onMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
     {
         if (WM_ERASEBKGND == uMessage)
         {
@@ -81,7 +76,7 @@ public:
             return onMouseLeave();
         }
 
-        return UButton::onMessage(uMessage, wParam, lParam);
+        return TRUE;
     }
 
     BOOL onEraseBkGnd(HDC hdc)
@@ -95,31 +90,32 @@ public:
         {
             TRACKMOUSEEVENT tme;
             tme.cbSize = sizeof(tme);
-            tme.hwndTrack = m_hSelf;
+            tme.hwndTrack = *this;
             tme.dwFlags = TME_LEAVE|TME_HOVER;
             tme.dwHoverTime = 1;
-            m_bTracking = TrackMouseEvent(&tme);        
-        }    
+            m_bTracking = TrackMouseEvent(&tme);
+        }
         if(m_bMouseOver == FALSE)
         {
-            m_bMouseOver = TRUE;        
+            m_bMouseOver = TRUE;
         }
     }
 
     BOOL onMouseHover()
     {
         m_bMouseOver = TRUE;
-        InvalidateRect(m_hSelf, NULL, TRUE);    
-
+        //InvalidateRect(m_hSelf, NULL, TRUE);
+        this->invalidate();
         return TRUE;
     }
 
     BOOL onMouseLeave()
     {
         m_bMouseOver = FALSE;
-        m_bTracking = FALSE;    
+        m_bTracking = FALSE;
 
-        InvalidateRect(m_hSelf, NULL, FALSE);
+        //InvalidateRect(m_hSelf, NULL, FALSE);
+        this->invalidate();
         return TRUE;
     }
 private:
@@ -136,17 +132,18 @@ public:
     //
     BOOL reCalcSize()
     {
+        //this->hide();
         // Calculate CDialog offset
         POINT ptParent = {0, 0};
-        ::ClientToScreen(m_hSelf, &ptParent);
-        ::ScreenToClient(m_hParent, &ptParent);
+        ::ClientToScreen(*this, &ptParent);
+        ::ScreenToClient(getParent(), &ptParent);
 
         // Get the device context & create Graphics class
-        Graphics graphics(m_hSelf);
+        Graphics graphics(*this);
 
         // Obtain client rectangle
         RECT rect;
-        GetClientRect(m_hSelf, &rect);
+        GetClientRect(*this, &rect);
         m_rcClient = rect;
 
         // Draw the region
@@ -155,11 +152,15 @@ public:
             (int)(m_rcClient.right-m_rcClient.left),
             (int)(m_rcClient.bottom-m_rcClient.top));
         Region rgn(&path);
-        SetWindowRgn(m_hSelf, rgn.GetHRGN(&graphics), FALSE);
+        SetWindowRgn(*this, rgn.GetHRGN(&graphics), FALSE);
 
         // Apply CDialog offset
         rgn.Translate((int)ptParent.x, (int)ptParent.y);
         m_hRgn = rgn.GetHRGN(&graphics);
+        //this->show();
+        //this->update();
+
+        return TRUE;
     }
 
     void DrawButton(Graphics &graphics)
@@ -241,9 +242,10 @@ class GDIPlusWindow : public UBaseWindow
 {
 public:
     GDIPlusWindow()
-    : UBaseWindow(NULL, NULL)
+        : UBaseWindow(NULL, NULL)
     {
         setTitle(_T("GDIPlus Window"));
+        addStyles(WS_CLIPCHILDREN);
     }
 
     ~GDIPlusWindow()
@@ -257,9 +259,9 @@ public:
         startGDIPlus();
 
         m_pGDIPlusButton = new UGDIPlusButton(this, 11111);
-        m_pGDIPlusButton->setPos(200, 200, 200, 200);
+        m_pGDIPlusButton->setPos(200, 200, 400, 200);
         m_pGDIPlusButton->create();
-        m_pGDIPlusButton->reCalcSize();
+        //m_pGDIPlusButton->reCalcSize();
         return UBaseWindow::onCreate();
     }
 
@@ -313,7 +315,7 @@ public:
 
     //BOOL onEraseBkgnd(HDC hdc)
     //{
-        //m_pGDIPlusButton->reCalcSize();
+    //    m_pGDIPlusButton->reCalcSize();
     //    return TRUE;
     //}
 private:

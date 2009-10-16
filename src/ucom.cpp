@@ -4,11 +4,11 @@
 #include <objbase.h>
 #include <unknwn.h>
 
-#include "ole/uole.h"
+#include "com/ucom.h"
 
 namespace huys
 {
-namespace UOle
+namespace UCOM
 {
 
 USmartObject::USmartObject (CLSID const & classId, bool running)

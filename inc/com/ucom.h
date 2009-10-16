@@ -127,7 +127,7 @@ public:
     HEx (HRESULT hr, char const * str = 0)
         : _hr (hr), _str (str)
     {}
-    
+
     void display(int x, int y, HDC hdc)
     {
         TextOut(hdc, 20, 100, _str, strlen(_str));
@@ -141,8 +141,8 @@ private:
 class USmartObject: public UCoObject
 {
 public:
-    USmartObject (CLSID const & classId, bool running = false)
-    :_iUnk (0)
+    USmartObject (CLSID const & classId, bool running = false);
+/*    :_iUnk (0)
     {
         HRESULT hr = S_OK;
         if (running)
@@ -161,13 +161,14 @@ public:
         if (FAILED (hr))
             throw HEx (hr, "Couldn't create instance");
     }
+*/
     virtual ~USmartObject ()
     {
         if(_iUnk)
             _iUnk->Release ();
     }
-    void * acquireInterface (IID const & iid)
-    {
+    void * acquireInterface (IID const & iid);
+/*    {
         void * p = 0;
         HRESULT hr = _iUnk->QueryInterface (iid, & p);
         if (FAILED (hr))
@@ -179,6 +180,7 @@ public:
         }
         return p;
     }
+ */
 private:
     IUnknown * _iUnk;
 };
