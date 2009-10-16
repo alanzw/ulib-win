@@ -15,7 +15,7 @@ RESDIR = ../res
 DEMODIR = ../demo
 DOCDIR  = ../doc
 
-VPATH += $(INCDIR):$(INCDIR)/ole 
+VPATH += $(INCDIR):$(INCDIR)/com 
 
 #
 include ../config.inc

@@ -16,7 +16,7 @@ UButton::UButton(HWND hParent, UINT nResource, HINSTANCE hInst)
 UButton::UButton(UBaseWindow * pWndParent,UINT nID)
 : UControl(pWndParent, nID)
 {
-	m_dwStyles |= BS_DEFPUSHBUTTON;
+    m_dwStyles |= BS_DEFPUSHBUTTON;
 }
 
 
@@ -111,7 +111,7 @@ UGroupBox::UGroupBox(UBaseWindow *pWndParent, UINT nID)
 : UButton(pWndParent, nID)
 {
     m_dwStyles &= ~BS_DEFPUSHBUTTON;
-    m_dwStyles |= BS_GROUPBOX;	
+    m_dwStyles |= BS_GROUPBOX;
 }
 
 UIconButton::UIconButton(HWND hParent, UINT nResource, HINSTANCE hInst)
@@ -202,8 +202,8 @@ BOOL UIconButton::setIcon(HICON hicon)
 UBitmapButton::UBitmapButton(HWND hParent, UINT nResource, HINSTANCE hInst)
 : UButton(hParent, nResource, hInst)
 {
-	m_dwStyles &= ~BS_DEFPUSHBUTTON;
-	m_dwStyles |= BS_BITMAP;
+    m_dwStyles &= ~BS_DEFPUSHBUTTON;
+    m_dwStyles |= BS_BITMAP;
 }
 
 UBitmapButton::~UBitmapButton()
@@ -212,14 +212,14 @@ UBitmapButton::~UBitmapButton()
 
 BOOL UBitmapButton::setBitmap( HBITMAP hbm )
 {
-	HANDLE hImage = (HANDLE)::SendMessage(m_hSelf, BM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)hbm);
+    HANDLE hImage = (HANDLE)::SendMessage(m_hSelf, BM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)hbm);
 
-	if (hImage)
-	{
-		return TRUE;
-	}
+    if (hImage)
+    {
+        return TRUE;
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 UOwnerDrawnButton::UOwnerDrawnButton(HWND hParent, UINT nResource, HINSTANCE hInst)
@@ -233,7 +233,7 @@ UOwnerDrawnButton::UOwnerDrawnButton(UBaseWindow *pWndParent, UINT nID)
 : UButton(pWndParent, nID)
 {
     m_dwStyles &= ~BS_DEFPUSHBUTTON;
-    m_dwStyles |= BS_OWNERDRAW;  
+    m_dwStyles |= BS_OWNERDRAW;
 }
 
 UOwnerDrawnButton::~UOwnerDrawnButton()
@@ -251,14 +251,14 @@ BOOL UOwnerDrawnButton::onDrawItem(WPARAM wParam, LPARAM lParam)
     LPDRAWITEMSTRUCT lpDrawItem;
     HDC hdc;
     HBRUSH hbrush = ::CreateSolidBrush(huys::orange);
-    
+
     lpDrawItem = (LPDRAWITEMSTRUCT) lParam;
     //printfMsg("info", "CtrlType: %d", lpDrawItem->CtlType);
     hdc = lpDrawItem->hDC;
     ::SetTextColor( hdc , ::GetSysColor( COLOR_HIGHLIGHTTEXT ) );
     ::SetBkColor( hdc, huys::orange );
     ::FillRect( hdc , &lpDrawItem->rcItem, hbrush );
-    ::TextOut( hdc, 
+    ::TextOut( hdc,
                lpDrawItem->rcItem.left+5,
                lpDrawItem->rcItem.top+5,
                _T("OwnerDraw"),

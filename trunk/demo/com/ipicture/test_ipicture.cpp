@@ -245,12 +245,12 @@ private:
 
     BOOL loadFileUrl(const char *szFileUrl)
     {
-        OleLoadPicturePath(CComBSTR(szFileUrl),
+        OleLoadPicturePath((WCHAR *)szFileUrl,
         (LPUNKNOWN)NULL,
         0,
         0,
         IID_IPicture,
-        (LPVOID*)&m_pIPic));
+        (LPVOID*)&m_pIPic);
 
         return TRUE;
     }
@@ -281,7 +281,7 @@ private:
         if (SUCCEEDED(OleCreatePictureIndirect(&picDesc, IID_IPicture, FALSE, (LPVOID *)&pNewPic)))
         {
             // Save to file
-            Save2File(fileName, pNewPic);
+            save2file(filename, pNewPic);
             pNewPic->Release();
             pNewPic = NULL;
             DeleteObject(hBmp);
