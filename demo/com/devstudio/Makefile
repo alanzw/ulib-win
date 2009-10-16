@@ -5,8 +5,8 @@ TOPDIR = ../../..
 include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS = 
+CFLAGS +=
+CXXFLAGS += 
 INCS = -I"$(TOPDIR)/inc" -I"."
 LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin  -luuid -lole32 -loleaut32
 
@@ -35,7 +35,7 @@ devstudio.exe : devstudio.o guids.o
 	
 #
 %.o : %.cpp
-	$(CXX) -c -DBUILD_EXE $< $(INCS)
+	$(CXX) -c -DBUILD_EXE $< $(INCS) $(CXXFLAGS)
 
 #
 .PHONY : test

@@ -10,7 +10,7 @@
 
 #include "hello.h"
 
-#include "ole/uole.h"
+#include "com/ucom.h"
 
 int main(int argc, char **argv)
 {
@@ -24,7 +24,7 @@ int main(int argc, char **argv)
     if (S_OK == CoInitialize(NULL))
     {
         // Create an IExample object
-        if ((hr = huys::UOle::HuCoCreateInstance(
+        if ((hr = huys::UCOM::HuCoCreateInstance(
                     "hello.dll",
                     CLSID_IExample,
                     NULL,
