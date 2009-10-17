@@ -4,10 +4,11 @@ TOPDIR = ../../..
 include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS =
 INCS = -I"$(TOPDIR)/inc"
 LIBS = -L"$(TOPDIR)/lib"
+CFLAGS +=
+CXXFLAGS += $(INCS)
+LDFLAGS += $(LIBS) -Wl,-Map,out.map -Wl,--cref
 
 #
 SRCDIR = $(TOPDIR)/src
@@ -30,11 +31,11 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIBS) $(RES)
+	$(CXX) -o $(BIN) $^ $(LDFLAGS) $(RES)
 
 #
 %.o : %.cpp $(HEADER)
-	$(CXX) -c -o $@ $< $(CXXFLAGS) $(INCS)
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
 #
 .PHONY : test
@@ -43,4 +44,4 @@ test:
 
 .PHONY : clean
 clean :
-	${RM} ${OBJ} ${BIN} $(RES)
+	${RM} ${OBJ} ${BIN} $(RES) out.map

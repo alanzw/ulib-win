@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <algorithm>
+#include <iostream>
 
 namespace huys
 {
@@ -14,6 +15,8 @@ using std::allocator;
 using std::max;
 using std::uninitialized_copy;
 using std::uninitialized_fill;
+using std::ostream;
+
 
 template <typename T, class _Alloc = std::allocator<T> >
 class UVector
@@ -127,6 +130,9 @@ public:
     {
         return (0 == size());
     }
+
+    //template <class ST>
+    //friend ostream & operator << (ostream & os, UVector<ST> v);
 private:
     iterator data;
     iterator avail;
@@ -197,6 +203,15 @@ private:
     }
 };
 
+    template <typename T>
+    ostream & operator << (ostream &os, UVector<T> v)
+    {
+        typename UVector<T>::const_iterator it;
+        for( it = v.begin(); it != v.end(); ++it)
+        {
+            os << "     " << *it << std::endl;
+        }
+    }
 
 }; // namespace ADT
 
