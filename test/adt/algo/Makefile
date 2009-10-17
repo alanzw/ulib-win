@@ -4,8 +4,8 @@ TOPDIR = ../../..
 include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS =
+CFLAGS +=
+CXXFLAGS +=
 INCS = -I"$(TOPDIR)/inc"
 LIBS = -L"$(TOPDIR)/lib"
 
