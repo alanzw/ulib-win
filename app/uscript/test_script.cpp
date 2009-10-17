@@ -16,12 +16,12 @@
 //#include "upython.h"
 
 const char * g_InterpList[] = {
-	"python",
-	"perl",
-	"tcl",
-	"ruby",
-	"lua",
-	NULL
+    "python",
+    "perl",
+    "tcl",
+    "ruby",
+    "lua",
+    NULL
 };
 
 class UTransparentStatic : public UStatic
@@ -109,15 +109,15 @@ public:
 
     virtual BOOL onInit()
     {
-		m_pCbInterp = new UComboBox(m_hDlg, IDC_COMBO_INTERP, m_hInst);
-		m_pCbInterp->setPos(50, 10, 100, 65);
-		m_pCbInterp->create();
+        m_pCbInterp = new UComboBox(m_hDlg, IDC_COMBO_INTERP, m_hInst);
+        m_pCbInterp->setPos(50, 10, 100, 65);
+        m_pCbInterp->create();
 
-		for(int i = 0; g_InterpList[i] != NULL; ++i)
-		{
-			m_pCbInterp->addText(g_InterpList[i]);
-		}
-		
+        for(int i = 0; g_InterpList[i] != NULL; ++i)
+        {
+            m_pCbInterp->addText(g_InterpList[i]);
+        }
+
         RECT rcTitle = {150, 10, 250, 35};
         m_pStaticTitle = new UTransparentStatic(m_hDlg);
         m_pStaticTitle->setText(_T("Command"));
@@ -196,7 +196,7 @@ private:
     UEdit *m_pEditCmd;
     UTransparentStatic *m_pStaticTitle;
     UPushButton *m_pButtonCheck;
-	UComboBox *m_pCbInterp;
+    UComboBox *m_pCbInterp;
 
 };
 

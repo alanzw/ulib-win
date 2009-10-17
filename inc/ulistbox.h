@@ -17,13 +17,13 @@ public:
     //
     int findString(const char *lpszString);
     int deleteString(int nIndex);
-    
+
     //
     int getCurSel();
-    
+
     //
     int getText(int nIndex, char *sText);
-    
+
     //
     int setColumnWidth(DWORD pixels);
 protected:
