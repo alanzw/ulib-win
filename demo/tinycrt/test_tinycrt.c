@@ -12,3 +12,11 @@ int __cdecl main(int argc, char **argv, char **envp)
 //{
 //    return 0;
 //}
+
+#ifdef _MSC_VER
+
+//void __chkesp();
+//{
+//}
+
+#endif

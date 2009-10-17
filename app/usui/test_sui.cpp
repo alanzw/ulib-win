@@ -113,7 +113,8 @@ private:
     {
         m_l.initialize();
         m_l.registerCallback("ShowTestButton", l_showTestButton);
-        m_l.doString("ShowTestButton(false);");
+        //m_l.doString("ShowTestButton(false);");
+        m_l.doFile("cfg.lua");
         m_l.finalize();
 
         //lua_State *luaVM  = lua_open();
