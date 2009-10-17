@@ -126,7 +126,7 @@ public:
         cutTo(0);
     }
 
-    bool isEmpty() const
+    bool empty() const
     {
         return (0 == size());
     }

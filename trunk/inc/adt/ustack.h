@@ -36,13 +36,10 @@ public:
     {
         return *(UVector<T>::end() - 1);
     }
-    //
-    bool isEmpty() const
-    {
-        return false;
-    }
+
 private:
 };
+
 
 }; // namespace ADT
 
