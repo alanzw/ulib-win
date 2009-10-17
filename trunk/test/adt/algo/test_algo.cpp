@@ -20,14 +20,14 @@ int knap(int s, int n)
     {
         return 0;
     }
-    else if ( knap( s-w[n-1], n-1) == 1) //选择n号元素
+    else if ( knap( s-w[n-1], n-1) == 1)
     {
         cout << n << endl;
         return 1;
     }
     else
     {
-        return ( knap(s, n-1)); //不选n号元素
+        return knap(s, n-1);
     }
 }
 
@@ -89,7 +89,6 @@ int main()
     knap2(50, 10);
 
     cin.ignore();
-
 
     return 0;
 }

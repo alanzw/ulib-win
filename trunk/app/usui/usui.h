@@ -9,7 +9,14 @@ public:
     USui();
     ~USui();
     
+private:
+    typedef lua_CFunction sui_cb;
     
+    template <class T>
+    struct _callback
+    {
+        
+    };
 private:
     ULua m_l;
 };

@@ -115,7 +115,7 @@ unsigned short _ctype[257] =
   _UPPER,                 // 59 Y
   _UPPER,                 // 5A Z
   _PUNCT,                 // 5B [
-  _PUNCT,                 // 5C \
+  _PUNCT,                 // 5C \#
   _PUNCT,                 // 5D ]
   _PUNCT,                 // 5E ^
   _PUNCT,                 // 5F _
