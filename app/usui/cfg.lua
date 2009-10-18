@@ -1,2 +1,3 @@
 -- hide the test button
-ShowTestButton(false);
+-- ShowTestButton(false);
+USui_Event("ShowTestButton", false)

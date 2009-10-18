@@ -3,11 +3,3 @@
 #include <commctrl.h>
 
 #include "usui.h"
-
-USui::USui()
-{
-}
-
-USui::~USui()
-{}
-

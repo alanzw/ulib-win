@@ -3,7 +3,7 @@
  *
  *       Filename:  ulua.cpp
  *
- *    Description:  
+ *    Description:
  *
  *        Version:  1.0
  *        Created:  09/28/2009 07:13:39 AM
@@ -25,7 +25,7 @@ bool ULua::initialize()
     {
         return false;
     }
-    
+
     /* load various Lua libraries */
     luaopen_base(m_interpreter);
     luaopen_table(m_interpreter);

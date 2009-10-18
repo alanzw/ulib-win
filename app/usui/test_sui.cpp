@@ -10,11 +10,11 @@
 #include "colors.h"
 #include "ubutton.h"
 
-#include "ulua.h"
+//#include "ulua.h"
 #include "usui.h"
 
 //extern "C" {
-    static int l_showTestButton(lua_State* luaVM);
+//    static int l_showTestButton(lua_State* luaVM);
 //}
 
 class UMyWindow : public UBaseWindow
@@ -43,7 +43,7 @@ public:
         m_pBnTest->setPos(100, 100, 300, 200);
         m_pBnTest->create();
         m_pBnTest->setWindowText(_T("USui Button"));
-        
+
         return UBaseWindow::onCreate();
     }
 
@@ -79,7 +79,7 @@ public:
             return UBaseWindow::onCommand(wParam, lParam);
         }
     }
-    
+
     BOOL onChar(WPARAM wParam, LPARAM lParam)
     {
         switch (wParam)
@@ -90,8 +90,8 @@ public:
             return UBaseWindow::onChar(wParam, lParam);
         }
     }
-    
-    void showTestButton(BOOL bShow = TRUE)
+
+    void showTestButton(int bShow = TRUE)
     {
         if (bShow)
         {
@@ -108,24 +108,30 @@ private:
         this->showMsg(_T("USUI v0.0.1"), _T("About"));
         return FALSE;
     }
-    
+
     BOOL onBnTest()
     {
-        m_l.initialize();
-        m_l.registerCallback("ShowTestButton", l_showTestButton);
+        //m_l.initialize();
+        //m_l.registerCallback("ShowTestButton", l_showTestButton);
         //m_l.doString("ShowTestButton(false);");
-        m_l.doFile("cfg.lua");
-        m_l.finalize();
+        //m_l.doFile("cfg.lua");
+        //m_l.finalize();
 
         //lua_State *luaVM  = lua_open();
         //lua_register(luaVM, "ShowTestButton", l_showTestButton);
         //luaL_dostring(luaVM, "ShowTestButton(false);");
         //lua_close(luaVM);   /* Close Lua */
+        //UMyWindow *p = this;
+        USui<UMyWindow> usui(this);
+        usui.insert("ShowTestButton", &UMyWindow::showTestButton);
+        usui.doFile("cfg.lua");
+        
         return FALSE;
     }
 private:
     UButton *m_pBnTest;
-    ULua m_l;
+    //ULua m_l;
+    //USui<UMyWindow> usui;
 };
 
 UMyWindow *g_pMainWindow = 0;
@@ -133,15 +139,15 @@ UMyWindow *g_pMainWindow = 0;
 static int l_showTestButton(lua_State* luaVM)
 {
     if(lua_toboolean(luaVM, 1))
-	{
-		//theMainFrame->ShowMenuPainel(TRUE);
+    {
+        //theMainFrame->ShowMenuPainel(TRUE);
         g_pMainWindow->showTestButton(TRUE);
-	}
-	else
-	{
-		//theMainFrame->ShowMenuPainel(FALSE);
+    }
+    else
+    {
+        //theMainFrame->ShowMenuPainel(FALSE);
         g_pMainWindow->showTestButton(FALSE);
-	}
+    }
     return 1;
 }
 
