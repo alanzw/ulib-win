@@ -32,11 +32,11 @@ extern "C" {
 class ULua
 {
     //typedef int (*lua_CFunction) (lua_State *L);
-    
+
 public:
     bool initialize();
     bool finalize();
-    
+
     int doString(const char *sText);
     int doFile(const char *sFilename);
     int registerCallback(const char *name, lua_CFunction pfn);
