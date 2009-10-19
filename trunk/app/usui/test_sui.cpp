@@ -75,6 +75,8 @@ public:
             return UBaseWindow::onClose();
         case ID_BN_TEST:
             return onBnTest();
+        case IDM_NUMBER:
+            return doFile();
         default:
             return UBaseWindow::onCommand(wParam, lParam);
         }
@@ -91,7 +93,7 @@ public:
         }
     }
 
-    void showTestButton(int bShow)
+    void showTestButton(bool bShow)
     {
         if (bShow)
         {
@@ -122,6 +124,18 @@ private:
         //luaL_dostring(luaVM, "ShowTestButton(false);");
         //lua_close(luaVM);   /* Close Lua */
         //UMyWindow *p = this;
+        /*
+        USui<UMyWindow> * p =  USui<UMyWindow>::instance();
+        p->set(this);
+        p->insert("ShowTestButton", &UMyWindow::showTestButton);
+        p->doFile("cfg.lua");
+        */
+        
+        return doFile();
+    }
+    
+    BOOL doFile()
+    {
         USui<UMyWindow> * p =  USui<UMyWindow>::instance();
         p->set(this);
         p->insert("ShowTestButton", &UMyWindow::showTestButton);
