@@ -131,32 +131,12 @@ private:
     }
 private:
     UButton *m_pBnTest;
-    //ULua m_l;
-    //USui<UMyWindow> usui;
 };
-
-UMyWindow *g_pMainWindow = 0;
-
-static int l_showTestButton(lua_State* luaVM)
-{
-    if(lua_toboolean(luaVM, 1))
-    {
-        //theMainFrame->ShowMenuPainel(TRUE);
-        g_pMainWindow->showTestButton(TRUE);
-    }
-    else
-    {
-        //theMainFrame->ShowMenuPainel(FALSE);
-        g_pMainWindow->showTestButton(FALSE);
-    }
-    return 1;
-}
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
 {
     UWinApp app;
-    g_pMainWindow = new UMyWindow;
-    app.setMainWindow(g_pMainWindow);
+    app.setMainWindow(new UMyWindow);
     app.init(hInstance);
     return app.run();
 }
