@@ -43,7 +43,7 @@ all: $(BIN)
 $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LDFLAGS)
 	cp -v $@ $(BINDIR)/$@
-	cp -v $(THIRDPARTY_DIR)/bin/lua51.dll $(BINDIR)/
+	cp -v $(THIRDPARTY_DIR)/bin/lua51.dll $(BINDIR)/lua51.dll
 
 #
 %.o : %.cpp $(HEADER)
