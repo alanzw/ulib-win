@@ -41,7 +41,8 @@ SUBDIRS = \
           devstudio \
           ipicture  \
           istream   \
-
+          memstream \
+          
 
 #
 .PHONY: all
