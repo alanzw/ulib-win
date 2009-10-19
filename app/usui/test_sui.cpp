@@ -91,7 +91,7 @@ public:
         }
     }
 
-    void showTestButton(int bShow = TRUE)
+    void showTestButton(int bShow)
     {
         if (bShow)
         {
@@ -122,9 +122,10 @@ private:
         //luaL_dostring(luaVM, "ShowTestButton(false);");
         //lua_close(luaVM);   /* Close Lua */
         //UMyWindow *p = this;
-        USui<UMyWindow> usui(this);
-        usui.insert("ShowTestButton", &UMyWindow::showTestButton);
-        usui.doFile("cfg.lua");
+        USui<UMyWindow> * p =  USui<UMyWindow>::instance();
+        p->set(this);
+        p->insert("ShowTestButton", &UMyWindow::showTestButton);
+        p->doFile("cfg.lua");
         
         return FALSE;
     }
