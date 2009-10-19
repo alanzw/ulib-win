@@ -11,30 +11,9 @@
 template <class T>
 class USui
 {
-private:
-    USui()
-    : m_pClass(NULL)
-    {
-        m_l.initialize();
-        /*
-        static const struct luaL_reg arraylib [] = {
-            {"new", newarray},
-            {"set", setarray},
-            {"get", getarray},
-            {"size", getsize},
-            {NULL, NULL}
-        };
-        */
-        m_l.registerCallback("USui_Event", &USui<T>::lua_event);
-    }
-    
-    ~USui()
-    {
-        m_l.finalize();
-    }
 public:
     typedef lua_CFunction sui_cb;
-    typedef void (T::*cbFoo)(int param);
+    typedef void (T::*cbFoo)(bool param);
     //static bool comp(int l, int r) {return false;}
 
     static int lua_event(lua_State* luaVM)
@@ -47,7 +26,7 @@ public:
         //}
         //T *p = (T *)lua_touserdata(luaVM, 1);
         const char *fooName = lua_tostring(luaVM, 1);
-        int param = lua_tonumber(luaVM, 2);
+        bool param = lua_toboolean(luaVM, 2);
         p->call(fooName, param);
         
         return 0;
@@ -93,19 +72,24 @@ public:
     {
         return m_l.doFile(sFilename);
     }
-
     
-    template <class TFunc>
-    struct _callback0
-    {
-        const char *name;
-        TFunc f;
-    };
 private:
     ULua m_l;
     T * m_pClass;
     
     std::map<std::string, cbFoo> cb_table;
+private:
+    USui()
+    : m_pClass(NULL)
+    {
+        m_l.initialize();
+        m_l.registerCallback("USui_Event", &USui<T>::lua_event);
+    }
+    
+    ~USui()
+    {
+        m_l.finalize();
+    }
 };
 
 
