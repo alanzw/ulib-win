@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include <memory>
+#include <string.h>
 using std::cout;
 using std::endl;
 using std::cin;
@@ -81,6 +82,58 @@ int knap2(int T, int n)
     return 0;
 }
 
+int floyd()
+{
+
+#define NV 5
+#define MA 9999999
+
+    int graph[NV][NV]=
+    {
+        MA, 1, 7, 2, 8,
+        1, MA, 3, 2, 2,
+        7, 3, MA, 4, 4,
+        2, 2, 4, MA, 3,
+        8, 2, 4, 3, MA
+    };
+    int num=NV;
+    int path[NV][NV];
+    int i,j,k;
+    for(i=0;i<num;i++)
+    {
+        for(j=0;j<num;j++)
+            printf("%8d ",graph[i][j]);
+        printf("\n");
+    }
+    printf("\n");
+    //system("pause");
+
+    memset(path,0,sizeof(path));
+    for(i=0;i<num;i++)
+        for(j=0;j<num;j++)
+            path[i][j]=MA;
+
+    for(i=0;i<num;i++)
+    {
+        for(j=0;j<num;j++)
+        {
+            path[i][j]=graph[i][j];
+        }
+    }
+    
+    for(k=0;k<num;k++)
+        for(i=0;i<num;i++)
+            for(j=0;j<num;j++)
+                if(path[i][j]>graph[i][k]+graph[k][j])
+                    path[i][j]=graph[i][k]+graph[k][j];
+    
+    for(i=0;i<num;i++)
+        for(j=0;j<num;j++)
+            printf("Shortest distance between <%d,%d>: %d \n",i+1,j+1,path[i][j]);
+    //system("pause");
+    return 0;
+}
+
 
 int main()
 {
@@ -88,6 +141,8 @@ int main()
 
     knap2(50, 10);
 
+    floyd();
+    
     cin.ignore();
 
     return 0;
