@@ -1,13 +1,3 @@
-/*
-  IMemStream class written by Brett Goodman, EzTools Software (www.eztools-software.com)
-  Donated to the programming community via CodeProject.com on 9 Oct 2009
-*/
-
-#pragma once
-
-#include <windows.h>
-#include <tchar.h>
-
 #ifndef __objidl_h__
 #include <objidl.h>
 #endif
@@ -43,11 +33,11 @@ class IMemStream : public IStream
 {
 	long		m_cRef;
 	PBYTE		m_pbMem;
-	ULONGLONG	m_ullPos,	// the current stream position
-				m_ullEnd,	// the end of the stream (or current stream size)
-				m_ullSize;	// the current buffer size
-	DWORD		m_dwPageSize,
-				BASE_ALLOC_SIZE;
+	ULONGLONG	m_ullPos;	// the current stream position
+	ULONGLONG	m_ullEnd;	// the end of the stream (or current stream size)
+	ULONGLONG	m_ullSize;	// the current buffer size
+	DWORD		m_dwPageSize;
+	DWORD		BASE_ALLOC_SIZE;
 	int			m_iNumCommittedPages;
 	IUnknown	*m_pOuterUnk;
 

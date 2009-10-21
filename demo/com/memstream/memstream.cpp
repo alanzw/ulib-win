@@ -1,3 +1,6 @@
+#include <windows.h>
+#include <tchar.h>
+
 #include "memstream.h"
 
 #ifndef RETURN_IF_FAILED
@@ -24,8 +27,9 @@
 /////////////////////////////////////////////////////////////////////////////
 
 IMemStream::IMemStream( ULONG ulInitialSize, DWORD dwBaseAllocSize, IUnknown *pOuterUnk ) 
-	: m_cRef(0), m_pbMem(0), m_ullEnd(0), m_ullPos(0), m_ullSize(0), m_iNumCommittedPages(0), m_pOuterUnk(pOuterUnk),
-		m_uNumReservedPages(0), BASE_ALLOC_SIZE(dwBaseAllocSize)
+	: m_cRef(0), m_pbMem(0), m_ullEnd(0), m_ullPos(0), m_ullSize(0),
+      m_iNumCommittedPages(0), m_pOuterUnk(pOuterUnk),
+	  m_uNumReservedPages(0), BASE_ALLOC_SIZE(dwBaseAllocSize)
 {
 	// determine the system page size
 	SYSTEM_INFO si;
