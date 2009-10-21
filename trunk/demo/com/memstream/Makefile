@@ -7,7 +7,7 @@ include $(TOPDIR)/make.inc
 CFLAGS +=
 CXXFLAGS += 
 INCS = -I"$(TOPDIR)/inc" -I"."
-LIBS = -L"$(TOPDIR)/lib" -luuid -lole32 -loleaut32 -mwindows 
+LIBS = -L"$(TOPDIR)/lib" -luwin -luuid -lole32 -loleaut32 -mwindows 
 
 #
 SRCDIR = $(TOPDIR)/src

@@ -25,6 +25,8 @@ SUBDIRS = btree  \
           sort   \
           pair   \
           string \
+          mine   \
+          prime  \
           graph  \
 
 
