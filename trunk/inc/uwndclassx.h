@@ -26,18 +26,18 @@ namespace huys
 
 /**
   typedef struct {
-	UINT cbSize;
-	UINT style;
-	WNDPROC lpfnWndProc;
-	int cbClsExtra;
-	int cbWndExtra;
-	HINSTANCE hInstance;
-	HICON hIcon;
-	HCURSOR hCursor;
-	HBRUSH hbrBackground;
-	LPCTSTR lpszMenuName;
-	LPCTSTR lpszClassName;
-	HICON hIconSm;
+    UINT cbSize;
+    UINT style;
+    WNDPROC lpfnWndProc;
+    int cbClsExtra;
+    int cbWndExtra;
+    HINSTANCE hInstance;
+    HICON hIcon;
+    HCURSOR hCursor;
+    HBRUSH hbrBackground;
+    LPCTSTR lpszMenuName;
+    LPCTSTR lpszClassName;
+    HICON hIconSm;
   } WNDCLASSEX, *PWNDCLASSEX;
 */
 
@@ -60,12 +60,12 @@ public:
     {
         m_wcx.lpszMenuName = lpMenuName;
     }
-    
+
     void setBKBrush(HBRUSH hBrush)
     {
         m_wcx.hbrBackground = hBrush;
     }
-    
+
     static bool isWndClass(LPCTSTR lpWndClassName, HINSTANCE hInstance);
 protected:
     WNDCLASSEX m_wcx;

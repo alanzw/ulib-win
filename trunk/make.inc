@@ -9,8 +9,14 @@
 # The building environment
 ####################################
 
-PLATFORM = win32
+#PLATFORM = win32
 #PLATFORM = linux32
+
+ifeq ($(shell uname), Linux)
+  PLATFORM = linux32
+else
+  PLATFORM = win32
+endif
 
 ####################################
 # Under Linux, MinGW programs are
