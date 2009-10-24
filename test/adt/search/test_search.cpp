@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  test_sort.cpp
+ *       Filename:  test_search.cpp
  *
  *    Description:  
  *
@@ -19,7 +19,7 @@
 #include <iostream>
 #include <cstdio>
 
-#include "adt/ualgo.h"
+#include "adt/usearch.h"
 
 using std::cout;
 using std::endl;
@@ -40,14 +40,9 @@ int main()
         1, 9, 0, 5, 6, 7, 8, 2, 4, 3
     };
     print(a);
-    huys::ADT::quicksort_basic<int>(a, 0, sizeof(a)/sizeof(int)-1);
-    print(a);
-    huys::ADT::quicksort_partition<int>(a, 0, sizeof(a)/sizeof(int)-1);
-    print(a);
-    huys::ADT::selection_sort<int>(a, sizeof(a)/sizeof(int));
-    print(a);
-    huys::ADT::insertion_sort<int>(a, sizeof(a)/sizeof(int));
-    print(a);
+
+    int pos = huys::ADT::Search::sequence_search<int>(a, 0, 9, 6);
+    cout << "find " << 6 << " at " << pos << endl;
     getchar();
     return 0;
 }

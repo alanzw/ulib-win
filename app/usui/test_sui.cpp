@@ -104,6 +104,11 @@ public:
             m_pBnTest->hide();
         }
     }
+
+    bool isTestBtnVisual()
+    {
+        return (TRUE == IsWindowVisible(*m_pBnTest));
+    }
 private:
     BOOL onMenuAbout()
     {
@@ -130,17 +135,18 @@ private:
         p->insert("ShowTestButton", &UMyWindow::showTestButton);
         p->doFile("cfg.lua");
         */
-        
+
         return doFile();
     }
-    
+
     BOOL doFile()
     {
         USui<UMyWindow> * p =  USui<UMyWindow>::instance();
         p->set(this);
         p->insert("ShowTestButton", &UMyWindow::showTestButton);
+//        p->insert("IsVisibleTestButton", &UMyWindow::isTestBtnVisual);
         p->doFile("cfg.lua");
-        
+
         return FALSE;
     }
 private:

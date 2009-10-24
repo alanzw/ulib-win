@@ -18,8 +18,8 @@ class ULIB_API UControl
 {
 public:
     UControl(HWND hParent, UINT nResource, HINSTANCE hInst);
-	explicit UControl(UBaseWindow *pWinParent, UINT nID);
-	UControl();
+    explicit UControl(UBaseWindow *pWinParent, UINT nID);
+    UControl();
     virtual ~UControl() {};
 
     UControl *fromHandle(HWND hwnd);
@@ -135,7 +135,7 @@ protected:
     RECT m_rc;
     DWORD m_dwStyles;
 
-	//
+    //
     HWND m_hPrevParent;
 private:
     WNDPROC m_OriginProc;

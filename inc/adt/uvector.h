@@ -39,6 +39,11 @@ public:
         create(n, val);
     }
 
+    UVector(const_iterator start, const_iterator end)
+    {
+        create(start, end);
+    }
+
     ~UVector()
     {
         uncreate();
@@ -126,11 +131,34 @@ public:
         cutTo(0);
     }
 
+    void resize(size_type n, const_ref_type val = T())
+    {
+        if (n <= size())
+        {
+            cutTo(n);
+            return;
+        }
+        else if (n < limit-data)
+        {
+            for (int i=n-size(); i>0; --i)
+            {
+                push_back(val);
+            }
+        }
+        else
+        {
+            grow(n);
+            for (int i=n-size(); i>0; --i)
+            {
+                push_back(val);
+            }
+        }
+    }
+
     bool empty() const
     {
         return (0 == size());
     }
-
     //template <class ST>
     //friend ostream & operator << (ostream & os, UVector<ST> v);
 private:
@@ -177,10 +205,10 @@ private:
     }
 
     //
-    void grow()
+    void grow(size_type n = 0)
     {
         // when growing, allocate twice as much space as currently in use
-        size_type new_size = max(2 * (limit - data), ptrdiff_t(1));
+        size_type new_size = (0==n ? max(2 * (limit - data), ptrdiff_t(1)) : n);
 
         // allocate new space and copy existing elements to the new space
         iterator new_data = alloc.allocate(new_size);
@@ -203,15 +231,15 @@ private:
     }
 };
 
-    template <typename T>
-    ostream & operator << (ostream &os, UVector<T> v)
+template <typename T>
+ostream & operator << (ostream &os, UVector<T> v)
+{
+    typename UVector<T>::const_iterator it;
+    for( it = v.begin(); it != v.end(); ++it)
     {
-        typename UVector<T>::const_iterator it;
-        for( it = v.begin(); it != v.end(); ++it)
-        {
-            os << "     " << *it << std::endl;
-        }
+        os << "     " << *it << std::endl;
     }
+}
 
 }; // namespace ADT
 

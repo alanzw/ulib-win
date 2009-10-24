@@ -49,5 +49,20 @@ int main()
     cout << "========================= " << endl;
     cout << v2;
 
+    cout << "========================= " << endl;
+    int array[] = { 1, 2, 3, 4, 5};
+    int size = sizeof(array)/sizeof(int);
+    UVec v3(array, array+size);
+    cout << v3;
+    cout << "========================= " << endl;
+    v3.resize(4);
+    cout << v3;
+    cout << "========================= " << endl;
+    v3.resize(6, 3);
+    cout << v3;
+    cout << "========================= " << endl;
+    v3.resize(5);
+    cout << v3[4];
+
     return 0;
 }

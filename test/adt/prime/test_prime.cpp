@@ -23,8 +23,8 @@ int CheckPrime(int i)
         return i;
     }
     else
-    { 
-        //MessageBox.Show(i + " is not a prime number"); 
+    {
+        //MessageBox.Show(i + " is not a prime number");
     }
 
     i++;
@@ -42,18 +42,18 @@ int CheckPrime(int i)
             }
         }
         if (isPrimeNumberFound)
-        { 
+        {
             isNextPrimeNumberFound = true;
         }
         else
-        { 
-            i++; 
+        {
+            i++;
             isPrimeNumberFound = true;
         }
     }
 
-    //if (isNextPrimeNumberFound) 
-    //{ 
+    //if (isNextPrimeNumberFound)
+    //{
         //MessageBox.Show(i + " is the next prime number");
     //}
     return i;

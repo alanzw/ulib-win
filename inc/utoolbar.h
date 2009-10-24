@@ -7,7 +7,7 @@ class ULIB_API UToolBar : public UControl
 {
 public:
     UToolBar(HWND hParent, UINT nResource, HINSTANCE hInst);
-	UToolBar() {}
+    UToolBar() {}
     ~UToolBar();
     virtual BOOL create();
     //
@@ -35,14 +35,14 @@ public:
     //
     virtual BOOL setHotImageList(HIMAGELIST himl);
 
-	//
-	int getButtonCount();
-	//
-	BOOL getButton(int nIndex, LPTBBUTTON lpTbBtn);
-	BOOL getButtonInfo(UINT nID, LPTBBUTTONINFO lptbbi);
-	BOOL getButtonText(UINT nID, LPTSTR lpszText);
-	//
-	BOOL getString(int nIndex, LPTSTR lpText, BYTE cchMax);
+    //
+    int getButtonCount();
+    //
+    BOOL getButton(int nIndex, LPTBBUTTON lpTbBtn);
+    BOOL getButtonInfo(UINT nID, LPTBBUTTONINFO lptbbi);
+    BOOL getButtonText(UINT nID, LPTSTR lpszText);
+    //
+    BOOL getString(int nIndex, LPTSTR lpText, BYTE cchMax);
 protected:
 private:
 };
