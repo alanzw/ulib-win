@@ -23,7 +23,9 @@ BIN = test_search.exe
 RC  =
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/adt/uadt.h
+HEADER = $(INCDIR)/adt/uadt.h    \
+         $(INCDIR)/adt/usearch.h \
+
 #
 all: $(BIN)
 
