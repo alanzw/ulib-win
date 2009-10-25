@@ -28,24 +28,47 @@ DIJKSTRA(G, s, w)
   return (d, p)
 */
 
+/*
+ 1  function Dijkstra(Graph, source):
+ 2      for each vertex v in Graph:           // Initializations
+ 3          dist[v] := infinity               // Unknown distance function from source to v
+ 4          previous[v] := undefined          // Previous node in optimal path from source
+ 5      dist[source] := 0                     // Distance from source to source
+ 6      Q := the set of all nodes in Graph
+        // All nodes in the graph are unoptimized - thus are in Q
+ 7      while Q is not empty:                 // The main loop
+ 8          u := vertex in Q with smallest dist[]
+ 9          if dist[u] = infinity:
+10              break                         // all remaining vertices are inaccessible from source
+11          remove u from Q
+12          for each neighbor v of u:         // where v has not yet been removed from Q.
+13              alt := dist[u] + dist_between(u, v) 
+14              if alt < dist[v]:             // Relax (u,v,a)
+15                  dist[v] := alt
+16                  previous[v] := u
+17      return dist[]
+ */
 
 #include <iostream>
-#include <vector>
-#include <string>
-#include <set>
-#include <queue>
+//#include <vector>
+#include <climits>
 using namespace std;
+
+#include "adt/uvector.h"
  
 const int SIZE = 5; //number of nodes
 int graph[SIZE][SIZE];//the graph itself
 int d[SIZE]; //distances from the source to each node
 int pi[SIZE];//contains the predecessor node for each node
-vector<int> s;//list of nodes which were already visited
-vector<int> vs;//list of nodes which were not visited yet
+//vector<int> s;//list of nodes which were already visited
+//vector<int> vs;//list of nodes which were not visited yet
+typedef huys::ADT::UVector<int> UNodeList;
+UNodeList s;
+UNodeList vs;
 
-#define SHRT_MAX 99999
+//#define SHRT_MAX 99999
 
-void sort(vector<int>* vec) {
+void sort(UNodeList* vec) {
     //sorts the vector of nodes according to
     //distances from the source to each node
     for (unsigned int i = 0; i < vec->size(); i++)
@@ -57,7 +80,7 @@ void sort(vector<int>* vec) {
             }
 }
 
-void relax(vector<int>* vec, int u) {
+void relax(UNodeList* vec, int u) {
     //updates the distances from the source to each node
     //and the predecessor for each node
     for (unsigned int i = 0; i < vec->size(); i++) {
@@ -77,10 +100,12 @@ void printShortestPathTo(int v) {
     cout << "Distance to " << v << " is " << d[v] << endl;
     cout << "Shortest path: ";
     int x = pi[v];
-    while (x != -1) {
+    cout << v << "<-";
+    while (x != -1 && x != 0) {
         cout << x << "<-";
         x = pi[x];
     }
+    cout << "0";
     cout << endl << endl;
 }
 
@@ -124,5 +149,10 @@ int main() {
     }
 
     printShortestPathTo(4);//choose any node
+    printShortestPathTo(2);//choose any node
+    printShortestPathTo(0);//choose any node
+    printShortestPathTo(1);//choose any node
+    printShortestPathTo(3);//choose any node
+    cin.ignore();
     return 0;
 }

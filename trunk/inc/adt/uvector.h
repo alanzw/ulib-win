@@ -4,6 +4,7 @@
 #include <memory>
 #include <algorithm>
 #include <iostream>
+#include <cassert>
 
 namespace huys
 {
@@ -82,6 +83,16 @@ public:
 
     iterator end() { return avail; }
     const_iterator end() const { return avail; }
+    
+    const_ref_type front() const
+    {
+        return this->at(0);
+    }
+    
+    const_ref_type back() const
+    {
+        return this->at(size()-1);
+    }
 
     void push_back(const T& val)
     {
@@ -90,6 +101,13 @@ public:
             grow();
         }
         uncheck_append(val);
+    }
+    
+    value_type pop_back()
+    {
+        value_type temp = back();
+        cutTo(size()-1);
+        return temp;
     }
 
     reference_type at(size_type n)
