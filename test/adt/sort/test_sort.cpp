@@ -114,6 +114,19 @@ int main()
     printf("%-25s", "gnome_sort: ");
     print(d, 10);
 
+    int e[] = {
+        1, 9, 0, 5, 6, 7, 8, 2, 4, 3
+    };
+    for (int i=10; i>1; i--) huys::ADT::Sort::heap_sort<int>(e, i-1);
+    printf("%-25s", "heap_sort: ");
+    print(d, 10);
+    
+    int f[] = {
+        1, 9, 0, 5, 6, 7, 8, 2, 4, 3
+    };
+    huys::ADT::Sort::merge_sort<int>(f, 10);
+    printf("%-25s", "merge_sort: ");
+    print(d, 10);    
     getchar();
     return 0;
 }
