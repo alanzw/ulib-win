@@ -52,7 +52,15 @@ void insertion_sort(T *array, int n)
   }
 }
 
-
+/*
+ * radix sort is a sorting algorithm that sorts integers by processing
+ * individual digits, by comparing individual digits sharing the same
+ * significant position.
+ *
+ * Two classifications of radix sorts are:
+ *   - least significant digit (LSD) radix sorts
+ *   - most significant digit (MSD) radix sorts
+ */
 template <class T>
 void radix (int byte, int n, T *source, T *dest)
 {
@@ -67,7 +75,6 @@ void radix (int byte, int n, T *source, T *dest)
   for ( i=0; i<n; i++ ) dest[index[((source[i])>>(byte*8))&0xff]++] = source[i];
 }
 
-
 template <class T>
 void radix_sort(T *array, T *temp, int n)
 {
@@ -77,6 +84,26 @@ void radix_sort(T *array, T *temp, int n)
 	radix (3, n, temp, array);
 }
 
+
+template <class T>
+void gnome_sort(T *array, int n)
+{
+	int i = 0;
+	
+	while (i < n)
+    {
+		if (i == 0 || array[i-1] <= array[i])
+        {
+			i++;
+		}
+		else
+        {
+			int tmp = array[i];
+            array[i] = array[i-1];
+            array[--i] = tmp;
+		}
+	}
+}
 
 }; // namespace Sort
 
