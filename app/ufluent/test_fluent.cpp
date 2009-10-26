@@ -67,7 +67,7 @@ public:
         {
             return onGambitExit();
         }
-        
+
         if (message == 51111)
         {
             addLines("-->51111.\r\n");
@@ -148,10 +148,10 @@ private:
        m_ufm.sendCmd("(+ 1 1)");
        //Sleep(1000);
        //m_ufm.getResult();
-	   m_ufm.subclassWnd(m_hDlg);
+       m_ufm.subclassWnd(m_hDlg);
        m_ufm.addMenu();
-	   SetWindowPos(m_hDlg, HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE);
-	   m_ufm.focusWnd();
+       SetWindowPos(m_hDlg, HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE);
+       m_ufm.focusWnd();
     }
 };
 
