@@ -13,6 +13,66 @@ namespace Sort
 {
 
 template <class T>
+void bubble_sort(T *array, int n)
+{
+    int lo = 0;
+    int up = n - 1;
+    int i, j;
+    while (up>lo)
+    {
+        j = lo;
+        for ( i=lo; i<up; i++ )
+        {
+            if ( array[i] > array[i+1] )
+            {
+                T temp = array[i+1];
+                array[i+1] = array[i];
+                array[i] = temp;
+                j = i;
+            }
+        }
+        
+        up = j;
+        for ( i=up; i>lo; i-- )
+        {
+            if ( array[i] < array[i-1] )
+            {
+                T temp = array[i-1];
+                array[i-1] = array[i];
+                array[i] = temp;
+                j = i;
+            }
+        }
+        lo = j;
+        
+     }
+}
+
+template <class T>
+void bubble_sort2(T *array, int n)
+{
+    int i, j;
+    T temp;
+    int test; /*use this only if unsure whether the list is already sorted or not*/
+    for(i = n-1; i>0; i--)
+    {
+        test=0;
+        for(j=0; j<i; j++)
+        {
+            if(array[j] > array[j+1]) /* compare neighboring elements */
+            {
+                temp = array[j];    /* swap array[j] and array[j+1] */
+                array[j] = array[j+1];
+                array[j+1] = temp;
+                test=1;
+            }
+        } /*end for j*/
+        if(test==0) break; /*will exit if the list is sorted!*/
+    } /*end for i*/
+    
+}/*end bubbleSort*/
+
+template <class T>
 void selection_sort(T *array, int n)
 {
     int i, j, min;

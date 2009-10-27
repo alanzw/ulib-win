@@ -121,7 +121,7 @@ public:
         assert(n>=0 && n<size());
         return data[n];
     }
-
+    
     void assign(size_type num, const_ref_type val)
     {
         uncreate();
