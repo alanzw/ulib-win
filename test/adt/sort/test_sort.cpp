@@ -21,6 +21,7 @@
 
 #include "adt/ualgo.h"
 #include "adt/usort.h"
+#include "adt/uvector.h"
 
 using std::cout;
 using std::endl;
@@ -67,7 +68,6 @@ void radixsort(int *a,int n)
 #endif
         }
 }
-
 
 int main()
 {
@@ -117,16 +117,24 @@ int main()
     int e[] = {
         1, 9, 0, 5, 6, 7, 8, 2, 4, 3
     };
-    for (int i=10; i>1; i--) huys::ADT::Sort::heap_sort<int>(e, i-1);
+    for (int i=10; i>1; i--) huys::ADT::Sort::heap_sort<int>(e, i);
     printf("%-25s", "heap_sort: ");
-    print(d, 10);
+    print(e, 10);
     
     int f[] = {
         1, 9, 0, 5, 6, 7, 8, 2, 4, 3
     };
     huys::ADT::Sort::merge_sort<int>(f, 10);
     printf("%-25s", "merge_sort: ");
-    print(d, 10);    
+    print(f, 10);
+
+    int g[] = {
+        1, 9, 0, 5, 6, 7, 8, 2, 4, 3
+    };
+    huys::ADT::Sort::bubble_sort<int>(g, 10);
+    printf("%-25s", "bubble_sort: ");
+    print(g, 10);
+    
     getchar();
     return 0;
 }
