@@ -1,7 +1,7 @@
 #include "resource.h"
 #include <windows.h>
 #include <iostream>
-
+#include <cstdlib>
 #include "usigslot.h"
 
 class Light : public USigSlot::has_slots
@@ -19,6 +19,33 @@ private:
 };
 
 
+#include <setjmp.h>
+
+struct __Signal {
+   jmp_buf environment;
+   struct __Slot *slot;
+};
+
+struct __Slot {
+   jmp_buf environment;
+   struct __Signal *signal;
+
+}; 
+
+void __signal_connect(struct __Signal *signal, struct __Slot *slot)
+{
+  signal->slot = slot;
+  slot->signal = signal;
+}
+
+void __signal_emit(struct __Signal *signal)
+{
+    if (setjmp(signal->environment) == 0)
+    {
+        longjmp(signal->slot->environment, 1);
+    }
+
+}
 
 class Switch
 {
@@ -48,6 +75,26 @@ int main(int argc, char *argv[])
     sig.connect(&lp2, &Light::TurnOff);
 
     sig.emit();
+    
+    struct {
+        struct __Signal signal;
+        int _1;
+        float _2;
+
+    } signal;
+    
+    struct __Slot slot;
+
+    __signal_connect((struct __Signal *)&signal, &slot);
+    if (setjmp(slot.environment) != 0)
+    {
+        printf("int=%d, float=%f\n", signal._1, signal._2);
+        exit(0);
+    }
+
+    signal._1 = 5;
+    signal._2 = 10.0;
+    __signal_emit((struct __Signal *)&signal);  // 调用处只需要signal的信息 
 
     std::cin.ignore();
     return 0;

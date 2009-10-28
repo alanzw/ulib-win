@@ -64,6 +64,17 @@ public:
             return UBaseWindow::onCommand(wParam, lParam);
         }
     }
+    
+    virtual BOOL onChar(WPARAM wParam, LPARAM lParam)
+    {
+        switch (wParam)
+        {
+        case VK_ESCAPE:
+            return UBaseWindow::onClose();
+        default:
+            return UBaseWindow::onChar(wParam, lParam);
+        }
+    }
 private:
     BOOL onMenuAbout()
     {

@@ -28,7 +28,8 @@ SUBDIRS = btree  \
           mine   \
           prime  \
           graph  \
-          search  \
+          search \
+          list   \
 
 
 #
