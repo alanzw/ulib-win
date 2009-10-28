@@ -30,7 +30,7 @@ SUBDIRS = btree  \
           graph  \
           search \
           list   \
-
+          comparable \
 
 #
 all:

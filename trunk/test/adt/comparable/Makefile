@@ -18,12 +18,12 @@ ICODIR = $(TOPDIR)/ico
 BINDIR = $(TOPDIR)/bin
 
 #
-OBJ = test_list.o
-BIN = test_list.exe
+OBJ = test_comparable.o
+BIN = test_comparable.exe
 RC  =
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/adt/ulist.h \
+HEADER = $(INCDIR)/adt/ucomparable.h \
          $(INCDIR)/adt/uadt.h
 #
 all: $(BIN)
