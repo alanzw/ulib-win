@@ -23,6 +23,7 @@
 
 #include <memory>
 #include <cassert>
+#include <iostream>
 
 namespace huys
 {
@@ -54,8 +55,8 @@ public:
 
     ~UList()
     {
-        //erase(begin(), end());
-        //_freenode(_head);
+        erase(begin(), end());
+        _freenode(_head);
         _head = 0;
         _size = 0;
     }
@@ -72,22 +73,22 @@ public:
     //
     iterator begin()
     {
-        return _head;
+        return _head->_next;
     }
 
     const_iterator begin() const
     {
-        return _head;
+        return _head->_next;
     }
 
     iterator end()
     {
-        return _head->_next;
+        return _head;
     }
 
     const_iterator end() const
     {
-        return _head->_next;
+        return _head;
     }
 
     //
@@ -111,8 +112,8 @@ public:
     {
         assert(!empty());
         iterator p = end();
-        --p;
-        return (p->_value);
+        //--p;
+        return (p->_prev->_value);
     }
 
     void push_front(const T& x)
@@ -135,8 +136,24 @@ public:
 
     void clear()
     {
-        if (this->empty()) return;
+        if (empty()) return;
         erase(begin(), end());
+    }
+
+    void remove(const_reference x)
+    {
+        iterator p = begin();
+        iterator q = p->_next;
+        while (p != end())
+        {
+            if ( p->_value == x)
+            {
+                erase(p);
+            }
+
+            p = q;
+            q = p->_next;
+        }
     }
 
     iterator insert(iterator p, const_reference x = T())
@@ -149,21 +166,29 @@ public:
         return p;
     }
 
-    iterator erase(iterator _P)
+    iterator erase(iterator p)
     {
-        iterator _S = (_P++);
-        _S->_prev->_next= _S->_next;
-        _S->_next->_prev = _S->_prev;
-        _allocator.destroy(_S);
-        _freenode(_S);
+        if (end() == p)
+            return end();
+
+        iterator s = p;
+        s->_prev->_next= s->_next;
+        s->_next->_prev = s->_prev;
+        _allocator.destroy(&s->_value);
+        _freenode(s);
         --_size;
-        return (_P);
+        return p;
     }
 
     iterator erase(iterator _F, iterator _L)
     {
+        iterator p = _F;
         while (_F != _L)
-            erase(_F++);
+        {
+            p = _F->_next;
+            erase(_F);
+            _F = p;
+        }
         return (_F);
     }
 private:
@@ -174,17 +199,34 @@ private:
 private:
     node_type * _buynode(node_type * next = 0, node_type * prev = 0)
     {
-        node_type * p = (node_type *)_allocator.allocate(1 * sizeof (ListNode), (char *)0);
+        //node_type * p = (node_type *)_allocator.allocate(1 * sizeof (ListNode)/sizeof(T), (char *)0);
+        node_type * p = static_cast<node_type *>(::operator new(sizeof(node_type)));
+        // node_type * p = new node_type;
         p->_next = next != 0 ? next : p;
         p->_prev = prev != 0 ? prev : p;
         return p;
     }
 
-    void _freenode(node_type *x)
+    void _freenode(node_type *p)
     {
-        _allocator.deallocate(x, 1);
+        //_allocator.deallocate((T *)x, sizeof (ListNode)/sizeof(T));
+        ::operator delete(p);
+        //delete p;
     }
+    
+    template <typename S>
+    friend std::ostream & operator << (std::ostream &os, UList<S> & v);
 };
+
+template <typename T>
+std::ostream & operator << (std::ostream &os, UList<T> &v)
+{
+    typename UList<T>::iterator it;
+    for( it = v.begin(); it != v.end(); it=it->_next)
+    {
+        os << "     " << it->_value << std::endl;
+    }
+}
 
 }; // namespace ADT
 
