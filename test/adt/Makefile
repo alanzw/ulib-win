@@ -31,6 +31,8 @@ SUBDIRS = btree  \
           search \
           list   \
           comparable \
+          table  \
+          queue  \
 
 #
 all:

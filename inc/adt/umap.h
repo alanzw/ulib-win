@@ -1,6 +1,8 @@
 #ifndef HU_MAP_H
 #define HU_MAP_H
 
+#include "adt/upair.h"
+
 namespace huys
 {
 
@@ -14,7 +16,9 @@ public:
     typedef Ty* iterator;
     typedef const Ty* const_iterator;
     typedef size_t size_type;
-    typedef Ty value_type;
+    typedef UPair<Tk, Ty> value_type;
+    typedef Tk key_type;
+    typedef Ty referent_type;
 public:
     UMap()
     {
