@@ -1,20 +1,6 @@
 #ifndef U_BINARY_TREE_H
 #define U_BINARY_TREE_H
 
-enum Error_code {
-    success,
-    fail,
-    range_error,
-    underflow,
-    overflow,
-    fatal,
-    not_present,
-    duplicate_error,
-    entry_insert,
-    entry_found,
-    internal_error
-};
-
 template <class Entry>
 struct Binary_node
 {
@@ -37,67 +23,81 @@ template <class Entry>
 class Binary_tree
 {
 public:
+    enum Error_code {
+        success,
+        fail,
+        range_error,
+        underflow,
+        overflow,
+        fatal,
+        not_present,
+        duplicate_error,
+        entry_insert,
+        entry_found,
+        internal_error
+    };
+public:
     //
     Binary_tree()
-    : root(0)
+    : _root(0)
     {}
 
     //
     bool empty() const
     {
-        return (0==root);
+        return (0==_root);
     }
 
     //
     typedef void (*Visit)(Entry &);
     void inorder(Visit visit)
     {
-        recursive_inorder(root, visit);
+        recursive_inorder(_root, visit);
     }
 
     void preorder(Visit visit)
     {
-        recursive_preorder(root, visit);
+        recursive_preorder(_root, visit);
     }
 
     void postorder(Visit visit)
     {
-        recursive_postorder(root, visit);
+        recursive_postorder(_root, visit);
     }
 
     int size() const
     {
-        return recursive_size(root);
+        return recursive_size(_root);
     }
 
     void clear()
     {
-        destroy_tree(root);
+        destroy_tree(_root);
     }
 
     int height() const
     {
-        return height_node(root);
+        return height_node(_root);
     }
 
     void insert(const Entry &data)
     {
-        if(root != 0)
+        if(_root != 0)
         {
-            insert_node(data, root);
+            insert_node(data, _root);
         }
         else
         {
-            root=new Node;
-            root->data = data;
-            root->left = 0;
-            root->right = 0;
+            _root=new Node;
+            _root->data = data;
+            _root->left = 0;
+            _root->right = 0;
         }
     }
 
     void mirror()
     {
-        mirror_node(root);
+        mirror_node(_root);
     }
 
     Binary_tree(const Binary_tree<Entry> &original)
@@ -241,7 +241,7 @@ protected:
         }
     }
 protected:
-    Node *root;
+    Node *_root;
 private:
 };
 
@@ -257,11 +257,76 @@ public:
     {
         return success;
     }
+    
     Error_code tree_search(Record &target) const
     {
-        return entry_found;
+        Error_code result = success;
+        
+        Binary_node<Record> * found = search_for_node(this->_root, target);
+        
+        if (NULL = found)
+        {
+            result = not_present;
+        }
+        else
+        {
+            target = found->data;
+        }
+        return result;
     }
 protected:
+    Binary_node<Record> * search_for_node(Binary_node<Record> * sub_root, const Record & target)
+    {
+        if (NULL == sub_root || sub_root->data == target)
+        {
+            return sub_root;
+        }
+        else if (sub_root->data < target)
+        {
+            return search_for_node(sub_root->right, target);
+        }
+        else
+        {
+            return search_for_node(sub_root->left, target);
+        }
+    }
+    
+    Binary_node<Record> * search_for_node_loop(Binary_node<Record> * sub_root, const Record & target)
+    {
+        while (sub_root == NULL && sub_root->data != target)
+        {
+            if (sub_root->data < target)
+            {
+                sub_root = sub_root->right;
+            }
+            else
+            {
+                sub_root = sub_root->left;
+            }
+        }
+        return sub_root;
+    }
+    
+    Error_code search_and_insert(Binary_node<Record> *&sub_root, const Record &new_data)
+    {
+        if (NULL == sub_root)
+        {
+            sub_root = new Binary_node<Record>(new_data);
+            return success;
+        }
+        else if (new_data < sub_root->data)
+        {
+            return search_and_insert(sub_root->left, new_data);
+        }
+        else if (new_data > sub_root->data)
+        {
+            return search_and_insert(sub_root->right, new_data);
+        }
+        else
+        {
+            return duplicate_error;
+        }
+    }
 private:
 };
 
