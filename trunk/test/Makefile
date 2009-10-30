@@ -67,7 +67,7 @@ SUBDIRS =        \
       policies   \
       bntrick    \
       metafunc   \
-      
+      functor    \
       
 #
 .PHONY: all
