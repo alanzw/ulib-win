@@ -1,6 +1,12 @@
 #ifndef U_BINARY_TREE_H
 #define U_BINARY_TREE_H
 
+namespace huys
+{
+
+namespace ADT
+{
+
 template <class Entry>
 struct Binary_node
 {
@@ -15,27 +21,29 @@ struct Binary_node
     {}
 
     Binary_node(const Entry &other)
-    : data(other.data), left(0), right(0)
+    : data(other), left(0), right(0)
     {}
 };
 
-template <class Entry>
+enum Error_code {
+    success,
+    fail,
+    range_error,
+    underflow,
+    overflow,
+    fatal,
+    not_present,
+    duplicate_error,
+    entry_insert,
+    entry_found,
+    internal_error
+};
+
+template <class Entry, class V = void (*)(Entry &)>
 class Binary_tree
 {
 public:
-    enum Error_code {
-        success,
-        fail,
-        range_error,
-        underflow,
-        overflow,
-        fatal,
-        not_present,
-        duplicate_error,
-        entry_insert,
-        entry_found,
-        internal_error
-    };
+    typedef V Visit;
 public:
     //
     Binary_tree()
@@ -48,8 +56,7 @@ public:
         return (0==_root);
     }
 
-    //
-    typedef void (*Visit)(Entry &);
+    
     void inorder(Visit visit)
     {
         recursive_inorder(_root, visit);
@@ -251,11 +258,12 @@ class Search_tree : public Binary_tree<Record>
 public:
     Error_code insert(const Record &new_data)
     {
-        return entry_insert;
+        return search_and_insert(this->_root, new_data);
     }
-    Error_code remove(const Record &old_data)
+    
+    Error_code remove(const Record &target)
     {
-        return success;
+        return search_and_destroy(this->_root, target);
     }
     
     Error_code tree_search(Record &target) const
@@ -327,7 +335,82 @@ protected:
             return duplicate_error;
         }
     }
+    
+    Error_code remove_root(Binary_node<Record> *&sub_root)
+    {
+        if (NULL == sub_root)
+        {
+            return not_present;
+        }
+        Binary_node<Record> * to_delete = sub_root;
+        if (NULL == sub_root->right)
+        {
+            sub_root = sub_root->left;
+        }
+        else if (NULL == sub_root->left)
+        {
+            sub_root = sub_root->right;
+        }
+        else
+        {
+            to_delete = sub_root->left;
+            Binary_node<Record> *parent = sub_root;
+            while (NULL != to_delete->right)
+            {
+                parent = to_delete;
+                to_delete = to_delete->right;
+            }
+            sub_root->data = to_delete->data;
+            if (parent == sub_root)
+            {
+                sub_root->left = to_delete->left;
+            }
+            else
+            {
+                parent->right = to_delete->left;
+            }
+        }
+        delete to_delete;
+        return success;
+    }
+    
+    Error_code search_and_destroy(Binary_node<Record> * &sub_root, const Record &target)
+    {
+        if (NULL == sub_root || sub_root->data == target)
+        {
+            return remove_root(sub_root);
+        }
+        else if (target < sub_root->data)
+        {
+            return search_and_destroy(sub_root->left, target);
+        }
+        else
+        {
+            return search_and_destroy(sub_root->right, target);
+        }
+    }
 private:
 };
+
+template <class Record>
+class Buildable_tree : public Search_tree<Record>
+{
+public:
+    Error_code build_tree(const Record *supply, int n)
+    {
+        Error_code ordered_data = success;
+        int count = 0;
+        Record x;
+        Record last_x;
+        
+        Binary_node<Record> * none = NULL;
+    }
+private:
+    
+};
+
+}; // namespace ADT
+
+}; // namespace huys
 
 #endif // U_BINARY_TREE_H

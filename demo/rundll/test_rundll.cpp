@@ -412,9 +412,8 @@ int WINAPI WinMain(
         fnDllWinMainW = (DllWinMainW)GetProcAddress(hDll,lpFuncName);
         fnDllWinMainA = 0;
         if (!fnDllWinMainW) {
-            // If no unicode function was found, get the address of the non-unicode
-            function
-                lpFuncName[nStrLen] = 'A';
+            // If no unicode function was found, get the address of the non-unicode function
+            lpFuncName[nStrLen] = 'A';
             fnDllWinMainA = (DllWinMainA)GetProcAddress(hDll,lpFuncName);
             if (!fnDllWinMainA) {
                 // If first non-unicode function was not found, get the address

@@ -5,7 +5,7 @@ include ../../make.inc
 CFLAGS =
 CXXFLAGS =
 INC = -I"../../inc"
-LIB = -L"../../lib" -luwin
+LIBS = -L"../../lib" -mwindows -luwin
 
 #
 SRCDIR = ../../src
@@ -15,32 +15,37 @@ RESDIR = ../../res
 ICODIR = ../../ico
 BINDIR = ../../bin
 #
-OBJ = test_rundll.o
-BIN = test_rundll.exe
-RC  = rundll.rc
+OBJ = \
+ test_mytree.o \
+
+BIN = test_mytree.exe
+RC  = mytree.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/udllman.h
+HEADER = $(INCDIR)/udialogx.h \
+          umytree.h \
+
 #
 all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB)
-	cp -vf $(BIN) $(BINDIR)/$(BIN)
+	$(CXX) -o $(BIN) $^ $(LIBS)
+	cp -v $@ $(BINDIR)/$@
 
 #
-test_rundll.o : test_rundll.cpp $(HEADER)
+test_mytree.o : test_mytree.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
 
 #
 #$(RES) : $(RC) resource.h
 #	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-
 #
 .PHONY : test
 test :
-	$(WINE) $(BINDIR)/$(BIN) libuwin.dll,showMsg xxxx
+	$(BINDIR)/$(BIN)     
 #
+.PHONY : clean
 clean :
 	$(RM) ${OBJ} ${RES} ${BIN}
+
