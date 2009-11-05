@@ -52,6 +52,7 @@ SUBDIRS = \
           event       \
           exception   \
           fileman     \
+          filemap     \
           font        \
           gdi         \
           gdiplus     \
