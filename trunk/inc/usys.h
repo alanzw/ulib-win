@@ -25,13 +25,16 @@ public:
     int getMonitorNum();
 
     //
-    int getMouseNum();
+    int getMouseButtonNum();
 
     /// KeyBoard
 
 
     //
     LPCTSTR getComputerName();
+    
+    //
+    int getWindowCaptionHeight();
 protected:
 private:
     TCHAR *m_pBuffer;

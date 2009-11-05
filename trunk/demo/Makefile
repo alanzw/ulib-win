@@ -141,6 +141,7 @@ SUBDIRS = \
           dc          \
           dock        \
           splitter    \
+          apihook     \
 
 
 #

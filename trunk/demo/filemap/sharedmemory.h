@@ -79,7 +79,8 @@ public:
     {
         m_hMutex = ::CreateMutex(NULL, FALSE, sMutexName);
         dwNumberOfBytesToMap = size;
-        m_hSharedMemoryFile = CreateFileMapping((HANDLE)0xFFFFFFFF,
+        m_hSharedMemoryFile = CreateFileMapping(
+            (HANDLE)0xFFFFFFFF,
             NULL,
             PAGE_READWRITE,
             0,
