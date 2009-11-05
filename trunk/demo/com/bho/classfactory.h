@@ -12,14 +12,14 @@
 
 class CClassFactory : public CUnknown<IClassFactory> {
 public:
-	// Constructor and destructor
-	CClassFactory();
-	virtual ~CClassFactory();
-	// IClassFactory methods
-	STDMETHODIMP CreateInstance(IUnknown *pUnkOuter,REFIID riid,void **ppvObject);
-	STDMETHODIMP LockServer(BOOL fLock);
+    // Constructor and destructor
+    CClassFactory();
+    virtual ~CClassFactory();
+    // IClassFactory methods
+    STDMETHODIMP CreateInstance(IUnknown *pUnkOuter,REFIID riid,void **ppvObject);
+    STDMETHODIMP LockServer(BOOL fLock);
 private:
-	static const IID SupportedIIDs[2];
+    static const IID SupportedIIDs[2];
 };
 
 #endif // __CLASSFACTORY_H__
