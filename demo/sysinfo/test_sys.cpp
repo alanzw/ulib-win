@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     //
     cout << "Monitor Number: " << usys.getMonitorNum() << endl;
     //
-    cout << "Mouse Number: " << usys.getMouseNum() << endl;
+    cout << "Mouse Number: " << usys.getMouseButtonNum() << endl;
 
     //
     cout << "Computer Name: " << usys.getComputerName() << endl;

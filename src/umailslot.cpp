@@ -38,3 +38,30 @@ BOOL UMailSlot::create(LPCTSTR sMailSlotName)
     return (INVALID_HANDLE_VALUE != m_hObj);
 }
 
+BOOL UMailSlot::send(LPCTSTR sMessage)
+{
+    HANDLE hFile = NULL;
+    DWORD cbWritten;
+    
+    hFile = ::CreateFile(
+        m_sMailSlotName,
+        GENERIC_WRITE,
+        FILE_SHARD_READ,
+        NULL,
+        OPEN_EXISTING,
+        FILE_ATTRIBUTE_NORMAL,
+        NULL);
+    if (INVALID_HANDLE_VALUE == hFile)
+    {
+        return FALSE;
+    }
+    
+    if (!WriteFile(hFile, sMessage, (DWORD)lstrlen(sMessage)+1, &cbWritten, NULL))
+    {
+        ::CloseHandle(hFile);
+        return FALSE;
+    }
+    
+    ::CloseHandle(hFile);
+    return TRUE;
+}

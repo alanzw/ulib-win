@@ -30,13 +30,18 @@ $(BIN) : $(OBJ) $(RES)
 	cp -v $@ $(BINDIR)/$@
 
 #
-test_fileman.o : test_fileman.cpp $(HEADER)
+%.o : %.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INCS)
     
+#
+misc : first.o second.o fnfh.o $(RES)
+	$(CXX) -o first.exe first.o $(RES)
+	$(CXX) -o second.exe second.o $(RES)
+	$(CXX) -o fnfh.exe fnfh.o $(RES) -lpsapi   
 #
 .PHONY : test
 test :
 	$(WINE) $(BINDIR)/$(BIN)
 #
 clean :
-	$(RM) ${OBJ} ${RES} ${BIN}
+	$(RM) ${OBJ} ${RES} ${BIN} *.exe *.o *.res

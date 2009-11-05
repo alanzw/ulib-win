@@ -1,7 +1,3 @@
-#ifdef _WIN32_WINNT
-#undef _WIN32_WINNT
-#endif
-
 #define _WIN32_WINNT 0x0501
 
 #include <windows.h>
@@ -98,7 +94,7 @@ int USystem::getMonitorNum()
     return ::GetSystemMetrics(SM_CMONITORS);
 }
 
-int USystem::getMouseNum()
+int USystem::getMouseButtonNum()
 {
     return ::GetSystemMetrics(SM_CMOUSEBUTTONS);
 }
@@ -111,6 +107,11 @@ LPCTSTR USystem::getComputerName()
         return m_pBuffer;
     }
     return NULL;
+}
+
+int USystem::getWindowCaptionHeight()
+{
+    return ::GetSystemMetrics(SM_CYCAPTION);
 }
 
 /* Set up for C function definitions, even when using C++ */
