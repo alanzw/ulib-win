@@ -13,20 +13,20 @@
 // This is because CEventSink always has only one instance, so we write a custom implementation of the IUnknown methods
 class CEventSink : public DWebBrowserEvents2 {
 public:
-	// No constructor or destructor is needed
-	// IUnknown methods
-	STDMETHODIMP QueryInterface(REFIID riid,void **ppvObject);
-	STDMETHODIMP_(ULONG) AddRef();
-	STDMETHODIMP_(ULONG) Release();
-	// IDispatch methods
-	STDMETHODIMP GetTypeInfoCount(UINT *pctinfo);
-	STDMETHODIMP GetTypeInfo(UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-	STDMETHODIMP GetIDsOfNames(REFIID riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-	STDMETHODIMP Invoke(DISPID dispIdMember,REFIID riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-	// DWebBrowserEvents2 does not have any methods, IE calls our Invoke() method to notify us of events
+    // No constructor or destructor is needed
+    // IUnknown methods
+    STDMETHODIMP QueryInterface(REFIID riid,void **ppvObject);
+    STDMETHODIMP_(ULONG) AddRef();
+    STDMETHODIMP_(ULONG) Release();
+    // IDispatch methods
+    STDMETHODIMP GetTypeInfoCount(UINT *pctinfo);
+    STDMETHODIMP GetTypeInfo(UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+    STDMETHODIMP GetIDsOfNames(REFIID riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+    STDMETHODIMP Invoke(DISPID dispIdMember,REFIID riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+    // DWebBrowserEvents2 does not have any methods, IE calls our Invoke() method to notify us of events
 protected:
-	// Event handling methods
-	bool Event_BeforeNavigate2(LPOLESTR url,LONG Flags,LPOLESTR TargetFrameName,PUCHAR PostData,LONG PostDataSize,LPOLESTR Headers,bool Cancel);
+    // Event handling methods
+    bool Event_BeforeNavigate2(LPOLESTR url,LONG Flags,LPOLESTR TargetFrameName,PUCHAR PostData,LONG PostDataSize,LPOLESTR Headers,bool Cancel);
 };
 
 // We only have one global object of this
