@@ -69,6 +69,7 @@ SUBDIRS =        \
       metafunc   \
       functor    \
       vtable     \
+      event      \
       
 #
 .PHONY: all

@@ -13,7 +13,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdSh
         return 1;
     }
     MessageBoxA(NULL, "TEST", "TEST", MB_OK);
-    
+
     if (!UninstallHook())
     {
         MessageBoxA(NULL, "Uninstall Error", "Hook", MB_OK);

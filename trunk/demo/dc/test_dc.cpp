@@ -55,11 +55,7 @@ private:
     UButton *m_pBtn;
 };
 
-
 UDLGAPP_T(UDialogExt, IDD_TEST);
-
-
-
 
 int CaptureAnImage(HWND hWnd, LPCTSTR sFilename)
 {

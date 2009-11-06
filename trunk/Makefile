@@ -4,11 +4,9 @@
 # updated  : 2008.11.21.
 # version  : 0.1
 #
-
-#
-include make.inc
-
 TOPDIR = .
+#
+include $(TOPDIR)/make.inc
 
 #
 SRCDIR = $(TOPDIR)/src
@@ -23,11 +21,11 @@ DEMODIR = $(TOPDIR)/demo
 DOCDIR  = $(TOPDIR)/doc
 
 #
-CFLAGS   =
-CXXFLAGS =
 INC      = -I"$(INCDIR)"
 LIB      = -L"$(LIBDIR)"
-LDFLAGS  =
+CFLAGS   +=
+CXXFLAGS +=
+LDFLAGS  +=
 
 #
 HEADER =
