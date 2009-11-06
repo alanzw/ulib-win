@@ -46,7 +46,7 @@ BOOL UMailSlot::send(LPCTSTR sMessage)
     hFile = ::CreateFile(
         m_sMailSlotName,
         GENERIC_WRITE,
-        FILE_SHARD_READ,
+        FILE_SHARE_READ,
         NULL,
         OPEN_EXISTING,
         FILE_ATTRIBUTE_NORMAL,

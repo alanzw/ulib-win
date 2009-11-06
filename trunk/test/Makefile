@@ -68,6 +68,7 @@ SUBDIRS =        \
       bntrick    \
       metafunc   \
       functor    \
+      vtable     \
       
 #
 .PHONY: all
