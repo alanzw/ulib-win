@@ -49,30 +49,30 @@ int main()
     //class TTClass;
     //typedef char type_must_be_complete[sizeof(TTClass)?1:-1];
     //(void)sizeof(type_must_be_complete);
-    
+
     cout << "-----------------------------------------------------" << endl;
-    
+
     huys::ADT::Search_tree<int> stree;
-    
+
     stree.insert(3);
     stree.insert(2);
     stree.insert(4);
     stree.insert(1);
     stree.insert(5);
-    
+
     cout << "Size of tree : "  << stree.size() << endl;
     cout << "Height of tree : "  << stree.height() << endl;
 
     cout << "Inorder : ";
     stree.inorder(printTree);
     cout << endl;
-    
+
     stree.remove(3);
-    
+
     cout << "Inorder : ";
     stree.inorder(printTree);
     cout << endl;
-    
+
     cin.ignore();
 
     return 0;

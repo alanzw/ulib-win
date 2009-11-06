@@ -3,7 +3,7 @@
  *
  *       Filename:  test_facade.cpp
  *
- *    Description:  
+ *    Description:  Facade pattern demonstration
  *
  *        Version:  1.0
  *        Created:  09/27/2009 08:25:44 PM
@@ -20,7 +20,6 @@
 
 using namespace std;
 
-
 class MisDepartment
 {
 public:
@@ -28,20 +27,27 @@ public:
     {
         _state = 0;
     }
+
     bool checkOnStatus()
     {
         _state++;
-        if (_state == Complete)
-            return 1;
-        return 0;
+        if (_state == Complete) return true;
+        return false;
     }
 private:
     enum States
     {
-        Received, DenyAllKnowledge, ReferClientToFacilities,
-        FacilitiesHasNotSentPaperwork, ElectricianIsNotDone,
-        ElectricianDidItWrong, DispatchTechnician, SignedOff, DoesNotWork,
-        FixElectriciansWiring, Complete
+        Received,
+        DenyAllKnowledge,
+        ReferClientToFacilities,
+        FacilitiesHasNotSentPaperwork,
+        ElectricianIsNotDone,
+        ElectricianDidItWrong,
+        DispatchTechnician,
+        SignedOff,
+        DoesNotWork,
+        FixElectriciansWiring,
+        Complete
     };
     int _state;
 };
@@ -56,17 +62,26 @@ public:
     bool checkOnStatus()
     {
         _state++;
-        if (_state == Complete)
-            return 1;
-        return 0;
+        if (_state == Complete) return true;
+        return false;
     }
 private:
     enum States
     {
-        Received, RejectTheForm, SizeTheJob, SmokeAndJokeBreak,
-        WaitForAuthorization, DoTheWrongJob, BlameTheEngineer, WaitToPunchOut,
-        DoHalfAJob, ComplainToEngineer, GetClarification, CompleteTheJob,
-        TurnInThePaperwork, Complete
+        Received,
+        RejectTheForm,
+        SizeTheJob,
+        SmokeAndJokeBreak,
+        WaitForAuthorization,
+        DoTheWrongJob,
+        BlameTheEngineer,
+        WaitToPunchOut,
+        DoHalfAJob,
+        ComplainToEngineer,
+        GetClarification,
+        CompleteTheJob,
+        TurnInThePaperwork,
+        Complete
     };
     int _state;
 };
@@ -81,17 +96,24 @@ public:
     bool checkOnStatus()
     {
         _state++;
-        if (_state == Complete)
-            return 1;
-        return 0;
+        if (_state == Complete) return true;
+        return false;
     }
 private:
     enum States
     {
-        Received, AssignToEngineer, EngineerResearches, RequestIsNotPossible,
-        EngineerLeavesCompany, AssignToNewEngineer, NewEngineerResearches,
-        ReassignEngineer, EngineerReturns, EngineerResearchesAgain,
-        EngineerFillsOutPaperWork, Complete
+        Received,
+        AssignToEngineer,
+        EngineerResearches,
+        RequestIsNotPossible,
+        EngineerLeavesCompany,
+        AssignToNewEngineer,
+        NewEngineerResearches,
+        ReassignEngineer,
+        EngineerReturns,
+        EngineerResearchesAgain,
+        EngineerFillsOutPaperWork,
+        Complete
     };
     int _state;
 };
@@ -103,10 +125,12 @@ public:
     {
         _count = 0;
     }
+
     void submitNetworkRequest()
     {
         _state = 0;
     }
+
     bool checkOnStatus()
     {
         _count++;
@@ -116,8 +140,7 @@ public:
             _state++;
             /* Forward the job request to the engineer */
             _engineer.submitNetworkRequest();
-            cout << "submitted to Facilities - " << _count << 
-                " phone calls so far" << endl;
+            cout << "submitted to Facilities - " << _count << " phone calls so far" << endl;
         }
         else if (_state == SubmitToEngineer)
         {
@@ -126,8 +149,7 @@ public:
             {
                 _state++;
                 _electrician.submitNetworkRequest();
-                cout << "submitted to Electrician - " << _count << 
-                    " phone calls so far" << endl;
+                cout << "submitted to Electrician - " << _count << " phone calls so far" << endl;
             }
         }
         else if (_state == SubmitToElectrician)
@@ -137,8 +159,7 @@ public:
             {
                 _state++;
                 _technician.submitNetworkRequest();
-                cout << "submitted to MIS - " << _count << 
-                    " phone calls so far" << endl;
+                cout << "submitted to MIS - " << _count << " phone calls so far" << endl;
             }
         }
         else if (_state == SubmitToTechnician)
@@ -150,15 +171,18 @@ public:
         /* The job is not entirely complete */
         return 0;
     }
-    int getNumberOfCalls()
 
+    int getNumberOfCalls()
     {
         return _count;
     }
 private:
     enum States
     {
-        Received, SubmitToEngineer, SubmitToElectrician, SubmitToTechnician
+        Received,
+        SubmitToEngineer,
+        SubmitToElectrician,
+        SubmitToTechnician
     };
     int _state;
     int _count;
@@ -175,7 +199,6 @@ int main()
     /* Keep checking until job is complete */
     while (!facilities.checkOnStatus())
         ;
-    cout << "job completed after only " << facilities.getNumberOfCalls() << 
-        " phone calls" << endl;
+    cout << "job completed after only " << facilities.getNumberOfCalls() << " phone calls" << endl;
 }
 

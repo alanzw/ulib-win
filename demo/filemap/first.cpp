@@ -44,8 +44,8 @@ int _tmain()
 
 
     CopyMemory((PVOID)pBuf, szMsg, (_tcslen(szMsg) * sizeof(TCHAR)));
-    
-    // pause 
+
+    // pause
     getchar();
 
     UnmapViewOfFile(pBuf);

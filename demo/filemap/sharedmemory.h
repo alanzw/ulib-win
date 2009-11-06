@@ -29,21 +29,21 @@ public:
             return NULL;
         }
     }
-    
+
     USharedMemory()
     : csName(sSMName),
       m_bInit(FALSE),
       m_bAlreadyExist(FALSE),
       sMutexName(csName)
     {}
-    
+
     USharedMemory(LPCSTR cs)
     : csName(cs),
       m_bInit(FALSE),
       m_bAlreadyExist(FALSE),
       sMutexName(csName)
     {}
-    
+
     USharedMemory(int size)
     : csName(sSMName),
       m_bInit(FALSE),
@@ -52,7 +52,7 @@ public:
     {
         init(size);
     }
-    
+
     USharedMemory(LPCSTR cs, int size)
     : csName(cs),
       m_bInit(FALSE),
@@ -61,7 +61,7 @@ public:
     {
         init(size);
     }
-    
+
     BOOL init(LPCSTR cs, int size)
     {
         csName = cs;
@@ -69,12 +69,12 @@ public:
         sMutexName = csName;
         return init(size);
     }
-    
+
     BOOL init(int size, LPCSTR cs)
     {
         return init(cs, size);
     }
-    
+
     BOOL init(int size)
     {
         m_hMutex = ::CreateMutex(NULL, FALSE, sMutexName);
@@ -116,7 +116,7 @@ public:
             return TRUE;
         }
     }
-    
+
     ~USharedMemory()
     {
         if (m_bInit)
@@ -125,12 +125,12 @@ public:
             ::CloseHandle(m_hSharedMemoryFile);
         }
     }
-    
+
     BOOL alreadyExist()
     {
         return m_bAlreadyExist;
     }
-    
+
     struct Locker
     {
         Locker(USharedMemory *sm)
@@ -138,21 +138,21 @@ public:
             m_sm = sm;
             m_sm->lock();
         }
-        
+
         Locker(USharedMemory &sm)
         {
             m_sm = sm;
             m_sm->lock();
         }
-        
+
         ~Locker()
         {
             m_sm->unlock();
         }
-        
+
         USharedMemory *m_sm;
     };
-    
+
     BOOL lock(DWORD dwMilliSec = INFINITE)
     {
         if (::WaitForSingleObject(m_hMutex, dwMilliSec) = WAIT_OBJECT_0)
@@ -161,7 +161,7 @@ public:
         }
         return FALSE;
     }
-    
+
     BOOL unlock(DWORD dwMilliSec = INFINITE)
     {
         return ::ReleaseMutex(m_hMutex);
