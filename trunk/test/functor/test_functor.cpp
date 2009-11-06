@@ -78,7 +78,7 @@ protected:
     FunctorBase()
     :func(0),callee(0)
     {}
-    
+
     FunctorBase(const void *c, PFunc f, const void *mf, size_t sz)
     :callee((void *)c)
     {
@@ -126,7 +126,7 @@ public:
     MemberTranslator0(Callee &c,const MemFunc &m)
     : Functor0(thunk, &c, 0, &m, sizeof(MemFunc))
     {}
-    
+
     static void thunk(const FunctorBase &ftor)
     {
         Callee *callee = (Callee *)ftor.getCallee();
@@ -142,7 +142,7 @@ public:
     FunctionTranslator0(Func f)
     : Functor0(thunk,0,(PFunc)f,0,0)
     {}
-    
+
     static void thunk(const FunctorBase &ftor)
     {
         (Func(ftor.getFunc()))();
