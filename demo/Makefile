@@ -78,6 +78,7 @@ SUBDIRS = \
           regkey      \
           rt          \
           scrollbar   \
+          shell       \
           skin        \
           static      \
           statusbar   \

@@ -1,6 +1,6 @@
 #include <windows.h>
 
-#define HOOKAPI2_API __declspec( dllexport ) 
+#define HOOKAPI2_API __declspec( dllexport )
 
 HHOOK g_hhook;
 HINSTANCE g_hinstDll;
@@ -60,7 +60,7 @@ HOOKAPI2_API BOOL InstallHook()
 {
     g_hinstDll = ::LoadLibrary("apihook.dll");
     g_hhook = SetWindowsHookEx(WH_GETMESSAGE, (HOOKPROC)MessageHook, g_hinstDll, 0);
-    
+
     if (!g_hhook)
     {
         MessageBoxA(NULL, "Set Error", "Error", MB_OK);
@@ -83,7 +83,7 @@ BOOL init()
     {
         return FALSE;
     }
-    
+
 #ifdef _MSC_VER
     _asm
     {
@@ -102,11 +102,11 @@ BOOL init()
                           : /* clobbered */
                         );
 
-#endif    
-    
+#endif
+
     NewMessageBoxACode[0] = 0xe9; // jmp MyMessageBoxA
 
-#ifdef _MSC_VER    
+#ifdef _MSC_VER
     _asm
     {
         lea eax, MyMessageBoxA
@@ -126,12 +126,12 @@ BOOL init()
                         );
 
 #endif
-   
+
     dwIdNew = GetCurrentProcessId();
     dwIdOld = dwIdNew;
-    
+
     HookOn();
-    
+
     return TRUE;
 }
 

@@ -28,7 +28,9 @@ public:
         uiml.drawIcon(0, m_hDlg, 20, 20);
         UImageList uiml2(IDB_TOOLBAR1, m_hInst);
         for (int i=0; i<uiml2.getIconNum(); i++)
+        {
             uiml2.drawIcon(i, m_hDlg, 50+i*30, 50);
+        }
     }
 };
 

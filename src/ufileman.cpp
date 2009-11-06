@@ -56,25 +56,25 @@ bool UFileMan::listDirFiles(const TCHAR *dir)
 
     WIN32_FIND_DATA findData;
     HANDLE hFind = INVALID_HANDLE_VALUE;
-    
+
     hFind = FindFirstFile(dir, &findData);
     if ( INVALID_HANDLE_VALUE == hFind)
     {
         return FALSE;
     }
-    
+
     // Check if it is a directory
     if (findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
     {
         return FALSE;
     }
-    
+
     printf("Files in %s\n", dir);
     while (0 != FindNextFile(hFind, &findData))
     {
         printf("\t%s\n", findData.cFileName);
     }
-    
+
     FindClose(hFind);
     return TRUE;
 }

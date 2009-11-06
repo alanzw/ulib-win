@@ -6,7 +6,7 @@ using std::endl;
 class B1
 {
 public:
-    void f0() 
+    void f0()
     {
         cout << "B1 : " << this << " --- " << " f0" << endl;
     }
@@ -35,12 +35,12 @@ int main()
 
     B2 *b2 = new B2();
     D  *d  = new D();
-    
+
     cout << "sizeof(B2) : " << sizeof(B2) << endl;
     cout << "B2: " << b2 << endl;
-    cout << "int_in_b2 : +" << (char *)(&b2->int_in_b2) - (char *)b2  << endl; 
+    cout << "int_in_b2 : +" << (char *)(&b2->int_in_b2) - (char *)b2  << endl;
     cout << "B2::f2() : " << &B2::f2 << endl;
-    
+
     cout << "--------------------------------------------" << endl;
     cout << "sizeof(D) : " << sizeof(D) << endl;
     cout << "D : " << d << endl;
@@ -52,10 +52,10 @@ int main()
     cout << "D::d() : " << &D::d << endl;
     cout << "D::f1() : " << &D::f1 << endl;
     cout << "D::f2() : " << &D::f2 << endl;
-    
+
     delete b2;
     delete d;
-    
+
     return 0;
 }
 
