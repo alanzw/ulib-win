@@ -2,7 +2,7 @@
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1257529317875" ID="Freemind_Link_1125241240" MODIFIED="1257529330015" TEXT="design pattern">
 <node CREATED="1257529342578" ID="_" MODIFIED="1257529358421" POSITION="right" TEXT="creational">
-<node COLOR="#0033ff" CREATED="1257529465656" ID="Freemind_Link_1407451460" MODIFIED="1257530156484" TEXT="abstract factory">
+<node COLOR="#0033ff" CREATED="1257529465656" FOLDED="true" ID="Freemind_Link_1407451460" MODIFIED="1257530156484" TEXT="abstract factory">
 <node CREATED="1257530174015" ID="Freemind_Link_268876789" MODIFIED="1257530181812" TEXT="&lt;html&gt;&lt;img src=&quot;abstract_factory.png&quot;&gt;"/>
 </node>
 <node COLOR="#0033ff" CREATED="1257529485250" ID="Freemind_Link_268263204" MODIFIED="1257529596937" TEXT="builder"/>
@@ -21,7 +21,9 @@
 </node>
 <node CREATED="1257529382203" ID="Freemind_Link_1912016834" MODIFIED="1257529425687" POSITION="right" TEXT="behavioral">
 <node CREATED="1257529864812" ID="Freemind_Link_296218180" MODIFIED="1257529873937" TEXT="chain of resposibility"/>
-<node CREATED="1257529884906" ID="Freemind_Link_708669541" MODIFIED="1257529888265" TEXT="command"/>
+<node CREATED="1257529884906" ID="Freemind_Link_708669541" MODIFIED="1257529888265" TEXT="command">
+<node CREATED="1257589762515" ID="Freemind_Link_1212285354" MODIFIED="1257589771125" TEXT="&lt;html&gt;&lt;img src=&quot;command.png&quot;&gt;"/>
+</node>
 <node CREATED="1257529895734" ID="Freemind_Link_484545756" MODIFIED="1257529918265" TEXT="interpreter"/>
 <node CREATED="1257529924156" ID="Freemind_Link_179102392" MODIFIED="1257529928078" TEXT="iterator"/>
 <node CREATED="1257529936593" ID="Freemind_Link_256128782" MODIFIED="1257529940359" TEXT="mediator"/>
