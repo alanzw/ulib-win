@@ -25,7 +25,9 @@
 <node CREATED="1257589762515" ID="Freemind_Link_1212285354" MODIFIED="1257589771125" TEXT="&lt;html&gt;&lt;img src=&quot;command.png&quot;&gt;"/>
 </node>
 <node CREATED="1257529895734" ID="Freemind_Link_484545756" MODIFIED="1257529918265" TEXT="interpreter"/>
-<node CREATED="1257529924156" ID="Freemind_Link_179102392" MODIFIED="1257529928078" TEXT="iterator"/>
+<node CREATED="1257529924156" ID="Freemind_Link_179102392" MODIFIED="1257529928078" TEXT="iterator">
+<node CREATED="1257660154228" ID="Freemind_Link_1404218751" MODIFIED="1257660169306" TEXT="&lt;html&gt;&lt;img src=&quot;iterator.gif&quot;&gt;"/>
+</node>
 <node CREATED="1257529936593" ID="Freemind_Link_256128782" MODIFIED="1257529940359" TEXT="mediator"/>
 <node CREATED="1257529944437" ID="Freemind_Link_1952455316" MODIFIED="1257529955015" TEXT="memento"/>
 <node CREATED="1257529960078" ID="Freemind_Link_1065043433" MODIFIED="1257529963500" TEXT="observer"/>

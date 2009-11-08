@@ -32,42 +32,48 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR szCmdLine
 {
     g_evtable.add(UGUIEvent(UGUIEvent::CloseEvt), EventHandler(&exitApp));
     
-  static char szAppName[] = "demo";
-  static char szWinName[] = "UGUIEvent";
-  HWND        hwnd;
-  MSG         msg;
-  WNDCLASSEX  wndclass;
+    static char szAppName[] = "demo";
+    static char szWinName[] = "UGUIEvent";
+    HWND        hwnd;
+    MSG         msg;
+    WNDCLASSEX  wndclass;
 
-  wndclass.cbSize         = sizeof(wndclass);
-  wndclass.style          = CS_HREDRAW | CS_VREDRAW;
-  wndclass.lpfnWndProc    = WndProc;
-  wndclass.cbClsExtra     = 0;
-  wndclass.cbWndExtra     = 0;
-  wndclass.hInstance      = hInstance;
-  wndclass.hIcon          = LoadIcon(NULL, IDI_APPLICATION);
-  wndclass.hIconSm        = LoadIcon(NULL, IDI_APPLICATION);
-  wndclass.hCursor        = LoadCursor(NULL, IDC_ARROW);
-  wndclass.hbrBackground  = (HBRUSH) GetStockObject(WHITE_BRUSH);
-  wndclass.lpszClassName  = szAppName;
-  wndclass.lpszMenuName   = NULL;
- 
-  RegisterClassEx(&wndclass);
+    wndclass.cbSize         = sizeof(wndclass);
+    wndclass.style          = CS_HREDRAW | CS_VREDRAW;
+    wndclass.lpfnWndProc    = WndProc;
+    wndclass.cbClsExtra     = 0;
+    wndclass.cbWndExtra     = 0;
+    wndclass.hInstance      = hInstance;
+    wndclass.hIcon          = LoadIcon(NULL, IDI_APPLICATION);
+    wndclass.hIconSm        = LoadIcon(NULL, IDI_APPLICATION);
+    wndclass.hCursor        = LoadCursor(NULL, IDC_ARROW);
+    wndclass.hbrBackground  = (HBRUSH) GetStockObject(WHITE_BRUSH);
+    wndclass.lpszClassName  = szAppName;
+    wndclass.lpszMenuName   = NULL;
 
-    hwnd = CreateWindow(szAppName,
+    RegisterClassEx(&wndclass);
+
+    hwnd = CreateWindow(
+        szAppName,
         szWinName,
-		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT,
-		CW_USEDEFAULT, CW_USEDEFAULT,
-		NULL, NULL, hInstance, NULL);
-  
-  ShowWindow(hwnd, nCmdShow);
-  UpdateWindow(hwnd);
+        WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT,
+        CW_USEDEFAULT,
+        CW_USEDEFAULT,
+        CW_USEDEFAULT,
+        NULL,
+        NULL,
+        hInstance,
+        NULL);
 
-  while ( GetMessage(&msg, NULL, 0, 0) ) {
+    ShowWindow(hwnd, nCmdShow);
+    UpdateWindow(hwnd);
+
+    while ( GetMessage(&msg, NULL, 0, 0) ) {
         TranslateMessage(&msg);   
         DispatchMessage(&msg);    
-  } 
+    } 
 
-  return static_cast<int>(msg.wParam);
+    return static_cast<int>(msg.wParam);
 }
 
