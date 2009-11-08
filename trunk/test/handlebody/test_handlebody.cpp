@@ -4,7 +4,6 @@ using std::cout;
 using std::endl;
 using std::cin;
 
-
 #include "xstring.h"
 
 int main()

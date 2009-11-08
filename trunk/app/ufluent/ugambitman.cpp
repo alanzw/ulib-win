@@ -106,7 +106,7 @@ bool UGambitMan::startExe()
     m_utParam.lpExitFuncParam = this;
     //m_utParam.lpExitFunc = NULL;
     //m_utParam.lpExitFuncParam = NULL;
-    spawnNewThreadAndExc(&m_utParam);
+    spawnNewThreadAndExec(&m_utParam);
     #endif
     Sleep(1000);
     sendCmdGambitStartup();

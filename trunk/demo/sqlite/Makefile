@@ -2,10 +2,10 @@
 include ../../make.inc
 
 #
-CFLAGS =
-CXXFLAGS = 
+CFLAGS +=
+CXXFLAGS += 
 INC = -I"../../inc"
-LIB = -L"../../lib" -L. -luwin -lsqlite3
+LIB = -L"../../lib" -L. -lsqlite3
 
 #
 SRCDIR = ../../src
@@ -30,12 +30,8 @@ $(BIN) : $(OBJ) $(RES)
 	cp -vf $(BIN) $(BINDIR)/$(BIN)
 
 #
-test_sqlite.o : test_sqlite.cpp $(HEADER)
+%.o : %.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-$(RES) : $(RC) resource.h
-	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
     
 #
 .PHONY : test

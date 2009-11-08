@@ -51,6 +51,6 @@ struct UThreadParam {
 
 //! spawn and execute
 /*! spawn a new thread, create and wait for new child process. */
-ULIB_API bool spawnNewThreadAndExc(UThreadParam *utParam);
+ULIB_API bool spawnNewThreadAndExec(UThreadParam *utParam);
 
 #endif // U_THREAD_H

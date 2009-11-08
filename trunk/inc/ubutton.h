@@ -14,7 +14,7 @@ class ULIB_API UButton : public UControl
 public:
     UButton(HWND hParent, UINT nResource, HINSTANCE hInst);
     UButton() {}
-	UButton(UBaseWindow *pWndParent, UINT nID);
+    UButton(UBaseWindow *pWndParent, UINT nID);
     virtual ~UButton();
     virtual BOOL create();
 
@@ -70,7 +70,7 @@ class ULIB_API UGroupBox : public UButton
 public:
     UGroupBox(HWND hParent, UINT nResource, HINSTANCE hInst);
     UGroupBox() {}
-	UGroupBox(UBaseWindow *pWndParent, UINT nID);
+    UGroupBox(UBaseWindow *pWndParent, UINT nID);
     virtual ~UGroupBox();
 protected:
 private:

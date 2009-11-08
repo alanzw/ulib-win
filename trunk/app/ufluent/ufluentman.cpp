@@ -161,7 +161,7 @@ bool UFluentMan::startExe()
     m_utParam.sWDir = _T("D:\\");
     m_utParam.lpExitFunc = &check_fluent_session;
     m_utParam.lpExitFuncParam = this;
-    spawnNewThreadAndExc(&m_utParam);
+    spawnNewThreadAndExec(&m_utParam);
 
     return true;
 }

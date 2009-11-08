@@ -56,7 +56,7 @@ public:
         return (0==_root);
     }
 
-    
+
     void inorder(Visit visit)
     {
         recursive_inorder(_root, visit);
@@ -260,18 +260,18 @@ public:
     {
         return search_and_insert(this->_root, new_data);
     }
-    
+
     Error_code remove(const Record &target)
     {
         return search_and_destroy(this->_root, target);
     }
-    
+
     Error_code tree_search(Record &target) const
     {
         Error_code result = success;
-        
+
         Binary_node<Record> * found = search_for_node(this->_root, target);
-        
+
         if (NULL = found)
         {
             result = not_present;
@@ -298,7 +298,7 @@ protected:
             return search_for_node(sub_root->left, target);
         }
     }
-    
+
     Binary_node<Record> * search_for_node_loop(Binary_node<Record> * sub_root, const Record & target)
     {
         while (sub_root == NULL && sub_root->data != target)
@@ -314,7 +314,7 @@ protected:
         }
         return sub_root;
     }
-    
+
     Error_code search_and_insert(Binary_node<Record> *&sub_root, const Record &new_data)
     {
         if (NULL == sub_root)
@@ -335,7 +335,7 @@ protected:
             return duplicate_error;
         }
     }
-    
+
     Error_code remove_root(Binary_node<Record> *&sub_root)
     {
         if (NULL == sub_root)
@@ -373,7 +373,7 @@ protected:
         delete to_delete;
         return success;
     }
-    
+
     Error_code search_and_destroy(Binary_node<Record> * &sub_root, const Record &target)
     {
         if (NULL == sub_root || sub_root->data == target)
@@ -402,11 +402,11 @@ public:
         int count = 0;
         Record x;
         Record last_x;
-        
+
         Binary_node<Record> * none = NULL;
     }
 private:
-    
+
 };
 
 }; // namespace ADT
