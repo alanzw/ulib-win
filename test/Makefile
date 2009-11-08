@@ -70,6 +70,7 @@ SUBDIRS =        \
       functor    \
       vtable     \
       event      \
+      dispatch   \
       
 #
 .PHONY: all

@@ -37,7 +37,7 @@ public:
     typedef T entry_type;
     typedef T& reference;
     typedef const T& const_reference;
-    
+
     enum Error_code {
         success = 0,
         fail,
@@ -55,12 +55,12 @@ public:
     UQueue()
     : _count(0), _front(0), _rear(maxqueue-1)
     {}
-    
+
     bool empty() const
     {
         return 0==_count;
     }
-    
+
     Error_code append(const entry_type &item)
     {
         if (_count >= maxqueue)
@@ -72,7 +72,7 @@ public:
         entry[_rear] = item;
         return success;
     }
-    
+
     Error_code serve()
     {
         if (0 >= _count)
@@ -83,7 +83,7 @@ public:
         _front = (maxqueue == (_front+1)) ? 0 : (_front+1);
         return success;
     }
-    
+
     Error_code retrieve(entry_type &item) const
     {
         if (0 >= _count)
@@ -93,30 +93,30 @@ public:
         item = entry[_front];
         return success;
     }
-    
+
     size_type size() const
     {
         return _count;
     }
-    
+
     entry_type &front()
     {
-        return entry[_front]; 
+        return entry[_front];
     }
-    
+
     const entry_type & front() const
     {
-        return entry[_front]; 
+        return entry[_front];
     }
-    
+
     entry_type &back()
     {
-        return entry[_rear]; 
+        return entry[_rear];
     }
-    
+
     const entry_type & back() const
     {
-        return entry[_rear]; 
+        return entry[_rear];
     }
 private:
     size_type _count;

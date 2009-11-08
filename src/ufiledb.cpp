@@ -22,7 +22,7 @@ bool UFileDB::read()
 {
     m_pHead = 0;
     m_pEnd = 0;
-    
+
     //
     fstream file;
     file.open(m_sFilename, ios::in|ios::binary);

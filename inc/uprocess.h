@@ -8,7 +8,7 @@ class ULIB_API UProcess : public UKernelObject
 public:
     UProcess();
     ~UProcess();
-    
+
     BOOL create(LPTSTR sCmdLine);
 private:
     STARTUPINFO m_si;

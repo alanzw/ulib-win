@@ -5,18 +5,18 @@
 
 class ULIB_API UPropSheet : public UControl
 {
-	enum {
-		SHEET_NUM_LIMIT = MAXPROPPAGES
-	};
+    enum {
+        SHEET_NUM_LIMIT = MAXPROPPAGES
+    };
 public:
     UPropSheet(HWND hParent, HINSTANCE hInst);
-	UPropSheet() {}
+    UPropSheet() {}
     ~UPropSheet();
 
-	BOOL create(PROPSHEETPAGE *ppsp, int nPages, LPSTR lpCaption);
+    BOOL create(PROPSHEETPAGE *ppsp, int nPages, LPSTR lpCaption);
 private:
-	PROPSHEETHEADER m_psh;
-	PROPSHEETPAGE *m_ppsp;
+    PROPSHEETHEADER m_psh;
+    PROPSHEETPAGE *m_ppsp;
 };
 
 #endif // U_PROPERTY_SHEET_H

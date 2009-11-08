@@ -30,6 +30,8 @@ class UDeque
 {
 public:
 
+public:
+
 };
 
 }; // namespace ADT

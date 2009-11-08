@@ -213,7 +213,7 @@ private:
         ::operator delete(p);
         //delete p;
     }
-    
+
     template <typename S>
     friend std::ostream & operator << (std::ostream &os, UList<S> & v);
 };

@@ -83,7 +83,7 @@ static DWORD WINAPI SNEThreadStartRoutine(LPVOID lpParam)
 }
 
 //
-bool spawnNewThreadAndExc( UThreadParam *utParam )
+bool spawnNewThreadAndExec( UThreadParam *utParam )
 {
     HANDLE hThread = ::CreateThread(
                             NULL,
