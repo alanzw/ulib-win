@@ -32,7 +32,7 @@ public:
 
     //
     LPCTSTR getComputerName();
-    
+
     //
     int getWindowCaptionHeight();
 protected:

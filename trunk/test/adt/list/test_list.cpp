@@ -41,14 +41,14 @@ int main()
     slist.push_back("122222");
     slist.remove("122222");
     std::cout << "back:  " << slist.back() << std::endl;
-	slist.push_back("122222");
-	std::cout << "content : " << std::endl;
+    slist.push_back("122222");
+    std::cout << "content : " << std::endl;
 
-	std::cout << slist;
-	
+    std::cout << slist;
+
     slist.clear();
     std::cout << "size:  " << slist.size() << std::endl;
-    
+
     std::cout << "------------------------------------------" << std::endl;
     huys::ADT::UArrayList<int> aList;
 
@@ -61,7 +61,7 @@ int main()
 
     huys::ADT::UArrayList<int> otherList(aList);
     otherList.print();
-    
+
     std::cout << "------------------------------------------" << std::endl;
     otherList.traverse(&print);
     return 0;

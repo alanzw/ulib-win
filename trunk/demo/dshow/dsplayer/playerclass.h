@@ -27,53 +27,53 @@ class PlayerClass
 {
 
 public:
-	PlayerClass();
-	~PlayerClass();
+    PlayerClass();
+    ~PlayerClass();
 
-	// does some initialisation of the memeber variables
-	void Initialise(HWND hWnd);
+    // does some initialisation of the memeber variables
+    void Initialise(HWND hWnd);
 
-	// opens the file dialog and lets the user select a file
-	int OpenFileDialog();
+    // opens the file dialog and lets the user select a file
+    int OpenFileDialog();
 
-	int DoPlayPause();
-	int DoStop();
-	int DoTimerStuff();
-	int EventReceiver();
+    int DoPlayPause();
+    int DoStop();
+    int DoTimerStuff();
+    int EventReceiver();
 
 private:
 
-	int ExitFromProgram();
-	int StartPlayingFile();
+    int ExitFromProgram();
+    int StartPlayingFile();
 
-	IGraphBuilder *pGraphBuilder;
-	IMediaControl *pMediaControl;
-	IMediaSeeking *pMediaSeeking;
-	IMediaEventEx *pMediaEventEx;
+    IGraphBuilder *pGraphBuilder;
+    IMediaControl *pMediaControl;
+    IMediaSeeking *pMediaSeeking;
+    IMediaEventEx *pMediaEventEx;
 
-	// keeps track of whether the media is playing or paused/stopped
-	bool playing;
+    // keeps track of whether the media is playing or paused/stopped
+    bool playing;
 
-	// handle to progress bar
-	HWND hProgressBar;
+    // handle to progress bar
+    HWND hProgressBar;
 
-	// handle to dialog, owner
-	HWND hOwner;
+    // handle to dialog, owner
+    HWND hOwner;
 
-	// total duration of the selected media file
-	LONGLONG totalDuration;
+    // total duration of the selected media file
+    LONGLONG totalDuration;
 
-	// keeps track of the time elapsed
-	long timeElapsed;
+    // keeps track of the time elapsed
+    long timeElapsed;
 
-	// stores the amount by which to step, used in the progress of the prog bar
-	float step;
+    // stores the amount by which to step, used in the progress of the prog bar
+    float step;
 
-	// structure that contains info about the file that was opened
-	OPENFILENAME priFileInfo;
+    // structure that contains info about the file that was opened
+    OPENFILENAME priFileInfo;
 
-	// full-path name of the file selected
-	char szFileName[MAX_SIZE];
+    // full-path name of the file selected
+    char szFileName[MAX_SIZE];
 
 };
 
