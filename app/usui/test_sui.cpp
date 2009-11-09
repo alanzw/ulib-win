@@ -141,9 +141,9 @@ private:
 
     BOOL doFile()
     {
-        USui<UMyWindow> * p =  USui<UMyWindow>::instance();
-        p->set(this);
-        p->insert("ShowTestButton", &UMyWindow::showTestButton);
+        USui * p =  USui::instance();
+        //p->set(this);
+        p->insert("ShowTestButton", makeFunctor(*this, &UMyWindow::showTestButton));
 //        p->insert("IsVisibleTestButton", &UMyWindow::isTestBtnVisual);
         p->doFile("cfg.lua");
 
