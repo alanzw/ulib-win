@@ -1,10 +1,3 @@
-/*
- Copyright (C) 2009 Moutaz Haq <cefarix@gmail.com>
- This file is released under the Code Project Open License <http://www.codeproject.com/info/cpol10.aspx>
-
- This file contains our implementation of the IClassFactory interface, CClassFactory.
-*/
-
 #include "common.h"
 #include "classfactory.h"
 #include "objectwithsite.h"
