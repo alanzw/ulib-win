@@ -1,11 +1,3 @@
-/*
- Copyright (C) 2009 Moutaz Haq <cefarix@gmail.com>
- This file is released under the Code Project Open License <http://www.codeproject.com/info/cpol10.aspx>
-
- This defines our implementation of the DWebBrowserEvents2 dispatch interface.
- We give a reference to an object of this class to Internet Explorer, and IE calls into that object when an event occurs.
-*/
-
 #include <Exdisp.h>
 #include <Exdispid.h>
 

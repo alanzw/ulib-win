@@ -1,10 +1,3 @@
-/*
- Copyright (C) 2009 Moutaz Haq <cefarix@gmail.com>
- This file is released under the Code Project Open License <http://www.codeproject.com/info/cpol10.aspx>
-
- This defines our implementation of the IUnknown interface, from which all our other COM classes are derived.
-*/
-
 #ifndef __UNKNOWN_H__
 #define __UNKNOWN_H__
 

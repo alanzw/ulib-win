@@ -1,8 +1,3 @@
-/*
- Copyright (C) 2009 Moutaz Haq <cefarix@gmail.com>
- This file is released under the Code Project Open License <http://www.codeproject.com/info/cpol10.aspx>
-*/
-
 #include "common.h"
 #include <Olectl.h>
 #include "classfactory.h"
