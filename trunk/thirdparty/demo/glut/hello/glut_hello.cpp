@@ -218,7 +218,6 @@ void PassiveMouseMove(GLint xMouse,GLint yMouse)
 
 int main(int argc, char *argv[])
 {
-
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
     glutInitWindowPosition(100, 100);

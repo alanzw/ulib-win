@@ -7,11 +7,15 @@
 #include "udlgapp.h"
 #include "umsg.h"
 
-HANDLE createSingleInstance(LPCTSTR sName)
+//HANDLE createSingleInstance(LPCTSTR sName)
+void createSingleInstance(LPCTSTR sName)
 {
-    HANDLE hMutex = NULL;
-    hMutex = ::CreateMutex(NULL, TRUE, sName);
-    switch (::GetLastError())
+    //HANDLE hMutex = NULL;
+    UMutex mutex;
+    //hMutex = ::CreateMutex(NULL, TRUE, sName);
+    mutex.create(TRUE, NULL, sName);
+    //switch (::GetLastError())
+    switch (mutex.getErrorCode())
     {
     case ERROR_SUCCESS:
         showMsg(_T("OK!"));
@@ -22,7 +26,7 @@ HANDLE createSingleInstance(LPCTSTR sName)
     default:
         break;
     }
-    return hMutex;
+    //return hMutex;
 }
 
 BEGIN_DLGAPP
