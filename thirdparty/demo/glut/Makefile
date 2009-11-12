@@ -25,7 +25,7 @@ RES = ${RC:.rc=.res}
 #
 HEADER =
 
-SUBDIRS = glut      \
+SUBDIRS = hello      \
 
 #
 all:

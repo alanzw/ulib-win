@@ -20,8 +20,9 @@
  
 #include "umutex.h"
 
-UMutex::UMutex(LPCTSTR sName)
-: UKernelObject()
+UMutex::UMutex()
+: UKernelObject(),
+  m_dwError(0)
 {  
 }
 
@@ -32,6 +33,7 @@ UMutex::~UMutex()
 HANDLE UMutex::create(BOOL bInitialOwner, LPSECURITY_ATTRIBUTES lpMutexAttributes, LPCTSTR lpName)
 {
     m_hObj = ::CreateMutex(lpMutexAttributes, bInitialOwner, lpName);
+    m_dwError = ::GetLastError();
     return m_hObj;
 }
 
@@ -40,6 +42,7 @@ HANDLE UMutex::open( LPCTSTR lpName,
                      DWORD dwDesiredAccess /*= SYNCHRONIZE*/)
 {
     m_hObj = ::OpenMutex( dwDesiredAccess, bInheritHandle, lpName);
+    m_dwError = ::GetLastError();
     return m_hObj;
 }
 
