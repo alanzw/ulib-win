@@ -16,6 +16,23 @@ public:
     //
     bool lock();
     bool unlock();
+    
+    class scoped_lock
+    {
+    public:
+        scoped_lock(UCriticalSection &cs)
+        : _cs(cs)
+        {
+            _cs.lock();
+        }
+        
+        ~scoped_lock()
+        {
+            _cs.unlock();
+        }
+    private:
+        UCriticalSection &_cs;
+    };
 private:
     CRITICAL_SECTION m_cs;
 };

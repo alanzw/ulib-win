@@ -58,7 +58,10 @@ public:
         m_pTreeCtrl->setPos(50, 50, 600, 300);
         m_pTreeCtrl->create();
         
-        m_pTreeCtrl->addTextRoot(_T("root"));
+        HTREEITEM item = m_pTreeCtrl->addTextRoot(_T("root"));
+        
+        item = m_pTreeCtrl->addTextChild(item, _T("child1"));
+        
         return TRUE;
     }
 

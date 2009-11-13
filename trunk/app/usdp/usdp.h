@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include <math.h>
-
+#include <process.h>
 #include "uwinapp.h"
 #include "ubasewindow.h"
 
@@ -13,6 +13,8 @@
 #include "colors.h"
 
 #include "uddp.h"
+
+//
 
 class USDPWindow : public UBaseWindow
 {
@@ -31,7 +33,6 @@ public:
     BOOL onCreate()
     {
         this->setIconBig(IDI_APP);
-
         return UBaseWindow::onCreate();
     }
 
@@ -66,6 +67,17 @@ public:
         default:
             return UBaseWindow::onChar(wParam, lParam);
         }
+    }
+    
+    virtual BOOL filterMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
+    {
+        if (WM_STATE_CHANEG == uMessage)
+        {
+            changeState(reinterpret_cast<UPhilosopher *>(wParam));
+            return TRUE;
+        }
+    
+        return FALSE;
     }
 private:
     void drawSymbols(HDC hdc, RECT &rc)
@@ -113,13 +125,15 @@ private:
         cic.setRadius(15);
 
         cic.setCenter(c_x, c_y - r);
-
-        cic.Draw(hdc);
+        
+        //cic.Draw(hdc);
+        drawCircle(cic, ph[0], hdc);
 
         for (int i=1; i<n; ++i)
         {
             cic.setCenter(c_x + (int)(r * sin(theta_2*i)), c_y - (int)(r*cos(theta_2*i)));
-            cic.Draw(hdc);
+            //cic.Draw(hdc);
+            drawCircle(cic, ph[i], hdc);
         }
 
         line.SetStartPnt(c_x + (int)((r + line_half) * sin(theta)), c_y - (int)((r + line_half) * cos(theta)));
@@ -134,14 +148,54 @@ private:
         }
     }
 
+    void drawCircle(huys::UCircle &cic, UPhilosopher *p, HDC hdc)
+    {
+        if (NULL != p && p->isEating())
+        {
+            cic.setFilledColor(huys::black);
+            cic.setFilledStyle(BS_SOLID);
+        }
+        else
+        {
+            cic.setFilledStyle(BS_NULL);
+        }
+        cic.Draw(hdc);
+    }
+    
     BOOL onMenuNew()
     {
+        init();
         return FALSE;
     }
 
     BOOL onMenuExit()
     {
         return UBaseWindow::onClose();
+    }
+    UCriticalSection _cs;
+    UPhilosopher *ph[5];
+    void init()
+    {
+        for (int i=0; i<5; ++i)
+        {
+           ph[i] = new UPhilosopher(_cs, i);
+        }
+        
+        for (int i=0; i<5; ++i)
+        {
+            ph[i]->set(ph[(i+5-1)%5], ph[(i+1)%5]);
+            ph[i]->attach(*this);
+        }
+        
+        for (int i=0; i<5; ++i)
+        {
+             _beginthread(ThreadProc, 0, (void*)ph[i]);
+        }
+    }
+    
+    void changeState(UPhilosopher *p)
+    {
+        this->invalidate();
     }
 };
 

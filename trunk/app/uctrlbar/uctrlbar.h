@@ -57,7 +57,7 @@ public:
 
     ~UDialogCtrlBar()
     {
-        
+
     }
 
     BOOL onInit()
@@ -87,7 +87,7 @@ public:
             return UDialogBox::onCommand(wParam, lParam);
         }
     }
-    
+
     virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
     {
         BOOL result = UDialogBox::DialogProc(message, wParam, lParam);
