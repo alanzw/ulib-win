@@ -36,3 +36,21 @@ HANDLE USemaphore::create( LPSECURITY_ATTRIBUTES lpSemaphoreAttributes,
     m_hObj = ::CreateSemaphore(lpSemaphoreAttributes, lInitialCount, lMaximumCount, lpName);
     return m_hObj;
 }
+
+#if WINVER >=  0x0600
+HANDLE USemaphore::createEx( LPSECURITY_ATTRIBUTES lpSemaphoreAttributes,
+                     LONG lInitialCount,
+                     LONG lMaximumCount,
+                     DWORD dwDesiredAccess,
+                     LPCTSTR lpName /*= NULL*/)
+{
+    m_hObj = ::CreateSemaphoreEx(lpSemaphoreAttributes, lInitialCount, lMaximumCount, lpName, 0, dwDesiredAccess);
+    return m_hObj;
+}
+#endif // WINVER >=  0x0600
+
+BOOL USemaphore::release(LONG lReleaseCount, LPLONG lpPreviousCount)
+{
+    return ::ReleaseSemaphore(m_hObj, lReleaseCount, lpPreviousCount);
+}
+

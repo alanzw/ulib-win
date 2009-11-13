@@ -143,6 +143,9 @@ SUBDIRS = \
           dock        \
           splitter    \
           apihook     \
+          thunk32     \
+          semaphore   \
+          criticalsection \
 
 
 #

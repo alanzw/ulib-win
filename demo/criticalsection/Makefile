@@ -3,9 +3,9 @@ include ../../make.inc
 
 #
 CFLAGS =
-CXXFLAGS =
+CXXFLAGS = 
 INC = -I"../../inc"
-LIBS = -L"../../lib" -mwindows -luwin
+LIBS = -L"../../lib" -luwin
 
 #
 SRCDIR = ../../src
@@ -15,17 +15,13 @@ RESDIR = ../../res
 ICODIR = ../../ico
 BINDIR = ../../bin
 #
-OBJ = test_sdp.o
+OBJ = test_criticalsection.o
 
-BIN = test_sdp.exe
-RC  = sdp.rc
+BIN = test_criticalsection.exe
+RC  = criticalsection.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/ubasewindow.h \
-         $(INCDIR)/uwinapp.h     \
-         usdp.h \
-         uddp.h \
-
+HEADER = $(INCDIR)/ucritical.h
 #
 all: $(BIN)
 
@@ -35,16 +31,13 @@ $(BIN) : $(OBJ) $(RES)
 	cp -v $@ $(BINDIR)/$@
 
 #
-test_sdp.o : test_sdp.cpp $(HEADER)
+%.o : %.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
 
 #
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-#
 .PHONY : test
 test :
-	$(BINDIR)/$(BIN)     
+	$(WINE) $(BINDIR)/$(BIN)
 #
 .PHONY : clean
 clean :
