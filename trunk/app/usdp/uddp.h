@@ -28,7 +28,7 @@ public:
     {
     ;
     }
-    
+
     int index() const
     { return _index; }
 
@@ -55,7 +55,7 @@ public:
         }
         p->m_l.unlock();
     }
-    
+
     void take_forks()
     {
         {
@@ -77,15 +77,20 @@ public:
         test(left);
         test(right);
     }
-    
+
     bool isHungry() const
     {
         return HUNGRY == m_state;
     }
-    
+
     bool isEating() const
     {
         return EATING == m_state;
+    }
+
+    bool isThinking() const
+    {
+        return THINKING == m_state;
     }
     
     void set(UPhilosopher *l, UPhilosopher *r)
@@ -93,7 +98,7 @@ public:
         left = l;
         right = r;
     }
-    
+
     void attach(HWND hwnd)
     {
         _hwnd = hwnd;
@@ -105,7 +110,7 @@ private:
     USemaphore::Lock m_l;
     UPhilosopher *left;
     UPhilosopher *right;
-    
+
     HWND _hwnd;
     int _index;
 };
