@@ -23,7 +23,7 @@ public:
     : UBaseWindow(NULL, hInst)
     {
         this->setMenu(MAKEINTRESOURCE(IDR_MENU_SDP));
-        this->setTitle(_T("Blog Code Translator 0.01"));
+        this->setTitle(_T("USDP 0.01"));
     }
 
     ~USDPWindow()
@@ -49,8 +49,8 @@ public:
     {
         switch (LOWORD (wParam))
         {
-        case IDM_NEW:
-            return onMenuNew();
+        case IDM_START:
+            return onMenuStart();
         case IDM_EXIT:
             return onMenuExit();
         default:
@@ -68,7 +68,7 @@ public:
             return UBaseWindow::onChar(wParam, lParam);
         }
     }
-    
+
     virtual BOOL filterMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
     {
         if (WM_STATE_CHANEG == uMessage)
@@ -76,7 +76,7 @@ public:
             changeState(reinterpret_cast<UPhilosopher *>(wParam));
             return TRUE;
         }
-    
+
         return FALSE;
     }
 private:
@@ -125,7 +125,7 @@ private:
         cic.setRadius(15);
 
         cic.setCenter(c_x, c_y - r);
-        
+
         //cic.Draw(hdc);
         drawCircle(cic, ph[0], hdc);
 
@@ -140,29 +140,50 @@ private:
         line.SetEndPnt(c_x + (int)((r - line_half) * sin(theta)), c_y - (int)((r - line_half) * cos(theta)));
         line.Draw(hdc);
 
+        int x, y;
         for (int i=1; i<n; ++i)
         {
-            line.SetStartPnt(c_x + (int)((r + line_half) * sin(theta_2*i+theta)), c_y - (int)((r + line_half) * cos(theta_2*i+theta)));
-            line.SetEndPnt(c_x + (int)((r - line_half) * sin(theta_2*i+theta)), c_y - (int)((r - line_half) * cos(theta_2*i+theta)));
+            x = c_x + (int)((r + line_half) * sin(theta_2*i+theta));
+            y = c_y - (int)((r + line_half) * cos(theta_2*i+theta));
+            line.SetStartPnt(x, y);
+        
+            x = c_x + (int)((r - line_half) * sin(theta_2*i+theta));
+            y = c_y - (int)((r - line_half) * cos(theta_2*i+theta));
+            line.SetEndPnt(x, y);
+            
             line.Draw(hdc);
         }
     }
-
+    
     void drawCircle(huys::UCircle &cic, UPhilosopher *p, HDC hdc)
     {
-        if (NULL != p && p->isEating())
+        if (NULL == p)
+        {
+            cic.setLineWidth(1);
+            cic.setFilledStyle(BS_NULL);
+            cic.Draw(hdc);
+            return;
+        }
+        
+        if (p->isEating())
         {
             cic.setFilledColor(huys::black);
             cic.setFilledStyle(BS_SOLID);
         }
+        else if (p->isHungry())
+        {
+            cic.setLineWidth(3);
+            cic.setFilledStyle(BS_NULL);
+        }
         else
         {
+            cic.setLineWidth(1);
             cic.setFilledStyle(BS_NULL);
         }
         cic.Draw(hdc);
     }
-    
-    BOOL onMenuNew()
+
+    BOOL onMenuStart()
     {
         init();
         return FALSE;
@@ -172,6 +193,7 @@ private:
     {
         return UBaseWindow::onClose();
     }
+
     UCriticalSection _cs;
     UPhilosopher *ph[5];
     void init()
@@ -180,22 +202,26 @@ private:
         {
            ph[i] = new UPhilosopher(_cs, i);
         }
-        
+
         for (int i=0; i<5; ++i)
         {
             ph[i]->set(ph[(i+5-1)%5], ph[(i+1)%5]);
             ph[i]->attach(*this);
         }
-        
+
         for (int i=0; i<5; ++i)
         {
              _beginthread(ThreadProc, 0, (void*)ph[i]);
         }
     }
-    
+
     void changeState(UPhilosopher *p)
     {
-        this->invalidate();
+        //this->invalidate();
+        RECT rc;
+        ::GetClientRect(*this, &rc);
+		rc.left += 200;
+        ::InvalidateRect(*this, &rc, TRUE);
     }
 };
 
