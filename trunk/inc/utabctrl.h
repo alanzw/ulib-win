@@ -14,7 +14,7 @@ public:
     BOOL insertItem(int nIndex, LPTCITEM pitem);
 
     //
-    BOOL insertItemTextImage(int nIndex, LPSTR lpText, int iImage = 0);
+    BOOL insertItemTextImage(int nIndex, LPTSTR lpText, int iImage = 0);
 
     BOOL setImageList(HIMAGELIST himl);
 

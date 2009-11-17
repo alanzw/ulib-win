@@ -60,7 +60,7 @@ BOOL UEdit::addLine(LPCTSTR sLine)
     this->getText(buf);
     if ('\0' != buf[0])
     {
-        lstrcat(buf, "\r\n");
+        lstrcat(buf, _T("\r\n"));
     }
     lstrcat(buf, sLine);
     return this->setText(buf);
