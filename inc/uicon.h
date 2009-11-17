@@ -8,8 +8,8 @@ class ULIB_API UIcon : public UUserObject
 public:
     UIcon();
     ~UIcon();
-    BOOL loadStandard(LPCSTR lpIconName);
-    BOOL loadIconEx(HINSTANCE hInstance, LPCSTR lpIconName);
+    BOOL loadStandard(LPCTSTR lpIconName);
+    BOOL loadIconEx(HINSTANCE hInstance, LPCTSTR lpIconName);
     BOOL loadIconEx(HINSTANCE hInstance, UINT nResId);
 
     virtual bool destroy();

@@ -23,7 +23,7 @@ BOOL UTabCtrl::insertItem(int nIndex, LPTCITEM pitem)
     return this->sendMsg(TCM_INSERTITEM, (WPARAM)nIndex, (LPARAM)pitem);
 }
 
-BOOL UTabCtrl::insertItemTextImage(int nIndex, LPSTR lpText, int iImage /* = 0*/)
+BOOL UTabCtrl::insertItemTextImage(int nIndex, LPTSTR lpText, int iImage /* = 0*/)
 {
     TCITEM tie = {0};
     tie.mask = TCIF_TEXT | TCIF_IMAGE;

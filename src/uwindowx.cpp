@@ -74,12 +74,12 @@ bool UWindowClass::isWndClass(LPCTSTR lpWndClassName, HINSTANCE hInstance)
 UWindow::UWindow()
 : _hInst(NULL), _hParent(NULL), _hSelf(NULL)
 {
-    this->lpszCaption = "UWindow";
+    this->lpszCaption = _T("UWindow");
 }
 
 BOOL UWindow::create(HINSTANCE hInstance)
 {
-    UWindowClass uwc("huys_window", hInstance);
+    UWindowClass uwc(_T("huys_window"), hInstance);
 
     if (!uwc.registerIt())
     {
@@ -89,7 +89,7 @@ BOOL UWindow::create(HINSTANCE hInstance)
 
     _hSelf = CreateWindowEx(
         0,
-        "huys_window",
+        _T("huys_window"),
         this->lpszCaption,
         WS_OVERLAPPEDWINDOW | WS_VISIBLE,
         0,
@@ -133,7 +133,7 @@ void UWindow::onPaint()
     RECT rt;
     GetClientRect(_hSelf, &rt);
     rt.top = 5;
-    DrawText(hdc, "Hello World!", strlen("Hello World!"), &rt, DT_SINGLELINE|DT_CENTER|DT_VCENTER );
+    DrawText(hdc, _T("Hello World!"), lstrlen(_T("Hello World!")), &rt, DT_SINGLELINE|DT_CENTER|DT_VCENTER );
 
     MoveToEx(hdc, 0, 0, NULL);
     LineTo(hdc, rt.right, rt.bottom);
@@ -152,7 +152,7 @@ void UWindow::onClose()
 //
 void UWindow::onChar()
 {
-    ::MessageBox(_hSelf, "xx", "xx", MB_OK);
+    ::MessageBox(_hSelf, _T("xx"), _T("xx"), MB_OK);
 }
 
 

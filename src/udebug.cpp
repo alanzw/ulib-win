@@ -26,7 +26,7 @@ void odprintf(const char *format, ...)
     *p++ = '\n';
     *p   = '\0';
 
-    ::OutputDebugString(buf);
+    ::OutputDebugStringA(buf);
 }
 
 } // namespace UDebugger

@@ -53,13 +53,8 @@ public:
 		return FALSE;
 	}
 
-    virtual BOOL onPaint(WPARAM wParam, LPARAM lParam)
+    void onDraw(HDC hdc)
     {
-
-        PAINTSTRUCT ps;
-        HDC hdc;
-        hdc = BeginPaint(*this, &ps);
-
         Graphics graphics(hdc);
 
         // Only redraw the control if the buffer is dirty
@@ -70,9 +65,6 @@ public:
         }
 
         graphics.DrawCachedBitmap(m_pCachedBitmap, 0, 0);
-
-        EndPaint(*this, &ps);
-        return FALSE;
     }
 
 	virtual BOOL onSize(WPARAM wParam, LPARAM lParam)
@@ -87,8 +79,16 @@ public:
 		m_bDirtyBuffer = TRUE;
         //InvalidateRect(m_hSelf, NULL, TRUE);
         this->invalidate(TRUE);
+		
         return FALSE;
     }
+
+	BOOL onLButtonUp(WPARAM wParam, LPARAM lParam)
+	{
+		//
+		::SendMessage(getParent(), WM_COMMAND, MAKEWPARAM(getID(), 0), 0);
+		return FALSE;
+	}
 
     BOOL filterMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
     //BOOL onMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
@@ -97,6 +97,12 @@ public:
         {
             return onEraseBkGnd((HDC)wParam);
         }
+
+		if (WM_MOUSEMOVE == uMessage)
+		{
+			return onMouseMove(wParam, lParam);
+		}
+		
 
         if (WM_MOUSEHOVER == uMessage)
         {
@@ -107,6 +113,12 @@ public:
         {
             return onMouseLeave();
         }
+
+		if (WM_LBUTTONUP == uMessage)
+		{
+			return onLButtonUp(wParam, lParam);
+		}
+		
 
         return FALSE;
     }
@@ -126,11 +138,13 @@ public:
             tme.dwFlags = TME_LEAVE|TME_HOVER;
             tme.dwHoverTime = 1;
             m_bTracking = TrackMouseEvent(&tme);
+			m_bTracking = TRUE;
         }
         if(m_bMouseOver == FALSE)
         {
             m_bMouseOver = TRUE;
         }
+		return FALSE;
     }
 
     BOOL onMouseHover()
@@ -293,13 +307,13 @@ public:
 
     virtual BOOL onCreate()
     {
-        //this->setIconBig(IDI_APP);
+        this->setIconBig(IDI_APP);
         startGDIPlus();
 
-        //m_pGDIPlusButton = new UGDIPlusButton(this, 11111);
-        //m_pGDIPlusButton->setPos(200, 200, 200, 200);
-        //m_pGDIPlusButton->create();
-        //m_pGDIPlusButton->reCalcSize();
+        m_pGDIPlusButton = new UGDIPlusButton(this, 11111);
+        m_pGDIPlusButton->setPos(200, 200, 200, 200);
+        m_pGDIPlusButton->create();
+        m_pGDIPlusButton->reCalcSize();
         return UBaseWindow::onCreate();
     }
 

@@ -13,7 +13,7 @@ UIcon::~UIcon()
     }
 }
 
-BOOL UIcon::loadStandard(LPCSTR lpIconName)
+BOOL UIcon::loadStandard(LPCTSTR lpIconName)
 {
     m_hObj=::LoadIcon(NULL, lpIconName);
 
@@ -48,7 +48,7 @@ HICON UIcon::getHICON()
     return (HICON)m_hObj;
 }
 
-BOOL UIcon::loadIconEx( HINSTANCE hInstance, LPCSTR lpIconName )
+BOOL UIcon::loadIconEx( HINSTANCE hInstance, LPCTSTR lpIconName )
 {
     m_hObj=::LoadIcon(hInstance, lpIconName);
 

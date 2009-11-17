@@ -222,6 +222,7 @@ BOOL UBaseWindow::invalidate(BOOL bErase)
 BOOL UBaseWindow::destroy()
 {
     return ::DestroyWindow(m_hSelf);
+	//return FALSE;
 }
 
 BOOL UBaseWindow::onClose()

@@ -52,13 +52,13 @@ public:
     HINSTANCE getHinst() const {
         if (!_hInst)
         {
-            ::MessageBox(NULL, "_hInst == NULL", "class Window", MB_OK);
+            ::MessageBox(NULL, _T("_hInst == NULL"), _T("class Window"), MB_OK);
             throw int(1999);
         }
         return _hInst;
     };
     //
-    void setCaption(char *str) { this->lpszCaption = str; }
+    void setCaption(LPCTSTR str) { this->lpszCaption = str; }
     //
     HWND getHWnd() const { return _hSelf; }
     //
@@ -72,7 +72,7 @@ protected:
     HINSTANCE _hInst;
     HWND _hParent;
     HWND _hSelf;
-    const char *lpszCaption;
+    LPCTSTR lpszCaption;
 
     MESSAGE_MAP_DECLARE()
 };
