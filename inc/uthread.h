@@ -26,7 +26,9 @@ private:
 };
 
 /*! thread exit callback function */
-typedef DWORD WINAPI (*U_LPTHREAD_EXIT_ROUTINE)(LPVOID lpParam);
+//typedef DWORD WINAPI (*U_LPTHREAD_EXIT_ROUTINE)(LPVOID lpParam);
+#define U_LPTHREAD_EXIT_ROUTINE LPTHREAD_START_ROUTINE
+
 
 struct UThreadParam {
     /*! Message receiver window handle */

@@ -155,9 +155,12 @@ void UGambitMan::sendCmdGambitStartup()
 {
     if ((m_hGambitStartup = ::FindWindow(s_GambitStartupWndcls, s_GambitStartupWndTitle)) != NULL )
     {
-        ::SendMessage(::GetDlgItem(m_hGambitStartup, GS_ID_ET_SID),
-            WM_SETTEXT,
-            0,
-            (LPARAM)"11112");
+        ::SendMessage(::GetDlgItem(m_hGambitStartup, GS_ID_ET_SID), WM_SETTEXT, 0, (LPARAM)"11112");
+        ::SetFocus(::GetDlgItem(m_hGambitStartup, GS_ID_BN_RUN));
+        ::SendMessage(::GetDlgItem(m_hGambitStartup, GS_ID_BN_RUN), WM_LBUTTONDOWN, 0, 0);
+        ::SendMessage(::GetDlgItem(m_hGambitStartup, GS_ID_BN_RUN), WM_LBUTTONUP, 0, 0);
+        Sleep(5);
+        ::SendMessage(::GetDlgItem(m_hGambitStartup, GS_ID_BN_CLOSE), WM_LBUTTONDOWN, 0, 0);
+        ::SendMessage(::GetDlgItem(m_hGambitStartup, GS_ID_BN_CLOSE), WM_LBUTTONUP, 0, 0);
     }
 }

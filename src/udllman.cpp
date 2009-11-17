@@ -54,6 +54,7 @@ int UDllMan::free()
     {
         ::FreeLibrary(m_hDll);
     }
+	return 0;
 }
 
 namespace huys

@@ -39,7 +39,7 @@ RSC=rc.exe
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "Release"
-# PROP Intermediate_Dir "Release"
+# PROP Intermediate_Dir "Release/libuwin_dll"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LIBUWIN_DLL_EXPORTS" /YX /FD /c
@@ -94,6 +94,10 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=..\src\ubasewindow.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\ubitmap.cpp
 # End Source File
 # Begin Source File
@@ -123,6 +127,10 @@ SOURCE=..\src\udebug.cpp
 # Begin Source File
 
 SOURCE=..\src\udialogx.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\udllman.cpp
 # End Source File
 # Begin Source File
 
@@ -186,6 +194,10 @@ SOURCE=..\src\uwindowx.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
+SOURCE=..\inc\ubasewindow.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\inc\ubitmap.h
 # End Source File
 # Begin Source File
@@ -215,6 +227,10 @@ SOURCE=..\inc\udebug.h
 # Begin Source File
 
 SOURCE=..\inc\udialogx.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\udllman.h
 # End Source File
 # Begin Source File
 

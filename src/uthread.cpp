@@ -32,21 +32,22 @@ bool UThread::create()
 bool UThread::wait()
 {
     ::WaitForSingleObject(m_hThread, INFINITE);
+	return false;
 }
 
 bool UThread::suspend()
 {
-
+	return false;
 }
 
 bool UThread::resume()
 {
-
+	return false;
 }
 
 bool UThread::stop()
 {
-
+	return false;
 }
 
 DWORD UThread::getExitCode()
