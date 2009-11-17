@@ -16,3 +16,5 @@
 
 #define IDC_EDIT1                       200
 #define IDC_EDIT2                       201
+
+#define IDC_BN_TEST                     501

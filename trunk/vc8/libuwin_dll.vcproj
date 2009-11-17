@@ -733,10 +733,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\uole.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\src\urebar.cpp"
 				>
 				<FileConfiguration

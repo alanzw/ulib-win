@@ -1,11 +1,17 @@
 //#define UNICODE
+#define  _WIN32_WINNT 0x0400
 
 #include "resource.h"
 
 #include <windows.h>
 #include <tchar.h>
+#include <commctrl.h>
 
+#ifdef __GNUC__
 #include <gdiplus/gdiPlus.h>
+#else
+#include <gdiPlus.h>
+#endif
 
 #include "ubasewindow.h"
 #include "uwinapp.h"
@@ -16,45 +22,71 @@ class UGDIPlusButton : public UBaseWindow
 {
 public:
     UGDIPlusButton(UBaseWindow *pWndParent, UINT nID)
-        : UBaseWindow(*pWndParent, NULL, _T("UGDIPLUSBUTTON")),
+        : UBaseWindow(*pWndParent, NULL, _T("UGDIPLUSBUTTON"), nID),
         m_hRgn(0), m_pCachedBitmap(0),
         m_bMouseOver(FALSE),
         m_bTracking(FALSE),
-        m_bMouseClicked(FALSE)
+        m_bMouseClicked(FALSE),
+		m_bDirtyBuffer(TRUE)
     {
+        addStyles(WS_CHILD|WS_BORDER);
     }
 
     ~UGDIPlusButton()
     {
+
     }
 
-    //virtual BOOL onPaint(WPARAM wParam, LPARAM lParam)
-    //{
+	BOOL onDestroy()
+	{
+		if (m_pCachedBitmap)
+		{
+			delete m_pCachedBitmap;
+			m_pCachedBitmap = NULL;
+		}
 
-    //    PAINTSTRUCT ps;
-    //    HDC hdc;
-    //    hdc = BeginPaint(m_hSelf, &ps);
+		if (m_hRgn)
+		{
+			DeleteObject(m_hRgn);
+			m_hRgn = NULL;
+		}
+		return FALSE;
+	}
 
-    //    Graphics graphics(hdc);
+    virtual BOOL onPaint(WPARAM wParam, LPARAM lParam)
+    {
 
-    //    // Only redraw the control if the buffer is dirty
-    //    //if (m_bDirtyBuffer)
-    //    //{
-    //    //DrawButton(graphics);
-    //    //    m_bDirtyBuffer = FALSE;
-    //    //}
+        PAINTSTRUCT ps;
+        HDC hdc;
+        hdc = BeginPaint(*this, &ps);
 
-    //    //graphics.DrawCachedBitmap(m_pCachedBitmap, 0, 0);
+        Graphics graphics(hdc);
 
-    //    EndPaint(m_hSelf, &ps);
-    //    return FALSE;
-    //}
+        // Only redraw the control if the buffer is dirty
+        if (m_bDirtyBuffer)
+        {
+            DrawButton(graphics);
+            m_bDirtyBuffer = FALSE;
+        }
+
+        graphics.DrawCachedBitmap(m_pCachedBitmap, 0, 0);
+
+        EndPaint(*this, &ps);
+        return FALSE;
+    }
+
+	virtual BOOL onSize(WPARAM wParam, LPARAM lParam)
+	{
+		m_bDirtyBuffer = TRUE;
+		return FALSE;
+	}
 
     BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
     {
         m_bMouseClicked = !m_bMouseClicked;
+		m_bDirtyBuffer = TRUE;
         //InvalidateRect(m_hSelf, NULL, TRUE);
-        this->invalidate();
+        this->invalidate(TRUE);
         return FALSE;
     }
 
@@ -76,7 +108,7 @@ public:
             return onMouseLeave();
         }
 
-        return TRUE;
+        return FALSE;
     }
 
     BOOL onEraseBkGnd(HDC hdc)
@@ -103,7 +135,9 @@ public:
 
     BOOL onMouseHover()
     {
-        m_bMouseOver = TRUE;
+		m_bDirtyBuffer = TRUE;
+		m_bMouseOver = TRUE;
+		m_bTracking = TRUE;
         //InvalidateRect(m_hSelf, NULL, TRUE);
         this->invalidate();
         return TRUE;
@@ -111,6 +145,7 @@ public:
 
     BOOL onMouseLeave()
     {
+		m_bDirtyBuffer = TRUE;
         m_bMouseOver = FALSE;
         m_bTracking = FALSE;
 
@@ -128,6 +163,7 @@ private:
     BOOL m_bTracking;
     /** m_bMouseClicked: this variable toggles whenever user left clicks the control */
     BOOL m_bMouseClicked;
+	BOOL m_bDirtyBuffer;
 public:
     //
     BOOL reCalcSize()
@@ -236,13 +272,15 @@ public:
         delete pMemBitmap;
         delete pMemGraphics;
     }
+
 };
 
 class GDIPlusWindow : public UBaseWindow
 {
 public:
     GDIPlusWindow()
-        : UBaseWindow(NULL, NULL)
+        : UBaseWindow(NULL, NULL),
+		m_pGDIPlusButton(NULL)
     {
         setTitle(_T("GDIPlus Window"));
         addStyles(WS_CLIPCHILDREN);
@@ -255,12 +293,12 @@ public:
 
     virtual BOOL onCreate()
     {
-        this->setIconBig(IDI_APP);
+        //this->setIconBig(IDI_APP);
         startGDIPlus();
 
-        m_pGDIPlusButton = new UGDIPlusButton(this, 11111);
-        m_pGDIPlusButton->setPos(200, 200, 400, 200);
-        m_pGDIPlusButton->create();
+        //m_pGDIPlusButton = new UGDIPlusButton(this, 11111);
+        //m_pGDIPlusButton->setPos(200, 200, 200, 200);
+        //m_pGDIPlusButton->create();
         //m_pGDIPlusButton->reCalcSize();
         return UBaseWindow::onCreate();
     }
@@ -310,6 +348,20 @@ public:
             return UBaseWindow::onClose();
         default:
             return UBaseWindow::onChar(wParam, lParam);
+        }
+    }
+    
+    virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
+    {
+        switch (LOWORD (wParam))
+        {
+        case 11111:
+            {
+            showMsg(_T("How are you!"), _T("Hello"));
+            return FALSE;
+            }
+        default:
+            return UBaseWindow::onCommand(wParam, lParam);
         }
     }
 

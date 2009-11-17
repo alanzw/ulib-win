@@ -37,7 +37,7 @@ void boundaryFill4 (double x, double y, Color fillColor, Color borderColor, doub
     getPixel (x, y, interiorColor);
 
     if(length == 0)
-	{
+    {
         return;
     }
 

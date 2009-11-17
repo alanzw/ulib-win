@@ -52,12 +52,14 @@ LRESULT CALLBACK DefaultUBaseWindowProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPA
 
 UBaseWindow::UBaseWindow( HWND hParent /*= NULL*/,
                           HINSTANCE hInst /*= NULL*/,
-                          LPCTSTR lpWindowClass /* = NULL */ )
+                          LPCTSTR lpWindowClass /* = NULL */,
+                          UINT nID /* = 0 */)
 : m_hParent(hParent), m_hInst(hInst), m_hSelf(NULL), m_lpMenuName(NULL),
   m_dwStyles(WS_VISIBLE|WS_SYSMENU),
   m_dwExStyles(0),
   m_lpWindowTitle(NULL),
-  m_lpWindowClass(lpWindowClass)
+  m_lpWindowClass(lpWindowClass),
+  m_nID(nID)
 {
 //    m_rcWindow.left = 0;
 //    m_rcWindow.top = 0;
@@ -104,7 +106,7 @@ bool UBaseWindow::create()
         m_rcWindow.right-m_rcWindow.left,         // Window Width
         m_rcWindow.bottom-m_rcWindow.top,         // Height
         m_hParent,             // hParent
-        NULL,                  // hMenu
+        (HMENU)(UINT_PTR)m_nID,                  // hMenu
         m_hInst,               // hInstance
         this);                 // lpParam
 
@@ -212,9 +214,9 @@ BOOL UBaseWindow::update()
     return ::UpdateWindow(m_hSelf);
 }
 
-BOOL UBaseWindow::invalidate()
+BOOL UBaseWindow::invalidate(BOOL bErase)
 {
-    return ::InvalidateRect(m_hSelf, NULL, TRUE);
+    return ::InvalidateRect(m_hSelf, NULL, bErase);
 }
 
 BOOL UBaseWindow::destroy()

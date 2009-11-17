@@ -24,7 +24,7 @@
 class ULIB_API UBaseWindow
 {
 public:
-    UBaseWindow(HWND hParent = NULL, HINSTANCE hInst = NULL, LPCTSTR lpWindowClass = NULL);
+    UBaseWindow(HWND hParent = NULL, HINSTANCE hInst = NULL, LPCTSTR lpWindowClass = NULL, UINT nID = 0);
     ~UBaseWindow();
 
     //
@@ -160,7 +160,7 @@ public:
     BOOL show();
     BOOL update();
     BOOL destroy();
-    BOOL invalidate();
+    BOOL invalidate(BOOL bErase = FALSE);
     //
     DWORD getStyles() const
     { return m_dwStyles; }
@@ -233,6 +233,7 @@ private:
     LPCTSTR m_lpWindowTitle;
 
     RECT m_rcWindow;
+    UINT m_nID;
 protected:
     bool registerWndClass();
 public:

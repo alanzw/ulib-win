@@ -172,8 +172,8 @@ public:
     }
 };
 
-UINT    CButtonExt::m_nStatus = STATUS_BUTTON_NORMAL;
-WNDPROC    CButtonExt::m_cWndProc = NULL;
+UINT CButtonExt::m_nStatus = STATUS_BUTTON_NORMAL;
+WNDPROC CButtonExt::m_cWndProc = NULL;
 
 
 /*
@@ -184,8 +184,8 @@ WNDPROC    CButtonExt::m_cWndProc = NULL;
  */
 LRESULT CALLBACK ICallWndProc( int nCode, WPARAM wParam, LPARAM lParam )
 {
-    PCWPSTRUCT    pcs = (PCWPSTRUCT) lParam;
-    HWND        hWnd = pcs->hwnd;
+    PCWPSTRUCT pcs = (PCWPSTRUCT) lParam;
+    HWND hWnd = pcs->hwnd;
 
     if( hWnd )
     {
@@ -199,8 +199,7 @@ LRESULT CALLBACK ICallWndProc( int nCode, WPARAM wParam, LPARAM lParam )
             if ( dwStyle == 0x50010000 ) {
             //DWORD dwSkined = (DWORD)GetWindowLong(hWnd, GWL_USERDATA);
             //if ( SKBS_SKINED == dwSkined ) {
-                WNDPROC    WndProc;
-                WndProc = (WNDPROC) GetWindowLong( hWnd, GWL_WNDPROC );
+                WNDPROC WndProc = (WNDPROC) GetWindowLong( hWnd, GWL_WNDPROC );
                 if( CButtonExt::m_cWndProc != NULL && \
                     WndProc != CButtonExt::m_cWndProc )
                 {

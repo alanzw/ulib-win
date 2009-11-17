@@ -34,6 +34,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mdi", "mdi.vcproj", "{A14A3
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "devstuio", "devstudio.vcproj", "{A499B5CC-842E-40BB-BCAF-0559D55EE2A0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "button_gdiplus", "button_gdiplus.vcproj", "{8E2CF8D9-FD0F-45CE-A000-C4603DB31DE6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "win_gdiplus", "win_gdiplus.vcproj", "{C5DF1424-CCE7-450D-B7DE-E03BD6032524}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -113,6 +117,18 @@ Global
 		{A499B5CC-842E-40BB-BCAF-0559D55EE2A0}.Debug-static|Win32.Build.0 = Debug-static|Win32
 		{A499B5CC-842E-40BB-BCAF-0559D55EE2A0}.Release|Win32.ActiveCfg = Release|Win32
 		{A499B5CC-842E-40BB-BCAF-0559D55EE2A0}.Release|Win32.Build.0 = Release|Win32
+		{8E2CF8D9-FD0F-45CE-A000-C4603DB31DE6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8E2CF8D9-FD0F-45CE-A000-C4603DB31DE6}.Debug|Win32.Build.0 = Debug|Win32
+		{8E2CF8D9-FD0F-45CE-A000-C4603DB31DE6}.Debug-static|Win32.ActiveCfg = Debug-static|Win32
+		{8E2CF8D9-FD0F-45CE-A000-C4603DB31DE6}.Debug-static|Win32.Build.0 = Debug-static|Win32
+		{8E2CF8D9-FD0F-45CE-A000-C4603DB31DE6}.Release|Win32.ActiveCfg = Release|Win32
+		{8E2CF8D9-FD0F-45CE-A000-C4603DB31DE6}.Release|Win32.Build.0 = Release|Win32
+		{C5DF1424-CCE7-450D-B7DE-E03BD6032524}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C5DF1424-CCE7-450D-B7DE-E03BD6032524}.Debug|Win32.Build.0 = Debug|Win32
+		{C5DF1424-CCE7-450D-B7DE-E03BD6032524}.Debug-static|Win32.ActiveCfg = Debug-static|Win32
+		{C5DF1424-CCE7-450D-B7DE-E03BD6032524}.Debug-static|Win32.Build.0 = Debug-static|Win32
+		{C5DF1424-CCE7-450D-B7DE-E03BD6032524}.Release|Win32.ActiveCfg = Release|Win32
+		{C5DF1424-CCE7-450D-B7DE-E03BD6032524}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

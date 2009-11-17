@@ -39,7 +39,7 @@ FONT 8,"Ms Shell Dlg 2",400,0,1
 BEGIN
     EDITTEXT        IDC_EDIT2,60,135,224,46,ES_AUTOHSCROLL
     LTEXT           "Child Dialog2",IDC_STATIC,97,38,152,35
-    PUSHBUTTON      "Button1",-1,95,85,163,31
+    PUSHBUTTON      "Button1",IDC_BN_TEST,95,85,163,31
 END
 
 //
