@@ -9,6 +9,7 @@
 #include "utabctrl.h"
 #include "udlgapp.h"
 #include "uimagelist.h"
+#include "umsg.h"
 
 using huys::UDialogBox;
 
@@ -41,6 +42,28 @@ public:
         UpdateWindow(m_hDlg);
         //this->sendMsg(WM_SETREDRAW, (WPARAM)bRedraw);
         //this->sendMsg(WM_PAINT);
+    }
+};
+
+class UTabChild2 : public UTabChild
+{
+public:
+    UTabChild2(HINSTANCE hInst, UINT nID, HWND hParent)
+    : UTabChild(hInst, nID, hParent)
+    {}
+    
+    virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
+    {
+        switch (LOWORD (wParam))
+        {
+        case IDC_BN_TEST:
+            {
+            showMsg(_T("How are you!"), _T("Hello"), m_hDlg);
+            return FALSE;
+            }
+        default:
+            return UDialogBox::onCommand(wParam, lParam);
+        }
     }
 };
 
@@ -98,7 +121,7 @@ public:
         m_pChildDlg->create();
         m_pChildDlg->show();
 
-        m_pChildDlg2 = new UTabChild(m_hInst, IDD_CHILD2, *m_pTabCtrl);
+        m_pChildDlg2 = new UTabChild2(m_hInst, IDD_CHILD2, *m_pTabCtrl);
         m_pChildDlg2->create();
         m_pChildDlg2->hide();
 

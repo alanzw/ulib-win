@@ -28,10 +28,10 @@ void exitApp()
     PostQuitMessage(0);
 }
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR szCmdLine, int nCmdShow) 
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR szCmdLine, int nCmdShow)
 {
     g_evtable.add(UGUIEvent(UGUIEvent::CloseEvt), EventHandler(&exitApp));
-    
+
     static char szAppName[] = "demo";
     static char szWinName[] = "UGUIEvent";
     HWND        hwnd;
@@ -70,9 +70,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR szCmdLine
     UpdateWindow(hwnd);
 
     while ( GetMessage(&msg, NULL, 0, 0) ) {
-        TranslateMessage(&msg);   
-        DispatchMessage(&msg);    
-    } 
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
 
     return static_cast<int>(msg.wParam);
 }

@@ -15,16 +15,16 @@ RESDIR = ../../res
 ICODIR = ../../ico
 BINDIR = ../../bin
 #
-OBJ = test_guievent.o \
-      uguievent.o
+OBJ = \
+ test_tabbar.o \
 
-BIN = test_guievent.exe
-RC  = guievent.rc
+BIN = test_tabbar.exe
+RC  = tabbar.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/ubasewindow.h \
-         $(INCDIR)/uwinapp.h     \
-         uguievent.h
+HEADER = $(INCDIR)/udialogx.h \
+
+
 #
 all: $(BIN)
 
@@ -37,6 +37,7 @@ $(BIN) : $(OBJ) $(RES)
 %.o : %.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
 
+#
 .PHONY : test
 test :
 	$(BINDIR)/$(BIN)     

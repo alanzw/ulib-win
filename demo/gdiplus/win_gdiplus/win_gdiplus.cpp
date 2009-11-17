@@ -5,7 +5,11 @@
 #include <windows.h>
 #include <tchar.h>
 
+#ifdef __GNUC__
 #include <gdiplus/gdiPlus.h>
+#else
+#include <gdiPlus.h>
+#endif
 
 #include "ubasewindow.h"
 #include "uwinapp.h"
@@ -28,45 +32,45 @@ public:
     virtual BOOL onCreate()
     {
         this->setIconBig(IDI_APP);
-        startGDIPlus();
+        //startGDIPlus();
         return UBaseWindow::onCreate();
     }
 
     virtual BOOL onDestroy()
     {
-        stopGDIPlus();
+        //stopGDIPlus();
         return UBaseWindow::onDestroy();
     }
 
     virtual void onDraw(HDC hdc)
     {
-        Graphics graphics(hdc);
-        Pen      pen(Color(255, 0, 0, 255));
-        graphics.DrawLine(&pen, 0, 0, 200, 100);
+        //Graphics graphics(hdc);
+        //Pen      pen(Color(255, 0, 0, 255));
+        //graphics.DrawLine(&pen, 0, 0, 200, 100);
 
-        SolidBrush solidBrush(Color(255, 255, 0, 0));
-        graphics.FillEllipse(&solidBrush, 0, 0, 100, 60);
+        //SolidBrush solidBrush(Color(255, 255, 0, 0));
+        //graphics.FillEllipse(&solidBrush, 0, 0, 100, 60);
 
-        SolidBrush  brush(Color(255, 0, 0, 255));
-        FontFamily  fontFamily(L"Times New Roman");
-        Font        font(&fontFamily, 24, FontStyleRegular, UnitPixel);
-        PointF      pointF(10.0f, 20.0f);
+        //SolidBrush  brush(Color(255, 0, 0, 255));
+        //FontFamily  fontFamily(L"Times New Roman");
+        //Font        font(&fontFamily, 24, FontStyleRegular, UnitPixel);
+        //PointF      pointF(10.0f, 20.0f);
 
-        graphics.DrawString(L"Hello World!", -1, &font, pointF, &brush);
+        //graphics.DrawString(L"Hello World!", -1, &font, pointF, &brush);
 
-        GraphicsPath path;
-        Pen penJoin(Color(255, 0, 0, 255), 8);
+        //GraphicsPath path;
+        //Pen penJoin(Color(255, 0, 0, 255), 8);
 
-        path.StartFigure();
-        path.AddLine(Point(50, 200), Point(100, 200));
-        path.AddLine(Point(100, 200), Point(100, 250));
+        //path.StartFigure();
+        //path.AddLine(Point(50, 200), Point(100, 200));
+        //path.AddLine(Point(100, 200), Point(100, 250));
 
-        penJoin.SetLineJoin(LineJoinBevel);
-        graphics.DrawPath(&penJoin, &path);
+        //penJoin.SetLineJoin(LineJoinBevel);
+        //graphics.DrawPath(&penJoin, &path);
 
-        pen.SetStartCap(LineCapArrowAnchor);
-        pen.SetEndCap(LineCapRoundAnchor);
-        graphics.DrawLine(&pen, 20, 175, 300, 175);
+        //pen.SetStartCap(LineCapArrowAnchor);
+        //pen.SetEndCap(LineCapRoundAnchor);
+        //graphics.DrawLine(&pen, 20, 175, 300, 175);
     }
 
     BOOL onChar(WPARAM wParam, LPARAM lParam)

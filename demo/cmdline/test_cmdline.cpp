@@ -18,8 +18,8 @@ class UDialogExt : public UDialogBox
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-        m_pEdit(0)
+    : UDialogBox(hInst, nID),
+      m_pEdit(0)
     {}
 
     ~UDialogExt()
