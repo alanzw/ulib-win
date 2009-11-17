@@ -20,7 +20,7 @@
 #include <cassert>
 #include <string>
 
-#include "umenu.h"
+//#include "umenu.h"
 
 #include "uthread.h"
 #include "ufluentman.h"
@@ -106,7 +106,10 @@ UFluentMan::UFluentMan()
 {}
 
 UFluentMan::~UFluentMan()
-{}
+{
+    removeMenu();
+    clearMyHook();
+}
 
 //
 static DWORD WINAPI check_fluent_session(LPVOID lpParam)
@@ -312,10 +315,28 @@ void UFluentMan::addMenu()
     }
 
     //::AppendMenu(hMenu, MF_STRING, 11111, "Menu&1");
-    HMENU hPopMenu = ::CreateMenu();
-    ::AppendMenu(hPopMenu, MF_STRING, 11112, "CMenu&1");
-    ::AppendMenu(hPopMenu, MF_STRING, 11113, "CMenu&2");
-    ::AppendMenu(hMenu, MF_STRING|MF_POPUP, (UINT_PTR)hPopMenu, "Child");
+    m_hPopupMenu = ::CreateMenu();
+    ::AppendMenu(m_hPopupMenu, MF_STRING, 11112, "CMenu&1");
+    ::AppendMenu(m_hPopupMenu, MF_STRING, 11113, "CMenu&2");
+    ::AppendMenu(hMenu, MF_STRING|MF_POPUP, (UINT_PTR)m_hPopupMenu, "Child");
+}
+
+void UFluentMan::removeMenu()
+{
+    HMENU hMenu = ::GetMenu(m_hFluentWnd);
+    if (!hMenu)
+    {
+        return;
+    }
+
+    MENUINFO mi = {0};
+    mi.cbSize = sizeof(MENUINFO);
+    
+    ::GetMenuInfo(hMenu, &mi);
+    
+    
+    
+    ::RemoveMenu(m_hPopupMenu, 0, MF_BYPOSITION);
 }
 
 LRESULT UFluentMan::newWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -365,3 +386,8 @@ void UFluentMan::focusWnd()
     SetWindowPos(m_hFluentWnd, HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE);
 }
 
+void UFluentMan::clearup()
+{
+    removeMenu();
+    clearMyHook();
+}

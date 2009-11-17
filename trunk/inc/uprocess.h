@@ -55,8 +55,8 @@ public:
     static DWORD WINAPI listener(LPVOID me);
     ~UPipedProcess()
     {
-        if(command)
-            delete[] command;
+        //if(command)
+        //    delete[] command;
         //if (pContent)
         //    delete[] pContent;
     }

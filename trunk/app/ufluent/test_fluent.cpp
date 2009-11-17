@@ -131,6 +131,7 @@ private:
 
     BOOL onFluentExit()
     {
+        m_ufm.clearup();
         addLines("-->Fluent exit.\r\n");
         return FALSE;
     }

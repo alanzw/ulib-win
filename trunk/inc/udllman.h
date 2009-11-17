@@ -6,8 +6,8 @@
 #include <stdio.h>
 #include <exception>
 
-#define DEF_DLLFUNC(PROCNAME, RET_T, ...) \
-    typedef RET_T (*PROCNAME)( __VA_ARGS__ );
+//#define DEF_DLLFUNC(PROCNAME, RET_T, ...) \
+//    typedef RET_T (*PROCNAME)( __VA_ARGS__ );
 
 class ULIB_API UDllMan
 {

@@ -4,7 +4,7 @@
 #include "uhook.h"
 
 #ifdef _MSC_VER
-    #pragma data_seg(push, ".HUYS")
+    #pragma data_seg(".HUYS")
     HHOOK g_hHook = NULL;
     HMODULE g_hModule = NULL;
     int aa = 0;
@@ -13,7 +13,7 @@
     WNDPROC s_NewWndProc = NULL;
     HWND g_hMsgWnd = NULL;
     HWND g_hWnd = NULL;
-    #pragma data_seg(pop)
+    #pragma data_seg()
     #pragma comment(linker, "/section:.HUYS,RWS")
 #endif
 

@@ -83,7 +83,7 @@ namespace Ulib
 
 template<bool> struct compile_time_check;
 
-template<> class compile_time_check<false>
+template<> struct compile_time_check<false>
 {};
 
 }; // namespace Ulib

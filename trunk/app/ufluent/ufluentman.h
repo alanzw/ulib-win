@@ -73,8 +73,11 @@ public:
     bool loadScript(LPCSTR sFileName);
 
     void addMenu();
+    void removeMenu();
     void subclassWnd(HWND hMsgWnd);
     void focusWnd();
+    
+    void clearup();
 private:
     char m_sFluentDir[MAX_PATH];
     char m_sFluentArch[10];
@@ -103,6 +106,8 @@ private:
     int m_nLineCountPrev;
 private:
     UThreadParam m_utParam;
+    
+    HMENU m_hPopupMenu;
 };
 
 #define UFM_FINISHED_MSG _T("UFM_FINISHED_C1B96D9E-B9DC-4e04-8158-7B6776B099E9")
