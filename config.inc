@@ -88,7 +88,7 @@ OBJS = $(KENERL_OBJS)  $(GUI_OBJS) $(SYSTEM_OBJS) $(GRAPHIC_OBJS) $(CONFIG_OBJS)
        uiphlp.o      \
        uwindowx.o    \
        ufont.o       \
-       upannel.o     \
+       upanel.o     \
        uhotkey.o     \
        udbman.o      \
        ufile.o       \

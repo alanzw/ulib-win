@@ -111,7 +111,7 @@ SUBDIRS = \
           rebar       \
           sqlite      \
           font        \
-          pannel      \
+          panel       \
           mutex       \
           socket      \
           splash      \

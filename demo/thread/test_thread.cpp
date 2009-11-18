@@ -6,7 +6,7 @@
 
 #include <process.h>
 
-unsigned Counter; 
+unsigned Counter;
 unsigned __stdcall SecondThreadFunc( void* pArguments )
 {
     printf( "In second thread...\n" );
@@ -16,10 +16,10 @@ unsigned __stdcall SecondThreadFunc( void* pArguments )
 
     _endthreadex( 0 );
     return 0;
-} 
+}
 
 void test()
-{ 
+{
     HANDLE hThread;
     unsigned threadID;
 
@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
     std::cout << "main  thread: " << aNum << std::endl;
 
     std::cin.ignore();
-    
+
     test();
 
     return 0;

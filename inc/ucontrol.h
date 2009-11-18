@@ -89,6 +89,10 @@ public:
     virtual BOOL onKillFocus() {return FALSE;}
     virtual BOOL onKeyDown(WPARAM wParam, LPARAM lParam) {return FALSE;}
     virtual BOOL onKeyUp(WPARAM wParam, LPARAM lParam) {return FALSE;}
+
+	//
+	virtual BOOL onSize(WPARAM wParam, LPARAM lParam) {return FALSE;}
+	virtual BOOL onMove(WPARAM wParam, LPARAM lParam) {return FALSE;}
     //
     BOOL setTimer(UINT_PTR nIDEvent, UINT uElapse);
     BOOL killTimer(UINT_PTR nIDEvent);

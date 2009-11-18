@@ -15,10 +15,10 @@ RESDIR = ../../res
 ICODIR = ../../ico
 BINDIR = ../../bin
 #
-OBJ = test_pannel.o
+OBJ = test_panel.o
 
-BIN = test_pannel.exe
-RC  = pannel.rc
+BIN = test_panel.exe
+RC  = panel.rc
 RES = ${RC:.rc=.res}
 #
 HEADER = $(INCDIR)/ucontrol.h \
@@ -32,13 +32,9 @@ $(BIN) : $(OBJ) $(RES)
 	cp -v $@ $(BINDIR)/$@
 
 #
-test_pannel.o : test_pannel.cpp $(HEADER)
+%.o : %.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-    
+ 
 #
 .PHONY : test
 test:

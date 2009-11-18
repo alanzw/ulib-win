@@ -1,12 +1,12 @@
-#ifndef U_PANNEL_H
-#define U_PANNEL_H
+#ifndef U_PANEL_H
+#define U_PANEL_H
 
 #include <vector>
 
 #include "ucontrol.h"
 
 //
-class ULIB_API UPannel : public UControl
+class ULIB_API UPanel : public UControl
 {
 public:
     enum Align {
@@ -16,10 +16,10 @@ public:
         UPA_ARRAY
     };
 public:
-    UPannel(HWND hParent, UINT nID, HINSTANCE hInst);
-    ~UPannel();
+    UPanel(HWND hParent, UINT nID, HINSTANCE hInst);
+    ~UPanel();
 
-    BOOL create();
+    virtual BOOL create();
 
     bool addControl(UControl *pUCtrl);
 
@@ -27,6 +27,10 @@ public:
 
     //
     bool redirectMsg(HWND hWnd);
+
+	//
+	void setMsgWnd(HWND hWnd)
+	{ m_hMsgWnd = hWnd; }
 private:
     Align m_align;
 
@@ -40,4 +44,4 @@ private:
     HWND m_hMsgWnd;
 };
 
-#endif // U_PANNEL_H
+#endif // U_PANEL_H

@@ -14,14 +14,14 @@ UThread::~UThread()
 
 bool UThread::create()
 {
-    m_hThread = ::CreateThread(
-                    NULL,          // default security attributes
-                    0,             // use default stack size
-                    m_lpStartAddr, // thread function name
-                    m_lpData,       // argument to thread function
-                    0,             // use default creation flags
-                    &m_dwThreadId);   // returns the thread identifier
-    if(!m_hThread)
+    m_hObj = ::CreateThread(
+                   NULL,            // default security attributes
+                   0,               // use default stack size
+                   m_lpStartAddr,   // thread function name
+                   m_lpData,        // argument to thread function
+                   0,               // use default creation flags
+                   &m_dwThreadId);  // returns the thread identifier
+    if(!m_hObj)
     {
         return false;
     }
@@ -31,18 +31,18 @@ bool UThread::create()
 
 bool UThread::wait()
 {
-    ::WaitForSingleObject(m_hThread, INFINITE);
+    ::WaitForSingleObject(m_hObj, INFINITE);
 	return false;
 }
 
 bool UThread::suspend()
 {
-	return false;
+	return (-1 != ::SuspendThread(m_hObj));
 }
 
 bool UThread::resume()
 {
-	return false;
+	return (-1 != ::ResumeThread(m_hObj));
 }
 
 bool UThread::stop()
@@ -52,16 +52,22 @@ bool UThread::stop()
 
 DWORD UThread::getExitCode()
 {
-    if (m_hThread == INVALID_HANDLE_VALUE)
+    if (m_hObj == INVALID_HANDLE_VALUE)
     {
         return -1;
     }
     else
     {
-        ::GetExitCodeThread(m_hThread, &m_dwExitCode);
+        ::GetExitCodeThread(m_hObj, &m_dwExitCode);
         return m_dwExitCode;
     }
 }
+
+bool UThread::setPriority( Priority nPriority )
+{
+	return (TRUE == ::SetThreadPriority(m_hObj, nPriority));
+}
+
 
 //
 static DWORD WINAPI SNEThreadStartRoutine(LPVOID lpParam)

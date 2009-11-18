@@ -19,26 +19,26 @@
 #include <windows.h>
 #include <tchar.h>
 
-#include "upannel.h"
+#include "upanel.h"
 #include "umsg.h"
 
-UPannel::UPannel(HWND hParent, UINT nID, HINSTANCE hInst)
+UPanel::UPanel(HWND hParent, UINT nID, HINSTANCE hInst)
 : UControl(hParent, nID, hInst)
 {
     m_dwStyles = WS_CHILD | WS_VISIBLE;
 }
 
-UPannel::~UPannel()
+UPanel::~UPanel()
 {
 
 }
 
-BOOL UPannel::create()
+BOOL UPanel::create()
 {
     return UControl::createEx(WS_EX_DLGMODALFRAME, _T("STATIC"), NULL);
 }
 
-bool UPannel::addControl( UControl *pUCtrl)
+bool UPanel::addControl( UControl *pUCtrl)
 {
 
     pUCtrl->setParentWnd(m_hSelf);
@@ -50,7 +50,7 @@ bool UPannel::addControl( UControl *pUCtrl)
     return false;
 }
 
-bool UPannel::relayout()
+bool UPanel::relayout()
 {
 
     ChildCtrlVector::size_type nCount = m_ctrls.size();
@@ -94,13 +94,13 @@ bool UPannel::relayout()
     return true;
 }
 
-bool UPannel::redirectMsg(HWND hWnd)
+bool UPanel::redirectMsg(HWND hWnd)
 {
     m_hMsgWnd = hWnd;
     return this->subclassProc();
 }
 
-BOOL UPannel::onMessage(UINT message, WPARAM wParam, LPARAM lParam)
+BOOL UPanel::onMessage(UINT message, WPARAM wParam, LPARAM lParam)
 {
     if (WM_COMMAND == message)
     {
