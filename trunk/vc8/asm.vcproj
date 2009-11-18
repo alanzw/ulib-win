@@ -349,6 +349,10 @@
 				RelativePath="..\demo\asm\resource.h"
 				>
 			</File>
+			<File
+				RelativePath="..\inc\uinlineasm.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"

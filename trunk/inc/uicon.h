@@ -11,6 +11,8 @@ public:
     BOOL loadStandard(LPCTSTR lpIconName);
     BOOL loadIconEx(HINSTANCE hInstance, LPCTSTR lpIconName);
     BOOL loadIconEx(HINSTANCE hInstance, UINT nResId);
+    
+    BOOL loadImage(HINSTANCE hInstance, UINT nID);
 
     virtual bool destroy();
 

@@ -64,6 +64,15 @@ BOOL UIcon::loadIconEx( HINSTANCE hInstance, UINT nResId )
     return this->loadIconEx(hInstance, MAKEINTRESOURCE(nResId));
 }
 
+BOOL UIcon::loadImage(HINSTANCE hInstance, UINT nID)
+{
+    m_hObj = (HICON)::LoadImage(hInstance, MAKEINTRESOURCE(nID),
+									IMAGE_ICON, 16, 16, 0);
+    
+    assert(m_hObj != NULL);
+    return TRUE;
+}
+
 bool UIcon::destroy()
 {
     BOOL ret = ::DestroyIcon((HICON)m_hObj);

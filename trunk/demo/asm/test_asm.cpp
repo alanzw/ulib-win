@@ -37,10 +37,19 @@ int main(int argc, char *argv[])
     float vecb[] = {2.0, 3.0, 4.0};
 
     printf("ScalarProduct %f\n", huys::scalarProduct(veca, vecb, 3));
+    
+    float vecc[] = {1.0, 2.0, 5.0, 1.0, 2.0, 5.0, 1.0, 2.0};
+    float vecd[] = {2.0, 3.0, 4.0, 2.0, 3.0, 4.0, 2.0, 3.0};
+    //printf("ScalarProduct %f\n", huys::scalarProduct(vecc, vecd, 8));
 
     printf("rdtsc : %lu \n", huys::rdtsc());
 
-    printf("addf : %.1f + %.1f = %.1f\n", 1.2f, 23.2f, huys::addf(1.2, 23.2));
+    printf("addf : %.1f + %.1f = %.1f\n", 1.2f, 23.2f, huys::addf(1.2f, 23.2f));
+
+    int iarray[6] = {-3, -7, 0, 5, 3, 9};
+    int *piarray = iarray;
+    int sum = huys::sum(piarray, sizeof(iarray)/sizeof(iarray[0]));
+    printf("Sum should be 7 --- it is %d", sum);
 
     getchar();
 

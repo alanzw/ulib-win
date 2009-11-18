@@ -31,6 +31,17 @@ public:
 	//
 	void setMsgWnd(HWND hWnd)
 	{ m_hMsgWnd = hWnd; }
+    
+    void setAlign(Align al)
+    { m_align = al; }
+    
+    void changeAlign(Align al)
+    {
+        if (al == m_align) return;
+        m_align = al;
+        relayout();
+        updateChild();
+    }
 private:
     Align m_align;
 
@@ -40,6 +51,8 @@ private:
 
     //
     bool relayout();
+    
+    virtual void updateChild() {}
 
     HWND m_hMsgWnd;
 };

@@ -8,6 +8,7 @@
 #include "udlgapp.h"
 #include "uicon.h"
 #include "ubutton.h"
+#include "uxicon.h"
 
 using huys::UDialogBox;
 
@@ -25,6 +26,7 @@ public:
     ~UDialogExt()
     {
         CHECK_PTR(m_pBnGo);
+        CHECK_PTR(m_puxicon);
     }
 
     virtual BOOL onInit()
@@ -39,7 +41,14 @@ public:
         //
         m_ico.loadIconEx(m_hInst, IDI_APP);
         this->setDlgIconBig(m_ico.getHICON());
-        
+
+        m_puxicon = new UXIcon(m_hDlg, 22234, m_hInst);
+        m_puxicon->setPos(100, 100, 100, 100);
+        m_puxicon->setStyles(BS_LEFT);
+        m_puxicon->setIcon(IDI_XICON);
+        m_puxicon->setTextColor(huys::red);
+        m_puxicon->create();
+        m_puxicon->setWindowText(_T("Test"));
         return TRUE;
     }
 
@@ -64,6 +73,7 @@ protected:
 private:
     UButton *m_pBnGo;
     UIcon m_ico;
+    UXIcon *m_puxicon;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);
