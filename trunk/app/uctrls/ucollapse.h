@@ -47,6 +47,18 @@ public:
         lstrcpy(m_sTitle, lpTitle);
     }
 
+	virtual BOOL onSize(WPARAM wParam, LPARAM lParam)
+	{
+		//::GetWindowRect(m_hSelf, &m_rcWindow);
+		return FALSE;
+	}
+
+	virtual BOOL onMove(WPARAM wParam, LPARAM lParam)
+	{
+		//::GetWindowRect(m_hSelf, &m_rcWindow);
+		return FALSE;
+	}
+
     virtual BOOL onDrawItem(WPARAM wParam, LPARAM lParam)
     {
         LPDRAWITEMSTRUCT lpDrawItem;
@@ -179,6 +191,13 @@ public:
             }
         }
     }
+
+	void updateWindowSize()
+	{
+		::GetWindowRect(m_hSelf, &m_rcWindow);
+		::ScreenToClient(m_hParent, (LPPOINT)&m_rcWindow);
+		::ScreenToClient(m_hParent, ((LPPOINT)&m_rcWindow)+1);
+	}
 private:
     TCHAR m_sTitle[256];
     RECT m_rcTitle;

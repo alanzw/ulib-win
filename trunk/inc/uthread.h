@@ -1,9 +1,9 @@
 #ifndef U_THREAD_H
 #define U_THREAD_H
 
-#include "ulib.h"
+#include "uobject.h"
 
-class ULIB_API UThread
+class ULIB_API UThread : public UKernelObject
 {
 public:
     UThread(LPTHREAD_START_ROUTINE start_routine, LPVOID lpData);
@@ -14,10 +14,21 @@ public:
     bool resume();
     bool stop();
     DWORD getExitCode();
+
+	enum Priority {
+		TP_LOWEST       = THREAD_PRIORITY_LOWEST,
+		TP_BELOW_NORMAL = THREAD_PRIORITY_BELOW_NORMAL,
+		TP_NORMAL       = THREAD_PRIORITY_NORMAL,
+		TP_ABOVE_NORMAL = THREAD_PRIORITY_ABOVE_NORMAL,
+		TP_HIGHEST      = THREAD_PRIORITY_HIGHEST
+	};
+
+	bool setPriority(Priority nPriority);
+
 protected:
 
 private:
-    HANDLE m_hThread;
+    //HANDLE m_hThread;
     DWORD m_dwThreadId;
     LPTHREAD_START_ROUTINE m_lpStartAddr;
     LPVOID m_lpData;

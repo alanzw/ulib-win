@@ -29,7 +29,7 @@ public:
         m_bMouseClicked(FALSE),
 		m_bDirtyBuffer(TRUE)
     {
-        addStyles(WS_CHILD|WS_BORDER);
+        addStyles(WS_CHILD);
     }
 
     ~UGDIPlusButton()
@@ -77,7 +77,6 @@ public:
     {
         m_bMouseClicked = !m_bMouseClicked;
 		m_bDirtyBuffer = TRUE;
-        //InvalidateRect(m_hSelf, NULL, TRUE);
         this->invalidate(TRUE);
 		
         return FALSE;
@@ -85,13 +84,12 @@ public:
 
 	BOOL onLButtonUp(WPARAM wParam, LPARAM lParam)
 	{
-		//
-		::SendMessage(getParent(), WM_COMMAND, MAKEWPARAM(getID(), 0), 0);
+		// Make the button's BN_CLICKED notify work
+		::SendMessage(getParent(), WM_COMMAND, MAKEWPARAM(getID(), BN_CLICKED), 0);
 		return FALSE;
 	}
 
     BOOL filterMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
-    //BOOL onMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
     {
         if (WM_ERASEBKGND == uMessage)
         {
@@ -152,7 +150,6 @@ public:
 		m_bDirtyBuffer = TRUE;
 		m_bMouseOver = TRUE;
 		m_bTracking = TRUE;
-        //InvalidateRect(m_hSelf, NULL, TRUE);
         this->invalidate();
         return TRUE;
     }
@@ -162,8 +159,6 @@ public:
 		m_bDirtyBuffer = TRUE;
         m_bMouseOver = FALSE;
         m_bTracking = FALSE;
-
-        //InvalidateRect(m_hSelf, NULL, FALSE);
         this->invalidate();
         return TRUE;
     }
@@ -325,33 +320,6 @@ public:
 
     virtual void onDraw(HDC hdc)
     {
-        //Graphics graphics(hdc);
-        //Pen      pen(Color(255, 0, 0, 255));
-        //graphics.DrawLine(&pen, 0, 0, 200, 100);
-
-        //SolidBrush solidBrush(Color(255, 255, 0, 0));
-        //graphics.FillEllipse(&solidBrush, 0, 0, 100, 60);
-
-        //SolidBrush  brush(Color(255, 0, 0, 255));
-        //FontFamily  fontFamily(L"Times New Roman");
-        //Font        font(&fontFamily, 24, FontStyleRegular, UnitPixel);
-        //PointF      pointF(10.0f, 20.0f);
-
-        //graphics.DrawString(L"Hello World!", -1, &font, pointF, &brush);
-
-        //GraphicsPath path;
-        //Pen penJoin(Color(255, 0, 0, 255), 8);
-
-        //path.StartFigure();
-        //path.AddLine(Point(50, 200), Point(100, 200));
-        //path.AddLine(Point(100, 200), Point(100, 250));
-
-        //penJoin.SetLineJoin(LineJoinBevel);
-        //graphics.DrawPath(&penJoin, &path);
-
-        //pen.SetStartCap(LineCapArrowAnchor);
-        //pen.SetEndCap(LineCapRoundAnchor);
-        //graphics.DrawLine(&pen, 20, 175, 300, 175);
     }
 
     BOOL onChar(WPARAM wParam, LPARAM lParam)

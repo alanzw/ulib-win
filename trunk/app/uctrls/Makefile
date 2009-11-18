@@ -24,7 +24,8 @@ RES = ${RC:.rc=.res}
 #
 HEADER = $(INCDIR)/udialogx.h \
           uctrls.h \
-          ucollapse.h
+          ucollapse.h \
+          ucollapsepanel.h \
 
 #
 all: $(BIN)
