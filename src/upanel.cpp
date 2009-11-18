@@ -23,7 +23,8 @@
 #include "umsg.h"
 
 UPanel::UPanel(HWND hParent, UINT nID, HINSTANCE hInst)
-: UControl(hParent, nID, hInst)
+: UControl(hParent, nID, hInst),
+  m_align(UPA_HORIZONTAL)
 {
     m_dwStyles = WS_CHILD | WS_VISIBLE;
 }
@@ -62,7 +63,6 @@ bool UPanel::relayout()
 
 
     RECT rcClient;
-
     ::GetClientRect(m_hSelf, &rcClient);
 
     rcClient.left += 2;
@@ -70,27 +70,51 @@ bool UPanel::relayout()
     rcClient.top += 2;
     rcClient.bottom -= 2;
 
-    LONG lAvgSize = (rcClient.right - rcClient.left)/nCount;
-
-    RECT rc;
-
-    rc.left = rcClient.left;
-    rc.right = rc.left + lAvgSize;
-    rc.top = rcClient.top;
-    rc.bottom = rcClient.bottom;
-
-    // ChildCtrlVector::iterator it = m_ctrls.begin();
-
-    //for ( ; it != m_ctrls.end(); ++it)
-    for (int i=0; i<nCount; ++i)
+    if (UPA_HORIZONTAL == m_align)
     {
-        //*it->setPosition(&rc);
-        m_ctrls.at(i)->setPosition(&rc);
+        LONG lAvgSize = (rcClient.right - rcClient.left)/nCount;
 
-        rc.left += lAvgSize;
-        rc.right += lAvgSize;
+        RECT rc;
+
+        rc.left = rcClient.left;
+        rc.right = rc.left + lAvgSize;
+        rc.top = rcClient.top;
+        rc.bottom = rcClient.bottom;
+
+        // ChildCtrlVector::iterator it = m_ctrls.begin();
+
+        //for ( ; it != m_ctrls.end(); ++it)
+        for (int i=0; i<nCount; ++i)
+        {
+            //*it->setPosition(&rc);
+            m_ctrls.at(i)->setPosition(&rc);
+            rc.left += lAvgSize;
+            rc.right += lAvgSize;
+        }
     }
+    else if (UPA_VERTICAL == m_align)
+    {
+        LONG lAvgSize = (rcClient.bottom - rcClient.top)/nCount;
 
+        RECT rc;
+
+        rc.left = rcClient.left;
+        rc.right = rcClient.right;
+        rc.top = rcClient.top;
+        rc.bottom = rc.top + lAvgSize;
+
+        // ChildCtrlVector::iterator it = m_ctrls.begin();
+
+        //for ( ; it != m_ctrls.end(); ++it)
+        for (int i=0; i<nCount; ++i)
+        {
+            //*it->setPosition(&rc);
+            m_ctrls.at(i)->setPosition(&rc);
+            rc.top += lAvgSize;
+            rc.bottom += lAvgSize;
+        }
+    }
+    
     return true;
 }
 

@@ -15,14 +15,16 @@ RESDIR = ../../res
 ICODIR = ../../ico
 BINDIR = ../../bin
 #
-OBJ = test_icon.o
+OBJ = test_icon.o \
+      uxicon.o
 
 BIN = test_icon.exe
 RC  = icon.rc
 RES = ${RC:.rc=.res}
 #
 HEADER = $(INCDIR)/ucontrol.h \
-		 $(INCDIR)/udialogx.h
+		 $(INCDIR)/udialogx.h \
+         uxicon.h
 #
 all: $(BIN)
 
@@ -32,13 +34,9 @@ $(BIN) : $(OBJ) $(RES)
 	cp -v $@ $(BINDIR)/$@
 
 #
-test_icon.o : test_icon.cpp $(HEADER)
+%.o : %.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-    
+  
 #
 .PHONY : test
 test:

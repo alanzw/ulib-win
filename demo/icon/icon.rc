@@ -11,7 +11,7 @@
 //
 // Icon resources
 //
-//IDI_APP    ICON   MOVEABLE PURE LOADONCALL     "wnd.ico"
+IDI_XICON    ICON   MOVEABLE PURE LOADONCALL     "xT256.ico"
 
 //
 // Dialog resources

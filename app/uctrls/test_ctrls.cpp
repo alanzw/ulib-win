@@ -30,16 +30,16 @@ using huys::UDialogBox;
 
 class UDialogCtrls : public UDialogBox
 {
-	enum {
-		IDC_PANEL = 32222
-	};
+    enum {
+        IDC_PANEL = 32222
+    };
 public:
     UDialogCtrls(HINSTANCE hInst, UINT nID)
         : UDialogBox(hInst, nID),
         m_pCtrlFactory(0),
         m_pgbox(0),
         m_pButton(0),
-		m_pPanel(0)
+        m_pPanel(0)
     {}
 
     ~UDialogCtrls()
@@ -69,12 +69,12 @@ public:
         ucgbox.setTitle("GBox");
         ucgbox.addSubCtrl(::GetDlgItem(m_hDlg, IDC_BUTTON1));
         ucgbox.addSubCtrl(::GetDlgItem(m_hDlg, IDC_EDIT1));
-		//ucgbox.addSubCtrl(m_pgbox->getHWND());
-        
+        //ucgbox.addSubCtrl(m_pgbox->getHWND());
+
         m_pPanel = new UCollapsePanel(m_hDlg, IDC_PANEL, m_hInst);
-		m_pPanel->setPos(5, 5, 400, 180);
-		m_pPanel->create();
-		//m_pPanel->redirectMsg(m_hDlg);
+        m_pPanel->setPos(5, 5, 400, 380);
+        m_pPanel->create();
+        //m_pPanel->redirectMsg(m_hDlg);
 
         return TRUE;
     }
@@ -107,7 +107,8 @@ public:
         {
         case 2222:
             {
-                showMsg(_T("S"), _T("info"), m_hDlg);
+                //showMsg(_T("S"), _T("info"), m_hDlg);
+                m_pPanel->changeAlign(UPanel::UPA_VERTICAL);
             }
         default:
             return UDialogBox::onCommand(wParam, lParam);
