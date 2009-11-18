@@ -242,8 +242,8 @@ inline float addf(float x, float y)
 inline void set_fpu (unsigned int mode)
 {
     __asm__ __volatile__ (
-        "fldcw %0" 
-        : 
+        "fldcw %0"
+        :
         : "m" (*&mode));
 }
 
