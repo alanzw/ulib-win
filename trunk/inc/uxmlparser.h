@@ -19,6 +19,8 @@
 #ifndef U_XML_PARSER_H
 #define U_XML_PARSER_H
 
+#include "adt/ustring.h"
+
 namespace huys
 {
 
@@ -44,23 +46,7 @@ enum XML_Form {
     XF_BAD  = 0x01   /**< for bad format XML docs */
 };
 
-class UXMLString
-{
-public:
-    UXMLString()
-    {}
-
-    UXMLString(const char *lpText)
-    {
-    }
-
-    const char * c_str() const
-    {
-        return 0;
-    }
-protected:
-private:
-};
+typedef huys::ADT::UStringAnsi UXMLString;
 
 class UXMLNode
 {
@@ -79,7 +65,7 @@ public:
 
     bool hasChild() const
     {
-        return (0 != _firstChild)
+        return (0 != _firstChild);
     }
 
     const UXMLNode *parent() const
@@ -97,17 +83,17 @@ public:
         return _lastChild;
     }
 
-    void setParent(const UXMLNode * parent)
+    void setParent(UXMLNode * parent)
     {
         _parent = parent;
     }
 
-    void setFirstChild(const UXMLNode *node)
+    void setFirstChild(UXMLNode *node)
     {
         _firstChild = node;
     }
 
-    void setLastChild(const UXMLNode *node)
+    void setLastChild(UXMLNode *node)
     {
         _lastChild = node;
     }
@@ -246,23 +232,23 @@ private:
     }
 };
 
-}; // namespace XML
-
 class UXMLDocument
 {
 public:
-    UXMLDocument();
-    ~UXMLDocument();
+	UXMLDocument();
+	~UXMLDocument();
 
 private:
-    UXMLParser _parser;
+	UXMLParser _parser;
 
 private:
-    bool read();
-    bool parse();
-    bool writeNew();
-    bool writeBack();
+	bool read();
+	bool parse();
+	bool writeNew();
+	bool writeBack();
 };
+
+}; // namespace XML
 
 }; // namespace huys
 

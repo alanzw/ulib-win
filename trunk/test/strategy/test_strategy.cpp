@@ -20,6 +20,8 @@
 #include <fstream>
 #include <cstring>
 
+#include <exception>
+
 using namespace std;
 
 class Strategy;
@@ -104,7 +106,7 @@ public:
 private:
     /* virtual */void justify(char *line)
     {
-        char buf[80];
+        char buf[81];
         int offset = (width_ - strlen(line)) / 2;
         memset(buf, ' ', 80);
         strcpy(&(buf[offset]), line);
@@ -131,19 +133,40 @@ void TestBed::doIt()
 
 int main()
 {
+
+try {
     TestBed test;
     int answer, width;
     cout << "Exit(0) Left(1) Right(2) Center(3): ";
     cin >> answer;
-    while (answer)
+    //while (answer)
+    while (answer && cin.good())
     {
         cout << "Width: ";
         cin >> width;
-        test.setStrategy(answer, width);
-        test.doIt();
+
+        if (80 < width)
+        {
+            cerr << "width should be less than 80" << endl;
+        }
+        else
+        {
+            test.setStrategy(answer, width);
+            test.doIt();
+        }
         cout << "Exit(0) Left(1) Right(2) Center(3): ";
         cin >> answer;
+        //while (answer != 0 && answer != 1  && answer != 2 && answer != 3)
+        //{
+        //    cout << "Exit(0) Left(1) Right(2) Center(3): ";
+        //    cin >> answer;
+        //}
     }
+
+} catch (exception &e)
+{
+
+}
     return 0;
 }
 
