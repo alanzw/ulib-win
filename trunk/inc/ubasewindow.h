@@ -25,9 +25,9 @@ class ULIB_API UBaseWindow
 {
 public:
     UBaseWindow(HWND hParent = NULL, HINSTANCE hInst = NULL, LPCTSTR lpWindowClass = NULL, UINT nID = 0);
-    
-	//!! The dtor of base class should be virtual
-	virtual ~UBaseWindow();
+
+    //!! The dtor of base class should be virtual
+    virtual ~UBaseWindow();
 
     //
     virtual bool create();
@@ -59,8 +59,8 @@ public:
         this->m_lpWindowClass = lpWndClassName;
     }
 
-	UINT getID() const
-	{ return m_nID; }
+    UINT getID() const
+    { return m_nID; }
 
     //
     void setTitle(LPCTSTR lpTitle)

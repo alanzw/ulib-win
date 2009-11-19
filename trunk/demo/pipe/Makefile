@@ -37,11 +37,7 @@ SUBDIRS = \
 #
 .PHONY: all
 all:
-	for /d %%X in ($(SUBDIRS)) do $(MAKE) -C %%X
-#	for X in $(SUBDIRS);\
-#	do \
-#	  (cd $$X && $(MAKE)); \
-#	done
+	$(MAKEALL_SUBDIRS)
 
 #
 UDOC :
@@ -51,8 +47,5 @@ install :
 
 .PHONY: clean
 clean:
-	for /d %%X in ($(SUBDIRS)) do $(MAKE) clean -C %%X
-#	for X in $(SUBDIRS);\
-#	do \
-#		(cd $$X && $(MAKE) clean); \
-#	done
+	$(MAKECLEAN_SUBDIRS)
+

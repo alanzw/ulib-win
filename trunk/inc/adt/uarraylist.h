@@ -43,15 +43,15 @@ public:
 
     int seqSearch(const T& item);
 
-	//
-	typedef void (*callback_routine)(T *item); 
-	void traverse(callback_routine visit)
-	{
-		for (int i=0; i<length; i++)
+    //
+    typedef void (*callback_routine)(T *item);
+    void traverse(callback_routine visit)
+    {
+        for (int i=0; i<length; i++)
         {
             visit(&(this->list[i]));
         }
-	}
+    }
 protected:
 
 private:

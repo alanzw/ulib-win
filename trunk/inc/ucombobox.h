@@ -8,7 +8,7 @@ class ULIB_API UComboBox : public UControl
 public:
     UComboBox(HWND hParent, UINT nResource, HINSTANCE hInst);
     UComboBox();
-	UComboBox(UBaseWindow *pWndParent, UINT nID);
+    UComboBox(UBaseWindow *pWndParent, UINT nID);
     ~UComboBox();
 
     //
@@ -27,7 +27,7 @@ public:
     BOOL showDropDown(BOOL bShow=TRUE);
     BOOL clear();
     int getCount() const;
-    
+
     //
     BOOL setItemData(int nIndex, DWORD dwData);
     DWORD getItemData(int nIndex);

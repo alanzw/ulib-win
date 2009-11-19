@@ -1,9 +1,9 @@
 #ifndef U_PIPE_H
 #define U_PIPE_H
 
-#include "ulib.h"
+#include "uobject.h"
 
-class ULIB_API UPipe
+class ULIB_API UPipe : public UKernelObject
 {
 public:
     UPipe();
@@ -19,6 +19,22 @@ private:
     HANDLE m_hRead;
     STARTUPINFO m_siChild;
     PROCESS_INFORMATION m_piChild;
+};
+
+class ULIB_API UNamedPipe : public UPipe
+{
+public:
+	UNamedPipe();
+    UNamedPipe(LPCTSTR sName);
+    virtual ~UNamedPipe();
+	virtual BOOL create();
+
+	BOOL connect(LPOVERLAPPED lpOverlapped = NULL);
+	BOOL disconnect();
+
+	BOOL read(LPTSTR lpBuffer, DWORD dwBufSize);
+private:
+	LPCTSTR m_sName;
 };
 
 #endif // U_PIPE_H

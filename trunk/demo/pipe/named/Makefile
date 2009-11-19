@@ -2,11 +2,10 @@
 include ../../../make.inc
 
 #
-CFLAGS =
-CXXFLAGS = 
 INC = -I"../../../inc"
 LIB = -L"../../../lib" -luwin
-
+CFLAGS +=
+CXXFLAGS +=
 #
 SRCDIR = ../../../src
 INCDIR = ../../../inc
@@ -15,8 +14,7 @@ RESDIR = ../../../res
 ICODIR = ../../../ico
 BINDIR = ../../../bin
 #
-OBJ = test_named.o \
-      $(OBJDIR)/upipe.o
+OBJ = test_named.o
 BIN = test_named.exe
 RC  = named.rc
 RES = ${RC:.rc=.res}
@@ -31,15 +29,8 @@ $(BIN) : $(OBJ) $(RES)
 	cp -vf $(BIN) $(BINDIR)/$(BIN)
 
 #
-test_named.o : test_named.cpp $(HEADER)
-	$(CXX) -c -o $@ -DWITHOUT_DLL $< $(CXXFLAGS) $(INC)
-
-$(OBJDIR)/upipe.o : $(SRCDIR)/upipe.cpp $(HEADER)
-	$(CXX) -c -o $@ -DWITHOUT_DLL $< $(CXXFLAGS) $(INC)
-
-#
-$(RES) : $(RC) resource.h
-	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
+%.o : %.cpp $(HEADER)
+	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
 
 child.exe : child.cpp
 	$(CXX) -o $@ -DWITHOUT_DLL $< $(CXXFLAGS) $(INC) $(LIB)

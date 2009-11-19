@@ -35,20 +35,20 @@ class ULIB_API UTheme
 public:
     UTheme();
     ~UTheme();
-    
+
     BOOL open(HWND hWnd, LPCWSTR pszClassList);
     BOOL close();
-    
+
     BOOL enable(BOOL fEnable);
-    
+
     BOOL drawBackgroud( HDC hdc,
                         int iPartId,
                         int iStateId,
                         const RECT *pRect,
                         const RECT *pClipRect);
 
- 	BOOL drawText( HDC hdc, 
-				   int iPartId,
+     BOOL drawText( HDC hdc,
+                   int iPartId,
                    int iStateId,
                    LPCWSTR pszText,
                    int iCharCount,
