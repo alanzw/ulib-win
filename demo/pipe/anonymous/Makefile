@@ -2,10 +2,10 @@
 include ../../../make.inc
 
 #
-CFLAGS =
-CXXFLAGS = 
 INC = -I"../../../inc"
 LIB = -L"../../../lib" -luwin
+CFLAGS =
+CXXFLAGS = 
 
 #
 SRCDIR = ../../../src
@@ -15,8 +15,7 @@ RESDIR = ../../../res
 ICODIR = ../../../ico
 BINDIR = ../../../bin
 #
-OBJ = test_anonymous.o \
-      $(OBJDIR)/upipe.o
+OBJ = test_anonymous.o
 BIN = test_anonymous.exe
 RC  = anonymous.rc
 RES = ${RC:.rc=.res}
@@ -31,11 +30,8 @@ $(BIN) : $(OBJ) $(RES)
 	cp -vf $(BIN) $(BINDIR)/$(BIN)
 
 #
-test_anonymous.o : test_anonymous.cpp $(HEADER)
-	$(CXX) -c -o $@ -DWITHOUT_DLL $< $(CXXFLAGS) $(INC)
-
-$(OBJDIR)/upipe.o : $(SRCDIR)/upipe.cpp $(HEADER)
-	$(CXX) -c -o $@ -DWITHOUT_DLL $< $(CXXFLAGS) $(INC)
+%.o : %.cpp $(HEADER)
+	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
 
 child.exe : child.cpp
 	$(CXX) -o $@ -DWITHOUT_DLL $< $(CXXFLAGS) $(INC) $(LIB)

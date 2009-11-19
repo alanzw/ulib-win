@@ -24,7 +24,7 @@ BOOL UComboBoxEx::create()
     icex.dwICC = ICC_USEREX_CLASSES;
 
     InitCommonControlsEx(&icex);
-    
+
     return UControl::create(_T("ComboBoxEx32"));
 }
 
@@ -39,7 +39,7 @@ bool UComboBoxEx::addItem(int nIndex, LPTSTR sText, int cchTextMax)
     cbei.cchTextMax = cchTextMax;
     cbei.iImage = 0;
     cbei.iSelectedImage = 0;
-    
+
     int nRet = this->sendMsg(CBEM_INSERTITEM, 0, (LPARAM)&cbei);
     return (-1 != nRet);
 }

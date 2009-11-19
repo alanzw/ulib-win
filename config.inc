@@ -45,6 +45,7 @@ SYSTEM_OBJS =     \
     utoolhelp.o   \
     ufilemapping.o\
     umailslot.o   \
+    upipe.o       \
     uthunk32.o    \
 
 

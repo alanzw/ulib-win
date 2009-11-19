@@ -5,18 +5,28 @@
 #include <conio.h>
 #include <math.h>
 
+#ifndef BUF_SIZE
+#define BUF_SIZE 256
+#endif // BUF_SIZE
+
 #include "upipe.h"
+#include "uconsole.h"
+
+#define  PIPE_NAME TEXT("\\\\.\\pipe\\mynamedpipe")
 
 int main(int argc, char *argv[])
 {
 
-	UPipe up;
-	
-	up.create();
-	
-	up.startChild();
-	
-	up.read();
+    UNamedPipe up(PIPE_NAME);
+
+    up.create();
+    
+	if (up.connect())
+	{
+		TCHAR buf[BUF_SIZE];
+		up.read(buf, BUF_SIZE);
+		UConsole::PrintStdout(buf);
+	}
 
     return 0;
 }

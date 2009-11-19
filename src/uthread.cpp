@@ -32,22 +32,22 @@ bool UThread::create()
 bool UThread::wait()
 {
     ::WaitForSingleObject(m_hObj, INFINITE);
-	return false;
+    return false;
 }
 
 bool UThread::suspend()
 {
-	return (-1 != ::SuspendThread(m_hObj));
+    return (-1 != ::SuspendThread(m_hObj));
 }
 
 bool UThread::resume()
 {
-	return (-1 != ::ResumeThread(m_hObj));
+    return (-1 != ::ResumeThread(m_hObj));
 }
 
 bool UThread::stop()
 {
-	return false;
+    return false;
 }
 
 DWORD UThread::getExitCode()
@@ -65,7 +65,7 @@ DWORD UThread::getExitCode()
 
 bool UThread::setPriority( Priority nPriority )
 {
-	return (TRUE == ::SetThreadPriority(m_hObj, nPriority));
+    return (TRUE == ::SetThreadPriority(m_hObj, nPriority));
 }
 
 

@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <stdio.h>
+#include <cassert>
 
 #include "upipe.h"
 
@@ -80,12 +81,74 @@ void UPipe::read(char *sOutFilename /* = "out.dat" */)
     {
         m_szReadBuffer[m_nReadNum] = '\0';
         fprintf(fp, "%s", m_szReadBuffer);
+		printf("%s", m_szReadBuffer);
     }
     fclose(fp);
 
     if (GetLastError() == ERROR_BROKEN_PIPE) //
-        printf("Pipe closed by child\n");
+	{
+		printf("Pipe closed by child\n");
+	}
     else
-        printf("Pipe read error: %d\n", GetLastError());
+	{
+		printf("Pipe read error: %d\n", GetLastError());
+	}
+}
+
+
+UNamedPipe::UNamedPipe( LPCTSTR sName )
+: m_sName (sName)
+{
+
+}
+
+UNamedPipe::UNamedPipe()
+: m_sName(NULL)
+{
+
+}
+
+UNamedPipe::~UNamedPipe()
+{
+
+}
+
+BOOL UNamedPipe::create()
+{
+	m_hObj = ::CreateNamedPipe(
+		m_sName, // The unique pipe name. This string must have the following form: \\.\pipe\pipename
+		PIPE_ACCESS_DUPLEX|FILE_FLAG_OVERLAPPED, // dwOpenMode
+		PIPE_TYPE_BYTE, // dwPipeMode
+		1,    // nMaxInstances
+		4096, // nOutBufferSize
+		4096, // nInBufferSize
+		NMPWAIT_USE_DEFAULT_WAIT, // nDefaultTimeOut
+		NULL); // lpSecurityAttributes
+	return (INVALID_HANDLE_VALUE != m_hObj);
+}
+
+BOOL UNamedPipe::connect( LPOVERLAPPED lpOverlapped /*= NULL*/ )
+{
+	assert(INVALID_HANDLE_VALUE != m_hObj);
+	return ::ConnectNamedPipe(m_hObj, lpOverlapped);
+}
+
+BOOL UNamedPipe::disconnect()
+{
+	assert(INVALID_HANDLE_VALUE != m_hObj);
+	return ::DisconnectNamedPipe(m_hObj);	
+}
+
+BOOL UNamedPipe::read( LPTSTR lpBuffer, DWORD dwBufSize )
+{
+	assert(INVALID_HANDLE_VALUE != m_hObj);
+	DWORD cbBytesRead = 0;
+	BOOL bRet = ::ReadFile(m_hObj, lpBuffer, dwBufSize, &cbBytesRead, NULL);
+	if (bRet)
+	{
+		lpBuffer[cbBytesRead] = 0;
+		::FlushFileBuffers(m_hObj); 
+	}
+	return bRet;
 }
 
