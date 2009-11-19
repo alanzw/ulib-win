@@ -16,7 +16,7 @@ public:
     //
     bool lock();
     bool unlock();
-    
+
     class scoped_lock
     {
     public:
@@ -25,7 +25,7 @@ public:
         {
             _cs.lock();
         }
-        
+
         ~scoped_lock()
         {
             _cs.unlock();

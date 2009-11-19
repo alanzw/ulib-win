@@ -21,10 +21,16 @@ int UListBox::addString(const char *lpszString)
     return this->sendMsg(LB_ADDSTRING, 0, (LPARAM)lpszString);
 }
 
-int UListBox::setItemData( WPARAM index, LPARAM data )
+int UListBox::setItemData( int index, LPARAM data )
 {
-    return this->sendMsg(LB_SETITEMDATA, index, data);
+    return this->sendMsg(LB_SETITEMDATA, (WPARAM)index, data);
 }
+
+LONG UListBox::getItemData(int index)
+{
+    return (LONG)this->sendMsg(LB_GETITEMDATA, (WPARAM)index);
+}
+
 
 int UListBox::findString(const char *lpszString)
 {
@@ -39,6 +45,11 @@ int UListBox::deleteString(int nIndex)
 int UListBox::getCurSel()
 {
     return this->sendMsg(LB_GETCURSEL);
+}
+
+BOOL UListBox::setCurSel(int nIndex)
+{
+    return this->sendMsg(LB_SETCURSEL, (WPARAM)nIndex);
 }
 
 int UListBox::getText(int nIndex, char *sText)

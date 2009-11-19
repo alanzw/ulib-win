@@ -30,7 +30,7 @@ struct __Slot {
    jmp_buf environment;
    struct __Signal *signal;
 
-}; 
+};
 
 void __signal_connect(struct __Signal *signal, struct __Slot *slot)
 {
@@ -75,14 +75,14 @@ int main(int argc, char *argv[])
     sig.connect(&lp2, &Light::TurnOff);
 
     sig.emit();
-    
+
     struct {
         struct __Signal signal;
         int _1;
         float _2;
 
     } signal;
-    
+
     struct __Slot slot;
 
     __signal_connect((struct __Signal *)&signal, &slot);
@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
 
     signal._1 = 5;
     signal._2 = 10.0;
-    __signal_emit((struct __Signal *)&signal);  // 调用处只需要signal的信息 
+    __signal_emit((struct __Signal *)&signal);  // 调用处只需要signal的信息
 
     std::cin.ignore();
     return 0;

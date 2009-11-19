@@ -16,18 +16,15 @@
 
 using huys::UDialogBox;
 
-const UINT ID_LISTBOX = 13333;
-const UINT ID_ICON_LISTBOX = 13334;
-
-
 class UIconListBox : public UListBox
 {
 public:
     UIconListBox(HWND hParent, UINT nID, HINSTANCE hInst)
-        : UListBox(hParent, nID, hInst)
+    : UListBox(hParent, nID, hInst)
     {
         m_dwStyles |= LBS_OWNERDRAWVARIABLE | WS_VSCROLL;
     }
+    
     ~UIconListBox() {};
 
     virtual BOOL create()
@@ -44,8 +41,6 @@ public:
 
     virtual BOOL onMessage(UINT nMessage, WPARAM wParam, LPARAM lParam)
     {
-
-
         return UListBox::onMessage(nMessage, wParam, lParam);
     }
 
@@ -63,6 +58,12 @@ public:
             m_dwUserData = 0;
         };
     };
+    
+    void addItem(LPCTSTR str, HBITMAP hbmp)
+    {
+        int nItem = this->addString(str);
+        this->setItemData(nItem, (LPARAM)hbmp);
+    }
 protected:
 private:
 };
@@ -74,40 +75,25 @@ HBITMAP hbmpPicture, hbmpOld;
 #define XBITMAP 80
 #define YBITMAP 20
 
-void AddItem(HWND hwnd, LPTSTR lpstr, HBITMAP hbmp)
-{
-    int nItem;
-
-    nItem = SendMessage(hwnd, LB_ADDSTRING, 0, (LPARAM)lpstr);
-    SendMessage(hwnd, LB_SETITEMDATA, (WPARAM)nItem, (LPARAM)hbmp);
-}
-
-
 class UDialogExt : public UDialogBox
 {
+    enum {
+        ID_LISTBOX = 13333,
+        ID_ICON_LISTBOX = 13334
+    };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-        m_pListBox(0),
-        m_pIconListBox(0)
+    : UDialogBox(hInst, nID),
+    m_pListBox(0),
+    m_pIconListBox(0)
     {}
 
     ~UDialogExt()
     {
-        if (m_pListBox)
-        {
-            delete m_pListBox;
-            m_pListBox = 0;
-        }
-
-        if (m_pIconListBox)
-        {
-            delete m_pIconListBox;
-            m_pIconListBox = 0;
-        }
-
+        CHECK_PTR(m_pListBox);
+        CHECK_PTR(m_pIconListBox);
+        
         // Free any resources used by the bitmaps.
-
         DeleteObject(hbmpPencil);
         DeleteObject(hbmpCrayon);
         DeleteObject(hbmpMarker);
@@ -118,74 +104,55 @@ public:
 
     virtual BOOL onInit()
     {
-        if (!m_pListBox)
-        {
-            m_pListBox = new UDragListBox(m_hDlg, ID_LISTBOX, m_hInst);
-            //m_pListBox->setStyles(WS_BORDER | LVS_REPORT | LVS_EDITLABELS);
-            m_pListBox->setStyles(WS_HSCROLL|WS_VSCROLL|LBS_DISABLENOSCROLL );
-            m_pListBox->create();
-            m_pListBox->setColumnWidth(300);
-            RECT rc;
-            ::GetClientRect(m_hDlg, &rc);
-            rc.left += 50;
-            rc.right = rc.left + 200;
-            rc.top += 50;
-            rc.bottom -= 50;
-            m_pListBox->setPosition(&rc);
-            //
+        m_pListBox = new UDragListBox(m_hDlg, ID_LISTBOX, m_hInst);
+        //m_pListBox->setStyles(WS_BORDER | LVS_REPORT | LVS_EDITLABELS);
+        m_pListBox->setStyles(WS_HSCROLL|WS_VSCROLL|LBS_DISABLENOSCROLL );
+        m_pListBox->create();
+        m_pListBox->setColumnWidth(300);
+        RECT rc;
+        ::GetClientRect(m_hDlg, &rc);
+        rc.left += 50;
+        rc.right = rc.left + 200;
+        rc.top += 50;
+        rc.bottom -= 50;
+        m_pListBox->setPosition(&rc);
+        //
 
-            //
-            char str[] = "I love you!\tI am here.\tI am here. ";
-            m_pListBox->addString(str);
-            m_pListBox->addString(str);
-            m_pListBox->addString(str);
+        //
+        char str[] = "I love you!\tI am here.\tI am here. ";
+        m_pListBox->addString(str);
+        m_pListBox->addString(str);
+        m_pListBox->addString(str);
 
 
 
-            //
-            m_pIconListBox = new UListBox(m_hDlg, ID_ICON_LISTBOX, m_hInst);
-            m_pIconListBox->setStyles(LBS_OWNERDRAWVARIABLE);
-            m_pIconListBox->create();
-            rc.left += 250;
-            rc.right = rc.left + 200;
-            //rc.bottom -= 200;
-            m_pIconListBox->setPosition(&rc);
+        //
+        m_pIconListBox = new UIconListBox(m_hDlg, ID_ICON_LISTBOX, m_hInst);
+        m_pIconListBox->setStyles(LBS_OWNERDRAWVARIABLE);
+        m_pIconListBox->setPos(rc.left+250, rc.top, 200, 250);
+        m_pIconListBox->create();
 
-            // Load bitmaps.
-
-            hbmpPencil = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON1));
-            hbmpCrayon = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
-            hbmpMarker = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON3));
-            hbmpPen = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
-            hbmpFork = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
-
-            // Retrieve list box handle.
-
-            HWND hListBox = m_pIconListBox->getHWND();
-
-            // Initialize the list box text and associate a bitmap
-            // with each list box item.
-
-            AddItem(hListBox, "pencil", hbmpPencil);
-            AddItem(hListBox, "crayon", hbmpCrayon);
-            AddItem(hListBox, "marker", hbmpMarker);
-            AddItem(hListBox, "pen",    hbmpPen);
-            AddItem(hListBox, "fork",   hbmpFork);
-
-            SetFocus(hListBox);
-            SendMessage(hListBox, LB_SETCURSEL, 0, 0);
-
-        }
+        // Load bitmaps.
+        hbmpPencil = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON1));
+        hbmpCrayon = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
+        hbmpMarker = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON3));
+        hbmpPen = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
+        hbmpFork = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
+     
+        m_pIconListBox->addItem("pencil", hbmpPencil);
+        m_pIconListBox->addItem("crayon", hbmpCrayon);
+        m_pIconListBox->addItem("marker", hbmpMarker);
+        m_pIconListBox->addItem("pen",    hbmpPen);
+        m_pIconListBox->addItem("fork", hbmpFork);
+        
+        m_pIconListBox->setCurSel(0);
+        
         return TRUE;
     }
 
     virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
     {
         BOOL result = UDialogBox::DialogProc(message, wParam, lParam);
-
-        if (message == WM_NOTIFY)
-        {
-        }
 
         if (message == WM_MEASUREITEM)
         {
@@ -226,16 +193,16 @@ public:
                 // Display the bitmap associated with the item.
 
                 hbmpPicture =(HBITMAP)SendMessage(lpdis->hwndItem,
-                    LB_GETITEMDATA, lpdis->itemID, (LPARAM) 0);
+                LB_GETITEMDATA, lpdis->itemID, (LPARAM) 0);
 
                 hdcMem = CreateCompatibleDC(lpdis->hDC);
                 hbmpOld = (HBITMAP)SelectObject(hdcMem, hbmpPicture);
 
                 BitBlt(lpdis->hDC,
-                    lpdis->rcItem.left, lpdis->rcItem.top,
-                    lpdis->rcItem.right - lpdis->rcItem.left,
-                    lpdis->rcItem.bottom - lpdis->rcItem.top,
-                    hdcMem, 0, 0, SRCCOPY);
+                lpdis->rcItem.left, lpdis->rcItem.top,
+                lpdis->rcItem.right - lpdis->rcItem.left,
+                lpdis->rcItem.bottom - lpdis->rcItem.top,
+                hdcMem, 0, 0, SRCCOPY);
 
                 // Display the text associated with the item.
 
@@ -245,20 +212,20 @@ public:
                 GetTextMetrics(lpdis->hDC, &tm);
 
                 y = (lpdis->rcItem.bottom + lpdis->rcItem.top -
-                    tm.tmHeight) / 2;
+                tm.tmHeight) / 2;
 
                 //hr = StringCchLength(tchBuffer, BUFFER, pcch);
                 //if (FAILED(hr))
                 //{
-                    // TODO: Handle error.
+                // TODO: Handle error.
                 //}
                 //cch = strlen(tchBuffer);
 
                 TextOut(lpdis->hDC,
-                    XBITMAP + 6,
-                    y,
-                    tchBuffer,
-                    strlen(tchBuffer));
+                XBITMAP + 6,
+                y,
+                tchBuffer,
+                strlen(tchBuffer));
 
                 SelectObject(hdcMem, hbmpOld);
                 DeleteDC(hdcMem);
@@ -297,22 +264,9 @@ public:
 
         return result;
     }
-
-    virtual BOOL onPaint()
-    {
-        PAINTSTRUCT ps;
-        HDC hdc;
-        hdc = BeginPaint(m_hDlg, &ps);
-        RECT rt;
-        GetClientRect(m_hDlg, &rt);
-        rt.top = 5;
-        //DrawText(hdc, "Hello World!", strlen("Hello World!"), &rt, DT_SINGLELINE|DT_CENTER|DT_VCENTER );
-        EndPaint(m_hDlg, &ps);
-        return FALSE;
-    }
 private:
     UDragListBox *m_pListBox;
-    UListBox *m_pIconListBox;
+    UIconListBox *m_pIconListBox;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

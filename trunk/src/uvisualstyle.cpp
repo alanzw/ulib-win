@@ -27,4 +27,46 @@
 namespace VisualStyles
 {
 
+BOOL isAppThemed()
+{
+    return ::IsAppThemed();
+}
+
+BOOL isThemeActive()
+{
+    return ::IsThemeActive();
+}
+
+UTheme::UTheme()
+{}
+
+UTheme::~UTheme()
+{
+    if (m_hTheme)
+    {
+        close();
+    }
+}
+
+BOOL UTheme::open(HWND hWnd, LPCWSTR pszClassList)
+{
+    m_hTheme = ::OpenThemeData(hWnd, pszClassList);
+    return NULL != m_hTheme;
+}
+
+BOOL UTheme::close()
+{
+    return S_OK == ::CloseThemeData(m_hTheme);
+}
+
+BOOL UTheme::enable(BOOL fEnable)
+{
+    return S_OK == ::EnableTheming(fEnable);
+}
+
+BOOL UTheme::drawBackgroud(HDC hdc, int iPartId, int iStateId, const RECT *pRect, const RECT *pClipRect)
+{
+    return S_OK == ::DrawThemeBackground(m_hTheme, hdc, iPartId, iStateId, pRect, pClipRect);
+}
+
 }; // namespace VisualStyles

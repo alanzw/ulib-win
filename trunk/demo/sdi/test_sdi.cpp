@@ -78,7 +78,7 @@ public:
         //{
         //    this->sendMsg(WM_NCACTIVATE, TRUE, (LONG)-1);
         //}
-        
+
         if (WM_COMMAND == uMessage)
         {
             switch (LOWORD (wParam))

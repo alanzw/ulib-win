@@ -9,11 +9,6 @@
 #include "../../res/u.rc"
 
 //
-// Icon resources
-//
-//IDI_APP    ICON   MOVEABLE PURE LOADONCALL     "wnd.ico"
-
-//
 // Version Information resources
 //
 1 VERSIONINFO

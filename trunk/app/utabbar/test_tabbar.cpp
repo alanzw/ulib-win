@@ -29,11 +29,11 @@ using huys::UDialogBox;
 class UDialogTabbar : public UDialogBox
 {
 public:
-    UDialogCtrls(HINSTANCE hInst, UINT nID)
+    UDialogTabbar(HINSTANCE hInst, UINT nID)
     : UDialogBox(hInst, nID)
     {}
 
-    ~UDialogCtrls()
+    ~UDialogTabbar()
     {
     }
 

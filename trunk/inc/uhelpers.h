@@ -131,12 +131,12 @@ class USize
 public:
 	operator SIZE()
 	{
-		SIZE s = {_cx, _cy}
+		SIZE s = {_cx, _cy};
 		return s;
 	}
 private:
 	T _cx;
-	T _cy
+	T _cy;
 };
 
 typedef UPoint<int> UPointI;

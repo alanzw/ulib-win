@@ -13,7 +13,7 @@ DEMODIR = ../demo
 DOCDIR  = ../doc
 
 ## !! Make sure shlwapi is the first, or StrStrIA's location will be confusing.
-LIBS = -mwindows -lshlwapi -lcomctl32 -lnetapi32 -lpsapi  -liphlpapi -lopengl32 -lglu32 -lws2_32 -lwinspool -lwinmm -luuid -lole32 -loleaut32
+LIBS = -mwindows -lshlwapi -lcomctl32 -lnetapi32 -lpsapi  -liphlpapi -lopengl32 -lglu32 -lws2_32 -lwinspool -lwinmm -luuid -lole32 -loleaut32 -luxtheme
 #LIBS = -mwindows -lcomctl32
 
 #
