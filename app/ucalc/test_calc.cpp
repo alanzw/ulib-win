@@ -64,7 +64,7 @@ public:
             return UBaseWindow::onCommand(wParam, lParam);
         }
     }
-    
+
     virtual BOOL onChar(WPARAM wParam, LPARAM lParam)
     {
         switch (wParam)
@@ -78,7 +78,7 @@ public:
 private:
     BOOL onMenuAbout()
     {
-        this->showMsg(_T("UTerminal v0.0.1"), _T("About"));
+        this->showMsg(_T("UCalc v0.0.1"), _T("About"));
         return FALSE;
     }
 };

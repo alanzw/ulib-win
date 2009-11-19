@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     float vecb[] = {2.0, 3.0, 4.0};
 
     printf("ScalarProduct %f\n", huys::scalarProduct(veca, vecb, 3));
-    
+
     float vecc[] = {1.0, 2.0, 5.0, 1.0, 2.0, 5.0, 1.0, 2.0};
     float vecd[] = {2.0, 3.0, 4.0, 2.0, 3.0, 4.0, 2.0, 3.0};
     //printf("ScalarProduct %f\n", huys::scalarProduct(vecc, vecd, 8));

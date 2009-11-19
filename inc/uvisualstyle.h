@@ -26,15 +26,38 @@
 namespace VisualStyles
 {
 
-inline BOOL isAppThemed()
-{
-    return ::IsAppThemed();
-}
+BOOL isAppThemed();
 
-inline BOOL isThemeActive()
+BOOL isThemeActive();
+
+class ULIB_API UTheme
 {
-    return ::IsThemeActive();
-}
+public:
+    UTheme();
+    ~UTheme();
+    
+    BOOL open(HWND hWnd, LPCWSTR pszClassList);
+    BOOL close();
+    
+    BOOL enable(BOOL fEnable);
+    
+    BOOL drawBackgroud( HDC hdc,
+                        int iPartId,
+                        int iStateId,
+                        const RECT *pRect,
+                        const RECT *pClipRect);
+
+ 	BOOL drawText( HDC hdc, 
+				   int iPartId,
+                   int iStateId,
+                   LPCWSTR pszText,
+                   int iCharCount,
+                   DWORD dwTextFlags,
+                   DWORD dwTextFlags2,
+                   LPCRECT pRect);
+private:
+    HTHEME m_hTheme;
+};
 
 }; // namespace VisualStyles
 

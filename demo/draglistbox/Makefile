@@ -38,13 +38,9 @@ test_draglistbox.o : test_draglistbox.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
 
 #
-$(RES) : $(RC) resource.h
-	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-    
-#
 .PHONY : test
 test:
-	cd $(BINDIR) && $(WINE) ./$(BIN)
+	$(WINE) $(BINDIR)/$(BIN)
 
 #
 .PHONY : clean

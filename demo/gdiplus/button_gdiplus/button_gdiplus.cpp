@@ -27,7 +27,7 @@ public:
         m_bMouseOver(FALSE),
         m_bTracking(FALSE),
         m_bMouseClicked(FALSE),
-		m_bDirtyBuffer(TRUE)
+        m_bDirtyBuffer(TRUE)
     {
         addStyles(WS_CHILD);
     }
@@ -37,21 +37,21 @@ public:
 
     }
 
-	BOOL onDestroy()
-	{
-		if (m_pCachedBitmap)
-		{
-			delete m_pCachedBitmap;
-			m_pCachedBitmap = NULL;
-		}
+    BOOL onDestroy()
+    {
+        if (m_pCachedBitmap)
+        {
+            delete m_pCachedBitmap;
+            m_pCachedBitmap = NULL;
+        }
 
-		if (m_hRgn)
-		{
-			DeleteObject(m_hRgn);
-			m_hRgn = NULL;
-		}
-		return FALSE;
-	}
+        if (m_hRgn)
+        {
+            DeleteObject(m_hRgn);
+            m_hRgn = NULL;
+        }
+        return FALSE;
+    }
 
     void onDraw(HDC hdc)
     {
@@ -67,27 +67,27 @@ public:
         graphics.DrawCachedBitmap(m_pCachedBitmap, 0, 0);
     }
 
-	virtual BOOL onSize(WPARAM wParam, LPARAM lParam)
-	{
-		m_bDirtyBuffer = TRUE;
-		return FALSE;
-	}
+    virtual BOOL onSize(WPARAM wParam, LPARAM lParam)
+    {
+        m_bDirtyBuffer = TRUE;
+        return FALSE;
+    }
 
     BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
     {
         m_bMouseClicked = !m_bMouseClicked;
-		m_bDirtyBuffer = TRUE;
+        m_bDirtyBuffer = TRUE;
         this->invalidate(TRUE);
-		
+
         return FALSE;
     }
 
-	BOOL onLButtonUp(WPARAM wParam, LPARAM lParam)
-	{
-		// Make the button's BN_CLICKED notify work
-		::SendMessage(getParent(), WM_COMMAND, MAKEWPARAM(getID(), BN_CLICKED), 0);
-		return FALSE;
-	}
+    BOOL onLButtonUp(WPARAM wParam, LPARAM lParam)
+    {
+        // Make the button's BN_CLICKED notify work
+        ::SendMessage(getParent(), WM_COMMAND, MAKEWPARAM(getID(), BN_CLICKED), 0);
+        return FALSE;
+    }
 
     BOOL filterMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
     {
@@ -96,11 +96,11 @@ public:
             return onEraseBkGnd((HDC)wParam);
         }
 
-		if (WM_MOUSEMOVE == uMessage)
-		{
-			return onMouseMove(wParam, lParam);
-		}
-		
+        if (WM_MOUSEMOVE == uMessage)
+        {
+            return onMouseMove(wParam, lParam);
+        }
+
 
         if (WM_MOUSEHOVER == uMessage)
         {
@@ -112,11 +112,11 @@ public:
             return onMouseLeave();
         }
 
-		if (WM_LBUTTONUP == uMessage)
-		{
-			return onLButtonUp(wParam, lParam);
-		}
-		
+        if (WM_LBUTTONUP == uMessage)
+        {
+            return onLButtonUp(wParam, lParam);
+        }
+
 
         return FALSE;
     }
@@ -136,27 +136,27 @@ public:
             tme.dwFlags = TME_LEAVE|TME_HOVER;
             tme.dwHoverTime = 1;
             m_bTracking = TrackMouseEvent(&tme);
-			m_bTracking = TRUE;
+            m_bTracking = TRUE;
         }
         if(m_bMouseOver == FALSE)
         {
             m_bMouseOver = TRUE;
         }
-		return FALSE;
+        return FALSE;
     }
 
     BOOL onMouseHover()
     {
-		m_bDirtyBuffer = TRUE;
-		m_bMouseOver = TRUE;
-		m_bTracking = TRUE;
+        m_bDirtyBuffer = TRUE;
+        m_bMouseOver = TRUE;
+        m_bTracking = TRUE;
         this->invalidate();
         return TRUE;
     }
 
     BOOL onMouseLeave()
     {
-		m_bDirtyBuffer = TRUE;
+        m_bDirtyBuffer = TRUE;
         m_bMouseOver = FALSE;
         m_bTracking = FALSE;
         this->invalidate();
@@ -172,7 +172,7 @@ private:
     BOOL m_bTracking;
     /** m_bMouseClicked: this variable toggles whenever user left clicks the control */
     BOOL m_bMouseClicked;
-	BOOL m_bDirtyBuffer;
+    BOOL m_bDirtyBuffer;
 public:
     //
     BOOL reCalcSize()
@@ -289,7 +289,7 @@ class GDIPlusWindow : public UBaseWindow
 public:
     GDIPlusWindow()
         : UBaseWindow(NULL, NULL),
-		m_pGDIPlusButton(NULL)
+        m_pGDIPlusButton(NULL)
     {
         setTitle(_T("GDIPlus Window"));
         addStyles(WS_CLIPCHILDREN);
@@ -332,7 +332,7 @@ public:
             return UBaseWindow::onChar(wParam, lParam);
         }
     }
-    
+
     virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
         switch (LOWORD (wParam))

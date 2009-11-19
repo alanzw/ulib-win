@@ -13,14 +13,15 @@ public:
     virtual BOOL create();
     //
     int addString(const char *lpszString);
-    int setItemData(WPARAM index, LPARAM data);
+    int setItemData(int index, LPARAM data);
+    LONG getItemData(int index);
     //
     int findString(const char *lpszString);
     int deleteString(int nIndex);
 
     //
     int getCurSel();
-
+    BOOL setCurSel(int nIndex);
     //
     int getText(int nIndex, char *sText);
 

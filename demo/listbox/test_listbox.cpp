@@ -15,18 +15,16 @@
 
 using huys::UDialogBox;
 
-const UINT ID_LISTBOX = 13333;
-const UINT ID_ICON_LISTBOX = 13334;
-
 
 class UIconListBox : public UListBox
 {
 public:
     UIconListBox(HWND hParent, UINT nID, HINSTANCE hInst)
-        : UListBox(hParent, nID, hInst)
+    : UListBox(hParent, nID, hInst)
     {
         m_dwStyles |= LBS_OWNERDRAWVARIABLE | WS_VSCROLL;
     }
+    
     ~UIconListBox() {};
 
     virtual BOOL create()
@@ -43,7 +41,6 @@ public:
 
     virtual BOOL onMessage(UINT nMessage, WPARAM wParam, LPARAM lParam)
     {
-
         return UListBox::onMessage(nMessage, wParam, lParam);
     }
 
@@ -61,6 +58,12 @@ public:
             m_dwUserData = 0;
         };
     };
+    
+    void addItem(LPCTSTR str, HBITMAP hbmp)
+    {
+        int nItem = this->addString(str);
+        this->setItemData(nItem, (LPARAM)hbmp);
+    }
 protected:
 private:
 };
@@ -72,17 +75,12 @@ HBITMAP hbmpPicture, hbmpOld;
 #define XBITMAP 80
 #define YBITMAP 20
 
-void AddItem(HWND hwnd, LPTSTR lpstr, HBITMAP hbmp)
-{
-    int nItem;
-
-    nItem = SendMessage(hwnd, LB_ADDSTRING, 0, (LPARAM)lpstr);
-    SendMessage(hwnd, LB_SETITEMDATA, (WPARAM)nItem, (LPARAM)hbmp);
-}
-
-
 class UDialogExt : public UDialogBox
 {
+    enum {
+        ID_LISTBOX = 13333,
+        ID_ICON_LISTBOX = 13334
+    };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
         : UDialogBox(hInst, nID),
@@ -140,39 +138,26 @@ public:
 
 
 
-            //
-            m_pIconListBox = new UListBox(m_hDlg, ID_ICON_LISTBOX, m_hInst);
+            m_pIconListBox = new UIconListBox(m_hDlg, ID_ICON_LISTBOX, m_hInst);
             m_pIconListBox->setStyles(LBS_OWNERDRAWVARIABLE);
+            m_pIconListBox->setPos(rc.left+250, rc.top, 200, rc.bottom-rc.top);
             m_pIconListBox->create();
-            rc.left += 250;
-            rc.right = rc.left + 200;
-            //rc.bottom -= 200;
-            m_pIconListBox->setPosition(&rc);
 
             // Load bitmaps.
-
             hbmpPencil = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON1));
             hbmpCrayon = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
             hbmpMarker = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON3));
             hbmpPen = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
             hbmpFork = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
-
-            // Retrieve list box handle.
-
-            HWND hListBox = m_pIconListBox->getHWND();
-
-            // Initialize the list box text and associate a bitmap
-            // with each list box item.
-
-            AddItem(hListBox, "pencil", hbmpPencil);
-            AddItem(hListBox, "crayon", hbmpCrayon);
-            AddItem(hListBox, "marker", hbmpMarker);
-            AddItem(hListBox, "pen",    hbmpPen);
-            AddItem(hListBox, "fork",   hbmpFork);
-
-            SetFocus(hListBox);
-            SendMessage(hListBox, LB_SETCURSEL, 0, 0);
-
+     
+            m_pIconListBox->addItem("pencil", hbmpPencil);
+            m_pIconListBox->addItem("crayon", hbmpCrayon);
+            m_pIconListBox->addItem("marker", hbmpMarker);
+            m_pIconListBox->addItem("pen",    hbmpPen);
+            m_pIconListBox->addItem("fork", hbmpFork);
+        
+            m_pIconListBox->setCurSel(0);
+    
         }
         return TRUE;
     }
@@ -311,7 +296,7 @@ public:
     }
 private:
     UListBox *m_pListBox;
-    UListBox *m_pIconListBox;
+    UIconListBox *m_pIconListBox;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

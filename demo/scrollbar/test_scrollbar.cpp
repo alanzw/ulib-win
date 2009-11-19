@@ -42,25 +42,25 @@ public:
         return TRUE;
     }
 
-	virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
-	{
-		if (WM_HSCROLL == message)
-			return this->onScroll(wParam, lParam);
+    virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
+    {
+        if (WM_HSCROLL == message)
+            return this->onScroll(wParam, lParam);
 
-		return UDialogBox::DialogProc(message, wParam, lParam);
-	}
+        return UDialogBox::DialogProc(message, wParam, lParam);
+    }
 
 private:
     UScrollBar *m_pScrollBar;
 
-	//
-	BOOL onScroll(WPARAM wParam, LPARAM lParam)
-	{
-		int nCurPos = m_pScrollBar->getScrollPos();
-		int min, max;
-		m_pScrollBar->getRange(&min, &max);
+    //
+    BOOL onScroll(WPARAM wParam, LPARAM lParam)
+    {
+        int nCurPos = m_pScrollBar->getScrollPos();
+        int min, max;
+        m_pScrollBar->getRange(&min, &max);
 
-		switch (LOWORD(wParam))
+        switch (LOWORD(wParam))
         {
                 case SB_LEFT:
                         nCurPos = min;
@@ -92,11 +92,11 @@ private:
                         break;
         }
 
-		m_pScrollBar->setScrollPos(nCurPos);
+        m_pScrollBar->setScrollPos(nCurPos);
 
-		
-		return FALSE;
-	}
+
+        return FALSE;
+    }
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);
