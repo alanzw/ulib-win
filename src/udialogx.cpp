@@ -88,7 +88,7 @@ BOOL UDialogBox::onCancel()
             m_hDlg = NULL;
         }
 
-        if (NULL != m_hParent)
+        if (NULL == m_hParent)
         {
             ::PostQuitMessage (0);
         }
