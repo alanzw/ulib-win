@@ -32,6 +32,8 @@ int main()
     cout << (s2+"3333").c_str() << endl;
 
     cout << (s2<<"4444").c_str() << endl;
+    
+    cout << s2.reverse().c_str() << endl;
 
     cout << "=========================" << endl;
 

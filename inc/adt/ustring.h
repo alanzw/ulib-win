@@ -3,6 +3,7 @@
 
 #include <windows.h>
 #include <tchar.h>
+#include <cassert>
 
 namespace huys
 {
@@ -271,6 +272,26 @@ public:
         memcpy((void *)s.m_pBuf, (const void *)(m_pBuf+m), sizeof(T)*s.m_nStrLength);
         s.m_pBuf[s.m_nStrLength] = 0;
         return s;
+    }
+    
+    UString & swap(size_type m, size_type n)
+    {
+        assert( m >=0 && m < length() && n >=0 && n < length() );
+        T temp = m_pBuf[m];
+        m_pBuf[m] = m_pBuf[n];
+        m_pBuf[n] = temp;
+        return *this;
+    }
+    
+    UString & reverse()
+    {
+        size_type half_len = m_nStrLength / 2;
+        
+        for (int i = 0; i<=half_len; ++i)
+        {
+            this->swap(i, m_nStrLength-1-i);
+        }
+        return *this;
     }
 
     UString & operator << (const UString & in)
