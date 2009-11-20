@@ -33,7 +33,8 @@ SUBDIRS = btree  \
           comparable \
           table  \
           queue  \
-
+          recursion \
+          
 #
 all:
 	$(MAKEALL_SUBDIRS)

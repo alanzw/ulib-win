@@ -120,13 +120,13 @@ int floyd()
             path[i][j]=graph[i][j];
         }
     }
-    
+
     for(k=0;k<num;k++)
         for(i=0;i<num;i++)
             for(j=0;j<num;j++)
                 if(path[i][j]>graph[i][k]+graph[k][j])
                     path[i][j]=graph[i][k]+graph[k][j];
-    
+
     for(i=0;i<num;i++)
         for(j=0;j<num;j++)
             printf("Shortest distance between <%d,%d>: %d \n",i+1,j+1,path[i][j]);
@@ -142,7 +142,7 @@ int main()
     knap2(50, 10);
 
     floyd();
-    
+
     cin.ignore();
 
     return 0;
