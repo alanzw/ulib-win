@@ -12,10 +12,13 @@ BOOL APIENTRY DllMain( HANDLE hModule,
     {
     case DLL_PROCESS_ATTACH:
         LOG_STRING("Ulib-win DLL_PROCESS_ATTACH!");
+        break;
     case DLL_THREAD_ATTACH:
         LOG_STRING("Ulib-win DLL_THREAD_ATTACH!");
+        break;
     case DLL_THREAD_DETACH:
         LOG_STRING("Ulib-win DLL_THREAD_DETACH!");
+        break;
     case DLL_PROCESS_DETACH:
         LOG_STRING("Ulib-win DLL_PROCESS_DETACH!");
         break;
