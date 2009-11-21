@@ -1,5 +1,5 @@
 #
-TOPDIR = ../../..
+TOPDIR = ../..
 #
 include $(TOPDIR)/make.inc
 
@@ -10,12 +10,12 @@ CFLAGS +=
 CXXFLAGS +=
 
 #
-OBJ = test_algo.o
-BIN = test_algo.exe
+OBJ = test_singleton.o
+BIN = test_singleton.exe
 RC  =
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/adt/uadt.h
+HEADER =
 #
 all: $(BIN)
 

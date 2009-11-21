@@ -14,18 +14,12 @@ THIRDPARTY_DIR = $(TOPDIR)/thirdparty
 THIRDPARTY_INC = $(THIRDPARTY_DIR)/include/lua
 THIRDPARTY_LIB = $(THIRDPARTY_DIR)/lib/liblua.a
 #
-CFLAGS =
-CXXFLAGS =
 INC = -I"../../inc" -I$(PYTHON_DIR)/include -I$(PERL_INC) -I$(THIRDPARTY_INC)
 LIBS = -L"../../lib" -mwindows -luwin -ltcl84  $(THIRDPARTY_LIB)
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE
 
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
+
 #
 OBJ = \
  test_script.o \
@@ -47,15 +41,6 @@ all: $(BIN)
 $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
-
-
-#
-%.o : %.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
 
 #
 .PHONY : test

@@ -1,23 +1,14 @@
 #
-include ../make.inc
-
+TOPDIR = ..
 #
-SRCDIR = ../src
-INCDIR = ../inc
-OBJDIR = ../obj
-BINDIR = ../bin
-LIBDIR = ../lib
-RESDIR = ../res
-
-DEMODIR = ../demo
-DOCDIR  = ../doc
+include $(TOPDIR)/make.inc
 
 ## !! Make sure shlwapi is the first, or StrStrIA's location will be confusing.
 LIBS = -mwindows -lshlwapi -lcomctl32 -lnetapi32 -lpsapi  -liphlpapi -lopengl32 -lglu32 -lws2_32 -lwinspool -lwinmm -luuid -lole32 -loleaut32 -luxtheme
 #LIBS = -mwindows -lcomctl32
 
 #
-include ../config.inc
+include $(TOPDIR)/config.inc
 
 OBJECTS = $(OBJS)
 

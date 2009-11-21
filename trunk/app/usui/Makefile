@@ -16,13 +16,6 @@ CXXFLAGS += $(INCS)
 LDFLAGS += $(LIBS)
 
 #
-SRCDIR = $(TOPDIR)/src
-INCDIR = $(TOPDIR)/inc
-OBJDIR = $(TOPDIR)/obj
-RESDIR = $(TOPDIR)/res
-ICODIR = $(TOPDIR)/ico
-BINDIR = $(TOPDIR)/bin
-#
 OBJ = test_sui.o \
       usui.o     \
       ulua.o     \
@@ -44,10 +37,6 @@ $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LDFLAGS)
 	cp -v $@ $(BINDIR)/$@
 	cp -v $(THIRDPARTY_DIR)/bin/lua51.dll $(BINDIR)/lua51.dll
-
-#
-%.o : %.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS)
 
 .PHONY : test
 test :

@@ -1,25 +1,18 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS =
-INC = -I"../../inc"
-LIB = -L"../../lib" -mwindows -lmsimg32
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -mwindows -lmsimg32
+CFLAGS +=
+CXXFLAGS += -DWITHOUT_EXE
+
 
 #
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
-
-#
-OBJ = \
- test_window.o \
- $(OBJDIR)/uwindow.o
-
+OBJ = test_window.o  \
+      uwindow.o
 BIN = test_window.exe
 RC  = window.rc
 RES = ${RC:.rc=.res}
@@ -30,19 +23,11 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB)
+	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -vf $@ $(BINDIR)/$@
 
-#
-test_window.o : test_window.cpp $(HEADER)
-	$(CXX) -c -o $@ -DWITHOUT_DLL $< $(CXXFLAGS) $(INC)
-
-$(OBJDIR)/uwindow.o : $(SRCDIR)/uwindow.cpp $(HEADER)
-	$(CXX) -c -o $@ -DWITHOUT_DLL $< $(CXXFLAGS) $(INC)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
+uwindow.o : $(SRCDIR)/uwindow.cpp $(HEADER)
+	$(CXX) -c -o $@ $< $(CXXFLAGS) $(INCS)
 
 .PHONY: test
 test :

@@ -111,3 +111,18 @@ endif
 #
 %.res : %.rc
 	$(WINDRES) -i $< -o $@ $(RCFLAGS)
+
+#
+SRCDIR = $(TOPDIR)/src
+INCDIR = $(TOPDIR)/inc
+OBJDIR = $(TOPDIR)/obj
+RESDIR = $(TOPDIR)/res
+ICODIR = $(TOPDIR)/ico
+BINDIR = $(TOPDIR)/bin
+DEMODIR= $(TOPDIR)/demo
+DOCDIR = $(TOPDIR)/doc
+LIBDIR = $(TOPDIR)/lib
+#
+#
+%.o : %.cpp $(HEADER)
+	$(CXX) -c -o $@ $< $(CXXFLAGS) $(INCS)

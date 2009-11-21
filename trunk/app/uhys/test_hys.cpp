@@ -20,7 +20,6 @@
 
 int main()
 {
-
     huys::ScriptEngine::UEngine use;
 
     use.doString("prt Hello");

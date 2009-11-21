@@ -4,18 +4,10 @@ TOPDIR = ../..
 include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS =
 INCS = -I"$(TOPDIR)/inc"
 LIBS = -L"$(TOPDIR)/lib"
-
-#
-SRCDIR = $(TOPDIR)/src
-INCDIR = $(TOPDIR)/inc
-OBJDIR = $(TOPDIR)/obj
-RESDIR = $(TOPDIR)/res
-ICODIR = $(TOPDIR)/ico
-BINDIR = $(TOPDIR)/bin
+CFLAGS +=
+CXXFLAGS +=
 
 #
 OBJ = test_objectpool.o
@@ -30,10 +22,6 @@ all: $(BIN)
 #
 $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIBS) $(RES)
-
-#
-%.o : %.cpp $(HEADER)
-	$(CXX) -c -o $@ $< $(CXXFLAGS) $(INCS)
 
 #
 .PHONY : test

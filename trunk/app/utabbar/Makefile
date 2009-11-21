@@ -1,19 +1,14 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS =
-INC = -I"../../inc"
-LIBS = -L"../../lib" -mwindows -luwin
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE
 
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
 #
 OBJ = \
  test_tabbar.o \
@@ -34,13 +29,9 @@ $(BIN) : $(OBJ) $(RES)
 	cp -v $@ $(BINDIR)/$@
 
 #
-%.o : %.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
 .PHONY : test
 test :
-	$(BINDIR)/$(BIN)     
+	$(WINE) $(BINDIR)/$(BIN)
 #
 .PHONY : clean
 clean :

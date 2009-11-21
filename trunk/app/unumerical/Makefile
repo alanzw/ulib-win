@@ -1,22 +1,14 @@
 #
 TOPDIR = ../..
-
+#
 include $(TOPDIR)/make.inc
 
 #
 INCS = -I"$(TOPDIR)/inc"
-LIBS = -L"$(TOPDIR)/lib"
+LIBS = -L"$(TOPDIR)/lib" -luwin
 CFLAGS +=
-CXXFLAGS += $(INCS)
-LDFLAGS += $(LIBS)
+CXXFLAGS += -DBUILD_EXE
 
-#
-SRCDIR = $(TOPDIR)/src
-INCDIR = $(TOPDIR)/inc
-OBJDIR = $(TOPDIR)/obj
-RESDIR = $(TOPDIR)/res
-ICODIR = $(TOPDIR)/ico
-BINDIR = $(TOPDIR)/bin
 #
 OBJ = test_numerical.o \
       unumerical.o
@@ -36,9 +28,6 @@ $(BIN) : $(OBJ) $(RES)
 	cp -v $@ $(BINDIR)/$@
 
 #
-%.o : %.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS)
-
 .PHONY : test
 test :
 	$(WINE) $(BINDIR)/$(BIN)     

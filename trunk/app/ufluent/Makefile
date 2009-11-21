@@ -1,19 +1,14 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS += -DHU_DEBUG
-INC = -I"../../inc"
-LIBS = -L"../../lib" -mwindows -luwin -luhook
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin -luhook
+CFLAGS +=
+CXXFLAGS +=  -DHU_DEBUG -DBUILD_EXE
 
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
 #
 OBJ =          \
  test_fluent.o \
@@ -36,16 +31,9 @@ $(BIN) : $(OBJ) $(RES)
 	cp -v $@ $(BINDIR)/$@
 
 #
-%.o : %.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-#
 .PHONY : test
 test :
-	$(BINDIR)/$(BIN)     
+	$(WINE) $(BINDIR)/$(BIN)     
 #
 .PHONY : clean
 clean :

@@ -1,23 +1,16 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS =
-INC = -I"../../inc"
-LIBS = -L"../../lib" -mwindows -luwin
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE
 
 #
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
-#
-OBJ = \
- test_ctrls.o \
-
+OBJ = test_ctrls.o
 BIN = test_ctrls.exe
 RC  = ctrls.rc
 RES = ${RC:.rc=.res}
@@ -36,16 +29,9 @@ $(BIN) : $(OBJ) $(RES)
 	cp -v $@ $(BINDIR)/$@
 
 #
-test_ctrls.o : test_ctrls.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-#
 .PHONY : test
 test :
-	$(BINDIR)/$(BIN)     
+	$(WINE) $(BINDIR)/$(BIN)     
 #
 .PHONY : clean
 clean :

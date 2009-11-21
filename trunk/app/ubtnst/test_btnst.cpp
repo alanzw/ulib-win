@@ -36,7 +36,7 @@ public:
 
         return UBaseWindow::onCreate();
     }
-    
+
     BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
         switch (LOWORD (wParam))
@@ -49,7 +49,7 @@ public:
     }
 private:
     UButtonST *m_pBnSt;
-    
+
 private:
     BOOL onBnSt()
     {
