@@ -31,26 +31,26 @@ public:
         m_pStatusBar = new UStatusBar(m_hDlg, IDC_STATUSBAR, m_hInst);
         m_pStatusBar->setPos(100, 100, 100, 100);
         m_pStatusBar->create();
-        
+
         m_pStatusBar->setMinHeight(32);
-        
+
         int aWidths[] = { 100, 200 };
-        
+
         m_pStatusBar->setParts(2, aWidths);
-        
+
         m_pStatusBar->setText(0, _T("hello"));
         m_pStatusBar->setText(1, _T("hello"));
-        
+
         m_ico.loadIconEx(m_hInst, IDI_APP);
-        
+
         m_pStatusBar->setIcon(1, m_ico);
-        
+
         //if (!m_pStatusBar->isSimple())
         //{
         //    m_pStatusBar->simplify(TRUE);
         //    m_pStatusBar->setText(0, _T("Simple"));
         //}
-        
+
         return TRUE;
     }
 protected:
