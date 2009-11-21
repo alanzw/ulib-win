@@ -4,30 +4,10 @@
 # updated  : 2008.11.21.
 # version  : 0.1
 #
-
 #
-include ../make.inc
-
+TOPDIR = ..
 #
-CFLAGS   =
-CXXFLAGS =
-INC      = -I"../inc"
-LIB      = -L"../lib"
-LDFLAGS  =
-#
-SRCDIR = ../src
-INCDIR = ../inc
-OBJDIR = ../obj
-BINDIR = ../bin
-LIBDIR = ../lib
-RESDIR = ../res
-
-DEMODIR = ../demo
-
-DOCDIR  = ../doc
-
-#
-HEADER =
+include $(TOPDIR)/make.inc
 
 #
 SUBDIRS =        \
@@ -71,6 +51,8 @@ SUBDIRS =        \
       vtable     \
       event      \
       dispatch   \
+      memento    \
+      singleton  \
       
 #
 .PHONY: all

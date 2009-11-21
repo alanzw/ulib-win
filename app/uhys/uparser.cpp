@@ -58,32 +58,32 @@ bool UPaser::tokenize(const char *code)
     //
     if (-1 == nSpaceAt)
     {
-#ifdef HU_DEBUG
+//#ifdef HU_DEBUG
     std::cout << "1 : " << str.c_str() << std::endl;
-#endif
+//#endif
         m_tokens.push_back(str);
         return true;
     }
 
-#ifdef HU_DEBUG
+//#ifdef HU_DEBUG
     std::cout << "2 : " << str.substr(0, nSpaceAt).c_str() << std::endl;
-#endif
+//#endif
     m_tokens.push_back(str.substr(0, nSpaceAt));
 
     if (-1 != nCommaAt)
     {
-#ifdef HU_DEBUG
+//#ifdef HU_DEBUG
     std::cout << "3 : " << str.substr(nSpaceAt+1, nCommaAt).c_str() << std::endl;
     std::cout << "3 : " << str.substr(nCommaAt+1, str.size()).c_str() << std::endl;
-#endif
+//#endif
         m_tokens.push_back(str.substr(nSpaceAt+1, nCommaAt));
         m_tokens.push_back(str.substr(nCommaAt+1, str.size()));
     }
     else
     {
-#ifdef HU_DEBUG
+//#ifdef HU_DEBUG
     std::cout << "4 : " << str.substr(nSpaceAt+1, str.size()).c_str() << std::endl;
-#endif
+//#endif
         m_tokens.push_back(str.substr(nSpaceAt+1, str.size()));
     }
 

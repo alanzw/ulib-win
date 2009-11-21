@@ -1,19 +1,13 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS =
-INCS = -I"../../inc"
-LIBS = -L"../../lib"
-
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib"
+CFLAGS +=
+CXXFLAGS +=
 
 #
 OBJ = test_builder.o
@@ -28,13 +22,6 @@ all: $(BIN)
 #
 $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIBS) $(RES)
-
-#
-test_builder.o : test_builder.cpp $(HEADER)
-	$(CXX) -c -o $@ $< $(CXXFLAGS) $(INCS)
-
-$(RES) : $(RC) resource.h
-	$(WINDRES) -i $< -o $@ -O coff -I"$(RESDIR)" -I"$(ICODIR)"
 #
 .PHONY : test
 test:

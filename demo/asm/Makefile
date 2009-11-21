@@ -1,19 +1,14 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS = 
-INC = -I"../../inc"
-LIB = -L"../../lib"
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib"
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE
 
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
 #
 OBJ = test_asm.o
 BIN = test_asm.exe
@@ -28,10 +23,6 @@ all: $(BIN)
 $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIB)
 	cp -vf $(BIN) $(BINDIR)/$(BIN)
-
-#
-test_asm.o : test_asm.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
 
 #
 .PHONY : test

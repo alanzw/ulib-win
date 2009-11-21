@@ -19,8 +19,7 @@
 #ifndef U_MYDIALOG_CTRLBAR_H
 #define U_MYDIALOG_CTRLBAR_H
 
-#include "udialogx.h"
-#include "umsg.h"
+
 #include "ucontrol.h"
 #include "colors.h"
 //#include "ubutton.h"
@@ -41,66 +40,17 @@ public:
     {
     }
 
+	int getCount() const
+	{
+		return m_nCount;
+	}
+
+
+
     //virtual UControl * create(HWND hParent, UINT id, const TCHAR *lpTitle, LPRECT lpRect) = 0;
 protected:
     //UCtrls m_ctrls;
-};
-
-using huys::UDialogBox;
-
-class UDialogCtrlBar : public UDialogBox
-{
-public:
-    UDialogCtrlBar(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID)
-    {}
-
-    ~UDialogCtrlBar()
-    {
-
-    }
-
-    BOOL onInit()
-    {
-        return TRUE;
-    }
-
-    BOOL onRButtonDown(WPARAM wParam, LPARAM lParam)
-    {
-        return FALSE;
-    }
-
-    BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
-    {
-        return FALSE;
-    }
-
-    virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
-    {
-        switch ( LOWORD(wParam) )
-        {
-        case 333:
-            {
-                ;
-            }
-        default:
-            return UDialogBox::onCommand(wParam, lParam);
-        }
-    }
-
-    virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
-    {
-        BOOL result = UDialogBox::DialogProc(message, wParam, lParam);
-        HBRUSH hBrushBK = ::CreateSolidBrush(huys::xpblue);
-        switch (message)
-        {
-        case WM_CTLCOLORDLG:
-            return (BOOL)hBrushBK;
-        }
-        return result;
-    }
-private:
-    UCtrlBar *m_pCtrlBar;
+	int m_nCount;
 };
 
 #endif // U_MYDIALOG_CTRLS_H

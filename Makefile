@@ -9,18 +9,6 @@ TOPDIR = .
 include $(TOPDIR)/make.inc
 
 #
-SRCDIR = $(TOPDIR)/src
-INCDIR = $(TOPDIR)/inc
-OBJDIR = $(TOPDIR)/obj
-BINDIR = $(TOPDIR)/bin
-LIBDIR = $(TOPDIR)/lib
-RESDIR = $(TOPDIR)/res
-
-DEMODIR = $(TOPDIR)/demo
-
-DOCDIR  = $(TOPDIR)/doc
-
-#
 INC      = -I"$(INCDIR)"
 LIB      = -L"$(LIBDIR)"
 CFLAGS   +=
@@ -38,21 +26,20 @@ else
 endif
 
 #
-.PHONY: all
 #all: UOBJS URES ULIBS UBINS UDEMO UDOC
 #all: UOBJS ULIBS URES UDEMO
 all : UOBJS URES ULIBS
 
 #
 UOBJS :
-	cd $(OBJDIR) && $(MAKE) all
+	$(MAKE) -C $(OBJDIR) all
 #
 URES :
-	cd $(RESDIR) && $(MAKE) all
+	$(MAKE) -C $(RESDIR) all
 
 #
 ULIBS :
-	cd $(LIBDIR) && $(MAKE) all
+	$(MAKE) -C $(LIBDIR) all
 
 #
 UBINS :

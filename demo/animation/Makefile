@@ -1,22 +1,16 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS =
-INC = -I"../../inc"
-LIB = -L"../../lib" -mwindows -luwin
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE
 
 #
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
-
-#
-OBJ = test_anime$(OBJEXT)
+OBJ = test_anime.o
 BIN = test_anime.exe
 RC  = anime.rc
 RES = ${RC:.rc=.res}
@@ -29,16 +23,10 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB) $(RES)
+	$(CXX) -o $(BIN) $^ $(LIBS) $(RES)
 	cp -v $@ $(BINDIR)/$@
 	cp -v 1.avi $(BINDIR)/1.avi
 
-#
-test_anime.o : test_anime.cpp $(HEADER)
-	$(CXX) -c -DBUILD_EXE -o $@ $< $(CXXFLAGS) $(INC)
-
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $< -o $@ -O coff -I"$(RESDIR)" -I"$(ICODIR)"
 #
 .PHONY : test
 test:

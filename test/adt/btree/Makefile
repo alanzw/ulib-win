@@ -11,14 +11,6 @@ CXXFLAGS += $(INCS)
 LDFLAGS += $(LIBS) -Wl,-Map,out.map -Wl,--cref
 
 #
-SRCDIR = $(TOPDIR)/src
-INCDIR = $(TOPDIR)/inc
-OBJDIR = $(TOPDIR)/obj
-RESDIR = $(TOPDIR)/res
-ICODIR = $(TOPDIR)/ico
-BINDIR = $(TOPDIR)/bin
-
-#
 OBJ = test_btree.o
 BIN = test_btree.exe
 RC  =
@@ -32,10 +24,6 @@ all: $(BIN)
 #
 $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LDFLAGS) $(RES)
-
-#
-%.o : %.cpp $(HEADER)
-	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
 #
 .PHONY : test

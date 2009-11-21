@@ -32,7 +32,7 @@ public:
         clear();
     }
 
-    explicit UString(const T *sText)
+    UString(const T *sText)
     : m_pBuf(0), m_nBufSize(DEFAULT_BUFSIZE), m_nStrLength(0)
     {
         if (0 == sText)

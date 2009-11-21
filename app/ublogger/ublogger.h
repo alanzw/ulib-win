@@ -56,6 +56,7 @@ public:
         switch (LOWORD (wParam))
         {
         case IDC_BN_CONVERT:
+            return this->onBnConvert();
         default:
             return UBaseWindow::onCommand(wParam, lParam);
         }
@@ -75,6 +76,11 @@ private:
     UEdit *m_pEdtOrigin;
     UEdit *m_pEdtConvert;
     UButton *m_pBtnConvert;
+private:
+    BOOL onBnConvert()
+    {
+        return FALSE;
+    }
 };
 
 class UBloggerApp : public UWinApp
