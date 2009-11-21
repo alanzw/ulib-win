@@ -25,6 +25,8 @@ public:
     //
     BOOL simplify(BOOL bSimple = FALSE);
     BOOL isSimple();
+	//
+	BOOL resize();
 protected:
 private:
 };

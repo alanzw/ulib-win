@@ -1,19 +1,13 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS =
-INC = -I"../../inc"
-LIB = -L"../../lib" -mwindows -lcomctl32 -luwin
-
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE
 
 #
 OBJ = test_statusbar$(OBJEXT)
@@ -29,15 +23,8 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB) $(RES)
+	$(CXX) -o $(BIN) $^ $(LIBS) $(RES)
 	cp -v $@ $(BINDIR)/$@
-
-#
-test_statusbar.o : test_statusbar.cpp $(HEADER)
-	$(CXX) -c -DWITHOUT_DLL -o $@ $< $(CXXFLAGS) $(INC)
-
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $< -o $@ -O coff -I"$(RESDIR)" -I"$(ICODIR)"
 
 #
 .PHONY : test

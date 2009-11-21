@@ -11,6 +11,7 @@
 #include "adt/uvector.h"
 #include "utoolbar.h"
 #include "uimagelist.h"
+#include "ustatusbar.h"
 
 class UMyDockWindow : public UBaseWindow
 {
@@ -27,7 +28,6 @@ public:
         this->setExStyles(WS_EX_TOOLWINDOW);
         this->setPos(100, 100, 200, 72);
     }
-
 
     BOOL onCreate()
     {
@@ -61,6 +61,7 @@ public:
         m_putl->autosize();
         m_putl->show();
         m_putl->enableButton(IDM_SAVE);
+        
         return UBaseWindow::onCreate();
     }
 
@@ -165,6 +166,10 @@ private:
 class UMyWindow : public UBaseWindow
 {
     typedef huys::ADT::UVector<UBaseWindow *> DockWnds;
+    
+    enum {
+        IDC_STATUSBAR = 12345
+    };
 public:
    UMyWindow()
    : UBaseWindow()
@@ -181,11 +186,18 @@ public:
         {
             delete *it;
         }
+        CHECK_PTR(m_pStatusBar);
    }
 
    BOOL onCreate()
    {
        this->setIconBig(IDI_APP);
+       
+        m_pStatusBar = new UStatusBar(*this, IDC_STATUSBAR, getInstance());
+        m_pStatusBar->create();
+        m_pStatusBar->setMinHeight(16);
+        m_pStatusBar->setText(0, _T("hello"));
+      
        return UBaseWindow::onCreate();
    }
 
@@ -220,7 +232,7 @@ public:
 
    BOOL onMenuAbout()
    {
-        static_cast<UMyDockWindow *>(m_dwin[0])->goDock();
+        static_cast<UMyDockWindow *>(m_dwin.at(0))->goDock();
    }
 
    BOOL onSize(WPARAM wParam, LPARAM lParam)
@@ -232,15 +244,19 @@ public:
 
         if (m_dwin.size() > 0)
         {
-            hdwp = ::BeginDeferWindowPos(1);
+            hdwp = ::BeginDeferWindowPos(2);
             ::DeferWindowPos(hdwp, *m_dwin[0], 0, rc.left, rc.top, width, 1, SWP_NOZORDER);
             ::EndDeferWindowPos(hdwp);
-        }
+		}
+ 		m_pStatusBar->resize();      
+        
         return FALSE;
    }
 private:
     DockWnds m_dwin;
     HDWP hdwp;
+    
+    UStatusBar *m_pStatusBar;
 };
 
 

@@ -68,3 +68,8 @@ BOOL UStatusBar::isSimple()
 {
     return this->sendMsg(SB_ISSIMPLE);
 }
+
+BOOL UStatusBar::resize()
+{
+	return this->sendMsg(WM_SIZE);
+}

@@ -250,10 +250,10 @@ BOOL UControl::onMessage(UINT message, WPARAM wParam, LPARAM lParam)
         return onSetFocus();
     case WM_KILLFOCUS:
         return onKillFocus();
-	case WM_SIZE:
-		return onSize(wParam, lParam);
-	case WM_MOVE:
-		return onMove(wParam, lParam);
+    case WM_SIZE:
+        return onSize(wParam, lParam);
+    case WM_MOVE:
+        return onMove(wParam, lParam);
     case WM_TIMER:
         return onTimer(wParam, lParam);
     case WM_NOTIFY:
@@ -321,22 +321,22 @@ LRESULT UControl::newControlProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
     //    ::SetWindowLong (hwnd, GWL_USERDATA, long((LPCREATESTRUCT(lParam))->lpCreateParams));
     //}
 
-	BOOL bRet;
-	if (uMsg == WM_CTLCOLORSTATIC || uMsg == WM_CTLCOLOREDIT)
-	{
-		if ((bRet=UDialogBox::onCtrlColor(wParam, lParam)) != FALSE)
-		{
-			return bRet;
-		}
-	}
+    BOOL bRet;
+    if (uMsg == WM_CTLCOLORSTATIC || uMsg == WM_CTLCOLOREDIT)
+    {
+        if ((bRet=UDialogBox::onCtrlColor(wParam, lParam)) != FALSE)
+        {
+            return bRet;
+        }
+    }
 
-	if (uMsg == WM_DRAWITEM)
-	{
-		if ((bRet=UDialogBox::onDrawItem(wParam, lParam)) != FALSE)
-		{
-			return bRet;
-		}
-	}
+    if (uMsg == WM_DRAWITEM)
+    {
+        if ((bRet=UDialogBox::onDrawItem(wParam, lParam)) != FALSE)
+        {
+            return bRet;
+        }
+    }
 
     pCtrl = reinterpret_cast<UControl *> (::GetWindowLong (hwnd, GWL_USERDATA));
 
@@ -345,6 +345,7 @@ LRESULT UControl::newControlProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
     if (uMsg == WM_NOTIFY + WM_REFLECT_CTLCOLOR)
     {
         return bRet;
+
     }
 
     if (bRet)
