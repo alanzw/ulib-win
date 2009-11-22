@@ -67,12 +67,12 @@ public:
 private :
     unsigned *bp;
     BitSet(const BitSet&);
-    BitSet & BitSet(const BitSet&);
+    BitSet & operator=(const BitSet&);
 };
 
 int main()
 {
-    BitSet bb(10);
+    BitSet bb(9);
     bb.set(3);
     bb.set(8);
     for (size_t i = 0; i < bb.size(); ++i)
@@ -85,7 +85,7 @@ int main()
     printf("\n");
 
 
-    bb.resize(20);
+    bb.resize(11);
     for (size_t i = 0; i < bb.size(); ++i)
         printf("%d -> %d\n", i, bb.test(i));
     return 0;
