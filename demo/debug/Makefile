@@ -1,19 +1,13 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS = -DHU_DEBUG
-INCS = -I"../../inc"
-LIBS = -L"../../lib" -luwin
-
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE -DHU_DEBUG
 #
 OBJ = test_dbg.o
 BIN = test_dbg.exe
@@ -35,17 +29,6 @@ test_dbgwin.exe : test_dbgwin.o $(RES)
 	$(CXX) -o $@ $^ $(LIBS) -mwindows
 	cp -v $@ $(BINDIR)/$@
 
-#
-test_dbgwin.o : test_dbgwin.cpp
-	$(CXX) -c -o $@ $< -DBUILD_EXE $(CXXFLAGS) $(INCS)
-
-#
-test_dbg.o : test_dbg.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INCS)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
     
 #
 clean :

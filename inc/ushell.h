@@ -29,6 +29,21 @@ ULIB_API BOOL executeEx( HWND hwnd,
 
 ULIB_API int msgbox(HWND hWnd, LPCTSTR pszMsg, LPCTSTR pszTitle, UINT fuStyle = MB_OK);
 
+namespace Path
+{
+
+ULIB_API void stripPath(LPTSTR sPath);
+
+ULIB_API LPTSTR addBackslash(LPTSTR sPath);
+
+ULIB_API LPTSTR removeBackslash(LPTSTR sPath);
+
+ULIB_API BOOL addExtension(LPTSTR sPath, LPCTSTR sExtension);
+
+ULIB_API void removeExtension(LPTSTR sPath);
+
+}; // namespace Path
+
 }; // namespace UShell
 
 

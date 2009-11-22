@@ -47,6 +47,7 @@ SYSTEM_OBJS =     \
     umailslot.o   \
     upipe.o       \
     uthunk32.o    \
+    uimagehlp.o   \
 
 
 GRAPHIC_OBJS =    \

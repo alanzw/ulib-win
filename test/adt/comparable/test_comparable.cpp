@@ -21,17 +21,17 @@ int main()
     using std::endl;
 
     value_type v1, v2;
-    
+
     if (v1 == v2)
     {
         cout <<  " equal" << endl;
     }
-    
+
     if (v1 > v2)
     {
         cout <<  " greater than" << endl;
     }
-    
+
     return 0;
 }
 

@@ -146,6 +146,7 @@ SUBDIRS = \
           thunk32     \
           semaphore   \
           criticalsection \
+          visualstyle \
 
 
 #

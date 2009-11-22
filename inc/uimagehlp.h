@@ -24,8 +24,11 @@
 class ULIB_API UImageHelp
 {
 public:
+    UImageHelp()
+    ~UImageHelp();
 protected:
 private:
+    LOADED_IMAGE m_LoadedImage;
 };
 
 #endif // U_IMAGE_HLP_H
