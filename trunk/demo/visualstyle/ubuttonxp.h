@@ -1,21 +1,17 @@
-#ifndef U_GLASS_BUTTON_H
-#define U_GLASS_BUTTON_H
+#ifndef U_BUTTON_XP_H
+#define U_BUTTON_XP_H
 
 #include "ubutton.h"
 
-class UGlassButton : public UOwnerDrawnButton
+class UButtonXP : public UOwnerDrawnButton
 {
 public:
-    UGlassButton(HWND hParent, UINT nResource, HINSTANCE hInst);
+    UButtonXP(HWND hParent, UINT nResource, HINSTANCE hInst);
     : UOwnerDrawnButton(hParent, nResource, hInst)
-    {
+    {}
 
-    }
-
-    ~UGlassButton()
-    {
-
-    }
+    virtual ~UButtonXP()
+    {}
 
     virtual BOOL onDrawItem(WPARAM wParam, LPARAM lParam)
     {
@@ -31,8 +27,7 @@ public:
         return TRUE;
     }
 
-private:
 
 };
 
-#endif // U_GLASS_BUTTON_H
+#endif // U_BUTTON_XP_H

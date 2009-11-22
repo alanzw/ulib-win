@@ -14,12 +14,12 @@ public:
         *bp = i;//size
         *(bp+1) = i;//capacity
     };
-    
+
     ~BitSet()
     {
         free(bp);
     };
-    
+
     bool resize(const size_t nsize)
     {
         if (nsize <= this->capacity())
@@ -146,38 +146,38 @@ private:
 
 void test()
 {
-    BitSet b(10); 
-    b.set(3); 
+    BitSet b(10);
+    b.set(3);
     b.set(8);
-    for (size_t i=0; i < b.size();++i) 
-        printf("%d -> %d\n", i, b.test(i)); 
-    printf("\n"); 
+    for (size_t i=0; i < b.size();++i)
+        printf("%d -> %d\n", i, b.test(i));
+    printf("\n");
 
     b.resize(5);
-    for (size_t i=0; i < b.size();++i) 
-        printf("%d -> %d\n", i, b.test(i)); 
-    printf("\n"); 
+    for (size_t i=0; i < b.size();++i)
+        printf("%d -> %d\n", i, b.test(i));
+    printf("\n");
 
     b.resize(9);
-    for (size_t i=0; i < b.size();++i) 
-        printf("%d -> %d\n", i, b.test(i)); 
+    for (size_t i=0; i < b.size();++i)
+        printf("%d -> %d\n", i, b.test(i));
     printf("\n");
-    for (size_t i=0; i < b.size();++i) 
+    for (size_t i=0; i < b.size();++i)
         b.set(i);
-    for (size_t i=0; i < b.size();++i) 
-        printf("%d -> %d\n", i, b.test(i)); 
+    for (size_t i=0; i < b.size();++i)
+        printf("%d -> %d\n", i, b.test(i));
     printf("\n");
-    for (size_t i=0; i < b.size();++i) 
+    for (size_t i=0; i < b.size();++i)
         b.clr(i);
-    for (size_t i=0; i < b.size();++i) 
-        printf("%d -> %d\n", i, b.test(i)); 
+    for (size_t i=0; i < b.size();++i)
+        printf("%d -> %d\n", i, b.test(i));
     printf("\n");
 }
 
 }; // namespace B8
 
 int main()
-{       
+{
     B8::test();
     return 0;
 }

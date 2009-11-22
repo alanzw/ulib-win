@@ -8,7 +8,6 @@ using std::endl;
 
 int g_tickets = 10;
 
-//临界区对象
 UCriticalSection g_cs;
 
 DWORD WINAPI thread_proc1(LPVOID lpParam)
@@ -16,9 +15,9 @@ DWORD WINAPI thread_proc1(LPVOID lpParam)
     while (true)
     {
         UCriticalSection::scoped_lock lock(g_cs);
-        
+
         if (g_tickets <= 0) break;
-        
+
         Sleep(1);
         cout << "thread1: " << g_tickets-- << endl;
     }
@@ -31,7 +30,7 @@ DWORD WINAPI thread_proc2(LPVOID lpParam)
     {
         UCriticalSection::scoped_lock lock(g_cs);
         if (g_tickets<=0) break;
-  
+
         cout << "thread2: " << g_tickets-- << endl;
     }
     return 0;

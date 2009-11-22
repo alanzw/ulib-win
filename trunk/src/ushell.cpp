@@ -2,6 +2,7 @@
 
 #include <windows.h>
 #include <tchar.h>
+#include <shlwapi.h>
 
 /// For Vista and later versions
 #if (WINVER >= 0x0600)
@@ -84,5 +85,35 @@ int msgbox(HWND hWnd, LPCTSTR pszMsg, LPCTSTR pszTitle, UINT fuStyle)
     return ::MessageBox(hWnd, pszMsg, pszTitle, fuStyle);
 #endif // _WIN32_IE
 }
+
+namespace Path
+{
+
+void stripPath(LPTSTR sPath)
+{
+    ::PathStripPath(sPath);
+}
+
+LPTSTR addBackslash(LPTSTR sPath)
+{
+    return ::PathAddBackslash(sPath);
+}
+
+LPTSTR removeBackslash(LPTSTR sPath)
+{
+    return ::PathRemoveBackslash(sPath);
+}
+
+BOOL addExtension(LPTSTR sPath, LPCTSTR sExtension)
+{
+    return ::PathAddExtension(sPath, sExtension);
+}
+
+void removeExtension(LPTSTR sPath)
+{
+    ::PathRemoveExtension(sPath);
+}
+
+}; // namespace Path
 
 }; // namespace UShell

@@ -1,19 +1,4 @@
-#
-include ../../make.inc
-
-#
-CFLAGS =
-CXXFLAGS = -DHU_DEBUG
-INC = -I"../../inc"
-LIB = -L"../../lib" -luwin
-
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
+ -lcomctl32
 #
 OBJ = test_ini.o
 BIN = test_ini.exe

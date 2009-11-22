@@ -7,15 +7,8 @@ include $(TOPDIR)/make.inc
 INCS = -I"$(TOPDIR)/inc"
 LIBS = -L"$(TOPDIR)/lib"
 CFLAGS +=
-CXXFLAGS +=
-
-#
-SRCDIR = $(TOPDIR)/src
-INCDIR = $(TOPDIR)/inc
-OBJDIR = $(TOPDIR)/obj
-RESDIR = $(TOPDIR)/res
-ICODIR = $(TOPDIR)/ico
-BINDIR = $(TOPDIR)/bin
+CXXFLAGS += $(INCS)
+LDFLAGS += $(LIBS)
 
 #
 OBJ = test_list.o

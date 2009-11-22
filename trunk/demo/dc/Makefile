@@ -1,19 +1,14 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS =
-INC = -I"../../inc"
-LIB = -L"../../lib" -mwindows -luwin
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE
 
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
 #
 OBJ = test_dc.o
 
@@ -31,11 +26,7 @@ all: $(BIN)
 $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIB)
 	cp -v $@ $(BINDIR)/$@
-
 #
-test_dc.o : test_dc.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
 .PHONY : test
 test :
 	$(WINE) $(BINDIR)/$(BIN)

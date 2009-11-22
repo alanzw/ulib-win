@@ -68,40 +68,51 @@ UNodeList vs;
 
 //#define SHRT_MAX 99999
 
-void sort(UNodeList* vec) {
+void sort(UNodeList* vec)
+{
     //sorts the vector of nodes according to
     //distances from the source to each node
     for (unsigned int i = 0; i < vec->size(); i++)
+    {
         for (unsigned int j = i; j < vec->size(); j++)
-            if (d[vec->at(i)] > d[vec->at(j)]) {
+        {
+            if (d[vec->at(i)] > d[vec->at(j)])
+            {
                 int temp = vec->at(i);
                 vec->at(i) = vec->at(j);
                 vec->at(j) = temp;
             }
+        }
+    }
 }
 
-void relax(UNodeList* vec, int u) {
+void relax(UNodeList* vec, int u)
+{
     //updates the distances from the source to each node
     //and the predecessor for each node
-    for (unsigned int i = 0; i < vec->size(); i++) {
+    for (unsigned int i = 0; i < vec->size(); i++)
+    {
         int vi = vec->at(i);
         if (graph[u][vi] == SHRT_MAX)
             continue;
-        if (d[vi] > d[u] + graph[u][vi]) {
+        if (d[vi] > d[u] + graph[u][vi])
+        {
             d[vi] = d[u] + graph[u][vi];
             pi[vi] = u;
         }
     }
 }
 
-void printShortestPathTo(int v) {
+void printShortestPathTo(int v)
+{
     //this simply prints the vector of predecessors
     //for the requested node (v)
     cout << "Distance to " << v << " is " << d[v] << endl;
     cout << "Shortest path: ";
     int x = pi[v];
     cout << v << "<-";
-    while (x != -1 && x != 0) {
+    while (x != -1 && x != 0)
+    {
         cout << x << "<-";
         x = pi[x];
     }
@@ -112,8 +123,12 @@ void printShortestPathTo(int v) {
 int main() {
     //initialize all the costs in the graph
     for (int i = 0; i < SIZE; i++)
+    {
         for (int j = 0; j < SIZE; j++)
+        {
             graph[i][j] = SHRT_MAX;
+        }
+    }
 
     graph[0][1] = 20;
     graph[0][4] = 40;
@@ -123,13 +138,16 @@ int main() {
     graph[4][2] = 20;
     graph[4][3] = 100;
 
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
             cout << graph[i][j] << "\t";
         }
         cout << endl;
     }
-    for (int i = 0; i < SIZE; i++) {
+    for (int i = 0; i < SIZE; i++)
+    {
         vs.push_back(i);//initialize all the variables
         d[i] = SHRT_MAX;//all distances to infinite
         pi[i] = -1;//nodes have no predecesors
@@ -137,9 +155,11 @@ int main() {
     d[0] = 0; //the distance of the source is 0
     sort(&vs); //we sort the nodes according to the distance
 
-    while (vs.size() > 0) {
+    while (vs.size() > 0)
+    {
         int x = vs.front();//take the node with the shortest distance
-        for (unsigned int i = 0; i < vs.size() - 1; i++) {
+        for (unsigned int i = 0; i < vs.size() - 1; i++)
+        {
             vs.at(i) = vs.at(i + 1);
         }
         vs.pop_back();
@@ -156,3 +176,4 @@ int main() {
     cin.ignore();
     return 0;
 }
+
