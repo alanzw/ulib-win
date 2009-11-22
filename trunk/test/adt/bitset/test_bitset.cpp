@@ -2,6 +2,9 @@
 #include <cstdlib>
 #include <cstring>
 
+namespace B32
+{
+
 class BitSet
 {
 public:
@@ -70,7 +73,7 @@ private :
     BitSet & operator=(const BitSet&);
 };
 
-int main()
+void test()
 {
     BitSet bb(9);
     bb.set(3);
@@ -88,5 +91,93 @@ int main()
     bb.resize(11);
     for (size_t i = 0; i < bb.size(); ++i)
         printf("%d -> %d\n", i, bb.test(i));
+
+}
+
+}; // namespace B32
+
+
+namespace B8
+{
+
+class BitSet
+{
+public:
+    BitSet(unsigned short i = 0)
+    {
+        bp = (char *)calloc((i >> 3) + 3, sizeof(char));
+        *reinterpret_cast<unsigned short*>(bp) = i;
+    }
+    ~BitSet()
+    {
+        free(bp);
+    }
+    bool resize(unsigned short nsize)
+    {
+        char *nbp = (char *)calloc((nsize >> 3) + 3, sizeof(char));
+        if (nbp == NULL) return false;
+        size_t copysize = *bp < nsize ? *bp : nsize;
+        memcpy(nbp, bp, ((copysize >> 3) + 3) * sizeof(char));
+        *reinterpret_cast<unsigned short*>(nbp) = nsize;
+        free(bp);
+        bp = nbp;
+        return true;
+    }
+    void set(unsigned short i)
+    {
+        bp[2 + (i >> 3)] |= (1 << (i & 0x07));
+    }
+    void clr(unsigned short i)
+    {
+        bp[2 + (i >> 3)] &= ~(1 << (i & 0x07));
+    }
+    bool test(unsigned short i) const
+    {
+        return (bp[2 + (i >> 3)] & (1 << (i & 0x07))) > 0;
+    }
+    unsigned short size()
+    {
+        return *bp;
+    }
+private:
+    char *bp;
+    BitSet(const BitSet&);
+};
+
+void test()
+{
+    BitSet b(10); 
+    b.set(3); 
+    b.set(8);
+    for (size_t i=0; i < b.size();++i) 
+        printf("%d -> %d\n", i, b.test(i)); 
+    printf("\n"); 
+
+    b.resize(5);
+    for (size_t i=0; i < b.size();++i) 
+        printf("%d -> %d\n", i, b.test(i)); 
+    printf("\n"); 
+
+    b.resize(9);
+    for (size_t i=0; i < b.size();++i) 
+        printf("%d -> %d\n", i, b.test(i)); 
+    printf("\n");
+    for (size_t i=0; i < b.size();++i) 
+        b.set(i);
+    for (size_t i=0; i < b.size();++i) 
+        printf("%d -> %d\n", i, b.test(i)); 
+    printf("\n");
+    for (size_t i=0; i < b.size();++i) 
+        b.clr(i);
+    for (size_t i=0; i < b.size();++i) 
+        printf("%d -> %d\n", i, b.test(i)); 
+    printf("\n");
+}
+
+}; // namespace B8
+
+int main()
+{       
+    B8::test();
     return 0;
 }
