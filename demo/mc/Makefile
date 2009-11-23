@@ -1,19 +1,14 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS = 
-INC = -I"../../inc"
-LIBS = -L"../../lib" -luwin
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -luwin
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE
 
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
 #
 OBJ = test_mc.o
 BIN = test_mc.exe
@@ -32,10 +27,6 @@ $(BIN) : $(OBJ) $(RES)
 #
 test_mc.o : test_mc.cpp $(HEADER) mc.h
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-$(RES) : $(RC) resource.h mc.rc
-	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
 
     
 mc.h mc.rc : mc.mc

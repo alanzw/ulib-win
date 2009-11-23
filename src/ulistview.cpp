@@ -61,17 +61,17 @@ BOOL UListView::setImageListState(HIMAGELIST himl)
 BOOL UListView::setImageListGroupHeader(HIMAGELIST himl)
 {
 //    return this->setImageList(himl, LVSIL_GROUPHEADER);
-	return TRUE;
+    return TRUE;
 }
 
 BOOL UListView::addColumn( int iCol, LPLVCOLUMN lplvc )
 {
-	return this->sendMsg(LVM_INSERTCOLUMN, (WPARAM)(int)iCol, (LPARAM)(LPLVCOLUMN)lplvc);
+    return this->sendMsg(LVM_INSERTCOLUMN, (WPARAM)(int)iCol, (LPARAM)(LPLVCOLUMN)lplvc);
 }
 
 BOOL UListView::addItem( LVITEM *lplvi )
 {
-	return this->sendMsg(LVM_INSERTITEM, 0, (LPARAM)(LVITEM*)lplvi);
+    return this->sendMsg(LVM_INSERTITEM, 0, (LPARAM)(LVITEM*)lplvi);
 }
 
 BOOL UListView::addColTextWidth( int iCol, LPSTR lpText, int nWidth)
@@ -108,16 +108,31 @@ BOOL UListView::getColumn( int iCol, LPLVCOLUMN lplvc )
 
 BOOL UListView::setItem(int nIndex, LVITEM *lplvi)
 {
-	return this->sendMsg(LVM_SETITEMTEXT, (WPARAM)nIndex, (LPARAM)lplvi);
+    return this->sendMsg(LVM_SETITEMTEXT, (WPARAM)nIndex, (LPARAM)lplvi);
 }
 
 BOOL UListView::setItemText(int nIndex, int nSubIndex, LPTSTR lpText)
 {
-	LVITEM lstItem = {0};
-	lstItem.mask = LVIF_TEXT;
-	lstItem.iItem = nIndex;
-	lstItem.iSubItem = nSubIndex;
-	lstItem.pszText = lpText;
-	return this->setItem(nIndex, &lstItem);
+    LVITEM lstItem = {0};
+    lstItem.mask = LVIF_TEXT;
+    lstItem.iItem = nIndex;
+    lstItem.iSubItem = nSubIndex;
+    lstItem.pszText = lpText;
+    return this->setItem(nIndex, &lstItem);
+}
+
+BOOL UListView::setBKColor( huys::Color clr )
+{
+	return this->sendMsg(LVM_SETBKCOLOR, 0, (LPARAM)clr);
+}
+
+BOOL UListView::setTextBKColor( huys::Color clr )
+{
+	return this->sendMsg(LVM_SETTEXTBKCOLOR, 0, (LPARAM)clr);
+}
+
+BOOL UListView::setTextColor( huys::Color clr )
+{
+	return this->sendMsg(LVM_SETTEXTCOLOR, 0, (LPARAM)clr);
 }
 

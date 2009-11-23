@@ -7,3 +7,4 @@
 #define IDC_CGBOX                        5001
 #define IDC_BUTTON1                      5002
 #define IDC_EDIT1                        5003
+

@@ -1,4 +1,14 @@
- -lcomctl32
+#
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
+
+#
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -luwin
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE
+
 #
 OBJ = test_ini.o
 BIN = test_ini.exe
@@ -13,11 +23,6 @@ all: $(BIN)
 $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIB)
 	cp -vf $(BIN) $(BINDIR)/$(BIN)
-
-#
-test_ini.o : test_ini.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
 #
 .PHONY : test
 test :

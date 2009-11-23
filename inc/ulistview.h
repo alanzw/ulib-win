@@ -2,6 +2,7 @@
 #define U_LISTVIEW_H
 
 #include "ucontrol.h"
+#include "colors.h"
 
 #ifdef UNICODE
  #ifndef LVCOLUMN
@@ -47,6 +48,10 @@ public:
     //
     virtual BOOL setItem(int nIndex, LVITEM *lplvi);
     virtual BOOL setItemText(int nIndex, int nSubIndex, LPTSTR lpText);
+
+	BOOL setBKColor(huys::Color clr);
+	BOOL setTextColor(huys::Color clr);
+	BOOL setTextBKColor(huys::Color clr);
 protected:
 private:
 };

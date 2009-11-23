@@ -23,10 +23,6 @@ all: $(BIN)
 $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
-
-#
-test_msg.o : test_msg.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
     
 #
 .PHONY : test

@@ -222,7 +222,7 @@ BOOL UBaseWindow::invalidate(BOOL bErase)
 BOOL UBaseWindow::destroy()
 {
     return ::DestroyWindow(m_hSelf);
-	//return FALSE;
+    //return FALSE;
 }
 
 BOOL UBaseWindow::onClose()
@@ -300,32 +300,32 @@ BOOL UBaseWindow::setWindowText(LPCTSTR lpText)
 
 BOOL UBaseWindow::setWindowPos(HWND hWndInsertAfter, int x, int y, int cx, int cy, UINT uFlag)
 {
-	return ::SetWindowPos(m_hSelf, hWndInsertAfter, x, y, cx, cy, uFlag);
+    return ::SetWindowPos(m_hSelf, hWndInsertAfter, x, y, cx, cy, uFlag);
 }
 
 BOOL UBaseWindow::setWindowPlacement(WINDOWPLACEMENT *lpwndpl)
 {
-	return ::SetWindowPlacement(m_hSelf, lpwndpl);
+    return ::SetWindowPlacement(m_hSelf, lpwndpl);
 }
 
 BOOL UBaseWindow::getWindowPlacement(WINDOWPLACEMENT *lpwndpl)
 {
-	return ::GetWindowPlacement(m_hSelf, lpwndpl);
+    return ::GetWindowPlacement(m_hSelf, lpwndpl);
 }
 
 BOOL UBaseWindow::getWindowRect(LPRECT lpRect)
 {
-	return ::GetWindowRect(m_hSelf, lpRect);
+    return ::GetWindowRect(m_hSelf, lpRect);
 }
 
 BOOL UBaseWindow::getClientRect(LPRECT lpRect)
 {
-	return ::GetClientRect(m_hSelf, lpRect);;
+    return ::GetClientRect(m_hSelf, lpRect);;
 }
 
 BOOL UBaseWindow::moveWindow(int x, int y, int cx, int cy, BOOL bRepaint /*= FALSE*/)
 {
-	return ::MoveWindow(m_hSelf, x, y, cx, cy, bRepaint);
+    return ::MoveWindow(m_hSelf, x, y, cx, cy, bRepaint);
 }
 
 

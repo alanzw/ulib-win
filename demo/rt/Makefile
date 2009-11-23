@@ -1,19 +1,13 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS = 
-INC = -I"../../inc"
-LIB = -L"../../lib" -luwin
-
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -luwin
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE
 #
 OBJ = test_rt.o
 BIN = test_rt.exe
@@ -28,14 +22,6 @@ all: $(BIN)
 $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIB)
 	cp -v $@ $(BINDIR)/$@
-
-#
-test_rt.o : test_rt.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-$(RES) : $(RC) resource.h
-	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
 
 #
 .PHONY : test
