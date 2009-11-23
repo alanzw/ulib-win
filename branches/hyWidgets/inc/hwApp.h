@@ -7,21 +7,27 @@ class HW_API hwAppConsole
 {
 public:
     hwAppConsole();
-    
+
     virtual ~hwAppConsole();
-    
+
     virtual bool init(int argc, hwCharPtrPtr argv);
-    
+
     virtual bool onInit();
-    
+
     virtual bool onRun() = 0;
-    
+
     virtual bool onExit();
-    
+
     virtual bool onCleanup();
 private:
     int _argc;
     hwCharPtrPtr _argv;
+};
+
+class HW_API hwAppGUI
+{
+public:
+
 };
 
 
@@ -34,5 +40,5 @@ private:
 #ifdef HW_MSW
   #include "msw/hwApp.h"
 #endif
-    
+
 #endif // HW_APP_H
