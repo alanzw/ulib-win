@@ -108,31 +108,18 @@ public:
         HWND hListView;
         hListView = GetDlgItem(m_hDlg, IDC_LIST_APPLICATIONS);
         //
-        LVCOLUMN Column;
-        Column.mask=LVCF_FMT|LVCF_WIDTH|LVCF_TEXT|LVCF_SUBITEM;
-        Column.fmt=LVCFMT_CENTER;
-        Column.cx=175;
-        Column.iSubItem=0;
-        Column.pszText="Task";
-        SendMessage(hListView, LVM_INSERTCOLUMN, 0, (LPARAM)&Column);
+        UListView ulv;
+        ulv.fromHandle(hListView);
+        ulv.addColTextWidth(0, "Task", 175);
+        ulv.addColTextWidth(1, "Status", 75);
+        ulv.addColTextWidth(2, "Extra", 75);
 
-        Column.cx = 75;
-        Column.iSubItem = 1;
-        Column.pszText="Status";
-        SendMessage(hListView, LVM_INSERTCOLUMN, 1, (LPARAM)&Column);
-
-        Column.cx = 75;
-        Column.iSubItem = 2;
-        Column.pszText = "Extra";
-        ListView_InsertColumn(hListView, 2, (LPARAM)&Column);
         //
         addWindowTitles();
 
-        ListView_SetBkColor(hListView, RGB(0,192,192));
-        ListView_SetTextBkColor(hListView, RGB(0,192,192));
-        ListView_SetTextColor(hListView, RGB(255,255,255));
-
-
+		ulv.setBKColor(RGB(0,192,192));
+		ulv.setTextBKColor(RGB(0,192,192));
+		ulv.setTextColor(huys::white);
 
         return TRUE;
     }
@@ -216,41 +203,21 @@ public:
         HWND hListView;
         hListView = GetDlgItem(m_hDlg, IDC_LIST_PROCESSES);
         //
-        LVCOLUMN Column;
-        Column.mask=LVCF_FMT|LVCF_WIDTH|LVCF_TEXT|LVCF_SUBITEM;
-        Column.fmt=LVCFMT_CENTER;
-        Column.cx=125;
-        Column.iSubItem=0;
-        Column.pszText="Image Name";
-        SendMessage(hListView, LVM_INSERTCOLUMN, 0, (LPARAM)&Column);
+        UListView ulv;
+        ulv.fromHandle(hListView);
+        ulv.addColTextWidth(0, "Image Name", 125);
+        ulv.addColTextWidth(1, "PID", 75);
+        ulv.addColTextWidth(2, "User Name", 75);
 
-        Column.cx=75;
-        Column.iSubItem = 1;
-        Column.pszText="PID";
-        SendMessage(hListView, LVM_INSERTCOLUMN, 1, (LPARAM)&Column);
+        ulv.addItemTextImage(0, "System Idle Process", 0);
+        ulv.setItemText(0, 1, "0");
+        ulv.setItemText(0, 2, "SYSTEM");
 
-        Column.iSubItem = 2;
-        Column.pszText = "User Name";
-        ListView_InsertColumn(hListView, 2, (LPARAM)&Column);
-        //
-        LVITEM lstItem;
-        lstItem.mask = LVIF_TEXT | LVIF_STATE;
-        lstItem.state=0;
-        lstItem.stateMask=0;
-        lstItem.iItem = 0;
-        lstItem.iSubItem = 0;
-        lstItem.pszText = "System Idle Process";
-        SendMessage(hListView, LVM_INSERTITEM, 0, (LPARAM)&lstItem);
 
-        lstItem.iSubItem = 1;
-        lstItem.pszText = "0";
-        SendMessage(hListView, LVM_SETITEMTEXT, 0, (LPARAM)&lstItem);
+		ulv.setBKColor(RGB(0,192,192));
+		ulv.setTextBKColor(RGB(0,192,192));
+		ulv.setTextColor(huys::white);
 
-        ListView_SetItemText(hListView, 0, 2, "SYSTEM");
-
-        ListView_SetBkColor(hListView, RGB(0,192,192));
-        ListView_SetTextBkColor(hListView, RGB(0,192,192));
-        ListView_SetTextColor(hListView, RGB(255,255,255));
 
         return TRUE;
     }
@@ -267,43 +234,21 @@ public:
     {
         HWND hListView;
         hListView = GetDlgItem(m_hDlg, IDC_LIST_SERVICES);
-        //
-        LVCOLUMN Column;
-        Column.mask=LVCF_FMT|LVCF_WIDTH|LVCF_TEXT|LVCF_SUBITEM;
-        Column.fmt=LVCFMT_CENTER;
-        Column.cx=125;
-        Column.iSubItem=0;
-        Column.pszText="Service Name";
-        SendMessage(hListView, LVM_INSERTCOLUMN, 0, (LPARAM)&Column);
 
-        Column.cx=200;
-        Column.iSubItem = 1;
-        Column.pszText="path";
-        SendMessage(hListView, LVM_INSERTCOLUMN, 1, (LPARAM)&Column);
+        UListView ulv;
+        ulv.fromHandle(hListView);
+        ulv.addColTextWidth(0, "Service Name", 125);
+        ulv.addColTextWidth(1, "path", 200);
+        ulv.addColTextWidth(2, "Status", 75);
 
-        Column.cx=75;
-        Column.iSubItem = 2;
-        Column.pszText = "Status";
-        ListView_InsertColumn(hListView, 2, (LPARAM)&Column);
-        //
-        LVITEM lstItem;
-        lstItem.mask = LVIF_TEXT | LVIF_STATE;
-        lstItem.state=0;
-        lstItem.stateMask=0;
-        lstItem.iItem = 0;
-        lstItem.iSubItem = 0;
-        lstItem.pszText = "Dummy";
-        SendMessage(hListView, LVM_INSERTITEM, 0, (LPARAM)&lstItem);
+        ulv.addItemTextImage(0, "Dummy", 0);
+        ulv.setItemText(0, 1, "C:\\Windows\\system32\\service -d");
+        ulv.setItemText(0, 2, "Started");
 
-        lstItem.iSubItem = 1;
-        lstItem.pszText = "C:\\Windows\\system32\\service -d";
-        SendMessage(hListView, LVM_SETITEMTEXT, 0, (LPARAM)&lstItem);
+		ulv.setBKColor(RGB(0,192,192));
+		ulv.setTextBKColor(RGB(0,192,192));
+		ulv.setTextColor(huys::white);
 
-        ListView_SetItemText(hListView, 0, 2, "Started");
-
-        ListView_SetBkColor(hListView, RGB(0,192,192));
-        ListView_SetTextBkColor(hListView, RGB(0,192,192));
-        ListView_SetTextColor(hListView, RGB(255,255,255));
 
         return TRUE;
     }
@@ -317,14 +262,15 @@ class UTabChildPrf : public UTabChild
     };
 public:
     UTabChildPrf(HINSTANCE hInst, UINT nID, HWND hParent)
-
-        : UTabChild(hInst, nID, hParent)
+    : UTabChild(hInst, nID, hParent)
     {}
 
     ~UTabChildPrf()
     {
         CHECK_PTR(m_pUsageBarCPU);
         CHECK_PTR(m_pUsageBarPF);
+        CHECK_PTR(m_pUsageGraphCPU);
+        CHECK_PTR(m_pUsageGraphPF);
     }
 
     virtual BOOL onInit()
@@ -414,12 +360,17 @@ public:
     : UTabChild(hInst, nID, hParent)
     {}
 
+    ~UTabChildNetwork()
+    {
+        CHECK_PTR(m_pUsageGraphNet);
+    }
+
     virtual BOOL onInit()
     {
         m_pUsageGraphNet = new UUsageGraph;
         m_pUsageGraphNet->subclass(IDC_NETWORK_UTILIZATION, m_hDlg);
         m_pUsageGraphNet->invalidate(TRUE);
-    
+
         return TRUE;
     }
 private:
