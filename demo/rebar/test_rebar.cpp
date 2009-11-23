@@ -14,7 +14,6 @@
 #include "uimagelist.h"
 #include "uedit.h"
 #include "ucombobox.h"
-
 #include "umsg.h"
 
 using huys::UDialogBox;
@@ -97,7 +96,7 @@ public:
         m_pCombo->addText(_T("good!"));
         return TRUE;
     }
-    
+
     virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
         switch ( LOWORD (wParam) )
@@ -114,12 +113,12 @@ private:
     UImageList *m_pImageList;
     UEdit *m_pEdit;
     UComboBox *m_pCombo;
-    
+
 private:
     BOOL onBnGo()
     {
         //m_pRebar->setBkColor(huys::blue);
-		showMsg(_T("go"), _T("info"), m_hDlg);
+        showMsg(_T("go"), _T("info"), m_hDlg);
         return FALSE;
     }
 };

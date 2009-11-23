@@ -20,7 +20,16 @@ public:
     virtual ~UDialogBox();
 
     HWND getHWND();
+    void setHWND(HWND hWnd) {m_hDlg = hWnd;}
 
+    typedef enum {
+        U_DLG_MODALESS,
+        U_DLG_MODAL
+    } DlgMode;  
+    
+    DlgMode getMode() const
+    { return m_mode; }
+    
     virtual BOOL setParentH(HWND hParent);
 
     virtual BOOL create();
@@ -119,11 +128,6 @@ protected:
     HWND m_hDlg;
     DLGPROC m_lpDialogFunc;
     HWND m_hParent;
-
-    typedef enum {
-        U_DLG_MODALESS,
-        U_DLG_MODAL
-    } DlgMode;
 
     DlgMode m_mode;
 private:

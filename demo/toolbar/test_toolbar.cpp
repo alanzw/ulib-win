@@ -16,73 +16,33 @@
 
 using huys::UDialogBox;
 
-const UINT ID_TOOLBAR = 13333;
-const DWORD buttonStyles = TBSTYLE_AUTOSIZE; //BTNS_AUTOSIZE;
+//BOOL CALLBACK ModalDlgProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
-HWND hwndGoto = NULL;  // Window handle of dialog box
-
-HWND hToolbar;
-
-BOOL CALLBACK GoToProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-    //BOOL fError;
-
-    switch (message)
-    {
-    case WM_INITDIALOG:
-        return TRUE;
-    case WM_CLOSE:
-        DestroyWindow(hwndGoto);
-        hwndGoto = NULL;
-        return TRUE;
-    case WM_COMMAND:
-        switch (LOWORD(wParam))
-        {
-        case IDOK:
-            return TRUE;
-
-        case IDCANCEL:
-            DestroyWindow(hwndDlg);
-            hwndGoto = NULL;
-            return TRUE;
-        }
-    }
-    return FALSE;
-}
-
-HWND hModalDlg = NULL;
-
-BOOL CALLBACK ModalDlgProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
 class UModalDialog : public UDialogBox
 {
 public:
     UModalDialog(HINSTANCE hInst, UINT nID, HWND hParent)
-        : UDialogBox(hInst, nID, ModalDlgProc)
+        : UDialogBox(hInst, nID, UDialogBox::DefaultDlgProc, hParent)
     {
-        this->setParentH(hParent);
         m_mode = U_DLG_MODAL;
     }
     virtual BOOL create()
     {
-        return ::DialogBoxParam(m_hInst, MAKEINTRESOURCE(m_nDialogID), m_hParent, m_lpDialogFunc,
-            (LPARAM)this);
+        return ::DialogBoxParam(m_hInst, MAKEINTRESOURCE(m_nDialogID), m_hParent, m_lpDialogFunc, (LPARAM)this);
     }
 
     virtual BOOL doModal()
     {
         return this->create();
     }
-    void setHWND(HWND hDlg)
-    {
-        m_hDlg = hDlg;
-    }
+    
     BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
         switch(LOWORD(wParam))
         {
         case IDM_EXIT:
-            return this->destroy();
+            return this->onCancel();
         default:
             return UDialogBox::onCommand(wParam, lParam);
         }
@@ -95,29 +55,14 @@ public:
     }
 };
 
-BOOL CALLBACK ModalDlgProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-    //BOOL fError;
-    static UModalDialog *pDlg = NULL;
-
-    switch (message)
-    {
-    case WM_INITDIALOG:
-        pDlg = reinterpret_cast<UModalDialog *>(lParam);
-        pDlg->setHWND(hwndDlg);
-        return TRUE;
-    case WM_SETFONT:
-        return FALSE;
-    default:
-        return pDlg->DialogProc(message, wParam, lParam);
-    }
-}
-
 class UDialogExt : public UDialogBox
 {
+    enum {
+        ID_TOOLBAR = 13333
+    };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID)//, m_psub(0)//, uil(IDR_TOOLBAR1, hInst)
+        : UDialogBox(hInst, nID), m_psub(0)//, uil(IDR_TOOLBAR1, hInst)
     {}
 
     ~UDialogExt()
@@ -146,11 +91,11 @@ public:
         TBBUTTON tbButtons[4] =
         {
             { MAKELONG(0, 0), IDM_NEW, TBSTATE_ENABLED,
-            buttonStyles | TBSTYLE_DROPDOWN, {0}, 0, (INT_PTR)"New" },
+            TBSTYLE_AUTOSIZE | TBSTYLE_DROPDOWN, {0}, 0, (INT_PTR)"New" },
             { MAKELONG(1, 0), IDM_OPEN, TBSTATE_ENABLED,
-            buttonStyles, {0}, 0, (INT_PTR)"Open"},
+            TBSTYLE_AUTOSIZE, {0}, 0, (INT_PTR)"Open"},
             { MAKELONG(2, 0), IDM_SAVE, 0,
-            buttonStyles, {0}, 0, (INT_PTR)"Save"},
+            TBSTYLE_AUTOSIZE, {0}, 0, (INT_PTR)"Save"},
             { 100, 0, TBSTATE_ENABLED, TBSTYLE_SEP, {0}, 0, -1}
         };
         m_putl->addButtons(4, tbButtons);
@@ -158,7 +103,7 @@ public:
         m_putl->show();
         m_putl->enableButton(IDM_SAVE);
 
-        hToolbar = m_putl->getHWND();
+        HWND hToolbar = m_putl->getHWND();
 
         DWORD dwSize = m_putl->getButtonSize();
         LONG lHeight = LOWORD(dwSize);
@@ -200,7 +145,7 @@ public:
 
             LPNMTBCUSTOMDRAW lpNMCustomDraw = (LPNMTBCUSTOMDRAW) lParam;
             RECT rect;
-            ::GetClientRect(hToolbar, &rect);
+            ::GetClientRect(m_putl->getHWND(), &rect);
             ::FillRect(lpNMCustomDraw->nmcd.hdc, &rect, (HBRUSH)GetStockObject(GRAY_BRUSH));
 
 #define lpnm   ((LPNMHDR)lParam)
@@ -269,31 +214,28 @@ public:
         }
     }
 
-    virtual BOOL onPaint()
+    virtual void onDraw(HDC hdc)
     {
-        PAINTSTRUCT ps;
-        HDC hdc;
-        hdc = BeginPaint(m_hDlg, &ps);
         RECT rt;
         GetClientRect(m_hDlg, &rt);
         ::FillRect(hdc, &rt, (HBRUSH)::GetStockObject(GRAY_BRUSH));
         rt.top = 5;
         ::SetBkMode(hdc, TRANSPARENT);
         DrawText(hdc, "Hello World!", strlen("Hello World!"), &rt, DT_SINGLELINE|DT_CENTER|DT_VCENTER );
-        EndPaint(m_hDlg, &ps);
-
-        return FALSE;
     }
 
     virtual BOOL onDestroy()
     {
-        if (!IsWindow(hwndGoto))
-        {
-            DestroyWindow(hwndGoto);
-            hwndGoto = NULL;
-        }
+
+        //m_psub = NULL;
         return UDialogBox::onDestroy();
     }
+    
+    virtual BOOL onClose()
+    {
+        return UDialogBox::onClose();
+    }
+    
     /*
     virtual BOOL onCancel()
     {
@@ -310,7 +252,7 @@ protected:
 
 private:
     UToolBar *m_putl;
-    //UDialogExt *m_psub;
+    UDialogExt *m_psub;
     //UImageList uil;
     BOOL onTbNew()
     {
@@ -320,16 +262,14 @@ private:
 
     BOOL onTbOpen()
     {
-        /*
         if (!m_psub)
         {
-        m_psub = new UDialogExt(m_hInst,IDD_TEST);
-        m_psub->setParentH(m_hDlg);
-        m_psub->create();
+            m_psub = new UDialogExt(m_hInst,IDD_TEST);
+            m_psub->setParentH(m_hDlg);
+            m_psub->create();
         //m_psub->show();
         }
-        */
-
+        /*
         if (!IsWindow(hwndGoto))
         {
             hwndGoto = ::CreateDialog(
@@ -340,6 +280,7 @@ private:
             ::ShowWindow(hwndGoto, SW_SHOW);
 
         }
+        */
         return 0;
     }
 };
