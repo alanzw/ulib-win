@@ -1,7 +1,7 @@
 #include <windows.h>
 #include <windowsx.h>
 #include <tchar.h>
-
+#include <cassert>
 #include "udialogx.h"
 #include "umsg.h"
 
@@ -25,16 +25,18 @@ UDialogBox::UDialogBox(HINSTANCE hInst, UINT nID, DLGPROC lpDialogFunc, HWND hPa
 UDialogBox::~UDialogBox()
 {
     // EndDialog(m_hDlg, 0);
-    
+
 }
 
 BOOL UDialogBox::create()
 {
 
-    m_hDlg = CreateDialog(m_hInst, MAKEINTRESOURCE(m_nDialogID), m_hParent, m_lpDialogFunc);
+    //m_hDlg = CreateDialog(m_hInst, MAKEINTRESOURCE(m_nDialogID), m_hParent, m_lpDialogFunc);
+    //this->setLong();
+    ::CreateDialogParam(m_hInst, MAKEINTRESOURCE(m_nDialogID), m_hParent, m_lpDialogFunc, (LPARAM)this);
 
-    this->setLong();
-
+    assert(NULL != m_hDlg);
+    
 #if (WINVER >= 0x0500)
     AnimateWindow(m_hDlg, 1000, AW_SLIDE|AW_HOR_POSITIVE);
     RECT rc;
@@ -126,22 +128,22 @@ BOOL UDialogBox::modifyExStyles(DWORD dwStyle)
 
 BOOL UDialogBox::DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
-	BOOL bRet;
-	if (message == WM_CTLCOLORSTATIC || message == WM_CTLCOLOREDIT)
-	{
-		if ((bRet=UDialogBox::onCtrlColor(wParam, lParam)) != FALSE)
-		{
-			return bRet;
-		}
-	}
+    BOOL bRet;
+    if (message == WM_CTLCOLORSTATIC || message == WM_CTLCOLOREDIT)
+    {
+        if ((bRet=UDialogBox::onCtrlColor(wParam, lParam)) != FALSE)
+        {
+            return bRet;
+        }
+    }
 
-	if (message == WM_DRAWITEM)
-	{
-		if ((bRet=UDialogBox::onDrawItem(wParam, lParam)) != FALSE)
-		{
-			return bRet;
-		}
-	}
+    if (message == WM_DRAWITEM)
+    {
+        if ((bRet=UDialogBox::onDrawItem(wParam, lParam)) != FALSE)
+        {
+            return bRet;
+        }
+    }
 
 
     switch (message)
@@ -230,8 +232,8 @@ BOOL UDialogBox::onCtrlColor(WPARAM wParam, LPARAM lParam)
 // Message Reflection
 BOOL UDialogBox::onDrawItem( WPARAM wParam, LPARAM lParam )
 {
-	HWND hwnd =  ((LPDRAWITEMSTRUCT) lParam)->hwndItem;
-	BOOL bRet = ::SendMessage(hwnd, WM_NOTIFY + WM_REFLECT_DRAWITEM, wParam, lParam);
+    HWND hwnd =  ((LPDRAWITEMSTRUCT) lParam)->hwndItem;
+    BOOL bRet = ::SendMessage(hwnd, WM_NOTIFY + WM_REFLECT_DRAWITEM, wParam, lParam);
     return bRet;
 }
 
@@ -293,22 +295,32 @@ BOOL CALLBACK UDialogBox::DefaultDlgProc(HWND hDlg, UINT message,
 
     //static BOOL bInit = FALSE;
     UDialogBox *pDlg = 0;
-
+    
+    
+    if (message == WM_INITDIALOG)
+    {
+        // if this nMessage gets sent then a new window has just been created,
+        // so we'll asociate its handle with its AbstractWindow instance pointer
+        ::SetWindowLong (hDlg, GWL_USERDATA, long(lParam));
+        pDlg = (UDialogBox *)(lParam);
+        pDlg->setHWND(hDlg);
+    }
+    
     pDlg = reinterpret_cast<UDialogBox *>(::GetWindowLong(hDlg, GWL_USERDATA));
 
 
     if (!pDlg)
         return ::DefWindowProc(hDlg, message, wParam, lParam);
 
-    if (!pDlg->bInitialized)
-    {
-        pDlg->bInitialized = TRUE;
-        if (!pDlg->onInit())
-        {
-            pDlg->onCancel();
-        }
-        //pDlg->onCtrlColor(wParam, lParam);
-    }
+    //if (!pDlg->bInitialized)
+    //{
+    //    pDlg->bInitialized = TRUE;
+    //    if (!pDlg->onInit())
+    //    {
+    //        pDlg->onCancel();
+    //    }
+    //    //pDlg->onCtrlColor(wParam, lParam);
+    //}
 
     return pDlg->DialogProc(message, wParam, lParam);
 }
