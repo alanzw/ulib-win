@@ -51,7 +51,7 @@ public:
         glEnd();
         glFlush();
 
-		return TRUE;
+        return TRUE;
     }
 
     virtual BOOL onChar(WPARAM wParam, LPARAM lParam)

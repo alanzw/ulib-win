@@ -1,26 +1,7 @@
 #
-include ../../../make.inc
+TOPDIR = ../../..
 
-#
-CFLAGS =
-CXXFLAGS =
-INC = -I"../../../inc"
-LIBS = -L"../../../lib" -mwindows -luwin
-
-#
-SRCDIR = ../../../src
-INCDIR = ../../../inc
-OBJDIR = ../../../obj
-RESDIR = ../../../res
-ICODIR = ../../../ico
-BINDIR = ../../../bin
-#
-OBJ =
-BIN =
-RC  =
-RES =
-#
-HEADER =
+include $(TOPDIR)/make.inc
 
 SUBDIRS = hello      \
           axis       \
@@ -55,11 +36,6 @@ SUBDIRS = hello      \
 #
 all:
 	$(MAKEALL_SUBDIRS)
-#	for /d %%X in ($(SUBDIRS)) do $(MAKE) -C %%X
-#	for X in $(SUBDIRS);\
-#	do \
-#	  (cd $$X && $(MAKE) all); \
-#	done
 
 #
 .PHONY : test
@@ -70,9 +46,3 @@ test :
 .PHONY : clean
 clean :
 	$(MAKECLEAN_SUBDIRS)
-#	for /d %%X in ($(SUBDIRS)) do $(MAKE) clean -C %%X
-#	for X in $(SUBDIRS);\
-#	do \
-#	  (cd $$X && $(MAKE) clean); \
-#	done
-

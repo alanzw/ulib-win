@@ -14,8 +14,6 @@ public:
                DLGPROC lpDialogFunc=UDialogBox::DefaultDlgProc,
                HWND hParent = NULL);
     virtual ~UGLDialog();
-    //
-    virtual BOOL create();
 
     virtual BOOL onCancel();
     virtual BOOL onDestroy();

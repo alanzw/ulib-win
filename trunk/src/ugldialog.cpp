@@ -21,22 +21,6 @@ m_bQuit(FALSE)
 UGLDialog::~UGLDialog()
 {}
 
-BOOL UGLDialog::create()
-{
-    m_hDlg = CreateDialog(m_hInst, MAKEINTRESOURCE(m_nDialogID), m_hParent, m_lpDialogFunc);
-    this->setLong();
-
-#if (WINVER >= 0x0500)
-    AnimateWindow(m_hDlg, 1000, AW_SLIDE|AW_HOR_POSITIVE);
-    RECT rc;
-    GetClientRect(m_hDlg, &rc);
-    ::InvalidateRect(m_hDlg, &rc, FALSE);
-#else
-    ShowWindow(m_hDlg, SW_SHOW);
-#endif
-    return this->go();
-}
-
 BOOL UGLDialog::go()
 {
 
