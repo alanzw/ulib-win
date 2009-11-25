@@ -1,19 +1,14 @@
 #
-include ../../../../make.inc
+TOPDIR = ../../../..
+
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS =
-INC = -I"../../../../inc"
-LIBS = -L"../../../../lib" -mwindows -lopengl32 -lglu32 -luwin
-
-#
-SRCDIR = ../../../../src
-INCDIR = ../../../../inc
-OBJDIR = ../../../../obj
-RESDIR = ../../../../res
-ICODIR = ../../../../ico
-BINDIR = ../../../../bin
+INCS = -I"$(INCDIR)"
+LIBS = -L"$(LIBDIR)" -mwindows -luwin -lopengl32 -lglu32
+CFLAGS += $(INCS)
+CXXFLAGS += $(INCS)
+LDFLAGS = $(LIBS)
 #
 OBJ = contour2d_opengl.o
 

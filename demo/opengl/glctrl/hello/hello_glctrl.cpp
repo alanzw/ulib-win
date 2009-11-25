@@ -79,7 +79,7 @@ public:
             }
         default:
             return FALSE;
-        }  
+        }
     }
 
 private:

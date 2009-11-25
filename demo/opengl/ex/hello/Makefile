@@ -1,20 +1,14 @@
 #
-include ../../../../make.inc
+TOPDIR = ../../../..
+
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS = 
-INC = -I"$(INCDIR)"
-LIBS = -L"$(LIBDIR)" -mwindows -luwin
-
-#
-SRCDIR = ../../../../src
-INCDIR = ../../../../inc
-OBJDIR = ../../../../obj
-RESDIR = ../../../../res
-ICODIR = ../../../../ico
-BINDIR = ../../../../bin
-LIBDIR = ../../../../lib
+INCS = -I"$(INCDIR)"
+LIBS = -L"$(LIBDIR)" -mwindows -luwin -lopengl32 -lglu32
+CFLAGS += $(INCS)
+CXXFLAGS += $(INCS) -DBUILD_EXE
+LDFLAGS = $(LIBS)
 #
 OBJ = hello_opengl.o
 

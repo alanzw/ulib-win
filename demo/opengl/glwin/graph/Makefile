@@ -1,20 +1,14 @@
 #
-include ../../../../make.inc
+TOPDIR = ../../../..
+
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS = 
-INC = -I"$(INCDIR)"
+INCS = -I"$(INCDIR)"
 LIBS = -L"$(LIBDIR)" -mwindows -luwin -lopengl32 -lglu32
-
-#
-SRCDIR = ../../../../src
-INCDIR = ../../../../inc
-OBJDIR = ../../../../obj
-RESDIR = ../../../../res
-ICODIR = ../../../../ico
-BINDIR = ../../../../bin
-LIBDIR = ../../../../lib
+CFLAGS += $(INCS)
+CXXFLAGS += $(INCS) -DBUILD_EXE
+LDFLAGS = $(LIBS)
 #
 OBJ = graph_glwin.o \
       uglgraph.o    \
@@ -36,18 +30,11 @@ $(BIN) : $(OBJ) $(RES)
 	cp -v $@ $(BINDIR)/$@
 
 #
-%.o : %.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-#
 .PHONY : test
 test :
 	$(WINE) $(BINDIR)/$(BIN)
 #
 .PHONY : clean
 clean :
-	$(RM) ${OBJ} ${RES} ${BIN}  
+	$(RM) ${OBJ} ${RES} ${BIN}
 
