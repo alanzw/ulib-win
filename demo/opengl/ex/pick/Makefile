@@ -5,9 +5,9 @@ include $(TOPDIR)/make.inc
 
 #
 INCS = -I"$(INCDIR)"
-LIBS = -L"$(LIBDIR)" -mwindows -luwin -lopengl32 -lglu32
+LIBS = -L"$(LIBDIR)" -luwin -lopengl32 -lglu32
 CFLAGS += $(INCS)
-CXXFLAGS += $(INCS)
+CXXFLAGS += $(INCS) -DBUILD_EXE
 LDFLAGS = $(LIBS)
 #
 OBJ = pick_opengl.o
@@ -26,13 +26,6 @@ $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
 
-#
-pick_opengl.o : pick_opengl.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
 #
 .PHONY : test
 test :

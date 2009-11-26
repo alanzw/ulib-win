@@ -10,10 +10,10 @@ CFLAGS += $(INCS)
 CXXFLAGS += $(INCS) -DBUILD_EXE
 LDFLAGS = $(LIBS)
 #
-OBJ = lines_opengl.o
+OBJ = process_opengl.o
 
-BIN = lines_opengl.exe
-RC  = lines.rc
+BIN = process_opengl.exe
+RC  = process.rc
 RES = ${RC:.rc=.res}
 #
 HEADER = $(INCDIR)/ucontrol.h \

@@ -10,10 +10,10 @@ CFLAGS += $(INCS)
 CXXFLAGS += $(INCS) -DBUILD_EXE
 LDFLAGS = $(LIBS)
 #
-OBJ = lines_opengl.o
+OBJ = teapot_opengl.o
 
-BIN = lines_opengl.exe
-RC  = lines.rc
+BIN = teapot_opengl.exe
+RC  = teapot.rc
 RES = ${RC:.rc=.res}
 #
 HEADER = $(INCDIR)/ucontrol.h \

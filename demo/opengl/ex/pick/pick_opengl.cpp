@@ -94,8 +94,8 @@ public:
         GLint hits;
         GLint viewport[4];
 
-        //if (button != GLUT_LEFT_BUTTON || state != GLUT_DOWN)
-        //    return;
+        if (button != 0|| state != 0)
+            return;
 
         glGetIntegerv (GL_VIEWPORT, viewport);
 
@@ -135,12 +135,7 @@ public:
         glViewport (0, 0, (GLsizei) w, (GLsizei) h);
         glMatrixMode (GL_PROJECTION);
         glLoadIdentity ();
-        if (w <= h)
-            glOrtho (-5.0, 5.0, -5.0*(GLfloat)h/(GLfloat)w,
-                5.0*(GLfloat)h/(GLfloat)w, -1.0, 1.0);
-        else
-            glOrtho (-5.0*(GLfloat)w/(GLfloat)h,
-                5.0*(GLfloat)w/(GLfloat)h, -5.0, 5.0, -1.0, 1.0);
+        glOrtho(-0.0, 3.0, -0.0, 3.0, -1.0, 1.0);
         glMatrixMode(GL_MODELVIEW);
 
         glShadeModel(GL_SMOOTH);                            // Enable Smooth Shading
@@ -172,6 +167,22 @@ public:
             return UGLDialog::onChar(wParam, lParam);
         }
     }
+    
+    BOOL onLButtonDown( WPARAM wParam, LPARAM lParam )
+    {
+        int xPos = GET_X_LPARAM(lParam); 
+        int yPos = GET_Y_LPARAM(lParam);
+        
+        RECT rc;
+        ::GetClientRect(m_hDlg, &rc);
+        int w = rc.right-rc.left;
+        int h = rc.bottom-rc.top;
+        
+        //pickSquares(0, 0, (xPos - w/2)*10.0/w, (h/2 - yPos)*10.0/h);
+        pickSquares(0, 0, xPos, yPos);
+        return FALSE;
+    }
+
 };
 
 UDLGAPP_T(MyGLDialog, IDD_TEST);
