@@ -5,15 +5,15 @@ include $(TOPDIR)/make.inc
 
 #
 INCS = -I"$(INCDIR)"
-LIBS = -L"$(LIBDIR)" -mwindows -luwin -lopengl32 -lglu32
+LIBS = -L"$(LIBDIR)" -luwin -lopengl32 -lglu32
 CFLAGS += $(INCS)
 CXXFLAGS += $(INCS) -DBUILD_EXE
 LDFLAGS = $(LIBS)
 #
-OBJ = lines_opengl.o
+OBJ = material_opengl.o
 
-BIN = lines_opengl.exe
-RC  = lines.rc
+BIN = material_opengl.exe
+RC  = material.rc
 RES = ${RC:.rc=.res}
 #
 HEADER = $(INCDIR)/ucontrol.h \

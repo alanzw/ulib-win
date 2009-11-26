@@ -10,10 +10,10 @@ CFLAGS += $(INCS)
 CXXFLAGS += $(INCS) -DBUILD_EXE
 LDFLAGS = $(LIBS)
 #
-OBJ = lines_opengl.o
+OBJ = aapoly_opengl.o
 
-BIN = lines_opengl.exe
-RC  = lines.rc
+BIN = aapoly_opengl.exe
+RC  = aapoly.rc
 RES = ${RC:.rc=.res}
 #
 HEADER = $(INCDIR)/ucontrol.h \

@@ -10,10 +10,10 @@ CFLAGS += $(INCS)
 CXXFLAGS += $(INCS) -DBUILD_EXE
 LDFLAGS = $(LIBS)
 #
-OBJ = lines_opengl.o
+OBJ = speedmeter_opengl.o
 
-BIN = lines_opengl.exe
-RC  = lines.rc
+BIN = speedmeter_opengl.exe
+RC  = speedmeter.rc
 RES = ${RC:.rc=.res}
 #
 HEADER = $(INCDIR)/ucontrol.h \

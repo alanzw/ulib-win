@@ -32,6 +32,11 @@ SUBDIRS = hello      \
           texture    \
           fog        \
           dib        \
+          aapoly     \
+          teapot     \
+          material   \
+          process    \
+          speedmeter \
 
 #
 all:

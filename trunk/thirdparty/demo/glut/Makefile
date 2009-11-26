@@ -4,7 +4,7 @@ TOPDIR = ../../..
 include $(TOPDIR)/make.inc
 
 
-SUBDIRS = hello  basic  \
+SUBDIRS = hello  basic  dwin multiwin light window \
 
 #
 all:
