@@ -45,12 +45,38 @@ public:
         {
         case ID_UBUTTON:
             {
-            return CaptureAnImage(m_hDlg, _T("window.bmp"));
+            //return CaptureAnImage(m_hDlg, _T("window.bmp"));
+				return FALSE;
             }
         default:
             return UDialogBox::onCommand(wParam, lParam);
         }
     }
+
+	virtual void onDraw(HDC hdc)
+	{
+		HBRUSH hBrush = (HBRUSH)::GetStockObject(BLACK_BRUSH);
+		UDC udc;
+		udc.attach(hdc);
+		
+		RECT rc = {250, 250, 300, 300};
+		udc.fillRect(&rc, hBrush);
+
+		RECT rcClient;
+		::GetClientRect(m_hDlg, &rcClient);
+	
+		udc.setViewportOrg(rcClient.left, rcClient.bottom);
+
+		udc.setMapMode(MM_HIENGLISH);
+
+		//SetViewportOrgEx(hdc, 100, 100, NULL);
+
+
+		RECT rc2 = {3500, 2000, 4000, 3000};
+		udc.fillRect(&rc2, hBrush);
+
+		udc.dettach();
+	}
 private:
     UButton *m_pBtn;
 };

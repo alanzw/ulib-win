@@ -35,7 +35,7 @@ UDevContext::~UDevContext()
 
 bool UDevContext::attach(HDC hdc)
 {
-    assert(NULL != m_hObj);
+    assert(NULL == m_hObj);
     m_hObj = hdc;
     return true;
 }
@@ -112,6 +112,31 @@ BOOL UDevContext::bitBlt( int nXOriginDest,
 	return ::BitBlt(*this, nXOriginDest, nYOriginDest, 
 		nWidthDest, nHeightDest, hdcSrc,
 		nXOriginSrc, nYOriginSrc, dwRop );
+}
+
+void UDevContext::setMapMode( int nMode )
+{
+	::SetMapMode((HDC)m_hObj, nMode);
+}
+
+int UDevContext::getMapMode()
+{
+	return ::GetMapMode((HDC)m_hObj);
+}
+
+void UDevContext::fillRect( LPCRECT lpRect, HBRUSH hBrush )
+{
+	::FillRect((HDC)m_hObj, lpRect, hBrush);
+}
+
+void UDevContext::setViewportOrg( int x, int y )
+{
+	::SetViewportOrgEx((HDC)m_hObj, x, y, NULL);
+}
+
+void UDevContext::setWindowOrg( int x, int y )
+{
+	::SetWindowOrgEx((HDC)m_hObj, x, y, NULL);
 }
 
 UPaintDC::UPaintDC(HWND hWnd)

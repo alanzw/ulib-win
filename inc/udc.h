@@ -65,6 +65,29 @@ public:
         int nXOriginSrc,
         int nYOriginSrc,
         DWORD dwRop);
+
+	// Mapping
+	/*
+		MM_ANISOTROPIC
+		MM_HIENGLISH
+		MM_HIMETRIC
+		MM_ISOTROPIC
+		MM_LOENGLISH
+		MM_LOMETRIC
+		MM_TEXT
+		MM_TWIPS
+	 */
+	int getMapMode();
+	void setMapMode(int nMode);
+
+	// Viewport
+	void setViewportOrg(int x, int y);
+
+	//
+	void setWindowOrg(int x, int y);
+
+	//
+	void fillRect(LPCRECT lpRect, HBRUSH hBrush);
 private:
 };
 

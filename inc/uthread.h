@@ -15,15 +15,15 @@ public:
     bool stop();
     DWORD getExitCode();
 
-	enum Priority {
-		TP_LOWEST       = THREAD_PRIORITY_LOWEST,
-		TP_BELOW_NORMAL = THREAD_PRIORITY_BELOW_NORMAL,
-		TP_NORMAL       = THREAD_PRIORITY_NORMAL,
-		TP_ABOVE_NORMAL = THREAD_PRIORITY_ABOVE_NORMAL,
-		TP_HIGHEST      = THREAD_PRIORITY_HIGHEST
-	};
+    enum Priority {
+        TP_LOWEST       = THREAD_PRIORITY_LOWEST,
+        TP_BELOW_NORMAL = THREAD_PRIORITY_BELOW_NORMAL,
+        TP_NORMAL       = THREAD_PRIORITY_NORMAL,
+        TP_ABOVE_NORMAL = THREAD_PRIORITY_ABOVE_NORMAL,
+        TP_HIGHEST      = THREAD_PRIORITY_HIGHEST
+    };
 
-	bool setPriority(Priority nPriority);
+    bool setPriority(Priority nPriority);
 
 protected:
 
