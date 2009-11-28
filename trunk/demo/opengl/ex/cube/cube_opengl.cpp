@@ -27,12 +27,12 @@ public:
 		::GetClientRect(m_hDlg, &rc);
 		UGlut::ResizeScene(rc.right-rc.left, rc.bottom-rc.top);
 
-		glShadeModel(GL_SMOOTH);                            // Enable Smooth Shading
+		glShadeModel(GL_SMOOTH);                             // Enable Smooth Shading
 		glClearColor(0.0f, 0.0f, 0.0f, 0.5f);                // Black Background
-		glClearDepth(1.0f);                                    // Depth Buffer Setup
-		glEnable(GL_DEPTH_TEST);                            // Enables Depth Testing
-		glDepthFunc(GL_LEQUAL);                                // The Type Of Depth Testing To Do
-		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);    // Really Nice Perspective Calculations
+		glClearDepth(1.0f);                                  // Depth Buffer Setup
+		glEnable(GL_DEPTH_TEST);                             // Enables Depth Testing
+		glDepthFunc(GL_LEQUAL);                              // The Type Of Depth Testing To Do
+		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);   // Really Nice Perspective Calculations
 
 		return TRUE;
 	}

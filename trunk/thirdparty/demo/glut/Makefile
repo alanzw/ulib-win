@@ -4,8 +4,8 @@ TOPDIR = ../../..
 include $(TOPDIR)/make.inc
 
 
-SUBDIRS = hello  basic  dwin multiwin light window \
-
+SUBDIRS = hello  basic  dwin multiwin light window paraboly \
+          teapot bifurcation nurbs surface menu pick softbody
 #
 all:
 	$(MAKEALL_SUBDIRS)

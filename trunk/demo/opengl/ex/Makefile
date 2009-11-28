@@ -37,6 +37,9 @@ SUBDIRS = hello      \
           material   \
           process    \
           speedmeter \
+          stencil    \
+          alpha      \
+
 
 #
 all:
