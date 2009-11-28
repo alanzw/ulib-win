@@ -33,7 +33,7 @@ public:
                    LPCTSTR lpName = NULL
                  );
 
-#if WINVER >=  0x0600                
+#if WINVER >=  0x0600
     HANDLE createEx( LPSECURITY_ATTRIBUTES lpSemaphoreAttributes,
                      LONG lInitialCount,
                      LONG lMaximumCount,
@@ -42,22 +42,22 @@ public:
 #endif // WINVER >=  0x0600
 
     BOOL release(LONG lReleaseCount, LPLONG lpPreviousCount);
-    
+
     class Lock
     {
     public:
         Lock(USemaphore &sem)
         : _sem(sem)
         {}
-        
+
         ~Lock()
         {}
-        
+
         void lock()
         {
             ::WaitForSingleObject(_sem, INFINITE);
         }
-        
+
         void unlock()
         {
             _sem.release(1, NULL);
