@@ -10,10 +10,10 @@ CFLAGS += $(INCS)
 CXXFLAGS += $(INCS) -DBUILD_EXE
 LDFLAGS = $(LIBS)
 #
-OBJ = cube_opengl.o
+OBJ = alpha_opengl.o
 
-BIN = cube_opengl.exe
-RC  = cube.rc
+BIN = alpha_opengl.exe
+RC  = alpha.rc
 RES = ${RC:.rc=.res}
 #
 HEADER = $(INCDIR)/ucontrol.h \
@@ -27,7 +27,7 @@ $(BIN) : $(OBJ) $(RES)
 	cp -v $@ $(BINDIR)/$@
 
 #
-cube_opengl.o : cube_opengl.cpp $(HEADER)
+view_opengl.o : view_opengl.cpp $(HEADER)
 	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
 
 #

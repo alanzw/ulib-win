@@ -39,6 +39,7 @@ void ULIB_API switchToWireframe();
 ///
 void ULIB_API switchToSolid();
 
+
 }; // namespace UGlut
 
 #endif // U_GLUT_H
