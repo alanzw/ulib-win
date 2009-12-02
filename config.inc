@@ -48,6 +48,7 @@ SYSTEM_OBJS =     \
     upipe.o       \
     uthunk32.o    \
     uimagehlp.o   \
+    usync.o       \
 
 
 GRAPHIC_OBJS =    \

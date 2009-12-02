@@ -147,6 +147,7 @@ SUBDIRS = \
           semaphore   \
           criticalsection \
           visualstyle \
+          sync        \
 
 
 #

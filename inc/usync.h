@@ -20,8 +20,22 @@
 namespace USync
 {
 
-ULIB_API DWORD waitSingle(UObject *obj, DWORD dwMilliseconds = INFINITY);
+/** Return values:
+ *    WAIT_ABANDONED
+ *    WAIT_OBJECT_0
+ *    WAIT_TIMEOUT
+ *    WAIT_FAILED
+ */
+ULIB_API DWORD waitSingle(UObject *obj, DWORD dwMilliseconds = INFINITE);
+
+/** Return values:
+ *    WAIT_OBJECT_0 to (WAIT_OBJECT_0 + nCount¨C 1)
+ *    WAIT_ABANDONED_0 to (WAIT_ABANDONED_0 + nCount¨C 1)
+ *    WAIT_TIMEOUT
+ *    WAIT_FAILED
+ */
 ULIB_API DWORD waitMultiple(UObject *obj, DWORD dwCount, DWORD dwMilliseconds);
+ULIB_API DWORD msgWaitMultiple(UObject *obj, DWORD dwCount, DWORD dwMilliseconds, DWORD dwWaitMask);
 
 }; // namespace USync
 

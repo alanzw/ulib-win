@@ -22,6 +22,7 @@
 namespace USync
 {
 
+
 DWORD waitSingle(UKernelObject *obj, DWORD dwMilliseconds)
 {
     return ::WaitForSingleObject(*obj, dwMilliseconds);
@@ -29,7 +30,14 @@ DWORD waitSingle(UKernelObject *obj, DWORD dwMilliseconds)
 
 DWORD waitMultiple(UKernelObject *obj, DWORD dwCount, DWORD dwMilliseconds)
 {
-    return ::WaitForMultipleObjects(dwCount, &((HANDLE)*obj), TRUE, dwMilliseconds);
+    //return ::WaitForMultipleObjects(dwCount, &((HANDLE)*obj), TRUE, dwMilliseconds);
+    return -1;
+}
+
+DWORD msgWaitMultiple(UObject *obj, DWORD dwCount, DWORD dwMilliseconds, DWORD dwWaitMask)
+{
+	//return ::MsgWaitForMultipleObjects(dwCount, &((HANDLE)*obj), TRUE, dwMilliseconds, dwWaitMask);
+    return -1;
 }
 
 }; // namespace USync
