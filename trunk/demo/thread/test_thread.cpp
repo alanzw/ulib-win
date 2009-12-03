@@ -33,7 +33,7 @@ void test()
     // terminated, and Counter most likely has not been incremented to
     // 1000000 yet.
     WaitForSingleObject( hThread, INFINITE );
-    printf( "Counter should be 1000000; it is-> %d\n", Counter );
+    printf( "Counter should be 1000000: it is-> %d\n", Counter );
     // Destroy the thread object.
     CloseHandle( hThread );
 }
@@ -44,6 +44,7 @@ DWORD WINAPI myThreadFunc(LPVOID lpParam)
     std::cout << "child thread: " << *pNum << std::endl;
     (*pNum)++;
 
+    _endthreadex(0);
     return 0;
 }
 
