@@ -20,13 +20,13 @@ int main(int argc, char *argv[])
     UNamedPipe up(PIPE_NAME);
 
     up.create();
-    
-	if (up.connect())
-	{
-		TCHAR buf[BUF_SIZE];
-		up.read(buf, BUF_SIZE);
-		UConsole::PrintStdout(buf);
-	}
+
+    if (up.connect())
+    {
+        TCHAR buf[BUF_SIZE];
+        up.read(buf, BUF_SIZE);
+        UConsole::PrintStdout(buf);
+    }
 
     return 0;
 }

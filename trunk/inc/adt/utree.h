@@ -1,18 +1,17 @@
 #ifndef U_TREE_H
 #define U_TREE_H
 
-/*
- * red-black tree
- */
-
 namespace huys
 {
 
 namespace ADT
 {
 
+/*
+ * red-black tree
+ */
 template <class T>
-class UTree
+class URBTree
 {
 
 };

@@ -1,21 +1,13 @@
 #
-include ../make.inc
+TOPDIR = ..
+#
+include $(TOPDIR)/make.inc
 
 #
 CXXFLAGS += -DHU_DEBUG
 
-#
-SRCDIR = ../src
-INCDIR = ../inc
-OBJDIR = ../obj
-BINDIR = ../bin
-LIBDIR = ../lib
-RESDIR = ../res
 
-DEMODIR = ../demo
-DOCDIR  = ../doc
-
-VPATH += $(INCDIR):$(INCDIR)/com 
+VPATH += $(INCDIR):$(INCDIR)/com:$(INCDIR)/crypto
 
 #
 include ../config.inc
