@@ -5,33 +5,30 @@ include $(TOPDIR)/make.inc
 
 #
 INCS = -I"$(TOPDIR)/inc"
-LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin  -lcomctl32
+LIBS = -L"$(TOPDIR)/lib" -luwin
 CFLAGS +=
-CXXFLAGS += -DBUILD_EXE
-#
-OBJ = test_datetimepick.o
+CXXFLAGS += $(INCS) -DBUILD_EXE
+LDFLAGS += $(LIBS)
 
-BIN = test_datetimepick.exe
-RC  = datetimepick.rc
+#
+OBJ = test_md5.o
+BIN = test_md5.exe
+RC  = md5.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/ucontrol.h \
-		 $(INCDIR)/udialogx.h
+HEADER = $(INCDIR)/uconsole.h
 #
 all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIBS)
-	cp -v $@ $(BINDIR)/$@
+	cp -vf $(BIN) $(BINDIR)/$(BIN)
     
 #
 .PHONY : test
-test:
+test :
 	$(WINE) $(BINDIR)/$(BIN)
-
 #
-.PHONY : clean
 clean :
 	$(RM) ${OBJ} ${RES} ${BIN}
-

@@ -63,8 +63,11 @@ CONFIG_OBJS  =    \
     uconf.o       \
     ucom.o        \
 
+CRYPTO_OBJS =     \
+    md5.o         \
 
-OBJS = $(KENERL_OBJS)  $(GUI_OBJS) $(SYSTEM_OBJS) $(GRAPHIC_OBJS) $(CONFIG_OBJS) \
+    
+OBJS = $(KENERL_OBJS)  $(GUI_OBJS) $(SYSTEM_OBJS) $(GRAPHIC_OBJS) $(CONFIG_OBJS) $(CRYPTO_OBJS) \
        ulink.o       \
        usys.o        \
        umenu.o       \

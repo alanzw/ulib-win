@@ -148,6 +148,7 @@ SUBDIRS = \
           criticalsection \
           visualstyle \
           sync        \
+          md5         \
 
 
 #
