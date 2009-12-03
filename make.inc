@@ -42,7 +42,7 @@ endif
 INSTALL =
 
 #
-uSE_UNICODE = no
+USE_UNICODE = no
 
 #
 USE_DEBUG = yes

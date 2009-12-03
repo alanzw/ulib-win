@@ -120,7 +120,8 @@ void printShortestPathTo(int v)
     cout << endl << endl;
 }
 
-int main() {
+int main()
+{
     //initialize all the costs in the graph
     for (int i = 0; i < SIZE; i++)
     {
