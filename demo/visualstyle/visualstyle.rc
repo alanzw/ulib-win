@@ -31,8 +31,8 @@ END
 //
 // Bitmap resources
 //
-IDR_TOOLBAR1        BITMAP        "bitmap1.bmp"
-IDR_TOOLBAR1_HOT    BITMAP        "bitmap1_hot.bmp"
+//IDR_TOOLBAR1        BITMAP        "bitmap1.bmp"
+//IDR_TOOLBAR1_HOT    BITMAP        "bitmap1_hot.bmp"
 
 //
 // Version Information resources

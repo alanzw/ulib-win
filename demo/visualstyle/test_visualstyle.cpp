@@ -8,16 +8,19 @@
 #include "uimagelist.h"
 #include "ustatusbar.h"
 
+#include "ubuttonxp.h"
+
 class UMyWindow : public UBaseWindow
 {
     enum {
-        IDC_STATUSBAR = 12345
+        IDC_STATUSBAR = 12345,
+        IDC_BN_XP     = 11111
     };
 public:
    UMyWindow()
    : UBaseWindow()
    {
-        this->setTitle(_T("Test SDI"));
+        this->setTitle(_T("Test VisualStyles"));
         this->setMenu(MAKEINTRESOURCE(IDR_MAINMENU));
         this->setStyles(WS_OVERLAPPEDWINDOW|WS_CLIPCHILDREN);
         //this->setExStyles(WS_EX_CLIENTEDGE);
@@ -26,19 +29,26 @@ public:
    ~UMyWindow()
    {
         CHECK_PTR(m_pStatusBar);
+        CHECK_PTR(m_pBtnXP);
    }
 
-   BOOL onCreate()
-   {
-       this->setIconBig(IDI_APP);
+    BOOL onCreate()
+    {
+        this->setIconBig(IDI_APP);
 
         m_pStatusBar = new UStatusBar(*this, IDC_STATUSBAR, getInstance());
         m_pStatusBar->create();
         m_pStatusBar->setMinHeight(16);
         m_pStatusBar->setText(0, _T("hello"));
 
-       return UBaseWindow::onCreate();
-   }
+        m_pBtnXP = new UButtonXP(*this, IDC_BN_XP, getInstance());
+        m_pBtnXP->setPos(100, 100, 100, 100);
+        m_pBtnXP->create();
+        m_pBtnXP->setWindowText(_T("ButtonXP"));
+        m_pBtnXP->invalidate();
+
+        return UBaseWindow::onCreate();
+    }
 
    virtual BOOL onPreRegisterWindowClass(huys::UWindowClass &uwc)
    {
@@ -80,8 +90,20 @@ public:
 
         return FALSE;
    }
+   
+    BOOL onChar(WPARAM wParam, LPARAM lParam)
+    {
+        switch (wParam)
+        {
+        case VK_ESCAPE:
+            return UBaseWindow::onClose();
+        default:
+            return UBaseWindow::onChar(wParam, lParam);
+        }
+    }
 private:
     UStatusBar *m_pStatusBar;
+    UButtonXP *m_pBtnXP;
 };
 
 
