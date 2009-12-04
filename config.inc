@@ -49,6 +49,7 @@ SYSTEM_OBJS =     \
     uthunk32.o    \
     uimagehlp.o   \
     usync.o       \
+    ufiber.o      \
 
 
 GRAPHIC_OBJS =    \
