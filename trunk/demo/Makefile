@@ -1,33 +1,7 @@
 #
-# filename : Makefile
-# author   : huys
-# updated  : 2008.11.21.
-# version  : 0.1
+TOPDIR = ..
 #
-
-#
-include ../make.inc
-
-#
-CFLAGS   =
-CXXFLAGS =
-INC      = -I"../inc"
-LIB      = -L"../lib"
-LDFLAGS  =
-#
-SRCDIR = ../src
-INCDIR = ../inc
-OBJDIR = ../obj
-BINDIR = ../bin
-LIBDIR = ../lib
-RESDIR = ../res
-
-DEMODIR = ../demo
-
-DOCDIR  = ../doc
-
-#
-HEADER =
+include $(TOPDIR)/make.inc
 
 #
 SUBDIRS = \
@@ -149,16 +123,12 @@ SUBDIRS = \
           visualstyle \
           sync        \
           md5         \
+          fiber       \
 
 
 #
 all:
 	$(MAKEALL_SUBDIRS)
-#
-UDOC :
-	cd $(DOCDIR) && $(MAKE)
-
-install :
 
 .PHONY: clean
 clean:

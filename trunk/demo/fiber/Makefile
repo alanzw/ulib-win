@@ -5,14 +5,14 @@ include $(TOPDIR)/make.inc
 
 #
 INCS = -I"$(TOPDIR)/inc"
-LIBS = -L"$(TOPDIR)/lib" -luwin
+LIBS = -L"$(TOPDIR)/lib"
 CFLAGS +=
 CXXFLAGS += $(INCS) -DBUILD_EXE
 LDFLAGS += $(LIBS)
 #
-OBJ = test_conf.o
-BIN = test_conf.exe
-RC  = conf.rc
+OBJ = test_fiber.o
+BIN = test_fiber.exe
+RC  = fiber.rc
 RES = ${RC:.rc=.res}
 #
 HEADER = $(INCDIR)/uconf.h \
@@ -24,12 +24,11 @@ all: $(BIN)
 $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
-	cp -v default.cfg $(BINDIR)/default.cfg
 
 #
 .PHONY : test
 test :
-	$(WINE) $(BINDIR)/$(BIN)    
+	$(WINE) $(BINDIR)/$(BIN) fiber.rc  fiber.rcc
 #
 clean :
 	$(RM) ${OBJ} ${RES} ${BIN}

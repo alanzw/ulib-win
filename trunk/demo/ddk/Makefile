@@ -2,13 +2,7 @@
 TOPDIR = ../..
 #
 include $(TOPDIR)/make.inc
-#
-SRCDIR = $(TOPDIR)/src
-INCDIR = $(TOPDIR)/inc
-OBJDIR = $(TOPDIR)/obj
-RESDIR = $(TOPDIR)/res
-ICODIR = $(TOPDIR)/ico
-BINDIR = $(TOPDIR)/bin
+
 #
 CFLAGS =
 CXXFLAGS =
