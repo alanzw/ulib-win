@@ -4,20 +4,20 @@
 
 #if !defined(ASSERT) 
 #if defined(_ASSERTE)
-#define ASSERT	_ASSERTE
+#define ASSERT    _ASSERTE
 #else
 #define ASSERT
 #endif
 #endif
 
 #ifndef SEEK_BEG
-#define SEEK_BEG	STREAM_SEEK_SET
+#define SEEK_BEG    STREAM_SEEK_SET
 #endif
 #ifndef SEEK_CUR
-#define SEEK_CUR	STREAM_SEEK_CUR
+#define SEEK_CUR    STREAM_SEEK_CUR
 #endif
 #ifndef SEEK_END
-#define SEEK_END	STREAM_SEEK_END
+#define SEEK_END    STREAM_SEEK_END
 #endif
 
 #ifndef EOF
@@ -31,137 +31,137 @@
 
 class IMemStream : public IStream
 {
-	long		m_cRef;
-	PBYTE		m_pbMem;
-	ULONGLONG	m_ullPos;	// the current stream position
-	ULONGLONG	m_ullEnd;	// the end of the stream (or current stream size)
-	ULONGLONG	m_ullSize;	// the current buffer size
-	DWORD		m_dwPageSize;
-	DWORD		BASE_ALLOC_SIZE;
-	int			m_iNumCommittedPages;
-	IUnknown	*m_pOuterUnk;
+    long        m_cRef;
+    PBYTE        m_pbMem;
+    ULONGLONG    m_ullPos;    // the current stream position
+    ULONGLONG    m_ullEnd;    // the end of the stream (or current stream size)
+    ULONGLONG    m_ullSize;    // the current buffer size
+    DWORD        m_dwPageSize;
+    DWORD        BASE_ALLOC_SIZE;
+    int            m_iNumCommittedPages;
+    IUnknown    *m_pOuterUnk;
 
-	UINT		m_uNumReservedPages;
+    UINT        m_uNumReservedPages;
 
-	void freeMem();
+    void freeMem();
 
-	public:
+    public:
 
-	~IMemStream() { freeMem(); }
+    ~IMemStream() { freeMem(); }
 
-	IMemStream( ULONG ulInitialSize=0, DWORD dwBaseAllocSize=4096, IUnknown *pOuterUnk=NULL );
+    IMemStream( ULONG ulInitialSize=0, DWORD dwBaseAllocSize=4096, IUnknown *pOuterUnk=NULL );
 
-	// non-virtual helper/access methods
+    // non-virtual helper/access methods
 
     // Get the pointer to the internal buffer
-	PBYTE GetBuf() { return m_pbMem; }
+    PBYTE GetBuf() { return m_pbMem; }
 
     // Read a BYTE, optionally advancing the current position
-	BYTE GetByte( bool bAdvance=true )
-	{
-		if( m_ullPos < m_ullEnd )
-		{
-			BYTE byte = m_pbMem[m_ullPos];
-			if( bAdvance ) 
-				m_ullPos++;
-			return byte;
-		}
-		throw EOF;
-	}
+    BYTE GetByte( bool bAdvance=true )
+    {
+        if( m_ullPos < m_ullEnd )
+        {
+            BYTE byte = m_pbMem[m_ullPos];
+            if( bAdvance ) 
+                m_ullPos++;
+            return byte;
+        }
+        throw EOF;
+    }
 
-	// gets the current stream position
-	ULONG GetCurPos()
-	{
-		ASSERT( m_ullPos < ULONG(-1L) );
-		return ULONG( m_ullPos );
-	}
+    // gets the current stream position
+    ULONG GetCurPos()
+    {
+        ASSERT( m_ullPos < ULONG(-1L) );
+        return ULONG( m_ullPos );
+    }
 
-	// gets the current end of stream (the stream length)
-	ULONG GetEndPos()
-	{
-		ASSERT( m_ullEnd < ULONG(-1L) );
-		return ULONG( m_ullEnd );
-	}
+    // gets the current end of stream (the stream length)
+    ULONG GetEndPos()
+    {
+        ASSERT( m_ullEnd < ULONG(-1L) );
+        return ULONG( m_ullEnd );
+    }
 
     // sets the current end position, resizing the stream if necessary
-	void SetEndPos( ULONG ulNewPos )
-	{
-		if( ulNewPos >= m_ullSize )
-		{
-			//ulNewPos = static_cast<ULONG>(m_ullSize-1);
-			ULARGE_INTEGER uli={0};
-			uli.QuadPart = ulNewPos;
-			// if we're on the boundary, we must add one
-			if( ulNewPos == m_ullSize )
-				uli.QuadPart+= 1;
-			SetSize( uli );
-		}
-		m_ullEnd = ulNewPos;
-	}
+    void SetEndPos( ULONG ulNewPos )
+    {
+        if( ulNewPos >= m_ullSize )
+        {
+            //ulNewPos = static_cast<ULONG>(m_ullSize-1);
+            ULARGE_INTEGER uli={0};
+            uli.QuadPart = ulNewPos;
+            // if we're on the boundary, we must add one
+            if( ulNewPos == m_ullSize )
+                uli.QuadPart+= 1;
+            SetSize( uli );
+        }
+        m_ullEnd = ulNewPos;
+    }
 
     // set current position to the beginning
-	void SeekToBegin() { m_ullPos = 0; }
+    void SeekToBegin() { m_ullPos = 0; }
 
     // set current position to the end
-	void SeekToEnd() { m_ullPos = m_ullEnd; }
+    void SeekToEnd() { m_ullPos = m_ullEnd; }
 
     // gets the current size as a ULONG vs. LONGLONG
-	ULONG GetSize() { return ULONG(m_ullSize); }
+    ULONG GetSize() { return ULONG(m_ullSize); }
 
-	// alternate Seek method avoids having to use LARGE_INTEGER
-	void Seek( LONG ulLoc, UINT uOrigin, ULONGLONG* pullNewLoc=NULL )
-	{
-		LARGE_INTEGER liSeekPos = {0};
-		ULARGE_INTEGER ulNewPos = {0};
-		liSeekPos.QuadPart = ulLoc;
+    // alternate Seek method avoids having to use LARGE_INTEGER
+    void Seek( LONG ulLoc, UINT uOrigin, ULONGLONG* pullNewLoc=NULL )
+    {
+        LARGE_INTEGER liSeekPos = {0};
+        ULARGE_INTEGER ulNewPos = {0};
+        liSeekPos.QuadPart = ulLoc;
 
-		Seek( liSeekPos, uOrigin, &ulNewPos );
-		if( pullNewLoc )
-			*pullNewLoc = ulNewPos.QuadPart;
-	}
+        Seek( liSeekPos, uOrigin, &ulNewPos );
+        if( pullNewLoc )
+            *pullNewLoc = ulNewPos.QuadPart;
+    }
 
     // returns True if at the end of stream
-	BOOL eos() { return m_ullPos >= m_ullEnd; }
+    BOOL eos() { return m_ullPos >= m_ullEnd; }
 
     // Resets the stream, optionally setting the size and whether to keep the memory in tact
     // if applicable
-	HRESULT Reset( ULONG uSize=0, BOOL bKeepMem=0 );
+    HRESULT Reset( ULONG uSize=0, BOOL bKeepMem=0 );
 
     // Write a Byte
-	HRESULT Write( BYTE ch );
+    HRESULT Write( BYTE ch );
 
     // Write a WCHAR
     HRESULT Write( WCHAR ch );
 
     // Write a UINT
     HRESULT Write( UINT u )
-	{
-		return Write( &u, sizeof(UINT), 0 );
-	}
+    {
+        return Write( &u, sizeof(UINT), 0 );
+    }
 
     // Write a ULONG
-	HRESULT Write( ULONG l )
-	{
-		return Write( &l, sizeof(ULONG), 0 );
-	}
+    HRESULT Write( ULONG l )
+    {
+        return Write( &l, sizeof(ULONG), 0 );
+    }
 
     // Read a BYTE
-	HRESULT Read( PBYTE pch )
-	{
-		return Read( pch, sizeof(BYTE), 0 );
-	}
+    HRESULT Read( PBYTE pch )
+    {
+        return Read( pch, sizeof(BYTE), 0 );
+    }
 
     // Read a WCHAR
-	HRESULT Read( PWCHAR pch )
-	{
-		return Read( pch, sizeof(WCHAR), 0 );
-	}
+    HRESULT Read( PWCHAR pch )
+    {
+        return Read( pch, sizeof(WCHAR), 0 );
+    }
 
     // Read a ULONG
-	HRESULT Read( ULONG *pl )
-	{
-		return Read( pl, sizeof(ULONG), 0 );
-	}
+    HRESULT Read( ULONG *pl )
+    {
+        return Read( pl, sizeof(ULONG), 0 );
+    }
 
     // set the size the desired new size
     HRESULT SetSize( ULONGLONG ullNewSize )
@@ -171,12 +171,12 @@ class IMemStream : public IStream
         return SetSize( uli );
     }
     
-	// IUnknown Interface
-	STDMETHOD_(ULONG,	AddRef)();
-	STDMETHOD_(ULONG,	Release)();
-	STDMETHOD(QueryInterface)(REFIID iid, void **ppv);
+    // IUnknown Interface
+    STDMETHOD_(ULONG,    AddRef)();
+    STDMETHOD_(ULONG,    Release)();
+    STDMETHOD(QueryInterface)(REFIID iid, void **ppv);
 
-	// ISequentialStream Interface
+    // ISequentialStream Interface
     STDMETHOD( Read )( 
         void *pv,
         ULONG cb,
@@ -187,7 +187,7 @@ class IMemStream : public IStream
         ULONG cb,
         ULONG *pcbWritten);
 
-	// IStream methods
+    // IStream methods
     STDMETHOD( Seek )( 
         LARGE_INTEGER dlibMove,
         DWORD dwOrigin,
@@ -228,52 +228,52 @@ class IMemStream : public IStream
 
 inline IMemStream& operator<<( IMemStream& strm, PCSTR pstr )
 {
-	while( *pstr )
-	{
-		strm.Write( BYTE(*pstr) );
-		pstr++;
-	}
-	return strm;
+    while( *pstr )
+    {
+        strm.Write( BYTE(*pstr) );
+        pstr++;
+    }
+    return strm;
 }
 
 inline IMemStream& operator<<( IMemStream& strm, PCWSTR pstr )
 {
-	while( *pstr )
-	{
-		strm.Write( *pstr );
-		pstr++;
-	}
-	return strm;
+    while( *pstr )
+    {
+        strm.Write( *pstr );
+        pstr++;
+    }
+    return strm;
 }
 
 inline IMemStream& operator<<( IMemStream& strm, long lVal )
 {
-	strm.Write( &lVal, sizeof(long), NULL );
-	return strm;
+    strm.Write( &lVal, sizeof(long), NULL );
+    return strm;
 }
 
 inline IMemStream& operator<<( IMemStream& strm, UINT nVal )
 {
-	strm.Write( &nVal, sizeof(UINT), NULL );
-	return strm;
+    strm.Write( &nVal, sizeof(UINT), NULL );
+    return strm;
 }
 
 inline IMemStream& operator<<( IMemStream& strm, BYTE cVal )
 {
-	strm.Write( cVal );
-	return strm;
+    strm.Write( cVal );
+    return strm;
 }
 
 inline IMemStream& operator<<( IMemStream& strm, char cVal )
 {
-	strm.Write( (BYTE) cVal );
-	return strm;
+    strm.Write( (BYTE) cVal );
+    return strm;
 }
 
 inline IMemStream& operator<<( IMemStream& strm, WCHAR wcVal )
 {
-	strm.Write( wcVal );
-	return strm;
+    strm.Write( wcVal );
+    return strm;
 }
 
 
