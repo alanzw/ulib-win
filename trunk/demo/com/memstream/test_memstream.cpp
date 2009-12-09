@@ -22,7 +22,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdSh
         // now get the pointer to the stream buffer, casting it to the correct type
 
         PSTR pszString = (PTSTR) strm.GetBuf();
-        
+
         ::MessageBoxA( NULL, pszString, "info", MB_OK|MB_ICONINFORMATION );
     }
     {
@@ -39,7 +39,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdSh
         // now get the pointer to the stream buffer, casting it to the correct type
 
         PWSTR pszString = (PWSTR) strm.GetBuf();
-        
+
         MessageBoxW( NULL, pszString, L"info", MB_OK|MB_ICONINFORMATION  );
     }
     {
@@ -57,7 +57,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdSh
         {
             strm.Write( buf, dwRead, NULL );
         }
-        
+
         showMsgFormat("info", "Size of this .exe file: %.2f K", strm.GetEndPos()/1024.0);
     }
     return 0;
