@@ -64,35 +64,26 @@ public:
         return TRUE;
     }
 
-    virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
+    virtual BOOL onNotify(WPARAM wParam, LPARAM lParam)
     {
-        BOOL result = UDialogBox::DialogProc(message, wParam, lParam);
-
-        if (message == WM_NOTIFY)
+        LPNMHDR lpnmh = (LPNMHDR) lParam;
+        char buffer[256];
+        ::ZeroMemory(buffer, sizeof(buffer));
+        switch (lpnmh->code)
         {
-            LPNMHDR lpnmh = (LPNMHDR) lParam;
-            char buffer[256];
-            ZeroMemory(buffer, sizeof(buffer));
-            switch (lpnmh->code)
+        case NM_CLICK:
+            if (lpnmh->idFrom == ID_LISTCTRL_ICON)
             {
-            case NM_CLICK:
-                if (lpnmh->idFrom == ID_LISTCTRL_ICON)
-                {
-                    //showMsgFormat("Notify", "From ID: %d --- %s", lpnmh->idFrom, m_pListCtrl->getHitText(buffer));
-                    //showCustomInfoMsg(m_pListCtrl->getHitText(buffer), m_hDlg);
-                    //m_pListCtrl->getSelectedItem(buffer);
-                    //showMsgFormat("Notify", "From ID: %d -- %s", lpnmh->idFrom, buffer);
-                    LPNMITEMACTIVATE lpnmitem = (LPNMITEMACTIVATE) lParam;
-                    showMsgFormat("Notify", "From nIndex %d", lpnmitem->iItem);
-                }
-                break;
+                //showMsgFormat("Notify", "From ID: %d --- %s", lpnmh->idFrom, m_pListCtrl->getHitText(buffer));
+                //showCustomInfoMsg(m_pListCtrl->getHitText(buffer), m_hDlg);
+                //m_pListCtrl->getSelectedItem(buffer);
+                //showMsgFormat("Notify", "From ID: %d -- %s", lpnmh->idFrom, buffer);
+                LPNMITEMACTIVATE lpnmitem = (LPNMITEMACTIVATE) lParam;
+                showMsgFormat("Notify", "From nIndex %d", lpnmitem->iItem);
             }
+            break;
         }
-
-
-        return result;
     }
-
 private:
     UListView *m_pListCtrl;
     UListView *m_pListCtrlIcon;

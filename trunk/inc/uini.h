@@ -15,7 +15,7 @@
   #define UINI_LOG  printf
 #else
   //#define UINI_LOG(...)
-	#define UINI_LOG
+    #define UINI_LOG
 #endif // HU_DEBUG
 
 class ULIB_API UIni
