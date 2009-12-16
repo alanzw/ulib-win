@@ -89,7 +89,7 @@ public:
         return DllFunc2<T, TP1, TP2>::callEx(*this, lpProcName, para1, para2);
     }
 
-	template <class TRet, class TPara1, class TPara2, class TPara3>
+    template <class TRet, class TPara1, class TPara2, class TPara3>
     struct DllFunc3
     {
         typedef TRet (*pfType)(TPara1, TPara2, TPara3);
@@ -112,7 +112,7 @@ public:
     {
         return DllFunc3<T, TP1, TP2, TP3>::callEx(*this, lpProcName, para1, para2, para3);
     }
-	
+
     FARPROC WINAPI find(const TCHAR *funcname);
 
     int free();
@@ -167,9 +167,9 @@ namespace DLLInject
     ULIB_API unsigned long GetTargetProcessIdFromWindow(char *className, char *windowName);
     ULIB_API unsigned long GetTargetThreadIdFromWindow(char *className, char *windowName);
 
-	ULIB_API BOOL injectLibW(DWORD dwPid, LPCWSTR sLibFile);
-	ULIB_API BOOL injectLibA(DWORD dwPid, LPCSTR sLibFile);
-	ULIB_API BOOL ejectLibW(DWORD dwPid, LPCWSTR sLibFile);
+    ULIB_API BOOL injectLibW(DWORD dwPid, LPCWSTR sLibFile);
+    ULIB_API BOOL injectLibA(DWORD dwPid, LPCSTR sLibFile);
+    ULIB_API BOOL ejectLibW(DWORD dwPid, LPCWSTR sLibFile);
 }; // namespace DLLInject
 
 }; // namespace huys
