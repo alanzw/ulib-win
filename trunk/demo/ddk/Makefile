@@ -18,7 +18,7 @@ RES =
 #
 HEADER =
 
-SUBDIRS = hello
+SUBDIRS = hello fsfilter
 #
 all:
 	$(MAKEALL_SUBDIRS)
