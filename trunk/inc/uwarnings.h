@@ -24,7 +24,7 @@
 // old vc6 warning about long class names
 #pragma warning(disable: 4786)
 
-// templates can't be ULIB_APIed
+// templates can't be exported
 #pragma warning(disable: 4251)
 
 // 'this' : used in base member initializer list
