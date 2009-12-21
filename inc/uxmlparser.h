@@ -186,8 +186,11 @@ private:
 class UXMLParser
 {
 public:
-    UXMLParser();
-    ~UXMLParser();
+    UXMLParser()
+    {}
+
+    ~UXMLParser()
+    {}
 
 /**
  * Well Formed XML Documents
@@ -213,11 +216,16 @@ private:
 
     bool isCommnent()
     {
+        if ('<' == _buffer.at(0) && '?' == _buffer.at(1))
+        {
+            return true;
+        }
         return false;
     }
 
     bool isElement()
     {
+
         return false;
     }
 
@@ -235,17 +243,42 @@ private:
 class UXMLDocument
 {
 public:
-	UXMLDocument();
-	~UXMLDocument();
+    UXMLDocument(const char *sFilename)
+    : m_sFilename(sFilename)
+    {}
+
+    ~UXMLDocument()
+    {}
+
+    const char *docname() const
+    {
+        return m_sFilename.c_str();
+    }
+private:
+    UXMLParser _parser;
 
 private:
-	UXMLParser _parser;
+    bool read()
+    {
+        return true;
+    }
 
+    bool parse()
+    {
+        return true;
+    }
+
+    bool writeNew()
+    {
+        return true;
+    }
+
+    bool writeBack()
+    {
+        return true;
+    }
 private:
-	bool read();
-	bool parse();
-	bool writeNew();
-	bool writeBack();
+    UXMLString m_sFilename;
 };
 
 }; // namespace XML
