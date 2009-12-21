@@ -104,7 +104,7 @@ public:
     operator RECT()
     {
         RECT rc = {_left, _top, _right, _bottom};
-		return rc;
+        return rc;
     }
 
     bool PtrInRect(const UPoint<T> &aPoint)
@@ -129,14 +129,14 @@ template <typename T>
 class USize
 {
 public:
-	operator SIZE()
-	{
-		SIZE s = {_cx, _cy};
-		return s;
-	}
+    operator SIZE()
+    {
+        SIZE s = {_cx, _cy};
+        return s;
+    }
 private:
-	T _cx;
-	T _cy;
+    T _cx;
+    T _cy;
 };
 
 typedef UPoint<int> UPointI;

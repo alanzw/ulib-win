@@ -10,7 +10,7 @@ public:
     ~UMailSlot();
 
     BOOL create(LPCTSTR sMailSlotName);
-    
+
     BOOL send(LPCTSTR sMessage);
 private:
     TCHAR m_sMailSlotName[256];
