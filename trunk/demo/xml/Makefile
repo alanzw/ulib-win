@@ -5,7 +5,7 @@ include $(TOPDIR)/make.inc
 
 #
 INCS = -I"$(TOPDIR)/inc"
-LIBS = -L"$(TOPDIR)/lib" -luwin
+LIBS = -L"$(TOPDIR)/lib"
 CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 #
@@ -20,7 +20,7 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB)
+	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -vf $(BIN) $(BINDIR)/$(BIN)
 
 #
