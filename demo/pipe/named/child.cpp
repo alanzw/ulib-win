@@ -8,7 +8,7 @@
 int _tmain(int argc, TCHAR *argv[])
 {
     HANDLE hPipe;
-    LPTSTR lpvMessage=TEXT("Default message from client.");
+    LPTSTR lpvMessage = TEXT("Default message from client.");
     TCHAR  chBuf[BUFSIZE];
     BOOL   fSuccess = FALSE;
     DWORD  cbRead, cbToWrite, cbWritten, dwMode;
@@ -26,7 +26,6 @@ int _tmain(int argc, TCHAR *argv[])
             GENERIC_READ |  // read and write access
             GENERIC_WRITE,
             0,              // no sharing
-
             NULL,           // default security attributes
             OPEN_EXISTING,  // opens existing pipe
             0,              // default attributes
@@ -46,7 +45,6 @@ int _tmain(int argc, TCHAR *argv[])
         }
 
         // All pipe instances are busy, so wait for 20 seconds.
-
         if ( ! WaitNamedPipe(lpszPipename, 20000))
         {
             printf("Could not open pipe: 20 second wait timed out.");
@@ -55,7 +53,6 @@ int _tmain(int argc, TCHAR *argv[])
     }
 
     // The pipe connected; change to message-read mode.
-
     dwMode = PIPE_READMODE_MESSAGE;
     fSuccess = SetNamedPipeHandleState(
         hPipe,    // pipe handle
@@ -69,7 +66,6 @@ int _tmain(int argc, TCHAR *argv[])
     }
 
     // Send a message to the pipe server.
-
     cbToWrite = (lstrlen(lpvMessage)+1)*sizeof(TCHAR);
     _tprintf( TEXT("Sending %d byte message: \"%s\"\n"), cbToWrite, lpvMessage);
 
@@ -91,7 +87,6 @@ int _tmain(int argc, TCHAR *argv[])
     do
     {
         // Read from the pipe.
-
         fSuccess = ReadFile(
             hPipe,    // pipe handle
             chBuf,    // buffer to receive reply

@@ -118,7 +118,9 @@ BOOL UNamedPipe::create()
 	m_hObj = ::CreateNamedPipe(
 		m_sName, // The unique pipe name. This string must have the following form: \\.\pipe\pipename
 		PIPE_ACCESS_DUPLEX|FILE_FLAG_OVERLAPPED, // dwOpenMode
-		PIPE_TYPE_BYTE, // dwPipeMode
+		PIPE_TYPE_MESSAGE |			// Message type pipe 
+		PIPE_READMODE_MESSAGE |		// Message-read mode 
+		PIPE_WAIT,					// Blocking mode is enabled
 		1,    // nMaxInstances
 		4096, // nOutBufferSize
 		4096, // nInBufferSize
@@ -152,3 +154,45 @@ BOOL UNamedPipe::read( LPTSTR lpBuffer, DWORD dwBufSize )
 	return bRet;
 }
 
+BOOL UNamedPipe::write(LPTSTR lpBuffer, DWORD dwBufSize)
+{
+    assert(INVALID_HANDLE_VALUE != m_hObj);
+	DWORD cbBytesWritten = 0;
+	BOOL bRet = ::WriteFile(m_hObj, lpBuffer, dwBufSize, &cbBytesWritten, NULL);
+	if (bRet)
+	{
+		::FlushFileBuffers(m_hObj); 
+	}
+    return bRet;
+}
+
+BOOL UNamedPipe::getInfo(UNamedPipe::UNamedPipeInfo &info)
+{
+    assert(INVALID_HANDLE_VALUE != m_hObj);
+    return ::GetNamedPipeInfo(
+        m_hObj, 
+        &info.dwFlags,
+        &info.dwOutBufferSize,
+        &info.dwInBufferSize,
+        &info.dwMaxInstances);
+}
+
+#if WINVER >= 0x0600 // VISTA
+BOOL UNamedPipe::getClientComputerName(LPTSTR ClientComputerName, ULONG ClientComputerNameLength)
+{
+    assert(INVALID_HANDLE_VALUE != m_hObj);
+    return GetNamedPipeClientComputerName(m_hObj, ClientComputerName, ClientComputerNameLength);
+}
+
+BOOL UNamedPipe::getClientPID(PULONG ClientProcessId)
+{
+    assert(INVALID_HANDLE_VALUE != m_hObj);
+    return GetNamedPipeClientProcessId(m_hObj, ClientProcessId);
+}
+
+BOOL UNamedPipe::getClientSID(PULONG ClientSessionId)
+{
+    assert(INVALID_HANDLE_VALUE != m_hObj);
+    return GetNamedPipeClientSessionId(m_hObj, ClientSessionId);
+}
+#endif // WINVER >= 0x0600

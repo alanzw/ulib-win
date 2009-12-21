@@ -1,18 +1,13 @@
 #
-include ../../../make.inc
+TOPDIR = ../../..
+#
+include $(TOPDIR)/make.inc
 
 #
-INC = -I"../../../inc"
-LIB = -L"../../../lib" -luwin
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -luwin
 CFLAGS +=
-CXXFLAGS +=
-#
-SRCDIR = ../../../src
-INCDIR = ../../../inc
-OBJDIR = ../../../obj
-RESDIR = ../../../res
-ICODIR = ../../../ico
-BINDIR = ../../../bin
+CXXFLAGS += -DBUILD_EXE
 #
 OBJ = test_named.o
 BIN = test_named.exe
@@ -25,13 +20,10 @@ all: $(BIN) child.exe
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB)
+	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -vf $(BIN) $(BINDIR)/$(BIN)
 
 #
-%.o : %.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
 child.exe : child.cpp
 	$(CXX) -o $@ -DWITHOUT_DLL $< $(CXXFLAGS) $(INC) $(LIB)
 	
