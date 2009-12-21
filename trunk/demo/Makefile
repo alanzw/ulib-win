@@ -124,6 +124,7 @@ SUBDIRS = \
           sync        \
           md5         \
           fiber       \
+          mailslot    \
 
 
 #

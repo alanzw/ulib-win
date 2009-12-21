@@ -1,19 +1,14 @@
 #
-include ../../../make.inc
+TOPDIR = ../../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS = 
-INC = -I"../../../inc"
-LIB = -L"../../../lib" -luwin
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -luwin
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE
 
-#
-SRCDIR = ../../../src
-INCDIR = ../../../inc
-OBJDIR = ../../../obj
-RESDIR = ../../../res
-ICODIR = ../../../ico
-BINDIR = ../../../bin
 #
 OBJ = test_ioredirect.o \
       $(OBJDIR)/upipe.o
@@ -27,19 +22,8 @@ all: $(BIN) child_ioredirect.exe
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB)
+	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -vf $(BIN) $(BINDIR)/$(BIN)
-
-#
-test_ioredirect.o : test_ioredirect.cpp $(HEADER)
-	$(CXX) -c -o $@ -DWITHOUT_DLL $< $(CXXFLAGS) $(INC)
-
-$(OBJDIR)/upipe.o : $(SRCDIR)/upipe.cpp $(HEADER)
-	$(CXX) -c -o $@ -DWITHOUT_DLL $< $(CXXFLAGS) $(INC)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
 
 child_ioredirect.exe : child_ioredirect.cpp ioredirect.res
 	$(CXX) -o $@ -DWITHOUT_DLL $< $(CXXFLAGS) $(INC) $(LIB)

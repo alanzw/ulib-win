@@ -26,6 +26,9 @@ int main(int argc, char *argv[])
         TCHAR buf[BUF_SIZE];
         up.read(buf, BUF_SIZE);
         UConsole::PrintStdout(buf);
+        TCHAR chBufReply[BUF_SIZE] = TEXT("Reply from NamedPipeServer!"); 
+        up.write(chBufReply, sizeof(TCHAR) * (lstrlen(chBufReply) + 1));
+        up.disconnect();
     }
 
     return 0;

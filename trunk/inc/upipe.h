@@ -33,6 +33,22 @@ public:
 	BOOL disconnect();
 
 	BOOL read(LPTSTR lpBuffer, DWORD dwBufSize);
+    BOOL write(LPTSTR lpBuffer, DWORD dwBufSize);
+    //
+    typedef struct tagUNamedPipeInfo {
+        DWORD dwFlags;
+        DWORD dwOutBufferSize;
+        DWORD dwInBufferSize;
+        DWORD dwMaxInstances;
+    } UNamedPipeInfo;
+    BOOL getInfo(UNamedPipeInfo &info);
+    
+#if WINVER >= 0x0600 // VISTA
+    BOOL getClientComputerName(LPTSTR ClientComputerName, ULONG ClientComputerNameLength);
+    BOOL getClientPID(PULONG ClientProcessId);
+    BOOL getClientSID(PULONG ClientSessionId);
+#endif // WINVER >= 0x0600    
+    
 private:
 	LPCTSTR m_sName;
 };

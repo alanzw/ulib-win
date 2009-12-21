@@ -3,6 +3,8 @@
 #include <tchar.h>
 #include <stdio.h>
 
+#ifndef _MSC_VER
+
 #define __out_ecount(size)
 #define __out_ecount_full_opt(size)
 #define __in_ecount(size)
@@ -12,6 +14,8 @@
 #define __inout
 
 #include "winhttp.h"
+
+#endif // _MSC_VER
 
 int main(int argc, char *argv[])
 {

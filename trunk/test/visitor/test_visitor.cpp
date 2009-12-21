@@ -108,7 +108,7 @@ class DownVisitor: public Visitor
 
 int main()
 {
-    Element *list[] = 
+    Element *list[] =
     {
         new This(),
         new That(),
@@ -125,6 +125,6 @@ int main()
     for (int i = 0; i < 3; i++)
     {
         list[i]->accept(down);
-    }  
+    }
     return 0;
 }

@@ -10,8 +10,9 @@ public:
     ~UMailSlot();
 
     BOOL create(LPCTSTR sMailSlotName);
-
-    BOOL send(LPCTSTR sMessage);
+    BOOL open(LPCTSTR sMailSlotName);
+    BOOL write(LPCTSTR sMessage);
+    BOOL read(LPTSTR sMessage);
 private:
     TCHAR m_sMailSlotName[256];
 };

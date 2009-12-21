@@ -3,7 +3,7 @@
 
 #define BUFSIZE 4096
 
-int main(void)
+int main(int argc, char **argv)
 {
    CHAR chBuf[BUFSIZE];
    DWORD dwRead, dwWritten;
@@ -41,3 +41,4 @@ int main(void)
    }
    return 0;
 }
+
