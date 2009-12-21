@@ -15,6 +15,11 @@ int main()
         "<Item priority=\"2\" distance='far &amp; back'> Look for Evil Dinosaurs! </Item>"
         "</ToDo>";
 
+    
+    huys::XML::UXMLDocument doc("hello.xml");
+    
+    printf("XML Doc File Name: %s\n", doc.docname());
+        
     getchar();
     return 0;
 }
