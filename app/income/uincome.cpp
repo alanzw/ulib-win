@@ -2,17 +2,17 @@
 #include <tchar.h>
 #include <commctrl.h>
 
-#include "uterminal.h"
+#include "uincome.h"
 
-UTerminal::UTerminal(HWND hParent, UINT nID, HINSTANCE hInst)
+UIncome::UIncome(HWND hParent, UINT nID, HINSTANCE hInst)
 : UStatic(hParent, nID, hInst)
 {
 }
 
-UTerminal::UTerminal()
+UIncome::UIncome()
 {
 }
 
-UTerminal::~UTerminal()
+UIncome::~UIncome()
 {}
 
