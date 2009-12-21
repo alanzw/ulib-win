@@ -9,7 +9,7 @@
 #include "ugdi.h"
 #include "colors.h"
 
-#include "uterminal.h"
+#include "uincome.h"
 
 class UMyWindow : public UBaseWindow
 {

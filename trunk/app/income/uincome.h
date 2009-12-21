@@ -3,12 +3,12 @@
 
 #include "ustatic.h"
 
-class UTerminal : public UStatic
+class UIncome : public UStatic
 {
 public:
-    UTerminal(HWND hParent, UINT nID, HINSTANCE hInst);
-    UTerminal();
-    ~UTerminal();
+    UIncome(HWND hParent, UINT nID, HINSTANCE hInst);
+    UIncome();
+    ~UIncome();
 private:
 
 };
