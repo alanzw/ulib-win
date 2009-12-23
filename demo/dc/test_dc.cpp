@@ -218,7 +218,10 @@ int CaptureAnImage(HWND hWnd, LPCTSTR sFilename)
 
     // Gets the "bits" from the bitmap and copies them into a buffer
     // which is pointed to by lpbi
-    GetDIBits(udcWindow,hbmScreen,0,
+    GetDIBits(
+        udcWindow,
+        hbmScreen,
+        0,
         (UINT)bmpScreen.bmHeight,
         lpbi,
         (BITMAPINFO *)lpbi,
@@ -230,7 +233,8 @@ int CaptureAnImage(HWND hWnd, LPCTSTR sFilename)
         0,
         NULL,
         CREATE_ALWAYS,
-        FILE_ATTRIBUTE_NORMAL ,NULL);
+        FILE_ATTRIBUTE_NORMAL,
+        NULL);
 
     // Add the size of the headers to the size of the bitmap to get the total file size
     DWORD dwSizeofDIB   =    dwBmpSize + sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);

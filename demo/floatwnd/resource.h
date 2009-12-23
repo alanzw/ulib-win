@@ -12,3 +12,5 @@
 
 #define  IDR_MENU1         801
 
+#define IDB_ICON          10001
+

@@ -1,19 +1,13 @@
 #
-include ../../../make.inc
+TOPDIR = ../../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS = 
-INCS = -I"../../../inc" -I"."
-LIBS = -L"../../../lib" -luwin -lws2_32
-
-#
-SRCDIR = ../../../src
-INCDIR = ../../../inc
-OBJDIR = ../../../obj
-RESDIR = ../../../res
-ICODIR = ../../../ico
-BINDIR = ../../../bin
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -luwin
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE
 
 #
 OBJ = echoserver_sock.o echoclient_sock.o
@@ -33,14 +27,6 @@ echoserver_sock.exe : echoserver_sock.o $(RES)
 echoclient_sock.exe : echoclient_sock.o $(RES)
 	$(CXX) -o $@ $^ $(LIBS)
 	cp -vf $@ $(BINDIR)/$@
-#
-%.o : %.cpp
-	$(CXX) -c -o $@ $< -DBUILD_EXE $(INCS)
-
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
  
 #
 .PHONY : test

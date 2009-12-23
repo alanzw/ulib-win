@@ -52,7 +52,6 @@ int main(int argc, char *argv[])
     /* Check command-line argument for protocol port and extract    */
     /* port number if one is specified.  Otherwise, use the default */
     /* port value given by constant PROTOPORT                       */
-
     if (argc > 2) {                 /* if protocol port specified   */
         port = atoi(argv[2]);   /* convert to binary            */
     } else {
@@ -66,7 +65,6 @@ int main(int argc, char *argv[])
     }
 
     /* Check host argument and assign host name. */
-
     if (argc > 1) {
         host = argv[1];         /* if host argument specified   */
     } else {
@@ -83,7 +81,6 @@ int main(int argc, char *argv[])
     memcpy(&sad.sin_addr, ptrh->h_addr, ptrh->h_length);
 
     /* Map TCP transport protocol name to protocol number. */
-
     if ( ((int)(ptrp = getprotobyname("tcp"))) == 0) {
         fprintf(stderr, "Cannot map \"tcp\" to protocol number");
         exit(1);
