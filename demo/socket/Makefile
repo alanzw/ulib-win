@@ -37,7 +37,9 @@ SUBDIRS =          \
           ping     \
           portscan \
           webserv  \
-          iocp
+          iocp     \
+          ftpserver\
+          sniffer  \
 
 #
 .PHONY: all

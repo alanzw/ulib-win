@@ -59,6 +59,8 @@ public:
 
     //
     unsigned long inet_addr(const char *cp);
+    char * inet_ntoa(struct in_addr in);
+    char * inet_ntoa(unsigned long ip);
     //
     int WSAAsyncSelect(HWND hwnd, UINT uMsg, long lEvent);
 

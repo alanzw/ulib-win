@@ -10,9 +10,9 @@ CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 
 #
-OBJ = simple_sock.o
-BIN = simple_sock.exe
-RC  = simple_sock.rc
+OBJ = ftpserver_sock.o
+BIN = ftpserver_sock.exe
+RC  = ftpserver_sock.rc
 RES = ${RC:.rc=.res}
 #
 HEADER =
@@ -20,18 +20,9 @@ HEADER =
 all: $(BIN) 
 
 #
-simple_sock.exe : simple_sock.o $(RES)
+ftpserver_sock.exe : ftpserver_sock.o $(RES)
 	$(CXX) -o $@ $^ $(LIBS)
 	cp -vf $(BIN) $(BINDIR)/$(BIN)
-	
-#
-%.o : %.cpp
-	$(CXX) -c -o $@ $< -DBUILD_EXE $(INCS)
-
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
  
 #
 .PHONY : test
