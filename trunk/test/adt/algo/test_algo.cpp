@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
-#include <string.h>
+#include <cstring>
+
 using std::cout;
 using std::endl;
 using std::cin;
@@ -9,7 +10,18 @@ using std::cin;
 
 typedef huys::ADT::UStack<int> StackInt;
 
-int w[10]={1,3,2,4,5,6,7,8,9,10};
+/*
+ * the knapsack problem
+ *
+ * description:
+ *   Given n items, each of integer size ki $(1 \le i \le n)$, and a knap-sack of size K. 
+ *   1) determine whether there is a subset of the items that sums to K.
+ *   2) Find such a subset.
+ */
+namespace AP_KnapSack
+{
+
+int w[10] = {1,3,2,4,5,6,7,8,9,10};
 
 int knap(int s, int n)
 {
@@ -34,10 +46,10 @@ int knap(int s, int n)
 
 int knap2(int T, int n)
 {
-    int length=n;
+    int length = n;
     int f;
-    int i=n;
-    int ans=0;
+    int i = n;
+    int ans = 0;
     StackInt st;
     while(n>0)
     {
@@ -81,6 +93,118 @@ int knap2(int T, int n)
     cout << "Total: " << ans << endl;
     return 0;
 }
+
+struct Item
+{
+    int size;
+    int value;
+} items[] = {
+    {1, 2},
+    {2, 3}
+};
+
+int knapSV(int cap, int N) 
+{
+    int i, space, max, t;
+
+    /* N is the number of item classes */
+    for (i = 0, max = 0; i < N; i++) 
+    { 
+
+      /* 
+       * ... figure out how much space would be left if we packed this
+       * class of item (current free space minus this item requirement)
+       */
+      space = cap - items[i].size;
+
+      /* if the space is still positive (i.e. we can pack it legally)... */
+      if (space >= 0)
+      {
+
+        /* ... then do it and recurse on the new (less) amount of free space */
+        t = knapSV(space, N) + items[i].value;
+
+        if (t > max) 
+        {
+          max = t;
+        }
+      }
+    }
+
+   /*
+    * if we did not pack anything (i.e. nothing will fit) max = 0 and
+    * return zero.  Else max is the ``most valuable'' way we can pack
+    * at this point and we return its value to the previous layer.  If
+    * the USING_ITEM_VALUES macro is not defined, all items are worth
+    * one and we are trying to maximize the number of items we can fit,
+    * not the value of items we can fit.
+    */
+    return max;
+}
+
+enum {
+    UNKNOWN = 0,
+    KNOWN   = 1
+};
+
+int max_known[20];
+Item item_known[20]; 
+
+int knapSVD(int cap, int N)
+{
+    int i, space, max, maxi, t;
+
+    /* the first thing we do is see if we have an answer to how to pack
+     * items into cap space maximizing the value of the items.  If so we
+     * do not need to do anything but return!
+     */
+    if (max_known[cap] != UNKNOWN) 
+    {
+        return max_known[cap];
+    }
+
+    /* if we got here we have not yet solved this problem, so lets do
+     * it!
+     */
+    for (i = 0, max = 0; i < N; i++) 
+    {
+
+      /* see comments on recursive solution -- understand it before you
+       * read this 
+       */
+      space = cap - items[i].size;
+      if (space >= 0) 
+      {
+        t = knapSVD(space, N) + items[i].value;
+        if (t > max) 
+        {
+          max = t;
+          maxi = i;
+        }
+      }
+    }
+
+    /* now that we have packed the required space as well as we can,
+     * remember how well we could do it.  Thus, if we are ever required to
+     * do it again we can just use this saved value...
+     */
+
+    max_known[cap] = max;
+    item_known[cap] = items[maxi];
+
+    return max;
+}
+
+
+
+void test()
+{
+    knap(50, 10);
+
+    knap2(50, 10);
+}
+
+}; // AP_KnapSack
 
 int floyd()
 {
@@ -137,9 +261,7 @@ int floyd()
 
 int main()
 {
-    knap(50, 10);
-
-    knap2(50, 10);
+    AP_KnapSack::test();
 
     floyd();
 

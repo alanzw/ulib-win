@@ -89,6 +89,12 @@ public:
 
     //
     DWORD getData(DWORD dwCount, LPRGNDATA lpRgnData);
+    
+    //
+    URegion & operator = (HRGN hRgn)
+    {
+        m_hObj = hRgn;
+    }
 private:
 };
 
