@@ -4,8 +4,6 @@
 
 #include "usocket.h"
 
-
-
 USocket::USocket()
 : m_socket(0)
 {}
@@ -179,11 +177,23 @@ unsigned long USocket::inet_addr(const char *cp)
     return ::inet_addr(cp);
 }
 
+char * USocket::inet_ntoa(struct in_addr in)
+{
+    return ::inet_ntoa(in);
+}
+
+char * USocket::inet_ntoa(unsigned long ip)
+{
+    struct in_addr in;
+    in.S_un.S_addr = ip;
+    return this->inet_ntoa(in);
+}
+
 int USocket::connect( const struct sockaddr *s )
 {
     if (SOCKET_ERROR == ::connect(m_socket, s, sizeof(struct sockaddr)))
     {
-        printf("connect failed: %d ", GetLastError());
+        printf("connect failed: %d\n", GetLastError());
         return SOCKET_ERROR;
     }
     return 0;
@@ -191,10 +201,11 @@ int USocket::connect( const struct sockaddr *s )
 
 int USocket::connect( const char *szhost, int nPort )
 {
-    SOCKADDR_IN target;
+    sockaddr_in target;
     target.sin_family = AF_INET;
     target.sin_addr.s_addr = inet_addr(szhost),
     target.sin_port = htons(nPort);
+    return this->connect((sockaddr *)&target);
 }
 
 SOCKET USocket::accept( struct sockaddr *s /*= 0*/, int *len /*= 0*/ )
