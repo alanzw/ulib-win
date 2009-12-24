@@ -1,18 +1,13 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS = 
-INC = -I"../../inc"
-LIB = -L"../../lib" -luwin
-
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -luwin
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE
 
 BINDIR = ../../bin
 #

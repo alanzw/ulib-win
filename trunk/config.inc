@@ -112,3 +112,4 @@ OBJS = $(KENERL_OBJS)  $(GUI_OBJS) $(SYSTEM_OBJS) $(GRAPHIC_OBJS) $(CONFIG_OBJS)
        udc.o         \
        ushell.o      \
        umci.o        \
+       umixer.o      \

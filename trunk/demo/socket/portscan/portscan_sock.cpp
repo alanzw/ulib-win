@@ -45,9 +45,11 @@ int scan_port(const char *szhost, int iPort)
 
 int main(int argc, char *argv[])
 {
-    for (int i=1; i<100; ++i)
+    char buf[256];
+    for (int i=100; i<254; ++i)
     {
-        scan_port("166.111.36.100", i);
+        sprintf(buf, "166.111.36.%d", i);
+        scan_port(buf, 5900);
     }
     getchar();
 
