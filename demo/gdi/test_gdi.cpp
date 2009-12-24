@@ -199,17 +199,18 @@ private:
         ur.offset(0, 60);
         ur.Draw(hdc);
 
-		huys::UTriangle utri(450, 180, 370, 240, 500, 250);
-		utri.setLineColor(huys::babyblue);
-		utri.setFilledColor(huys::babyblue);
-		utri.setFilledStyle(BS_SOLID);
-		utri.Draw(hdc);
+        huys::UTriangle utri(450, 180, 370, 240, 500, 250);
+        utri.setLineColor(huys::babyblue);
+        utri.setFilledColor(huys::babyblue);
+        utri.setFilledStyle(BS_SOLID);
+        utri.Draw(hdc);
     }
 
     BOOL onBnOk()
     {
         URegion ur;
         ur.createRect(20, 260, 80, 300);
+
         HDC hdc = GetDC(m_hDlg);
         HBRUSH hbr = (HBRUSH)::GetStockObject(BLACK_BRUSH);
         //ur.fill(hdc, hbr);

@@ -1,19 +1,14 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS =
-INC = -I"../../inc"
-LIB = -L"../../lib" -mwindows -lcomctl32 -luwin
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE
 
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
 #
 OBJ = test_superclass.o
 
@@ -29,21 +24,13 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB)
+	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
-
-#
-test_superclass.o : test_superclass.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
     
 #
 .PHONY : test
 test :
-	$(BINDIR)/$(BIN)
+	$(WINE) $(BINDIR)/$(BIN)
 #
 .PHONY : clean
 clean :
