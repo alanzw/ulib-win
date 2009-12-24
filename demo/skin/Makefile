@@ -1,19 +1,13 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
-CFLAGS =
-CXXFLAGS = 
-INCS = -I"../../inc"
-LIBS = -L"../../lib" -L. -mwindows -lcomctl32 -luwin
-
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin
+CFLAGS +=
+CXXFLAGS += -DBUILD_EXE
 #
 OBJ = test_skindlg.o
 BIN = test_skindlg.exe
@@ -30,10 +24,6 @@ all: $(BIN)
 $(BIN) : $(OBJ) $(RES) libskin.dll
 	$(CXX) -o $(BIN) $(OBJ) $(LIBS) $(RES) -lskin
 	cp -v $@ libskin.dll $(BINDIR)
-
-#
-test_skindlg.o : test_skindlg.cpp $(HEADER)
-	$(CXX) -c -DBUILD_EXE $< $(CXXFLAGS) $(INCS)
     
 #
 libskin.dll : libskin.o skin.rc
@@ -43,9 +33,6 @@ libskin.dll : libskin.o skin.rc
 #
 libskin.o : skin.cpp skin.h
 	$(CXX) -c -o $@ -DBUILD_DLL $< $(CXXFLAGS) $(INCS)
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
 
 #
 .PHONY : test

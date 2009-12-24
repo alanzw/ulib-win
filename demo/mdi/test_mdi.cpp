@@ -49,7 +49,7 @@ public:
         setStyles(CS_HREDRAW | CS_VREDRAW);
     }
 
-	bool create()
+    bool create()
     {
         if (!huys::UWindowClass::isWndClass(ClientChildWndClass, NULL))
         {
@@ -79,7 +79,7 @@ public:
 
         return true;
 
-        //CreateMDIWindow(      
+        //CreateMDIWindow(
         //    ClientChildWndClass,
         //    _T("hello"),
         //    getStyles(),
@@ -108,24 +108,24 @@ public:
 
     virtual BOOL defaultMessageHandler(UINT uMessage, WPARAM wParam, LPARAM lParam)
     {
-		return ::DefMDIChildProc(*this, uMessage, wParam, lParam);
+        return ::DefMDIChildProc(*this, uMessage, wParam, lParam);
     }
 
-	virtual void onDraw(HDC hdc)
-	{
-		RECT rect = {0};
-		SetTextColor (hdc, huys::red) ;
+    virtual void onDraw(HDC hdc)
+    {
+        RECT rect = {0};
+        SetTextColor (hdc, huys::red) ;
 
-		GetClientRect (*this, &rect) ;
+        GetClientRect (*this, &rect) ;
 
-		DrawText (hdc, TEXT ("Hello, World!"), -1, &rect,
-			DT_SINGLELINE | DT_CENTER | DT_VCENTER) ;
-	}
+        DrawText (hdc, TEXT ("Hello, World!"), -1, &rect,
+            DT_SINGLELINE | DT_CENTER | DT_VCENTER) ;
+    }
 };
 
 class UClientWindow : public UBaseWindow
 {
-	typedef huys::ADT::UVector<UClientChildWindow *> ChildWindows;
+    typedef huys::ADT::UVector<UClientChildWindow *> ChildWindows;
 public:
     UClientWindow(HWND hParent, HINSTANCE hInst)
     : UBaseWindow(hParent, hInst)
@@ -135,9 +135,9 @@ public:
 
     ~UClientWindow()
     {
-		for (ChildWindows::iterator it = _cws.begin(); it != _cws.end(); ++it)
+        for (ChildWindows::iterator it = _cws.begin(); it != _cws.end(); ++it)
         {
-			delete *it;
+            delete *it;
         }
     }
 
@@ -149,8 +149,8 @@ public:
         m_clientcreate.hWindowMenu = GetSubMenu(GetMenu(getParent()), 1);
         m_clientcreate.idFirstChild = IDM_FIRSTCHILD;
 
-		RECT rect = {0};
-		::GetClientRect(getParent(), &rect);
+        RECT rect = {0};
+        ::GetClientRect(getParent(), &rect);
 
         // Create a mdi client window
         HWND hSelf = ::CreateWindow( TEXT ("MDICLIENT"),
@@ -182,12 +182,12 @@ public:
     {
         UClientChildWindow *p = new UClientChildWindow(*this, getInstance());
         _cws.push_back(p);
-		return p->create();
+        return p->create();
     }
 private:
     CLIENTCREATESTRUCT m_clientcreate;
     //UClientChildWindow *m_pClientChild;
-	ChildWindows _cws;
+    ChildWindows _cws;
 };
 
 LRESULT CALLBACK DefaultFrameWindowProc(HWND hWnd, UINT uMessage, WPARAM wParam, LPARAM lParam)
@@ -250,7 +250,7 @@ public:
     virtual BOOL onPreRegisterWindowClass(huys::UWindowClass &uwc)
     {
         uwc.setProcdure(&DefaultFrameWindowProc);
-		uwc.setBKBrush((HBRUSH) (COLOR_APPWORKSPACE + 1));
+        uwc.setBKBrush((HBRUSH) (COLOR_APPWORKSPACE + 1));
         return FALSE;
     }
 
@@ -280,12 +280,12 @@ public:
             return onMenuAbout();
         default:
             //return UBaseWindow::onCommand(wParam, lParam);
-			{
-				HWND hChild = (HWND)m_pClientWindow->sendMsg(WM_MDIGETACTIVE);
-				if (::IsWindow (hChild))
-					::SendMessage (hChild, WM_COMMAND, wParam, lParam) ;
-				return FALSE;
-			}
+            {
+                HWND hChild = (HWND)m_pClientWindow->sendMsg(WM_MDIGETACTIVE);
+                if (::IsWindow (hChild))
+                    ::SendMessage (hChild, WM_COMMAND, wParam, lParam) ;
+                return FALSE;
+            }
         }
     }
 

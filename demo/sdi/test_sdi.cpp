@@ -61,7 +61,7 @@ public:
         m_putl->autosize();
         m_putl->show();
         m_putl->enableButton(IDM_SAVE);
-        
+
         return UBaseWindow::onCreate();
     }
 
@@ -166,7 +166,7 @@ private:
 class UMyWindow : public UBaseWindow
 {
     typedef huys::ADT::UVector<UBaseWindow *> DockWnds;
-    
+
     enum {
         IDC_STATUSBAR = 12345
     };
@@ -192,12 +192,12 @@ public:
    BOOL onCreate()
    {
        this->setIconBig(IDI_APP);
-       
+
         m_pStatusBar = new UStatusBar(*this, IDC_STATUSBAR, getInstance());
         m_pStatusBar->create();
         m_pStatusBar->setMinHeight(16);
         m_pStatusBar->setText(0, _T("hello"));
-      
+
        return UBaseWindow::onCreate();
    }
 
@@ -247,15 +247,15 @@ public:
             hdwp = ::BeginDeferWindowPos(2);
             ::DeferWindowPos(hdwp, *m_dwin[0], 0, rc.left, rc.top, width, 1, SWP_NOZORDER);
             ::EndDeferWindowPos(hdwp);
-		}
- 		m_pStatusBar->resize();      
-        
+        }
+         m_pStatusBar->resize();
+
         return FALSE;
    }
 private:
     DockWnds m_dwin;
     HDWP hdwp;
-    
+
     UStatusBar *m_pStatusBar;
 };
 
