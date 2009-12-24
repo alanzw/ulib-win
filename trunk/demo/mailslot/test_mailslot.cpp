@@ -14,13 +14,13 @@ int main(int argc, char *argv[])
 
     mslot.create(_T("\\\\.\\mailslot\\huys"));
 
-    	// In a loop, check for new messages every 5 seconds.
-	while (TRUE)
-	{
-		UConsole::PrintStdout(_T("Checking new messages...\n"));
-		mslot.read(NULL);
-		Sleep(5000); // Sleep 5 seconds
-	}
+        // In a loop, check for new messages every 5 seconds.
+    while (TRUE)
+    {
+        UConsole::PrintStdout(_T("Checking new messages...\n"));
+        mslot.read(NULL);
+        Sleep(5000); // Sleep 5 seconds
+    }
 
     return 0;
 }

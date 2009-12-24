@@ -23,15 +23,9 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB) $(RES)
+	$(CXX) -o $(BIN) $^ $(LIBS) $(RES)
 	cp -v $@ $(BINDIR)/$@
 
-#
-test_splash.o : test_splash.cpp $(HEADER)
-	$(CXX) -c -DBUILD_EXE -o $@ $< $(CXXFLAGS) $(INC)
-
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $< -o $@ -DMINGW_RC -O coff -I"$(RESDIR)" -I"$(ICODIR)"
 #
 .PHONY : test
 test :
