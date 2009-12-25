@@ -15,6 +15,13 @@
  *
  * =====================================================================================
  */
+ 
+/*
+ * 	XML stands for eXtensible Markup Language.
+ *  XML is designed to transport and store data.
+ *  XML is important to know, and very easy to learn.
+ *  
+ */
 
 #ifndef U_XML_PARSER_H
 #define U_XML_PARSER_H
@@ -161,6 +168,8 @@ public:
     }
 protected:
 private:
+    UXMLString _name;
+
     UXMLAtrribute *_atrributes;
     int _nAttributeNum;
 };
@@ -181,6 +190,27 @@ public:
     UXMLComment() {}
     ~UXMLComment() {}
 private:
+};
+
+class UXMLHeader : public UXMLNode
+{
+public:
+    UXMLHeader() {}
+    ~UXMLHeader() {}
+private:
+    UXMLString _version;
+    UXMLString _encoding;
+    
+};
+
+enum XMLNodeType
+{
+    XML_NT_HEADER = 0,
+    XML_NT_COMMNET,
+    XML_NT_DTD_HEADER,
+    XML_NT_CDATA_HEADER,
+    XML_NT_ELEMENT,
+    XML_NT_UNKNOWN
 };
 
 class UXMLParser
@@ -205,6 +235,48 @@ public:
     {
         return true;
     }
+    
+    XMLNodeType parse(const char *sText)
+    {
+        _buffer = sText;
+        
+        if (isCommnent())
+        {
+            printf("%s : Commnet!\n", sText);
+            return XML_NT_COMMNET;
+        }
+        else if (isHeader())
+        {
+            printf("%s : Header!\n", sText);
+            return XML_NT_HEADER;
+        }
+        else if (isCDataHeader())
+        {
+            printf("%s : CDataHeader!\n", sText);
+            return XML_NT_CDATA_HEADER;
+        }
+        else if (isDTDHeader())
+        {
+            printf("%s : DTDHeader!\n", sText);
+            return XML_NT_DTD_HEADER;
+        }
+        else if (isElement())
+        {
+            printf("%s : Element!\n", sText);
+            return XML_NT_ELEMENT;
+        }
+        else
+        {
+            printf("%s : Unknown!\n", sText);
+            return XML_NT_UNKNOWN;
+        }
+    }
+
+    bool parse(const UXMLString *xstr)
+    {
+        return true;
+    }
+    
 protected:
 private:
     UXMLString _buffer;
@@ -216,27 +288,46 @@ private:
 
     bool isCommnent()
     {
-        if ('<' == _buffer.at(0) && '?' == _buffer.at(1))
+        if ( _buffer.substr(0, 3) == "<!--")
         {
             return true;
         }
         return false;
     }
 
-    bool isElement()
+    bool isHeader()
     {
-
+        if (_buffer.substr(0,4) == "<?xml")
+        {
+            return true;
+        }
         return false;
     }
-
-    bool parse(const char *sText)
+    
+    bool isDTDHeader()
     {
-        return true;
+        if (_buffer.substr(0,1) == "<!")
+        {
+            return true;
+        }
+        return false;
     }
-
-    bool parse(const UXMLString *xstr)
+    
+    bool isCDataHeader()
     {
-        return true;
+        if (_buffer.substr(0,8) == "<![CDATA[")
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    bool isElement()
+    {
+        if ( _buffer.at(1) < 127 )
+			return isalpha( _buffer.at(1) );
+		else
+			return true;
     }
 };
 
@@ -246,8 +337,18 @@ public:
     UXMLDocument(const char *sFilename)
     : m_sFilename(sFilename)
     {}
+    
+    UXMLDocument(const UXMLDocument &copy)
+    {
+    
+    }
+    
+    UXMLDocument & operator=(const UXMLDocument &copy)
+    {
+    
+    }
 
-    ~UXMLDocument()
+    virtual ~UXMLDocument()
     {}
 
     const char *docname() const

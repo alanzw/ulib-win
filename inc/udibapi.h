@@ -49,14 +49,24 @@ HDIB WINAPI ReadDIBFile(HANDLE hFile);
 
 //
 HANDLE DDBToDIB( HBITMAP hBitmap, DWORD dwCompression, HPALETTE hPal );
-BOOL WriteDIB( LPTSTR szFile, HANDLE hDIB);
-void TransparentBlt( HDC hdcDest, int nXDest, int nYDest, int nWidth,
-                    int nHeight, HBITMAP hBitmap, int nXSrc, int nYSrc,
-                    COLORREF colorTransparent, HPALETTE hPal );
 
+BOOL WriteDIB( LPTSTR szFile, HANDLE hDIB);
+
+void TransparentBlt( HDC hdcDest,
+                     int nXDest,
+                     int nYDest,
+                     int nWidth,
+                     int nHeight,
+                     HBITMAP hBitmap,
+                     int nXSrc,
+                     int nYSrc,
+                     COLORREF colorTransparent,
+                     HPALETTE hPal );
 
 //
 HBITMAP GetSrcBit(HDC hDC,DWORD BitWidth, DWORD BitHeight);
+
+//
 BOOL SaveBmp(HBITMAP hBitmap, LPCTSTR FileName);
 
 }; // namespace huys
