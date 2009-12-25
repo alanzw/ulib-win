@@ -17,19 +17,35 @@
  */
 
 #include "adt/uvector.h"
+#include "adt/ustring.h"
+
+typedef huys::ADT::UStringAnsi VString;
 
 class Vertex2D
 {
 public:
+    Vertex2D(float x, float y)
+    : _x(x), _y(y)
+    {}
 
+    ~Vertex2D()
+    {}
+
+    VString toString()
+    {
+        VString s = "";
+        s.format( "( %f, %f )", _x, _y);
+        return s;
+    }
 private:
-    float x;
-    float y;
+    float _x;
+    float _y;
 };
 
 class Element
 {
-
+private:
+    float _value;
 };
 
 typedef huys::ADT::UVector<Vertex2D> Node_table;
@@ -38,7 +54,8 @@ typedef huys::ADT::UVector<Element> Element_table;
 class Mesh2D
 {
 public:
-
+    Mesh2D();
+    ~Mesh2D();
 private:
     Node_table nodes;
     Element_table elements;

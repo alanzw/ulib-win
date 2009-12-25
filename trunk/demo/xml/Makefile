@@ -14,7 +14,7 @@ BIN = test_xml.exe
 RC  = xml.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/uxmlparser.h
+HEADERS = $(INCDIR)/uxmlparser.h
 #
 all: $(BIN)
 

@@ -4,6 +4,7 @@
 #include <windows.h>
 #include <tchar.h>
 #include <cassert>
+#include <cstdio>
 
 namespace huys
 {
@@ -266,8 +267,8 @@ public:
         size_type m = (start < 0 ? 0 : start);
         size_type n = (end > m_nStrLength ? m_nStrLength : end);
 
-        UString s(n-m);
-        s.m_nStrLength = n-m;
+        UString s(n-m+1);
+        s.m_nStrLength = n-m+1;
 
         memcpy((void *)s.m_pBuf, (const void *)(m_pBuf+m), sizeof(T)*s.m_nStrLength);
         s.m_pBuf[s.m_nStrLength] = 0;
@@ -304,6 +305,26 @@ public:
     {
         *this += in;
         return *this;
+    }
+    
+    UString & format(const T * fmt, ...)
+    {
+        T buf[4096];
+        T * p;
+        size_type n;
+        
+        va_list args;
+        va_start(args, fmt);
+        n = _vsnprintf(buf, sizeof(buf) - 1, fmt, args);
+        va_end(args);
+        
+        p += (n < 0) ? sizeof(buf) - 1 : n;
+
+        while ( p > buf  &&  isspace(p[-1]) )
+        {
+            *--p = '\0';
+        }
+        *this = buf;
     }
 
 private:
