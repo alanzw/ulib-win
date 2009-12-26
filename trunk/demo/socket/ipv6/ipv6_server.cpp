@@ -10,12 +10,12 @@
 //      Microsoft samples programs.
 //
 
-#define WIN32_LEAN_AND_MEAN
+//#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <mstcpip.h>
-
+#include <wspiapi.h>
 // Needed for the Windows 2000 IPv6 Tech Preview.
 #if (_WIN32_WINNT == 0x0500)
 #include <tpipv6.h>
@@ -26,6 +26,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 //
 // This code assumes that at the transport level, the system only supports
@@ -86,7 +87,7 @@ int main(int argc, char **argv)
 //    int idx;
     SOCKADDR_STORAGE From;
     WSADATA wsaData;
-    ADDRINFO Hints, *AddrInfo, *AI;
+    struct addrinfo Hints, *AddrInfo, *AI;
     SOCKET ServSock[FD_SETSIZE];
     fd_set SockSet;
 
@@ -204,7 +205,7 @@ int main(int argc, char **argv)
         }
 
         if ((AI->ai_family == PF_INET6) &&
-            IN6_IS_ADDR_LINKLOCAL((IN6_ADDR *) INETADDR_ADDRESS(AI->ai_addr)) &&
+            //IN6_IS_ADDR_LINKLOCAL((IN6_ADDR *) INETADDR_ADDRESS(AI->ai_addr)) &&
             (((SOCKADDR_IN6 *) (AI->ai_addr))->sin6_scope_id == 0)
             ) {
             fprintf(stderr,
@@ -311,7 +312,8 @@ int main(int argc, char **argv)
             }
             if (getnameinfo((LPSOCKADDR) & From, FromLen, Hostname,
                             sizeof (Hostname), NULL, 0, NI_NUMERICHOST) != 0)
-                strcpy_s(Hostname, NI_MAXHOST, "<unknown>");
+                //strcpy_s(Hostname, NI_MAXHOST, "<unknown>");
+                strcpy(Hostname, "<unknown>");
             printf("\nAccepted connection from %s\n", Hostname);
 
             //
@@ -392,7 +394,8 @@ int main(int argc, char **argv)
             if (RetVal != 0) {
                 fprintf(stderr, "getnameinfo() failed with error %d: %s\n",
                         RetVal, PrintError(RetVal));
-                strcpy_s(Hostname, NI_MAXHOST, "<unknown>");
+                //strcpy_s(Hostname, NI_MAXHOST, "<unknown>");
+                strcpy(Hostname, "<unknown>");
             }
 
             printf("Received a %d byte datagram from %s: [%.*s]\n",

@@ -32,12 +32,12 @@ int main(int argc, char *argv[]) {
     int    listener, conn;
     pid_t  pid;
     struct sockaddr_in servaddr;
-    
+
 
     /*  Create socket  */
 
     if ( (listener = socket(AF_INET, SOCK_STREAM, 0)) < 0 )
-	Error_Quit("Couldn't create listening socket.");
+    Error_Quit("Couldn't create listening socket.");
 
 
     /*  Populate socket address structure  */
@@ -48,57 +48,57 @@ int main(int argc, char *argv[]) {
     servaddr.sin_port        = htons(SERVER_PORT);
 
 
-    /*  Assign socket address to socket  */ 
+    /*  Assign socket address to socket  */
 
     if ( bind(listener, (struct sockaddr *) &servaddr, sizeof(servaddr)) < 0 )
-	Error_Quit("Couldn't bind listening socket.");
+    Error_Quit("Couldn't bind listening socket.");
 
 
     /*  Make socket a listening socket  */
 
     if ( listen(listener, LISTENQ) < 0 )
-	Error_Quit("Call to listen failed.");
+    Error_Quit("Call to listen failed.");
 
 
     /*  Loop infinitely to accept and service connections  */
 
     while ( 1 ) {
 
-	/*  Wait for connection  */
+    /*  Wait for connection  */
 
-	if ( (conn = accept(listener, NULL, NULL)) < 0 )
-	    Error_Quit("Error calling accept()");
-
-
-	/*  Fork child process to service connection  */
-
-	if ( (pid = fork()) == 0 ) {
-
-	    /*  This is now the forked child process, so
-		close listening socket and service request   */
-
-	    if ( close(listener) < 0 )
-		Error_Quit("Error closing listening socket in child.");
-	    
-	    Service_Request(conn);
+    if ( (conn = accept(listener, NULL, NULL)) < 0 )
+        Error_Quit("Error calling accept()");
 
 
-	    /*  Close connected socket and exit  */
+    /*  Fork child process to service connection  */
 
-	    if ( close(conn) < 0 )
-		Error_Quit("Error closing connection socket.");
-	    exit(EXIT_SUCCESS);
-	}
+    if ( (pid = fork()) == 0 ) {
+
+        /*  This is now the forked child process, so
+        close listening socket and service request   */
+
+        if ( close(listener) < 0 )
+        Error_Quit("Error closing listening socket in child.");
+
+        Service_Request(conn);
 
 
-	/*  If we get here, we are still in the parent process,
-	    so close the connected socket, clean up child processes,
-	    and go back to accept a new connection.                   */
+        /*  Close connected socket and exit  */
 
-	if ( close(conn) < 0 )
-	    Error_Quit("Error closing connection socket in parent.");
+        if ( close(conn) < 0 )
+        Error_Quit("Error closing connection socket.");
+        exit(EXIT_SUCCESS);
+    }
 
-	waitpid(-1, NULL, WNOHANG);
+
+    /*  If we get here, we are still in the parent process,
+        so close the connected socket, clean up child processes,
+        and go back to accept a new connection.                   */
+
+    if ( close(conn) < 0 )
+        Error_Quit("Error closing connection socket in parent.");
+
+    waitpid(-1, NULL, WNOHANG);
     }
 
     return EXIT_FAILURE;    /*  We shouldn't get here  */

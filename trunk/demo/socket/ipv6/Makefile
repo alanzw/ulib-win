@@ -8,25 +8,31 @@ INCS = -I"$(TOPDIR)/inc" -I"."
 LIBS = -L"$(TOPDIR)/lib" -lws2_32
 CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
+
 #
-OBJ = rawping.o ip_checksum.o rawping_driver.o
-BIN = rawping.exe
-RC  = rawping.rc
+OBJ = ipv6_server.o ipv6_client.o
+BIN = ipv6_server.exe ipv6_client.exe
+RC  = ipv6_sock.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = rawping.h ip_checksum.h
+HEADER =
 #
 all: $(BIN) 
 
 #
-$(BIN) : $(OBJ) $(RES)
+ipv6_server.exe : ipv6_server.o $(RES)
 	$(CXX) -o $@ $^ $(LIBS)
 	cp -vf $@ $(BINDIR)/$@
 
+ipv6_client.exe : ipv6_client.o $(RES)
+	$(CXX) -o $@ $^ $(LIBS)
+	cp -vf $@ $(BINDIR)/$@
+    
+#
 .PHONY : test
 test :
-	$(WINE) $(BINDIR)/$(BIN) 127.0.0.1
-
+	$(WINE) $(BINDIR)/$(BIN)
+    
 #
 clean :
 	$(RM) ${OBJ} ${RES} ${BIN}

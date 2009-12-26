@@ -1,33 +1,7 @@
 #
-# filename : Makefile
-# author   : huys
-# updated  : 2008.11.21.
-# version  : 0.1
+TOPDIR = ../..
 #
-
-#
-include ../../make.inc
-
-#
-CFLAGS   =
-CXXFLAGS =
-INC      = -I"../../inc"
-LIB      = -L"../../lib"
-LDFLAGS  =
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-BINDIR = ../../bin
-LIBDIR = ../../lib
-RESDIR = ../../res
-
-DEMODIR = ../../demo
-
-DOCDIR  = ../../doc
-
-#
-HEADER =
+include $(TOPDIR)/make.inc
 
 #
 SUBDIRS =          \
@@ -40,28 +14,14 @@ SUBDIRS =          \
           iocp     \
           ftpserver\
           sniffer  \
+          ipv6     \
+          
 
 #
 .PHONY: all
 all:
 	$(MAKEALL_SUBDIRS)
-#	for /d %%X in ($(SUBDIRS)) do $(MAKE) -C %%X
-#	for X in $(SUBDIRS);\
-#	do \
-#	  (cd $$X && $(MAKE)); \
-#	done
-
-#
-UDOC :
-	cd $(DOCDIR) && $(MAKE)
-
-install :
 
 .PHONY: clean
 clean:
 	$(MAKECLEAN_SUBDIRS)
-#	for /d %%X in ($(SUBDIRS)) do $(MAKE) clean -C %%X
-#	for X in $(SUBDIRS);\
-#	do \
-#		(cd $$X && $(MAKE) clean); \
-#	done
