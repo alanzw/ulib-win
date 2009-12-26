@@ -28,7 +28,7 @@ NTSTATUS FsFilterAttachToDevice(
         FALSE,
         &filterDeviceObject);
 
-    if (!NT_SUCCESS(status)) 
+    if (!NT_SUCCESS(status))
     {
         return status;
     }
@@ -39,20 +39,20 @@ NTSTATUS FsFilterAttachToDevice(
     //  Propagate flags from Device Object we are trying to attach to.
     //
 
-    if (FlagOn(DeviceObject->Flags, DO_BUFFERED_IO)) 
+    if (FlagOn(DeviceObject->Flags, DO_BUFFERED_IO))
     {
         SetFlag(filterDeviceObject->Flags, DO_BUFFERED_IO);
     }
 
-    if (FlagOn(DeviceObject->Flags, DO_DIRECT_IO)) 
+    if (FlagOn(DeviceObject->Flags, DO_DIRECT_IO))
     {
         SetFlag(filterDeviceObject->Flags, DO_DIRECT_IO);
     }
 
-    if (FlagOn(DeviceObject->Characteristics, FILE_DEVICE_SECURE_OPEN)) 
+    if (FlagOn(DeviceObject->Characteristics, FILE_DEVICE_SECURE_OPEN))
     {
         SetFlag(filterDeviceObject->Characteristics, FILE_DEVICE_SECURE_OPEN);
-    }    
+    }
 
     //
     //  Do the attachment.
@@ -62,7 +62,7 @@ NTSTATUS FsFilterAttachToDevice(
     //  loaded just as this volume was being mounted.
     //
 
-    for (i = 0; i < 8; ++i) 
+    for (i = 0; i < 8; ++i)
     {
         LARGE_INTEGER interval;
 
@@ -71,7 +71,7 @@ NTSTATUS FsFilterAttachToDevice(
             DeviceObject,
             &pDevExt->AttachedToDeviceObject);
 
-        if (NT_SUCCESS(status)) 
+        if (NT_SUCCESS(status))
         {
             break;
         }
@@ -105,7 +105,7 @@ NTSTATUS FsFilterAttachToDevice(
         if (NULL != pFilterDeviceObject)
         {
             *pFilterDeviceObject = filterDeviceObject;
-        }        
+        }
     }
 
     return status;
@@ -114,9 +114,9 @@ NTSTATUS FsFilterAttachToDevice(
 void FsFilterDetachFromDevice(
     __in PDEVICE_OBJECT DeviceObject
     )
-{    
+{
     PFSFILTER_DEVICE_EXTENSION pDevExt = (PFSFILTER_DEVICE_EXTENSION)DeviceObject->DeviceExtension;
-    
+
     IoDetachDevice(pDevExt->AttachedToDeviceObject);
     IoDeleteDevice(DeviceObject);
 }
@@ -130,14 +130,14 @@ BOOLEAN FsFilterIsAttachedToDevice(
 {
     PDEVICE_OBJECT nextDevObj    = NULL;
     PDEVICE_OBJECT currentDevObj = IoGetAttachedDeviceReference(DeviceObject);
-    
+
     //
     //  Scan down the list to find our device object.
     //
 
-    do 
+    do
     {
-        if (FsFilterIsMyDeviceObject(currentDevObj)) 
+        if (FsFilterIsMyDeviceObject(currentDevObj))
         {
             ObDereferenceObject(currentDevObj);
             return TRUE;

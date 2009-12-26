@@ -120,7 +120,7 @@ int main()
     for (int i=10; i>1; i--) huys::ADT::Sort::heap_sort<int>(e, i);
     printf("%-25s", "heap_sort: ");
     print(e, 10);
-    
+
     int f[] = {
         1, 9, 0, 5, 6, 7, 8, 2, 4, 3
     };
@@ -134,7 +134,7 @@ int main()
     huys::ADT::Sort::bubble_sort<int>(g, 10);
     printf("%-25s", "bubble_sort: ");
     print(g, 10);
-    
+
     getchar();
     return 0;
 }

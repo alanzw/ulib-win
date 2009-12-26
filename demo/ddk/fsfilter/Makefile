@@ -26,7 +26,7 @@ OBJ = main.o   \
       notification.o \
       IrpDispatch.o  \
       AttachDetach.o
-      
+
 BIN = fsfilter.sys
 RC  =
 RES = ${RC:.rc=.res}
@@ -43,7 +43,7 @@ $(BIN) : $(OBJ) $(RES)
 #
 %.o : %.c $(HEADER)
 	$(CC) -c -o $@ -DBUILD_EXE $< $(CFLAGS) $(INC)
-  
+
 #
 #.PHONY : test
 #test :
