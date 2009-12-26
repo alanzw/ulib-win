@@ -14,7 +14,7 @@
 #include <windows.h>
 #include <winsock2.h>
 #include <ws2tcpip.h>
-
+#include <wspiapi.h>
 // Needed for the Windows 2000 IPv6 Tech Preview.
 #if (_WIN32_WINNT == 0x0500)
 #include <tpipv6.h>
@@ -25,7 +25,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
+#include <ctype.h>
 //
 // This code assumes that at the transport level, the system only supports
 // one stream protocol (TCP) and one datagram protocol (UDP).  Therefore,
@@ -42,6 +42,10 @@
 #define BUFFER_SIZE        65536
 
 #define UNKNOWN_NAME "<unknown>"
+
+#ifndef SS_PORT
+#define SS_PORT(s) *((USHORT *)s+1)
+#endif // SS_PORT
 
 void Usage(char *ProgName)
 {
@@ -130,7 +134,7 @@ int main(int argc, char **argv)
     unsigned int Iteration, MaxIterations = 1;
     BOOL RunForever = FALSE;
 
-    ADDRINFO Hints, *AddrInfo, *AI;
+    struct addrinfo  Hints, *AddrInfo, *AI;
     SOCKET ConnSocket;
     struct sockaddr_storage Addr;
 
@@ -290,7 +294,8 @@ int main(int argc, char **argv)
         i = WSAGetLastError();
         if (getnameinfo(AI->ai_addr, AI->ai_addrlen, AddrName,
                         sizeof (AddrName), NULL, 0, NI_NUMERICHOST) != 0)
-            strcpy_s(AddrName, sizeof (AddrName), UNKNOWN_NAME);
+            //strcpy_s(AddrName, sizeof (AddrName), UNKNOWN_NAME);
+            strcpy(AddrName, UNKNOWN_NAME);
         fprintf(stderr, "connect() to %s failed with error %d: %s\n",
                 AddrName, i, PrintError(i));
         closesocket(ConnSocket);
@@ -311,7 +316,8 @@ int main(int argc, char **argv)
     } else {
         if (getnameinfo((LPSOCKADDR) & Addr, AddrLen, AddrName,
                         sizeof (AddrName), NULL, 0, NI_NUMERICHOST) != 0)
-            strcpy_s(AddrName, sizeof (AddrName), UNKNOWN_NAME);
+            //strcpy_s(AddrName, sizeof (AddrName), UNKNOWN_NAME);
+            strcpy(AddrName, UNKNOWN_NAME);
         printf("Connected to %s, port %d, protocol %s, protocol family %s\n",
                AddrName, ntohs(SS_PORT(&Addr)),
                (AI->ai_socktype == SOCK_STREAM) ? "TCP" : "UDP",
@@ -331,7 +337,8 @@ int main(int argc, char **argv)
     } else {
         if (getnameinfo((LPSOCKADDR) & Addr, AddrLen, AddrName,
                         sizeof (AddrName), NULL, 0, NI_NUMERICHOST) != 0)
-            strcpy_s(AddrName, sizeof (AddrName), UNKNOWN_NAME);
+            //strcpy_s(AddrName, sizeof (AddrName), UNKNOWN_NAME);
+            strcpy(AddrName, UNKNOWN_NAME);
         printf("Using local address %s, port %d\n",
                AddrName, ntohs(SS_PORT(&Addr)));
     }
@@ -343,7 +350,8 @@ int main(int argc, char **argv)
 
         // Compose a message to send.
         AmountToSend =
-            sprintf_s(Buffer, sizeof (Buffer), "Message #%u", Iteration + 1);
+            //sprintf_s(Buffer, sizeof (Buffer), "Message #%u", Iteration + 1);
+            sprintf(Buffer, "Message #%u", Iteration + 1);
         for (i = 0; i < ExtraBytes; i++) {
             Buffer[AmountToSend++] = (char) ((i & 0x3f) + 0x20);
         }

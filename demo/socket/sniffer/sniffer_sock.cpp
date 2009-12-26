@@ -16,7 +16,7 @@
  * =====================================================================================
  */
 #include "resource.h"
- 
+
 #include <windows.h>
 #include <winsock2.h>
 #include <stdio.h>
@@ -67,9 +67,9 @@ typedef struct _TCP_HEADER_
 
 typedef struct _ICMP_HEADER_
 {
-   BYTE type;               // (8 bits)  
-   BYTE code;               // (8 bits)  
-   WORD checksum;           // (16 bits)  
+   BYTE type;               // (8 bits)
+   BYTE code;               // (8 bits)
+   WORD checksum;           // (16 bits)
 } ICMPHEADER;
 
 void get_this_machine_ip(char *_retIP)
@@ -90,14 +90,14 @@ void translate_ip(DWORD _ip, char *_cip)
 {
    struct in_addr in;
 
-	in.S_un.S_addr = _ip;
-	strcpy( _cip, inet_ntoa(in) );
+    in.S_un.S_addr = _ip;
+    strcpy( _cip, inet_ntoa(in) );
 }
 
 void decode_tcp(char *_packet)
 {
    TCPHEADER *tcp_header = (TCPHEADER *)_packet;
-   BYTE flags = ( ntohs(tcp_header->info_ctrl) & 0x003F ); 
+   BYTE flags = ( ntohs(tcp_header->info_ctrl) & 0x003F );
 
    printf("\n         source port      : %ld", htons(tcp_header->source_port));
    printf("\n         destination port : %ld", htons(tcp_header->destination_port));
@@ -129,7 +129,7 @@ void decode_icmp(char *_packet)
    ICMPHEADER *icmp_header = (ICMPHEADER *)_packet;
 
    printf("\n         type: %d", icmp_header->type );
-   
+
    switch ( icmp_header->type )
    {
       case 0:
@@ -158,7 +158,7 @@ int main(int argc, char *argv[])
    int      ip_header_size = 0;
    char     ipSrc[20], ipDest[20], thisIP[20];
    BOOL     bShowTCP = TRUE, bShowICMP = TRUE;
- 
+
    // Check arguments
    if ( _argc > 1 )
    {
@@ -172,19 +172,19 @@ int main(int argc, char *argv[])
          exit(0);
       }
     }
-    
+
     USocket us;
     us.init();
-    
+
     us.create(AF_INET, SOCK_RAW, IPPROTO_IP);
-     
+
      memset( thisIP, 0x00, sizeof(thisIP) );
      get_this_machine_ip(thisIP);
     struct   sockaddr_in sock_sniff;
-	sock_sniff.sin_family = AF_INET;
-	sock_sniff.sin_port = htons(0);
+    sock_sniff.sin_family = AF_INET;
+    sock_sniff.sin_port = htons(0);
    // If your machine has more than one IP you might put another one instead thisIP value
-	sock_sniff.sin_addr.s_addr = inet_addr(thisIP);
+    sock_sniff.sin_addr.s_addr = inet_addr(thisIP);
 
     us.bind((struct sockaddr *)&sock_sniff);
 
@@ -200,10 +200,10 @@ int main(int argc, char *argv[])
                   NULL,
                   NULL ) == SOCKET_ERROR )
 
-	{
+    {
         printf( "Error: WSAIoctl  = %ld\n", WSAGetLastError() );
-		exit(-3);
-	}
+        exit(-3);
+    }
 
     while ( TRUE )
     {
@@ -216,7 +216,7 @@ int main(int argc, char *argv[])
         ip_header = (IPHEADER *)packet;
 
         // I only want IPv4 not IPv6
-        if ( LS_HI_PART(ip_header->ver_ihl) != 4 ) 
+        if ( LS_HI_PART(ip_header->ver_ihl) != 4 )
             continue;
 
         ip_header_size = LS_LO_PART(ip_header->ver_ihl);
@@ -263,11 +263,11 @@ int main(int argc, char *argv[])
             default:
                 break;
         }
-   
+
     } // end-while
-    
+
     us.cleanup();
-    
+
     getchar();
 
     return 0;

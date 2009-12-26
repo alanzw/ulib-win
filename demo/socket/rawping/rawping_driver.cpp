@@ -1,19 +1,10 @@
 /***********************************************************************
  rawping_driver.cpp - A driver program to test the rawping.cpp module.
-
- Building under Microsoft C++ 5.0: 
- 
-    cl -GX rawping.cpp rawping_driver.cpp ip_checksum.cpp ws2_32.lib
-
- Building under Borland C++ 5.0: 
- 
-    bcc32 rawping.cpp rawping_driver.cpp ip_checksum.cpp ws2_32.lib
-  
  ----------------------------------------------------------------------
  Change log:
     9/21/1998 - Added TTL support.
- 
-    2/14/1998 - Polished the program up and separated out the 
+
+    2/14/1998 - Polished the program up and separated out the
         rawping.cpp and ip_checksum.cpp modules.  Also got it to work
         under Borland C++.
 
@@ -39,8 +30,7 @@ using std::min;
 #define MAX_PING_DATA_SIZE 1024
 #define MAX_PING_PACKET_SIZE (MAX_PING_DATA_SIZE + sizeof(IPHeader))
 
-int allocate_buffers(ICMPHeader*& send_buf, IPHeader*& recv_buf,
-        int packet_size);
+int allocate_buffers(ICMPHeader*& send_buf, IPHeader*& recv_buf, int packet_size);
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -59,8 +49,8 @@ int main(int argc, char* argv[])
         cerr << "usage: " << argv[0] << " <host> [data_size] [ttl]" <<
                 endl;
         cerr << "\tdata_size can be up to " << MAX_PING_DATA_SIZE <<
-                " bytes.  Default is " << DEFAULT_PACKET_SIZE << "." << 
-                endl; 
+                " bytes.  Default is " << DEFAULT_PACKET_SIZE << "." <<
+                endl;
         cerr << "\tttl should be 255 or lower.  Default is " <<
                 DEFAULT_TTL << "." << endl;
         return 1;
@@ -81,7 +71,7 @@ int main(int argc, char* argv[])
             }
         }
     }
-    packet_size = max(sizeof(ICMPHeader), 
+    packet_size = max(sizeof(ICMPHeader),
             min((unsigned int)MAX_PING_DATA_SIZE, (unsigned int)packet_size));
 
     // Start Winsock up
@@ -109,8 +99,8 @@ int main(int argc, char* argv[])
             // or a fatal error occurs.
             if (recv_ping(sd, source, recv_buf, MAX_PING_PACKET_SIZE) <
                     0) {
-                // Pull the sequence number out of the ICMP header.  If 
-                // it's bad, we just complain, but otherwise we take 
+                // Pull the sequence number out of the ICMP header.  If
+                // it's bad, we just complain, but otherwise we take
                 // off, because the read failed for some reason.
                 unsigned short header_len = recv_buf->h_len * 4;
                 ICMPHeader* icmphdr = (ICMPHeader*)
@@ -124,7 +114,7 @@ int main(int argc, char* argv[])
                 }
             }
             if (decode_reply(recv_buf, packet_size, &source) != -2) {
-                // Success or fatal error (as opposed to a minor error) 
+                // Success or fatal error (as opposed to a minor error)
                 // so take off.
                 break;
             }
@@ -142,11 +132,10 @@ cleanup:
 /////////////////////////// allocate_buffers ///////////////////////////
 // Allocates send and receive buffers.  Returns < 0 for failure.
 
-int allocate_buffers(ICMPHeader*& send_buf, IPHeader*& recv_buf,
-        int packet_size)
+int allocate_buffers(ICMPHeader*& send_buf, IPHeader*& recv_buf, int packet_size)
 {
     // First the send buffer
-    send_buf = (ICMPHeader*)new char[packet_size];  
+    send_buf = (ICMPHeader*)new char[packet_size];
     if (send_buf == 0) {
         cerr << "Failed to allocate output buffer." << endl;
         return -1;
@@ -158,6 +147,6 @@ int allocate_buffers(ICMPHeader*& send_buf, IPHeader*& recv_buf,
         cerr << "Failed to allocate output buffer." << endl;
         return -1;
     }
-    
+
     return 0;
 }

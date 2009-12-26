@@ -1,27 +1,7 @@
 #
-include ../../make.inc
-
+TOPDIR = ../..
 #
-CFLAGS =
-CXXFLAGS =
-INC = -I"../../inc"
-LIBS = -L"../../lib" -mwindows -luwin
-
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
-#
-OBJ =
-
-BIN =
-RC  =
-RES = ${RC:.rc=.res}
-#
-HEADER =
+include $(TOPDIR)/make.inc
 
 SUBDIRS = dlg_gdiplus      \
           win_gdiplus      \
@@ -31,7 +11,6 @@ SUBDIRS = dlg_gdiplus      \
 #
 all:
 	$(MAKEALL_SUBDIRS)
-
 
 #
 .PHONY : clean
