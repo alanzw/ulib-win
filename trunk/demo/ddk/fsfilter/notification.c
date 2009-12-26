@@ -52,7 +52,7 @@ NTSTATUS FsFilterAttachToFileSystemDevice(
     {
         status = FsFilterAttachToDevice(DeviceObject, &filterDeviceObject);
 
-        if (!NT_SUCCESS(status)) 
+        if (!NT_SUCCESS(status))
         {
             return status;
         }
@@ -63,12 +63,12 @@ NTSTATUS FsFilterAttachToFileSystemDevice(
 
         status = FsFilterEnumerateFileSystemVolumes(DeviceObject);
 
-        if (!NT_SUCCESS(status)) 
+        if (!NT_SUCCESS(status))
         {
             FsFilterDetachFromDevice(filterDeviceObject);
             return status;
         }
-    }   
+    }
 
     return STATUS_SUCCESS;
 }
@@ -82,9 +82,9 @@ VOID FsFilterDetachFromFileSystemDevice(
 {
     PDEVICE_OBJECT device = NULL;
 
-    for (device = DeviceObject->AttachedDevice; NULL != device->AttachedDevice; device = device->AttachedDevice) 
+    for (device = DeviceObject->AttachedDevice; NULL != device->AttachedDevice; device = device->AttachedDevice)
     {
-        if (FsFilterIsMyDeviceObject(device)) 
+        if (FsFilterIsMyDeviceObject(device))
         {
             //
             //  Detach us from the object just below us. Cleanup and delete the object.
@@ -131,8 +131,8 @@ NTSTATUS FsFilterEnumerateFileSystemVolumes(
     //  Walk the given list of devices and attach to them if we should.
     //
 
-    for (i = 0; i < numDevices; ++i) 
-    {        
+    for (i = 0; i < numDevices; ++i)
+    {
         //
         //  Do not attach if:
         //      - This is the control device object (the one passed in)
@@ -142,10 +142,10 @@ NTSTATUS FsFilterEnumerateFileSystemVolumes(
 
         if (devList[i] != DeviceObject &&
             devList[i]->DeviceType == DeviceObject->DeviceType &&
-            !FsFilterIsAttachedToDevice(devList[i])) 
+            !FsFilterIsAttachedToDevice(devList[i]))
         {
             status = FsFilterAttachToDevice(devList[i], NULL);
-        }       
+        }
 
         ObDereferenceObject(devList[i]);
     }

@@ -25,10 +25,6 @@ $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIBS) $(RES)
 
 #
-%.o : %.cpp $(HEADER)
-	$(CXX) -c -o $@ $< $(CXXFLAGS) $(INCS)
-
-#
 .PHONY : test
 test:
 	$(WINE) ./$(BIN)

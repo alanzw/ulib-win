@@ -51,7 +51,7 @@ NTSTATUS DDKAPI DriverEntry(
     __inout PDRIVER_OBJECT  DriverObject,
     __in    PUNICODE_STRING RegistryPath
     )
-{    
+{
     NTSTATUS status = STATUS_SUCCESS;
     ULONG    i      = 0;
 
@@ -62,12 +62,12 @@ NTSTATUS DDKAPI DriverEntry(
     //
 
     g_fsFilterDriverObject = DriverObject;
-    
+
     //
     //  Initialize the driver object dispatch table.
     //
 
-    for (i = 0; i <= IRP_MJ_MAXIMUM_FUNCTION; ++i) 
+    for (i = 0; i <= IRP_MJ_MAXIMUM_FUNCTION; ++i)
     {
         DriverObject->MajorFunction[i] = FsFilterDispatchPassThrough;
     }
@@ -84,8 +84,8 @@ NTSTATUS DDKAPI DriverEntry(
     //  Registered callback routine for file system changes.
     //
 
-    status = IoRegisterFsRegistrationChange(DriverObject, FsFilterNotificationCallback); 
-    if (!NT_SUCCESS(status)) 
+    status = IoRegisterFsRegistrationChange(DriverObject, FsFilterNotificationCallback);
+    if (!NT_SUCCESS(status))
     {
         return status;
     }
@@ -107,7 +107,7 @@ VOID FsFilterUnload(
     )
 {
     ULONG           numDevices = 0;
-    ULONG           i          = 0;    
+    ULONG           i          = 0;
     LARGE_INTEGER   interval;
     PDEVICE_OBJECT  devList[DEVOBJ_LIST_SIZE];
 
@@ -139,12 +139,12 @@ VOID FsFilterUnload(
 
         numDevices = min(numDevices, RTL_NUMBER_OF(devList));
 
-        for (i = 0; i < numDevices; ++i) 
+        for (i = 0; i < numDevices; ++i)
         {
             FsFilterDetachFromDevice(devList[i]);
             ObDereferenceObject(devList[i]);
         }
-        
+
         KeDelayExecutionThread(KernelMode, FALSE, &interval);
     }
 }
