@@ -15,12 +15,12 @@
  *
  * =====================================================================================
  */
- 
+
 /*
- * 	XML stands for eXtensible Markup Language.
+ *     XML stands for eXtensible Markup Language.
  *  XML is designed to transport and store data.
  *  XML is important to know, and very easy to learn.
- *  
+ *
  */
 
 #ifndef U_XML_PARSER_H
@@ -200,7 +200,7 @@ public:
 private:
     UXMLString _version;
     UXMLString _encoding;
-    
+
 };
 
 enum XMLNodeType
@@ -235,11 +235,11 @@ public:
     {
         return true;
     }
-    
+
     XMLNodeType parse(const char *sText)
     {
         _buffer = sText;
-        
+
         if (isCommnent())
         {
             printf("%s : Commnet!\n", sText);
@@ -276,7 +276,7 @@ public:
     {
         return true;
     }
-    
+
 protected:
 private:
     UXMLString _buffer;
@@ -303,7 +303,7 @@ private:
         }
         return false;
     }
-    
+
     bool isDTDHeader()
     {
         if (_buffer.substr(0,1) == "<!")
@@ -312,7 +312,7 @@ private:
         }
         return false;
     }
-    
+
     bool isCDataHeader()
     {
         if (_buffer.substr(0,8) == "<![CDATA[")
@@ -321,13 +321,13 @@ private:
         }
         return false;
     }
-    
+
     bool isElement()
     {
         if ( _buffer.at(1) < 127 )
-			return isalpha( _buffer.at(1) );
-		else
-			return true;
+            return isalpha( _buffer.at(1) );
+        else
+            return true;
     }
 };
 
@@ -337,15 +337,15 @@ public:
     UXMLDocument(const char *sFilename)
     : m_sFilename(sFilename)
     {}
-    
+
     UXMLDocument(const UXMLDocument &copy)
     {
-    
+
     }
-    
+
     UXMLDocument & operator=(const UXMLDocument &copy)
     {
-    
+
     }
 
     virtual ~UXMLDocument()
