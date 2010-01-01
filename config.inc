@@ -67,8 +67,11 @@ CONFIG_OBJS  =    \
 CRYPTO_OBJS =     \
     md5.o         \
 
+DB_OBJS =         \
+    uodbc.o       \
     
 OBJS = $(KENERL_OBJS)  $(GUI_OBJS) $(SYSTEM_OBJS) $(GRAPHIC_OBJS) $(CONFIG_OBJS) $(CRYPTO_OBJS) \
+       $(DB_OBJS)    \
        ulink.o       \
        usys.o        \
        umenu.o       \

@@ -125,6 +125,7 @@ SUBDIRS = \
           md5         \
           fiber       \
           mailslot    \
+          odbc        \
 
 
 #
