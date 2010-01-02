@@ -5,3 +5,6 @@
 #define IDI_OICQ                        5
 #define IDD_OICQ                        102
 
+#define IDR_MAINMENU                    1
+
+#define IDM_ABOUT                       201

@@ -72,7 +72,7 @@ public:
     virtual BOOL onNotify(WPARAM wParam, LPARAM lParam);
     static BOOL onCtrlColor(WPARAM wParam, LPARAM lParam);
     static BOOL onDrawItem(WPARAM wParam, LPARAM lParam);
-    //static BOOL onMeasureItem(WPARAM wParam, LPARAM lParam);
+    static BOOL onMeasureItem(HWND hDlg, WPARAM wParam, LPARAM lParam);
 
     //!!! An application should return nonzero if it erases the background;
     //!!! otherwise, it should return zero.

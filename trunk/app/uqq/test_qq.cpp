@@ -7,10 +7,15 @@
 #include "udialogx.h"
 #include "udlgapp.h"
 
+#include "ContactListBox.h"
+
 using huys::UDialogBox;
 
 class UDialogOICQ : public UDialogBox
 {
+    enum {
+        ID_LB_CONTACT = 1234
+    };
 public:
     UDialogOICQ(HINSTANCE hInst, UINT nID)
     : UDialogBox(hInst, nID) {}
@@ -18,6 +23,11 @@ public:
     virtual BOOL onInit()
     {
         ::InvalidateRect(m_hDlg, NULL, TRUE);
+
+        m_pLBContact = new UContactListBox(m_hDlg, ID_LB_CONTACT, m_hInst);
+        m_pLBContact->setPos(20,130,300,400);
+        m_pLBContact->create();
+
         return TRUE;
     }
 
@@ -32,6 +42,8 @@ public:
         }
         return result;
     }
+private:
+    UContactListBox *m_pLBContact;
 };
 
 UDLGAPP_T(UDialogOICQ, IDD_OICQ);
