@@ -15,6 +15,12 @@
 
 using huys::UDialogBox;
 
+HBITMAP hbmpPencil, hbmpCrayon, hbmpMarker, hbmpPen, hbmpFork;
+HBITMAP hbmpPicture, hbmpOld;
+
+#define BUFFER MAX_PATH
+#define XBITMAP 80
+#define YBITMAP 20
 
 class UIconListBox : public UListBox
 {
@@ -24,7 +30,7 @@ public:
     {
         m_dwStyles |= LBS_OWNERDRAWVARIABLE | WS_VSCROLL;
     }
-    
+
     ~UIconListBox() {};
 
     virtual BOOL create()
@@ -58,129 +64,26 @@ public:
             m_dwUserData = 0;
         };
     };
-    
+
     void addItem(LPCTSTR str, HBITMAP hbmp)
     {
         int nItem = this->addString(str);
         this->setItemData(nItem, (LPARAM)hbmp);
     }
-protected:
-private:
-};
 
-HBITMAP hbmpPencil, hbmpCrayon, hbmpMarker, hbmpPen, hbmpFork;
-HBITMAP hbmpPicture, hbmpOld;
-
-#define BUFFER MAX_PATH
-#define XBITMAP 80
-#define YBITMAP 20
-
-class UDialogExt : public UDialogBox
-{
-    enum {
-        ID_LISTBOX = 13333,
-        ID_ICON_LISTBOX = 13334
-    };
-public:
-    UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-        m_pListBox(0),
-        m_pIconListBox(0)
-    {}
-
-    ~UDialogExt()
+    virtual BOOL onMeasureItem(WPARAM wParam, LPARAM lParam)
     {
-        if (m_pListBox)
-        {
-            delete m_pListBox;
-            m_pListBox = 0;
-        }
+        LPMEASUREITEMSTRUCT lpmis;
+        lpmis = (LPMEASUREITEMSTRUCT) lParam;
 
-        if (m_pIconListBox)
-        {
-            delete m_pIconListBox;
-            m_pIconListBox = 0;
-        }
+        // Set the height of the list box items.
+        lpmis->itemHeight = 36;
 
-        // Free any resources used by the bitmaps.
-
-        DeleteObject(hbmpPencil);
-        DeleteObject(hbmpCrayon);
-        DeleteObject(hbmpMarker);
-        DeleteObject(hbmpPen);
-        DeleteObject(hbmpFork);
-
-    }
-
-    virtual BOOL onInit()
-    {
-        if (!m_pListBox)
-        {
-            m_pListBox = new UListBox(m_hDlg, ID_LISTBOX, m_hInst);
-            //m_pListBox->setStyles(WS_BORDER | LVS_REPORT | LVS_EDITLABELS);
-            m_pListBox->setStyles(WS_HSCROLL|WS_VSCROLL|LBS_DISABLENOSCROLL );
-            m_pListBox->create();
-            m_pListBox->setColumnWidth(300);
-            RECT rc;
-            ::GetClientRect(m_hDlg, &rc);
-            rc.left += 50;
-            rc.right = rc.left + 200;
-            rc.top += 50;
-            rc.bottom -= 50;
-            m_pListBox->setPosition(&rc);
-            //
-
-            //
-            char str[] = "I love you!\tI am here.\tI am here. ";
-            m_pListBox->addString(str);
-            m_pListBox->addString(str);
-            m_pListBox->addString(str);
-
-
-
-            m_pIconListBox = new UIconListBox(m_hDlg, ID_ICON_LISTBOX, m_hInst);
-            m_pIconListBox->setStyles(LBS_OWNERDRAWVARIABLE);
-            m_pIconListBox->setPos(rc.left+250, rc.top, 200, rc.bottom-rc.top);
-            m_pIconListBox->create();
-
-            // Load bitmaps.
-            hbmpPencil = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON1));
-            hbmpCrayon = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
-            hbmpMarker = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON3));
-            hbmpPen = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
-            hbmpFork = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
-     
-            m_pIconListBox->addItem("pencil", hbmpPencil);
-            m_pIconListBox->addItem("crayon", hbmpCrayon);
-            m_pIconListBox->addItem("marker", hbmpMarker);
-            m_pIconListBox->addItem("pen",    hbmpPen);
-            m_pIconListBox->addItem("fork", hbmpFork);
-        
-            m_pIconListBox->setCurSel(0);
-    
-        }
         return TRUE;
     }
 
-    virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
+    virtual BOOL onDrawItem(WPARAM wParam, LPARAM lParam)
     {
-        BOOL result = UDialogBox::DialogProc(message, wParam, lParam);
-
-        if (message == WM_NOTIFY)
-        {
-        }
-
-        if (message == WM_MEASUREITEM)
-        {
-            LPMEASUREITEMSTRUCT lpmis;
-            lpmis = (LPMEASUREITEMSTRUCT) lParam;
-            // Set the height of the list box items.
-            lpmis->itemHeight = 36;
-            return TRUE;
-        }
-
-        if (message == WM_DRAWITEM)
-        {
             LPDRAWITEMSTRUCT lpdis;
             lpdis = (LPDRAWITEMSTRUCT) lParam;
             HDC hdcMem;
@@ -256,9 +159,10 @@ public:
 
                     rcBitmap.left = lpdis->rcItem.left;
                     rcBitmap.top = lpdis->rcItem.top;
-                    rcBitmap.right = lpdis->rcItem.left + XBITMAP;
-                    rcBitmap.bottom = lpdis->rcItem.top + YBITMAP;
-
+                    //rcBitmap.right = lpdis->rcItem.left + XBITMAP;
+                    //rcBitmap.bottom = lpdis->rcItem.top + YBITMAP;
+                    rcBitmap.right = lpdis->rcItem.right;
+                    rcBitmap.bottom = lpdis->rcItem.bottom;
                     // Draw a rectangle around bitmap to indicate
                     // the selection.
 
@@ -278,22 +182,97 @@ public:
             return TRUE;
 
         }
+protected:
+private:
+};
 
-        return result;
-    }
+class UDialogExt : public UDialogBox
+{
+    enum {
+        ID_LISTBOX = 13333,
+        ID_ICON_LISTBOX = 13334
+    };
+public:
+    UDialogExt(HINSTANCE hInst, UINT nID)
+        : UDialogBox(hInst, nID),
+        m_pListBox(0),
+        m_pIconListBox(0)
+    {}
 
-    virtual BOOL onPaint()
+    ~UDialogExt()
     {
-        PAINTSTRUCT ps;
-        HDC hdc;
-        hdc = BeginPaint(m_hDlg, &ps);
-        RECT rt;
-        GetClientRect(m_hDlg, &rt);
-        rt.top = 5;
-        //DrawText(hdc, "Hello World!", strlen("Hello World!"), &rt, DT_SINGLELINE|DT_CENTER|DT_VCENTER );
-        EndPaint(m_hDlg, &ps);
-        return FALSE;
+        if (m_pListBox)
+        {
+            delete m_pListBox;
+            m_pListBox = 0;
+        }
+
+        if (m_pIconListBox)
+        {
+            delete m_pIconListBox;
+            m_pIconListBox = 0;
+        }
+
+        // Free any resources used by the bitmaps.
+
+        DeleteObject(hbmpPencil);
+        DeleteObject(hbmpCrayon);
+        DeleteObject(hbmpMarker);
+        DeleteObject(hbmpPen);
+        DeleteObject(hbmpFork);
+
     }
+
+    virtual BOOL onInit()
+    {
+        if (!m_pListBox)
+        {
+            m_pListBox = new UListBox(m_hDlg, ID_LISTBOX, m_hInst);
+            //m_pListBox->setStyles(WS_BORDER | LVS_REPORT | LVS_EDITLABELS);
+            m_pListBox->setStyles(WS_HSCROLL|WS_VSCROLL|LBS_DISABLENOSCROLL );
+            m_pListBox->create();
+            m_pListBox->setColumnWidth(300);
+            RECT rc;
+            ::GetClientRect(m_hDlg, &rc);
+            rc.left += 50;
+            rc.right = rc.left + 200;
+            rc.top += 50;
+            rc.bottom -= 50;
+            m_pListBox->setPosition(&rc);
+            //
+
+            //
+            char str[] = "I love you!\tI am here.\tI am here. ";
+            m_pListBox->addString(str);
+            m_pListBox->addString(str);
+            m_pListBox->addString(str);
+
+
+
+            m_pIconListBox = new UIconListBox(m_hDlg, ID_ICON_LISTBOX, m_hInst);
+            m_pIconListBox->setStyles(LBS_OWNERDRAWVARIABLE);
+            m_pIconListBox->setPos(rc.left+250, rc.top, 200, rc.bottom-rc.top);
+            m_pIconListBox->create();
+
+            // Load bitmaps.
+            hbmpPencil = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON1));
+            hbmpCrayon = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
+            hbmpMarker = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON3));
+            hbmpPen = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
+            hbmpFork = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
+
+            m_pIconListBox->addItem("pencil", hbmpPencil);
+            m_pIconListBox->addItem("crayon", hbmpCrayon);
+            m_pIconListBox->addItem("marker", hbmpMarker);
+            m_pIconListBox->addItem("pen",    hbmpPen);
+            m_pIconListBox->addItem("fork", hbmpFork);
+
+            m_pIconListBox->setCurSel(0);
+
+        }
+        return TRUE;
+    }
+
 private:
     UListBox *m_pListBox;
     UIconListBox *m_pIconListBox;

@@ -238,21 +238,20 @@ BOOL UDialogBox::onDrawItem( WPARAM wParam, LPARAM lParam )
 }
 
 
-//BOOL UDialogBox::onMeasureItem( WPARAM wParam, LPARAM lParam )
-//{
-//    LPMEASUREITEMSTRUCT lpm = (LPMEASUREITEMSTRUCT) lParam;
-//    BOOL bRet;
-//
-//    //if (lpm->CtlType)
-//    //{
-//    //}
-//
-//    //::SendMessage(hwnd, WM_NOTIFY + WM_REFLECT_MEASUREITEM, wParam, lParam);
-//
-//    bRet = FALSE;
-//
-//    return bRet;
-//}
+BOOL UDialogBox::onMeasureItem( HWND hDlg, WPARAM wParam, LPARAM lParam )
+{
+    LPMEASUREITEMSTRUCT lpm = (LPMEASUREITEMSTRUCT) lParam;
+    BOOL bRet;
+
+    switch (lpm->CtlType)
+    {
+    case ODT_COMBOBOX:
+    case ODT_LISTBOX:
+        bRet == ::SendMessage(::GetDlgItem(hDlg, lpm->CtlID), WM_NOTIFY + WM_REFLECT_MEASUREITEM, wParam, lParam);
+        break;
+    }
+    return bRet;
+}
 
 BOOL UDialogBox::sendMsg(UINT message, WPARAM wParam/*=0*/, LPARAM lParam/*=lParam*/)
 {
@@ -284,13 +283,13 @@ BOOL CALLBACK UDialogBox::DefaultDlgProc(HWND hDlg, UINT message,
          }
     }
 
-    //if (message == WM_MEASUREITEM)
-    //{
-    //    if ((bRet=UDialogBox::onMeasureItem(wParam, lParam)) != FALSE)
-    //    {
-    //        return bRet;
-    //    }
-    //}
+    if (message == WM_MEASUREITEM)
+    {
+        if ((bRet=UDialogBox::onMeasureItem(hDlg, wParam, lParam)) != FALSE)
+        {
+            return bRet;
+        }
+    }
 
 
     //static BOOL bInit = FALSE;

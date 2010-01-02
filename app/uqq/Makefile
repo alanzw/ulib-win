@@ -12,6 +12,7 @@ CXXFLAGS += -DBUILD_EXE
 #
 OBJ = \
  test_qq.o \
+ ContactListBox.o
 
 BIN = test_qq.exe
 RC  = qq.rc
