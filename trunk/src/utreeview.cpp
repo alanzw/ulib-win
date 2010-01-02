@@ -12,6 +12,14 @@ UTreeView::UTreeView(HWND hParent, UINT nResource, HINSTANCE hInst)
 UTreeView::~UTreeView()
 {}
 
+UTreeView::UTreeView()
+: UControl()
+{}
+
+UTreeView::UTreeView(UBaseWindow *pWndParent, UINT nID)
+: UControl(pWndParent, nID)
+{}
+
 BOOL UTreeView::create()
 {
     // Ensure that the common control DLL is loaded.

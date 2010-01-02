@@ -8,6 +8,7 @@ class ULIB_API UStatic : public UControl
 public:
     UStatic(HWND hParent, UINT nResource, HINSTANCE hInst);
 	UStatic(UBaseWindow *pWndParent, LPCTSTR lpText);
+    UStatic(UBaseWindow *pWndParent, UINT nID);
     UStatic() {}
     virtual ~UStatic();
     virtual BOOL create();

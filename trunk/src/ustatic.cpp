@@ -21,6 +21,11 @@ UStatic::UStatic(UBaseWindow *pWndParent, LPCTSTR lpText)
 	m_dwStyles |= SS_SIMPLE;
 }
 
+UStatic::UStatic(UBaseWindow *pWndParent, UINT nID)
+: UControl(pWndParent, nID), m_pText("")
+{
+    m_dwStyles |= SS_SIMPLE;
+}
 
 BOOL UStatic::setText( const TCHAR *pText )
 {
