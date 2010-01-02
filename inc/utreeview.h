@@ -9,6 +9,9 @@ public:
     UTreeView(HWND hParent, UINT nResource, HINSTANCE hInst);
     virtual ~UTreeView();
 
+    UTreeView();
+    
+    UTreeView(UBaseWindow *pWndParent, UINT nID);
     //
     virtual BOOL create();
 

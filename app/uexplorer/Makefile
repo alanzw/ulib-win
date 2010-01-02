@@ -10,14 +10,16 @@ CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 
 #
-OBJ = test_contour.o \
-      ucontour.o     \
+OBJ = test_explorer.o \
+      uexplorer.o
 
-BIN = test_contour.exe
-RC  = contour.rc
+BIN = test_explorer.exe
+RC  = explorer.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/udialogx.h
+HEADER = $(INCDIR)/ubasewindow.h \
+         $(INCDIR)/uwinapp.h     \
+         uexplorer.h
 #
 all: $(BIN)
 
