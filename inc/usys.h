@@ -99,6 +99,12 @@ ULIB_API bool __stdcall setDesktopWallpaper(LPTSTR sFilePath);
 ULIB_API bool __stdcall removeDesktopWallpaper();
 ULIB_API bool __stdcall resetDesktopWallpaper();
 
+//
+ULIB_API DWORD __stdcall getEnvironmentVariable(LPCTSTR sVarName, LPTSTR sBuf, DWORD dwSize);
+
+//
+ULIB_API BOOL __stdcall setEnvironmentVariable(LPCTSTR sVarName, LPCTSTR sValue);
+
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus
 }

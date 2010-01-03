@@ -31,13 +31,28 @@ DWORD waitSingle(UKernelObject *obj, DWORD dwMilliseconds)
 DWORD waitMultiple(UKernelObject *obj, DWORD dwCount, DWORD dwMilliseconds)
 {
     //return ::WaitForMultipleObjects(dwCount, &((HANDLE)*obj), TRUE, dwMilliseconds);
-    return -1;
+    HObjVector hobjs;
+    for (int i = 0; i < dwCount; ++i)
+    {
+        hobjs.push_back((HANDLE)*obj);
+    }
+    return waitMultiple(hobjs, dwMilliseconds);
 }
 
 DWORD msgWaitMultiple(UObject *obj, DWORD dwCount, DWORD dwMilliseconds, DWORD dwWaitMask)
 {
 	//return ::MsgWaitForMultipleObjects(dwCount, &((HANDLE)*obj), TRUE, dwMilliseconds, dwWaitMask);
-    return -1;
+    HObjVector hobjs;
+    for (int i = 0; i < dwCount; ++i)
+    {
+        hobjs.push_back(obj->m_hObj);
+    }
+    return ::MsgWaitForMultipleObjects(hobjs.size(), hobjs.begin(), TRUE, dwMilliseconds, dwWaitMask);
+}
+
+DWORD waitMultiple(HObjVector hobjs, DWORD dwMilliseconds)
+{
+    return ::WaitForMultipleObjects(hobjs.size(), hobjs.begin(), TRUE, dwMilliseconds);
 }
 
 }; // namespace USync

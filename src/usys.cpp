@@ -392,7 +392,6 @@ int getAdapterNum()
         return lana_enum.length;
     else
         return 0;
-
 }
 
 //
@@ -500,6 +499,16 @@ bool resetDesktopWallpaper()
 {
     return setDesktopWallpaper(NULL);
     //return setDesktopWallpaper(SETWALLPAPER_DEFAULT);
+}
+
+DWORD getEnvironmentVariable(LPCTSTR sVarName, LPTSTR sBuf, DWORD dwSize)
+{
+    return ::GetEnvironmentVariable(sVarName, sBuf, dwSize);
+}
+
+BOOL setEnvironmentVariable(LPCTSTR sVarName, LPCTSTR sValue)
+{
+    return ::SetEnvironmentVariable(sVarName, sValue);
 }
 
 /* Ends C function definitions when using C++ */
