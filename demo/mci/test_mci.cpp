@@ -11,10 +11,11 @@
 class UMyWindow : public UBaseWindow
 {
     enum {
-        IDC_BN_PLAYMIDI = 122
+        IDC_BN_PLAYMIDI = 122,
+        IDC_BN_MUTE     = 123
     };
 public:
-    UMyWindow(HINSTANCE hInst)
+    UMyWindow(HINSTANCE hInst=::GetModuleHandle(NULL))
     : UBaseWindow(NULL, hInst)
     {
         setTitle(_T("mci"));
@@ -31,6 +32,11 @@ public:
         ubn.setPosition(&rc);
 
         ubn.setWindowText(_T("PlayMidi"));
+        
+        UButton ubnMute(this, IDC_BN_MUTE);
+        ubnMute.setPos(400, 100, 200, 200);
+        ubnMute.create();
+        ubnMute.setWindowText(_T("Mute"));
 
         return UBaseWindow::onCreate();
     }
@@ -41,6 +47,8 @@ public:
         {
         case IDC_BN_PLAYMIDI:
             return onBnPlayMidi();
+        case IDC_BN_MUTE:
+            return onBnMute();
         default:
             return UBaseWindow::onCommand(wParam, lParam);
         }
@@ -75,29 +83,22 @@ private:
     BOOL onPlayOver()
     {
         this->showMsg(_T("Over!"));
+        return TRUE;
     }
-};
-
-
-class UMyApp : public UWinApp
-{
-public:
-    bool init( HINSTANCE hInst /*= NULL*/ )
+    
+    BOOL onBnMute()
     {
-        m_pMainWindow = new UMyWindow(hInst);
-        m_pMainWindow->create();
-
-        return true;
+        //UMCI::openCDDriver(TRUE);
+        mciSendString("Set cdaudio door open wait", NULL, 0, 0); 
+        return TRUE;
     }
 };
-
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
 {
-    UMyApp app;
-
+    UWinApp app;
+    app.setMainWindow(new UMyWindow);
     app.init(hInstance);
-
     return app.run();
 }
 

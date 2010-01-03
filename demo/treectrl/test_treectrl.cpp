@@ -115,11 +115,11 @@ protected:
         ::GetClientRect(m_hDlg, &rc);
         rc.left += 200;
 
-		if (m_pChildDlg)
-		{
-			::MoveWindow(m_pChildDlg->getHWND(), rc.left, rc.top, rc.right-rc.left, rc.bottom-rc.top, TRUE);
-			m_pChildDlg->show();
-		}
+        if (m_pChildDlg)
+        {
+            ::MoveWindow(m_pChildDlg->getHWND(), rc.left, rc.top, rc.right-rc.left, rc.bottom-rc.top, TRUE);
+            m_pChildDlg->show();
+        }
 
         return 0;
     }

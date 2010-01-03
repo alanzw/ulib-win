@@ -40,6 +40,19 @@ ULIB_API DWORD playMIDIFile(HWND hWndNotify, LPSTR lpszMIDIFileName);
 // returns an MCI error code.
 ULIB_API DWORD playWAVEFile(HWND hWndNotify, LPSTR lpszWAVEFileName);
 
+ULIB_API BOOL openCDDriver(BOOL bOpen);
+
+class ULIB_API MP3Player
+{
+public: 
+    MP3Player();
+    ~MP3Player();
+    void open(const char *filename);
+    DWORD muteAll();
+private:
+    
+};
+
 }; // namespace UMCI
 
 #endif // U_MCI_H
