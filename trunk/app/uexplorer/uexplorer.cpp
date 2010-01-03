@@ -35,7 +35,7 @@ BOOL UExplorer::create()
     RECT rc;
     this->getClientRect(&rc);
 
-    rc.right = rc.left+100;
+    rc.right = rc.left+150;
     rc.bottom -= 5;
 
     m_tv->setRect(&rc);

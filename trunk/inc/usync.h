@@ -16,6 +16,7 @@
  * =====================================================================================
  */
 #include "uobject.h"
+#include "adt/uvector.h"
 
 namespace USync
 {
@@ -36,6 +37,10 @@ ULIB_API DWORD waitSingle(UObject *obj, DWORD dwMilliseconds = INFINITE);
  */
 ULIB_API DWORD waitMultiple(UObject *obj, DWORD dwCount, DWORD dwMilliseconds);
 ULIB_API DWORD msgWaitMultiple(UObject *obj, DWORD dwCount, DWORD dwMilliseconds, DWORD dwWaitMask);
+
+typedef huys::ADT::UVector<HANDLE> HObjVector;
+
+ULIB_API DWORD waitMultiple(HObjVector hobjs, DWORD dwMilliseconds);
 
 }; // namespace USync
 
