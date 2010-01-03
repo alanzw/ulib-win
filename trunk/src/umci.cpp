@@ -25,15 +25,15 @@
 namespace UMCI
 {
 
-BOOL play(LPTSTR lpstrAlias, DWORD dwFrom, DWORD dwTo) 
-{ 
-    TCHAR achCommandBuff[128]; 
+BOOL play(LPTSTR lpstrAlias, DWORD dwFrom, DWORD dwTo)
+{
+    TCHAR achCommandBuff[128];
     int result;
     MCIERROR err;
 
     // Form the command string.
-    result = _stprintf( achCommandBuff, TEXT("play %s from %u to %u"), 
-                        lpstrAlias, dwFrom, dwTo ); 
+    result = _stprintf( achCommandBuff, TEXT("play %s from %u to %u"),
+                        lpstrAlias, dwFrom, dwTo );
 
     if (result == -1)
     {
@@ -41,7 +41,7 @@ BOOL play(LPTSTR lpstrAlias, DWORD dwFrom, DWORD dwTo)
     }
 
     // Send the command string.
-    err = mciSendString(achCommandBuff, NULL, 0, NULL); 
+    err = mciSendString(achCommandBuff, NULL, 0, NULL);
     if (err != 0)
     {
         return FALSE;
@@ -76,14 +76,14 @@ DWORD playMIDIFile(HWND hWndNotify, LPSTR lpszMIDIFileName)
 
     // Check if the output port is the MIDI mapper.
     mciStatusParms.dwItem = MCI_SEQ_STATUS_PORT;
-    if (dwReturn = mciSendCommand(wDeviceID, MCI_STATUS, 
+    if (dwReturn = mciSendCommand(wDeviceID, MCI_STATUS,
         MCI_STATUS_ITEM, (DWORD)(LPVOID) &mciStatusParms))
     {
         mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
         return (dwReturn);
     }
 
-    // The output port is not the MIDI mapper. 
+    // The output port is not the MIDI mapper.
     // Ask if the user wants to continue.
     if (LOWORD(mciStatusParms.dwReturn) != MIDI_MAPPER)
     {
@@ -98,12 +98,12 @@ DWORD playMIDIFile(HWND hWndNotify, LPSTR lpszMIDIFileName)
         }
     }
 
-    // Begin playback. The window procedure function for the parent 
-    // window will be notified with an MM_MCINOTIFY message when 
-    // playback is complete. At this time, the window procedure closes 
+    // Begin playback. The window procedure function for the parent
+    // window will be notified with an MM_MCINOTIFY message when
+    // playback is complete. At this time, the window procedure closes
     // the device.
     mciPlayParms.dwCallback = (DWORD) hWndNotify;
-    if (dwReturn = mciSendCommand(wDeviceID, MCI_PLAY, MCI_NOTIFY, 
+    if (dwReturn = mciSendCommand(wDeviceID, MCI_PLAY, MCI_NOTIFY,
         (DWORD)(LPVOID) &mciPlayParms))
     {
         mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
@@ -126,7 +126,7 @@ DWORD playWAVEFile(HWND hWndNotify, LPSTR lpszWAVEFileName)
     mciOpenParms.lpstrDeviceType = "waveaudio";
     mciOpenParms.lpstrElementName = lpszWAVEFileName;
     if (dwReturn = mciSendCommand(0, MCI_OPEN,
-       MCI_OPEN_TYPE | MCI_OPEN_ELEMENT, 
+       MCI_OPEN_TYPE | MCI_OPEN_ELEMENT,
        (DWORD)(LPVOID) &mciOpenParms))
     {
         // Failed to open device. Don't close it; just return error.
@@ -136,13 +136,13 @@ DWORD playWAVEFile(HWND hWndNotify, LPSTR lpszWAVEFileName)
     // The device opened successfully; get the device ID.
     wDeviceID = mciOpenParms.wDeviceID;
 
-    // Begin playback. The window procedure function for the parent 
-    // window will be notified with an MM_MCINOTIFY message when 
-    // playback is complete. At this time, the window procedure closes 
+    // Begin playback. The window procedure function for the parent
+    // window will be notified with an MM_MCINOTIFY message when
+    // playback is complete. At this time, the window procedure closes
     // the device.
 
     mciPlayParms.dwCallback = (DWORD) hWndNotify;
-    if (dwReturn = mciSendCommand(wDeviceID, MCI_PLAY, MCI_NOTIFY, 
+    if (dwReturn = mciSendCommand(wDeviceID, MCI_PLAY, MCI_NOTIFY,
         (DWORD)(LPVOID) &mciPlayParms))
     {
         mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
@@ -151,5 +151,52 @@ DWORD playWAVEFile(HWND hWndNotify, LPSTR lpszWAVEFileName)
 
     return 0L;
 }
+
+BOOL openCDDriver(BOOL bOpen)  
+{  
+    DWORD dwReturn;  
+    MCI_OPEN_PARMS mciOpenParms;  
+    UINT wDeviceID;  
+    BOOL bSucc = TRUE;  
+   
+    // Open the device by specifying the device name.  
+    mciOpenParms.lpstrDeviceType = "cdaudio";  
+    if  (dwReturn = mciSendCommand(NULL, MCI_OPEN, MCI_OPEN_TYPE, (DWORD)(LPVOID)&mciOpenParms))  
+    {  
+        // Failed to open device.    
+        // Don't close device; just return error.  
+        return FALSE;  
+    }  
+   
+    // The device opened successfully
+    // Get the device ID.  
+    wDeviceID = mciOpenParms.wDeviceID;  
+    MCI_SET_PARMS mciSetParms;  
+    if (bOpen)  
+    {  
+       if(dwReturn = mciSendCommand(wDeviceID, MCI_SET, MCI_SET_DOOR_OPEN, (DWORD)(LPSTR)&mciSetParms))  
+       {  
+            //ErrorProc(dwReturn);  
+            bSucc   =   FALSE;  
+        }  
+    }  
+    else  
+    {  
+        if(dwReturn = mciSendCommand(wDeviceID, MCI_SET, MCI_SET_DOOR_CLOSED, (DWORD)(LPSTR)&mciSetParms))  
+        {  
+            //ErrorProc(dwReturn);  
+            bSucc   =   FALSE;  
+        }  
+    }  
+    mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);  
+    return   bSucc;  
+}
+
+
+DWORD MP3Player::muteAll()
+{
+    return mciSendString("setaudio MediaFile off", NULL, 0, 0);
+}
+
 
 }; // namespace UMCI

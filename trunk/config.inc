@@ -66,6 +66,7 @@ CONFIG_OBJS  =    \
 
 CRYPTO_OBJS =     \
     md5.o         \
+    crc32.o       \
 
 DB_OBJS =         \
     uodbc.o       \

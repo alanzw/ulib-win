@@ -33,15 +33,15 @@ public:
    BOOL onCreate()
    {
        this->setIconBig(IDI_APP);
-       
+
        m_explorer = new UExplorer(this, ID_EXPLORER);
-       
+
        RECT rc = {0};
-       
+
        this->getClientRect(&rc);
-       
+
        m_explorer->setRect(&rc);
-       
+
        m_explorer->create();
 
        return UBaseWindow::onCreate();
@@ -83,7 +83,7 @@ private:
         this->showMsg(_T("UExplorer v0.0.1"), _T("About"));
         return FALSE;
     }
-    
+
     UExplorer *m_explorer;
 };
 
