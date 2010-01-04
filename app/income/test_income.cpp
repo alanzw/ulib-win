@@ -20,7 +20,7 @@ public:
    UMyWindow()
    : UBaseWindow(NULL, ::GetModuleHandle(NULL))
    {
-        this->setTitle(_T("UTerminal Test 0.0.1"));
+        this->setTitle(_T("UIncome Test 0.0.1"));
         this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
    }
 
@@ -67,7 +67,7 @@ public:
 private:
     BOOL onMenuAbout()
     {
-        this->showMsg(_T("UTerminal v0.0.1"), _T("About"));
+        this->showMsg(_T("UIncome v0.0.1"), _T("About"));
         return FALSE;
     }
 };
