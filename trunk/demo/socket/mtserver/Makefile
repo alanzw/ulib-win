@@ -10,9 +10,9 @@ CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 
 #
-OBJ = echoserver_sock.o echoclient_sock.o
-BIN = echoserver_sock.exe echoclient_sock.exe
-RC  = echo_sock.rc
+OBJ = mtserver_sock.o mtclient_sock.o
+BIN = mtserver_sock.exe mtclient_sock.exe
+RC  = mtserver_sock.rc
 RES = ${RC:.rc=.res}
 #
 HEADER =
@@ -20,11 +20,11 @@ HEADER =
 all: $(BIN) 
 
 #
-echoserver_sock.exe : echoserver_sock.o $(RES)
+mtserver_sock.exe : mtserver_sock.o $(RES)
 	$(CXX) -o $@ $^ $(LIBS)
 	cp -vf $@ $(BINDIR)/$@
 #
-echoclient_sock.exe : echoclient_sock.o $(RES)
+mtclient_sock.exe : mtclient_sock.o $(RES)
 	$(CXX) -o $@ $^ $(LIBS)
 	cp -vf $@ $(BINDIR)/$@
  

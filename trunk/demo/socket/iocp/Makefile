@@ -10,9 +10,9 @@ CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 
 #
-OBJ = echoserver_sock.o echoclient_sock.o
-BIN = echoserver_sock.exe echoclient_sock.exe
-RC  = echo_sock.rc
+OBJ = iocpsrv_sock.o iocpcli_sock.o
+BIN = iocpsrv_sock.exe iocpcli_sock.exe
+RC  = iocp_sock.rc
 RES = ${RC:.rc=.res}
 #
 HEADER =
@@ -20,19 +20,17 @@ HEADER =
 all: $(BIN) 
 
 #
-echoserver_sock.exe : echoserver_sock.o $(RES)
+iocpsrv_sock.exe : iocpsrv_sock.o $(RES)
 	$(CXX) -o $@ $^ $(LIBS)
 	cp -vf $@ $(BINDIR)/$@
 #
-echoclient_sock.exe : echoclient_sock.o $(RES)
+iocpcli_sock.exe : iocpcli_sock.o $(RES)
 	$(CXX) -o $@ $^ $(LIBS)
-	cp -vf $@ $(BINDIR)/$@
- 
+	cp -vf $@ $(BINDIR)/$@ 
 #
 .PHONY : test
 test :
-	echo Please run by yourself.
-#	$(WINE) $(BINDIR)/$(BIN)
+	$(WINE) $(BINDIR)/$(BIN)
     
 #
 clean :
