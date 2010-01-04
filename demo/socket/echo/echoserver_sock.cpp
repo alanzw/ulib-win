@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     struct  protoent *ptrp;  /* pointer to a protocol table entry   */
     struct  sockaddr_in sad; /* structure to hold server's address  */
     struct  sockaddr_in cad; /* structure to hold client's address  */
-    int     sd, sd2;         /* socket descriptors                  */
+    SOCKET  sd2;             /* socket descriptors                  */
     int     port;            /* protocol port number                */
     int     alen;            /* length of address                   */
     char    buf[1000];       /* buffer for string the server sends  */

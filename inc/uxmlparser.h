@@ -357,7 +357,7 @@ public:
     }
 private:
     UXMLParser _parser;
-
+    UXMLString _buf;
 private:
     bool read()
     {

@@ -15,6 +15,7 @@ SUBDIRS =          \
           ftpserver\
           sniffer  \
           ipv6     \
+          mtserver \
           
 
 #
