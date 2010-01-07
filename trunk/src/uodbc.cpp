@@ -72,7 +72,7 @@ SQLRETURN DataBase::connect(char *dsnName, char *userId, char *passwd)
       */
 
     SQLAllocHandle(SQL_HANDLE_STMT, _hConn, &_hStmt);
-      
+
      /* Step 3: Execute
       *    Catalog function
       *    SQLBindParameter
@@ -94,6 +94,29 @@ SQLRETURN DataBase::connect(char *dsnName, char *userId, char *passwd)
      return sRet;
 }
 
+#define MAX_CONNECT_LEN  512        // Max size of Connect string
+SQLRETURN DataBase::connect(const char *filename)
+{
+    SQLRETURN status;
+
+    SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &_hEnv);
+    SQLSetEnvAttr(_hEnv, SQL_ATTR_ODBC_VERSION, (void*)SQL_OV_ODBC3, 0);
+    SQLAllocHandle(SQL_HANDLE_DBC, _hEnv, &_hConn);
+
+    char tmpStr[1024];
+    sprintf("Driver={Microsoft Access Driver (*.mdb)};DBQ=%s", filename);
+    char maxStr[MAX_CONNECT_LEN];
+    SQLSMALLINT returnSize;
+    status = SQLDriverConnect(_hConn, NULL, (SQLCHAR *)tmpStr, strlen(tmpStr), (SQLCHAR *)maxStr, sizeof(maxStr), &returnSize, SQL_DRIVER_NOPROMPT );
+
+    return status;
+}
+
+SQLRETURN DataBase::setLoginTimeout(int nSec)
+{
+    return ::SQLSetConnectAttr(_hConn, SQL_LOGIN_TIMEOUT,(void *) nSec, 0);
+}
+
 void DataBase::extract_error(char *fn)
 {
     SQLINTEGER i = 0;
@@ -113,7 +136,7 @@ void DataBase::extract_error(char *fn)
             fprintf(stderr, "%s : %d : %d : %s\n" , state, i, native, text);
         }
     }
-    while( ret == SQL_SUCCESS ); 
+    while( ret == SQL_SUCCESS );
 }
 
 }
