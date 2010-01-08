@@ -51,12 +51,12 @@ bool DataBase::exec( const char *stmt )
     return (ret == SQL_SUCCESS) || (ret == SQL_SUCCESS_WITH_INFO);
 }
 
-bool DataBase::getData( int col, char *buf, int nBufSize, SQLINTEGER *cbData )
+bool DataBase::getData( int nCol, char *szBuf, int nBufSize, SQLINTEGER *cbData )
 {
-    while(SQLFetch(_hStmt) == SQL_SUCCESS)
-    {
-        SQLGetData(_hStmt, col, SQL_C_CHAR, buf, nBufSize, cbData);
-    }
+    //while(SQLFetch(_hStmt) == SQL_SUCCESS)
+    //{
+        SQLGetData(_hStmt, nCol, SQL_C_CHAR, szBuf, nBufSize, cbData);
+    //}
 
     return true;
 }
@@ -157,6 +157,25 @@ SQLRETURN DataBase::connect(const char *filename, int nTimeout)
 
     char tmpStr[1024];
     sprintf(tmpStr, "Driver={Microsoft Access Driver (*.mdb)};DBQ=%s", filename);
+    char maxStr[MAX_CONNECT_LEN];
+    SQLSMALLINT returnSize;
+    status = SQLDriverConnect(_hConn, NULL, (SQLCHAR *)tmpStr, strlen(tmpStr), (SQLCHAR *)maxStr, sizeof(maxStr), &returnSize, SQL_DRIVER_NOPROMPT );
+
+    return status;
+}
+
+SQLRETURN DataBase::connectExcel(const char *filename, int nTimeout)
+{
+    SQLRETURN status;
+
+    //SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &_hEnv);
+    //SQLSetEnvAttr(_hEnv, SQL_ATTR_ODBC_VERSION, (void*)SQL_OV_ODBC3, 0);
+    SQLAllocHandle(SQL_HANDLE_DBC, _hEnv, &_hConn);
+
+    setLoginTimeout(nTimeout);
+
+    char tmpStr[1024];
+    sprintf(tmpStr, "Driver={Microsoft Excel Driver (*.xls)}; DBQ=%s; DriverID=790", filename);
     char maxStr[MAX_CONNECT_LEN];
     SQLSMALLINT returnSize;
     status = SQLDriverConnect(_hConn, NULL, (SQLCHAR *)tmpStr, strlen(tmpStr), (SQLCHAR *)maxStr, sizeof(maxStr), &returnSize, SQL_DRIVER_NOPROMPT );

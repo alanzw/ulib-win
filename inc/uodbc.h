@@ -16,9 +16,11 @@ public:
 
     SQLRETURN connect(char *dsnName, char *userId, char *passwd, int nTimeout = 5);
     SQLRETURN connect(const char *filename, int nTimeout = 5);
+    SQLRETURN connectExcel(const char *filename, int nTimeout = 5);
     void disconnect();
     bool exec(const char *stmt);
     bool getData(int col, char *buf, int nBufsize, SQLINTEGER *cbData);
+	//
     SQLLEN getRows();
     //
     SQLRETURN fetchScroll(SQLSMALLINT FetchOrientation, SQLLEN FetchOffset);

@@ -126,6 +126,7 @@ SUBDIRS = \
           fiber       \
           mailslot    \
           odbc        \
+          propsheet   \
 
 
 #
