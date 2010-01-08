@@ -26,14 +26,6 @@ $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIB)
 	cp -v $@ $(BINDIR)/$@
 
-#
-test_cmdline.o : test_cmdline.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-
 .PHONY : test
 test :
 	$(WINE) $(BINDIR)/$(BIN) arg1 arg2
