@@ -11,13 +11,32 @@ class ULIB_API DataBase
 public:
     DataBase();
     ~DataBase();
-    SQLRETURN connect(char *dsnName, char *userId, char *passwd);
-    SQLRETURN connect(const char *filename);
+
+    SQLRETURN init();
+
+    SQLRETURN connect(char *dsnName, char *userId, char *passwd, int nTimeout = 5);
+    SQLRETURN connect(const char *filename, int nTimeout = 5);
     void disconnect();
     bool exec(const char *stmt);
-    bool getdata(char *buf, SQLINTEGER *cbData);
+    bool getData(int col, char *buf, int nBufsize, SQLINTEGER *cbData);
     SQLLEN getRows();
-    
+    //
+    SQLRETURN fetchScroll(SQLSMALLINT FetchOrientation, SQLLEN FetchOffset);
+    //
+    SQLRETURN describeCol( SQLSMALLINT ColumnNumber,
+                           SQLCHAR *ColumnName,
+                           SQLSMALLINT BufferLength,
+                           SQLSMALLINT *  NameLengthPtr,
+                           SQLSMALLINT *  DataTypePtr,
+                           SQLULEN *      ColumnSizePtr,
+                           SQLSMALLINT *  DecimalDigitsPtr,
+                           SQLSMALLINT *  NullablePtr);
+    //
+    SQLSMALLINT getResultCols();
+
+    //
+    SQLRETURN closeCursor();
+
     //
     SQLRETURN setLoginTimeout(int nSec);
     

@@ -13,6 +13,7 @@ namespace UODBC
 {
 
 DataBase::DataBase()
+: _hEnv(0), _hConn(0), _hStmt(0)
 {
 
 }
@@ -20,6 +21,14 @@ DataBase::DataBase()
 DataBase::~DataBase()
 {
 
+}
+
+SQLRETURN DataBase::init()
+{
+    SQLRETURN ret = SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &_hEnv);
+    ret = SQLSetEnvAttr(_hEnv, SQL_ATTR_ODBC_VERSION, (void*)SQL_OV_ODBC3, 0);
+    
+    return ret;
 }
 
 void DataBase::disconnect()
@@ -32,26 +41,67 @@ void DataBase::disconnect()
 
 bool DataBase::exec( const char *stmt )
 {
+    if (0 == _hStmt)
+    {
+        SQLAllocHandle(SQL_HANDLE_STMT, _hConn, &_hStmt);
+	    SQLSetStmtAttr(_hStmt, SQL_ATTR_CURSOR_TYPE, (SQLPOINTER) SQL_CURSOR_STATIC, 0);
+    }
+
     RETCODE ret = SQLExecDirect(_hStmt, (SQLCHAR*)stmt, SQL_NTS);
     return (ret == SQL_SUCCESS) || (ret == SQL_SUCCESS_WITH_INFO);
 }
 
-bool DataBase::getdata( char *buf, SQLINTEGER *cbData )
+bool DataBase::getData( int col, char *buf, int nBufSize, SQLINTEGER *cbData )
 {
     while(SQLFetch(_hStmt) == SQL_SUCCESS)
     {
-        SQLGetData(_hStmt, 0, SQL_C_CHAR, buf, 256, cbData);
+        SQLGetData(_hStmt, col, SQL_C_CHAR, buf, nBufSize, cbData);
     }
+
+    return true;
 }
 
 SQLLEN DataBase::getRows()
 {
-    SQLLEN nRows = -1;
-    SQLRowCount(_hStmt, &nRows);
+    SQLLEN nRows = 0;
+    SQLRETURN status;
+    while (true)						// loop forever
+	{
+		status = SQLFetch(_hStmt);			// fetch a row of data
+		if (status == SQL_NO_DATA_FOUND) break;		// if No Data was returned then exit the loop
+    
+		nRows++;					// add 1 to the row counter
+	}
+    
     return nRows;
 }
 
-SQLRETURN DataBase::connect(char *dsnName, char *userId, char *passwd)
+SQLRETURN DataBase::fetchScroll(SQLSMALLINT FetchOrientation, SQLLEN FetchOffset)
+{
+    return SQLFetchScroll(_hStmt, FetchOrientation, FetchOffset);
+}
+
+SQLSMALLINT DataBase::getResultCols()
+{
+    SQLSMALLINT cols = -1;
+    SQLNumResultCols(_hStmt, &cols);
+    return cols;
+}
+
+SQLRETURN DataBase::describeCol( 
+    SQLSMALLINT ColumnNumber,
+    SQLCHAR *ColumnName,
+    SQLSMALLINT BufferLength,
+    SQLSMALLINT *NameLengthPtr,
+    SQLSMALLINT *DataTypePtr,
+    SQLULEN *ColumnSizePtr,
+    SQLSMALLINT *DecimalDigitsPtr,
+    SQLSMALLINT *NullablePtr)
+{
+    return SQLDescribeCol(_hStmt, ColumnNumber, ColumnName, BufferLength, NameLengthPtr, DataTypePtr, ColumnSizePtr, DecimalDigitsPtr, NullablePtr);
+}
+
+SQLRETURN DataBase::connect(char *dsnName, char *userId, char *passwd, int nTimeout)
 {
     /* Step1: Connect
      *    SQLAllocHandle(ENV)
@@ -60,8 +110,8 @@ SQLRETURN DataBase::connect(char *dsnName, char *userId, char *passwd)
      *    SQLConnect
      *    SQLSetConnectAttr
      */
-     SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &_hEnv);
-     SQLSetEnvAttr(_hEnv, SQL_ATTR_ODBC_VERSION, (void*)SQL_OV_ODBC3, 0);
+     //SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &_hEnv);
+     //SQLSetEnvAttr(_hEnv, SQL_ATTR_ODBC_VERSION, (void*)SQL_OV_ODBC3, 0);
      SQLAllocHandle(SQL_HANDLE_DBC, _hEnv, &_hConn);
      SQLRETURN sRet = SQLConnect(_hConn, (SQLCHAR*)dsnName, SQL_NTS, (SQLCHAR*)userId, SQL_NTS, (SQLCHAR*)passwd, SQL_NTS);
 
@@ -71,7 +121,7 @@ SQLRETURN DataBase::connect(char *dsnName, char *userId, char *passwd)
       *    SQLSetStmtAttr
       */
 
-    SQLAllocHandle(SQL_HANDLE_STMT, _hConn, &_hStmt);
+    //SQLAllocHandle(SQL_HANDLE_STMT, _hConn, &_hStmt);
 
      /* Step 3: Execute
       *    Catalog function
@@ -95,16 +145,18 @@ SQLRETURN DataBase::connect(char *dsnName, char *userId, char *passwd)
 }
 
 #define MAX_CONNECT_LEN  512        // Max size of Connect string
-SQLRETURN DataBase::connect(const char *filename)
+SQLRETURN DataBase::connect(const char *filename, int nTimeout)
 {
     SQLRETURN status;
 
-    SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &_hEnv);
-    SQLSetEnvAttr(_hEnv, SQL_ATTR_ODBC_VERSION, (void*)SQL_OV_ODBC3, 0);
+    //SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &_hEnv);
+    //SQLSetEnvAttr(_hEnv, SQL_ATTR_ODBC_VERSION, (void*)SQL_OV_ODBC3, 0);
     SQLAllocHandle(SQL_HANDLE_DBC, _hEnv, &_hConn);
 
+    setLoginTimeout(nTimeout);
+
     char tmpStr[1024];
-    sprintf("Driver={Microsoft Access Driver (*.mdb)};DBQ=%s", filename);
+    sprintf(tmpStr, "Driver={Microsoft Access Driver (*.mdb)};DBQ=%s", filename);
     char maxStr[MAX_CONNECT_LEN];
     SQLSMALLINT returnSize;
     status = SQLDriverConnect(_hConn, NULL, (SQLCHAR *)tmpStr, strlen(tmpStr), (SQLCHAR *)maxStr, sizeof(maxStr), &returnSize, SQL_DRIVER_NOPROMPT );
@@ -115,6 +167,11 @@ SQLRETURN DataBase::connect(const char *filename)
 SQLRETURN DataBase::setLoginTimeout(int nSec)
 {
     return ::SQLSetConnectAttr(_hConn, SQL_LOGIN_TIMEOUT,(void *) nSec, 0);
+}
+
+SQLRETURN DataBase::closeCursor()
+{
+    return SQLCloseCursor(_hStmt);
 }
 
 void DataBase::extract_error(char *fn)
