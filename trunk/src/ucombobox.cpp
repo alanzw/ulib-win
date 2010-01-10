@@ -26,14 +26,6 @@ BOOL UComboBox::create()
     return UControl::create(_T("COMBOBOX"));
 }
 
-/*
-BOOL UComboBox::destroy()
-{
-    ::DestroyWindow(m_hSelf);
-    return TRUE;
-}
-*/
-
 //
 BOOL UComboBox::setCurSel(const int nIndex/*=0*/)
 {
@@ -62,6 +54,26 @@ BOOL UComboBox::addText(const TCHAR *lpszText)
 int UComboBox::getText(TCHAR *lpszText)
 {
     return this->getWindowText(lpszText, 256);
+}
+
+BOOL UComboBox::insertText(int nIndex, const TCHAR *lpszText)
+{
+    LONG lResult = sendMsg(CB_INSERTSTRING, (WPARAM)nIndex, (LPARAM)lpszText);
+    if (CB_ERR == lResult)
+    {
+        return FALSE;
+    }
+    return TRUE;
+}
+
+BOOL UComboBox::getLBText(int nIndex, TCHAR *lpszText)
+{
+    LONG lResult = sendMsg(CB_GETLBTEXT, (WPARAM)nIndex, (LPARAM)lpszText);
+    if (CB_ERR == lResult)
+    {
+        return FALSE;
+    }
+    return TRUE;   
 }
 
 BOOL UComboBox::setItemData(int nIndex, DWORD dwData)
