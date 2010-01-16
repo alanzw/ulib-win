@@ -18,7 +18,7 @@ static void init()
     glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess); // Set material properties
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);   // Set light properties
     glColorMaterial(GL_FRONT,GL_DIFFUSE);                // Set Color Capability
-    
+
     glEnable(GL_COLOR_MATERIAL);         // Enable color
     glEnable(GL_LIGHTING);               // Enable lighting for surfaces
     glEnable(GL_LIGHT0);                 // Enable light source
@@ -32,12 +32,12 @@ static void reshape(int width, int height)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(60.0, (GLfloat)width / (GLfloat)height, 1.00, 30.0);
-    
+
     // Perspective Parms( Angle, Aspect Ratio, Front Clipping, Back Clipping)
-    
+
     gluLookAt(0.0, 2.5, 3.0, 0.0, -0.5, -1.0, 0.0, 1.0, 0.0);
     // LookAt Parms (Eye_X, Eye_Y, Eye_Z, View_X, View_Y, View_Z, Up_X, Up_Y, UpZ)
-        
+
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glLoadIdentity();
@@ -77,7 +77,7 @@ static void display()
 int main(int argc, char** argv)
 {    // Run program with possible parameters
     // "glut" Initialization Functions rather than "aux" versions
-    glutInit(&argc,argv);  
+    glutInit(&argc,argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH ); // Initialize modes
     glutInitWindowSize( 550, 550);
     glutInitWindowPosition( 50, 50);
