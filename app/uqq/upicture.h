@@ -4,6 +4,8 @@
 #define HIMETRIC_INCH 2540
 #define ERROR_TITLE "UPicture Error"
 
+#include "ufile.h"
+
 class UPicture
 {
 public:
@@ -14,12 +16,12 @@ public:
       m_nWeight(0)
     {
     }
-    
+
     ~UPicture()
     {
         freePictureData();
     }
-    
+
     BOOL load(HINSTANCE hInstance, LPCTSTR lpszResourceName, LPCSTR ResourceType)
     {
         HGLOBAL hGlobal = NULL;
@@ -27,9 +29,12 @@ public:
         LPVOID lpVoid  = NULL;
         int nSize   = 0;
         BOOL bResult=FALSE;
-        if(m_pIPicture != NULL) freePictureData(); // Important - Avoid Leaks...
+        if(m_pIPicture != NULL)
+        {
+            freePictureData(); // Important - Avoid Leaks...
+        }
 
-        hSource = FindResource(hInstance, lpszResourceName, ResourceType);
+        hSource = ::FindResource(hInstance, lpszResourceName, ResourceType);
 
         if(hSource == NULL)
         {
@@ -37,14 +42,14 @@ public:
             return FALSE;
         }
 
-        hGlobal = LoadResource(hInstance, hSource);
+        hGlobal = ::LoadResource(hInstance, hSource);
         if(hGlobal == NULL)
         {
             MessageBoxEx(NULL, "LoadResource() Failed\t", ERROR_TITLE, MB_OK | MB_ICONSTOP, LANG_ENGLISH);
             return FALSE;
         }
 
-        lpVoid = LockResource(hGlobal);
+        lpVoid = ::LockResource(hGlobal);
         if(lpVoid == NULL)
         {
             MessageBoxEx(NULL, "LockResource() Failed\t", ERROR_TITLE, MB_OK | MB_ICONSTOP, LANG_ENGLISH);
@@ -52,49 +57,54 @@ public:
         }
 
         nSize = (UINT)SizeofResource(hInstance, hSource);
-        if(loadPictureData((BYTE*)hGlobal, nSize)) bResult = TRUE;
+        if(loadPictureData((BYTE*)hGlobal, nSize))
+        {
+            bResult = TRUE;
+        }
 
         UnlockResource(hGlobal); // 16Bit Windows Needs This
-        FreeResource(hGlobal); // 16Bit Windows Needs This (32Bit - Automatic Release)
+        ::FreeResource(hGlobal); // 16Bit Windows Needs This (32Bit - Automatic Release)
 
         m_nWeight = nSize; // Update Picture Size Info...
-    
+
         getImageSize();
-        
+
         return bResult;
     }
 
     BOOL load(const TCHAR * sFilePathName)
     {
         if(!PathFileExists(sFilePathName))
+        {
             return FALSE;
+        }
         BOOL bResult = FALSE;
-        //CFile PictureFile;
+        UFile PictureFile;
         //CFileException e;
         int nSize = 0;
 
         if(m_pIPicture != NULL) freePictureData(); // Important - Avoid Leaks...
 
-        //if(PictureFile.Open(sFilePathName, CFile::modeRead | CFile::typeBinary, &e))
-        //{
-        //    nSize = PictureFile.GetLength();
-        //    BYTE* pBuffer = new BYTE[nSize];
+        if(PictureFile.open(sFilePathName))
+        {
+            nSize = PictureFile.size();
+            BYTE* pBuffer = new BYTE[nSize];
+            DWORD dwRead;
+            if(PictureFile.read(pBuffer, nSize, &dwRead))
+            {
+                if(loadPictureData(pBuffer, nSize)) bResult = TRUE;
+            }
 
-        //    if(PictureFile.Read(pBuffer, nSize) > 0)
-        //    {
-        //        if(LoadPictureData(pBuffer, nSize)) bResult = TRUE;
-        //    }
-
-        //    PictureFile.Close();
-        //    delete [] pBuffer;
-        //}
-        //else // Open Failed...
-        //{
+            PictureFile.close();
+            delete [] pBuffer;
+        }
+        else // Open Failed...
+        {
             //TCHAR szCause[255];
             //e.GetErrorMessage(szCause, 255, NULL);
             //MessageBoxEx(NULL, szCause, ERROR_TITLE, MB_OK | MB_ICONSTOP, LANG_ENGLISH);
             bResult = FALSE;
-        //}
+        }
 
         m_nWeight = nSize; // Update Picture Size Info...
         getImageSize();
@@ -133,17 +143,17 @@ public:
                 bResult = TRUE;
             }
         }
-        
+
         FreeResource(hGlobal); // 16Bit Windows Needs This (32Bit - Automatic Release)
 
-		return bResult;
-	}
+        return bResult;
+    }
 
 
-    BOOL show(HDC hDC, LPRECT pDrawRect, LPRECT pSrcRect/*=NULL*/)
+    BOOL show(HDC hDC, LPRECT pDrawRect, LPRECT pSrcRect = NULL)
     {
         if (hDC == NULL || m_pIPicture == NULL) return FALSE;
-    
+
         RECT recrDest = *pDrawRect;
 
         long Width  = 0;
@@ -156,7 +166,7 @@ public:
         if(pSrcRect)
         {
             SrcRect=*pSrcRect;
-            // convert pixels to himetric 
+            // convert pixels to himetric
             SrcRect.bottom =MulDiv(SrcRect.bottom, HIMETRIC_INCH,GetDeviceCaps(hDC, LOGPIXELSX));
             SrcRect.left =MulDiv(SrcRect.left, HIMETRIC_INCH,GetDeviceCaps(hDC, LOGPIXELSX));
             SrcRect.right =MulDiv(SrcRect.right, HIMETRIC_INCH,GetDeviceCaps(hDC, LOGPIXELSX));
@@ -182,7 +192,7 @@ public:
         //AfxThrowMemoryException();
         return FALSE;
     }
-    
+
     BOOL saveAsBitmap(const TCHAR *sFilePath)
     {
         BOOL bResult = FALSE;
@@ -193,7 +203,7 @@ public:
         STATSTG BytesStatistics;
         DWORD OutData;
         long OutStream;
-        //CFile BitmapFile;
+        UFile BitmapFile;
         //CFileException e;
         double SkipFloat = 0;
         DWORD ByteSkip = 0;
@@ -210,7 +220,7 @@ public:
         m_pIPicture->SaveAsFile(FileStream, TRUE, &OutStream); // Copy Data Stream
         FileStream->Release();
         pStorage->Release();
-        Buffer->Flush(); 
+        Buffer->Flush();
 
         // Get Statistics For Final Size Of Byte Array
         Buffer->Stat(&BytesStatistics, STATFLAG_NONAME);
@@ -237,30 +247,30 @@ public:
 
         Buffer->ReadAt(RealData, BufferBytes, OutStream, &OutData);
 
-        //if(BitmapFile.Open(sFilePath, CFile::typeBinary | CFile::modeCreate | CFile::modeWrite, &e))
-        //{
-        //    BitmapFile.Write(BufferBytes, OutData);
-        //    BitmapFile.Close();
-        //    bResult = TRUE;
-        //}
-        //else // Write File Failed...
-        //{
+        if(BitmapFile.open(sFilePath))
+        {
+            BitmapFile.write(BufferBytes, OutData);
+            BitmapFile.close();
+            bResult = TRUE;
+        }
+        else // Write File Failed...
+        {
             //TCHAR szCause[255];
             //e.GetErrorMessage(szCause, 255, NULL);
             //MessageBoxEx(NULL, szCause, ERROR_TITLE, MB_OK | MB_ICONSTOP, LANG_ENGLISH);
-            //bResult = FALSE;
-        //}
+            bResult = FALSE;
+        }
 
         Buffer->Release();
         free(BufferBytes);
 
         return bResult;
     }
-    
+
     BOOL updateSizeOnDC(HDC hDC)
     {
-        if(hDC == NULL || m_pIPicture == NULL) 
-        { 
+        if(hDC == NULL || m_pIPicture == NULL)
+        {
             m_nHeight = 0;
             m_nWidth = 0;
             return FALSE;
@@ -285,7 +295,7 @@ public:
 
         return(TRUE);
     }
-    
+
     BOOL createFromIcon(HICON hIcon)
     {
         BOOL bResult=FALSE;
@@ -310,7 +320,7 @@ public:
     }
 
     BOOL createFromBitmap(HBITMAP hBitmap)
-    { 
+    {
         BOOL bResult=FALSE;
         if(hBitmap)
         {
@@ -332,12 +342,12 @@ public:
         getImageSize();
         return bResult;
     }
-    
+
     void unload()
     {
         freePictureData();
     }
-    
+
     void getImageSize()
     {
         if(m_pIPicture != NULL)
@@ -368,10 +378,10 @@ private:
             m_nWidth = 0;
         }
     }
-    
+
 private:
     IPicture *m_pIPicture;
-    
+
     OLE_XSIZE_HIMETRIC m_nHeight;
     OLE_XSIZE_HIMETRIC m_nWidth;
     int m_nWeight;
