@@ -34,6 +34,8 @@ public:
         m_pLBContact->setPos(20,130,300,400);
         m_pLBContact->create();
 
+        pic.load("1.gif");
+        
         return TRUE;
     }
 
@@ -48,8 +50,16 @@ public:
         }
         return result;
     }
+    
+	virtual void onDraw(HDC hdc)
+	{
+		RECT rc = {40, 40, 80, 80};
+        pic.show(hdc, &rc);
+	}
 private:
     UContactListBox *m_pLBContact;
+    
+    UPicture pic;
 };
 
 UDLGAPP_T(UDialogOICQ, IDD_OICQ);
