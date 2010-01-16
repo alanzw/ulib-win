@@ -9,6 +9,12 @@
 
 #include "ContactListBox.h"
 
+#include <ocidl.h>
+#include <olectl.h>
+#include <shlwapi.h>
+
+#include "upicture.h"
+
 using huys::UDialogBox;
 
 class UDialogOICQ : public UDialogBox
