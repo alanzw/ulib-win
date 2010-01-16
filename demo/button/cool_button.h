@@ -5,9 +5,9 @@ class UCoolButton : public UOwnerDrawnButton
 {
 public:
     typedef enum tagButtonStatus {
-        BNST_NORMAL,
-        BNST_HOVER,
-        BNST_DOWN
+        BNST_NORMAL = 0x01,
+        BNST_HOVER  = 0x02, 
+        BNST_DOWN   = 0x04
     } ButtonStatus;
 public:
     UCoolButton(HWND hParent, UINT nResource, HINSTANCE hInst)
@@ -73,7 +73,7 @@ public:
     {
         this->setStatus(BNST_DOWN);
         ::SetCapture(m_hSelf);
-
+        ::InvalidateRect(m_hSelf, NULL, TRUE);
         return TRUE;
     }
 
@@ -116,16 +116,19 @@ public:
             if ( PtInRect(&rc, pt) )
             {
                 //SetStatus(DOWN);
+                this->setStatus(BNST_DOWN);
+                ::InvalidateRect(m_hSelf, NULL, TRUE);
             }
             else
             {
-                this->setStatus(BNST_HOVER);
+                this->setStatus(BNST_NORMAL);
                 ::InvalidateRect(m_hSelf, NULL, TRUE);
             }
         }
         else if (m_bsPrev == BNST_DOWN && m_bsNow == BNST_HOVER)
         {
             this->setStatus(BNST_DOWN);
+            ::InvalidateRect(m_hSelf, NULL, TRUE);
         }
         else
         {

@@ -14,7 +14,7 @@ template <class T>
 class UAllocator : std::allocator<T>
 {
 public:
-    
+
 };
 
 }; // namespace ADT

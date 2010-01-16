@@ -184,7 +184,7 @@ public:
                 }
                 return TRUE;
             case IDC_BN_COOL:
-                showMsg("Cool!", "hi", m_hDlg);
+                //showMsg("Cool!", "hi", m_hDlg);
                 return TRUE;
             case IDC_BN_BITMAP:
                 return this->onBnImage();

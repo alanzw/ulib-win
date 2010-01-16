@@ -40,11 +40,11 @@ public:
 
     //
     BOOL release();
-    
+
     //
     DWORD getErrorCode() const
     { return m_dwError; }
-    
+
     class scoped_lock
     {
     private:
@@ -56,7 +56,7 @@ public:
         {
             lock();
         }
-        
+
         ~scoped_lock()
         {
             if(owns_lock())
@@ -69,7 +69,7 @@ public:
         {
             return _isLocked;
         }
-        
+
         void lock()
         {
             if(owns_lock())
@@ -80,7 +80,7 @@ public:
             _mutex.create();
             _isLocked=true;
         }
-        
+
         void unlock()
         {
             if(!owns_lock())

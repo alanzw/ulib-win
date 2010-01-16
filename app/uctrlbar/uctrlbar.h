@@ -40,17 +40,17 @@ public:
     {
     }
 
-	int getCount() const
-	{
-		return m_nCount;
-	}
+    int getCount() const
+    {
+        return m_nCount;
+    }
 
 
 
     //virtual UControl * create(HWND hParent, UINT id, const TCHAR *lpTitle, LPRECT lpRect) = 0;
 protected:
     //UCtrls m_ctrls;
-	int m_nCount;
+    int m_nCount;
 };
 
 #endif // U_MYDIALOG_CTRLS_H
