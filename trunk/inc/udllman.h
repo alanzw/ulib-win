@@ -170,6 +170,12 @@ namespace DLLInject
     ULIB_API BOOL injectLibW(DWORD dwPid, LPCWSTR sLibFile);
     ULIB_API BOOL injectLibA(DWORD dwPid, LPCSTR sLibFile);
     ULIB_API BOOL ejectLibW(DWORD dwPid, LPCWSTR sLibFile);
+    
+    // Function prototype (Same as callback function for CreateThread, but
+    // with no return-value)
+    typedef VOID (__stdcall * PINJCODE)(PVOID);
+    
+    ULIB_API BOOL injectThread(PPROCESS_INFORMATION ppi, PINJCODE pCode, ULONG nCodeLen, PVOID pData, ULONG nDataLen);
 }; // namespace DLLInject
 
 }; // namespace huys
