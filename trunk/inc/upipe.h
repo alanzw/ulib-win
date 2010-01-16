@@ -24,15 +24,15 @@ private:
 class ULIB_API UNamedPipe : public UPipe
 {
 public:
-	UNamedPipe();
+    UNamedPipe();
     UNamedPipe(LPCTSTR sName);
     virtual ~UNamedPipe();
-	virtual BOOL create();
+    virtual BOOL create();
 
-	BOOL connect(LPOVERLAPPED lpOverlapped = NULL);
-	BOOL disconnect();
+    BOOL connect(LPOVERLAPPED lpOverlapped = NULL);
+    BOOL disconnect();
 
-	BOOL read(LPTSTR lpBuffer, DWORD dwBufSize);
+    BOOL read(LPTSTR lpBuffer, DWORD dwBufSize);
     BOOL write(LPTSTR lpBuffer, DWORD dwBufSize);
     //
     typedef struct tagUNamedPipeInfo {
@@ -42,15 +42,15 @@ public:
         DWORD dwMaxInstances;
     } UNamedPipeInfo;
     BOOL getInfo(UNamedPipeInfo &info);
-    
+
 #if WINVER >= 0x0600 // VISTA
     BOOL getClientComputerName(LPTSTR ClientComputerName, ULONG ClientComputerNameLength);
     BOOL getClientPID(PULONG ClientProcessId);
     BOOL getClientSID(PULONG ClientSessionId);
-#endif // WINVER >= 0x0600    
-    
+#endif // WINVER >= 0x0600
+
 private:
-	LPCTSTR m_sName;
+    LPCTSTR m_sName;
 };
 
 #endif // U_PIPE_H

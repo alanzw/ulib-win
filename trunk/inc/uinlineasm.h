@@ -54,47 +54,47 @@ float scalarProduct( float* a1, float* a2, int n )
 {
 //#error Not implemented yet!
 #pragma pack(push, 16)
-	float ans[4];
+    float ans[4];
 #pragma pack(pop)
 
-	register int i;
-	if( n >= 8 )
-	{
-		__asm {
-			xorps xmm0, xmm0
-		}
-		for( i = 0; i < ( n >> 3 ); ++i )
-		{
-			__asm {
-				mov eax, a1
-				mov ebx, a2
-				movups  xmm1, [eax]
-			    movups  xmm2, [eax+16]
-				movups  xmm3, [ebx]
-				movups  xmm4, [ebx+16]
-				add eax, 32
-				add ebx, 32
-				mulps xmm1, xmm3
-				mulps xmm2, xmm4
-				addps xmm1, xmm2
-				addps xmm0, xmm1
-			}
-		}
+    register int i;
+    if( n >= 8 )
+    {
+        __asm {
+            xorps xmm0, xmm0
+        }
+        for( i = 0; i < ( n >> 3 ); ++i )
+        {
+            __asm {
+                mov eax, a1
+                mov ebx, a2
+                movups  xmm1, [eax]
+                movups  xmm2, [eax+16]
+                movups  xmm3, [ebx]
+                movups  xmm4, [ebx+16]
+                add eax, 32
+                add ebx, 32
+                mulps xmm1, xmm3
+                mulps xmm2, xmm4
+                addps xmm1, xmm2
+                addps xmm0, xmm1
+            }
+        }
 
-		//float *p = &ans[0];
-		__asm {
+        //float *p = &ans[0];
+        __asm {
             mov edi, ans
-			movaps xmmword ptr [edi], xmm0
-		}
-		n -= i << 3;
-		ans[0] += ans[1] + ans[2] + ans[3];
-	}
-	else
-	{
-		ans[0] = 0.0;
-		for( i = 0; i < n; ++i )
-			ans[0] += a1[i] * a2[i];
-	}
+            movaps xmmword ptr [edi], xmm0
+        }
+        n -= i << 3;
+        ans[0] += ans[1] + ans[2] + ans[3];
+    }
+    else
+    {
+        ans[0] = 0.0;
+        for( i = 0; i < n; ++i )
+            ans[0] += a1[i] * a2[i];
+    }
     return ans[0];
 }
 
@@ -141,21 +141,21 @@ float addf(float x, float y)
 
 int sum(int *piarray, int sf)
 {
-	 int isum = 0;
-	 __asm { 
-		 mov ECX, sf 
-		 dec ECX 
-		 mov ESI, DWORD PTR piarray 
-		 finit 
-		 fild DWORD PTR [ESI] 
-	  next: 
-		 add ESI, 4 
-		 fiadd DWORD PTR [ESI] 
-		 loop next 
-		 fistp DWORD PTR isum 
-		 fwait 
-	}
-	return isum;
+     int isum = 0;
+     __asm {
+         mov ECX, sf
+         dec ECX
+         mov ESI, DWORD PTR piarray
+         finit
+         fild DWORD PTR [ESI]
+      next:
+         add ESI, 4
+         fiadd DWORD PTR [ESI]
+         loop next
+         fistp DWORD PTR isum
+         fwait
+    }
+    return isum;
 }
 
 void set_fpu (unsigned int mode)
@@ -298,25 +298,25 @@ inline float addf(float x, float y)
 
 int sum(int *piarray, int sf)
 {
-	 int isum = 0;
-	 int *p = &isum;
-	 __asm__ __volatile__( 
-		 "movl %2, %%ecx\n\t" 
-		 "dec %%ecx\n\t"
-		 "movl %1, %%esi\n\t" 
-		 "finit\n\t"
-		 "fildl (%%esi)\n\t" 
-	  	 "next:\n\t" 
-		 "add $4, %%esi\n\t"
-		 "fiaddl (%%esi)\n\t" 
-		 "loop next\n\t"
-		 "fistpl (%0)\n\t"
-		 "fwait"
-		 : "=r"(p)
-		 : "m"(piarray), "m"(sf)
-		 : "memory"
-	);
-	return isum;
+     int isum = 0;
+     int *p = &isum;
+     __asm__ __volatile__(
+         "movl %2, %%ecx\n\t"
+         "dec %%ecx\n\t"
+         "movl %1, %%esi\n\t"
+         "finit\n\t"
+         "fildl (%%esi)\n\t"
+           "next:\n\t"
+         "add $4, %%esi\n\t"
+         "fiaddl (%%esi)\n\t"
+         "loop next\n\t"
+         "fistpl (%0)\n\t"
+         "fwait"
+         : "=r"(p)
+         : "m"(piarray), "m"(sf)
+         : "memory"
+    );
+    return isum;
 }
 
 
