@@ -4,7 +4,12 @@
 
 #include <windows.h>
 #include <tchar.h>
-#include <gdiplus.h>
+
+#ifdef __GNUC__
+#include <gdiplus/gdiPlus.h>
+#else
+#include <gdiPlus.h>
+#endif
 
 #include "udialogx.h"
 #include "udlgapp.h"

@@ -42,4 +42,4 @@ test:
 
 #
 clean :
-	$(RM) ${OBJ} ${RES} ${BIN}
+	$(RM) ${OBJS} ${RES} ${BIN}
