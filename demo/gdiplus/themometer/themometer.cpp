@@ -61,7 +61,7 @@ public:
         EndPaint(m_hSelf, &ps);
         return FALSE;
     }
-    
+
     void onDraw(HDC hdc)
     {
         RECT rcClient = {0};

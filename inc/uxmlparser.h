@@ -17,7 +17,7 @@
  */
 
 /*
- *     XML stands for eXtensible Markup Language.
+ *  XML stands for eXtensible Markup Language.
  *  XML is designed to transport and store data.
  *  XML is important to know, and very easy to learn.
  *
@@ -54,6 +54,15 @@ enum XML_Form {
 };
 
 typedef huys::ADT::UStringAnsi UXMLString;
+
+
+/*
+ *  A -- B -- C -- D -- ... -- Z
+ *       |
+ *       B1
+ *       |
+ *       B2
+ */
 
 class UXMLNode
 {
@@ -164,7 +173,7 @@ public:
 
     const char* atrribute(const char* name)
     {
-        return 0;
+        return _atrributes->value.c_str();
     }
 protected:
 private:
@@ -378,6 +387,8 @@ private:
     {
         return true;
     }
+    
+    
 private:
     UXMLString m_sFilename;
 };

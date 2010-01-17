@@ -30,17 +30,17 @@ public:
             _p->Release();
         }
     }
- 
+
     operator T*() const
     {
         return (T*)_p;
     }
-    
+
     T& operator*() const
     {
         return *_p;
     }
-    
+
     T* operator->() const
     {
         return (T*)_p;
@@ -83,7 +83,7 @@ int _tmain()
     TCHAR szInitStr[1024];
     UINT uTimeout = 15U;
     swprintf( szInitStr,
-        	  _T("Provider=SQLOLEDB;Data Source=%s;Initial Catalog=%s;UserId=%s;Password=%s;Connect Timeout=%u"),
+              _T("Provider=SQLOLEDB;Data Source=%s;Initial Catalog=%s;UserId=%s;Password=%s;Connect Timeout=%u"),
               pszServerName,
               pszDataSource,
               pszUserName,
@@ -91,14 +91,14 @@ int _tmain()
               uTimeout );
     UComPtr<IDataInitialize> pIDataInitialize;
     //
-    HRESULT hResult = ::CoCreateInstance( CLSID_MSDAINITIALIZE, NULL, 
+    HRESULT hResult = ::CoCreateInstance( CLSID_MSDAINITIALIZE, NULL,
         CLSCTX_INPROC_SERVER, IID_IDataInitialize, ( void** )&pIDataInitialize );
 
     if( FAILED( hResult ) )
         return hResult;
     //
-    hResult = pIDataInitialize->GetDataSource( NULL, CLSCTX_INPROC_SERVER, 
-    	(LPCOLESTR)szInitStr, IID_IDBInitialize, ( IUnknown** )&m_pDBInitialize);
+    hResult = pIDataInitialize->GetDataSource( NULL, CLSCTX_INPROC_SERVER,
+        (LPCOLESTR)szInitStr, IID_IDBInitialize, ( IUnknown** )&m_pDBInitialize);
     if( FAILED( hResult ) )
         return hResult;
     //
@@ -117,8 +117,8 @@ int _tmain()
 
 #include <windows.h>
 
-#include <ole2ver.h>		
-#include <cguid.h>			
+#include <ole2ver.h>
+#include <cguid.h>
 #include <oledb.h>
 #include <oledberr.h>
 
@@ -159,12 +159,12 @@ int main()
            (void **)&pIDBInitialize);
     pIDBInitialize->Initialize();
     pIDBInitialize->QueryInterface(IID_IDBCreateSession, (void**)&pIDBCreateSession);
-    pIDBCreateSession->CreateSession(0, IID_IOpenRowset, (IUnknown**)&pIOpenRowset);    
+    pIDBCreateSession->CreateSession(0, IID_IOpenRowset, (IUnknown**)&pIOpenRowset);
     dbcolid.eKind = DBKIND_NAME;
     dbcolid.uName.pwszName = L"z.csv";
     pIOpenRowset->OpenRowset(0, &dbcolid, 0, IID_IRowset, 0, 0, (IUnknown**)&pIRowset);
     rgBind.dwPart = DBPART_VALUE|DBPART_LENGTH|DBPART_STATUS;
-    rgBind.eParamIO = DBPARAMIO_NOTPARAM;                              
+    rgBind.eParamIO = DBPARAMIO_NOTPARAM;
     rgBind.iOrdinal = 1;
     rgBind.wType = DBTYPE_STR;
     rgBind.obValue = 8;
@@ -174,7 +174,7 @@ int main()
     pIRowset->QueryInterface( IID_IAccessor, (void**)&pIAccessor );
     pIAccessor->CreateAccessor(DBACCESSOR_ROWDATA, 1, &rgBind, 0, &hAccessor,0);
     pRowData = (BYTE *) malloc(1000);
-    pIRowset->GetNextRows(NULL, 0, 100, &cRowsObtained, &pRows);         
+    pIRowset->GetNextRows(NULL, 0, 100, &cRowsObtained, &pRows);
     for ( iRow=0; iRow < cRowsObtained; iRow++ )
     {
         pIRowset->GetData(rghRows[iRow], hAccessor, pRowData );
@@ -185,4 +185,4 @@ int main()
     }
 }
 
-#endif 
+#endif

@@ -17,9 +17,10 @@ BOOL save2file(LPCSTR szFileName, IPicture *pPic)
     CreateILockBytesOnHGlobal(NULL, TRUE, &plkbyt);
 
     // Create IStorage
-    IStorage   *pStorage = NULL;
+    IStorage *pStorage = NULL;
     HRESULT hr = ::StgCreateDocfileOnILockBytes(plkbyt,
-    STGM_SHARE_EXCLUSIVE | STGM_CREATE | STGM_READWRITE, 0, &pStorage);
+        STGM_SHARE_EXCLUSIVE | STGM_CREATE | STGM_READWRITE, 0, &pStorage);
+
     if (FAILED(hr))
     {
         plkbyt->Release();
@@ -28,9 +29,10 @@ BOOL save2file(LPCSTR szFileName, IPicture *pPic)
     }
 
     // Create IStream
-    IStream    *pStream = NULL;
+    IStream *pStream = NULL;
     hr = pStorage->CreateStream(L"PICTURE",
-    STGM_SHARE_EXCLUSIVE | STGM_CREATE | STGM_READWRITE, 0, 0, &pStream);
+        STGM_SHARE_EXCLUSIVE | STGM_CREATE | STGM_READWRITE, 0, 0, &pStream);
+
     if (FAILED(hr))
     {
         pStorage->Release();
@@ -43,6 +45,7 @@ BOOL save2file(LPCSTR szFileName, IPicture *pPic)
     // Copy Data Stream
     long  lSize;
     hr = pPic->SaveAsFile(pStream, TRUE, &lSize);
+
     if (FAILED(hr))
     {
         pStream->Release();
@@ -53,9 +56,11 @@ BOOL save2file(LPCSTR szFileName, IPicture *pPic)
         plkbyt = NULL;
         return FALSE;
     }
+
     // Get Statistics For Final Size Of Byte Array
     STATSTG  statStg;
     hr = plkbyt->Stat(&statStg, STATFLAG_NONAME);
+
     if (FAILED(hr))
     {
         pStream->Release();
@@ -81,6 +86,7 @@ BOOL save2file(LPCSTR szFileName, IPicture *pPic)
     dwPicDataSize = dwPicDataSize * 512;
     // Allocate Only The "Pure" Picture Data
     BYTE  *pPicDataBuffer = (BYTE*)malloc(dwPicDataSize);
+
     if (pPicDataBuffer == NULL)
     {
         pStream->Release();
@@ -99,6 +105,7 @@ BOOL save2file(LPCSTR szFileName, IPicture *pPic)
     ulOffset.QuadPart = (DWORD)(statStg.cbSize.QuadPart - dwPicDataSize);
     DWORD dwRealDataSize;
     hr = plkbyt->ReadAt(ulOffset, pPicDataBuffer, dwPicDataSize, &dwRealDataSize);
+
     if (FAILED(hr))
     {
         free(pPicDataBuffer);
@@ -131,6 +138,23 @@ BOOL save2file(LPCSTR szFileName, IPicture *pPic)
     fBmp.Write(pPicDataBuffer, dwRealDataSize);
     fBmp.Close();
 #endif
+
+    UFile fBmp;
+    if (!fBmp.create(szFileName))
+    {
+        free(pPicDataBuffer);
+        pPicDataBuffer = NULL;
+        pStream->Release();
+        pStream = NULL;
+        pStorage->Release();
+        pStorage = NULL;
+        plkbyt->Release();
+        plkbyt = NULL;
+        return FALSE;
+    }
+    fBmp.write(pPicDataBuffer, dwRealDataSize);
+    fBmp.close();
+
     free(pPicDataBuffer);
     pPicDataBuffer = NULL;
     pStream->Release();
@@ -246,11 +270,11 @@ private:
     BOOL loadFileUrl(const char *szFileUrl)
     {
         OleLoadPicturePath((WCHAR *)szFileUrl,
-        (LPUNKNOWN)NULL,
-        0,
-        0,
-        IID_IPicture,
-        (LPVOID*)&m_pIPic);
+            (LPUNKNOWN)NULL,
+            0,
+            0,
+            IID_IPicture,
+            (LPVOID*)&m_pIPic);
 
         return TRUE;
     }

@@ -5,23 +5,15 @@ TOPDIR = ../../..
 include $(TOPDIR)/make.inc
 
 #
-SRCDIR = $(TOPDIR)/src
-INCDIR = $(TOPDIR)/inc
-OBJDIR = $(TOPDIR)/obj
-RESDIR = $(TOPDIR)/res
-ICODIR = $(TOPDIR)/ico
-BINDIR = $(TOPDIR)/bin
-LIBDIR = $(TOPDIR)/lib
-
-#
 GDIPLUS_DIR = D:\GS\mingw4\include\gdiplus
 
+
 #
-CFLAGS =
-CXXFLAGS =
+
 INC = -I"$(INCDIR)" -I"$(GDIPLUS_DIR)"
 LIBS = -L"$(LIBDIR)" -mwindows -luwin -lgdiplus
-
+CFLAGS +=
+CXXFLAGS += $(INC) -DBUILD_EXE
 #
 OBJ = dlg_gdiplus.o
 BIN = dlg_gdiplus.exe
@@ -37,13 +29,6 @@ $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
 
-#
-dlg_gdiplus.o : dlg_gdiplus.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
 #
 .PHONY : test
 test :
