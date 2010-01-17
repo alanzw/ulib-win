@@ -6,7 +6,7 @@ int main()
 {
     using std::cout;
     using std::endl;
-
+    using std::cin;
 
     typedef huys::ADT::UVector<int> UVec;
     UVec v(10, 33);
@@ -62,7 +62,28 @@ int main()
     cout << v3;
     cout << "========================= " << endl;
     v3.resize(5);
-    cout << v3[4];
+    cout << v3[4] << endl;
+    
+    v3[0] = 3;
+    cout << "========================= " << endl;
+    cout << "Size of v3 : " << v3.size() << endl;
+    cout << v3;
+    cout << "========================= " << endl;
+    for ( UVec::iterator it = v3.begin(); it != v3.end(); )
+    {
+        if (3 == *it)
+        {
+            v3.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+    cout << "Size of v3 : " << v3.size() << endl;    
+    cout << v3;
+    
+    cin.ignore();
 
     return 0;
 }

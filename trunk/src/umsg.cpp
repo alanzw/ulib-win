@@ -107,16 +107,16 @@ void getErrorString(DWORD dwErrorNum, TCHAR *lpBuffer)
         lpBuffer,
         256,
         NULL );
-        
+
     if (!bOK)
     {
         HMODULE hModule = ::LoadLibraryEx(_T("netmsg.dll"), NULL, DONT_RESOLVE_DLL_REFERENCES);
-        
+
         if (NULL == hModule)
         {
             return;
         }
-        
+
         bOK = ::FormatMessage( FORMAT_MESSAGE_FROM_HMODULE |
             FORMAT_MESSAGE_FROM_SYSTEM,
             hModule,
@@ -199,13 +199,13 @@ static BOOL g_bTimedOut;
 *  MessageBoxTimer
 *
 *      The timer callback function that posts the fake quit message.
-*      This function causes the message box to exit because the message box 
+*      This function causes the message box to exit because the message box
 *      has determined that the application is exiting.
 *
 ***********************************************************************/
-void CALLBACK MessageBoxTimer(HWND hwnd, 
-                              UINT uiMsg, 
-                              UINT idEvent, 
+void CALLBACK MessageBoxTimer(HWND hwnd,
+                              UINT uiMsg,
+                              UINT idEvent,
                               DWORD dwTime)
 {
    g_bTimedOut = TRUE;
