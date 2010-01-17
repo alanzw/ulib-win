@@ -83,12 +83,12 @@ public:
 
     iterator end() { return avail; }
     const_iterator end() const { return avail; }
-    
+
     const_ref_type front() const
     {
         return this->at(0);
     }
-    
+
     const_ref_type back() const
     {
         return this->at(size()-1);
@@ -102,7 +102,7 @@ public:
         }
         uncheck_append(val);
     }
-    
+
     value_type pop_back()
     {
         value_type temp = back();
@@ -121,7 +121,7 @@ public:
         assert(n>=0 && n<size());
         return data[n];
     }
-    
+
     void assign(size_type num, const_ref_type val)
     {
         uncreate();
@@ -179,6 +179,27 @@ public:
     }
     //template <class ST>
     //friend ostream & operator << (ostream & os, UVector<ST> v);
+
+    iterator erase(iterator p)
+    {
+        std::copy(p + 1, end(), p);
+        destroy(avail - 1, avail);
+        --avail;
+        return p;
+    }
+
+    iterator erase(iterator f, iterator l)
+    {
+        iterator s = copy(l, end(), f);
+        destroy(s, end());
+        avail = s;
+        return f;
+    }
+
+    void clear()
+    {
+        erase(begin(), end());
+    }
 private:
     iterator data;
     iterator avail;
@@ -246,6 +267,14 @@ private:
     void uncheck_append(const T& val)
     {
         alloc.construct(avail++, val);
+    }
+
+    void destroy(iterator f, iterator l)
+    {
+        for (; f != l; ++f)
+        {
+            alloc.destroy(f);
+        }
     }
 };
 

@@ -36,7 +36,7 @@ BOOL UDialogBox::create()
     ::CreateDialogParam(m_hInst, MAKEINTRESOURCE(m_nDialogID), m_hParent, m_lpDialogFunc, (LPARAM)this);
 
     assert(NULL != m_hDlg);
-    
+
 #if (WINVER >= 0x0500)
     AnimateWindow(m_hDlg, 1000, AW_SLIDE|AW_HOR_POSITIVE);
     RECT rc;
@@ -294,8 +294,8 @@ BOOL CALLBACK UDialogBox::DefaultDlgProc(HWND hDlg, UINT message,
 
     //static BOOL bInit = FALSE;
     UDialogBox *pDlg = 0;
-    
-    
+
+
     if (message == WM_INITDIALOG)
     {
         // if this nMessage gets sent then a new window has just been created,
@@ -304,7 +304,7 @@ BOOL CALLBACK UDialogBox::DefaultDlgProc(HWND hDlg, UINT message,
         pDlg = (UDialogBox *)(lParam);
         pDlg->setHWND(hDlg);
     }
-    
+
     pDlg = reinterpret_cast<UDialogBox *>(::GetWindowLong(hDlg, GWL_USERDATA));
 
 

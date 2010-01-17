@@ -41,17 +41,17 @@ int UEdit::getLineCount()
 
 LONG UEdit::scrollLineDown()
 {
-	return this->sendMsg(EM_SCROLL, (WPARAM)SB_LINEDOWN);
+    return this->sendMsg(EM_SCROLL, (WPARAM)SB_LINEDOWN);
 }
 
 BOOL UEdit::setLimitText( int n )
 {
-	return this->sendMsg(EM_SETLIMITTEXT, (WPARAM)n);
+    return this->sendMsg(EM_SETLIMITTEXT, (WPARAM)n);
 }
 
 BOOL UEdit::limitText( int n )
 {
-	return this->sendMsg(EM_LIMITTEXT, (WPARAM)n);	
+    return this->sendMsg(EM_LIMITTEXT, (WPARAM)n);
 }
 
 BOOL UEdit::addLine(LPCTSTR sLine)
