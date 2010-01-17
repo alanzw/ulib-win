@@ -250,7 +250,7 @@ private:
         size_type new_size = (0==n ? max(2 * (limit - data), ptrdiff_t(1)) : n);
 
         // allocate new space and copy existing elements to the new space
-        iterator new_data = alloc.allocate(new_size);
+        iterator new_data = alloc.allocate(new_size, 0);
         iterator new_avail = uninitialized_copy(data, avail, new_data);
 
         // return the old space

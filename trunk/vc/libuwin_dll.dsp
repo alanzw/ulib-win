@@ -186,6 +186,10 @@ SOURCE=..\src\utoolbar.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\uwinapp.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\uwindowx.cpp
 # End Source File
 # End Group
@@ -287,6 +291,10 @@ SOURCE=..\inc\utoolbar.h
 # Begin Source File
 
 SOURCE=..\inc\uwarnings.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\uwinapp.h
 # End Source File
 # Begin Source File
 

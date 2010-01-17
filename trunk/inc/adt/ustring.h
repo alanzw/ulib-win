@@ -327,6 +327,11 @@ public:
         *this = buf;
     }
 
+    bool compare(const T * str)
+    {
+        return    ( this->length() == lstrlen(str) )            // optimization on some platforms
+        && ( lstrcmp(this->c_str(), str) == 0 );    // actual compare
+    }
 private:
     T *m_pBuf;
     size_type m_nBufSize;

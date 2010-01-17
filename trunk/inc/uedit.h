@@ -22,6 +22,7 @@ public:
 
     //
     int getLineCount();
+    int getLineLength(int n = -1);
 
     //
     LONG scrollLineDown();

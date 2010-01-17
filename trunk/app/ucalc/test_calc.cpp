@@ -8,11 +8,12 @@
 #include "ubasewindow.h"
 #include "ugdi.h"
 #include "colors.h"
-
+#include "umsg.h"
 #include "uedit.h"
 #include "ubutton.h"
 
 #include "ucalc.h"
+#include "ueval.h"
 
 const char * g_cap[] = {
     "7",  "8",   "9",  "/",
@@ -92,7 +93,7 @@ public:
     //
     virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
-        if ( LOWORD(wParam) >= ID_BN_NUM_BEGIN &&  LOWORD(wParam) <= ID_BN_NUM_BEGIN )
+        if ( LOWORD(wParam) >= ID_BN_NUM_BEGIN &&  LOWORD(wParam) <= ID_BN_NUM_END )
         {
             return onBnNum(LOWORD(wParam) - ID_BN_NUM_BEGIN);
         }
@@ -103,6 +104,8 @@ public:
             return onMenuAbout();
         case IDM_EXIT:
             return UBaseWindow::onClose();
+        case ID_BN_EVALUATE:
+            return onBnEval();
         default:
             return UBaseWindow::onCommand(wParam, lParam);
         }
@@ -127,8 +130,24 @@ private:
 
     BOOL onBnNum(int num)
     {
+        m_sFormula += g_cap[num];
+        
+        m_pEdtFormula->setText(m_sFormula);
 
-
+        return TRUE;
+    }
+    
+    BOOL onBnEval()
+    {
+        m_sFormula.reserve(m_pEdtFormula->getLineLength()+1);
+        m_pEdtFormula->getText(m_sFormula);
+        //showMsg(m_sFormula);
+        Infix2Postfix i2p(m_sFormula);
+        
+        m_eval.setPostfixExp(i2p.postfixExp());
+        
+        showMsgFormat("eval", "%s  : %d", m_sFormula.c_str(), m_eval.evaluate());
+        
         return TRUE;
     }
 private:
@@ -136,6 +155,10 @@ private:
     UButton *m_pBnEval;
 
     UButton *m_pBnNum[16];
+    
+    TString m_sFormula;
+    
+    PostfixEval m_eval;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
