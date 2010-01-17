@@ -39,6 +39,11 @@ int UEdit::getLineCount()
     return this->sendMsg(EM_GETLINECOUNT);
 }
 
+int UEdit::getLineLength(int n)
+{
+    return this->sendMsg(EM_LINELENGTH, (WPARAM)n);
+}
+
 LONG UEdit::scrollLineDown()
 {
     return this->sendMsg(EM_SCROLL, (WPARAM)SB_LINEDOWN);

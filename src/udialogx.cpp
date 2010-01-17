@@ -247,7 +247,7 @@ BOOL UDialogBox::onMeasureItem( HWND hDlg, WPARAM wParam, LPARAM lParam )
     {
     case ODT_COMBOBOX:
     case ODT_LISTBOX:
-        bRet == ::SendMessage(::GetDlgItem(hDlg, lpm->CtlID), WM_NOTIFY + WM_REFLECT_MEASUREITEM, wParam, lParam);
+        bRet = ::SendMessage(::GetDlgItem(hDlg, lpm->CtlID), WM_NOTIFY + WM_REFLECT_MEASUREITEM, wParam, lParam);
         break;
     }
     return bRet;

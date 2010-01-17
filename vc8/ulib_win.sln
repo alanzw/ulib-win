@@ -38,6 +38,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "button_gdiplus", "button_gd
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "win_gdiplus", "win_gdiplus.vcproj", "{C5DF1424-CCE7-450D-B7DE-E03BD6032524}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "calc", "calc.vcproj", "{2FCD3DFB-4467-41C9-B220-93E6B303224E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -129,6 +131,12 @@ Global
 		{C5DF1424-CCE7-450D-B7DE-E03BD6032524}.Debug-static|Win32.Build.0 = Debug-static|Win32
 		{C5DF1424-CCE7-450D-B7DE-E03BD6032524}.Release|Win32.ActiveCfg = Release|Win32
 		{C5DF1424-CCE7-450D-B7DE-E03BD6032524}.Release|Win32.Build.0 = Release|Win32
+		{2FCD3DFB-4467-41C9-B220-93E6B303224E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2FCD3DFB-4467-41C9-B220-93E6B303224E}.Debug|Win32.Build.0 = Debug|Win32
+		{2FCD3DFB-4467-41C9-B220-93E6B303224E}.Debug-static|Win32.ActiveCfg = Debug|Win32
+		{2FCD3DFB-4467-41C9-B220-93E6B303224E}.Debug-static|Win32.Build.0 = Debug|Win32
+		{2FCD3DFB-4467-41C9-B220-93E6B303224E}.Release|Win32.ActiveCfg = Release|Win32
+		{2FCD3DFB-4467-41C9-B220-93E6B303224E}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

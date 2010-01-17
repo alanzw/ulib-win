@@ -1,21 +1,21 @@
 #ifndef U_TABLE_H
 #define U_TABLE_H
 
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+
 namespace huys
 {
 
 namespace ADT
 {
 
-#include <iostream>
-#include <cstring>
-#include <cstdlib>
-
 template <typename K, typename D>
 class UTable;
 
 template <typename K, typename D>
-std::ostream & operator<<( std::ostream &output, const UTable<K,D> &table );
+std::ostream & operator<< ( std::ostream &output, const UTable<K,D> &table );
 
 template <typename K, typename D>
 class UTable
@@ -37,17 +37,18 @@ private:
 
     int number_entries;
 
-    const static int DEFAULT_BUCKETS = 89;
-
-    const static double THRESHOLD;
-
-    void check( bool condition, const char *message ) const;
+    bool check( bool condition, const char *message ) const;
 
     Bucket *findBucket( const K &key ) const;
 
     void grow();
 
     int hash( const K &key ) const;
+
+
+    const static int DEFAULT_BUCKETS;
+    
+    const static double THRESHOLD;
 
 public:
     UTable<K,D> &operator=( const UTable<K,D> &table );
@@ -75,6 +76,10 @@ public:
   cut the range in the middle.  See the THRESHOLD declaration in class
   UTable for more information.
 */
+
+template <typename K, typename D>
+const int UTable<K,D>::DEFAULT_BUCKETS = 89;
+
 template <typename K, typename D>
 const double UTable<K,D>::THRESHOLD = 0.75;
 
@@ -127,7 +132,7 @@ void UTable<K,D>::grow()
 }
 
 template <typename K, typename D>
-UTable<K,D>::~UTable<K,D>()
+UTable<K,D>::~UTable()
 {
     int bucket_index = 0;
     Bucket *current_bucket = NULL;
@@ -189,13 +194,15 @@ UTable<K,D> &UTable<K,D>::add( const K &key, const D &data )
 }
 
 template <typename K, typename D>
-void UTable<K,D>::check( bool condition, const char *message ) const
+bool UTable<K,D>::check( bool condition, const char *message ) const
 {
     if ( !condition )
     {
         std::cerr << "ERROR: " << message << std::endl;
-        exit( EXIT_FAILURE );
+        //exit( EXIT_FAILURE );
+		return false;
     }
+	return true;
 }
 
 template <typename K, typename D>
@@ -272,12 +279,12 @@ template <typename K, typename D>
 D &UTable<K,D>::operator[]( const K &key ) const
 {
     Bucket *found_bucket = findBucket( key );
-    check( found_bucket != NULL, "Key not in Table." );
-    return found_bucket->data;
+    check( found_bucket != NULL, "Key not in Table.");
+	return found_bucket->data;
 }
 
 template <typename K, typename D>
-UTable<K,D>::Bucket::Bucket( const K &key, const D &data, Bucket *next )
+UTable<K,D>::Bucket::Bucket( const K &key, const D &data, typename UTable<K,D>::Bucket *next )
 : key( key ), data( data ), next( next )
 {}
 
