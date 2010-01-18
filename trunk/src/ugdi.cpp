@@ -421,9 +421,9 @@ void UTriangle::Draw( HDC hdc )
     HBRUSH hOldBrush = (HBRUSH)::SelectObject(hdc, hNewBrush);
 
     POINT pt[3] = {
-        m_upts[0].x(), m_upts[0].y(),
-        m_upts[1].x(), m_upts[1].y(),
-        m_upts[2].x(), m_upts[2].y()
+        { m_upts[0].x(), m_upts[0].y() },
+        { m_upts[1].x(), m_upts[1].y() },
+        { m_upts[2].x(), m_upts[2].y() }
     };
 
     ::Polygon(hdc, pt, 3);
@@ -455,7 +455,7 @@ void UCircle::Draw( HDC hdc )
     hNewBrush = ::CreateBrushIndirect(&(this->FilledBrush));
     HBRUSH hOldBrush = (HBRUSH)::SelectObject(hdc, hNewBrush);
 
-    ::Ellipse(hdc, m_nCenterX-m_dwRadius, m_nCenterY-m_dwRadius, 
+    ::Ellipse(hdc, m_nCenterX-m_dwRadius, m_nCenterY-m_dwRadius,
                    m_nCenterX+m_dwRadius, m_nCenterY+m_dwRadius);
 
     ::SelectObject(hdc, hOldPen);

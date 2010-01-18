@@ -132,8 +132,8 @@ protected:
     BOOL setLong();
 
     ///
-    UINT m_nResourceID;
     HWND m_hParent;
+    UINT m_nResourceID;
     HWND m_hSelf;
     HINSTANCE m_hInstance;
     RECT m_rc;
