@@ -24,6 +24,7 @@
 					<Add library="user32" />
 					<Add library="gdi32" />
 					<Add library="comctl32" />
+					<Add library="shlwapi" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -54,10 +55,18 @@
 		<Unit filename="..\inc\ugdi.h" />
 		<Unit filename="..\inc\uimagelist.h" />
 		<Unit filename="..\inc\ulib.h" />
+		<Unit filename="..\inc\ulistbox.h" />
+		<Unit filename="..\inc\ulistview.h" />
+		<Unit filename="..\inc\umenu.h" />
 		<Unit filename="..\inc\umsg.h" />
 		<Unit filename="..\inc\uobject.h" />
 		<Unit filename="..\inc\upanel.h" />
+		<Unit filename="..\inc\ushell.h" />
 		<Unit filename="..\inc\ustatic.h" />
+		<Unit filename="..\inc\ustatusbar.h" />
+		<Unit filename="..\inc\utabctrl.h" />
+		<Unit filename="..\inc\utoolbar.h" />
+		<Unit filename="..\inc\utreeview.h" />
 		<Unit filename="..\inc\uwinapp.h" />
 		<Unit filename="..\inc\uwndclassx.h" />
 		<Unit filename="..\inc\uworkaround.h" />
@@ -71,10 +80,18 @@
 		<Unit filename="..\src\ugdi.cpp" />
 		<Unit filename="..\src\uimagelist.cpp" />
 		<Unit filename="..\src\ulib.cpp" />
+		<Unit filename="..\src\ulistbox.cpp" />
+		<Unit filename="..\src\ulistview.cpp" />
+		<Unit filename="..\src\umenu.cpp" />
 		<Unit filename="..\src\umsg.cpp" />
 		<Unit filename="..\src\uobject.cpp" />
 		<Unit filename="..\src\upanel.cpp" />
+		<Unit filename="..\src\ushell.cpp" />
 		<Unit filename="..\src\ustatic.cpp" />
+		<Unit filename="..\src\ustatusbar.cpp" />
+		<Unit filename="..\src\utabctrl.cpp" />
+		<Unit filename="..\src\utoolbar.cpp" />
+		<Unit filename="..\src\utreeview.cpp" />
 		<Unit filename="..\src\uwinapp.cpp" />
 		<Unit filename="..\src\uwindowx.cpp" />
 		<Extensions>

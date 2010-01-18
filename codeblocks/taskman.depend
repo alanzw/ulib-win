@@ -1,0 +1,102 @@
+# depslib dependency file v1.0
+1262345779 source:f:\ulib-win\app\utaskman\test_taskman.cpp
+	"resource.h"
+	<windows.h>
+	<tchar.h>
+	<commctrl.h>
+	<cassert>
+	"umsg.h"
+	"udialogx.h"
+	"udlgapp.h"
+	"ucommondialog.h"
+	"utabctrl.h"
+	"ustatusbar.h"
+	"umenu.h"
+	"utabchild.h"
+
+1262345779 f:\ulib-win\app\utaskman\resource.h
+
+1262346215 f:\ulib-win\inc\umsg.h
+	"ulib.h"
+
+1263830354 f:\ulib-win\inc\ulib.h
+	"uwarnings.h"
+	"uhelpers.h"
+	"udebug.h"
+
+1262346215 f:\ulib-win\inc\uwarnings.h
+
+1262346216 f:\ulib-win\inc\uhelpers.h
+	<windows.h>
+
+1262346216 f:\ulib-win\inc\udebug.h
+	"ulib.h"
+
+1262450178 f:\ulib-win\inc\udialogx.h
+	"ulib.h"
+
+1262346215 f:\ulib-win\inc\udlgapp.h
+
+1262346215 f:\ulib-win\inc\ucommondialog.h
+	"ulib.h"
+	"colors.h"
+
+1262346216 f:\ulib-win\inc\colors.h
+
+1262346216 f:\ulib-win\inc\utabctrl.h
+	"ucontrol.h"
+
+1263830354 f:\ulib-win\inc\ucontrol.h
+	"ubasewindow.h"
+
+1263830354 f:\ulib-win\inc\ubasewindow.h
+	"uwndclassx.h"
+
+1262346216 f:\ulib-win\inc\uwndclassx.h
+	"ulib.h"
+
+1262346216 f:\ulib-win\inc\ustatusbar.h
+	"ucontrol.h"
+
+1262346216 f:\ulib-win\inc\umenu.h
+	"uobject.h"
+
+1262346216 f:\ulib-win\inc\uobject.h
+	"ulib.h"
+
+1262345779 f:\ulib-win\app\utaskman\utabchild.h
+	"utoolbar.h"
+	"ulistview.h"
+	"uusagebar.h"
+	"uusagegraph.h"
+
+1262346215 f:\ulib-win\inc\utoolbar.h
+	"ucontrol.h"
+
+1262346215 f:\ulib-win\inc\ulistview.h
+	"ucontrol.h"
+	"colors.h"
+
+1262345779 f:\ulib-win\app\utaskman\uusagebar.h
+	"ustatic.h"
+	"ugdi.h"
+
+1262453143 f:\ulib-win\inc\ustatic.h
+	"ucontrol.h"
+
+1262346216 f:\ulib-win\inc\ugdi.h
+	"ulib.h"
+
+1262345779 f:\ulib-win\app\utaskman\uusagegraph.h
+	"ustatic.h"
+
+1262345779 source:f:\ulib-win\app\utaskman\utaskman.cpp
+
+1263837734 source:f:\ulib-win\app\utaskman\taskman.rc
+	"resource.h"
+	"windows.h"
+	"../../res/u.rc"
+
+1262346186 f:\ulib-win\res\u.rc
+	<windows.h>
+

@@ -2,18 +2,14 @@
 #include <tchar.h>
 #include <commctrl.h>
 
-
-
 #include "uexplorer.h"
 
 UExplorer::UExplorer(HWND hParent, UINT nID, HINSTANCE hInst)
 : UStatic(hParent, nID, hInst)
-{
-}
+{}
 
 UExplorer::UExplorer()
-{
-}
+{}
 
 UExplorer::~UExplorer()
 {
@@ -53,7 +49,6 @@ BOOL UExplorer::create()
     m_tv->addTextChild(item, str3);
 
     m_list = new UListView(m_hSelf, 11112, m_hInstance);
-
     m_list->setStyles(LVS_REPORT | LVS_EDITLABELS);
 
     this->getClientRect(&rc);

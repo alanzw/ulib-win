@@ -1,0 +1,66 @@
+# depslib dependency file v1.0
+1262346147 source:f:\ulib-win\demo\listctrl\listctrl.rc
+	"resource.h"
+	"windows.h"
+	"../../res/u.rc"
+
+1262346147 f:\ulib-win\demo\listctrl\resource.h
+
+1262346186 f:\ulib-win\res\u.rc
+	<windows.h>
+
+1263840142 source:f:\ulib-win\demo\listctrl\test_listctrl.cpp
+	"resource.h"
+	<windows.h>
+	<commctrl.h>
+	<tchar.h>
+	"ulistview.h"
+	"udialogx.h"
+	"udlgapp.h"
+	"uimagelist.h"
+	"umsg.h"
+	"adt/uautoptr.h"
+
+1262346215 f:\ulib-win\inc\ulistview.h
+	"ucontrol.h"
+	"colors.h"
+
+1263830354 f:\ulib-win\inc\ucontrol.h
+	"ubasewindow.h"
+
+1263830354 f:\ulib-win\inc\ubasewindow.h
+	"uwndclassx.h"
+
+1262346216 f:\ulib-win\inc\uwndclassx.h
+	"ulib.h"
+
+1263830354 f:\ulib-win\inc\ulib.h
+	"uwarnings.h"
+	"uhelpers.h"
+	"udebug.h"
+
+1262346215 f:\ulib-win\inc\uwarnings.h
+
+1262346216 f:\ulib-win\inc\uhelpers.h
+	<windows.h>
+
+1262346216 f:\ulib-win\inc\udebug.h
+	"ulib.h"
+
+1262346216 f:\ulib-win\inc\colors.h
+
+1262450178 f:\ulib-win\inc\udialogx.h
+	"ulib.h"
+
+1262346215 f:\ulib-win\inc\udlgapp.h
+
+1262346216 f:\ulib-win\inc\uimagelist.h
+	"ulib.h"
+
+1262346215 f:\ulib-win\inc\umsg.h
+	"ulib.h"
+
+1263839913 f:\ulib-win\inc\adt\autoptr.h
+
+1263840364 f:\ulib-win\inc\adt\uautoptr.h
+
