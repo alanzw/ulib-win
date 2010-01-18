@@ -77,7 +77,7 @@ int PostfixEval::evaluate()
     for(i=0; i<m_sPostfixExp.length(); i++)
     {
         ch = m_sPostfixExp.at(i);
-        
+
         if(isdigit(ch))
         {
             m_operandStack.push(ch-'0');
@@ -100,35 +100,36 @@ bool PostfixEval::isOperator(char ch) const
 
 void Infix2Postfix::set_priority()
 {
-    oper_prio.add("#", 1);
-    oper_prio.add("(", 2);
-    oper_prio.add("+", 3);
-    oper_prio.add("-", 3);
-    oper_prio.add("*", 4);
-    oper_prio.add("/", 4);
-    oper_prio.add("%", 4);
-    oper_prio.add("^", 5);
-    oper_prio.add(")", 6);
+    oper_prio["#"] = 1;
+    oper_prio["("] = 2;
+    oper_prio["+"] = 3;
+    oper_prio["-"] = 3;
+    oper_prio["*"] = 4;
+    oper_prio["/"] = 4;
+    oper_prio["%"] = 4;
+    oper_prio["^"] = 5;
+    oper_prio[")"] = 6;
 }
 
 TString Infix2Postfix::postfixExp()
 {
     postfix="";
-    
+
     set_priority();
-    
+
     stk.push("#");
-    
+
     TString input, topstk;
-    
+
     for(int i=0; i<infix.size(); ++i)
     {
         topstk=stk.top();
         input=infix.substr(i, i);
-        
-        if(!oper_prio.inTable(input))
+
+        if(!oper_prio[input])
         {
             postfix += input;
+            //stk.push(input);
         }
         else
         {

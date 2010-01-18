@@ -21,6 +21,11 @@ int main()
 
     cout << ic << endl;
 
+    if (ic.inTable(2))
+    {
+        cout << "2 is in table!" << endl;
+    }
+
     return 0;
 }
 
