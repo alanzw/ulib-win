@@ -17,8 +17,13 @@ typedef huys::ADT::UStack<TString> UStackStr;
 typedef huys::ADT::UTable<TString, int> UTableSI;
 //typedef std::map<TString, int> UTableSI;
 
+
+namespace huys
+{
+namespace ADT
+{
 template <>
-struct huys::ADT::hash<TString>
+struct hash<TString>
 {
     static int hash_value(const TString &key)
     {
@@ -32,6 +37,8 @@ struct huys::ADT::hash<TString>
         return hash_value;
     }
 };
+}; // namespace ADT
+}; // namespace huys
 
 class EvalException
 {

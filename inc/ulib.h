@@ -174,13 +174,21 @@ inline void checked_delete(T * x)
       #endif // _DEBUG
     #endif //  _MSC_VER == 1400
 
+    #if (_MSC_VER == 1500)  // VC9
+      #if defined(_DEBUG)
+        #pragma comment(lib, "libuwin_debug.vc9.dll.lib")
+      #else
+        #pragma comment(lib, "libuwin_release.vc9.dll.lib")
+      #endif // _DEBUG
+    #endif //  _MSC_VER == 1500
+
     #if (_MSC_VER == 1600)  // VC10
       #if defined(_DEBUG)
         #pragma comment(lib, "libuwin_debug.vc10.dll.lib")
       #else
         #pragma comment(lib, "libuwin_release.vc10.dll.lib")
       #endif // _DEBUG
-    #endif //  _MSC_VER == 1400
+    #endif //  _MSC_VER == 1600
 #else
   //
   #pragma comment(lib, "comctl32.lib")
@@ -207,12 +215,20 @@ inline void checked_delete(T * x)
   #endif // _DEBUG
   #endif
 
+  #if (_MSC_VER == 1500)  // VC9
+    #if defined(_DEBUG)
+    #pragma comment(lib, "libuwin_debug.vc9.lib")
+    #else
+    #pragma comment(lib, "libuwin_release.vc9.lib")
+    #endif // _DEBUG
+  #endif
+
   #if (_MSC_VER == 1600)  // VC10
     #if defined(_DEBUG)
     #pragma comment(lib, "libuwin_debug.vc10.lib")
-  #else
+    #else
     #pragma comment(lib, "libuwin_release.vc10.lib")
-  #endif // _DEBUG
+    #endif // _DEBUG
   #endif
 #endif // BUILD_EXE
 #endif // BUILD_DLL
