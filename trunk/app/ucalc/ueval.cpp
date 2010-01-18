@@ -72,7 +72,8 @@ void PostfixEval::setPostfixExp(const TString &exp)
 
 int PostfixEval::evaluate()
 {
-    int i, left, right, expValue;
+    unsigned int i;
+    int left, right, expValue;
     char ch;
     for(i=0; i<m_sPostfixExp.length(); i++)
     {
@@ -121,7 +122,7 @@ TString Infix2Postfix::postfixExp()
 
     TString input, topstk;
 
-    for(int i=0; i<infix.size(); ++i)
+    for(unsigned int i=0; i<infix.size(); ++i)
     {
         topstk=stk.top();
         input=infix.substr(i, i);

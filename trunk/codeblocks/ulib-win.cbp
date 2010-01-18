@@ -23,6 +23,7 @@
 				<Linker>
 					<Add library="user32" />
 					<Add library="gdi32" />
+					<Add library="comctl32" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -44,29 +45,42 @@
 			</Target>
 		</Build>
 		<Unit filename="..\inc\ubasewindow.h" />
+		<Unit filename="..\inc\ubutton.h" />
 		<Unit filename="..\inc\ucontrol.h" />
 		<Unit filename="..\inc\udebug.h" />
 		<Unit filename="..\inc\udialogx.h" />
+		<Unit filename="..\inc\uedit.h" />
+		<Unit filename="..\inc\ufont.h" />
 		<Unit filename="..\inc\ugdi.h" />
+		<Unit filename="..\inc\uimagelist.h" />
 		<Unit filename="..\inc\ulib.h" />
 		<Unit filename="..\inc\umsg.h" />
+		<Unit filename="..\inc\uobject.h" />
+		<Unit filename="..\inc\upanel.h" />
 		<Unit filename="..\inc\ustatic.h" />
 		<Unit filename="..\inc\uwinapp.h" />
 		<Unit filename="..\inc\uwndclassx.h" />
 		<Unit filename="..\inc\uworkaround.h" />
 		<Unit filename="..\src\ubasewindow.cpp" />
+		<Unit filename="..\src\ubutton.cpp" />
 		<Unit filename="..\src\ucontrol.cpp" />
 		<Unit filename="..\src\udebug.cpp" />
 		<Unit filename="..\src\udialogx.cpp" />
+		<Unit filename="..\src\uedit.cpp" />
+		<Unit filename="..\src\ufont.cpp" />
 		<Unit filename="..\src\ugdi.cpp" />
+		<Unit filename="..\src\uimagelist.cpp" />
 		<Unit filename="..\src\ulib.cpp" />
 		<Unit filename="..\src\umsg.cpp" />
+		<Unit filename="..\src\uobject.cpp" />
+		<Unit filename="..\src\upanel.cpp" />
 		<Unit filename="..\src\ustatic.cpp" />
 		<Unit filename="..\src\uwinapp.cpp" />
 		<Unit filename="..\src\uwindowx.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

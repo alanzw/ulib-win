@@ -34,7 +34,7 @@ BEGIN
     END
     POPUP "&Help" HELP
     BEGIN
-        MENUITEM "&About UTerminal", IDM_ABOUT
+        MENUITEM "&About UCalc", IDM_ABOUT
     END
 END
 

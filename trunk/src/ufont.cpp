@@ -16,7 +16,7 @@ UFont::UFont()
 	::ZeroMemory(&m_lf, sizeof(LOGFONT));
 
     HFONT hSystemVariableFont = (HFONT ) GetStockObject( ANSI_VAR_FONT );
-    
+
     ::GetObject( hSystemVariableFont, sizeof(LOGFONT), &m_lf );
 }
 
@@ -56,6 +56,11 @@ void UFont::create()
 void UFont::setFontHeightRatio(int n)
 {
     m_lf.lfHeight *= n;
+}
+
+void UFont::setFontWidthRatio(int n)
+{
+    m_lf.lfWidth *= n;
 }
 
 void UFont::setFontFaceName(const TCHAR * lfFaceName)

@@ -2,7 +2,13 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
 		<Project filename="ulib-win.cbp" />
-		<Project filename="static.cbp" active="1">
+		<Project filename="static.cbp">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
+		<Project filename="calc.cbp" active="1">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
+		<Project filename="ctrls.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 	</Workspace>

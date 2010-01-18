@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="..\app\ucalc\calc.rc" open="0" top="0" tabpos="0">
+		<Cursor position="744" topLine="20" />
+	</File>
+	<File name="..\app\ucalc\resource.h" open="0" top="0" tabpos="5">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="..\app\ucalc\test_calc.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="1287" topLine="57" />
+	</File>
+	<File name="..\app\ucalc\ucalc.h" open="0" top="0" tabpos="4">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="..\app\ucalc\ueval.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="2467" topLine="113" />
+	</File>
+	<File name="..\app\ucalc\ueval.h" open="0" top="0" tabpos="3">
+		<Cursor position="0" topLine="71" />
+	</File>
+</CodeBlocks_layout_file>

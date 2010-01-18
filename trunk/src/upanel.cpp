@@ -84,7 +84,7 @@ bool UPanel::relayout()
         // ChildCtrlVector::iterator it = m_ctrls.begin();
 
         //for ( ; it != m_ctrls.end(); ++it)
-        for (int i=0; i<nCount; ++i)
+        for (unsigned int i=0; i<nCount; ++i)
         {
             //*it->setPosition(&rc);
             m_ctrls.at(i)->setPosition(&rc);
@@ -106,7 +106,7 @@ bool UPanel::relayout()
         // ChildCtrlVector::iterator it = m_ctrls.begin();
 
         //for ( ; it != m_ctrls.end(); ++it)
-        for (int i=0; i<nCount; ++i)
+        for (unsigned int i=0; i<nCount; ++i)
         {
             //*it->setPosition(&rc);
             m_ctrls.at(i)->setPosition(&rc);
@@ -114,7 +114,7 @@ bool UPanel::relayout()
             rc.bottom += lAvgSize;
         }
     }
-    
+
     return true;
 }
 
