@@ -11,13 +11,29 @@ namespace huys
 namespace ADT
 {
 
-template <typename K, typename D>
+template <typename K>
+struct hash
+{
+    static int hash_value(const K &key)
+    {
+        unsigned int hash_value = 0;
+        /*
+        Compute the hash value from the first four bytes of the object's
+        resident memory.  Then get the hash index for the array by taking
+        the modulo of the size of that array (<number_buckets>).
+        */
+        memcpy( &hash_value, &key, sizeof( unsigned int ) );
+        return hash_value;
+   }
+};
+
+template <typename K, typename D, typename H = hash<K> >
 class UTable;
 
-template <typename K, typename D>
-std::ostream & operator<< ( std::ostream &output, const UTable<K,D> &table );
+template <typename K, typename D, typename H>
+std::ostream & operator<< ( std::ostream &output, const UTable<K,D,H> &table );
 
-template <typename K, typename D>
+template <typename K, typename D, typename H>
 class UTable
 {
 private:
@@ -47,25 +63,27 @@ private:
 
 
     const static int DEFAULT_BUCKETS;
-    
+
     const static double THRESHOLD;
 
 public:
-    UTable<K,D> &operator=( const UTable<K,D> &table );
+    UTable<K,D,H> &operator=( const UTable<K,D,H> &table );
 
-    UTable<K,D>( int starting_buckets = DEFAULT_BUCKETS );
+    UTable<K,D,H>( int starting_buckets = DEFAULT_BUCKETS );
 
-    ~UTable<K,D>();
+    ~UTable<K,D,H>();
 
     bool inTable( const K &key ) const;
 
-    UTable<K,D> & add( const K &key, const D &data = 0 );
+    UTable<K,D,H> & add( const K &key, const D &data = 0 );
 
-    D &operator[]( const K &key ) const;
+    D &operator[]( const K &key );
 
-    UTable<K,D> & clear();
+    UTable<K,D,H> & clear();
 
-    friend std::ostream & operator<< <>( std::ostream &output, const UTable<K,D> &table );
+    friend std::ostream & operator<< <>( std::ostream &output, const UTable<K,D,H> &table );
+
+
 };
 
 /*
@@ -77,14 +95,14 @@ public:
   UTable for more information.
 */
 
-template <typename K, typename D>
-const int UTable<K,D>::DEFAULT_BUCKETS = 89;
+template <typename K, typename D, typename H>
+const int UTable<K,D,H>::DEFAULT_BUCKETS = 89;
 
-template <typename K, typename D>
-const double UTable<K,D>::THRESHOLD = 0.75;
+template <typename K, typename D, typename H>
+const double UTable<K,D,H>::THRESHOLD = 0.75;
 
-template <typename K, typename D>
-UTable<K,D> &UTable<K,D>::operator=( const UTable<K,D> &table )
+template <typename K, typename D, typename H>
+UTable<K,D,H> &UTable<K,D,H>::operator=( const UTable<K,D,H> &table )
 {
     Bucket *current_bucket = NULL;
 
@@ -106,21 +124,14 @@ UTable<K,D> &UTable<K,D>::operator=( const UTable<K,D> &table )
     return *this;
 }
 
-template <typename K, typename D>
-int UTable<K,D>::hash( const K &key ) const
+template <typename K, typename D, typename H>
+int UTable<K,D,H>::hash( const K &key ) const
 {
-    unsigned int hash_value = 0;
-    /*
-        Compute the hash value from the first four bytes of the object's
-        resident memory.  Then get the hash index for the array by taking
-        the modulo of the size of that array (<number_buckets>).
-    */
-    memcpy( &hash_value, &key, sizeof( unsigned int ) );
-    return (int)(hash_value % number_buckets);
+    return (int)(H::hash_value(key) % number_buckets);
 }
 
-template <typename K, typename D>
-void UTable<K,D>::grow()
+template <typename K, typename D, typename H>
+void UTable<K,D,H>::grow()
 {
     /*
         grow() sizing algorithm has been modeled after that used in the
@@ -131,8 +142,8 @@ void UTable<K,D>::grow()
     buckets = (Bucket **)realloc( buckets, (sizeof( Bucket *) * number_buckets) );
 }
 
-template <typename K, typename D>
-UTable<K,D>::~UTable()
+template <typename K, typename D, typename H>
+UTable<K,D,H>::~UTable()
 {
     int bucket_index = 0;
     Bucket *current_bucket = NULL;
@@ -147,14 +158,13 @@ UTable<K,D>::~UTable()
             free( current_bucket );
             current_bucket = next_bucket;
         }
-        free( buckets[bucket_index] );
     }
 
     free( buckets );
 }
 
-template <typename K, typename D>
-UTable<K,D>::UTable( int starting_buckets )
+template <typename K, typename D, typename H>
+UTable<K,D,H>::UTable( int starting_buckets )
 : number_buckets( starting_buckets ), number_entries( 0 )
 {
     /*
@@ -164,8 +174,8 @@ UTable<K,D>::UTable( int starting_buckets )
     buckets = (Bucket **)calloc( sizeof( Bucket * ), number_buckets );
 }
 
-template <typename K, typename D>
-UTable<K,D> &UTable<K,D>::add( const K &key, const D &data )
+template <typename K, typename D, typename H>
+UTable<K,D,H> &UTable<K,D,H>::add( const K &key, const D &data )
 {
     check( !inTable( key ), "Key already in Table." );
 
@@ -177,7 +187,9 @@ UTable<K,D> &UTable<K,D>::add( const K &key, const D &data )
 
     number_entries++;
 
-    Bucket *new_bucket = new Bucket( key, data );
+    Bucket *new_bucket = (Bucket *)malloc(sizeof(Bucket) );
+    new_bucket->key = key;
+    new_bucket->data = data;
 
     /*
         If there are already buckets in the bucket list for the given hash
@@ -188,31 +200,36 @@ UTable<K,D> &UTable<K,D>::add( const K &key, const D &data )
     {
          new_bucket->next = buckets[hash_value];
     }
+    else
+    {
+        new_bucket->next = NULL;
+    }
+
     buckets[hash_value] = new_bucket;
 
     return *this;
 }
 
-template <typename K, typename D>
-bool UTable<K,D>::check( bool condition, const char *message ) const
+template <typename K, typename D, typename H>
+bool UTable<K,D,H>::check( bool condition, const char *message ) const
 {
     if ( !condition )
     {
         std::cerr << "ERROR: " << message << std::endl;
         //exit( EXIT_FAILURE );
-		return false;
+        return false;
     }
-	return true;
+    return true;
 }
 
-template <typename K, typename D>
-bool UTable<K,D>::inTable( const K &key ) const
+template <typename K, typename D, typename H>
+bool UTable<K,D,H>::inTable( const K &key ) const
 {
     return findBucket( key ) != NULL;
 }
 
-template <typename K, typename D>
-typename UTable<K,D>::Bucket *UTable<K,D>::findBucket( const K &key ) const
+template <typename K, typename D, typename H>
+typename UTable<K,D,H>::Bucket *UTable<K,D,H>::findBucket( const K &key ) const
 {
     int hash_value = hash( key );
     Bucket *current_bucket = buckets[hash_value];
@@ -227,8 +244,8 @@ typename UTable<K,D>::Bucket *UTable<K,D>::findBucket( const K &key ) const
     return NULL;
 }
 
-template <typename K, typename D>
-UTable<K,D> &UTable<K,D>::clear()
+template <typename K, typename D, typename H>
+UTable<K,D,H> &UTable<K,D,H>::clear()
 {
     int bucket_index;
 
@@ -238,7 +255,7 @@ UTable<K,D> &UTable<K,D>::clear()
         while ( current_bucket != NULL )
         {
             Bucket *next_bucket = current_bucket->next;
-            delete current_bucket;
+            free(current_bucket);
             current_bucket = next_bucket;
         }
         buckets[bucket_index] = NULL;
@@ -255,8 +272,8 @@ UTable<K,D> &UTable<K,D>::clear()
     return *this;
 }
 
-template <typename K, typename D>
-std::ostream &operator<<( std::ostream &output, const UTable<K,D> &table )
+template <typename K, typename D, typename H>
+std::ostream &operator<<( std::ostream &output, const UTable<K,D,H> &table )
 {
     int bucket_index;
     typename UTable<K,D>::Bucket *current_bucket = NULL;
@@ -275,16 +292,23 @@ std::ostream &operator<<( std::ostream &output, const UTable<K,D> &table )
     return output;
 }
 
-template <typename K, typename D>
-D &UTable<K,D>::operator[]( const K &key ) const
+template <typename K, typename D, typename H>
+D & UTable<K,D,H>::operator[]( const K &key )
 {
     Bucket *found_bucket = findBucket( key );
     check( found_bucket != NULL, "Key not in Table.");
-	return found_bucket->data;
+
+    if (NULL == found_bucket)
+    {
+        add(key);
+        return findBucket(key)->data;
+    }
+
+    return found_bucket->data;
 }
 
-template <typename K, typename D>
-UTable<K,D>::Bucket::Bucket( const K &key, const D &data, typename UTable<K,D>::Bucket *next )
+template <typename K, typename D, typename H>
+UTable<K,D,H>::Bucket::Bucket( const K &key, const D &data, typename UTable<K,D,H>::Bucket *next )
 : key( key ), data( data ), next( next )
 {}
 

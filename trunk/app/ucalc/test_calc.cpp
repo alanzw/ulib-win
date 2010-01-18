@@ -32,10 +32,14 @@ class UMyWindow : public UBaseWindow
     };
 public:
    UMyWindow()
-   : UBaseWindow(NULL, ::GetModuleHandle(NULL))
+       : UBaseWindow(NULL, ::GetModuleHandle(NULL)),
+         m_pEdtFormula(0),
+         m_pBnEval(0)
    {
         this->setTitle(_T("UCalc Test 0.0.1"));
         this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
+
+        ZeroMemory((void *)m_pBnNum, sizeof(m_pBnNum));
    }
 
    ~UMyWindow()
@@ -139,14 +143,16 @@ private:
 
     BOOL onBnEval()
     {
-        m_sFormula.reserve(m_pEdtFormula->getLineLength()+1);
-        m_pEdtFormula->getText(m_sFormula);
+        //m_sFormula.reserve(m_pEdtFormula->getLineLength()+1);
+        TCHAR buf[128];
+        m_pEdtFormula->getText(buf);
+        //m_sFormula = buf;
         //showMsg(m_sFormula);
-        Infix2Postfix i2p(m_sFormula);
+        Infix2Postfix i2p(buf);
 
         m_eval.setPostfixExp(i2p.postfixExp());
 
-        showMsgFormat("eval", "%s  : %d", m_sFormula.c_str(), m_eval.evaluate());
+        showMsgFormat("eval", "%s  : %d", buf, m_eval.evaluate());
 
         return TRUE;
     }
