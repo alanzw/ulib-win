@@ -22,6 +22,17 @@ public:
 
     UFont();
     ~UFont();
+    
+    operator HFONT()
+    {
+        return (HFONT)m_hObj;
+    }
+    
+    void create();
+    
+    void setFontHeightRatio(int n);
+    
+    void setFontFaceName(const TCHAR * lfFaceName);
 
     bool useLogFont(const LOGFONT &lf);
 

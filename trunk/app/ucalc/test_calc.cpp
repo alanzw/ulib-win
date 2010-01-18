@@ -12,6 +12,8 @@
 #include "uedit.h"
 #include "ubutton.h"
 
+#include "ufont.h"
+
 #include "ucalc.h"
 #include "ueval.h"
 
@@ -60,6 +62,10 @@ public:
        m_pEdtFormula = new UEdit(this, ID_EDT_FORMULA);
        m_pEdtFormula->setPos(100, 100, 300, 50);
        m_pEdtFormula->create();
+       
+       ufont.setFontHeightRatio(3);
+       ufont.create();
+       m_pEdtFormula->setFont(ufont);
 
        m_pBnEval = new UButton(this, ID_BN_EVALUATE);
        m_pBnEval->setPos(420, 100, 50, 50);
@@ -165,6 +171,8 @@ private:
     TString m_sFormula;
 
     PostfixEval m_eval;
+    
+    UFont ufont;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)

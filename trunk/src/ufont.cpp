@@ -14,6 +14,10 @@ UFont::UFont()
 : UGDIObject()
 {
 	::ZeroMemory(&m_lf, sizeof(LOGFONT));
+
+    HFONT hSystemVariableFont = (HFONT ) GetStockObject( ANSI_VAR_FONT );
+    
+    ::GetObject( hSystemVariableFont, sizeof(LOGFONT), &m_lf );
 }
 
 UFont::~UFont()
@@ -42,6 +46,21 @@ HFONT UFont::createFont()
 {
     m_hObj = ::CreateFontIndirect(&m_lf);
     return (HFONT)m_hObj;
+}
+
+void UFont::create()
+{
+    this->createFont();
+}
+
+void UFont::setFontHeightRatio(int n)
+{
+    m_lf.lfHeight *= n;
+}
+
+void UFont::setFontFaceName(const TCHAR * lfFaceName)
+{
+    lstrcpy(m_lf.lfFaceName, lfFaceName);
 }
 
 int UFont::draw(HDC hdc, LPCTSTR lpchText, int nCount, LPRECT lpRect, UINT uFormat)
