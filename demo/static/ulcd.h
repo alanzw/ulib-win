@@ -279,8 +279,8 @@ public:
         //::MessageBox(m_hSelf, "MOUSEMOVE", "LCD", MB_OK);
         if (wParam & MK_LBUTTON)
         {
-            int x=LOWORD(lParam);
-            int y=HIWORD(lParam);
+            int x = LOWORD(lParam);
+            int y = HIWORD(lParam);
             if (x-oldpoint.x > 10)
             {
                 num++;
@@ -296,6 +296,8 @@ public:
 
                 oldpoint.x = x;
             }
+
+            UNREFERENCED_LOCAL_VARIABLE(y);
         }
 
 

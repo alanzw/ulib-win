@@ -54,11 +54,11 @@ UBaseWindow::UBaseWindow( HWND hParent /*= NULL*/,
                           HINSTANCE hInst /*= NULL*/,
                           LPCTSTR lpWindowClass /* = NULL */,
                           UINT nID /* = 0 */)
-: m_hParent(hParent), m_hInst(hInst), m_hSelf(NULL), m_lpMenuName(NULL),
+: m_hParent(hParent), m_hSelf(NULL), m_hInst(hInst), m_lpMenuName(NULL),
   m_dwStyles(WS_VISIBLE|WS_SYSMENU),
   m_dwExStyles(0),
-  m_lpWindowTitle(NULL),
   m_lpWindowClass(lpWindowClass),
+  m_lpWindowTitle(NULL),
   m_nID(nID)
 {
 //    m_rcWindow.left = 0;

@@ -225,8 +225,8 @@ public:
 protected:
     virtual BOOL onPreRegisterWindowClass(huys::UWindowClass &uwc) {return FALSE;}
 private:
-    HWND m_hSelf;
     HWND m_hParent;
+    HWND m_hSelf;
     HINSTANCE m_hInst;
 
     LPCTSTR m_lpMenuName;

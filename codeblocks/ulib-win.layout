@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="..\inc\ubasewindow.h" open="0" top="0" tabpos="7">
+		<Cursor position="5798" topLine="214" />
+	</File>
+	<File name="..\inc\ucontrol.h" open="0" top="0" tabpos="6">
+		<Cursor position="1557" topLine="0" />
+	</File>
+	<File name="..\inc\udialogx.h" open="0" top="0" tabpos="3">
+		<Cursor position="79" topLine="0" />
+	</File>
+	<File name="..\inc\ugdi.h" open="0" top="0" tabpos="2">
+		<Cursor position="2179" topLine="39" />
+	</File>
+	<File name="..\inc\ulib.h" open="0" top="0" tabpos="1">
+		<Cursor position="5567" topLine="223" />
+	</File>
+	<File name="..\inc\ustatic.h" open="0" top="0" tabpos="1">
+		<Cursor position="429" topLine="0" />
+	</File>
+	<File name="..\src\ubasewindow.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="3240" topLine="105" />
+	</File>
+	<File name="..\src\ucontrol.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="885" topLine="27" />
+	</File>
+	<File name="..\src\udialogx.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="81" topLine="0" />
+	</File>
+	<File name="..\src\ugdi.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="8499" topLine="406" />
+	</File>
+	<File name="..\src\ulib.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="157" topLine="0" />
+	</File>
+	<File name="..\src\umsg.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="245" topLine="9" />
+	</File>
+	<File name="..\src\uwindowx.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="1904" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>

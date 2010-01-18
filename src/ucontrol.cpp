@@ -11,8 +11,8 @@ using huys::UDialogBox;
 UControl::UControl( HWND hParent, UINT nResource, HINSTANCE hInst )
 :m_hParent(hParent),
 m_nResourceID(nResource),
-m_hInstance(hInst),
 m_hSelf(0),
+m_hInstance(hInst),
 m_hPrevParent(0),
 m_bManaged(true)
 {
@@ -27,8 +27,8 @@ m_bManaged(true)
 UControl::UControl(UBaseWindow *pWinParent, UINT nID)
 : m_hParent(pWinParent->getHandle()),
   m_nResourceID(nID),
-  m_hInstance(::GetModuleHandle(NULL)),
   m_hSelf(0),
+  m_hInstance(::GetModuleHandle(NULL)),
   m_hPrevParent(0),
   m_bManaged(true)
 {
@@ -43,8 +43,8 @@ UControl::UControl(UBaseWindow *pWinParent, UINT nID)
 UControl::UControl()
 :m_hParent(0),
 m_nResourceID(-1),
-m_hInstance(0),
 m_hSelf(0),
+m_hInstance(0),
 m_bManaged(false)
 {}
 
