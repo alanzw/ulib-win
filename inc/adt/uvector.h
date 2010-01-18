@@ -286,6 +286,8 @@ ostream & operator << (ostream &os, UVector<T> v)
     {
         os << "     " << *it << std::endl;
     }
+
+    return os;
 }
 
 }; // namespace ADT

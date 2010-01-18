@@ -11,7 +11,6 @@
 #include "umsg.h"
 #include "uedit.h"
 #include "ubutton.h"
-
 #include "ufont.h"
 
 #include "ucalc.h"
@@ -62,8 +61,10 @@ public:
        m_pEdtFormula = new UEdit(this, ID_EDT_FORMULA);
        m_pEdtFormula->setPos(100, 100, 300, 50);
        m_pEdtFormula->create();
-       
+
        ufont.setFontHeightRatio(3);
+       ufont.setFontWidthRatio(2);
+       ufont.setFontFaceName(_T("simsun"));
        ufont.create();
        m_pEdtFormula->setFont(ufont);
 
@@ -152,13 +153,23 @@ private:
         //m_sFormula.reserve(m_pEdtFormula->getLineLength()+1);
         TCHAR buf[128];
         m_pEdtFormula->getText(buf);
+
+        if (0 == buf[0])
+        {
+            return FALSE;
+        }
+
         //m_sFormula = buf;
         //showMsg(m_sFormula);
         Infix2Postfix i2p(buf);
 
         m_eval.setPostfixExp(i2p.postfixExp());
 
-        showMsgFormat("eval", "%s  : %d", buf, m_eval.evaluate());
+        //showMsgFormat("eval", "%s  : %d", buf, m_eval.evaluate());
+
+        m_sFormula.format("%d", m_eval.evaluate());
+
+        m_pEdtFormula->setText(m_sFormula);
 
         return TRUE;
     }
@@ -171,7 +182,7 @@ private:
     TString m_sFormula;
 
     PostfixEval m_eval;
-    
+
     UFont ufont;
 };
 

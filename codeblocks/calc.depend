@@ -1,0 +1,118 @@
+# depslib dependency file v1.0
+1263831971 source:f:\ulib-win\app\ucalc\test_calc.cpp
+	"resource.h"
+	<windows.h>
+	<tchar.h>
+	<commctrl.h>
+	"uwinapp.h"
+	"ubasewindow.h"
+	"ugdi.h"
+	"colors.h"
+	"umsg.h"
+	"uedit.h"
+	"ubutton.h"
+	"ufont.h"
+	"ucalc.h"
+	"ueval.h"
+
+1262345783 f:\ulib-win\app\ucalc\resource.h
+
+1262346216 f:\ulib-win\inc\uwinapp.h
+	"ulib.h"
+
+1263830354 f:\ulib-win\inc\ulib.h
+	"uwarnings.h"
+	"uhelpers.h"
+	"udebug.h"
+
+1262346215 f:\ulib-win\inc\uwarnings.h
+
+1262346216 f:\ulib-win\inc\uhelpers.h
+	<windows.h>
+
+1262346216 f:\ulib-win\inc\udebug.h
+	"ulib.h"
+
+1263830354 f:\ulib-win\inc\ubasewindow.h
+	"uwndclassx.h"
+
+1262346216 f:\ulib-win\inc\uwndclassx.h
+	"ulib.h"
+
+1262346216 f:\ulib-win\inc\ugdi.h
+	"ulib.h"
+
+1262346216 f:\ulib-win\inc\colors.h
+
+1262346215 f:\ulib-win\inc\umsg.h
+	"ulib.h"
+
+1263747838 f:\ulib-win\inc\uedit.h
+	"ucontrol.h"
+
+1263830354 f:\ulib-win\inc\ucontrol.h
+	"ubasewindow.h"
+
+1262346215 f:\ulib-win\inc\ubutton.h
+	"ucontrol.h"
+	"ubasewindow.h"
+
+1263830354 f:\ulib-win\inc\ufont.h
+	"uobject.h"
+
+1262346216 f:\ulib-win\inc\uobject.h
+	"ulib.h"
+
+1262345783 f:\ulib-win\app\ucalc\ucalc.h
+	"ustatic.h"
+
+1262453143 f:\ulib-win\inc\ustatic.h
+	"ucontrol.h"
+
+1263830353 f:\ulib-win\app\ucalc\ueval.h
+	<exception>
+	<iostream>
+	"umsg.h"
+	"adt/ustring.h"
+	"adt/ustack.h"
+	"adt/utable.h"
+
+1263831704 f:\ulib-win\inc\adt\ustring.h
+	<windows.h>
+	<tchar.h>
+	<cassert>
+	<cstdio>
+
+1262346215 f:\ulib-win\inc\adt\ustack.h
+	"adt/uvector.h"
+
+1263830974 f:\ulib-win\inc\adt\uvector.h
+	<memory>
+	<algorithm>
+	<iostream>
+	<cassert>
+
+1263830354 f:\ulib-win\inc\adt\utable.h
+	<iostream>
+	<cstring>
+	<cstdlib>
+
+1262345782 source:f:\ulib-win\app\ucalc\ucalc.cpp
+	<windows.h>
+	<tchar.h>
+	<commctrl.h>
+	"ucalc.h"
+
+1263831063 source:f:\ulib-win\app\ucalc\ueval.cpp
+	<windows.h>
+	<tchar.h>
+	"ueval.h"
+
+1262345782 source:f:\ulib-win\app\ucalc\calc.rc
+	"resource.h"
+	"windows.h"
+	"../../res/u.rc"
+
+1262346186 f:\ulib-win\res\u.rc
+	<windows.h>
+

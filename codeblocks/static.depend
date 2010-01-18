@@ -61,3 +61,65 @@
 1259229404 e:\library\ulib-win\res\u.rc
 	<windows.h>
 
+1262346142 source:f:\ulib-win\demo\static\test_static.cpp
+	"resource.h"
+	<windows.h>
+	<tchar.h>
+	"udialogx.h"
+	"ucontrol.h"
+	"ustatic.h"
+	"udlgapp.h"
+	"colors.h"
+	"ulcd.h"
+	"uled.h"
+
+1262346142 f:\ulib-win\demo\static\resource.h
+
+1262450178 f:\ulib-win\inc\udialogx.h
+	"ulib.h"
+
+1263830354 f:\ulib-win\inc\ulib.h
+	"uwarnings.h"
+	"uhelpers.h"
+	"udebug.h"
+
+1262346215 f:\ulib-win\inc\uwarnings.h
+
+1262346216 f:\ulib-win\inc\uhelpers.h
+	<windows.h>
+
+1262346216 f:\ulib-win\inc\udebug.h
+	"ulib.h"
+
+1263830354 f:\ulib-win\inc\ucontrol.h
+	"ubasewindow.h"
+
+1263830354 f:\ulib-win\inc\ubasewindow.h
+	"uwndclassx.h"
+
+1262346216 f:\ulib-win\inc\uwndclassx.h
+	"ulib.h"
+
+1262453143 f:\ulib-win\inc\ustatic.h
+	"ucontrol.h"
+
+1262346215 f:\ulib-win\inc\udlgapp.h
+
+1262346216 f:\ulib-win\inc\colors.h
+
+1263830354 f:\ulib-win\demo\static\ulcd.h
+
+1262346142 f:\ulib-win\demo\static\uled.h
+	"ugdi.h"
+
+1262346216 f:\ulib-win\inc\ugdi.h
+	"ulib.h"
+
+1262346142 source:f:\ulib-win\demo\static\static.rc
+	"resource.h"
+	"windows.h"
+	"../../res/u.rc"
+
+1262346186 f:\ulib-win\res\u.rc
+	<windows.h>
+

@@ -274,7 +274,7 @@ public:
         s.m_pBuf[s.m_nStrLength] = 0;
         return s;
     }
-    
+
     UString & swap(size_type m, size_type n)
     {
         assert( m >=0 && m < length() && n >=0 && n < length() );
@@ -283,11 +283,11 @@ public:
         m_pBuf[n] = temp;
         return *this;
     }
-    
+
     UString & reverse()
     {
         size_type half_len = m_nStrLength / 2;
-        
+
         for (int i = 0; i<=half_len; ++i)
         {
             this->swap(i, m_nStrLength-1-i);
@@ -306,18 +306,18 @@ public:
         *this += in;
         return *this;
     }
-    
+
     UString & format(const T * fmt, ...)
     {
         T buf[4096];
         T * p;
         size_type n;
-        
+
         va_list args;
         va_start(args, fmt);
         n = _vsnprintf(buf, sizeof(buf) - 1, fmt, args);
         va_end(args);
-        
+
         p += (n < 0) ? sizeof(buf) - 1 : n;
 
         while ( p > buf  &&  isspace(p[-1]) )
@@ -325,12 +325,14 @@ public:
             *--p = '\0';
         }
         *this = buf;
+
+        return *this;
     }
 
     bool compare(const T * str)
     {
-        return    ( this->length() == lstrlen(str) )            // optimization on some platforms
-        && ( lstrcmp(this->c_str(), str) == 0 );    // actual compare
+        return ( this->length() == (unsigned int)lstrlen(str) )       // optimization on some platforms
+            && ( lstrcmp(this->c_str(), str) == 0 );    // actual compare
     }
 private:
     T *m_pBuf;
