@@ -121,7 +121,7 @@ bool UPanel::relayout()
 bool UPanel::redirectMsg(HWND hWnd)
 {
     m_hMsgWnd = hWnd;
-    return this->subclassProc();
+    return TRUE == this->subclassProc();
 }
 
 BOOL UPanel::onMessage(UINT message, WPARAM wParam, LPARAM lParam)

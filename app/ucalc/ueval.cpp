@@ -51,15 +51,13 @@ void PostfixEval::getOperands(int &left, int &right)
     if (m_operandStack.empty())
         throw EvalException("PostfixEval: Too many operators");
 
-    right = m_operandStack.top();
-    m_operandStack.pop();
+    right = m_operandStack.pop();
 
     //
     if (m_operandStack.empty())
         throw EvalException("PostfixEval: Too many operators");
 
-    left = m_operandStack.top();
-    m_operandStack.pop();
+    left = m_operandStack.pop();
 }
 
 TString PostfixEval::getPostfixExp() const
@@ -79,13 +77,14 @@ int PostfixEval::evaluate()
     for(i=0; i<m_sPostfixExp.length(); i++)
     {
         ch = m_sPostfixExp.at(i);
+        
         if(isdigit(ch))
         {
             m_operandStack.push(ch-'0');
         }
         else if(isOperator(ch))
         {
-            getOperands(left,right);
+            getOperands(left, right);
             m_operandStack.push(compute(left,right,ch));
         }
     }
@@ -115,34 +114,40 @@ void Infix2Postfix::set_priority()
 TString Infix2Postfix::postfixExp()
 {
     postfix="";
+    
     set_priority();
+    
     stk.push("#");
-    int i=0;
+    
     TString input, topstk;
-    for(;i<infix.size();)
+    
+    for(int i=0; i<infix.size(); ++i)
     {
         topstk=stk.top();
         input=infix.substr(i, i);
+        
         if(!oper_prio.inTable(input))
         {
-            postfix+=input;
+            postfix += input;
         }
         else
         {
-            if(oper_prio[input]>oper_prio[topstk])
+            if( oper_prio[input]>oper_prio[topstk] )
             {
                 if(input.compare(")"))
                 {
                     while(!topstk.compare("("))
                     {
-                        postfix+=topstk;
+                        postfix += topstk;
                         stk.pop();
                         topstk=stk.top();
                     }
                     stk.pop();
                 }
                 else
+                {
                     stk.push(input);
+                }
             }
             else
             {
@@ -155,7 +160,6 @@ TString Infix2Postfix::postfixExp()
                 stk.push(input);
             }
         }
-        ++i;
     }
     topstk=stk.top();
     while(!topstk.compare("#"))

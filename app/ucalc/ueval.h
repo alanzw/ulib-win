@@ -54,18 +54,18 @@ class Infix2Postfix
 public:
     Infix2Postfix()
     {}
-    
+
     Infix2Postfix(const TString & infixExp)
     :infix(infixExp)
     {}
-    
+
     void setInfixExp(const TString& infixExp)
     {
         infix=infixExp;
     }
-    
+
     TString postfixExp();
- 
+
     ~Infix2Postfix(){};
 
 private:

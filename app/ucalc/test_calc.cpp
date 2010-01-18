@@ -131,23 +131,23 @@ private:
     BOOL onBnNum(int num)
     {
         m_sFormula += g_cap[num];
-        
+
         m_pEdtFormula->setText(m_sFormula);
 
         return TRUE;
     }
-    
+
     BOOL onBnEval()
     {
         m_sFormula.reserve(m_pEdtFormula->getLineLength()+1);
         m_pEdtFormula->getText(m_sFormula);
         //showMsg(m_sFormula);
         Infix2Postfix i2p(m_sFormula);
-        
+
         m_eval.setPostfixExp(i2p.postfixExp());
-        
+
         showMsgFormat("eval", "%s  : %d", m_sFormula.c_str(), m_eval.evaluate());
-        
+
         return TRUE;
     }
 private:
@@ -155,9 +155,9 @@ private:
     UButton *m_pBnEval;
 
     UButton *m_pBnNum[16];
-    
+
     TString m_sFormula;
-    
+
     PostfixEval m_eval;
 };
 
