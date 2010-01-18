@@ -1,0 +1,73 @@
+# depslib dependency file v1.0
+1262623105 source:f:\ulib-win\app\uexplorer\test_explorer.cpp
+	"resource.h"
+	<windows.h>
+	<tchar.h>
+	<commctrl.h>
+	"uwinapp.h"
+	"ubasewindow.h"
+	"ugdi.h"
+	"colors.h"
+	"uexplorer.h"
+
+1262345767 f:\ulib-win\app\uexplorer\resource.h
+
+1262346216 f:\ulib-win\inc\uwinapp.h
+	"ulib.h"
+
+1263830354 f:\ulib-win\inc\ulib.h
+	"uwarnings.h"
+	"uhelpers.h"
+	"udebug.h"
+
+1262346215 f:\ulib-win\inc\uwarnings.h
+
+1262346216 f:\ulib-win\inc\uhelpers.h
+	<windows.h>
+
+1262346216 f:\ulib-win\inc\udebug.h
+	"ulib.h"
+
+1263830354 f:\ulib-win\inc\ubasewindow.h
+	"uwndclassx.h"
+
+1262346216 f:\ulib-win\inc\uwndclassx.h
+	"ulib.h"
+
+1262346216 f:\ulib-win\inc\ugdi.h
+	"ulib.h"
+
+1262346216 f:\ulib-win\inc\colors.h
+
+1262455973 f:\ulib-win\app\uexplorer\uexplorer.h
+	"ustatic.h"
+	"utreeview.h"
+	"ulistview.h"
+
+1262453143 f:\ulib-win\inc\ustatic.h
+	"ucontrol.h"
+
+1263830354 f:\ulib-win\inc\ucontrol.h
+	"ubasewindow.h"
+
+1262454653 f:\ulib-win\inc\utreeview.h
+	"ucontrol.h"
+
+1262346215 f:\ulib-win\inc\ulistview.h
+	"ucontrol.h"
+	"colors.h"
+
+1262623105 source:f:\ulib-win\app\uexplorer\uexplorer.cpp
+	<windows.h>
+	<tchar.h>
+	<commctrl.h>
+	"uexplorer.h"
+
+1262452229 source:f:\ulib-win\app\uexplorer\explorer.rc
+	"resource.h"
+	"windows.h"
+	"../../res/u.rc"
+
+1262346186 f:\ulib-win\res\u.rc
+	<windows.h>
+

@@ -121,94 +121,94 @@ makeFunctor(TRT (*f)())
 template <class P1> class Functor1 : public FunctorBase
 {
 public:
-	Functor1() {}
-	void operator () (P1 p1) const
-	{
-		thunk (*this, p1);
-	}
+    Functor1() {}
+    void operator () (P1 p1) const
+    {
+        thunk (*this, p1);
+    }
 protected:
-	typedef void (*Thunk) (const FunctorBase &, P1);
-	Functor1 (Thunk t, const void *c, PFunc f, const void *mf, size_t sz)
-		: FunctorBase (c, f, mf, sz), thunk (t) { }
+    typedef void (*Thunk) (const FunctorBase &, P1);
+    Functor1 (Thunk t, const void *c, PFunc f, const void *mf, size_t sz)
+        : FunctorBase (c, f, mf, sz), thunk (t) { }
 private:
-	Thunk thunk;
+    Thunk thunk;
 };
 
 template <class P1, class Callee, class MemFunc>
 class MemberTranslator1 : public Functor1<P1>
 {
 public:
-	MemberTranslator1 (Callee & c, const MemFunc & m)
-		: Functor1<P1> (thunk, &c, 0, &m, sizeof (MemFunc)) { }
-	static void thunk (const FunctorBase & ftor, P1 p1)
-	{
-		Callee *callee = (Callee *) ftor.getCallee ();
-		MemFunc & memFunc (*(MemFunc *) (void *)(ftor.getMemFunc ()));
-		(callee->*memFunc) (p1);
-	}
+    MemberTranslator1 (Callee & c, const MemFunc & m)
+        : Functor1<P1> (thunk, &c, 0, &m, sizeof (MemFunc)) { }
+    static void thunk (const FunctorBase & ftor, P1 p1)
+    {
+        Callee *callee = (Callee *) ftor.getCallee ();
+        MemFunc & memFunc (*(MemFunc *) (void *)(ftor.getMemFunc ()));
+        (callee->*memFunc) (p1);
+    }
 };
 
-template <class P1, class Func> 
+template <class P1, class Func>
 class FunctionTranslator1 : public Functor1 <P1>
 {
 public:
-	FunctionTranslator1 (Func f) : Functor1 <P1> (thunk, 0, f, 0, 0) { }
-	static void thunk (const FunctorBase & ftor, P1 p1)
-	{
-		(Func (ftor.func)) (p1);
-	}
+    FunctionTranslator1 (Func f) : Functor1 <P1> (thunk, 0, f, 0, 0) { }
+    static void thunk (const FunctorBase & ftor, P1 p1)
+    {
+        (Func (ftor.func)) (p1);
+    }
 };
 
 template <class P1, class Callee, class TRT, class CallType>
 inline MemberTranslator1 <P1, Callee, TRT (CallType::*)(P1)>
 makeFunctor (Callee & c, TRT (CallType::* f) (P1))
 {
-	typedef TRT (CallType::*MemFunc) (P1);
-	return MemberTranslator1 <P1, Callee, MemFunc> (c, f);
+    typedef TRT (CallType::*MemFunc) (P1);
+    return MemberTranslator1 <P1, Callee, MemFunc> (c, f);
 }
 
 template <class P1, class Callee, class TRT, class CallType, class TP1>
 inline MemberTranslator1 <P1, const Callee, TRT (CallType::*) (TP1) const>
 makeFunctor (const Callee & c, TRT (CallType::*const &f) (TP1) const)
 {
-	typedef TRT (CallType::*MemFunc) (TP1) const;
-	return MemberTranslator1 <P1, const Callee, MemFunc> (c, f);
+    typedef TRT (CallType::*MemFunc) (TP1) const;
+    return MemberTranslator1 <P1, const Callee, MemFunc> (c, f);
 }
 
 template <class P1, class TRT, class TP1>
 inline FunctionTranslator1 <P1, TRT (*)(TP1)>
 makeFunctor (TRT (*f) (TP1))
 {
-	return FunctionTranslator1 <P1, TRT (*)(TP1) > (f);
+    return FunctionTranslator1 <P1, TRT (*)(TP1) > (f);
 }
 
-template <class P1, class MemFunc> class MemberOf1stArgTranslator1 
+template <class P1, class MemFunc> class MemberOf1stArgTranslator1
 : public Functor1 <P1>
 {
 public:
-	MemberOf1stArgTranslator1 (const MemFunc & m) :
-	  Functor1 < P1 > (thunk, (void *)1, 0, &m, sizeof (MemFunc)) { }
-	  static void thunk (const FunctorBase & ftor, P1 p1)
-	  {
-		  MemFunc & memFunc (*(MemFunc *) (void *)(ftor.memFunc));
-		  (p1.*memFunc) ();
-	  }
+    MemberOf1stArgTranslator1 (const MemFunc & m) :
+      Functor1 < P1 > (thunk, (void *)1, 0, &m, sizeof (MemFunc)) { }
+      static void thunk (const FunctorBase & ftor, P1 p1)
+      {
+          MemFunc & memFunc (*(MemFunc *) (void *)(ftor.memFunc));
+          (p1.*memFunc) ();
+      }
 };
 
 template <class P1, class TRT, class CallType>
 inline MemberOf1stArgTranslator1 <P1, TRT (CallType::*)()>
 makeFunctor (TRT (CallType::* &f) ())
 {
-	typedef TRT (CallType::*MemFunc) ();
-	return MemberOf1stArgTranslator1 <P1, MemFunc> (f);
+    typedef TRT (CallType::*MemFunc) ();
+    return MemberOf1stArgTranslator1 <P1, MemFunc> (f);
 }
 
 template <class P1, class TRT, class CallType>
 inline MemberOf1stArgTranslator1 < P1, TRT (CallType::*)() const>
 makeFunctor (TRT (CallType::*const &f) () const)
 {
-	typedef TRT (CallType::*MemFunc) () const;
-	return MemberOf1stArgTranslator1 <P1, MemFunc> (f);
+    typedef TRT (CallType::*MemFunc) () const;
+    return MemberOf1stArgTranslator1 <P1, MemFunc> (f);
 }
 
 //template <class T>
@@ -266,8 +266,8 @@ public:
     {
         cb_table.insert(std::pair<std::string, Functor1<bool> >(sNameCb, f));
         return 0;
-    }  
-    
+    }
+
     /*
     int insert(const char *sNameCb, cbFoo f)
     {
@@ -275,7 +275,7 @@ public:
         return 0;
     }
     */
-    
+
     int doString(const char *s)
     {
         return m_l.doString(s);

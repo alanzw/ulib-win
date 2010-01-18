@@ -37,11 +37,9 @@ public:
        m_explorer = new UExplorer(this, ID_EXPLORER);
 
        RECT rc = {0};
-
        this->getClientRect(&rc);
 
        m_explorer->setRect(&rc);
-
        m_explorer->create();
 
        return UBaseWindow::onCreate();

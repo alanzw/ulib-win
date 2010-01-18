@@ -87,16 +87,15 @@ public:
             LPDRAWITEMSTRUCT lpdis;
             lpdis = (LPDRAWITEMSTRUCT) lParam;
             HDC hdcMem;
-            HRESULT hr;
+            //HRESULT hr;
             TEXTMETRIC tm;
             TCHAR tchBuffer[BUFFER] = "xxx";
-            size_t cch;
+            //size_t cch;
             RECT rcBitmap;
             int y;
 
             // If there are no list box items, skip this message.
-
-            if (lpdis->itemID == -1)
+            if (lpdis->itemID == (unsigned int)-1)
             {
                 return TRUE;
             }

@@ -12,6 +12,8 @@
 #include "uimagelist.h"
 #include "umsg.h"
 
+#include "adt/uautoptr.h"
+
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
@@ -22,16 +24,11 @@ class UDialogExt : public UDialogBox
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-        m_pListCtrl(0),
-        m_pListCtrlIcon(0)
+        : UDialogBox(hInst, nID)
     {}
 
     ~UDialogExt()
-    {
-        CHECK_PTR(m_pListCtrl);
-        CHECK_PTR(m_pListCtrlIcon);
-    }
+    {}
 
     virtual BOOL onInit()
     {
@@ -83,10 +80,11 @@ public:
             }
             break;
         }
+        return TRUE;
     }
 private:
-    UListView *m_pListCtrl;
-    UListView *m_pListCtrlIcon;
+    huys::ADT::UAutoPtr<UListView> m_pListCtrl;
+    huys::ADT::UAutoPtr<UListView> m_pListCtrlIcon;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);
