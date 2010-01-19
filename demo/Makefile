@@ -127,7 +127,7 @@ SUBDIRS = \
           mailslot    \
           odbc        \
           propsheet   \
-
+          deviceman   \
 
 #
 all:
