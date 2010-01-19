@@ -94,8 +94,8 @@ public:
     virtual BOOL onNotify(WPARAM wParam, LPARAM lParam)
     {
         LPNMHDR lpnmh = (LPNMHDR) lParam;
-        char buffer[256];
-        ::ZeroMemory(buffer, sizeof(buffer));
+        //char buffer[256];
+        //::ZeroMemory(buffer, sizeof(buffer));
         switch (lpnmh->code)
         {
         case NM_CLICK:
@@ -110,7 +110,7 @@ public:
             }
             break;
         }
-		return UDialogBox::onNotify(wParam, lParam);
+        return UDialogBox::onNotify(wParam, lParam);
     }
 private:
     huys::ADT::UAutoPtr<UListView> m_pListCtrl;
