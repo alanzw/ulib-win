@@ -17,10 +17,10 @@
 		<Project filename="taskman.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="listctrl.cbp">
+		<Project filename="listctrl.cbp" active="1">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="listbox.cbp" active="1">
+		<Project filename="listbox.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 	</Workspace>

@@ -132,7 +132,7 @@ LPTSTR UTreeView::getHitText( LPSTR lpText )
 */
 LPSTR UTreeView::getSelectedItem( LPSTR lpText )
 {
-    HTREEITEM item;
+    HTREEITEM item = 0;
     item = (HTREEITEM)this->sendMsg(TVM_GETNEXTITEM, (WPARAM) (DWORD)TVGN_CARET, (LPARAM) (HTREEITEM) item);
 
     TVITEM tvi = {0};

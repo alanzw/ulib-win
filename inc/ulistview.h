@@ -49,9 +49,11 @@ public:
     virtual BOOL setItem(int nIndex, LVITEM *lplvi);
     virtual BOOL setItemText(int nIndex, int nSubIndex, LPTSTR lpText);
 
-	BOOL setBKColor(huys::Color clr);
-	BOOL setTextColor(huys::Color clr);
-	BOOL setTextBKColor(huys::Color clr);
+    BOOL setBKColor(huys::Color clr);
+    BOOL setTextColor(huys::Color clr);
+    BOOL setTextBKColor(huys::Color clr);
+
+    BOOL setBKImage(TCHAR *url, int xPos = 0, int yPos = 0);
 protected:
 private:
 };
