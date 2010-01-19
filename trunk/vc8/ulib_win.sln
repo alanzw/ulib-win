@@ -40,6 +40,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "win_gdiplus", "win_gdiplus.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "calc", "calc.vcproj", "{2FCD3DFB-4467-41C9-B220-93E6B303224E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "listctrl", "listctrl.vcproj", "{08D3103A-FC6A-4397-9F6A-81AD8CC791C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -137,6 +139,12 @@ Global
 		{2FCD3DFB-4467-41C9-B220-93E6B303224E}.Debug-static|Win32.Build.0 = Debug|Win32
 		{2FCD3DFB-4467-41C9-B220-93E6B303224E}.Release|Win32.ActiveCfg = Release|Win32
 		{2FCD3DFB-4467-41C9-B220-93E6B303224E}.Release|Win32.Build.0 = Release|Win32
+		{08D3103A-FC6A-4397-9F6A-81AD8CC791C7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{08D3103A-FC6A-4397-9F6A-81AD8CC791C7}.Debug|Win32.Build.0 = Debug|Win32
+		{08D3103A-FC6A-4397-9F6A-81AD8CC791C7}.Debug-static|Win32.ActiveCfg = Debug-static|Win32
+		{08D3103A-FC6A-4397-9F6A-81AD8CC791C7}.Debug-static|Win32.Build.0 = Debug-static|Win32
+		{08D3103A-FC6A-4397-9F6A-81AD8CC791C7}.Release|Win32.ActiveCfg = Release|Win32
+		{08D3103A-FC6A-4397-9F6A-81AD8CC791C7}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

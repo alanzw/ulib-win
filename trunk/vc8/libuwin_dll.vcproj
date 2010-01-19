@@ -698,6 +698,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\src\ulistview.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\umsg.cpp"
 				>
 				<FileConfiguration
@@ -916,6 +920,10 @@
 			</File>
 			<File
 				RelativePath="..\inc\ulib.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\ulistview.h"
 				>
 			</File>
 			<File

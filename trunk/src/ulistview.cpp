@@ -1,10 +1,11 @@
-#define _WIN32_IE  0x0300
+#define _WIN32_IE  0x0400
 
 
 #include <windows.h>
 #include <commctrl.h>
 #include <tchar.h>
 #include <cassert>
+#include <ole2.h>
 
 #include "ulistview.h"
 
@@ -123,16 +124,28 @@ BOOL UListView::setItemText(int nIndex, int nSubIndex, LPTSTR lpText)
 
 BOOL UListView::setBKColor( huys::Color clr )
 {
-	return this->sendMsg(LVM_SETBKCOLOR, 0, (LPARAM)clr);
+    return this->sendMsg(LVM_SETBKCOLOR, 0, (LPARAM)clr);
 }
 
 BOOL UListView::setTextBKColor( huys::Color clr )
 {
-	return this->sendMsg(LVM_SETTEXTBKCOLOR, 0, (LPARAM)clr);
+    return this->sendMsg(LVM_SETTEXTBKCOLOR, 0, (LPARAM)clr);
 }
 
 BOOL UListView::setTextColor( huys::Color clr )
 {
-	return this->sendMsg(LVM_SETTEXTCOLOR, 0, (LPARAM)clr);
+    return this->sendMsg(LVM_SETTEXTCOLOR, 0, (LPARAM)clr);
 }
 
+BOOL UListView::setBKImage(TCHAR *url, int xPos, int yPos)
+{
+    LVBKIMAGE plvbki={0};
+    plvbki.ulFlags = LVBKIF_SOURCE_URL;
+    plvbki.pszImage = url;
+    plvbki.xOffsetPercent = xPos;
+    plvbki.yOffsetPercent = yPos;
+    OleInitialize(NULL);  // intialize OLE COM Object
+    return this->sendMsg(LVM_SETTEXTBKCOLOR, 0, (LPARAM)CLR_NONE)
+        && this->sendMsg(LVM_SETBKIMAGE, 0, (LPARAM)(LPLVBKIMAGE)&plvbki);
+
+}

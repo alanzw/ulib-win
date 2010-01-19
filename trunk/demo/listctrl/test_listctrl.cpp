@@ -14,13 +14,16 @@
 
 #include "adt/uautoptr.h"
 
+#include "custom_listctrl.h"
+
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
 {
     enum {
         ID_LISTCTRL      = 13333,
-        ID_LISTCTRL_ICON = 13334
+        ID_LISTCTRL_ICON = 13334,
+        ID_LIST_CUSTOM   = 13335
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
@@ -58,6 +61,33 @@ public:
         m_pListCtrlIcon->setImageListNormal(himl);
         m_pListCtrlIcon->addItemTextImage(0, str, 1);
         m_pListCtrlIcon->addItemTextImage(0, str, 1);
+
+
+        m_pListCustom = new UCustomListView(m_hDlg, ID_LIST_CUSTOM, m_hInst);
+        m_pListCustom->setPos(280, rc.top+10, 200, 200);
+        m_pListCustom->setStyles(LVS_REPORT | LVS_EDITLABELS);
+        m_pListCustom->create();
+
+        m_pListCustom->addColTextWidth(0, str, 100);
+        m_pListCustom->addColTextWidth(1, str, 100);
+        m_pListCustom->addColTextWidth(2, str, 100);
+        m_pListCustom->addColTextWidth(3, str, 100);
+        m_pListCustom->addItemTextImage(0, str, 1);
+        m_pListCustom->addItemTextImage(1, str, 1);
+        m_pListCustom->addItemTextImage(2, str, 1);
+        m_pListCustom->addItemTextImage(3, str, 1);
+        m_pListCustom->addItemTextImage(4, str, 1);
+        m_pListCustom->setItemText(0, 1, str);
+        m_pListCustom->setItemText(0, 2, str);
+        m_pListCustom->setItemText(0, 3, str);
+
+
+//        TCHAR buf[512];
+//        ::GetCurrentDirectory(511, buf);
+//        lstrcat(buf, _T("\\back.jpg"));
+//        showMsg(buf);
+//        m_pListCustom->setBKImage(buf);
+
         return TRUE;
     }
 
@@ -80,11 +110,13 @@ public:
             }
             break;
         }
-        return TRUE;
+		return UDialogBox::onNotify(wParam, lParam);
     }
 private:
     huys::ADT::UAutoPtr<UListView> m_pListCtrl;
     huys::ADT::UAutoPtr<UListView> m_pListCtrlIcon;
+
+    huys::ADT::UAutoPtr<UCustomListView> m_pListCustom;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);
