@@ -38,7 +38,7 @@ ErrorControl = 1      ;SERVICE_ERROR_NORMAL
 hello_ddk.sys
 
 [Strings]
-HY_PROVIDER         = "huys (huys@gmail.com)"
+HY_PROVIDER         = "huys (huys03@gmail.com)"
 HelloDDKServiceDesc = "hello_ddk service"
 HelloDDKServiceName = "HelloDDK"
 HelloDDKRegistry    = "system\currentcontrolset\services\HelloDDK"
