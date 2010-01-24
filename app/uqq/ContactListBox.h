@@ -3,46 +3,22 @@
 
 #include "ulistbox.h"
 
+#define BUFFER MAX_PATH
+#define XBITMAP 80
+#define YBITMAP 20
+
 class UContactListBox : public UListBox
 {
 public:
-    UContactListBox(HWND hParent, UINT nID, HINSTANCE hInst)
-    : UListBox(hParent, nID, hInst)
-    {
-        m_dwStyles |= LBS_OWNERDRAWVARIABLE | WS_VSCROLL;
-    }
+    UContactListBox(HWND hParent, UINT nID, HINSTANCE hInst);
 
-    ~UContactListBox()
-    {}
+    virtual BOOL create();
 
-    virtual BOOL create()
-    {
-        BOOL ret = UListBox::create();
-        this->subclassProc();
-        return ret;
-    }
+    void addItem(LPCTSTR str, UPicture *ppic);
 
-    virtual BOOL onDrawItem(WPARAM wParam, LPARAM lParam)
-    {
-        LPDRAWITEMSTRUCT lpDrawItem;
-        HDC hdc;
+    virtual BOOL onDrawItem(WPARAM wParam, LPARAM lParam);
 
-        lpDrawItem = (LPDRAWITEMSTRUCT) lParam;
-        hdc = lpDrawItem->hDC;
-
-        return TRUE;
-    }
-
-    virtual BOOL onMeasureItem(WPARAM wParam, LPARAM lParam)
-    {
-        LPMEASUREITEMSTRUCT lpmis;
-        lpmis = (LPMEASUREITEMSTRUCT) lParam;
-
-        // Set the height of the list box items.
-        lpmis->itemHeight = 36;
-
-        return TRUE;
-    }
+    virtual BOOL onMeasureItem(WPARAM wParam, LPARAM lParam);
 
 };
 

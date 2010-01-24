@@ -5,7 +5,6 @@
 #include <tchar.h>
 #include <shellapi.h>
 
-#include "ulib.h"
 #include "udialogx.h"
 #include "udlgapp.h"
 #include "ubutton.h"
@@ -196,15 +195,17 @@ public:
             {
                 if (lParam==WM_RBUTTONDOWN)
                 {
-                POINT pt;
-                ::GetCursorPos(&pt);
-                ::SetForegroundWindow(m_hDlg);
-                ::TrackPopupMenu(hPopupMenu, TPM_RIGHTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y, NULL, m_hDlg, NULL);
-                ::PostMessage(m_hDlg, WM_NULL, 0, 0);
+                    POINT pt;
+                    ::GetCursorPos(&pt);
+                    ::SetForegroundWindow(m_hDlg);
+                    ::TrackPopupMenu(hPopupMenu, TPM_RIGHTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y, NULL, m_hDlg, NULL);
+                    ::PostMessage(m_hDlg, WM_NULL, 0, 0);
                 }
                 else if (lParam==WM_LBUTTONDBLCLK)
                 {
-                    ::SendMessage(m_hDlg, WM_COMMAND, IDM_RESTORE, 0);
+                    //::SendMessage(m_hDlg, WM_COMMAND, IDM_RESTORE, 0);
+                    this->sendMsg(WM_COMMAND, IDM_RESTORE);
+                    ::SetForegroundWindow(m_hDlg);
                 }
             }
         }
@@ -232,11 +233,6 @@ private:
     UPushButton *m_pUBtnOK;
     UPushButton *m_pUBtnCancel;
 };
-
-//BEGIN_DLGAPP
-//  UDialogExt dlg(hInstance, IDD_TEST);
-//  dlg.create();
-//END_DLGAPP
 
 UDLGAPP_T(UDialogExt, IDD_TEST);
 

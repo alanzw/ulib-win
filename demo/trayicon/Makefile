@@ -5,7 +5,7 @@ include $(TOPDIR)/make.inc
 
 #
 INCS = -I"$(TOPDIR)/inc"
-LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin -lcomctl32
+LIBS = -L"$(TOPDIR)/lib" -mwindows -lcomctl32 -luwin 
 CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 
@@ -24,7 +24,7 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB)
+	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
     
 #
