@@ -52,6 +52,7 @@
 		<Unit filename="..\inc\udebug.h" />
 		<Unit filename="..\inc\udialogx.h" />
 		<Unit filename="..\inc\uedit.h" />
+		<Unit filename="..\inc\ufile.h" />
 		<Unit filename="..\inc\ufont.h" />
 		<Unit filename="..\inc\ugdi.h" />
 		<Unit filename="..\inc\uimagelist.h" />
@@ -77,6 +78,7 @@
 		<Unit filename="..\src\udebug.cpp" />
 		<Unit filename="..\src\udialogx.cpp" />
 		<Unit filename="..\src\uedit.cpp" />
+		<Unit filename="..\src\ufile.cpp" />
 		<Unit filename="..\src\ufont.cpp" />
 		<Unit filename="..\src\ugdi.cpp" />
 		<Unit filename="..\src\uimagelist.cpp" />

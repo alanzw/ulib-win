@@ -1,8 +1,3 @@
-//==========================================
-// LIBCTINY - Matt Pietrek 2001
-// MSDN Magazine, January 2001
-// FILE: DLLCRT0.CPP
-//==========================================
 #include <windows.h>
 #include "initterm.h"
 
@@ -16,23 +11,17 @@
 // #pragma comment(linker, "/nodefaultlib:libcmt.lib")
 
 // User routine DllMain is called on all notifications
-
-extern BOOL WINAPI DllMain(
-                           HANDLE  hDllHandle,
-                           DWORD   dwReason,
-                           LPVOID  lpreserved
-                           ) ;
+BOOL WINAPI DllMain(HANDLE hDllHandle, DWORD dwReason, LPVOID lpreserved)
+{
+    return TRUE;
+}
 
 //
 // Modified version of the Visual C++ startup code.  Simplified to
 // make it easier to read.  Only supports ANSI programs.
 //
 extern "C"
-BOOL WINAPI _DllMainCRTStartup(
-                               HANDLE  hDllHandle,
-                               DWORD   dwReason,
-                               LPVOID  lpreserved
-                               )
+BOOL WINAPI _DllMainCRTStartup(HANDLE hDllHandle, DWORD dwReason, LPVOID lpreserved)
 {
     if ( dwReason == DLL_PROCESS_ATTACH )
     {
