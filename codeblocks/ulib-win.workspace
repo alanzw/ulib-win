@@ -23,6 +23,8 @@
 		<Project filename="listbox.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="qq.cbp" active="1" />
+		<Project filename="qq.cbp" active="1">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
 	</Workspace>
 </CodeBlocks_workspace_file>

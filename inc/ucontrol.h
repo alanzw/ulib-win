@@ -109,6 +109,9 @@ public:
     virtual BOOL onDrawItem(WPARAM,LPARAM){return FALSE;}
     virtual BOOL onMeasureItem(WPARAM, LPARAM) {return FALSE;}
 
+	//
+	virtual BOOL onEraseBkgnd(HDC hdc) {return FALSE;}
+
     //////////////////////////////////////////////////////////////////////////
     virtual BOOL subclass(HWND hCtrl);
     virtual BOOL subclass(UINT nID, HWND hParent);
