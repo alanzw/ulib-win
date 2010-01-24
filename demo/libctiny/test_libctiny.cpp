@@ -1,9 +1,11 @@
 // Small test program to exercise TINYCRT.  Does nothing useful
 //
 #include <windows.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+
+extern "C" int __cdecl printf(const char * format, ...);
 
 int main( int argc, char *argv[] )
 {
@@ -14,11 +16,11 @@ int main( int argc, char *argv[] )
         printf( "argc: %u \'%s\'\n", i, argv[i] );
     }
 
-    char * p = new char[10];
+    //char * p = new char[10];
 
-    lstrcpy( p, "Hello" );
+    //lstrcpy( p, "Hello" );
 
-    delete p;
+    //delete p;
 
     printf( "%s\n", strlwr( "MyLowerCaseString" ) );
 

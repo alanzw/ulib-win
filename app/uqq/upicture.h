@@ -62,8 +62,8 @@ public:
             bResult = TRUE;
         }
 
-        UnlockResource(hGlobal); // 16Bit Windows Needs This
-        ::FreeResource(hGlobal); // 16Bit Windows Needs This (32Bit - Automatic Release)
+        //UnlockResource(hGlobal); // 16Bit Windows Needs This
+        //::FreeResource(hGlobal); // 16Bit Windows Needs This (32Bit - Automatic Release)
 
         m_nWeight = nSize; // Update Picture Size Info...
 

@@ -1,9 +1,6 @@
-//==========================================
-// LIBCTINY - Matt Pietrek 2001
-// MSDN Magazine, January 2001
-//==========================================
 #include <windows.h>
 #include <malloc.h>
+
 #include "initterm.h"
 
 #pragma data_seg(".CRT$XCA")
@@ -19,10 +16,7 @@ _PVFV __xc_z[] = { NULL };
 
 typedef void (__cdecl *_PVFV)(void);
 
-void __cdecl _initterm (
-        _PVFV * pfbegin,
-        _PVFV * pfend
-        )
+void __cdecl _initterm (_PVFV * pfbegin, _PVFV * pfend)
 {
     /*
      * walk the table of function pointers from the bottom up, until

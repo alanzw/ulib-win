@@ -7,13 +7,13 @@
 	<File name="..\app\ucalc\resource.h" open="0" top="0" tabpos="5">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="..\app\ucalc\test_calc.cpp" open="0" top="0" tabpos="1">
+	<File name="..\app\ucalc\test_calc.cpp" open="1" top="0" tabpos="4">
 		<Cursor position="1287" topLine="57" />
 	</File>
 	<File name="..\app\ucalc\ucalc.h" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="..\app\ucalc\ueval.cpp" open="0" top="0" tabpos="1">
+	<File name="..\app\ucalc\ueval.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="2467" topLine="113" />
 	</File>
 	<File name="..\app\ucalc\ueval.h" open="0" top="0" tabpos="3">
