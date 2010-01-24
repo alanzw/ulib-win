@@ -7,13 +7,15 @@
 #include "udialogx.h"
 #include "udlgapp.h"
 
-#include "ContactListBox.h"
+#include "adt/uautoptr.h"
 
 #include <ocidl.h>
 #include <olectl.h>
 #include <shlwapi.h>
 
 #include "upicture.h"
+
+#include "ContactListBox.h"
 
 using huys::UDialogBox;
 
@@ -30,12 +32,20 @@ public:
     {
         ::InvalidateRect(m_hDlg, NULL, TRUE);
 
+        setDlgIconBig(::LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_OICQ)));
+
         m_pLBContact = new UContactListBox(m_hDlg, ID_LB_CONTACT, m_hInst);
-        m_pLBContact->setPos(20,130,300,400);
+        m_pLBContact->setPos(20, 130, 300, 400);
         m_pLBContact->create();
 
-        pic.load("1.gif");
-        
+        pic[0].load("1.gif");
+        pic[1].load("2.gif");
+        pic[2].load("3.gif");
+
+        m_pLBContact->addItem("pencil", &pic[0]);
+        m_pLBContact->addItem("crayon", &pic[1]);
+        m_pLBContact->addItem("marker", &pic[2]);
+
         return TRUE;
     }
 
@@ -50,16 +60,22 @@ public:
         }
         return result;
     }
-    
-	virtual void onDraw(HDC hdc)
-	{
-		RECT rc = {40, 40, 80, 80};
-        pic.show(hdc, &rc);
-	}
+
+    virtual void onDraw(HDC hdc)
+    {
+        RECT rc = {40, 40, 80, 80};
+        pic[0].show(hdc, &rc);
+        rc.left += 50;
+        rc.right += 50;
+        pic[1].show(hdc, &rc);
+        rc.left += 50;
+        rc.right += 50;
+        pic[2].show(hdc, &rc);
+    }
 private:
-    UContactListBox *m_pLBContact;
-    
-    UPicture pic;
+    huys::ADT::UAutoPtr<UContactListBox> m_pLBContact;
+
+    UPicture pic[3];
 };
 
 UDLGAPP_T(UDialogOICQ, IDD_OICQ);

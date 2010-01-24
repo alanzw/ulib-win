@@ -18,9 +18,6 @@
 #define RC_STRING_MAX_SIZE 200
 #endif // RC_STRING_MAX_SIZE
 
-#define IDS_DllNotLoaded 100
-#define IDS_MissingEntry 101
-
 #include <windows.h>
 #include <stdio.h>
 #include <string.h>
@@ -221,16 +218,18 @@ void GetModuleTitle(void)
 {
     LPTSTR lpStr;
 
-    GetModuleFileName(0,ModuleFileName,MAX_PATH);
+    GetModuleFileName(0, ModuleFileName, MAX_PATH);
     ModuleTitle = ModuleFileName;
 
-    for (lpStr = ModuleFileName;*lpStr;lpStr++) {
+    for (lpStr = ModuleFileName; *lpStr; lpStr++)
+    {
         if (*lpStr == _T('\\'))
             ModuleTitle = lpStr+1;
     }
 
-    for (lpStr = ModuleTitle;*lpStr;lpStr++) {
-        if (_tcsicmp(lpStr,_T(".exe"))==0)
+    for (lpStr = ModuleTitle;*lpStr;lpStr++)
+    {
+        if (_tcsicmp(lpStr, _T(".exe"))==0)
             break;
     }
 
@@ -445,17 +444,29 @@ int WINAPI WinMain(
         RegisterBlankClass(hInstance);
         // Create a window so we can pass a window handle to
         // the dll function; this is required
-        hWindow = CreateWindowEx(0,rundll32_wclass,rundll32_wtitle,0,CW_USEDEFAULT
-                ,0,CW_USEDEFAULT,0,0,0,hInstance,0);
+        hWindow = CreateWindowEx(
+            0,
+            rundll32_wclass,
+            rundll32_wtitle,
+            0,
+            CW_USEDEFAULT,
+            0,
+            CW_USEDEFAULT,
+            0,
+            0,
+            0,
+            hInstance,
+            0);
 
-        if (fnDllWinMainW) {
+        if (fnDllWinMainW)
+        {
             // Convert the command-line string to unicode and call the dll function
-
             lpwCmdLine = ConvertToWideChar(lptCmdLine);
             nRetVal = fnDllWinMainW(hWindow,hInstance,lpwCmdLine,nCmdShow);
             FreeConvertedWideChar(lpwCmdLine);
         }
-        else if (fnDllWinMainA) {
+        else if (fnDllWinMainA)
+        {
             // Convert the command-line string to ansi and call the dll function
             lpaCmdLine = ConvertToMultiByte(lptCmdLine);
             nRetVal = fnDllWinMainA(hWindow,hInstance,lpaCmdLine,nCmdShow);
@@ -480,7 +491,8 @@ int WINAPI WinMain(
         // The dll function has finished executing, so unload it
         FreeLibrary(hDll);
     }
-    else {
+    else 
+    {
         // The dll could not be loaded; display an error message
         GetModuleTitle();
         LoadString( GetModuleHandle(NULL), IDS_DllNotLoaded, (LPTSTR) szMsg,RC_STRING_MAX_SIZE);
@@ -494,5 +506,5 @@ int WINAPI WinMain(
     }
 
     if (argv) free(argv);
-    return nRetVal;
+    return 0;
 }

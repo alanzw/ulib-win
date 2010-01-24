@@ -18,7 +18,10 @@ BIN = test_qq.exe
 RC  = qq.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/udialogx.h
+HEADER = $(INCDIR)/udialogx.h \
+         ContactListBox.h     \
+         upicture.h  \
+
 #
 all: $(BIN)
 
@@ -30,7 +33,7 @@ $(BIN) : $(OBJ) $(RES)
 #
 .PHONY : test
 test :
-	$(WINE) $(BINDIR)/$(BIN)     
+	$(WINE) $(BINDIR)/$(BIN)
 #
 .PHONY : clean
 clean :
