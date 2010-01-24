@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="..\app\uqq\ContactListBox.cpp" open="1" top="0" tabpos="5">
+	<File name="..\app\uqq\ContactListBox.cpp" open="1" top="1" tabpos="5">
 		<Cursor position="41" topLine="0" />
 	</File>
 	<File name="..\app\uqq\ContactListBox.h" open="1" top="0" tabpos="3">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="1230" topLine="28" />
 	</File>
 	<File name="..\app\uqq\resource.h" open="1" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
@@ -13,7 +13,7 @@
 	<File name="..\app\uqq\test_qq.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="..\app\uqq\upicture.h" open="1" top="1" tabpos="4">
+	<File name="..\app\uqq\upicture.h" open="1" top="0" tabpos="4">
 		<Cursor position="1811" topLine="48" />
 	</File>
 </CodeBlocks_layout_file>

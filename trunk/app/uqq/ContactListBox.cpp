@@ -11,7 +11,8 @@
 UContactListBox::UContactListBox(HWND hParent, UINT nID, HINSTANCE hInst)
 : UListBox(hParent, nID, hInst)
 {
-    m_dwStyles |= LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | WS_VSCROLL;
+    m_dwStyles |= LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | WS_VSCROLL | SS_NOTIFY|LBS_NOSEL;
+    //m_dwExStyles |= WS_EX_TRANSPARENT;
 }
 
 BOOL UContactListBox::create()
@@ -42,6 +43,8 @@ BOOL UContactListBox::onDrawItem(WPARAM wParam, LPARAM lParam)
     int y;
 
 
+    SetBkMode(hdc, TRANSPARENT);
+    
     // If there are no list box items, skip this message.
     if (lpDrawItem->itemID == (unsigned int)-1)
     {
