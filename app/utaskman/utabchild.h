@@ -133,7 +133,7 @@ public:
 
     void addWindowTitles()
     {
-        HWND hListView = GetDlgItem(m_hDlg, IDC_LIST_APPLICATIONS);
+        //HWND hListView = GetDlgItem(m_hDlg, IDC_LIST_APPLICATIONS);
 
   //      int iRow = 1;
   //
@@ -186,8 +186,8 @@ public:
 
     BOOL onBnNewTask()
     {
-
         addWindowTitles();
+        return FALSE;
     }
 };
 
@@ -213,6 +213,9 @@ public:
         ulv.setItemText(0, 1, "0");
         ulv.setItemText(0, 2, "SYSTEM");
 
+        ulv.addItemTextImage(1, "Notepad++", 0);
+        ulv.setItemText(1, 1, "0");
+        ulv.setItemText(1, 2, "SYSTEM");
 
 		ulv.setBKColor(RGB(0,192,192));
 		ulv.setTextBKColor(RGB(0,192,192));
@@ -220,6 +223,24 @@ public:
 
 
         return TRUE;
+    }
+
+    virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
+    {
+        switch (LOWORD (wParam))
+        {
+        case IDC_BUTTON_END_PRC:
+            return onBnEndProcess();
+        default:
+            return UTabChild::onCommand(wParam, lParam);
+        }
+    }
+
+private:
+    BOOL onBnEndProcess()
+    {
+        stopProgram(_T("notepad++.exe"));
+        return FALSE;
     }
 };
 

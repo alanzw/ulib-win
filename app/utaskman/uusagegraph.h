@@ -88,8 +88,8 @@ private:
 
     void drawGrid(HDC hdc, LPRECT lpRect)
     {
-        int w = lpRect->right - lpRect->left;
-        int h = lpRect->bottom - lpRect->top;
+        //int w = lpRect->right - lpRect->left;
+        //int h = lpRect->bottom - lpRect->top;
 
         huys::ULine ul(lpRect->left, lpRect->top+10, lpRect->right, lpRect->top+10);
         ul.setLineColor(huys::blueviolet);

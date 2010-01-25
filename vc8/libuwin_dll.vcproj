@@ -74,7 +74,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib comctl32.lib opengl32.lib glu32.lib msimg32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib comctl32.lib opengl32.lib glu32.lib msimg32.lib psapi.lib"
 				OutputFile="Debug/libuwin_debug.vc8.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -702,6 +702,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\umenu.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\umsg.cpp"
 				>
 				<FileConfiguration
@@ -738,6 +742,10 @@
 			</File>
 			<File
 				RelativePath="..\src\upanel.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\uprocessman.cpp"
 				>
 			</File>
 			<File
@@ -805,6 +813,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\src\ustatusbar.cpp"
+				>
 			</File>
 			<File
 				RelativePath="..\src\utabctrl.cpp"
@@ -927,6 +939,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\inc\umenu.h"
+				>
+			</File>
+			<File
 				RelativePath="..\inc\umsg.h"
 				>
 			</File>
@@ -939,6 +955,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\inc\uprocessman.h"
+				>
+			</File>
+			<File
 				RelativePath="..\inc\urebar.h"
 				>
 			</File>
@@ -948,6 +968,10 @@
 			</File>
 			<File
 				RelativePath="..\inc\ustatic.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\ustatusbar.h"
 				>
 			</File>
 			<File

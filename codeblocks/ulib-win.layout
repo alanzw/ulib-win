@@ -22,8 +22,8 @@
 	<File name="..\inc\ulib.h" open="0" top="0" tabpos="1">
 		<Cursor position="5567" topLine="237" />
 	</File>
-	<File name="..\inc\ulistview.h" open="0" top="0" tabpos="1">
-		<Cursor position="1421" topLine="28" />
+	<File name="..\inc\ulistview.h" open="0" top="0" tabpos="20">
+		<Cursor position="1372" topLine="30" />
 	</File>
 	<File name="..\inc\upanel.h" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
@@ -34,6 +34,9 @@
 	<File name="..\inc\ustatic.h" open="0" top="0" tabpos="1">
 		<Cursor position="429" topLine="0" />
 	</File>
+	<File name="..\inc\ustatusbar.h" open="0" top="0" tabpos="18">
+		<Cursor position="287" topLine="0" />
+	</File>
 	<File name="..\inc\uworkaround.h" open="0" top="0" tabpos="3">
 		<Cursor position="650" topLine="25" />
 	</File>
@@ -43,7 +46,7 @@
 	<File name="..\src\ubutton.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="..\src\ucontrol.cpp" open="1" top="1" tabpos="12">
+	<File name="..\src\ucontrol.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="6308" topLine="246" />
 	</File>
 	<File name="..\src\udialogx.cpp" open="0" top="0" tabpos="6">
@@ -58,8 +61,8 @@
 	<File name="..\src\ulib.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="157" topLine="0" />
 	</File>
-	<File name="..\src\ulistview.cpp" open="0" top="0" tabpos="11">
-		<Cursor position="3247" topLine="117" />
+	<File name="..\src\ulistview.cpp" open="0" top="0" tabpos="21">
+		<Cursor position="2920" topLine="99" />
 	</File>
 	<File name="..\src\umsg.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="245" topLine="9" />
@@ -67,11 +70,17 @@
 	<File name="..\src\upanel.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="2246" topLine="98" />
 	</File>
+	<File name="..\src\uprocessman.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="248" topLine="6" />
+	</File>
 	<File name="..\src\ushell.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="2628" topLine="94" />
 	</File>
-	<File name="..\src\utreeview.cpp" open="1" top="0" tabpos="11">
-		<Cursor position="3344" topLine="142" />
+	<File name="..\src\ustatusbar.cpp" open="0" top="0" tabpos="19">
+		<Cursor position="594" topLine="10" />
+	</File>
+	<File name="..\src\utreeview.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="3344" topLine="139" />
 	</File>
 	<File name="..\src\uwindowx.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="1904" topLine="0" />

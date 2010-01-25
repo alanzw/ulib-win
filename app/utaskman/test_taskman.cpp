@@ -15,12 +15,13 @@
 #include "ustatusbar.h"
 
 #include "umenu.h"
+#include "uprocessman.h"
 
 using huys::UDialogBox;
 
 #include "utabchild.h"
 
-LPTSTR sTabTitle[] = {
+LPCTSTR sTabTitle[] = {
     "Applications",
     "Processes",
     "Services",
@@ -69,22 +70,22 @@ public:
         hTabTask = GetDlgItem(m_hDlg, IDC_TAB_TASK);
         TCITEM item;
         item.mask = TCIF_TEXT;
-        item.pszText = sTabTitle[IDX_APP];
+        item.pszText = (LPSTR)sTabTitle[IDX_APP];
         SendMessage(hTabTask, TCM_INSERTITEM, 0, (LPARAM)&item);
 
-        item.pszText = sTabTitle[IDX_PRC];
+        item.pszText = (LPSTR)sTabTitle[IDX_PRC];
         SendMessage(hTabTask, TCM_INSERTITEM, 1, (LPARAM)&item);
 
-        item.pszText = sTabTitle[IDX_SVC];
+        item.pszText = (LPSTR)sTabTitle[IDX_SVC];
         SendMessage(hTabTask, TCM_INSERTITEM, 2, (LPARAM)&item);
 
-        item.pszText = sTabTitle[IDX_PRF];
+        item.pszText = (LPSTR)sTabTitle[IDX_PRF];
         SendMessage(hTabTask, TCM_INSERTITEM, 3, (LPARAM)&item);
 
-        item.pszText = sTabTitle[IDX_NET];
+        item.pszText = (LPSTR)sTabTitle[IDX_NET];
         SendMessage(hTabTask, TCM_INSERTITEM, 4, (LPARAM)&item);
 
-        item.pszText = sTabTitle[IDX_USR];
+        item.pszText = (LPSTR)sTabTitle[IDX_USR];
         SendMessage(hTabTask, TCM_INSERTITEM, 5, (LPARAM)&item);
 
         m_pTabChild[IDX_APP]= new UTabChildApp(m_hInst, IDD_SHEET_APP, hTabTask);
@@ -169,8 +170,6 @@ public:
             return TRUE;
         case IDM_ABOUT:
             showCustomMsgBox("UExplorer v0.0.1 By Huys", "About", m_hDlg);
-            return TRUE;
-        case IDC_BUTTON_END_TASK:
             return TRUE;
         case IDM_BKCOLOR:
             return TRUE;
@@ -271,6 +270,8 @@ private:
             m_pTabChild[IDX_USR]->setRedraw();
             return FALSE;
             }
+        default:
+            return FALSE;
         }
     }
 

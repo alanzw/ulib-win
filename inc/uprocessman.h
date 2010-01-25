@@ -13,5 +13,7 @@ ULIB_API VOID printProcessName(DWORD processID);
 
 ULIB_API DWORD getWindowPid(HWND hWnd, LPDWORD lpdwProcessId);
 
+ULIB_API DWORD terminatePid(DWORD dwPID, DWORD dwTimeout);
+
 #endif // U_PROCESS_MAN_H
 

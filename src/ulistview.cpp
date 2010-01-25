@@ -75,18 +75,18 @@ BOOL UListView::addItem( LVITEM *lplvi )
     return this->sendMsg(LVM_INSERTITEM, 0, (LPARAM)(LVITEM*)lplvi);
 }
 
-BOOL UListView::addColTextWidth( int iCol, LPSTR lpText, int nWidth)
+BOOL UListView::addColTextWidth( int iCol, LPCSTR lpText, int nWidth)
 {
     LVCOLUMN lvc = {0};
     lvc.mask = LVCF_FMT | LVCF_WIDTH | LVCF_TEXT | LVCF_SUBITEM;
     lvc.iSubItem = 0;
-    lvc.pszText = lpText;
+    lvc.pszText = (LPSTR)lpText;
     lvc.cx = nWidth;     // width of column in pixels
     lvc.fmt = LVCFMT_LEFT;  // left-aligned column
     return this->addColumn(iCol, &lvc);
 }
 
-BOOL UListView::addItemTextImage( int nIndex, LPSTR lpText, int iImage )
+BOOL UListView::addItemTextImage( int nIndex, LPCSTR lpText, int iImage )
 {
     LVITEM lvi = {0};
     lvi.mask = LVIF_TEXT | LVIF_IMAGE | LVIF_PARAM | LVIF_STATE;
@@ -96,7 +96,7 @@ BOOL UListView::addItemTextImage( int nIndex, LPSTR lpText, int iImage )
     lvi.iImage = iImage;
     lvi.iSubItem = 0;
     lvi.lParam = 0;
-    lvi.pszText = lpText; // sends an LVN_GETDISP message.
+    lvi.pszText = (LPSTR)lpText; // sends an LVN_GETDISP message.
 
     return this->addItem(&lvi);
 }
@@ -112,13 +112,13 @@ BOOL UListView::setItem(int nIndex, LVITEM *lplvi)
     return this->sendMsg(LVM_SETITEMTEXT, (WPARAM)nIndex, (LPARAM)lplvi);
 }
 
-BOOL UListView::setItemText(int nIndex, int nSubIndex, LPTSTR lpText)
+BOOL UListView::setItemText(int nIndex, int nSubIndex, LPCTSTR lpText)
 {
     LVITEM lstItem = {0};
     lstItem.mask = LVIF_TEXT;
     lstItem.iItem = nIndex;
     lstItem.iSubItem = nSubIndex;
-    lstItem.pszText = lpText;
+    lstItem.pszText = (LPTSTR)lpText;
     return this->setItem(nIndex, &lstItem);
 }
 
