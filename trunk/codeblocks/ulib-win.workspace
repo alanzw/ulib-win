@@ -14,7 +14,7 @@
 		<Project filename="explorer.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="taskman.cbp">
+		<Project filename="taskman.cbp" active="1">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="listctrl.cbp">
@@ -23,7 +23,7 @@
 		<Project filename="listbox.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="qq.cbp" active="1">
+		<Project filename="qq.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 	</Workspace>

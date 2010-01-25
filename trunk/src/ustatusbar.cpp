@@ -23,7 +23,7 @@ BOOL UStatusBar::create()
     return UControl::create(_T("msctls_statusbar32"));
 }
 
-BOOL UStatusBar::setText(int nPart, TCHAR *lpText)
+BOOL UStatusBar::setText(int nPart, const TCHAR *lpText)
 {
     return this->sendMsg(SB_SETTEXT, (WPARAM)(INT)nPart, (LPARAM)(LPSTR)lpText);
 }

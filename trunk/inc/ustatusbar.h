@@ -11,7 +11,7 @@ public:
     //
     virtual BOOL create();
     //
-    BOOL setText(int nPart, TCHAR *lpText);
+    BOOL setText(int nPart, const TCHAR *lpText);
     //
     BOOL setIcon(int nPart, HICON hIcon);
     HICON setIcon(int nPart);

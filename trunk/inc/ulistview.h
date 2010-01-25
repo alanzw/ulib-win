@@ -36,9 +36,9 @@ public:
 
     virtual BOOL addItem(LVITEM *lplvi);
     //
-    virtual BOOL addColTextWidth(int iCol, LPSTR lpText, int nWidth);
+    virtual BOOL addColTextWidth(int iCol, LPCSTR lpText, int nWidth);
     //
-    virtual BOOL addItemTextImage(int nIndex, LPSTR lpText, int iImage);
+    virtual BOOL addItemTextImage(int nIndex, LPCSTR lpText, int iImage);
     //
     virtual BOOL setImageList(HIMAGELIST himl, int iImage);
     virtual BOOL setImageListNormal(HIMAGELIST himl);
@@ -47,7 +47,7 @@ public:
     virtual BOOL setImageListGroupHeader(HIMAGELIST himl);
     //
     virtual BOOL setItem(int nIndex, LVITEM *lplvi);
-    virtual BOOL setItemText(int nIndex, int nSubIndex, LPTSTR lpText);
+    virtual BOOL setItemText(int nIndex, int nSubIndex, LPCTSTR lpText);
 
     BOOL setBKColor(huys::Color clr);
     BOOL setTextColor(huys::Color clr);

@@ -26,6 +26,7 @@
 					<Add library="comctl32" />
 					<Add library="shlwapi" />
 					<Add library="ole32" />
+					<Add library="psapi" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -63,6 +64,7 @@
 		<Unit filename="..\inc\umsg.h" />
 		<Unit filename="..\inc\uobject.h" />
 		<Unit filename="..\inc\upanel.h" />
+		<Unit filename="..\inc\uprocessman.h" />
 		<Unit filename="..\inc\ushell.h" />
 		<Unit filename="..\inc\ustatic.h" />
 		<Unit filename="..\inc\ustatusbar.h" />
@@ -89,6 +91,7 @@
 		<Unit filename="..\src\umsg.cpp" />
 		<Unit filename="..\src\uobject.cpp" />
 		<Unit filename="..\src\upanel.cpp" />
+		<Unit filename="..\src\uprocessman.cpp" />
 		<Unit filename="..\src\ushell.cpp" />
 		<Unit filename="..\src\ustatic.cpp" />
 		<Unit filename="..\src\ustatusbar.cpp" />
