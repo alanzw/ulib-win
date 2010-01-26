@@ -8,6 +8,7 @@
 #include "ubasewindow.h"
 #include "ugdi.h"
 #include "colors.h"
+#include "adt/uautoptr.h"
 
 #include "u3dcreator.h"
 
@@ -58,6 +59,8 @@ public:
         {
         case IDM_ABOUT:
             return onMenuAbout();
+        case IDM_NUMBER:
+            return onMenuNumber();
         case IDM_EXIT:
             return UBaseWindow::onClose();
         default:
@@ -81,6 +84,15 @@ private:
         this->showMsg(_T("U3DCreator v0.0.1"), _T("About"));
         return FALSE;
     }
+    
+    BOOL onMenuNumber()
+    {
+        win = new UBaseWindow(this);
+        win->create();
+        return FALSE;
+    }
+
+	huys::ADT::UAutoPtr<UBaseWindow> win;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)

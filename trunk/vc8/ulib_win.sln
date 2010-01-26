@@ -44,6 +44,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "listctrl", "listctrl.vcproj
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "taskman", "taskman.vcproj", "{C8BBF320-DDA9-478B-B370-F26EE861EF6F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3dcreator", "3dcreator.vcproj", "{14B569C7-3EDA-470D-8BF2-9A260C3E1898}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -153,6 +155,12 @@ Global
 		{C8BBF320-DDA9-478B-B370-F26EE861EF6F}.Debug-static|Win32.Build.0 = Debug|Win32
 		{C8BBF320-DDA9-478B-B370-F26EE861EF6F}.Release|Win32.ActiveCfg = Release|Win32
 		{C8BBF320-DDA9-478B-B370-F26EE861EF6F}.Release|Win32.Build.0 = Release|Win32
+		{14B569C7-3EDA-470D-8BF2-9A260C3E1898}.Debug|Win32.ActiveCfg = Debug|Win32
+		{14B569C7-3EDA-470D-8BF2-9A260C3E1898}.Debug|Win32.Build.0 = Debug|Win32
+		{14B569C7-3EDA-470D-8BF2-9A260C3E1898}.Debug-static|Win32.ActiveCfg = Debug|Win32
+		{14B569C7-3EDA-470D-8BF2-9A260C3E1898}.Debug-static|Win32.Build.0 = Debug|Win32
+		{14B569C7-3EDA-470D-8BF2-9A260C3E1898}.Release|Win32.ActiveCfg = Release|Win32
+		{14B569C7-3EDA-470D-8BF2-9A260C3E1898}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

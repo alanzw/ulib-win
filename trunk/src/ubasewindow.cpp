@@ -71,6 +71,24 @@ UBaseWindow::UBaseWindow( HWND hParent /*= NULL*/,
       m_rcWindow.bottom = m_rcWindow.top + CW_USEDEFAULT;
 }
 
+UBaseWindow::UBaseWindow(UBaseWindow *pWndParent)
+: m_hParent(pWndParent->getHandle()), m_hSelf(NULL), m_hInst(NULL), m_lpMenuName(NULL),
+m_dwStyles(WS_VISIBLE|WS_SYSMENU),
+m_dwExStyles(0),
+m_lpWindowClass(0),
+m_lpWindowTitle(NULL),
+m_nID(0)
+{
+	//    m_rcWindow.left = 0;
+	//    m_rcWindow.top = 0;
+	//    m_rcWindow.right = 200;
+	//    m_rcWindow.bottom = 200;
+	m_rcWindow.left = CW_USEDEFAULT;
+	m_rcWindow.top = CW_USEDEFAULT;
+	m_rcWindow.right = m_rcWindow.left + CW_USEDEFAULT;
+	m_rcWindow.bottom = m_rcWindow.top + CW_USEDEFAULT;
+}
+
 UBaseWindow::~UBaseWindow()
 {
 

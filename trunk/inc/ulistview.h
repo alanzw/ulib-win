@@ -48,6 +48,8 @@ public:
     //
     virtual BOOL setItem(int nIndex, LVITEM *lplvi);
     virtual BOOL setItemText(int nIndex, int nSubIndex, LPCTSTR lpText);
+    
+    int getItemCount();
 
     BOOL setBKColor(huys::Color clr);
     BOOL setTextColor(huys::Color clr);

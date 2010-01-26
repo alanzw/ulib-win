@@ -26,6 +26,9 @@ class ULIB_API UBaseWindow
 public:
     UBaseWindow(HWND hParent = NULL, HINSTANCE hInst = NULL, LPCTSTR lpWindowClass = NULL, UINT nID = 0);
 
+	//
+	explicit UBaseWindow(UBaseWindow *pWndParent);
+
     //!! The dtor of base class should be virtual
     virtual ~UBaseWindow();
 
