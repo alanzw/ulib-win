@@ -24,7 +24,7 @@ public:
     {
         m_dwStyles |= LBS_OWNERDRAWVARIABLE | WS_VSCROLL;
     }
-    
+
     ~UIconListBox() {};
 
     virtual BOOL create()
@@ -58,7 +58,7 @@ public:
             m_dwUserData = 0;
         };
     };
-    
+
     void addItem(LPCTSTR str, HBITMAP hbmp)
     {
         int nItem = this->addString(str);
@@ -92,7 +92,7 @@ public:
     {
         CHECK_PTR(m_pListBox);
         CHECK_PTR(m_pIconListBox);
-        
+
         // Free any resources used by the bitmaps.
         DeleteObject(hbmpPencil);
         DeleteObject(hbmpCrayon);
@@ -138,15 +138,15 @@ public:
         hbmpMarker = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON3));
         hbmpPen = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
         hbmpFork = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDB_ICON2));
-     
+
         m_pIconListBox->addItem("pencil", hbmpPencil);
         m_pIconListBox->addItem("crayon", hbmpCrayon);
         m_pIconListBox->addItem("marker", hbmpMarker);
         m_pIconListBox->addItem("pen",    hbmpPen);
         m_pIconListBox->addItem("fork", hbmpFork);
-        
+
         m_pIconListBox->setCurSel(0);
-        
+
         return TRUE;
     }
 

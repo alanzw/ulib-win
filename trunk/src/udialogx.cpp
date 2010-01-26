@@ -129,7 +129,7 @@ BOOL UDialogBox::modifyExStyles(DWORD dwStyle)
 BOOL UDialogBox::DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
     BOOL bRet;
-    if (message == WM_CTLCOLORSTATIC || message == WM_CTLCOLOREDIT)
+    if (message == WM_CTLCOLORSTATIC || message == WM_CTLCOLOREDIT || message == WM_CTLCOLORLISTBOX)
     {
         if ((bRet=UDialogBox::onCtrlColor(wParam, lParam)) != FALSE)
         {

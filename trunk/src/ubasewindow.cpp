@@ -179,6 +179,8 @@ BOOL UBaseWindow::onMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
         }
     case WM_SIZE:
         return onSize(wParam, lParam);
+    case WM_CTLCOLORSTATIC:
+        return ::SendMessage((HWND)lParam, WM_NOTIFY + WM_REFLECT_CTLCOLOR, wParam, lParam);
     default:
         return defaultMessageHandler(uMessage, wParam, lParam);
     }

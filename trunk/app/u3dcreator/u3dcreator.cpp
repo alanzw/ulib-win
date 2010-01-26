@@ -14,7 +14,7 @@ U3DCreator::U3DCreator()
 }
 
 U3DCreator::U3DCreator(UBaseWindow *pWndParent, UINT nID)
-: UStatic(pWndParent, NULL)
+: UStatic(pWndParent, nID)
 {
     m_nResourceID = nID;
 }

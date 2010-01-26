@@ -25,6 +25,8 @@
 #include "umsg.h"
 #include "ubutton.h"
 
+#include "adt/uautoptr.h"
+
 using huys::UDialogBox;
 
 class UDialogDeskUtil : public UDialogBox
@@ -36,11 +38,6 @@ public:
     UDialogDeskUtil(HINSTANCE hInst, UINT nID)
         : UDialogBox(hInst, nID)
     {}
-
-    ~UDialogDeskUtil()
-    {
-        CHECK_PTR(m_pBnWallpaper);
-    }
 
     BOOL onInit()
     {
@@ -63,7 +60,7 @@ public:
         }
     }
 private:
-    UPushButton *m_pBnWallpaper;
+    huys::ADT::UAutoPtr<UPushButton> m_pBnWallpaper;
 
 private:
     BOOL onBnChangeWallpaper()

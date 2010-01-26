@@ -146,15 +146,15 @@ private:
             x = c_x + (int)((r + line_half) * sin(theta_2*i+theta));
             y = c_y - (int)((r + line_half) * cos(theta_2*i+theta));
             line.SetStartPnt(x, y);
-        
+
             x = c_x + (int)((r - line_half) * sin(theta_2*i+theta));
             y = c_y - (int)((r - line_half) * cos(theta_2*i+theta));
             line.SetEndPnt(x, y);
-            
+
             line.Draw(hdc);
         }
     }
-    
+
     void drawCircle(huys::UCircle &cic, UPhilosopher *p, HDC hdc)
     {
         if (NULL == p)
@@ -164,7 +164,7 @@ private:
             cic.Draw(hdc);
             return;
         }
-        
+
         if (p->isEating())
         {
             cic.setFilledColor(huys::black);
@@ -220,7 +220,7 @@ private:
         //this->invalidate();
         RECT rc;
         ::GetClientRect(*this, &rc);
-		rc.left += 200;
+        rc.left += 200;
         ::InvalidateRect(*this, &rc, TRUE);
     }
 };

@@ -46,6 +46,8 @@ public:
         m_pLBContact->addItem("crayon", &pic[1]);
         m_pLBContact->addItem("marker", &pic[2]);
 
+        m_pLBContact->update();
+
         return TRUE;
     }
 
