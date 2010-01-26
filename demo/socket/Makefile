@@ -16,7 +16,7 @@ SUBDIRS =          \
           sniffer  \
           ipv6     \
           mtserver \
-          
+          interface\
 
 #
 .PHONY: all
