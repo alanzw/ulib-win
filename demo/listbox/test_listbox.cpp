@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <commctrl.h>
 #include <tchar.h>
+#include <shellapi.h>
 #include <assert.h>
 
 #include "ulistbox.h"
@@ -12,6 +13,7 @@
 #include "udlgapp.h"
 #include "uimagelist.h"
 #include "umsg.h"
+#include "colors.h"
 
 using huys::UDialogBox;
 
@@ -28,14 +30,14 @@ public:
     UIconListBox(HWND hParent, UINT nID, HINSTANCE hInst)
     : UListBox(hParent, nID, hInst)
     {
-        m_dwStyles |= LBS_OWNERDRAWVARIABLE | WS_VSCROLL;
+        m_dwStyles |= LBS_OWNERDRAWVARIABLE | WS_VSCROLL | LBS_NOTIFY | LBS_HASSTRINGS;
     }
 
     ~UIconListBox() {};
 
     virtual BOOL create()
     {
-        BOOL ret = UListBox::create();
+        BOOL ret = UListBox::createEx(WS_EX_ACCEPTFILES, _T("LISTBOX"));
         this->subclassProc();
         return ret;
     }
@@ -47,6 +49,11 @@ public:
 
     virtual BOOL onMessage(UINT nMessage, WPARAM wParam, LPARAM lParam)
     {
+        if (WM_DROPFILES == nMessage)
+        {
+            return onDropFiles((HDROP)wParam);
+        }
+
         return UListBox::onMessage(nMessage, wParam, lParam);
     }
 
@@ -89,7 +96,7 @@ public:
             HDC hdcMem;
             //HRESULT hr;
             TEXTMETRIC tm;
-            TCHAR tchBuffer[BUFFER] = "xxx";
+            TCHAR tchBuffer[BUFFER] = {0};
             //size_t cch;
             RECT rcBitmap;
             int y;
@@ -100,12 +107,33 @@ public:
                 return TRUE;
             }
 
+            SetBkMode(lpdis->hDC, TRANSPARENT);
+
+            _crOldBkColor = ::GetBkColor(lpdis->hDC);
+            _crOldTextColor = ::GetTextColor(lpdis->hDC);
+
             // Draw the bitmap and text for the list box item. Draw a
             // rectangle around the bitmap if it is selected.
 
             switch (lpdis->itemAction)
             {
             case ODA_SELECT:
+                if (lpdis->itemState & ODS_SELECTED)
+                {
+                    // Fill the item rect with the highlight blue color
+                    ::SetBkColor(lpdis->hDC, ::GetSysColor(COLOR_HIGHLIGHT));
+                    ::ExtTextOut(lpdis->hDC, 0, 0, ETO_OPAQUE, &lpdis->rcItem, NULL, 0, NULL);
+                    // Set the color of the background of the text rect
+                    ::SetBkColor(lpdis->hDC, ::GetSysColor(COLOR_HIGHLIGHT));
+                    // Set the color of the text
+                    ::SetTextColor(lpdis->hDC, ::GetSysColor(COLOR_HIGHLIGHTTEXT));
+                }
+                else
+                {
+                    // Fill the item rect with the highlight blue color
+                    ::SetBkColor(lpdis->hDC, ::GetSysColor(COLOR_BTNFACE));
+                    ::ExtTextOut(lpdis->hDC, 0, 0, ETO_OPAQUE, &lpdis->rcItem, NULL, 0, NULL);
+                }
             case ODA_DRAWENTIRE:
 
                 // Display the bitmap associated with the item.
@@ -118,15 +146,15 @@ public:
                 hbmpOld = (HBITMAP)SelectObject(hdcMem, hbmpPicture);
 
                 BitBlt(lpdis->hDC,
-                    lpdis->rcItem.left, lpdis->rcItem.top,
-                    lpdis->rcItem.right - lpdis->rcItem.left,
-                    lpdis->rcItem.bottom - lpdis->rcItem.top,
+                    lpdis->rcItem.left+2, lpdis->rcItem.top + 2,
+                    lpdis->rcItem.right - lpdis->rcItem.left + 2,
+                    lpdis->rcItem.bottom - lpdis->rcItem.top - 2,
                     hdcMem, 0, 0, SRCCOPY);
 
                 // Display the text associated with the item.
 
-                //SendMessage(lpdis->hwndItem, LB_GETTEXT,
-                //    lpdis->itemID, (LPARAM) tchBuffer);
+                SendMessage(lpdis->hwndItem, LB_GETTEXT,
+                    lpdis->itemID, (LPARAM) tchBuffer);
 
                 GetTextMetrics(lpdis->hDC, &tm);
 
@@ -139,7 +167,7 @@ public:
                     // TODO: Handle error.
                 //}
                 //cch = strlen(tchBuffer);
-
+                SetTextColor(lpdis->hDC, huys::xpblue);
                 TextOut(lpdis->hDC,
                     XBITMAP + 6,
                     y,
@@ -180,9 +208,45 @@ public:
             }
             return TRUE;
 
-        }
+    }
+
+    virtual BOOL onCtrlColor(WPARAM wParam, LPARAM lParam)
+    {
+        HDC hdc = (HDC)wParam;
+        ::SetBkMode(hdc, TRANSPARENT);
+
+        return (BOOL)(HBRUSH)::GetSysColorBrush(COLOR_BTNFACE);
+    }
 protected:
 private:
+    BOOL onDropFiles(HDROP hDropInfo)
+    {
+        char strFileName[MAX_PATH], strDrive[MAX_PATH], strDir[MAX_PATH], strExt[MAX_PATH];
+        char szFilePath[MAX_PATH];
+
+        ::DragQueryFile (hDropInfo, 0, szFilePath, sizeof (szFilePath));
+
+        //showMsg(szFilePath);
+
+        HICON h = ::ExtractIcon(NULL,szFilePath,0);
+
+        // This function splits the whole path into Drive, Dir, File Name and Extension
+        ::_splitpath(szFilePath, strDrive, strDir, strFileName, strExt);
+
+        if (h)
+        {
+            // After getting the the Icon handle and the Icon file name,
+            // Add them to the list box
+            addItem(strFileName, (HBITMAP)h);
+        }
+
+        ::DragFinish(hDropInfo);
+
+        return FALSE;
+    }
+
+    COLORREF _crOldTextColor;
+    COLORREF _crOldBkColor;
 };
 
 class UDialogExt : public UDialogBox
@@ -270,6 +334,18 @@ public:
 
         }
         return TRUE;
+    }
+
+    BOOL onCommand(WPARAM wParam, LPARAM lParam)
+    {
+        if ( ID_ICON_LISTBOX == LOWORD(wParam) && LBN_DBLCLK == HIWORD(wParam))
+        {
+            int index = m_pIconListBox->getCurSel();
+            char buf[256] = {0};
+            m_pIconListBox->getText(index, buf);
+            showMsgFormat("info", "%d -- %s", index, buf);
+        }
+        return UDialogBox::onCommand(wParam, lParam);
     }
 
 private:

@@ -11,13 +11,13 @@
 UContactListBox::UContactListBox(HWND hParent, UINT nID, HINSTANCE hInst)
 : UListBox(hParent, nID, hInst)
 {
-    m_dwStyles |= LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | WS_VSCROLL | SS_NOTIFY|LBS_NOSEL;
+    m_dwStyles |= LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | WS_VSCROLL | SS_NOTIFY;
     //m_dwExStyles |= WS_EX_TRANSPARENT;
 }
 
 BOOL UContactListBox::create()
 {
-    BOOL ret = UListBox::create();
+    BOOL ret = UListBox::createEx(WS_EX_TRANSPARENT, _T("LISTBOX"));
     this->subclassProc();
     return ret;
 }

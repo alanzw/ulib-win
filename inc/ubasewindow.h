@@ -156,6 +156,9 @@ public:
 
     //
     virtual BOOL onSize(WPARAM wParam, LPARAM lParam) {return FALSE;}
+    
+    //
+    BOOL onCtrlColor(WPARAM wParam, LPARAM lParam);
 
     //
     BOOL setTimer(UINT_PTR nIDEvent, UINT uElapse);
