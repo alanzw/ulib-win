@@ -11,6 +11,8 @@
 
 #include "ueditex.h"
 
+#include "adt/uautoptr.h"
+
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
@@ -20,14 +22,8 @@ class UDialogExt : public UDialogBox
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-          m_pEditEx(0)
+        : UDialogBox(hInst, nID)
     {}
-
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_pEditEx);
-    }
 
     virtual BOOL onInit()
     {
@@ -59,7 +55,7 @@ public:
     }
 
 private:
-    UEditEx *m_pEditEx;
+    huys::ADT::UAutoPtr<UEditEx> m_pEditEx;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

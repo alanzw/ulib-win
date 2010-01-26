@@ -122,6 +122,11 @@ BOOL UListView::setItemText(int nIndex, int nSubIndex, LPCTSTR lpText)
     return this->setItem(nIndex, &lstItem);
 }
 
+int UListView::getItemCount()
+{
+    return (int)this->sendMsg(LVM_GETITEMCOUNT);
+}
+
 BOOL UListView::setBKColor( huys::Color clr )
 {
     return this->sendMsg(LVM_SETBKCOLOR, 0, (LPARAM)clr);
