@@ -6,8 +6,10 @@
 
 #include "uwinapp.h"
 #include "ubasewindow.h"
+
 #include "ugdi.h"
 #include "colors.h"
+
 #include "ulistbox.h"
 
 #include "adt/uautoptr.h"

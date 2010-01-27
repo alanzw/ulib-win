@@ -67,3 +67,12 @@ int UListBox::setColumnWidth(DWORD pixels)
     return this->sendMsg(LB_SETCOLUMNWIDTH, pixels);
 }
 
+int UListBox::getItemHeight()
+{
+    return this->sendMsg(LB_GETITEMHEIGHT);
+}
+
+BOOL UListBox::setItemHeight(int nHeight)
+{
+    return this->sendMsg(LB_SETITEMHEIGHT, 0, nHeight);
+}

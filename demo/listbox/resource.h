@@ -11,3 +11,6 @@
 #define IDB_ICON1          111
 #define IDB_ICON2          112
 #define IDB_ICON3          113
+
+#define IDC_SDIR           10001
+#define IDC_LIST_FILE      10002
