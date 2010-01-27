@@ -5,12 +5,10 @@
 #include <conio.h>
 #include <math.h>
 
-
 #include "uconsole.h"
 #include "utimer.h"
 
 using namespace UConsole;
-
 
 int main(int argc, char *argv[])
 {

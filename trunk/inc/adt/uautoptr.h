@@ -7,6 +7,14 @@ namespace huys
 namespace ADT
 {
 
+template <class T>
+struct auto_ptr_ref
+{
+    T* _p;
+    auto_ptr_ref (T* rhs) : _p(rhs)
+    {}
+};
+
 template <typename T>
 class UAutoPtr
 {
@@ -19,9 +27,14 @@ public:
     {
     }
 
-    UAutoPtr(T * p)
+    explicit UAutoPtr(T * p)
     : _p(p)
     {}
+
+    UAutoPtr(UAutoPtr &p)
+    {
+
+    }
 
     ~UAutoPtr()
     {
@@ -52,8 +65,39 @@ public:
         _p = p;
         return *this;
     }
+
+    T& operator*() const throw()
+    {
+        return *_p;
+    }
+
+    UAutoPtr & operator=(UAutoPtr &x)
+    {
+        _p = x._p;
+        x._p = 0;
+        return *this;
+    }
+
+    T * release() throw()
+    {
+        T* tmp(_p);
+        _p = 0;
+        return tmp;
+    }
+
+    void reset(T* ptr=0) throw()
+    {
+        if(_p != ptr)
+        {
+            delete _p;
+            _p = ptr;
+        }
+    }
 private:
     TypePtr _p;
+private:
+    UAutoPtr& operator= (UAutoPtr& rhs) const;
+
 };
 
 }; // namespace ADT
