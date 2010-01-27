@@ -9,6 +9,7 @@ public:
     UListBox(HWND hParent, UINT nID, HINSTANCE hInst);
     UListBox() {}
     ~UListBox();
+    UListBox(UBaseWindow *pWndParent, UINT nID);
     //
     virtual BOOL create();
     //

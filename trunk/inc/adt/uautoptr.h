@@ -50,11 +50,6 @@ public:
         return (T*)_p;
     }
 
-    T& operator*() const
-    {
-        return *_p;
-    }
-
     T* operator->() const
     {
         return (T*)_p;
@@ -76,6 +71,11 @@ public:
         _p = x._p;
         x._p = 0;
         return *this;
+    }
+    
+    BOOL operator==(T * ptr) const
+    {
+        return _p == ptr;
     }
 
     T * release() throw()

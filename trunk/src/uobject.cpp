@@ -96,3 +96,9 @@ bool UGDIObject::restore()
     return true;
 }
 
+bool UGDIObject::destroy()
+{
+    ::DeleteObject(m_hObj);
+    m_hObj = NULL;
+    return true;
+}

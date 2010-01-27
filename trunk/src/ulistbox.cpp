@@ -11,6 +11,10 @@ UListBox::UListBox(HWND hParent, UINT nID, HINSTANCE hInst)
 UListBox::~UListBox()
 {};
 
+UListBox::UListBox(UBaseWindow *pWndParent, UINT nID)
+: UControl(pWndParent, nID)
+{}
+
 BOOL UListBox::create()
 {
     return UControl::create(_T("LISTBOX")); // WC_LISTBOX

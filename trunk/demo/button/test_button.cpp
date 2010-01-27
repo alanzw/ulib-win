@@ -16,6 +16,9 @@
 
 #include "cool_button.h"
 #include "imagebutton.h"
+#include "round_button.h"
+
+#include "adt/uautoptr.h"
 
 using huys::UDialogBox;
 
@@ -31,7 +34,8 @@ class UDialogExt : public UDialogBox
         IDC_BN_OWNERDRAWN = 4111,
         IDC_BN_ICONTEXT = 4333,
         IDC_BN_COOL = 4335,
-        IDC_BN_BITMAP = 4336
+        IDC_BN_BITMAP = 4336,
+        IDC_BN_ROUND = 4337
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
@@ -134,6 +138,12 @@ public:
         m_pImageBtn->create();
         m_pImageBtn->setWindowText(_T("ÎÒ°®Äã"));
         m_pImageBtn->setButtomImage(IDB_IMAGE, huys::magenta);
+
+        m_pRoundBtn = new URoundButton(m_hDlg, IDC_BN_ROUND, m_hInst);
+        m_pRoundBtn->setPos(680, 250, 50, 50);
+        m_pRoundBtn->create();
+        m_pRoundBtn->resize();
+        m_pRoundBtn->setWindowText(_T("P"));
         return TRUE;
     }
 
@@ -208,6 +218,8 @@ private:
 
     UCoolButton *m_pCoolBtn;
     UImageButton *m_pImageBtn;
+
+    huys::ADT::UAutoPtr<URoundButton> m_pRoundBtn;
 private:
     BOOL onBnImage()
     {

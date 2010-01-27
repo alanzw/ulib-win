@@ -229,6 +229,11 @@ BOOL UBaseWindow::show()
     return ::ShowWindow(m_hSelf, SW_NORMAL);
 }
 
+BOOL UBaseWindow::hide()
+{
+    return ::ShowWindow(m_hSelf, SW_HIDE);
+}
+
 BOOL UBaseWindow::update()
 {
     return ::UpdateWindow(m_hSelf);

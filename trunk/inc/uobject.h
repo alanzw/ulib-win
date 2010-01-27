@@ -73,6 +73,7 @@ public:
 
     bool select(HDC hdc);
     bool restore();
+    bool destroy();
 protected:
     //HANDLE m_hObj;
     HANDLE m_hOldObj;
