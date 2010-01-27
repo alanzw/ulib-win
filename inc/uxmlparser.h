@@ -173,7 +173,7 @@ public:
 
     const char* atrribute(const char* name)
     {
-        return _atrributes->value.c_str();
+        return _atrributes->value();
     }
 protected:
 private:
