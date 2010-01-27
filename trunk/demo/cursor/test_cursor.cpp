@@ -7,6 +7,8 @@
 #include "udlgapp.h"
 #include "ucursor.h"
 
+#include "adt/uautoptr.h"
+
 
 // Yin-shaped cursor AND mask
 
@@ -108,11 +110,6 @@ public:
       m_pCursor(0)
     {}
 
-    ~MyDialog()
-    {
-        CHECK_PTR(m_pCursor);
-    }
-
     virtual BOOL onInit()
     {
         m_pCursor = new UCursor;
@@ -138,7 +135,7 @@ public:
         return UDialogBox::DialogProc(message, wParam, lParam);
     }
 private:
-    UCursor *m_pCursor;
+    huys::ADT::UAutoPtr<UCursor> m_pCursor;
 };
 
 UDLGAPP_T(MyDialog, IDD_TEST);

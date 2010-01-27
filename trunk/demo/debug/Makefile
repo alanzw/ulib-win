@@ -36,4 +36,4 @@ clean :
 #
 .PHONY : test
 test :
-	$(BINDIR)/$(BIN)
+	$(WINE) $(BINDIR)/$(BIN)

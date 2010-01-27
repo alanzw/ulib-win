@@ -331,6 +331,10 @@ public:
             m_pIconListBox->addItem("fork", hbmpFork);
 
             m_pIconListBox->setCurSel(0);
+            
+            TCHAR tchCurDir[MAX_PATH];
+            ::GetCurrentDirectory(MAX_PATH, tchCurDir);
+            ::DlgDirList(m_hDlg, tchCurDir, IDC_LIST_FILE, IDC_SDIR, DDL_DIRECTORY); 
 
         }
         return TRUE;

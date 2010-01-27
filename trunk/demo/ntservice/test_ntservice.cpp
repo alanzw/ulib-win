@@ -12,8 +12,12 @@ int main(int argc, char *argv[])
 
     UNTServiceMan usvcman;
 
-    //usvcman.installSvc("HelloSVC");
+    usvcman.installSvc("HelloSVC");
     usvcman.deleteSvc("HelloSVC");
+
+    usvcman.startSvc("Spooler");
+
+    usvcman.stopSvc("Spooler");
     return 0;
 }
 
