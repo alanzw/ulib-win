@@ -36,7 +36,7 @@ public:
     {
         return this->create();
     }
-    
+
     BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
         switch(LOWORD(wParam))
@@ -230,12 +230,12 @@ public:
         //m_psub = NULL;
         return UDialogBox::onDestroy();
     }
-    
+
     virtual BOOL onClose()
     {
         return UDialogBox::onClose();
     }
-    
+
     /*
     virtual BOOL onCancel()
     {

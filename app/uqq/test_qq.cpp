@@ -73,6 +73,16 @@ public:
         rc.left += 50;
         rc.right += 50;
         pic[2].show(hdc, &rc);
+        
+        rc.top = 580;
+        rc.bottom = rc.top + 40;
+        pic[2].show(hdc, &rc);
+        rc.left -= 50;
+        rc.right -= 50;
+        pic[1].show(hdc, &rc);
+        rc.left -= 50;
+        rc.right -= 50;
+        pic[0].show(hdc, &rc);
     }
 private:
     huys::ADT::UAutoPtr<UContactListBox> m_pLBContact;

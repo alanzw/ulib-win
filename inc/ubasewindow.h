@@ -172,6 +172,7 @@ public:
     BOOL update();
     BOOL destroy();
     BOOL invalidate(BOOL bErase = FALSE);
+    BOOL hide();
     //
     DWORD getStyles() const
     { return m_dwStyles; }
