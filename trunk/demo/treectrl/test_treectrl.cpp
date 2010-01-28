@@ -12,98 +12,78 @@
 #include "uimagelist.h"
 #include "umsg.h"
 
-using huys::UDialogBox;
+#include "adt/uautoptr.h"
 
-const UINT ID_TREECTRL = 13333;
+using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
 {
+    enum {
+        ID_TREECTRL = 13333
+    };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-        m_pTreeCtrl(0)
+     : UDialogBox(hInst, nID)
     {}
-
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_pTreeCtrl);
-        CHECK_PTR(m_pChildDlg);
-    }
 
     virtual BOOL onInit()
     {
+        RECT rc;
+        ::GetClientRect(m_hDlg, &rc);
 
-            m_pTreeCtrl = new UTreeView(m_hDlg, ID_TREECTRL, m_hInst);
-            m_pTreeCtrl->setStyles(WS_BORDER|TVS_HASLINES| TVS_LINESATROOT | TVS_HASBUTTONS|TVS_CHECKBOXES);
-            m_pTreeCtrl->create();
-            RECT rc;
-            ::GetClientRect(m_hDlg, &rc);
-            rc.right = rc.left + 200;
-            m_pTreeCtrl->setPosition(&rc);
-            static UImageList uil(IDR_TOOLBAR1, m_hInst);
-            HIMAGELIST himl = uil.getHandle();
-            m_pTreeCtrl->setNormalImageList(himl);
+        rc.right = rc.left + 200;
 
-            char str[] = "0_ÎÒ°®Äã";
+        m_pTreeCtrl = new UTreeView(m_hDlg, ID_TREECTRL, m_hInst);
+        m_pTreeCtrl->setStyles(WS_BORDER|TVS_HASLINES| TVS_LINESATROOT | TVS_HASBUTTONS|TVS_CHECKBOXES);
+        m_pTreeCtrl->setRect(&rc);
+        m_pTreeCtrl->create();
 
-            HTREEITEM item = m_pTreeCtrl->addTextRoot(str);
+        m_uil = new UImageList(IDR_TOOLBAR1, m_hInst);
+        m_pTreeCtrl->setNormalImageList(*m_uil);
 
-            str[0] = '1';
-            item = m_pTreeCtrl->addTextChild(item, str);
-            str[0] = '2';
-            item = m_pTreeCtrl->addTextChild(item, str);
+        char str[] = "0_ÎÒ°®Äã";
 
-            str[0] = '0';
-            item = m_pTreeCtrl->addTextRoot(str);
-            item = m_pTreeCtrl->addTextRoot(str);
+        HTREEITEM item = m_pTreeCtrl->addTextRoot(str);
 
-            m_pTreeCtrl->subclassProc();
+        str[0] = '1';
+        item = m_pTreeCtrl->addTextChild(item, str);
+        str[0] = '2';
+        item = m_pTreeCtrl->addTextChild(item, str);
+
+        str[0] = '0';
+        item = m_pTreeCtrl->addTextRoot(str);
+        item = m_pTreeCtrl->addTextRoot(str);
+
+        m_pTreeCtrl->subclassProc();
 
 
-            m_pChildDlg = new UDialogBox(m_hInst, IDD_CHILD, UDialogBox::DefaultDlgProc, m_hDlg);
-            m_pChildDlg->create();
-            m_pChildDlg->hide();
+        m_pChildDlg = new UDialogBox(m_hInst, IDD_CHILD, UDialogBox::DefaultDlgProc, m_hDlg);
+        m_pChildDlg->create();
+        m_pChildDlg->hide();
+
+        return TRUE;
     }
 
-    virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
+    BOOL onNotify(WPARAM wParam, LPARAM lParam)
     {
-        BOOL result = UDialogBox::DialogProc(message, wParam, lParam);
-
-        if (message == WM_NOTIFY)
+        LPNMHDR lpnmh = (LPNMHDR) lParam;
+        char buffer[256];
+        ::ZeroMemory(buffer, sizeof(buffer));
+        if (lpnmh->idFrom == ID_TREECTRL)
         {
-            LPNMHDR lpnmh = (LPNMHDR) lParam;
-            char buffer[256];
-            ZeroMemory(buffer, sizeof(buffer));
-            if (lpnmh->idFrom == ID_TREECTRL)
+            switch (lpnmh->code)
             {
-                switch (lpnmh->code)
-                {
-                    case NM_CLICK:
-                        this->onTreeCtrlClick(buffer);
-                        break;
-                    case TVN_BEGINDRAG:
-                        this->onBeginDrag((LPNMTREEVIEW)lParam);
-                        break;
-                }
+            case NM_CLICK:
+                this->onTreeCtrlClick(buffer);
+                break;
+            case TVN_BEGINDRAG:
+                this->onBeginDrag((LPNMTREEVIEW)lParam);
+                break;
             }
         }
-
-
-        return result;
+        return UDialogBox::onNotify(wParam, lParam);
     }
 
-    virtual BOOL onPaint()
-    {
-        PAINTSTRUCT ps;
-        HDC hdc;
-        hdc = BeginPaint(m_hDlg, &ps);
-        RECT rt;
-        GetClientRect(m_hDlg, &rt);
-        rt.top = 5;
-        //DrawText(hdc, "Hello World!", strlen("Hello World!"), &rt, DT_SINGLELINE|DT_CENTER|DT_VCENTER );
-        EndPaint(m_hDlg, &ps);
-        return FALSE;
-    }
 protected:
     BOOL onTreeCtrlClick(char *pszText)
     {
@@ -157,9 +137,11 @@ protected:
         return 0;
     }
 private:
-    UTreeView *m_pTreeCtrl;
+    huys::ADT::UAutoPtr<UTreeView> m_pTreeCtrl;
 
-    UDialogBox *m_pChildDlg;
+    huys::ADT::UAutoPtr<UDialogBox> m_pChildDlg;
+
+    huys::ADT::UAutoPtr<UImageList> m_uil;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

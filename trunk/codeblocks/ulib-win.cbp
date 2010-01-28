@@ -49,6 +49,7 @@
 		</Build>
 		<Unit filename="..\inc\ubasewindow.h" />
 		<Unit filename="..\inc\ubutton.h" />
+		<Unit filename="..\inc\uconsole.h" />
 		<Unit filename="..\inc\ucontrol.h" />
 		<Unit filename="..\inc\udebug.h" />
 		<Unit filename="..\inc\udialogx.h" />
@@ -69,6 +70,7 @@
 		<Unit filename="..\inc\ustatic.h" />
 		<Unit filename="..\inc\ustatusbar.h" />
 		<Unit filename="..\inc\utabctrl.h" />
+		<Unit filename="..\inc\utimer.h" />
 		<Unit filename="..\inc\utoolbar.h" />
 		<Unit filename="..\inc\utreeview.h" />
 		<Unit filename="..\inc\uwinapp.h" />
@@ -76,6 +78,7 @@
 		<Unit filename="..\inc\uworkaround.h" />
 		<Unit filename="..\src\ubasewindow.cpp" />
 		<Unit filename="..\src\ubutton.cpp" />
+		<Unit filename="..\src\uconsole.cpp" />
 		<Unit filename="..\src\ucontrol.cpp" />
 		<Unit filename="..\src\udebug.cpp" />
 		<Unit filename="..\src\udialogx.cpp" />
@@ -96,6 +99,7 @@
 		<Unit filename="..\src\ustatic.cpp" />
 		<Unit filename="..\src\ustatusbar.cpp" />
 		<Unit filename="..\src\utabctrl.cpp" />
+		<Unit filename="..\src\utimer.cpp" />
 		<Unit filename="..\src\utoolbar.cpp" />
 		<Unit filename="..\src\utreeview.cpp" />
 		<Unit filename="..\src\uwinapp.cpp" />

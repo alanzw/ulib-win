@@ -64,8 +64,7 @@ void showError(const TCHAR *msg)
     getErrorString(eNum, sysMsg);
 
     // Display the message
-    wsprintf(str, _T("%s failed with error %d (%s)"),
-        msg, eNum, sysMsg );
+    wsprintf(str, _T("%s failed with error %d (%s)"), msg, eNum, sysMsg );
     showMsg(str);
 }
 

@@ -18,11 +18,6 @@ UChartControl::UChartControl(HWND hParent, UINT nResource, HINSTANCE hInst)
 UChartControl::~UChartControl()
 {}
 
-BOOL UChartControl::create()
-{
-    return UControl::create(_T("STATIC"));
-}
-
 BOOL UChartControl::onCtrlColor(WPARAM wParam, LPARAM lParam)
 {
 
@@ -94,20 +89,8 @@ BOOL UChartControl::onPaint()
     return FALSE;
 }
 
-BOOL UChartControl::onMessage( UINT message, WPARAM wParam, LPARAM lParam )
+BOOL UChartControl::onEraseBkgnd(HDC hdc)
 {
-    switch(message)
-    {
-    case WM_ERASEBKGND:
-        return this->onEraseBackground(wParam, lParam);
-    default:
-        return UStatic::onMessage(message, wParam, lParam);
-    }
-}
-
-BOOL UChartControl::onEraseBackground( WPARAM wParam, LPARAM lParam )
-{
-    HDC hdc = (HDC)wParam;
     RECT rc;
     this->getClientRect(&rc);
     HBRUSH holdbrush = (HBRUSH)::SelectObject(hdc, m_hbrush);

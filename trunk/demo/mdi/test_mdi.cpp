@@ -1,5 +1,3 @@
-// FIXME: Failed to run.
-
 #include "resource.h"
 
 #include <windows.h>
@@ -19,7 +17,8 @@ LRESULT CALLBACK DefaultClientChildWindowProc(HWND hWnd, UINT uMessage, WPARAM w
 
     UBaseWindow *pBaseWnd = 0;
 
-    if (uMessage == WM_NCCREATE) {
+    if (uMessage == WM_NCCREATE)
+    {
         // if this nMessage gets sent then a new window has just been created,
         // so we'll asociate its handle with its AbstractWindow instance pointer
         LPCREATESTRUCT lpCS = (LPCREATESTRUCT)lParam;

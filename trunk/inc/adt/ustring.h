@@ -245,9 +245,9 @@ public:
     }
 
     //
-    size_type find(const T s)
+    size_type find(const T s, size_type start = 0, size_type end = -1)
     {
-        for (size_type pos = 0; pos < m_nBufSize; ++pos)
+        for (size_type pos = start; pos < m_nBufSize && pos < end; ++pos)
         {
             if (s == m_pBuf[pos])
                 return pos;
@@ -255,6 +255,17 @@ public:
         return -1;
     }
 
+    //
+    size_type rfind(const T s)
+    {
+        for (size_type pos = m_nBufSize - 1 ; pos > 0; --pos)
+        {
+            if (s == m_pBuf[pos])
+                return pos;
+        }
+        return -1;
+    }
+    
     UString substr(size_type start, size_type end)
     {
         if (start > end)

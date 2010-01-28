@@ -56,6 +56,16 @@ enum XML_Form {
 typedef huys::ADT::UStringAnsi UXMLString;
 
 
+enum XMLNodeType
+{
+    XML_NT_HEADER = 0,
+    XML_NT_COMMNET,
+    XML_NT_DTD_HEADER,
+    XML_NT_CDATA_HEADER,
+    XML_NT_ELEMENT,
+    XML_NT_UNKNOWN
+};
+
 /*
  *  A -- B -- C -- D -- ... -- Z
  *       |
@@ -68,7 +78,8 @@ class UXMLNode
 {
 public:
     UXMLNode()
-    : _parent(0), _firstChild(0), _lastChild(0)
+    : _parent(0), _firstChild(0), _lastChild(0),
+      _type(XML_NT_UNKNOWN)
     {}
 
     ~UXMLNode()
@@ -113,7 +124,9 @@ public:
     {
         _lastChild = node;
     }
+    
 protected:
+    XMLNodeType _type;
 private:
     UXMLNode *_parent;
     UXMLNode *_firstChild;
@@ -154,6 +167,16 @@ public:
     {
         _value = value;
     }
+    
+    UXMLAtrribute * next()
+    {
+        return _next;
+    }
+    
+    void setPrev(UXMLAtrribute * p)
+    {
+        _prev = p;
+    }
 protected:
 private:
     DISALLOW_EVIL_CONSTRUCTOR(UXMLAtrribute);
@@ -165,61 +188,133 @@ private:
     UXMLAtrribute *_next;
 };
 
-class UXMLElement : public UXMLNode
-{
-public:
-    UXMLElement();
-    ~UXMLElement();
-
-    const char* atrribute(const char* name)
-    {
-        return _atrributes->value();
-    }
-protected:
-private:
-    UXMLString _name;
-
-    UXMLAtrribute *_atrributes;
-    int _nAttributeNum;
-};
-
 class UXMLText
 {
 public:
-    UXMLText();
-    ~UXMLText();
+    UXMLText(const char *sText)
+    : _text(sText)
+    {
+    
+    }
+    ~UXMLText()
+    {
+    
+    }
 protected:
 private:
     UXMLString _text;
 };
 
+class UXMLElement : public UXMLNode
+{
+public:
+    UXMLElement()
+    : _atrributes(0), _nAttributeNum(0),
+      _text(0)
+    {
+        _type = XML_NT_ELEMENT;
+    }
+    
+    ~UXMLElement()
+    {    
+        if (_nAttributeNum > 0)
+        {
+            UXMLAtrribute *p = _atrributes;
+            UXMLAtrribute *pNext = 0;
+            while (0 != p)
+            {
+                pNext = p->next();
+                delete p;
+                p = pNext;
+            }
+        }
+
+        if (_text)
+        {
+            delete _text;
+        }
+    }
+
+    const char* atrribute(const char* name)
+    {
+        return _atrributes->value();
+    }
+    
+    bool setAtrribute(const char *name, const char * value)
+    {
+        if (0 == _nAttributeNum)
+        {
+            _atrributes = new UXMLAtrribute(name, value);
+            ++_nAttributeNum;
+            return true;
+        }
+        
+        UXMLAtrribute *p = _atrributes;
+        for (int i=0; i<_nAttributeNum; ++i)
+        {
+            if (strcmp(p->name(), name) == 0)
+            {
+                p->setValue(value);
+                return true;
+            }
+            p = p->next();
+        }
+        
+        UXMLAtrribute *pNew = new UXMLAtrribute(name, value);
+        pNew->setPrev(p);
+        
+        return false;
+    }
+    
+    void setText(const char *sText)
+    {
+        if (_text)
+        {
+            delete _text;
+        }
+        _text = new UXMLText(sText);
+    }
+protected:
+private:
+    UXMLString _name;
+    UXMLText *_text;
+    UXMLAtrribute *_atrributes;
+    int _nAttributeNum;
+};
+
 class UXMLComment : public UXMLNode
 {
 public:
-    UXMLComment() {}
+    UXMLComment()
+    {
+        _type = XML_NT_COMMNET;
+    }
+    
     ~UXMLComment() {}
 private:
+    UXMLString _text;
 };
 
 class UXMLHeader : public UXMLNode
 {
 public:
-    UXMLHeader() {}
+    UXMLHeader()
+    {
+        _type = XML_NT_HEADER;
+    }
     ~UXMLHeader() {}
 private:
     UXMLString _version;
     UXMLString _encoding;
-
 };
 
-enum XMLNodeType
+class UXMLUnknown : public UXMLNode
 {
-    XML_NT_HEADER = 0,
-    XML_NT_COMMNET,
-    XML_NT_DTD_HEADER,
-    XML_NT_CDATA_HEADER,
-    XML_NT_ELEMENT,
-    XML_NT_UNKNOWN
+public:
+    UXMLUnknown()
+    {
+        _type = XML_NT_UNKNOWN;
+    }
 };
 
 class UXMLParser
@@ -271,6 +366,9 @@ public:
         }
         else if (isElement())
         {
+            printf("=================\n");
+            printf("Tag: %s\n", extractTags().c_str());
+            printf("=================\n");
             printf("%s : Element!\n", sText);
             return XML_NT_ELEMENT;
         }
@@ -290,9 +388,19 @@ protected:
 private:
     UXMLString _buffer;
 private:
-    void extractTags()
+    UXMLString extractTags()
     {
-
+        UXMLString::size_type start = _buffer.find('<') + 1;
+        if (' ' == _buffer.at(start))
+        {
+            ++start;
+        }
+        UXMLString::size_type end = _buffer.find('>', start) - 1;
+        if (-1 != _buffer.find(' ', start, end))
+        {
+            end = _buffer.find(' ', start, end) - 1;
+        }
+        return _buffer.substr(start, end);
     }
 
     bool isCommnent()
@@ -344,7 +452,8 @@ class UXMLDocument
 {
 public:
     UXMLDocument(const char *sFilename)
-    : m_sFilename(sFilename)
+    : m_sFilename(sFilename),
+      _root(0)
     {}
 
     UXMLDocument(const UXMLDocument &copy)
@@ -364,9 +473,23 @@ public:
     {
         return m_sFilename.c_str();
     }
+    
+    bool loadfile(const char * fname)
+    {
+        
+        
+        return true;
+    }
+    
+    bool savefile(const char *fname)
+    {
+        return true;
+    }
+    
 private:
     UXMLParser _parser;
     UXMLString _buf;
+    UXMLNode * _root;
 private:
     bool read()
     {

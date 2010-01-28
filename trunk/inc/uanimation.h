@@ -3,18 +3,20 @@
 
 #include "ucontrol.h"
 
-typedef enum tagAnimeState {
-    AS_CLOSED = 0,
-    AS_STOPPED,
-    AS_PLAYING,
-    AS_PAUSED
-} AnimeSate_t;
-
 class ULIB_API UAnimation : public UControl
 {
 public:
+    typedef enum tagAnimeState {
+        AS_CLOSED = 0,
+        AS_STOPPED,
+        AS_PLAYING,
+        AS_PAUSED
+    } AnimeSate_t;
+
+public:
     UAnimation(HWND hParent, UINT nResource, HINSTANCE hInst);
     ~UAnimation();
+    UAnimation() {}
     virtual BOOL create();
     //
     BOOL open(const TCHAR *filename);

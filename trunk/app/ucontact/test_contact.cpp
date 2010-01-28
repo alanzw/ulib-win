@@ -23,7 +23,7 @@ public:
         m_dwStyles &= ~SS_SIMPLE;
         m_dwStyles |= SS_CENTER | SS_CENTERIMAGE;
     }
-    
+
     UTransStatic(UBaseWindow *pWndParent, UINT nID)
     : UStatic(pWndParent, nID)
     {
@@ -62,7 +62,7 @@ private:
         RECT rc;
         ::GetWindowRect(m_hSelf, &rc);
         ::ScreenToClient(m_hParent,(LPPOINT) &rc);
-		//::ScreenToClient(m_hParent,(LPPOINT) (&rc+1));
+        //::ScreenToClient(m_hParent,(LPPOINT) (&rc+1));
         ::InvalidateRect(m_hParent, &rc, TRUE);
         ::UpdateWindow(m_hParent);
     }
@@ -130,12 +130,12 @@ public:
        m_pContactList->setItemText(0, 2, _T("Another world"));
 
        m_pBack = new UBitmap(IDB_BACKGROUND, getInstance());
-       
+
        m_bnAdd = new UButton(this, ID_BN_ADD);
        m_bnAdd->setPos(660, 20, 100, 50);
        m_bnAdd->create();
        m_bnAdd->setWindowText(_T("ADD"));
-       
+
        return UBaseWindow::onCreate();
    }
 
@@ -146,7 +146,7 @@ public:
         m_pBack->showStretch(hdc, rc);
         return TRUE;
     }
-    
+
     BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
         switch (LOWORD(wParam))
@@ -157,7 +157,7 @@ public:
             return UBaseWindow::onCommand(wParam, lParam);
         }
     }
-    
+
 private:
     huys::ADT::UAutoPtr<UListView> m_pContactList;
     huys::ADT::UAutoPtr<UBitmap> m_pBack;
@@ -168,24 +168,24 @@ private:
     huys::ADT::UAutoPtr<UTransStatic> us[3];
     //
     huys::ADT::UAutoPtr<UButton> m_bnAdd;
-    
+
 private:
     BOOL onBnAdd()
     {
         TCHAR name[256];
         TCHAR sex[5];
         TCHAR addr[256];
-    
+
         m_pEdtName->getText(name);
         m_pCboSex->getWindowText(sex, 256);
         m_pEdtAddr->getText(addr);
-        
+
         if (lstrcmp(name, "")!=0 && lstrcmp(sex, "")!=0 && lstrcmp(addr, "")!=0)
             addRecord(name, sex, addr);
-    
+
         return FALSE;
     }
-    
+
     void addRecord(LPCTSTR name, LPCTSTR sex, LPCTSTR addr)
     {
         int i = m_pContactList->getItemCount();
