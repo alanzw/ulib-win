@@ -12,9 +12,9 @@ using namespace UConsole;
 
 int main(int argc, char *argv[])
 {
-
-    int i, x, y;
-    x = y = 4;
+    int i;
+    int x = 4;
+    int y = 4;
     clrscr();
     for (i = 0; i < 8; i++)
     {

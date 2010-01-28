@@ -9,11 +9,8 @@ public:
     UChartControl(HWND hParent, UINT nID, HINSTANCE hInst);
     virtual ~UChartControl();
 
-    virtual BOOL create();
-
     //
-    virtual BOOL onMessage(UINT message, WPARAM wParam, LPARAM lParam);
-    virtual BOOL onEraseBackground(WPARAM wParam, LPARAM lParam);
+    BOOL onEraseBkgnd(HDC hdc);
 
     //virtual BOOL onNotifyReflect(WPARAM wParam, LPARAM lParam);
     virtual BOOL onCtrlColor(WPARAM wParam, LPARAM lParam);

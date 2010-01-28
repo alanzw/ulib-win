@@ -12,6 +12,59 @@
 
 BOOL isProgramUp(const TCHAR *name)
 {
+    char szProcessName[MAX_PATH] = {0};
+
+    // Get the list of process identifiers.
+    DWORD aProcesses[1024], cbNeeded, cProcesses;
+    unsigned int i = 0;
+
+    if ( !EnumProcesses( aProcesses, sizeof(aProcesses), &cbNeeded ) )
+        return FALSE;
+
+    // Calculate how many process identifiers were returned.
+
+    cProcesses = cbNeeded / sizeof(DWORD);
+
+    // Print the name and process identifier for each process.
+
+    for ( i = 0; i < cProcesses; i++ )
+    {
+        if( aProcesses[i] != 0 )
+        {
+
+            //
+            HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION |PROCESS_VM_READ,
+                FALSE, aProcesses[i]);
+
+            //
+            if ( NULL != hProcess )
+            {
+                HMODULE hMod;
+                DWORD cbNeeded;
+
+                if (EnumProcessModules(hProcess, &hMod, sizeof(hMod), &cbNeeded))
+                {
+                    GetModuleBaseName(hProcess, hMod, szProcessName, sizeof(szProcessName));
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            else
+            {
+                continue;
+            }
+
+            if (lstrcmpi(name, szProcessName) == 0)
+            {
+                ::CloseHandle(hProcess);
+                return TRUE;
+            }
+        }
+
+    }
+
     return FALSE;
 }
 

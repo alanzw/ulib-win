@@ -22,12 +22,12 @@ LRESULT CALLBACK CBTProc(INT nCode, WPARAM wParam, LPARAM lParam)
         if(::GetDlgItem(hChildWnd,IDYES)!=NULL)
         {
             //s.LoadString(IDS_Yes);
-            result= SetDlgItemText(hChildWnd,IDYES,"Yaa");
+            result= SetDlgItemText(hChildWnd, IDYES, "Yaa");
         }
         if(GetDlgItem(hChildWnd,IDOK)!=NULL)
         {
             //s.LoadString(IDS_OK);
-            result= SetDlgItemText(hChildWnd,IDOK,"Okka");
+            result= SetDlgItemText(hChildWnd, IDOK, "Okka");
         }
         // exit CBT hook
         UnhookWindowsHookEx(hhk);
@@ -39,8 +39,10 @@ LRESULT CALLBACK CBTProc(INT nCode, WPARAM wParam, LPARAM lParam)
 
 INT CBTMessageBox(HWND hwnd, LPCTSTR lpText, LPCTSTR lpCaption,UINT uType)
 {
-    hhk = SetWindowsHookEx(WH_CBT, &CBTProc, 0, ::GetCurrentThreadId());
-    return MessageBox(hwnd, lpText, lpCaption, uType);
+    hhk = ::SetWindowsHookEx(WH_CBT, &CBTProc, 0, ::GetCurrentThreadId());
+    nRet = MessageBox(hwnd, lpText, lpCaption, uType);
+    //::UnhookWindowsHookEx(hhk);
+    return nRet;
 }
 
 

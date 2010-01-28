@@ -150,7 +150,7 @@ BOOL UTreeView::onLButtonDown( WPARAM wParam, LPARAM lParam )
     POINT pt;
     pt.x = GET_X_LPARAM(lParam);
     pt.y = GET_Y_LPARAM(lParam);
-    TVHITTESTINFO tvhi = {0};
+    TVHITTESTINFO tvhi = {{0}};
     tvhi.flags = TVHT_ONITEMLABEL;
     tvhi.pt = pt;
     this->HitTest(&tvhi);

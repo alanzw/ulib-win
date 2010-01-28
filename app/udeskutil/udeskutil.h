@@ -66,25 +66,25 @@ private:
     BOOL onBnChangeWallpaper()
     {
         //showMsg(_T("Wallpaper"), _T("info"), m_hDlg);
-		HWND hProgman = ::FindWindow(_T("Progman"), _T("Program Manager"));
+        HWND hProgman = ::FindWindow(_T("Progman"), _T("Program Manager"));
 
-		HWND hShellDll_DefView = ::GetWindow(hProgman, GW_CHILD);
+        HWND hShellDll_DefView = ::GetWindow(hProgman, GW_CHILD);
 
-		HWND hWnd = ::GetWindow(hShellDll_DefView, GW_CHILD);
+        HWND hWnd = ::GetWindow(hShellDll_DefView, GW_CHILD);
 
-		//HWND hListHeader = ::GetWindow(hWnd, GW_CHILD);
-			
-		//::FindWindow(_T("SysListView32"), _T("FolderView"));
+        //HWND hListHeader = ::GetWindow(hWnd, GW_CHILD);
 
-		if (NULL != hWnd)
-		{
-			//showMsg(_T("Get it!"), _T("info"), m_hDlg);
-			return FALSE;
-		}   
-        
+        //::FindWindow(_T("SysListView32"), _T("FolderView"));
 
-		return TRUE;
-	}
+        if (NULL != hWnd)
+        {
+            //showMsg(_T("Get it!"), _T("info"), m_hDlg);
+            return FALSE;
+        }
+
+
+        return TRUE;
+    }
 };
 
 #endif // U_MYDIALOG_SYSADM_H

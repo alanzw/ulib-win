@@ -5,6 +5,10 @@
 #include <olectl.h>
 #include <shlwapi.h>
 
+#define BUFFER MAX_PATH
+#define XBITMAP 80
+#define YBITMAP 20
+
 #include "upicture.h"
 #include "ContactListBox.h"
 

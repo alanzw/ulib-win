@@ -19,6 +19,9 @@
 	<File name="..\inc\ugdi.h" open="0" top="0" tabpos="2">
 		<Cursor position="2179" topLine="7" />
 	</File>
+	<File name="..\inc\uimagelist.h" open="0" top="0" tabpos="0">
+		<Cursor position="475" topLine="9" />
+	</File>
 	<File name="..\inc\ulib.h" open="0" top="0" tabpos="1">
 		<Cursor position="5567" topLine="237" />
 	</File>
@@ -36,6 +39,9 @@
 	</File>
 	<File name="..\inc\ustatusbar.h" open="0" top="0" tabpos="18">
 		<Cursor position="287" topLine="0" />
+	</File>
+	<File name="..\inc\utreeview.h" open="0" top="0" tabpos="0">
+		<Cursor position="686" topLine="10" />
 	</File>
 	<File name="..\inc\uworkaround.h" open="0" top="0" tabpos="3">
 		<Cursor position="650" topLine="25" />
@@ -70,8 +76,8 @@
 	<File name="..\src\upanel.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="2246" topLine="98" />
 	</File>
-	<File name="..\src\uprocessman.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="248" topLine="6" />
+	<File name="..\src\uprocessman.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="1378" topLine="39" />
 	</File>
 	<File name="..\src\ushell.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="2628" topLine="94" />
@@ -80,7 +86,7 @@
 		<Cursor position="594" topLine="10" />
 	</File>
 	<File name="..\src\utreeview.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="3344" topLine="139" />
+		<Cursor position="3411" topLine="139" />
 	</File>
 	<File name="..\src\uwindowx.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="1904" topLine="0" />

@@ -4,10 +4,6 @@
 #include "ulistbox.h"
 #include "colors.h"
 
-#define BUFFER MAX_PATH
-#define XBITMAP 80
-#define YBITMAP 20
-
 class UContactListBox : public UListBox
 {
 public:
@@ -28,68 +24,6 @@ public:
 
         return (BOOL)(HBRUSH)GetStockObject(NULL_BRUSH);
     }
-
-    //BOOL onEraseBkgnd(HDC hdc)
-    //{
-    ///*
-    //        RECT Rect;
-    //        ::GetClientRect(m_hSelf, &Rect);
-    //        ::ClientToScreen(m_hSelf, &Rect);
-    //        ::ScreenToClient(m_hParent, &Rect);
-    //        HDC hDC = ::GetDC(m_hParent);
-    //        int m_Width = Rect.right - Rect.left;
-    //        int m_Height = Rect.bottom - Rect.top;
-    //        HDC hMemDC;
-    //        hMemDC = ::CreateCompatibleDC(hDC);
-    //        HBITMAP hOldbmp = (HBITMAP)::SelectObject(hMemDC, &m_hBmp);
-    //        ::BitBlt(hMemDC, 0, 0,Rect.Width(),Rect.Height(),
-    //            hDC,Rect.left, Rect.top, SRCCOPY);
-    //        ::SelectObject(hMemDC, hOldbmp);
-    //        ::ReleaseDC(m_hParent, hDC);
-    //*/
-    //
- //       HBRUSH hbrush = ::CreateSolidBrush(huys::orange);
-    //    RECT rc;
-    //    GetClientRect(m_hSelf, &rc);
-    //    ::SetBkColor( hdc, huys::orange );
-    //    ::FillRect( hdc , &rc, hbrush );
-    //    return TRUE;
-    //}
-
-  //  BOOL onPaint()
-  //  {
-  //      //!! BeginPaint will eat previous control text drawing or other actions
-  //      PAINTSTRUCT ps;
-  //      HDC hdc;
-  //      hdc = BeginPaint(m_hSelf, &ps);
-  //      //hdc = ::GetDC(m_hSelf);
-  //
-  //      //onDraw(hdc);
-
-  //      //::ReleaseDC(m_hSelf, hdc);
-  //      EndPaint(m_hSelf, &ps);
-  //      return FALSE;
-  //  }
-  //
-  //  void onDraw(HDC hdc)
-  //  {
-        ////HBRUSH hbrush = ::CreateSolidBrush(huys::orange);
-        ////RECT rc;
-        ////GetClientRect(m_hSelf, &rc);
-        ////::SetBkColor( hdc, huys::orange );
-        ////::FillRect( hdc , &rc, hbrush );
-        //SetBkMode(hdc, TRANSPARENT);
-  //  }
-
-
-    //BOOL onSize(WPARAM wParam, LPARAM lParam)
-    //{
-    //    hide();
-    //    invalidate();
-    //    update();
-    //    show();
-    //    return FALSE;
-    //}
 };
 
 #endif // U_CONTACT_LISTBOX_H
