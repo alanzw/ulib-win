@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+	<File name="..\demo\toolbar\resource.h" open="0" top="0" tabpos="1">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="..\demo\toolbar\test_toolbar.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="1527" topLine="144" />
+	</File>
 </CodeBlocks_layout_file>

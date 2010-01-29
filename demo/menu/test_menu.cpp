@@ -16,16 +16,19 @@ using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
 {
+    enum {
+        IDM_HELP = 3333
+    };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-    : UDialogBox(hInst, nID), umn()
+    : UDialogBox(hInst, nID)
     {}
 
     virtual BOOL onInit()
     {
         umn.createPopup();
         TCHAR S_HELP[] = _T("&help");
-        umn.append(3333, S_HELP);
+        umn.append(IDM_HELP, S_HELP);
 
         MENUINFO mi = {0};
         mi.cbSize = sizeof(MENUINFO);
@@ -38,7 +41,7 @@ public:
         ::SetMenuInfo(hMenu, &mi);
 
         HBITMAP hbmp1;    // handle to pie chart bitmap
-        HBITMAP hbmp2;   // handle to line chart bitmap
+        HBITMAP hbmp2;    // handle to line chart bitmap
         HBITMAP hbmp3;    // handle to bar chart bitmap
 
         //hbmp1 = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDI_ICON1));
@@ -92,27 +95,6 @@ public:
         return TRUE;
     }
 
-    virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
-    {
-        BOOL result = UDialogBox::DialogProc(message, wParam, lParam);
-
-        return result;
-    }
-
-    virtual BOOL onPaint()
-    {
-        PAINTSTRUCT ps;
-        HDC hdc;
-        hdc = BeginPaint(m_hDlg, &ps);
-        RECT rt;
-        GetClientRect(m_hDlg, &rt);
-        ::FillRect(hdc, &rt, (HBRUSH)::GetStockObject(GRAY_BRUSH));
-        rt.top = 5;
-        DrawText(hdc, "Hello World!", strlen("Hello World!"), &rt, DT_SINGLELINE|DT_CENTER|DT_VCENTER );
-        EndPaint(m_hDlg, &ps);
-        return FALSE;
-    }
-
     virtual BOOL onRButtonDown(WPARAM wParam, LPARAM lParam)
     {
         POINT pt;
@@ -120,13 +102,14 @@ public:
         umn.attach(m_hDlg);
         //umn.trackPopup(TPM_RIGHTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y);
         umn.trackPopup(TPM_LEFTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y);
+        return FALSE;
     }
 
     virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
         switch (wParam)
         {
-        case 3333:
+        case IDM_HELP:
             showMsg("&Help!");
             break;
         case 3335:

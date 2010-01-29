@@ -14,16 +14,15 @@
 #include "umsg.h"
 #include "uedit.h"
 
+#include "adt/uautoptr.h"
+
 using huys::UDialogBox;
-
-//BOOL CALLBACK ModalDlgProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam);
-
 
 class UModalDialog : public UDialogBox
 {
 public:
     UModalDialog(HINSTANCE hInst, UINT nID, HWND hParent)
-        : UDialogBox(hInst, nID, UDialogBox::DefaultDlgProc, hParent)
+    : UDialogBox(hInst, nID, UDialogBox::DefaultDlgProc, hParent)
     {
         m_mode = U_DLG_MODAL;
     }
@@ -58,11 +57,12 @@ public:
 class UDialogExt : public UDialogBox
 {
     enum {
-        ID_TOOLBAR = 13333
+        ID_TOOLBAR = 13333,
+        ID_VTOOLBAR = 13334
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID), m_psub(0)//, uil(IDR_TOOLBAR1, hInst)
+        : UDialogBox(hInst, nID), m_psub(0)
     {}
 
     ~UDialogExt()
@@ -77,8 +77,7 @@ public:
         m_putl->create();
 
         static UImageList uil(IDR_TOOLBAR1, m_hInst);
-        HIMAGELIST himl = uil.getHandle();
-        m_putl->setImageList(himl);
+        m_putl->setImageList(uil.getHandle());
 
         static UImageList uilhot(IDR_TOOLBAR1_HOT, m_hInst);
         m_putl->setHotImageList(uilhot.getHandle());
@@ -133,19 +132,38 @@ public:
 
         ::SetMenuInfo(hMenu, &mi);
 
+        m_pVTbar = new UToolBar(m_hDlg, ID_VTOOLBAR, m_hInst);
+        m_pVTbar->setStyles(CCS_VERT | WS_BORDER );
+        m_pVTbar->create();
+        m_pVTbar->setImageList(uil.getHandle());
+        m_pVTbar->setHotImageList(uilhot.getHandle());
+        for (int i=0; i<4; ++i)
+        {
+            tbButtons[i].fsState |= TBSTATE_WRAP;
+        }
+
+        m_pVTbar->setButtonWidth(48, 64);
+        m_pVTbar->addButtons(3, tbButtons);
+        m_pVTbar->setBitmapSize(32, 30);
+        m_pVTbar->setButtonSize(64, 64);
+        //m_pVTbar->autosize();
+        //m_pVTbar->hide();
+        //m_pVTbar->show();
+        //m_pVTbar->invalidate();
+
+        ::SetWindowPos(*m_pVTbar, NULL, 0, 0, 0, 0,
+			SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER|SWP_HIDEWINDOW);
+        ::SetWindowPos(*m_pVTbar, NULL, 0, 0, 0, 0,
+			SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER|SWP_SHOWWINDOW);
         return TRUE;
     }
 
-    virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
+    BOOL onNotify(WPARAM wParam, LPARAM lParam)
     {
-        BOOL result = UDialogBox::DialogProc(message, wParam, lParam);
-
-        if (message == WM_NOTIFY)
-        {
-
             LPNMTBCUSTOMDRAW lpNMCustomDraw = (LPNMTBCUSTOMDRAW) lParam;
             RECT rect;
-            ::GetClientRect(m_putl->getHWND(), &rect);
+            //::GetClientRect(m_putl->getHWND(), &rect);
+            m_putl->getClientRect(&rect);
             ::FillRect(lpNMCustomDraw->nmcd.hdc, &rect, (HBRUSH)GetStockObject(GRAY_BRUSH));
 
 #define lpnm   ((LPNMHDR)lParam)
@@ -186,12 +204,11 @@ public:
 
                     DestroyMenu(hMenuLoaded);
 
-                    return (FALSE);
+                    return FALSE;
                 }
             }
-        }
 
-        return result;
+        return UDialogBox::onNotify(wParam, lParam);
     }
 
     virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
@@ -223,36 +240,10 @@ public:
         ::SetBkMode(hdc, TRANSPARENT);
         DrawText(hdc, "Hello World!", strlen("Hello World!"), &rt, DT_SINGLELINE|DT_CENTER|DT_VCENTER );
     }
-
-    virtual BOOL onDestroy()
-    {
-
-        //m_psub = NULL;
-        return UDialogBox::onDestroy();
-    }
-
-    virtual BOOL onClose()
-    {
-        return UDialogBox::onClose();
-    }
-
-    /*
-    virtual BOOL onCancel()
-    {
-        if (m_psub)
-        {
-            m_psub->destroy();
-            delete m_psub;
-            m_psub = 0;
-        }
-        UDialogBox::onCancel();
-    }
-    */
-protected:
-
 private:
     UToolBar *m_putl;
     UDialogExt *m_psub;
+    huys::ADT::UAutoPtr<UToolBar> m_pVTbar;
     //UImageList uil;
     BOOL onTbNew()
     {

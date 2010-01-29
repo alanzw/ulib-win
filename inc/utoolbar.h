@@ -30,6 +30,10 @@ public:
     DWORD getButtonRect(int nId, LPRECT lpRect);
 
     //
+    BOOL setButtonWidth(int cxMin, int cxMax);
+    BOOL setButtonSize(int dx, int dy);
+    BOOL setBitmapSize(int dx, int dy);
+    //
     BOOL hideButton(int nId);
     BOOL showButton(int nId);
     //
@@ -41,6 +45,7 @@ public:
     BOOL getButton(int nIndex, LPTBBUTTON lpTbBtn);
     BOOL getButtonInfo(UINT nID, LPTBBUTTONINFO lptbbi);
     BOOL getButtonText(UINT nID, LPTSTR lpszText);
+    BOOL setButtonInfo(UINT nID, LPTBBUTTONINFO lptbbi);
     //
     BOOL getString(int nIndex, LPTSTR lpText, BYTE cchMax);
 protected:
