@@ -14,11 +14,20 @@ public:
     virtual BOOL setImageList(HIMAGELIST himl);
     virtual BOOL loadImages(UINT nIDBitmap);
     //
+    BOOL addBitmap(int n, UINT nBitmap, HINSTANCE hInst = ::GetModuleHandle(NULL));
+    //
     virtual BOOL addButtons(int num, TBBUTTON *ptbb);
+    BOOL addButton(TBBUTTON *ptbb);
+    BOOL addButton(int iBitmap, int iCommand, BYTE fsState, BYTE fsStyle, INT_PTR iString = -1);
     virtual BOOL autosize();
+    //
+    BOOL addSeparator(int nWidth);
     //
     virtual BOOL enableButton(int idButton);
     virtual BOOL disableButton(int idButton);
+    //
+    LONG getState(int nID);
+    BOOL setState(int nID, BYTE fState);
     //
     // Return: the previous extended styles
     DWORD setExtendStyle(DWORD dwExStyle);

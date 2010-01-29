@@ -15,7 +15,8 @@ UToolBar::~UToolBar()
 
 BOOL UToolBar::create()
 {
-    return UControl::create(_T("ToolbarWindow32")); // TOOLBARCLASSNAME
+    return UControl::create(_T("ToolbarWindow32")) // TOOLBARCLASSNAME
+        && this->sendMsg(TB_BUTTONSTRUCTSIZE, (WPARAM)sizeof(TBBUTTON), 0);
 }
 
 BOOL UToolBar::setImageList(HIMAGELIST himl)
@@ -28,12 +29,35 @@ BOOL UToolBar::loadImages(UINT nIDBitmap)
     return this->sendMsg(TB_LOADIMAGES, (WPARAM)nIDBitmap, (LPARAM)HINST_COMMCTRL);
 }
 
+BOOL UToolBar::addBitmap(int n, UINT nBitmap, HINSTANCE hInst)
+{
+    TBADDBITMAP tbab = {hInst, nBitmap};
+    return this->sendMsg(TB_ADDBITMAP, (WPARAM)n, (LPARAM)(LPTBADDBITMAP)&tbab);
+}
+
 BOOL UToolBar::addButtons(int num, TBBUTTON *ptbb)
 {
-    this->sendMsg(TB_BUTTONSTRUCTSIZE, (WPARAM)sizeof(TBBUTTON), 0);
     this->sendMsg(TB_ADDBUTTONS, (WPARAM)num, (LPARAM)ptbb);
 
     return TRUE;
+}
+
+BOOL UToolBar::addButton(TBBUTTON *ptbb)
+{
+    this->sendMsg(TB_ADDBUTTONS, (WPARAM)1, (LPARAM)ptbb);
+    return TRUE;  
+}
+
+BOOL UToolBar::addButton(int iBitmap, int iCommand, BYTE fsState, BYTE fsStyle, INT_PTR iString)
+{
+    TBBUTTON tbButton = {iBitmap, iCommand, fsState, fsStyle, {0}, 0, iString};
+    this->addButton(&tbButton);
+    return TRUE;
+}
+
+BOOL UToolBar::addSeparator(int nWidth)
+{
+    return this->addButton(nWidth, 0, TBSTATE_ENABLED, TBSTYLE_SEP);
 }
 
 BOOL UToolBar::autosize()
@@ -49,6 +73,16 @@ BOOL UToolBar::enableButton(int idButton)
 BOOL UToolBar::disableButton(int idButton)
 {
     return this->sendMsg(TB_ENABLEBUTTON, (WPARAM)(int)idButton, (LPARAM) MAKELONG (FALSE, 0));
+}
+
+LONG UToolBar::getState(int nID)
+{
+    return this->sendMsg(TB_GETSTATE, (WPARAM)nID);
+}
+
+BOOL UToolBar::setState(int nID, BYTE fState)
+{
+    return this->sendMsg(TB_SETSTATE, (WPARAM)nID, MAKELONG(fState, 0));
 }
 
 DWORD UToolBar::setExtendStyle(DWORD dwExStyle)

@@ -37,11 +37,9 @@ public:
     virtual BOOL show();
     virtual BOOL destroy();
     
-
     //
     virtual BOOL modifyStyles(DWORD dwStyle);
     virtual BOOL modifyExStyles(DWORD dwStyle);
-
 
     virtual BOOL DialogProc(UINT, WPARAM, LPARAM);
 

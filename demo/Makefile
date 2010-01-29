@@ -128,6 +128,7 @@ SUBDIRS = \
           odbc        \
           propsheet   \
           deviceman   \
+          cpl         \
 
 #
 all:

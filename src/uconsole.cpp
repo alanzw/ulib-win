@@ -1,6 +1,6 @@
 #include <windows.h>
 #include <tchar.h>
-
+#include <stdio.h>
 #include "uconsole.h"
 
 namespace UConsole
@@ -43,6 +43,28 @@ BOOL PrintStdout(LPCTSTR pMsg)
     ::CloseHandle(hStdOut);
 
     return bRet;
+}
+
+BOOL ULIB_API PrintStdoutFormat(const TCHAR * szFormat, ...)
+{   
+    TCHAR   szBuffer [1024] ;
+    va_list pArgList ;
+
+    // The va_start macro (defined in STDARG.H) is usually equivalent to:
+    // pArgList = (char *) &szFormat + sizeof (szFormat) ;
+
+    va_start (pArgList, szFormat) ;
+
+    // The last argument to wvsprintf points to the arguments
+
+    _vsntprintf (szBuffer, sizeof (szBuffer) / sizeof (TCHAR),
+        szFormat, pArgList) ;
+
+    // The va_end macro just zeroes out pArgList for no good reason
+
+    va_end (pArgList) ;
+
+    return PrintStdout(szBuffer);
 }
 
 /* Prompt the user at the console and get a response. */

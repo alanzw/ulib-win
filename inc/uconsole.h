@@ -14,6 +14,7 @@ BOOL ULIB_API PrintMsg (HANDLE hOut, LPCTSTR pMsg);
 
 /* Output messages to STDOUT */
 BOOL ULIB_API PrintStdout(LPCTSTR pMsg);
+BOOL ULIB_API PrintStdoutFormat(const TCHAR * szFormat, ...);
 
 /* Prompt the user at the console and get a response. */
 BOOL ULIB_API ConsolePrompt( LPCTSTR pPromptMsg,

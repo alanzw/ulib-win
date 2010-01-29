@@ -37,10 +37,14 @@ public:
 
     LONG deleteKey(HKEY hKey, LPCTSTR lpSubKey);
 
-//    LONG getValue(DWORD &dwValueType, PVOID &pvData);
+    // LONG getValue(DWORD &dwValueType, PVOID &pvData);
     // LONG queryInfo();
     LONG queryValue(TCHAR *lpBuffer, LONG &lSize);
     LONG queryValueEx(DWORD &lpType, LPBYTE lpData, DWORD &dwSize);
+    
+    //
+    BOOL createEx(HKEY hKey, LPCTSTR lpSubKey, DWORD dwOptions, REGSAM samDesired, PHKEY phkResult);
+    BOOL setValueEx(HKEY hKey, LPCTSTR lpValueName, DWORD dwType, const BYTE * lpData, DWORD cbData);
 protected:
 
 private:

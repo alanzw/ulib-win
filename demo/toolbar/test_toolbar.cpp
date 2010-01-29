@@ -131,7 +131,7 @@ public:
         HMENU hMenu = ::GetMenu(m_hDlg);
 
         ::SetMenuInfo(hMenu, &mi);
-
+/*
         m_pVTbar = new UToolBar(m_hDlg, ID_VTOOLBAR, m_hInst);
         m_pVTbar->setStyles(CCS_VERT | WS_BORDER );
         m_pVTbar->create();
@@ -140,21 +140,23 @@ public:
         for (int i=0; i<4; ++i)
         {
             tbButtons[i].fsState |= TBSTATE_WRAP;
+            tbButtons[i].fsStyle |= 0;
         }
 
         m_pVTbar->setButtonWidth(48, 64);
         m_pVTbar->addButtons(3, tbButtons);
         m_pVTbar->setBitmapSize(32, 30);
         m_pVTbar->setButtonSize(64, 64);
+*/
         //m_pVTbar->autosize();
         //m_pVTbar->hide();
         //m_pVTbar->show();
         //m_pVTbar->invalidate();
 
-        ::SetWindowPos(*m_pVTbar, NULL, 0, 0, 0, 0,
-			SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER|SWP_HIDEWINDOW);
-        ::SetWindowPos(*m_pVTbar, NULL, 0, 0, 0, 0,
-			SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER|SWP_SHOWWINDOW);
+        //::SetWindowPos(*m_pVTbar, NULL, 0, 0, 0, 0,
+		//	SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER|SWP_HIDEWINDOW);
+        //::SetWindowPos(*m_pVTbar, NULL, 0, 0, 0, 0,
+		//	SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER|SWP_SHOWWINDOW);
         return TRUE;
     }
 
