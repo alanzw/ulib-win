@@ -20,8 +20,8 @@ public:
     virtual HTREEITEM addItemRoot(TVITEM *ptvi);
     virtual HTREEITEM addItemChild(HTREEITEM hParent, TVITEM *ptvi);
     //
-    virtual HTREEITEM addTextRoot(LPSTR lpText);
-    virtual HTREEITEM addTextChild(HTREEITEM hParent, LPSTR lpText);
+    virtual HTREEITEM addTextRoot(LPCTSTR lpText);
+    virtual HTREEITEM addTextChild(HTREEITEM hParent, LPCTSTR lpText);
     //
     virtual BOOL setImageList(HIMAGELIST himl, int iImage);
     virtual BOOL setNormalImageList(HIMAGELIST himl);

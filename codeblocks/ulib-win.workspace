@@ -30,7 +30,7 @@
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="console.cbp" />
-		<Project filename="toolbar.cbp" active="1">
+		<Project filename="toolbar.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="mdi.cbp">
@@ -48,6 +48,9 @@
 		<Project filename="button.cbp" />
 		<Project filename="tabctrl.cbp" />
 		<Project filename="menu.cbp">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
+		<Project filename="mytree.cbp" active="1">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 	</Workspace>

@@ -68,15 +68,15 @@ HTREEITEM UTreeView::addItemChild( HTREEITEM hParent, TVITEM *ptvi )
     return this->addItem(&tvis);
 }
 
-HTREEITEM UTreeView::addTextRoot( LPSTR lpText )
+HTREEITEM UTreeView::addTextRoot( LPCTSTR lpText )
 {
-    return this->addTextChild(TVI_ROOT, lpText);
+    return this->addTextChild(TVI_ROOT, (LPTSTR)lpText);
 }
 
-HTREEITEM UTreeView::addTextChild( HTREEITEM hParent, LPSTR lpText )
+HTREEITEM UTreeView::addTextChild( HTREEITEM hParent, LPCTSTR lpText )
 {
     TVITEM tvi;
-    tvi.pszText = lpText;
+    tvi.pszText = (LPTSTR)lpText;
     tvi.mask = TVIF_TEXT | TVIF_PARAM;
     tvi.cchTextMax = sizeof(tvi.pszText)/sizeof(tvi.pszText[0]);
 

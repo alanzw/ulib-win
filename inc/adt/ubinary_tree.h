@@ -404,6 +404,8 @@ public:
         Record last_x;
 
         Binary_node<Record> * none = NULL;
+
+        return success;
     }
 private:
 
