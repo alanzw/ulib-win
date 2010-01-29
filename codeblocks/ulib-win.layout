@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="..\inc\ubasewindow.h" open="0" top="0" tabpos="3">
-		<Cursor position="2526" topLine="90" />
+	<File name="..\inc\ubasewindow.h" open="1" top="0" tabpos="3">
+		<Cursor position="2274" topLine="60" />
 	</File>
 	<File name="..\inc\ucontrol.h" open="0" top="0" tabpos="2">
 		<Cursor position="1759" topLine="85" />
@@ -31,6 +31,9 @@
 	<File name="..\inc\upanel.h" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
 	</File>
+	<File name="..\inc\uregion.h" open="1" top="0" tabpos="10">
+		<Cursor position="2489" topLine="70" />
+	</File>
 	<File name="..\inc\ushell.h" open="0" top="0" tabpos="1">
 		<Cursor position="699" topLine="7" />
 	</File>
@@ -46,14 +49,17 @@
 	<File name="..\inc\uworkaround.h" open="0" top="0" tabpos="3">
 		<Cursor position="650" topLine="25" />
 	</File>
-	<File name="..\src\ubasewindow.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="3804" topLine="163" />
+	<File name="..\src\ubasewindow.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="4426" topLine="0" />
 	</File>
 	<File name="..\src\ubutton.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="..\src\ucontrol.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="6308" topLine="246" />
+	</File>
+	<File name="..\src\udebug.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="102" topLine="0" />
 	</File>
 	<File name="..\src\udialogx.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="4426" topLine="324" />

@@ -51,7 +51,7 @@ public:
     UTabChild2(HINSTANCE hInst, UINT nID, HWND hParent)
     : UTabChild(hInst, nID, hParent)
     {}
-    
+
     virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
         switch (LOWORD (wParam))
@@ -110,11 +110,11 @@ public:
 
         tie.mask = TCIF_TEXT | TCIF_IMAGE;
         tie.iImage = 0;
-        tie.pszText = _T("HelloTab");
+        tie.pszText = (LPTSTR)_T("HelloTab");
 
         m_pTabCtrl->insertItem(0, &tie);
 
-        tie.pszText = _T("Second");
+        tie.pszText = (LPTSTR)_T("Second");
         m_pTabCtrl->insertItem(1, &tie);
 
         m_pChildDlg = new UTabChild(m_hInst, IDD_CHILD, *m_pTabCtrl);
@@ -153,7 +153,7 @@ public:
         }
         return UDialogBox::onNotify(wParam, lParam);
     }
-    
+
     virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
         switch (LOWORD (wParam))
@@ -204,10 +204,10 @@ private:
 			return FALSE;
         }
     }
-    
+
     BOOL onOk()
     {
-        
+
         return FALSE;
     }
 };
