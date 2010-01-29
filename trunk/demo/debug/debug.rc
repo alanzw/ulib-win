@@ -10,7 +10,15 @@
 //
 // Icon resources
 //
-//IDI_APP    ICON   MOVEABLE PURE LOADONCALL     "wnd.ico"
+IDI_EYE    ICON   MOVEABLE PURE LOADONCALL     "eye.ico"
+
+//
+// Bitmap resources
+//
+IDB_OPEN  BITMAP  DISCARDABLE   "open.bmp"
+IDB_SAVE  BITMAP  DISCARDABLE   "save.bmp"
+IDB_PIN   BITMAP  DISCARDABLE   "pin.bmp"
+IDB_HELP  BITMAP  DISCARDABLE   "help.bmp"
 
 //
 // Dialog resources

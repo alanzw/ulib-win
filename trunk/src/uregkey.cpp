@@ -66,3 +66,13 @@ LONG URegKey::queryValueEx(DWORD &lpType, LPBYTE lpData, DWORD &dwSize)
 {
     return ::RegQueryValueEx(m_hSubKey, NULL, NULL, &lpType, lpData, &dwSize);
 }
+
+ BOOL URegKey::createEx(HKEY hKey, LPCTSTR lpSubKey, DWORD dwOptions, REGSAM samDesired, PHKEY phkResult)
+ {
+    return ERROR_SUCCESS == ::RegCreateKeyEx(hKey, lpSubKey, 0, NULL, dwOptions, samDesired, NULL, phkResult, NULL);
+ }
+ 
+ BOOL URegKey::setValueEx(HKEY hKey, LPCTSTR lpValueName, DWORD dwType, const BYTE * lpData, DWORD cbData)
+ {
+    return ERROR_SUCCESS == ::RegSetValueEx(hKey, lpValueName, 0, dwType, lpData, cbData);
+ }

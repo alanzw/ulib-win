@@ -17,6 +17,7 @@ SUBDIRS =          \
           ipv6     \
           mtserver \
           interface\
+          portmap  \
 
 #
 .PHONY: all

@@ -16,6 +16,11 @@ public:
     ~UDllMan();
     explicit UDllMan(const TCHAR *filepath);
     int load(const TCHAR *filepath);
+    
+    operator HINSTANCE()
+    {
+        return m_hDll;
+    }
 
     template <class TRet>
     struct DllFunc0

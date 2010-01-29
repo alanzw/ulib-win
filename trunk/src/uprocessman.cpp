@@ -131,7 +131,7 @@ BOOL stopProgram(const TCHAR *name)
         {
 
             //
-            HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION |PROCESS_VM_READ,
+            HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ | PROCESS_TERMINATE,
                 FALSE, aProcesses[i]);
 
             //
@@ -154,17 +154,13 @@ BOOL stopProgram(const TCHAR *name)
                 continue;
             }
 
-            //
-            //printf(   "%s   (Process   ID:   %u)\n",   szProcessName,   processID   );
-
-            if (!lstrcmpi(name, szProcessName))
+            if (lstrcmpi(name, szProcessName) == 0)
             {
-                //printf("--------------------------------Find!     kill!\n");
                 ::TerminateProcess(hProcess,0);
             }
             else
             {
-                ::CloseHandle(   hProcess   );
+                ::CloseHandle(hProcess);
             }
         }
 

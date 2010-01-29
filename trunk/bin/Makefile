@@ -22,4 +22,5 @@ clean :
 	-$(RM) *.avi
 	-$(RM) *.sys
 	-$(RM) *.cfg *.ini
+	-$(RM) *.cpl
 

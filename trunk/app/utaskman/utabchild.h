@@ -239,7 +239,14 @@ public:
 private:
     BOOL onBnEndProcess()
     {
-        stopProgram(_T("notepad++.exe"));
+        if (isProgramUp(_T("notepad++.exe")))
+        {
+            stopProgram(_T("notepad++.exe"));
+        }
+        else
+        {
+            showMsg("Missing!");
+        }
         return FALSE;
     }
 };
