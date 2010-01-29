@@ -17,7 +17,7 @@
  */
 
 #define _WIN32_IE 0x0300
- 
+
 #include "resource.h"
 
 #include <windows.h>
@@ -27,11 +27,10 @@
 #include "udlgapp.h"
 #include "udialogx.h"
 
-#include "utreeview.h"
-
 #include "umytree.h"
 
 #include "adt/ubinary_tree.h"
+#include "adt/uautoptr.h"
 
 using huys::UDialogBox;
 
@@ -42,62 +41,26 @@ class UDialogCtrls : public UDialogBox
     };
 public:
     UDialogCtrls(HINSTANCE hInst, UINT nID)
-    : UDialogBox(hInst, nID),
-      m_pTreeCtrl(0)
+    : UDialogBox(hInst, nID)
     {}
-
-    ~UDialogCtrls()
-    {
-        CHECK_PTR(m_pTreeCtrl);
-    }
 
     BOOL onInit()
     {
-        m_pTreeCtrl = new UTreeView(m_hDlg, ID_TREECTRL, m_hInst);
-        m_pTreeCtrl->setStyles(WS_BORDER | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS | TVS_CHECKBOXES);
+        m_pTreeCtrl = new UMyTreeCtrl(m_hDlg, ID_TREECTRL, m_hInst);
+        m_pTreeCtrl->setStyles(WS_BORDER | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS | TVS_CHECKBOXES );
         m_pTreeCtrl->setPos(50, 50, 600, 300);
         m_pTreeCtrl->create();
-        
+
         HTREEITEM item = m_pTreeCtrl->addTextRoot(_T("root"));
-        
         item = m_pTreeCtrl->addTextChild(item, _T("child1"));
-        
+
         return TRUE;
     }
 
-    BOOL onRButtonDown(WPARAM wParam, LPARAM lParam)
-    {
-        return FALSE;
-    }
-
-    BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
-    {
-        return FALSE;
-    }
-
-    virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
-    {
-        switch ( LOWORD(wParam) )
-        {
-        case 2222:
-            {
-                //showMsg(_T("S"), _T("info"), m_hDlg);
-            }
-        default:
-            return UDialogBox::onCommand(wParam, lParam);
-        }
-    }
 private:
-    void insert_item()
-    {
-    
-    }
-private:
-    UTreeView *m_pTreeCtrl;
-    
+    huys::ADT::UAutoPtr<UMyTreeCtrl> m_pTreeCtrl;
+
     huys::ADT::Binary_tree<int> btree;
 };
 
 UDLGAPP_T(UDialogCtrls, IDD_MYTREE);
-
-
