@@ -115,7 +115,27 @@ BOOL UToolBar::getButtonInfo( UINT nID, LPTBBUTTONINFO lptbbi )
     return this->sendMsg(TB_GETBUTTONINFO, (WPARAM)nID, (LPARAM)lptbbi);
 }
 
+BOOL UToolBar::setButtonInfo(UINT nID, LPTBBUTTONINFO lptbbi)
+{
+    return this->sendMsg(TB_SETBUTTONINFO, (WPARAM)nID, (LPARAM)lptbbi);
+}
+
 BOOL UToolBar::getButtonText( UINT nID, LPTSTR lpszText )
 {
     return this->sendMsg(TB_GETBUTTONTEXT, (WPARAM)nID, (LPARAM)lpszText);
 }
+
+BOOL UToolBar::setButtonWidth(int cxMin, int cxMax)
+{
+    return this->sendMsg(TB_SETBUTTONWIDTH, 0, MAKELPARAM(cxMin, cxMax));
+}
+
+ BOOL UToolBar::setButtonSize(int dx, int dy)
+ {
+    return this->sendMsg(TB_SETBUTTONSIZE, 0, MAKELPARAM(dx, dy));
+ }
+
+ BOOL UToolBar::setBitmapSize(int dx, int dy)
+ {
+    return this->sendMsg(TB_SETBITMAPSIZE, 0, MAKELPARAM(dx, dy));
+ }

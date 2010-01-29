@@ -11,7 +11,7 @@
 		<Project filename="ctrls.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="explorer.cbp" active="1">
+		<Project filename="explorer.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="taskman.cbp">
@@ -30,7 +30,7 @@
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="console.cbp" />
-		<Project filename="toolbar.cbp">
+		<Project filename="toolbar.cbp" active="1">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="mdi.cbp">
@@ -47,5 +47,8 @@
 		</Project>
 		<Project filename="button.cbp" />
 		<Project filename="tabctrl.cbp" />
+		<Project filename="menu.cbp">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
 	</Workspace>
 </CodeBlocks_workspace_file>
