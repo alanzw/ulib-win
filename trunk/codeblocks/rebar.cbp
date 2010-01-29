@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="mdi" />
+		<Option title="rebar" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin\Debug\mdi" prefix_auto="1" extension_auto="1" />
+				<Option output="bin\Debug\rebar" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\Debug\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -27,7 +27,7 @@
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="bin\Release\mdi" prefix_auto="1" extension_auto="1" />
+				<Option output="bin\Release\rebar" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\Release\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
@@ -48,12 +48,12 @@
 			<Add library="user32" />
 			<Add library="kernel32" />
 		</Linker>
-		<Unit filename="..\demo\mdi\mdi.rc">
+		<Unit filename="..\demo\rebar\rebar.rc">
 			<Option compilerVar="WINDRES" />
 			<Option compiler="gcc" use="1" buildCommand="$rescomp -i $file -J rc -o $resource_output -O coff $res_includes -DMINGW_RC" />
 		</Unit>
-		<Unit filename="..\demo\mdi\resource.h" />
-		<Unit filename="..\demo\mdi\test_mdi.cpp" />
+		<Unit filename="..\demo\rebar\resource.h" />
+		<Unit filename="..\demo\rebar\test_rebar.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

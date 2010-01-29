@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="..\app\uexplorer\test_explorer.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="713" topLine="30" />
+	<File name="..\app\uexplorer\test_explorer.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="815" topLine="30" />
 	</File>
-	<File name="..\app\uexplorer\uexplorer.cpp" open="0" top="0" tabpos="0">
+	<File name="..\app\uexplorer\uexplorer.cpp" open="1" top="0" tabpos="3">
 		<Cursor position="810" topLine="36" />
 	</File>
 </CodeBlocks_layout_file>

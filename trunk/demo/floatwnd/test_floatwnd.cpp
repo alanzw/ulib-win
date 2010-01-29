@@ -193,11 +193,9 @@ class UDialogHide : public UDialogBox
 {
 public:
     UDialogHide(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-          m_dlg(m_hInst, IDD_TEST)
-    {
-
-    }
+    : UDialogBox(hInst, nID),
+      m_dlg(m_hInst, IDD_TEST)
+    {}
 
     BOOL create()
     {

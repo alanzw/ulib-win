@@ -26,7 +26,7 @@ class ULIB_API URegion : public UGDIObject
 public:
     URegion();
     ~URegion();
-    
+
     ///
     operator HRGN ()
     {
@@ -78,22 +78,23 @@ public:
     int offset(int x, int y);
 
     // PolyFillMode
-    // ** ALTERNATE 
-    //      Selects alternate mode 
+    // ** ALTERNATE
+    //      Selects alternate mode
     //      (fills the area between odd-numbered and even-numbered polygon sides on each scan line).
-    // ** WINDING 
-    //      Selects winding mode 
+    // ** WINDING
+    //      Selects winding mode
     //      (fills any region with a nonzero winding value).
     int getPolyFillMode(HDC hdc);
     int setPolyFillMode(HDC hdc, int nMode);
 
     //
     DWORD getData(DWORD dwCount, LPRGNDATA lpRgnData);
-    
+
     //
     URegion & operator = (HRGN hRgn)
     {
         m_hObj = hRgn;
+        return *this;
     }
 private:
 };

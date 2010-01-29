@@ -355,6 +355,8 @@ public:
             }
         }
         return msg.wParam;
+
+        UNREFERENCED_LOCAL_VARIABLE(hWndFrame);
     }
 };
 
