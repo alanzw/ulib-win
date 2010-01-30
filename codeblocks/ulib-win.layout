@@ -4,6 +4,9 @@
 	<File name="..\inc\ubasewindow.h" open="0" top="0" tabpos="1">
 		<Cursor position="2274" topLine="60" />
 	</File>
+	<File name="..\inc\ubutton.h" open="1" top="0" tabpos="7">
+		<Cursor position="2354" topLine="106" />
+	</File>
 	<File name="..\inc\ucontrol.h" open="0" top="0" tabpos="2">
 		<Cursor position="1759" topLine="85" />
 	</File>
@@ -61,8 +64,8 @@
 	<File name="..\src\ubasewindow.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="4426" topLine="0" />
 	</File>
-	<File name="..\src\ubutton.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="467" topLine="232" />
+	<File name="..\src\ubutton.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="6330" topLine="27" />
 	</File>
 	<File name="..\src\ucontrol.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="6308" topLine="246" />

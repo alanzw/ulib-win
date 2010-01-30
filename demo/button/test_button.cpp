@@ -98,6 +98,7 @@ public:
         m_pOwnerDrawnBtn = new UOwnerDrawnButton(m_hDlg, IDC_BN_OWNERDRAWN, m_hInst);
         m_pOwnerDrawnBtn->create();
         m_pOwnerDrawnBtn->setPosition(&rcOD);
+        m_pOwnerDrawnBtn->setWindowText(_T("OwnerDraw"));
 
 
         m_pIconTextBtn = new UIconTextButton(m_hDlg, IDC_BN_ICONTEXT, m_hInst);
@@ -120,6 +121,11 @@ public:
         m_pRoundBtn->create();
         m_pRoundBtn->resize();
         m_pRoundBtn->setWindowText(_T("P"));
+
+        m_pPulseBtn = new UPulseButton(m_hDlg, IDC_BN_PULSE, m_hInst);
+        m_pPulseBtn->setPos(680, 100, 50, 50);
+        m_pPulseBtn->create();
+        m_pPulseBtn->setWindowText(_T("CC"));
         return TRUE;
     }
 

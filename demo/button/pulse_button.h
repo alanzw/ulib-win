@@ -3,12 +3,18 @@
 
 #include "ubutton.h"
 #include "utimer.h"
+#include "colors.h"
 
 class UPulseButton : public UOwnerDrawnButton
 {
     enum {
 		ID_TIMER_INTERNAL = 22
 	};
+
+    typedef enum tagButtonShape {
+        BNSP_RECTANGLE,
+        BNSP_ROUND
+    } ButtonShape;
 public:
     UPulseButton(HWND hParent, UINT nResource, HINSTANCE hInst)
     : UOwnerDrawnButton(hParent, nResource, hInst)
@@ -37,35 +43,26 @@ public:
 
         RECT rc = lpDrawItem->rcItem;
 
+        UOwnerDrawnButton::onDrawItem(wParam, lParam);
+
         return TRUE; // Message is handled.
     }
 
     virtual BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
     {
-        //this->setStatus(BNST_DOWN);
         ::SetCapture(m_hSelf);
+        _bPressed = true;
         ::InvalidateRect(m_hSelf, NULL, TRUE);
         return TRUE;
     }
 
     virtual BOOL onLButtonUp(WPARAM wParam, LPARAM lParam)
     {
-        //this->setStatus(BNST_NORMAL);
         ::ReleaseCapture();
+        _bPressed = false;
         ::InvalidateRect(m_hSelf, NULL, TRUE);
 
         UOwnerDrawnButton::onLButtonUp(wParam, lParam);
-
-        RECT rc;
-        this->getClientRect(&rc);
-
-        POINT pt = {
-            GET_X_LPARAM(lParam),
-            GET_Y_LPARAM(lParam)
-        };
-
-        //if ( m_bsPrev == BNST_DOWN && PtInRect(&rc, pt))
-        //    ::SendMessage(::GetParent(m_hSelf), WM_COMMAND, MAKEWPARAM(::GetDlgCtrlID(m_hSelf), 0), (LPARAM) m_hSelf);
 
         return TRUE;
     }
@@ -82,42 +79,10 @@ public:
             GET_Y_LPARAM(lParam)
         };
 
-        //if (m_bsNow == BNST_DOWN)
-        {
-            if ( PtInRect(&rc, pt) )
-            {
-                //SetStatus(DOWN);
-                //this->setStatus(BNST_DOWN);
-                ::InvalidateRect(m_hSelf, NULL, TRUE);
-            }
-            else
-            {
-                //this->setStatus(BNST_NORMAL);
-                ::InvalidateRect(m_hSelf, NULL, TRUE);
-            }
-        }
-        //else if (m_bsPrev == BNST_DOWN && m_bsNow == BNST_HOVER)
-        {
-            //this->setStatus(BNST_DOWN);
-            ::InvalidateRect(m_hSelf, NULL, TRUE);
-        }
-        //else
-        {
-            if (PtInRect(&rc, pt))
-            {
-                //GetParent()->SetWindowText("END HOVER");
-                //this->setStatus(BNST_HOVER);
-                ::InvalidateRect(m_hSelf, NULL, TRUE);
-            }
-            else
-            {
-                //GetParent()->SetWindowText("END NORMAL");
-                //this->setStatus(BNST_NORMAL);
-                //Invalidate();
-            }
 
-        }
+        _bMouseOver = PtInRect(&rc, pt);
 
+        ::InvalidateRect(m_hSelf, NULL, TRUE);
 
         //UOwnerDrawnButton::onMouseMove(wParam, lParam);
 
@@ -141,9 +106,9 @@ public:
 
     BOOL onMouseLeave(WPARAM wParam, LPARAM lParam)
     {
-        //this->setStatus(BNST_NORMAL);
+        _bMouseOver = false;
+        _bPressed = false;
         ::InvalidateRect(m_hSelf, NULL, TRUE);
-
         return TRUE;
     }
 
@@ -160,25 +125,53 @@ public:
 		}
 	}
 private:
-    void drawText()
+    int _nPulseWidth;
+    bool _bMouseOver;
+    bool _bPressed;
+    float _fPulseSpeed;
+
+    huys::Color _clrTop;
+    huys::Color _clrBottom;
+    huys::Color _clrPulse;
+    huys::Color _clrFocus;
+    huys::Color _clrFore;
+
+    ButtonShape _shape;
+
+    int _nCornerRadius;
+
+    int _nInterval;
+private:
+    void drawText(HDC hdc, LPRECT lpRect)
     {
 
     }
 
-    void drawPulse()
+    void drawPulse(HDC hdc, LPRECT lpRect)
     {
 
     }
 
-    void drawCenter()
+    void drawCenter(HDC hdc, LPRECT lpRect)
     {
 
     }
 
-    void drawBorder()
+    void drawBorder(HDC hdc, LPRECT lpRect)
     {
 
     }
+
+    void drawReflex(HDC hdc, LPRECT lpRect)
+    {
+    }
+
+    void drawHighlight(HDC hdc, LPRECT lpRect)
+    {
+
+    }
+
+
 };
 
 #endif // PULSE_BUTTON_H_INCLUDED
