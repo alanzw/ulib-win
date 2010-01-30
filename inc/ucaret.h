@@ -6,7 +6,8 @@
 class ULIB_API UCaret : public UUserObject
 {
 public:
-
+    UCaret();
+    ~UCaret();
 };
 
 #endif // U_CARET_H

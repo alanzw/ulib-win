@@ -77,19 +77,19 @@ int main()
     printf("%-25s", "origin: ");
     print(a, 10);
 
-    huys::ADT::quicksort_basic<int>(a, 0, sizeof(a)/sizeof(int)-1);
+    huys::ADT::Sort::quicksort_basic<int>(a, 0, sizeof(a)/sizeof(int)-1);
     printf("%-25s", "quicksort_basic: ");
     print(a, 10);
 
-    huys::ADT::quicksort_partition<int>(a, 0, sizeof(a)/sizeof(int)-1);
+    huys::ADT::Sort::quicksort_partition<int>(a, 0, sizeof(a)/sizeof(int)-1);
     printf("%-25s", "quicksort_partition: ");
     print(a, 10);
 
-    huys::ADT::selection_sort<int>(a, sizeof(a)/sizeof(int));
+    huys::ADT::Sort::selection_sort<int>(a, sizeof(a)/sizeof(int));
     printf("%-25s", "selection_sort: ");
     print(a, 10);
 
-    huys::ADT::insertion_sort<int>(a, sizeof(a)/sizeof(int));
+    huys::ADT::Sort::insertion_sort<int>(a, sizeof(a)/sizeof(int));
     printf("%-25s", "insertion_sort: ");
     print(a, 10);
 
