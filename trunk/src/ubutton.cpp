@@ -258,11 +258,14 @@ BOOL UOwnerDrawnButton::onDrawItem(WPARAM wParam, LPARAM lParam)
     ::SetTextColor( hdc , ::GetSysColor( COLOR_HIGHLIGHTTEXT ) );
     ::SetBkColor( hdc, huys::orange );
     ::FillRect( hdc , &lpDrawItem->rcItem, hbrush );
+
+    TCHAR buf[1024];
+    this->getWindowText(buf, 1023);
     ::TextOut( hdc,
                lpDrawItem->rcItem.left+5,
                lpDrawItem->rcItem.top+5,
-               _T("OwnerDraw"),
-               _tcslen(_T("OwnerDraw"))
+               buf,
+               _tcslen(buf)
              );
     return TRUE;
 }

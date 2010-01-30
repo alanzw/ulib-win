@@ -45,7 +45,9 @@
 		<Project filename="rebar.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="button.cbp" active="1" />
+		<Project filename="button.cbp" active="1">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
 		<Project filename="tabctrl.cbp" />
 		<Project filename="menu.cbp">
 			<Depends filename="ulib-win.cbp" />
