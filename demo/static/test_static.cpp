@@ -10,6 +10,7 @@
 
 #include "colors.h"
 
+//
 #include "ulcd.h"
 #include "uled.h"
 
@@ -138,7 +139,7 @@ public:
 		PAINTSTRUCT ps;
 		HDC hdc;
 		hdc = BeginPaint(m_hSelf, &ps);
-	
+
         RECT rc;
 
         this->getClientRect(&rc);

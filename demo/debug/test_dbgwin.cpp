@@ -22,7 +22,7 @@ class UTraceWindow : public UBaseWindow
     enum {
         ID_LB_TRACE = 1111
     };
-    
+
     enum {
         IDM_SAVE = 2000
     };
@@ -88,21 +88,21 @@ public:
     {
         win = new UTraceWindow(m_hDlg);
         win->create();
-        
+
         addToolbar();
-        
-        
+
+
         this->setDlgIconBig(::LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_EYE)));
-        
+
         return TRUE;
     }
-    
+
     BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
     {
         win->addLine("Here it is!");
         return FALSE;
     }
-    
+
     BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
         switch (LOWORD(wParam))
@@ -137,19 +137,19 @@ private:
         toolbar->addButton(3, IDM_HELP, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE);
         toolbar->autosize();
     }
-    
+
     BOOL onMenuOpen()
     {
         win->addLine(_T("On Menu Open!"));
         return FALSE;
     }
-    
+
     BOOL onMenuSave()
     {
         win->addLine(_T("On Menu Save!"));
         return FALSE;
     }
-    
+
     BOOL onMenuPin()
     {
         win->addLine(_T("On Menu Pin!"));
@@ -169,7 +169,7 @@ private:
 
         return FALSE;
     }
-    
+
     BOOL onMenuHelp()
     {
         win->addLine(_T("On Menu Help!"));

@@ -8,13 +8,14 @@ using std::endl;
 
 #include "udebug.h"
 
+#if 0
 #ifdef HU_DEBUG
     #define LOG_STRING(format, ...) UDebugger::odprintf(format, ##__VA_ARGS__)
     //#define LOG_STRING(format, args...) UDebugger::odprintf(format, ##args)
 #else
     #define LOG_STRING(...)
 #endif
-
+#endif
 
 int main()
 {

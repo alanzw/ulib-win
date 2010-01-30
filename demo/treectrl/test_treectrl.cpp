@@ -56,7 +56,6 @@ public:
 
         m_pTreeCtrl->subclassProc();
 
-
         m_pChildDlg = new UDialogBox(m_hInst, IDD_CHILD, UDialogBox::DefaultDlgProc, m_hDlg);
         m_pChildDlg->create();
         m_pChildDlg->hide();
