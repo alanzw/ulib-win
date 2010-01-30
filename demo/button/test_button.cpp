@@ -13,10 +13,12 @@
 #include "colors.h"
 #include "umsg.h"
 #include "ubitmap.h"
+#include "uicon.h"
 
 #include "cool_button.h"
 #include "imagebutton.h"
 #include "round_button.h"
+#include "pulse_button.h"
 
 #include "adt/uautoptr.h"
 
@@ -25,57 +27,31 @@ using huys::UDialogBox;
 class UDialogExt : public UDialogBox
 {
     enum {
-        IDC_BUTTON_UE = 3333,
+        IDC_BUTTON_UE    = 3333,
         IDC_BUTTON_CHECK = 3334,
-        IDC_BUTTON_RA = 3335,
-        IDC_BUTTON_RA2 = 3336,
-        IDC_GROUPBOX = 3337,
-        IDC_ICONBUTTON = 3338,
-        IDC_BN_OWNERDRAWN = 4111,
-        IDC_BN_ICONTEXT = 4333,
-        IDC_BN_COOL = 4335,
-        IDC_BN_BITMAP = 4336,
-        IDC_BN_ROUND = 4337
+        IDC_BUTTON_RA    = 3335,
+        IDC_BUTTON_RA2   = 3336,
+        IDC_GROUPBOX     = 3337,
+        IDC_ICONBUTTON   = 3338,
+        IDC_BN_OWNERDRAWN= 4111,
+        IDC_BN_ICONTEXT  = 4333,
+        IDC_BN_COOL      = 4335,
+        IDC_BN_BITMAP    = 4336,
+        IDC_BN_ROUND     = 4337,
+        IDC_BN_PULSE     = 4338
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-    : UDialogBox(hInst, nID),
-      m_pBtn(0),
-      m_pCheckBtn(0),
-      m_pRadioBtn1(0),
-      m_pRadioBtn2(0),
-      m_pGroupBox(0),
-      m_pIconBtn(0),
-      m_pOwnerDrawnBtn(0),
-      m_pIconTextBtn(0),
-      m_pCoolBtn(0),
-      m_pImageBtn(0)
+    : UDialogBox(hInst, nID)
     {}
 
     ~UDialogExt()
-    {
-        CHECK_PTR(m_pBtn);
-        CHECK_PTR(m_pCheckBtn);
-        CHECK_PTR(m_pRadioBtn1);
-        CHECK_PTR(m_pRadioBtn2);
-        CHECK_PTR(m_pGroupBox);
-        CHECK_PTR(m_pIconBtn);
-        CHECK_PTR(m_pOwnerDrawnBtn);
-        CHECK_PTR(m_pIconTextBtn);
-        CHECK_PTR(m_pCoolBtn);
-        CHECK_PTR(m_pImageBtn);
-    }
+    {}
 
     virtual BOOL onInit()
     {
-        //hIcon = LoadIcon(hInst, MAKEINTRESOURCE(nResID));
-        m_hIcon = (HICON)LoadImage( m_hInst, // small class icon
-            MAKEINTRESOURCE(IDI_APP),
-            IMAGE_ICON,
-            GetSystemMetrics(SM_CXSMICON)*2,
-            GetSystemMetrics(SM_CYSMICON)*2,
-            LR_DEFAULTCOLOR );
 
+        m_Icon.loadImage(m_hInst, IDI_APP, 32, 32);
 
         RECT rcRa = {250, 190, 350, 290};
         RECT rcRa2 = {420, 190, 520, 290};
@@ -83,7 +59,7 @@ public:
         RECT rcOD = {460, 70, 560, 150};
         RECT rcGB = {220, 20, 650, 300};
         RECT rcCH = {250, 50, 350, 150};
-        RECT rcIT = {10, 310, 210, 410};
+        //RECT rcIT = {10, 310, 210, 410};
         RECT rcTest = {10, 20, 110, 160};
 
         RECT rcCool = {250, 350, 450, 410};
@@ -115,7 +91,7 @@ public:
         m_pIconBtn = new UIconButton(m_hDlg, IDC_ICONBUTTON, m_hInst);
         m_pIconBtn->create();
         m_pIconBtn->setWindowText(_T("Icon"));
-        m_pIconBtn->setIcon(m_hIcon);
+        m_pIconBtn->setIcon(m_Icon);
         m_pIconBtn->setPosition(&rcIco);
 
 
@@ -187,7 +163,7 @@ public:
                     {
                         m_pIconTextBtn->create();
                         m_pIconTextBtn->setPosition(&rcIT);
-                        m_pIconTextBtn->setIcon(m_hIcon);
+                        m_pIconTextBtn->setIcon(m_Icon);
                         m_pIconTextBtn->setWindowText(_T("IT"));
                     //m_pIconTextBtn->subclassProc();
                     }
@@ -206,20 +182,21 @@ public:
         }
     }
 private:
-    UButton *m_pBtn;
-    UCheckButton *m_pCheckBtn;
-    URadioButton *m_pRadioBtn1;
-    URadioButton *m_pRadioBtn2;
-    UGroupBox *m_pGroupBox;
-    UIconButton *m_pIconBtn;
-    UOwnerDrawnButton *m_pOwnerDrawnBtn;
-    UIconTextButton *m_pIconTextBtn;
-    HICON m_hIcon;
+    huys::ADT::UAutoPtr<UButton> m_pBtn;
+    huys::ADT::UAutoPtr<UCheckButton> m_pCheckBtn;
+    huys::ADT::UAutoPtr<URadioButton> m_pRadioBtn1;
+    huys::ADT::UAutoPtr<URadioButton> m_pRadioBtn2;
+    huys::ADT::UAutoPtr<UGroupBox> m_pGroupBox;
+    huys::ADT::UAutoPtr<UIconButton> m_pIconBtn;
+    huys::ADT::UAutoPtr<UOwnerDrawnButton> m_pOwnerDrawnBtn;
+    huys::ADT::UAutoPtr<UIconTextButton> m_pIconTextBtn;
 
-    UCoolButton *m_pCoolBtn;
-    UImageButton *m_pImageBtn;
+    UIcon m_Icon;
 
+    huys::ADT::UAutoPtr<UCoolButton> m_pCoolBtn;
+    huys::ADT::UAutoPtr<UImageButton> m_pImageBtn;
     huys::ADT::UAutoPtr<URoundButton> m_pRoundBtn;
+    huys::ADT::UAutoPtr<UPulseButton> m_pPulseBtn;
 private:
     BOOL onBnImage()
     {

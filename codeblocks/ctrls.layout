@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="../app/uctrls/ucollapse.h" open="0" top="0" tabpos="2">
+	<File name="..\app\uctrls\ucollapse.h" open="0" top="0" tabpos="2">
 		<Cursor position="206" topLine="177" />
 	</File>
-	<File name="../app/uctrls/ucollapsepanel.h" open="0" top="0" tabpos="1">
+	<File name="..\app\uctrls\ucollapsepanel.h" open="0" top="0" tabpos="1">
 		<Cursor position="278" topLine="19" />
 	</File>
-	<File name="../app/uctrls/uctrls.h" open="0" top="0" tabpos="1">
+	<File name="..\app\uctrls\uctrls.h" open="0" top="0" tabpos="1">
 		<Cursor position="0" topLine="56" />
 	</File>
 </CodeBlocks_layout_file>

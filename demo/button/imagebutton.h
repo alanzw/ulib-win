@@ -78,7 +78,7 @@ public:
         this->invalidate();
         return true;
     }
-    
+
     void reset()
     {
         this->reCalcLayout();
@@ -254,6 +254,8 @@ public:
         }
 
         return TRUE;
+
+        UNREFERENCED_LOCAL_VARIABLE(hOldFont);
     }
 
     virtual BOOL onMessage(UINT nMessage, WPARAM wParam, LPARAM lParam)

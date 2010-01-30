@@ -131,6 +131,7 @@ public:
 
         ::RestoreDC(hdc, nSavedDC);
         return TRUE;
+        UNREFERENCED_LOCAL_VARIABLE(hOldObject);
     }
 private:
     URegion m_rgn;
@@ -228,9 +229,9 @@ private:
         lError   = -lRadius;
 
         do {
-            const double Pi = 3.141592654,
-                     Pi_on_2 = Pi * 0.5,
-                     Three_Pi_on_2 = Pi * 1.5;
+            const double Pi = 3.141592654;
+            const double Pi_on_2 = Pi * 0.5;
+            //         Three_Pi_on_2 = Pi * 1.5;
             COLORREF crColour;
             double   dAngle = atan2(lYoffset, lXoffset);
 

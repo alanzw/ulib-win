@@ -16,6 +16,8 @@
 #include "umsg.h"
 #include "colors.h"
 
+#include "adt/uautoptr.h"
+
 class UColorStatic : public UStatic
 {
 	enum {
@@ -51,7 +53,7 @@ public:
 		switch (wParam)
 		{
 		case ID_TIMER_INTERNAL:
-			{				
+			{
 				if (m_bFlag)
 				{
 					m_clr = huys::red;
@@ -81,7 +83,7 @@ public:
 		//::SelectObject(hdc, m_hbrush);
 		::SetTextColor(hdc, huys::white);
 		::SetBkColor(hdc, m_clr);
-		
+
 		return (BOOL)m_hbrush;
 	}
 
@@ -126,18 +128,11 @@ class UDialogExt : public UDialogBox
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
         : UDialogBox(hInst, nID),
-          m_pBnGo(0),
-          m_pStTimer(0),
-          m_pBnTimer(0),
           m_nCount(0)
     {}
 
     ~UDialogExt()
-    {
-        CHECK_PTR(m_pBnGo);
-        CHECK_PTR(m_pStTimer);
-        CHECK_PTR(m_pBnTimer);
-    }
+    {}
 
     virtual BOOL onInit()
     {
@@ -164,6 +159,8 @@ public:
         rc.top += 150;
         rc.bottom += 150;
         m_pBnTimer->setPosition(&rc);
+
+        return TRUE;
     }
 
     virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
@@ -202,9 +199,9 @@ public:
 
 protected:
 private:
-    UButton *m_pBnGo;
-    UButton *m_pBnTimer;
-    UStatic *m_pStTimer;
+    huys::ADT::UAutoPtr<UButton> m_pBnGo;
+    huys::ADT::UAutoPtr<UButton> m_pBnTimer;
+    huys::ADT::UAutoPtr<UStatic> m_pStTimer;
 
     UTimer m_utr;
 
