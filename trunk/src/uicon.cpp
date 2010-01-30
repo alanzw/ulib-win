@@ -64,13 +64,13 @@ BOOL UIcon::loadIconEx( HINSTANCE hInstance, UINT nResId )
     return this->loadIconEx(hInstance, MAKEINTRESOURCE(nResId));
 }
 
-BOOL UIcon::loadImage(HINSTANCE hInstance, UINT nID)
+BOOL UIcon::loadImage(HINSTANCE hInstance, UINT nID, int cx, int cy)
 {
     m_hObj = (HICON)::LoadImage( hInstance,
                                  MAKEINTRESOURCE(nID),
                                  IMAGE_ICON,
-                                 16,
-                                 16,
+                                 cx,
+                                 cy,
                                  0 );
 
     assert(m_hObj != NULL);

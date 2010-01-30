@@ -14,7 +14,7 @@
 		<Project filename="explorer.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="taskman.cbp" active="1">
+		<Project filename="taskman.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="listctrl.cbp">
@@ -45,12 +45,15 @@
 		<Project filename="rebar.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="button.cbp" />
+		<Project filename="button.cbp" active="1" />
 		<Project filename="tabctrl.cbp" />
 		<Project filename="menu.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="mytree.cbp">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
+		<Project filename="timer.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 	</Workspace>
