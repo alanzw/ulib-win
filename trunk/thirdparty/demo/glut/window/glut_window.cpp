@@ -17,7 +17,7 @@ void bitmap_output(int x, int y, int z, char *string, void *font)
     glRasterPos3f(x, y, 0);            // Locate Raster Position in 3-space
     len = (int) strlen(string);        // Find length of string
     for (i = 0; i < len; i++)          // Loop through plotting all characters in font style
-    {        
+    {
         glutBitmapCharacter(font, string[i]);
     }
 }
