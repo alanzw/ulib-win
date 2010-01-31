@@ -20,6 +20,9 @@ int main()
     huys::XML::UXMLDocument doc("hello.xml");
 
     printf("XML Doc File Name: %s\n", doc.docname());
+    printf("-------------------------------------------------------------\n");
+    doc.loadfile();
+    printf("-------------------------------------------------------------\n");
 
     huys::XML::UXMLParser parser;
 
@@ -27,7 +30,7 @@ int main()
 
     parser.parse("<!--This is A Comment!-->");
 
-    parser.parse("<ToDO>Hello</ToDo>");
+    parser.parse("<ToDO date=20100201>Hello</ToDo>");
 
     parser.parse("<![CDATA[");
 

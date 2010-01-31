@@ -101,13 +101,27 @@ public:
         return (NULL == m_pFile);
     }
 
-    bool read()
+    bool isEOF() const
     {
-        return true;
+        return 0 != feof(m_pFile);
     }
-    bool write()
+    
+    bool read(void *buf, size_t size)
     {
-        return true;
+        return 1 == fread(buf, size, 1, m_pFile);
+    }
+    bool write(const void *buf, size_t size)
+    {
+        return 1 == fwrite(buf, size, 1, m_pFile);
+    }
+    
+    size_t size()
+    {
+        size_t s = 0;
+        this->seek(m_pFile, 0, SEEK_END);
+        s = this->tell(m_pFile);
+        this->rewind();
+        return s;
     }
 
     bool directStdOut(const char *mode)
@@ -139,6 +153,11 @@ public:
         return (0 != fseek(m_pFile, offset, origin) );
     }
 
+    long tell()
+    {
+        return ftell(m_pFile);
+    }
+    
     void rewind()
     {
         ::rewind(m_pFile);

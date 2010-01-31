@@ -45,7 +45,7 @@
 		<Project filename="rebar.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="button.cbp" active="1">
+		<Project filename="button.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="tabctrl.cbp" />
@@ -55,7 +55,7 @@
 		<Project filename="mytree.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="timer.cbp">
+		<Project filename="timer.cbp" active="1">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 	</Workspace>
