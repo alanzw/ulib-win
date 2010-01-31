@@ -5,10 +5,10 @@ TOPDIR = ../..
 include $(TOPDIR)/make.inc
 
 #
-INC = -I"$(TOPDIR)/inc"
+INCS = -I"$(TOPDIR)/inc"
 LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin
 CFLAGS +=
-CXXFLAGS += 
+CXXFLAGS += -DBUILD_EXE
 
 #
 OBJ = test_sort.o \
