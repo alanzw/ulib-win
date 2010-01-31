@@ -7,19 +7,19 @@
 	<File name="..\demo\button\color_button.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="27" />
 	</File>
-	<File name="..\demo\button\cool_button.h" open="1" top="0" tabpos="2">
-		<Cursor position="3971" topLine="177" />
+	<File name="..\demo\button\cool_button.h" open="0" top="0" tabpos="2">
+		<Cursor position="3971" topLine="159" />
 	</File>
 	<File name="..\demo\button\imagebutton.h" open="0" top="0" tabpos="4">
 		<Cursor position="689" topLine="0" />
 	</File>
-	<File name="..\demo\button\pulse_button.h" open="1" top="0" tabpos="1">
+	<File name="..\demo\button\pulse_button.h" open="0" top="0" tabpos="1">
 		<Cursor position="814" topLine="33" />
 	</File>
 	<File name="..\demo\button\round_button.h" open="0" top="0" tabpos="0">
 		<Cursor position="8372" topLine="11" />
 	</File>
-	<File name="..\demo\button\test_button.cpp" open="1" top="1" tabpos="4">
+	<File name="..\demo\button\test_button.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="2840" topLine="88" />
 	</File>
 </CodeBlocks_layout_file>

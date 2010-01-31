@@ -20,6 +20,17 @@ public:
     typedef Tk key_type;
     typedef Ty referent_type;
 public:
+    struct UMapNode {
+        Tk key;
+        Ty Value;
+        UMapNode *backward;
+        UMapNode *forword;
+    };
+    
+    typedef UMapNode TNode;
+    
+   
+public:
     UMap()
     {
 

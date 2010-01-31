@@ -67,10 +67,10 @@ BOOL URebar::initBandInfo()
     return TRUE;
 }
 
-BOOL URebar::addChild(HWND hChild, LPTSTR lpText, UINT cxMinChild, UINT cyMinChild, UINT cx)
+BOOL URebar::addChild(HWND hChild, LPCTSTR lpText, UINT cxMinChild, UINT cyMinChild, UINT cx)
 {
     m_bandinfo.hwndChild = hChild,
-    m_bandinfo.lpText = lpText;
+    m_bandinfo.lpText = (LPTSTR)lpText;
     m_bandinfo.cxMinChild = cxMinChild;
     m_bandinfo.cyMinChild = cyMinChild;
     m_bandinfo.cx = cx;

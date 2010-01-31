@@ -26,7 +26,10 @@
 #ifndef U_XML_PARSER_H
 #define U_XML_PARSER_H
 
+#include <cstdio>
+
 #include "adt/ustring.h"
+#include "adt/uvector.h"
 
 namespace huys
 {
@@ -133,20 +136,28 @@ private:
     UXMLNode *_lastChild;
 };
 
-class UXMLAtrribute
+class UXMLAttribute
 {
 public:
-    UXMLAtrribute()
-    : _prev(0), _next(0)
+    UXMLAttribute()
     {}
 
-    UXMLAtrribute(const char *name, const char *value)
-    : _name(name), _value(value),
-      _prev(0), _next(0)
+    UXMLAttribute(const char *name, const char *value)
+    : _name(name), _value(value)
+    {}
+    
+    explicit UXMLAttribute(const UXMLAttribute &attr)
+    : _name(attr._name), _value(attr._value)
     {}
 
-    ~UXMLAtrribute()
+    ~UXMLAttribute()
     {}
+    
+    UXMLAttribute & operator=(const UXMLAttribute &attr)
+    {
+         _name = attr._name;
+         _value = attr._value;
+    }
 
     const char* name() const
     {
@@ -168,25 +179,21 @@ public:
         _value = value;
     }
     
-    UXMLAtrribute * next()
+    bool operator==(const UXMLAttribute &attr) const
     {
-        return _next;
+        return _name == attr._name;
     }
     
-    void setPrev(UXMLAtrribute * p)
+    bool operator==(const char * name) const
     {
-        _prev = p;
+        return _name == name;
     }
-protected:
-private:
-    DISALLOW_EVIL_CONSTRUCTOR(UXMLAtrribute);
 private:
     UXMLString _name;
     UXMLString _value;
-
-    UXMLAtrribute *_prev;
-    UXMLAtrribute *_next;
 };
+
+typedef huys::ADT::UVector<UXMLAttribute> UXMLAttributes;
 
 class UXMLText
 {
@@ -209,59 +216,38 @@ class UXMLElement : public UXMLNode
 {
 public:
     UXMLElement()
-    : _atrributes(0), _nAttributeNum(0),
-      _text(0)
+    : _text(0)
     {
         _type = XML_NT_ELEMENT;
     }
     
     ~UXMLElement()
-    {    
-        if (_nAttributeNum > 0)
-        {
-            UXMLAtrribute *p = _atrributes;
-            UXMLAtrribute *pNext = 0;
-            while (0 != p)
-            {
-                pNext = p->next();
-                delete p;
-                p = pNext;
-            }
-        }
-
+    {
         if (_text)
         {
             delete _text;
         }
     }
 
-    const char* atrribute(const char* name)
+    bool setAttribute(const char *name, const char * value)
     {
-        return _atrributes->value();
-    }
-    
-    bool setAtrribute(const char *name, const char * value)
-    {
-        if (0 == _nAttributeNum)
+        if (0 == _attributes.size())
         {
-            _atrributes = new UXMLAtrribute(name, value);
-            ++_nAttributeNum;
+            _attributes.push_back(UXMLAttribute(name, value));
             return true;
         }
         
-        UXMLAtrribute *p = _atrributes;
-        for (int i=0; i<_nAttributeNum; ++i)
+        UXMLAttributes::iterator it = _attributes.begin();
+        for (; it != _attributes.end(); ++it)
         {
-            if (strcmp(p->name(), name) == 0)
+            if (*it == name)
             {
-                p->setValue(value);
+                (*it).setValue(value);
                 return true;
             }
-            p = p->next();
         }
         
-        UXMLAtrribute *pNew = new UXMLAtrribute(name, value);
-        pNew->setPrev(p);
+        _attributes.push_back(UXMLAttribute(name, value));
         
         return false;
     }
@@ -274,12 +260,21 @@ public:
         }
         _text = new UXMLText(sText);
     }
+    
+    bool hasAttribute() const
+    {
+        return 0 != _attributes.size();
+    }
+    
+    bool hasText() const
+    {
+        return 0 != _text;
+    }
 protected:
 private:
     UXMLString _name;
     UXMLText *_text;
-    UXMLAtrribute *_atrributes;
-    int _nAttributeNum;
+    UXMLAttributes _attributes;
 };
 
 class UXMLComment : public UXMLNode
@@ -474,10 +469,33 @@ public:
         return m_sFilename.c_str();
     }
     
+    bool loadfile()
+    {
+        return loadfile(m_sFilename);
+    }
+    
     bool loadfile(const char * fname)
     {
+        FILE *pfile = fopen(fname, "rb");
+        if (!pfile)
+        {
+            return false;
+        }
         
+        size_t s = 0;
+        fseek(pfile, 0, SEEK_END);
+        s = ftell(pfile);
+        //rewind(pfile);
+        fseek(pfile, 0, SEEK_SET);
+        _buffer.reserve(s+1);
         
+        fread((char *)_buffer, s, 1, pfile);
+
+        fclose(pfile);
+        
+        _buffer.setLength(s);        
+        
+        printf(_buffer.c_str());
         return true;
     }
     
@@ -488,7 +506,7 @@ public:
     
 private:
     UXMLParser _parser;
-    UXMLString _buf;
+    UXMLString _buffer;
     UXMLNode * _root;
 private:
     bool read()

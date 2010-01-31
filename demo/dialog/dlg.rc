@@ -33,6 +33,7 @@ EXSTYLE WS_EX_ACCEPTFILES
 CAPTION "Test_dialog"
 FONT 8,"MS Shell Dlg",400,0,0
 BEGIN
+        PUSHBUTTON      "Button1",4433,143,86,67,49
 END
 
 //

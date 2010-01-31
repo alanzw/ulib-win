@@ -4,7 +4,7 @@
 	<File name="..\inc\ubasewindow.h" open="0" top="0" tabpos="1">
 		<Cursor position="2274" topLine="60" />
 	</File>
-	<File name="..\inc\ubutton.h" open="1" top="0" tabpos="7">
+	<File name="..\inc\ubutton.h" open="0" top="0" tabpos="1">
 		<Cursor position="2354" topLine="106" />
 	</File>
 	<File name="..\inc\ucontrol.h" open="0" top="0" tabpos="2">
@@ -40,6 +40,9 @@
 	<File name="..\inc\uprocessman.h" open="0" top="0" tabpos="1">
 		<Cursor position="387" topLine="0" />
 	</File>
+	<File name="..\inc\urebar.h" open="0" top="0" tabpos="0">
+		<Cursor position="137" topLine="0" />
+	</File>
 	<File name="..\inc\uregion.h" open="0" top="0" tabpos="4">
 		<Cursor position="2489" topLine="70" />
 	</File>
@@ -64,7 +67,7 @@
 	<File name="..\src\ubasewindow.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="4426" topLine="0" />
 	</File>
-	<File name="..\src\ubutton.cpp" open="1" top="0" tabpos="8">
+	<File name="..\src\ubutton.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="6330" topLine="27" />
 	</File>
 	<File name="..\src\ucontrol.cpp" open="0" top="0" tabpos="2">
@@ -99,6 +102,9 @@
 	</File>
 	<File name="..\src\uprocessman.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="4874" topLine="147" />
+	</File>
+	<File name="..\src\urebar.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2330" topLine="43" />
 	</File>
 	<File name="..\src\ushell.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="2628" topLine="94" />

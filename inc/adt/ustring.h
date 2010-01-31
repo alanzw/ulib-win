@@ -192,6 +192,12 @@ public:
         return m_pBuf;
     }
 
+    void setLength(size_type size)
+    {
+        m_nStrLength = size;
+        m_pBuf[m_nStrLength] = '\0';
+    }
+    
     size_type length() const
     {
         return m_nStrLength;

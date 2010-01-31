@@ -15,7 +15,7 @@ public:
     //
     BOOL initBandInfo();
     //
-    BOOL addChild(HWND hChild, LPTSTR lpText, UINT cxMinChild, UINT cyMinChild, UINT cx);
+    BOOL addChild(HWND hChild, LPCTSTR lpText, UINT cxMinChild, UINT cyMinChild, UINT cx);
 
 	//
 	huys::Color getBkColor();
