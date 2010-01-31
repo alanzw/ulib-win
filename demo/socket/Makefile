@@ -18,6 +18,7 @@ SUBDIRS =          \
           mtserver \
           interface\
           portmap  \
+          httpmt   \
 
 #
 .PHONY: all

@@ -1,0 +1,155 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#include <windows.h>
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAINWND DIALOG DISCARDABLE  12, 38, 323, 202
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "HTTP Server (Multi-Threaded Model)"
+FONT 8, "Arial"
+BEGIN
+    CONTROL         104,IDC_STATIC,"Static",SS_BITMAP,9,4,53,46
+    GROUPBOX        "File Requests",IDC_STATIC,2,123,318,71
+    PUSHBUTTON      "&Start",IDC_START_STOP,65,18,50,14
+    GROUPBOX        "Statistics",IDC_STATIC,119,7,201,37
+    LTEXT           "Connections",IDC_STATIC,127,29,46,8
+    LTEXT           "Received",IDC_STATIC,226,17,46,8
+    LTEXT           "Sent",IDC_STATIC,226,29,46,8
+    CONTROL         "List1",IDC_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SORTASCENDING | LVS_AUTOARRANGE | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,8,134,307,53
+    LTEXT           "Transfer Rate",IDC_STATIC,128,17,46,8
+    RTEXT           "0",IDC_RATE,179,17,31,8
+    RTEXT           "0",IDC_RECEIVED,281,17,31,8
+    RTEXT           "0",IDC_TRANSFERRED,281,29,31,8
+    RTEXT           "0",IDC_CONNECTIONS,179,29,31,8
+    LISTBOX         IDC_EVENTLOG,8,61,307,50,LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Event Log",IDC_STATIC,2,51,318,67
+END
+
+IDD_SERVINFO DIALOG DISCARDABLE  0, 0, 196, 97
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "HTTP Server Info"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Port (defaults to 80)",IDC_STATIC,7,13,62,8
+    EDITTEXT        IDC_PORT,7,24,30,14,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "Root Web Directory",IDC_STATIC,7,48,64,8
+    EDITTEXT        IDC_ROOTDIR,7,57,182,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,139,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,139,24,50,14
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_HTTP                BITMAP  DISCARDABLE     "http.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_APP                 ICON    DISCARDABLE     "app.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    WSAEINTR                "WSAEINTR: Interrupted function call"
+    WSAEBADF                "WSAEBADF: Bad file number"
+    WSAEACCES               "WSAEACCES: Permission denied"
+    WSAEFAULT               "WSAEFAULT: Address fault"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    WSAEINVAL               "WSAEINVAL: Invalid argument"
+    WSAEMFILE               "WSAEMFILE: Too many open files"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    WSAEWOULDBLOCK          "WSAEWOULDBLOCK: Resource temporarily unavailable (Would block)"
+    WSAEINPROGRESS          "WSAEINPROGRESS: Operation now in progress"
+    WSAEALREADY             "WSAEALREADY: Operation already in progress"
+    WSAENOTSOCK             "WSAENOTSOCK: Socket operation on non-socket"
+    WSAEDESTADDRREQ         "WSAEDESTADDRREQ: Destination address required"
+    WSAEMSGSIZE             "WSAEMSGSIZE: Message too long"
+    WSAEPROTOTYPE           "WSAEPROTOTYPE: Protocol wrong type for socket"
+    WSAENOPROTOOPT          "WSAENOPROTOOPT: Bad protocol option"
+    WSAEPROTONOSUPPORT      "WSAEPROTONOSUPPORT: Protocol not supported"
+    WSAESOCKTNOSUPPORT      "WSAESOCKTNOSUPPORT: Socket type not supported"
+    WSAEOPNOTSUPP           "WSAEOPNOTSUPP: Operation not supported"
+    WSAEPFNOSUPPORT         "WSAEPFNOSUPPORT: Protocol family not supported"
+    WSAEAFNOSUPPORT         "WSAEAFNOSUPPORT: Address family not supported by protocol family"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    WSAEADDRINUSE           "WSAEADDRINUSE: Address already in use"
+    WSAEADDRNOTAVAIL        "WSAEADDRNOTAVAIL: Cannot assign requested address"
+    WSAENETDOWN             "WSAENETDOWN: Network is down"
+    WSAENETUNREACH          "WSAENETUNREACH: Network is unreachable"
+    WSAENETRESET            "WSAENETRESET: Network dropped connection on reset"
+    WSAECONNABORTED         "WSAECONNABORTED: Software caused connection abort"
+    WSAECONNRESET           "WSAECONNRESET: Connection reset by peer"
+    WSAENOBUFS              "WSAENOBUFS: No buffer space available"
+    WSAEISCONN              "WSAEISCONN: Socket is already connected"
+    WSAENOTCONN             "WSAENOTCONN: Socket is not connected"
+    WSAESHUTDOWN            "WSAESHUTDOWN: Cannot send after socket shutdown"
+    WSAETOOMANYREFS         "WSAETOOMANYREFS: Too many references"
+    WSAETIMEDOUT            "WSAETIMEDOUT: Connection timed out"
+    WSAECONNREFUSED         "WSAECONNREFUSED: Connection refused"
+    WSAELOOP                "WSAELOOP: Loop"
+    WSAENAMETOOLONG         "WSAENAMETOOLONG: Name too long"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    WSAEHOSTDOWN            "WSAEHOSTDOWN: Host is down"
+    WSAEHOSTUNREACH         "WSAEHOSTUNREACH: No route to host"
+    WSAENOTEMPTY            "WSAENOTEMPTY: Directory not empty"
+    WSAEPROCLIM             "WSAEPROCLIM: Too many processes"
+    WSAEUSERS               "WSAEUSERS: Too many users"
+    WSAEDQUOT               "WSAEDQUOT: Disk quota"
+    WSAESTALE               "WSAESTALE: Stale"
+    WSAEREMOTE              "WSAEREMOTE: Remote"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    WSASYSNOTREADY          "WSASYSNOTREADY: Network subsystem is unavailable"
+    WSAVERNOTSUPPORTED      "WSAVERNOTSUPPORTED: WINSOCK.DLL version out of range"
+    WSANOTINITIALISED       "WSANOTINITIALISED: Successful WSAStartup() not yet performed"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    WSAEDISCON              "WSAEDISCON: Graceful shutdown in progress"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    WSAHOST_NOT_FOUND       "WSAHOST_NOT_FOUND: Host not found"
+    WSATRY_AGAIN            "WSATRY_AGAIN: Non-authoritative host not found"
+    WSANO_RECOVERY          "WSANO_RECOVERY: Non-recoverable error"
+    WSANO_DATA              "WSANO_DATA: Valid name no data record of requested type"
+    IDS_HTTPERROR_NOTFOUND  "404 NOT FOUND"
+END
+

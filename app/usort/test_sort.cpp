@@ -65,6 +65,8 @@ public:
             return onMenuAbout();
         case IDM_EXIT:
             return UBaseWindow::onClose();
+        case IDM_START:
+            return onMenuStart();
         default:
             return UBaseWindow::onCommand(wParam, lParam);
         }
@@ -86,6 +88,68 @@ private:
     BOOL onMenuAbout()
     {
         this->showMsg(_T("USort v0.0.1"), _T("About"));
+        return FALSE;
+    }
+
+    struct UThreadParam {
+        UINT id;
+        HWND hWnd;
+    };
+
+    static DWORD DrawLine(LPVOID pParam)
+    {
+        UThreadParam *pp=(UThreadParam *)pParam;
+        HBRUSH hBrush;
+        HDC hdc;
+
+        hdc = ::GetDC(pp->hWnd);
+
+        if(pp->id == 0)
+        {
+            hBrush = ::CreateSolidBrush(RGB(255,0,0));
+        } else if(pp->id==1) {
+            hBrush = ::CreateSolidBrush(RGB(0,255,0));
+        } else {
+            hBrush = ::CreateSolidBrush(RGB(0,0,255));
+        }
+
+        HBRUSH hOldBrush=(HBRUSH)::SelectObject(hdc, hBrush);
+
+        //
+        for(int i=1; i<300; i++)
+        {
+            ::Rectangle(hdc, 10, 35 + pp->id*50, 10+i, 55+pp->id*50);
+            Sleep(100);
+        }
+
+        ::SelectObject(hdc, hOldBrush);
+
+        ::ReleaseDC(pp->hWnd, hdc);
+
+        return 0;
+    }
+
+    BOOL onMenuStart()
+    {
+        static UThreadParam params[3] = {
+            { 0, *this },
+            { 1, *this },
+            { 2, *this }
+        };
+
+        static HANDLE hThreads[3] = {0, 0, 0};
+
+        for(int i=0; i<3; i++)
+        {
+            hThreads[i] = ::CreateThread(
+                   NULL,            // default security attributes
+                   0,               // use default stack size
+                   (LPTHREAD_START_ROUTINE)&UMyWindow::DrawLine,   // thread function name
+                   &params[i],        // argument to thread function
+                   0,               // use default creation flags
+                   0);
+        }
+
         return FALSE;
     }
 };
