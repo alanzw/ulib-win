@@ -1,6 +1,15 @@
 #ifndef U_INTERFACE_DB_H
 #define U_INTERFACE_DB_H
 
+#include <windows.h>
+#include <tchar.h>
+
+typedef long HRESULT;
+
+#ifndef NO_ERROR
+#define  NO_ERROR 0
+#endif
+
 class IDB {
     // Interfaces
 public:
