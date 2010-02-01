@@ -1,7 +1,5 @@
 #include "db.h"
 
-#define  NO_ERROR 0
-
 HRESULT CreateDB(IDB** ppObj)
 {
     *ppObj=(IDB*) new CDB; // Cast to abstract base class.

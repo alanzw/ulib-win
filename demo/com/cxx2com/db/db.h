@@ -1,6 +1,9 @@
 #ifndef U_DB_H
 #define U_DB_H
 
+#include <windows.h>
+#include <tchar.h>
+
 #include "adt/uvector.h"
 #include "adt/ustring.h"
 
