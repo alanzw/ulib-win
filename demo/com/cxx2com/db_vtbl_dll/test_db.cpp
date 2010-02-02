@@ -2,11 +2,11 @@
 
 int main()
 {
-    CDB *pDB = NULL;
+    IDB *pDB = NULL;
 
     // Create a database object through the exported function and class factory
     // object.
-    CDBSrvFactory *pDBFactory=NULL;
+    IDBSrvFactory *pDBFactory=NULL;
 
     DllGetClassFactoryObject((IDBSrvFactory **)&pDBFactory);
     pDBFactory->CreateDB((IDB**)&pDB);
