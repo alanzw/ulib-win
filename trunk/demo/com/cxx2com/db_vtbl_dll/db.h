@@ -40,20 +40,4 @@ public:
 
 HRESULT DEF_EXPORT DllGetClassFactoryObject(IDBSrvFactory ** ppObject);
 
-class CDB : public IDB {
-    // Interfaces
-public:
-    // Interface for data access.
-    HRESULT DEF_EXPORT Read(short nTable, short nRow, LPWSTR lpszData);
-    
-    HRESULT DEF_EXPORT Release();
-};
-
-class CDBSrvFactory : public IDBSrvFactory {
-    // Interface
-public:
-    HRESULT DEF_EXPORT CreateDB(IDB** ppObject);
-    HRESULT DEF_EXPORT Release();
-};
-
 #endif // U_VTBL_DLL_DB_H

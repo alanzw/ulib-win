@@ -33,24 +33,22 @@ static const GUID CLSID_DBSAMPLE =
 static const GUID IID_IDBSrvFactory =
 { 0x30df3431, 0x266, 0x11cf, { 0xba, 0xa6, 0x0, 0xaa, 0x0, 0x3e, 0xe, 0xed } };
 
-class IDB {
+class IDB : public IUnknown
+{
     // Interfaces
 public:
-    // Interfaces for COM and useful anyway
-    virtual HRESULT QueryInterface(RIID riid, void** ppObj) =0;
-    virtual ULONG  AddRef() =0;
-    virtual ULONG  Release() =0;
-
     // Interface for data access.
     virtual HRESULT Read(short nTable, short nRow, LPWSTR lpszData) =0;
 };
 
-class IDBSrvFactory {
-    // Interface
-public:
-    virtual HRESULT CreateDB(IDB** ppObject) =0;
-    virtual HRESULT Release() =0;
+class IClassFactory : public IUnknown
+{
+   virtual HRESULT CreateInstance(IUnknown *pUnkOuter, 
+         REFIID riid, void**  ppvObject) = 0;
+   virtual HRESULT LockServer(BOOL fLock) = 0;
 };
+
+extern ULONG g_dwRefCount;
 
 extern "C" HRESULT DEF_EXPORT DllGetClassObject(REFCLSID rclsid, REFIID riid, void** ppObject);
 
