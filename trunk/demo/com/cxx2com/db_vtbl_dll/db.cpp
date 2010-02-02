@@ -1,14 +1,30 @@
 #include "db.h"
 
-#define  NO_ERROR 0
-
-HRESULT CDBSrvFactory::CreateDB(IDB** ppvDBObject) {
- *ppvDBObject=(IDB*) new CDB;
- return NO_ERROR;
+HRESULT CDBSrvFactory::CreateDB(IDB** ppvDBObject)
+{
+    *ppvDBObject=(IDB*) new CDB;
+    return NO_ERROR;
 }
 
-HRESULT DllGetClassFactoryObject(IDBSrvFactory ** ppObject) {
+HRESULT CDBSrvFactory::Release()
+{
+    return NO_ERROR;
+}
+
+HRESULT DllGetClassFactoryObject(IDBSrvFactory ** ppObject)
+{
    *ppObject=(IDBSrvFactory*) new CDBSrvFactory;
    return NO_ERROR;
 }
 
+
+
+HRESULT CDB::Read(short nTable, short nRow, LPWSTR lpszData)
+{
+    return NO_ERROR;
+}
+
+HRESULT CDB::Release()
+{
+    return 0;
+}
