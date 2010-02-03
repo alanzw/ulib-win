@@ -37,11 +37,11 @@ BOOL APIENTRY DllMain( HINSTANCE hModule,
 LONG OnNewInquire(UINT uAppNum, NEWCPLINFO* pInfo)
 {
     // Fill in the data
-    pInfo->dwSize		  = sizeof(NEWCPLINFO);
-    pInfo->dwFlags		  = 0;
+    pInfo->dwSize          = sizeof(NEWCPLINFO);
+    pInfo->dwFlags          = 0;
     pInfo->dwHelpContext  = 0;
-    pInfo->lData		  = 0;
-    pInfo->hIcon		  = ::LoadIcon(g_hModule, MAKEINTRESOURCE(IDI_APP));
+    pInfo->lData          = 0;
+    pInfo->hIcon          = ::LoadIcon(g_hModule, MAKEINTRESOURCE(IDI_APP));
 
     lstrcpy(pInfo->szName, "hy");
     lstrcpy(pInfo->szInfo, "HY CPL");
@@ -52,17 +52,17 @@ LONG OnNewInquire(UINT uAppNum, NEWCPLINFO* pInfo)
 
 LONG OnInquire(UINT uAppNum, CPLINFO* pInfo)
 {
-    pInfo->idIcon	= IDI_APP;
-    pInfo->idName	= IDS_CPL_NAME;
-    pInfo->idInfo	= IDS_CPL_INFO;
-    pInfo->lData	= 0;
+    pInfo->idIcon    = IDI_APP;
+    pInfo->idName    = IDS_CPL_NAME;
+    pInfo->idInfo    = IDS_CPL_INFO;
+    pInfo->lData    = 0;
 
     return 0;
 }
 
 LONG OnDblclk(HWND hWnd, UINT uAppNum, LONG lData)
 {
- // Insert your Control Panel Applet dialog (property 
+ // Insert your Control Panel Applet dialog (property
  // sheet) code here
     ::MessageBox(NULL, "hy", "CPL", MB_OK);
     return 0;
@@ -118,4 +118,4 @@ LONG APIENTRY CPlApplet(HWND hWnd, UINT uMsg, LPARAM lp1, LPARAM lp2)
 }
 
 
-   
+

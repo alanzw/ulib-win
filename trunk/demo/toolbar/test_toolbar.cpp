@@ -73,7 +73,7 @@ public:
     virtual BOOL onInit()
     {
         m_putl = new  UToolBar(m_hDlg, ID_TOOLBAR, m_hInst);
-        m_putl->setStyles(TBSTYLE_FLAT );
+        m_putl->setStyles(TBSTYLE_FLAT);
         m_putl->create();
 
         static UImageList uil(IDR_TOOLBAR1, m_hInst);
@@ -98,6 +98,15 @@ public:
             { 100, 0, TBSTATE_ENABLED, TBSTYLE_SEP, {0}, 0, -1}
         };
         m_putl->addButtons(4, tbButtons);
+/*
+        m_putl->addButton(MAKELONG(0, 0), IDM_NEW, TBSTATE_ENABLED|TBSTYLE_DROPDOWN,
+                          TBSTYLE_AUTOSIZE, (INT_PTR)"New");
+        m_putl->addButton(MAKELONG(1, 0), IDM_OPEN, TBSTATE_ENABLED,
+                          TBSTYLE_AUTOSIZE, (INT_PTR)"Open");
+        m_putl->addButton(MAKELONG(2, 0), IDM_SAVE, TBSTATE_ENABLED,
+                          TBSTYLE_AUTOSIZE, (INT_PTR)"Save");
+        m_putl->addSeparator(100);                          
+*/
         m_putl->autosize();
         m_putl->show();
         m_putl->enableButton(IDM_SAVE);

@@ -42,9 +42,9 @@ BOOL UToolBar::addButtons(int num, TBBUTTON *ptbb)
     return TRUE;
 }
 
-BOOL UToolBar::addButton(TBBUTTON *ptbb)
+BOOL UToolBar::addButton(TBBUTTON *ptbb, int n)
 {
-    this->sendMsg(TB_ADDBUTTONS, (WPARAM)1, (LPARAM)ptbb);
+    this->sendMsg(TB_ADDBUTTONS, (WPARAM)n, (LPARAM)ptbb);
     return TRUE;  
 }
 

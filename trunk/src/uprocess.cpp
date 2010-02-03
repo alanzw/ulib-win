@@ -10,8 +10,8 @@ UProcess::UProcess()
 {
     ::ZeroMemory( &m_si, sizeof(STARTUPINFO) );
     m_si.cb = sizeof(STARTUPINFO);
-    m_si.dwFlags=STARTF_USESHOWWINDOW;
-    m_si.wShowWindow=SW_MAXIMIZE;
+    m_si.dwFlags = STARTF_USESHOWWINDOW;
+    m_si.wShowWindow = SW_MAXIMIZE;
 
 	::ZeroMemory( &m_pi, sizeof(PROCESS_INFORMATION) );
 }
@@ -98,6 +98,14 @@ LPTSTR UProcess::getCommadLine()
 
 
 TCHAR *UPipedProcess::spContent = NULL;
+
+UPipedProcess::UPipedProcess(char *cmd, HWND hwnd, UINT id)
+{
+    assert(hwnd != NULL);
+    strcpy(command, cmd);
+    target = hwnd;
+    pid = id;
+}
 
 BOOL UPipedProcess::run()
 {
