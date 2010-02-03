@@ -43,14 +43,7 @@ class ULIB_API UPipedProcess
 {
 public:
     UPipedProcess() { }
-    UPipedProcess(char *cmd, HWND hwnd, UINT id = 0)
-    {
-        assert(hwnd != NULL);
-        strcpy(command, cmd);
-        target = hwnd;
-        pid = id;
-
-    }
+    UPipedProcess(char *cmd, HWND hwnd, UINT id = 0);
     BOOL run();
     static DWORD WINAPI listener(LPVOID me);
     ~UPipedProcess()
