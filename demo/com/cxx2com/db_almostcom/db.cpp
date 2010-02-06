@@ -6,7 +6,7 @@ class CDB : public IDB
 public:
     // Interface for data access.
     HRESULT  Read(short nTable, short nRow, LPWSTR lpszData);
-    
+
     HRESULT  Release();
 };
 

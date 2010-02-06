@@ -5,8 +5,9 @@
 int main()
 {
     ::CoInitialize(NULL);
-    
+
     IClassFactory *pDBFactory=NULL;
+    IDB *pDB;
 
     HRESULT hRes;
     hRes=CoGetClassObject(CLSID_DBSAMPLE, CLSCTX_SERVER, NULL, IID_IClassFactory,
@@ -19,7 +20,7 @@ int main()
         printf("%s\n", csError.c_str());
         //return FALSE;
     }
-    hRes=pDBFactory->CreateInstance(NULL, IID_IDB, (void**) &m_pDB);
+    hRes=pDBFactory->CreateInstance(NULL, IID_IDB, (void**) &pDB);
     if (FAILED(hRes)) {
         TString csError;
         csError.format(_T("Error %d creating DB Object : %d"), hRes, GetLastError());
@@ -28,8 +29,11 @@ int main()
         printf("%s\n", csError.c_str());
         //return FALSE;
     }
+    
+    pDB->Read(0, 0, "");
 
-    pDBFactory->Release(); // Do not need th
+    //pDB->Release();
+    //pDBFactory->Release(); // Do not need th
 
 
     ::CoUninitialize();
