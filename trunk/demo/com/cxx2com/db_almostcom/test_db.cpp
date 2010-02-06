@@ -7,9 +7,9 @@ int main()
     IDBSrvFactory *pDBFactory = 0;
 
     ::CoInitialize(NULL);
-    
+
     HRESULT hRes;
-    hRes=CoGetClassObject(CLSID_DBSAMPLE, CLSCTX_SERVER, NULL, 
+    hRes=CoGetClassObject(CLSID_DBSAMPLE, CLSCTX_SERVER, NULL,
         IID_IDBSrvFactory, (void**) &pDBFactory);
     if (FAILED(hRes)) {
         TString csError;
@@ -18,7 +18,7 @@ int main()
         //return FALSE;
         printf("%s\n", csError.c_str());
     }
-
+    
     ::CoUninitialize();
     return 0;
 }

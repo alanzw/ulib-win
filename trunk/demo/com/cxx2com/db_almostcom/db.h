@@ -37,9 +37,6 @@ class IDB {
     // Interfaces
 public:
     // Interfaces for COM and useful anyway
-    virtual HRESULT QueryInterface(RIID riid, void** ppObj) =0;
-    virtual ULONG  AddRef() =0;
-    virtual ULONG  Release() =0;
 
     // Interface for data access.
     virtual HRESULT Read(short nTable, short nRow, LPWSTR lpszData) =0;

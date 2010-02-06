@@ -1,11 +1,25 @@
+#include <stdio.h>
+
 #include "db.h"
 
-class CDB : public IDB {
+
+class CDB : public IDB, public IDBAccess, public IDBManage, public IDBInfo
+{
     // Interfaces
 public:
     // Interface for data access
-    HRESULT _stdcall Read(short nTable, short nRow, LPWSTR lpszData);
-    (...)
+    HRESULT _stdcall Read(short nTable, short nRow, LPTSTR lpszData);
+    
+    HRESULT _stdcall Write(short nTable, short nRow, LPCTSTR lpszData);
+    
+    HRESULT _stdcall Create(short &nTable, LPCTSTR lpszName);
+    
+    HRESULT _stdcall Delete(short nTable);
+    
+    HRESULT _stdcall GetNumTables(short &nNumTables);
+    
+    HRESULT _stdcall GetTableName(short nTable, LPTSTR lpszName);
+
     HRESULT _stdcall GetNumRows(short nTable, short &nRows);
 
     HRESULT _stdcall QueryInterface(REFIID riid, void** ppObject);
@@ -24,11 +38,11 @@ public:
 
     CDB();
 
-    ~CDB();
+    virtual ~CDB();
 };
 
 
-class CDBSrvFactory : public IClassFactory {
+class CDBSrvFactory : public IHyClassFactory {
     // Interface
 public:
 
@@ -60,16 +74,74 @@ CDB::CDB() {
 
 }
 
-HRESULT CDB::QueryInterface(REFIID riid, void** ppObject) {
+CDB::~CDB()
+{
+}
 
-    if (riid==IID_IUnknown || riid==IID_IDB) {
+HRESULT _stdcall CDB::Read(short nTable, short nRow, LPTSTR lpszData)
+{
+    printf("CDB::Read\n");
+    return NO_ERROR;
+}
 
+HRESULT _stdcall CDB::Write(short nTable, short nRow, LPCTSTR lpszData)
+{
+    printf("CDB:Write\n");
+    return NO_ERROR;
+}
+
+HRESULT _stdcall CDB::Create(short &nTable, LPCTSTR lpszName)
+{
+    return NO_ERROR;
+}
+
+HRESULT _stdcall CDB::Delete(short nTable)
+{
+    return NO_ERROR;
+}
+
+HRESULT _stdcall CDB::GetNumTables(short &nNumTables)
+{
+    return NO_ERROR;
+}
+    
+HRESULT _stdcall CDB::GetTableName(short nTable, LPTSTR lpszName)
+{
+    return NO_ERROR;
+}
+
+HRESULT _stdcall CDB::GetNumRows(short nTable, short &nRows)
+{
+    return NO_ERROR;
+}
+
+HRESULT CDB::QueryInterface(REFIID riid, void** ppObject)
+{
+
+    if (riid==IID_IUnknown || riid==IID_IDB)
+    {
         *ppObject=(IDB*) this;
+    }
+    else if (riid==IID_IDBAccess)
+    {
+
+        *ppObject=(IDBAccess*) this;
 
     }
+    else if (riid==IID_IDBManage)
+    {
 
-    else {
+        *ppObject=(IDBManage*) this;
 
+    }
+    else if (riid==IID_IDBInfo)
+    {
+
+        *ppObject=(IDBInfo*) this;
+
+    }
+    else
+    {
         return E_NOINTERFACE;
 
     }
@@ -110,13 +182,8 @@ ULONG CDB::Release() {
 
 ULONG g_dwRefCount=0;
 
-// {30DF3430-0266-11cf-BAA6-00AA003E0EED}
-static const GUID CLSID_DBSAMPLE = 
-{ 0x30df3430, 0x266, 0x11cf, { 0xba, 0xa6, 0x0, 0xaa, 0x0, 0x3e, 0xe, 0xed } };
 // Create a new database object and return a pointer to it.
-HRESULT CDBSrvFactory::CreateInstance(IUnknown *pUnkOuter, REFIID riid, 
-
-void** ppObject) {
+HRESULT CDBSrvFactory::CreateInstance(IUnknown *pUnkOuter, REFIID riid, void** ppObject) {
 
     if (pUnkOuter!=NULL) {
 
@@ -140,7 +207,7 @@ void** ppObject) {
 
 }
 
-HRESULT   CDBSrvFactory::LockServer(BOOL fLock) {
+HRESULT CDBSrvFactory::LockServer(BOOL fLock) {
 
     if (fLock) {
 
@@ -248,21 +315,21 @@ STDAPI DllRegisterServer(void)
     HKEY hKeyCLSID, hKeyInproc32;
     DWORD dwDisposition;
     if (RegCreateKeyEx(HKEY_CLASSES_ROOT, 
-                "CLSID\\{30DF3430-0266-11cf-BAA6-00AA003E0EED}"), 
-            NULL, "", REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, 
-            &hKeyCLSID, &dwDisposition)!=ERROR_SUCCESS) {
+                "CLSID\\{30DF3430-0266-11cf-BAA6-00AA003E0EED}", 
+                NULL, "", REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, 
+                &hKeyCLSID, &dwDisposition)!=ERROR_SUCCESS) {
         return E_UNEXPECTED;
     }
- 
+
     return NOERROR;
 }
 STDAPI DllUnregisterServer(void) {
     if (RegDeleteKey(HKEY_CLASSES_ROOT, 
-                "CLSID\\{30DF3430-0266-11cf-BAA6-00AA003E0EED}\\InprocServer32"))!=ERROR_SUCCESS) {
+                "CLSID\\{30DF3430-0266-11cf-BAA6-00AA003E0EED}\\InprocServer32") !=ERROR_SUCCESS) {
         return E_UNEXPECTED;
     }
     if (RegDeleteKey(HKEY_CLASSES_ROOT, 
-                "CLSID\\{30DF3430-0266-11cf-BAA6-00AA003E0EED}"))!=ERROR_SUCCESS) {
+                "CLSID\\{30DF3430-0266-11cf-BAA6-00AA003E0EED}") !=ERROR_SUCCESS) {
         return E_UNEXPECTED;
     }
     return NOERROR;

@@ -32,20 +32,16 @@ static const GUID CLSID_DBSAMPLE =
 // {30DF3431-0266-11cf-BAA6-00AA003E0EED}
 static const GUID IID_IDBSrvFactory =
 { 0x30df3431, 0x266, 0x11cf, { 0xba, 0xa6, 0x0, 0xaa, 0x0, 0x3e, 0xe, 0xed } };
+// {30DF3432-0266-11cf-BAA6-00AA003E0EED}
+static const GUID IID_IDB =
+{ 0x30df3432, 0x266, 0x11cf, { 0xba, 0xa6, 0x0, 0xaa, 0x0, 0x3e, 0xe, 0xed } };
 
 class IDB : public IUnknown
 {
     // Interfaces
 public:
     // Interface for data access.
-    virtual HRESULT Read(short nTable, short nRow, LPWSTR lpszData) =0;
-};
-
-class IClassFactory : public IUnknown
-{
-   virtual HRESULT CreateInstance(IUnknown *pUnkOuter, 
-         REFIID riid, void**  ppvObject) = 0;
-   virtual HRESULT LockServer(BOOL fLock) = 0;
+    virtual HRESULT _stdcall Read(short nTable, short nRow, LPTSTR lpszData) =0;
 };
 
 extern ULONG g_dwRefCount;

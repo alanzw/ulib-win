@@ -1,18 +1,22 @@
+#include <stdio.h>
+
 #include "db.h"
 
-class CDB : public IDB {
+
+class CDB : public IDB
+{
     // Interfaces
 public:
     // Interface for data access
-    HRESULT _stdcall Read(short nTable, short nRow, LPWSTR lpszData);
-    (...)
-    HRESULT _stdcall GetNumRows(short nTable, short &nRows);
+    virtual HRESULT _stdcall Read(short nTable, short nRow, LPTSTR lpszData);
 
-    HRESULT _stdcall QueryInterface(REFIID riid, void** ppObject);
+    virtual HRESULT _stdcall GetNumRows(short nTable, short &nRows);
 
-    ULONG  _stdcall AddRef();
+    virtual HRESULT _stdcall QueryInterface(REFIID riid, void** ppObject);
 
-    ULONG  _stdcall Release();
+    virtual ULONG  _stdcall AddRef();
+
+    virtual ULONG  _stdcall Release();
     // Implementation
 private:
     CPtrArray m_arrTables; // Array of pointers to CStringArray
@@ -24,11 +28,11 @@ public:
 
     CDB();
 
-    ~CDB();
+    virtual ~CDB();
 };
 
 
-class CDBSrvFactory : public IClassFactory {
+class CDBSrvFactory : public IHyClassFactory {
     // Interface
 public:
 
@@ -60,20 +64,32 @@ CDB::CDB() {
 
 }
 
-HRESULT CDB::QueryInterface(REFIID riid, void** ppObject) {
+CDB::~CDB()
+{
+}
 
-    if (riid==IID_IUnknown || riid==IID_IDB) {
+HRESULT CDB::Read(short nTable, short nRow, LPTSTR lpszData)
+{
+    printf("CDB::Read\n");
+    return NO_ERROR;
+}
 
+HRESULT CDB::GetNumRows(short nTable, short &nRows)
+{
+    return NO_ERROR;
+}
+
+HRESULT CDB::QueryInterface(REFIID riid, void** ppObject)
+{
+    if (riid==IID_IUnknown || riid==IID_IDB)
+    {
         *ppObject=(IDB*) this;
-
     }
-
-    else {
-
+    else
+    {
         return E_NOINTERFACE;
-
     }
-
+    
     AddRef();
 
     return NO_ERROR;
@@ -110,13 +126,8 @@ ULONG CDB::Release() {
 
 ULONG g_dwRefCount=0;
 
-// {30DF3430-0266-11cf-BAA6-00AA003E0EED}
-static const GUID CLSID_DBSAMPLE = 
-{ 0x30df3430, 0x266, 0x11cf, { 0xba, 0xa6, 0x0, 0xaa, 0x0, 0x3e, 0xe, 0xed } };
 // Create a new database object and return a pointer to it.
-HRESULT CDBSrvFactory::CreateInstance(IUnknown *pUnkOuter, REFIID riid, 
-
-void** ppObject) {
+HRESULT CDBSrvFactory::CreateInstance(IUnknown *pUnkOuter, REFIID riid, void** ppObject) {
 
     if (pUnkOuter!=NULL) {
 
@@ -248,7 +259,7 @@ STDAPI DllRegisterServer(void)
     HKEY hKeyCLSID, hKeyInproc32;
     DWORD dwDisposition;
     if (RegCreateKeyEx(HKEY_CLASSES_ROOT, 
-                "CLSID\\{30DF3430-0266-11cf-BAA6-00AA003E0EED}"), 
+                "CLSID\\{30DF3430-0266-11cf-BAA6-00AA003E0EED}", 
             NULL, "", REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, 
             &hKeyCLSID, &dwDisposition)!=ERROR_SUCCESS) {
         return E_UNEXPECTED;
@@ -258,11 +269,11 @@ STDAPI DllRegisterServer(void)
 }
 STDAPI DllUnregisterServer(void) {
     if (RegDeleteKey(HKEY_CLASSES_ROOT, 
-                "CLSID\\{30DF3430-0266-11cf-BAA6-00AA003E0EED}\\InprocServer32"))!=ERROR_SUCCESS) {
+                "CLSID\\{30DF3430-0266-11cf-BAA6-00AA003E0EED}\\InprocServer32") !=ERROR_SUCCESS) {
         return E_UNEXPECTED;
     }
     if (RegDeleteKey(HKEY_CLASSES_ROOT, 
-                "CLSID\\{30DF3430-0266-11cf-BAA6-00AA003E0EED}"))!=ERROR_SUCCESS) {
+                "CLSID\\{30DF3430-0266-11cf-BAA6-00AA003E0EED}") !=ERROR_SUCCESS) {
         return E_UNEXPECTED;
     }
     return NOERROR;

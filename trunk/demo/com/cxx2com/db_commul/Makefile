@@ -13,15 +13,15 @@ CXXFLAGS += -DBUILD_EXE
 #
 OBJ = db.o test_db.o
 BIN = test_db.exe db.dll
-RC  = 
+RC  =
 RES = ${RC:.rc=.res}
 #
 HEADER =
 #
-all: $(BIN) 
+all: $(BIN)
 
 db.dll : db.o
-	$(CXX) -shared -o $@ $^ -luuid -Wl,--output-def,libdb.def,--out-implib,libdb.dll.a,--kill-at
+	$(CXX) -shared -o $@ $^ -luuid -Wl,--output-def,libdb.def,--out-implib,libdb.dll.a,--kill-at,--enable-stdcall-fixup
 #
 test_db.exe : test_db.o db.dll
 	$(CXX) -o $@ $< -L"." -lole32 -luuid
