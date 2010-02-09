@@ -11,8 +11,14 @@ public:
     ULifeCtrl();
     ULifeCtrl(UBaseWindow *pWndParent, UINT nID);
     ~ULifeCtrl();
+    
+    //
+    BOOL create();
+    
+    //
+    BOOL onPaint();
 private:
-
+    HBRUSH m_hbrush;
 };
 
 #endif // U_BUTTONST_H

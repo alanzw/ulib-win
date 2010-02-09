@@ -8,6 +8,8 @@
 #include "uimagelist.h"
 #include "ustatusbar.h"
 
+#include "adt/uautoptr.h"
+
 #include "ubuttonxp.h"
 
 class UMyWindow : public UBaseWindow
@@ -24,12 +26,6 @@ public:
         this->setMenu(MAKEINTRESOURCE(IDR_MAINMENU));
         this->setStyles(WS_OVERLAPPEDWINDOW|WS_CLIPCHILDREN);
         //this->setExStyles(WS_EX_CLIENTEDGE);
-   }
-
-   ~UMyWindow()
-   {
-        CHECK_PTR(m_pStatusBar);
-        CHECK_PTR(m_pBtnXP);
    }
 
     BOOL onCreate()
@@ -102,8 +98,8 @@ public:
         }
     }
 private:
-    UStatusBar *m_pStatusBar;
-    UButtonXP *m_pBtnXP;
+    huys::ADT::UAutoPtr<UStatusBar> m_pStatusBar;
+    huys::ADT::UAutoPtr<UButtonXP> m_pBtnXP;
 };
 
 

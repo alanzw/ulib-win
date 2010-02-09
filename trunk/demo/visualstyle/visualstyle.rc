@@ -13,13 +13,13 @@
 //
 IDR_MAINMENU MENU
 BEGIN
-    POPUP "file(&f)"
+    POPUP "file(&F)"
     BEGIN
-        MENUITEM "new(&n)", IDM_NEW
+        MENUITEM "new(&N)", IDM_NEW
     END
-    POPUP "help(&h)"
+    POPUP "help(&H)", HELP
     BEGIN
-        MENUITEM "about(&a)", IDM_ABOUT
+        MENUITEM "about(&A)", IDM_ABOUT
     END
 END
 
