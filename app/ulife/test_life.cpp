@@ -6,6 +6,7 @@
 
 #include "uwinapp.h"
 #include "ubasewindow.h"
+#include "adt/uautoptr.h"
 
 #include "ulife.h"
 
@@ -28,9 +29,9 @@ public:
    {
        this->setIconBig(IDI_APP);
 
-       ULifeCtrl uLifeCtrl(*this, ID_FILECTRL, this->getInstance());
-       uLifeCtrl.setPos(20, 20, 320, 320);
-       uLifeCtrl.create();
+       m_pLifeCtrl = new ULifeCtrl(this, ID_FILECTRL);
+       m_pLifeCtrl->setPos(20, 20, 320, 320);
+       m_pLifeCtrl->create();
 
        return UBaseWindow::onCreate();
    }
@@ -45,7 +46,8 @@ public:
             return UBaseWindow::onChar(wParam, lParam);
         }
     }
-
+private:
+    huys::ADT::UAutoPtr<ULifeCtrl> m_pLifeCtrl;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)

@@ -6,45 +6,7 @@
 #include "umsg.h"
 #include "udlgapp.h"
 
-HHOOK hhk;
-
-LRESULT CALLBACK CBTProc(INT nCode, WPARAM wParam, LPARAM lParam)
-{
-    HWND  hChildWnd;    // msgbox is "child"
-    // notification that a window is about to be activated
-    // window handle is wParam
-    if (nCode == HCBT_ACTIVATE)
-    {
-        // set window handles
-        hChildWnd  = (HWND)wParam;
-        //to get the text of yes button
-        UINT result;
-        if(::GetDlgItem(hChildWnd,IDYES)!=NULL)
-        {
-            //s.LoadString(IDS_Yes);
-            result= SetDlgItemText(hChildWnd, IDYES, "Yaa");
-        }
-        if(GetDlgItem(hChildWnd,IDOK)!=NULL)
-        {
-            //s.LoadString(IDS_OK);
-            result= SetDlgItemText(hChildWnd, IDOK, "Okka");
-        }
-        // exit CBT hook
-        UnhookWindowsHookEx(hhk);
-    }
-    // otherwise, continue with any possible chained hooks
-    else CallNextHookEx(hhk, nCode, wParam, lParam);
-    return 0;
-}
-
-INT CBTMessageBox(HWND hwnd, LPCTSTR lpText, LPCTSTR lpCaption,UINT uType)
-{
-    hhk = ::SetWindowsHookEx(WH_CBT, &CBTProc, 0, ::GetCurrentThreadId());
-    nRet = MessageBox(hwnd, lpText, lpCaption, uType);
-    //::UnhookWindowsHookEx(hhk);
-    return nRet;
-}
-
+#include "colors.h"
 
 //HINSTANCE g_hInst = 0;
 
@@ -112,6 +74,12 @@ BEGIN_DLGAPP
     }
 
 
+    ColorMessageBox(NULL,
+                    "You can see the color!",
+                    "Color",
+                    MB_OK,
+                    huys::blue,
+                    huys::red);
 END_DLGAPP
 
 //    return 0;
