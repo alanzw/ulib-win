@@ -267,7 +267,7 @@ int TimedMessageBox(HWND hwndOwner,
  */
 static LRESULT CALLBACK cbtProc(int nCode, WPARAM wParam, LPARAM lParam);
 static LRESULT CALLBACK msgBoxSubClassProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
- 
+
 typedef struct {
     HWND hwndMsgBox;
     FARPROC lpMsgBoxSubClassProc;
@@ -281,7 +281,8 @@ typedef struct {
 } CBTvalues;
 
 // Globals
-_declspec(thread) CBTvalues cbt;
+//__declspec(thread)
+CBTvalues cbt;
 
 //****************************************************************************
 // Function: cbtProc
@@ -289,7 +290,7 @@ _declspec(thread) CBTvalues cbt;
 // Purpose: Callback function of WH_CBT hook
 //
 // Parameters and return value:
-//    See documentation for cbtProc. 
+//    See documentation for cbtProc.
 //
 // Comments: The message box is subclassed on creation and the original
 //    window procedure is restored on destruction
@@ -298,26 +299,26 @@ _declspec(thread) CBTvalues cbt;
 static LRESULT CALLBACK cbtProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
    LPCBT_CREATEWND lpcbtcreate;
-   
+
    if (nCode < 0)
-       return CallNextHookEx(cbt.hhookCBT, nCode, wParam, lParam); 
-   
-   // Window owned by our task is being created. Since the hook is installed just 
+       return CallNextHookEx(cbt.hhookCBT, nCode, wParam, lParam);
+
+   // Window owned by our task is being created. Since the hook is installed just
    //   before the MessageBox call and removed after the MessageBox call, the window
-   //   being created is either the message box or one of its controls. 
-   if (nCode == HCBT_CREATEWND)     
+   //   being created is either the message box or one of its controls.
+   if (nCode == HCBT_CREATEWND)
    {
        lpcbtcreate = (LPCBT_CREATEWND)lParam;
-       
+
        // Check if the window being created is a message box. The class name of
        //   a message box is WC_DIALOG since message boxes are just special dialogs.
-       //   We can't subclass the message box right away because the window 
+       //   We can't subclass the message box right away because the window
        //   procedure of the message box is not set when this hook is called. So
-       //   we wait till the hook is called again when one of the message box 
+       //   we wait till the hook is called again when one of the message box
        //   controls are created and then we subclass. This will happen because
        //   the message box has at least one control.
 
-       if (WC_DIALOG == lpcbtcreate->lpcs->lpszClass) 
+       if (WC_DIALOG == lpcbtcreate->lpcs->lpszClass)
        {
            cbt.hwndMsgBox = (HWND)wParam;
            cbt.SubClass = TRUE;      // Remember to subclass when the hook is called next
@@ -325,18 +326,18 @@ static LRESULT CALLBACK cbtProc(int nCode, WPARAM wParam, LPARAM lParam)
        else if (cbt.SubClass)
        {
            // Subclass the dialog to change the color of the background and text
-           cbt.MsgBoxProc = (FARPROC)SetWindowLong(cbt.hwndMsgBox, GWL_WNDPROC, 
+           cbt.MsgBoxProc = (FARPROC)SetWindowLong(cbt.hwndMsgBox, GWL_WNDPROC,
                                                   (LONG)msgBoxSubClassProc);
            cbt.SubClass = FALSE;
        }
    }
    else if (nCode == HCBT_DESTROYWND && (HWND)wParam == cbt.hwndMsgBox)
    {
-       // Reset the original window procedure when the message box is about to 
+       // Reset the original window procedure when the message box is about to
        //   be destroyed.
        SetWindowLong(cbt.hwndMsgBox, GWL_WNDPROC, (LONG)cbt.MsgBoxProc);
-       cbt.hwndMsgBox = NULL;      
-   }   
+       cbt.hwndMsgBox = NULL;
+   }
    return 0;
 }
 
@@ -366,7 +367,7 @@ static LRESULT CALLBACK msgBoxSubClassProc(HWND hwnd, UINT msg, WPARAM wParam, L
                  return (LRESULT)GetStockObject(NULL_BRUSH);
         } /* msg */
      return  CallWindowProc((WNDPROC)cbt.MsgBoxProc, hwnd, msg, wParam, lParam);
-} 
+}
 
 
 int ColorMessageBox(HWND hwndOwner,
@@ -381,11 +382,11 @@ int ColorMessageBox(HWND hwndOwner,
     cbt.hbrushBkgnd = ::CreateSolidBrush(clrBkgnd);
     cbt.hinst = ::GetModuleHandle(NULL);
     cbt.clrText = clrText;
-    
-    // Set a task specific CBT hook before calling MessageBox. The CBT 
-    //    hook will be called when the message box is created and will 
-    //    give us access to the window handle of the MessageBox. The 
-    //    message box can then be subclassed in the CBT hook to change 
+
+    // Set a task specific CBT hook before calling MessageBox. The CBT
+    //    hook will be called when the message box is created and will
+    //    give us access to the window handle of the MessageBox. The
+    //    message box can then be subclassed in the CBT hook to change
     //    the color of the text and background. Remove the hook after
     //    the MessageBox is destroyed.
 
@@ -443,8 +444,8 @@ int CBTMessageBox(HWND hwnd, LPCTSTR lpText, LPCTSTR lpCaption,UINT uType)
     //::UnhookWindowsHookEx(hhk);
     return nRet;
 }
-                    
-                    
+
+
 extern "C" ULIB_API void __cdecl rdlShowMsg(
    HWND hwnd,        // handle to owner window
    HINSTANCE hinst,  // instance handle for the DLL

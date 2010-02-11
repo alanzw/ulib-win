@@ -34,7 +34,7 @@ namespace ADT
 template <class T, class _Alloc = std::allocator<T> >
 class UList
 {
-private:
+public:
     struct ListNode {
         ListNode *_next;
         ListNode *_prev;
@@ -226,6 +226,8 @@ std::ostream & operator << (std::ostream &os, UList<T> &v)
     {
         os << "     " << it->_value << std::endl;
     }
+
+    return os;
 }
 
 }; // namespace ADT

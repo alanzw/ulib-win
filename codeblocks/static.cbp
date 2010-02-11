@@ -19,7 +19,7 @@
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="..\res" />
-                    <Add directory="..\ico" />
+					<Add directory="..\ico" />
 				</ResourceCompiler>
 				<Linker>
 					<Add library="uwin" />
@@ -51,14 +51,16 @@
 		<Unit filename="..\demo\static\resource.h" />
 		<Unit filename="..\demo\static\static.rc">
 			<Option compilerVar="WINDRES" />
-            <Option compiler="gcc" use="1" buildCommand="$rescomp -i $file -J rc -o $resource_output -O coff $res_includes -DMINGW_RC" />
+			<Option compiler="gcc" use="1" buildCommand="$rescomp -i $file -J rc -o $resource_output -O coff $res_includes -DMINGW_RC" />
 		</Unit>
 		<Unit filename="..\demo\static\test_static.cpp" />
+		<Unit filename="..\demo\static\uhistogram.h" />
 		<Unit filename="..\demo\static\ulcd.h" />
 		<Unit filename="..\demo\static\uled.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
