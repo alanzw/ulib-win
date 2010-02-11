@@ -5,7 +5,7 @@ include $(TOPDIR)/make.inc
 
 #
 INCS = -I"$(TOPDIR)/inc"
-LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin
+LIBS = -L"$(TOPDIR)/lib" -L"." -mwindows -luwin
 CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 #
@@ -32,7 +32,7 @@ libskin.dll : libskin.o skin.rc
 
 #
 libskin.o : skin.cpp skin.h
-	$(CXX) -c -o $@ -DBUILD_DLL $< $(CXXFLAGS) $(INCS)
+	$(CXX) -c -o $@ -DBUILD_DLL $< -DBUILD_DLL $(INCS)
 
 #
 .PHONY : test

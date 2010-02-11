@@ -24,16 +24,16 @@ public:
     {
         BOOL bRet = UStatic::create();
         this->subclassProc();
-        
+
         _icon.loadImage(m_hInstance, IDI_CHAT, 64, 64);
         return  bRet;
     }
-    
+
     virtual BOOL onPaint()
-	{
-		PAINTSTRUCT ps;
-		HDC hdc;
-		hdc = BeginPaint(m_hSelf, &ps);
+    {
+        PAINTSTRUCT ps;
+        HDC hdc;
+        hdc = BeginPaint(m_hSelf, &ps);
 
         RECT rc;
 
@@ -43,47 +43,47 @@ public:
 
         EndPaint(m_hSelf, &ps);
 
-		return FALSE;
+        return FALSE;
 
     }
-    
+
 private:
     huys::Color _clrTextTitle;
     huys::Color _clrTextDetail;
-    
+
     huys::Color _clrBackground;
-    
+
     huys::ADT::UStringAnsi _strTitle;
     huys::ADT::UStringAnsi _strDetail;
-    
+
     UIcon _icon;
 private:
-    enum BackFillMode { 
+    enum BackFillMode {
         HVistaGradient,
         HGradient,
         VGradient
     };
-    
+
     void onDraw(HDC hdc, LPRECT lpRect)
     {
         // background
         DrawGradientFill(hdc, lpRect, HGradient);
-        
+
         //
         //RECT rc = {5, 5, 5+128, 5+128};
         //pic.show(hdc, &rc);
         _icon.drawEx(hdc, 5, 5, 64, 64);
     }
-    
+
     //
     // Draw the Inside Gradient.
     //
     void DrawGradientFill(HDC hDCMem, LPRECT lpRect, BackFillMode FillMode)
     {
-    	huys::Color m_crA = RGB(9, 74, 116);
-        huys::Color m_crB = RGB(32, 121, 140); 
+        huys::Color m_crA = RGB(9, 74, 116);
+        huys::Color m_crB = RGB(32, 121, 140);
         huys::Color m_crC = RGB(5, 111, 90);
-    
+
         TRIVERTEX rcVertex[4];
         rcVertex[0].x=lpRect->left;
         rcVertex[0].y=lpRect->top;
@@ -118,7 +118,7 @@ private:
         grect.LowerRight=1;
 
         ::GradientFill( hDCMem ,rcVertex,2,&grect,1,
-		(FillMode == HGradient) ? GRADIENT_FILL_RECT_H :  GRADIENT_FILL_RECT_V);
+        (FillMode == HGradient) ? GRADIENT_FILL_RECT_H :  GRADIENT_FILL_RECT_V);
 
         ::GradientFill( hDCMem ,&rcVertex[2],2,&grect,1,
             (FillMode == HGradient) ? GRADIENT_FILL_RECT_H :  GRADIENT_FILL_RECT_V);
