@@ -69,7 +69,7 @@ BOOL UContactListBox::onDrawItem(WPARAM wParam, LPARAM lParam)
     case ODA_DRAWENTIRE:
         // Display the image associated with the item.
         ppic =(UPicture *)::SendMessage(lpDrawItem->hwndItem,
-        LB_GETITEMDATA, lpDrawItem->itemID, (LPARAM) 0);
+            LB_GETITEMDATA, lpDrawItem->itemID, (LPARAM) 0);
         if (0 != ppic)
         {
             ppic->show(hdc, &rcPic);
