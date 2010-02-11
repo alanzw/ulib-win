@@ -43,6 +43,11 @@ BOOL UIcon::draw( HWND hwnd, const POINT *pt )
     return draw(hwnd, pt->x, pt->y);
 }
 
+BOOL UIcon::drawEx(HDC hdc, int x, int y, int cx, int cy)
+{
+    return ::DrawIconEx(hdc, x, y, (HICON)m_hObj, cx, cy, 0, NULL, DI_NORMAL | DI_COMPAT);
+}
+
 HICON UIcon::getHICON()
 {
     return (HICON)m_hObj;

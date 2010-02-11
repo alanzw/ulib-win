@@ -1,19 +1,14 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+#
+include $(TOPDIR)/make.inc
 
 #
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin -lmsimg32  -lshlwapi  -luuid -lole32 -loleaut32
 CFLAGS +=
-CXXFLAGS += 
-INC = -I"../../inc"
-LIB = -L"../../lib" -mwindows -luwin
+CXXFLAGS += -DBUILD_EXE
 
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
 #
 OBJ = test_static.o
 
@@ -24,18 +19,18 @@ RES = ${RC:.rc=.res}
 HEADER = $(INCDIR)/ucontrol.h \
 		 $(INCDIR)/ustatic.h \
 		 $(INCDIR)/udialog.h \
-		 ulcd.h
+		 ulcd.h \
+		 uled.h \
+		 uhistogram.h \
+		 uinfobar.h   \
+
 #
 all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB)
+	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
-
-#
-test_static.o : test_static.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
 
 #
 .PHONY : clean

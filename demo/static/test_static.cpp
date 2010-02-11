@@ -1,3 +1,5 @@
+#define  WINVER   0x0501
+
 #include "resource.h"
 
 #include <windows.h>
@@ -16,6 +18,8 @@
 #include "ulcd.h"
 #include "uled.h"
 #include "uhistogram.h"
+#include "uinfobar.h"
+
 
 using huys::UDialogBox;
 
@@ -108,7 +112,7 @@ private:
         RECT rc;
         ::GetWindowRect(m_hSelf, &rc);
         ::ScreenToClient(m_hParent,(LPPOINT) &rc);
-		//::ScreenToClient(m_hParent,(LPPOINT) (&rc+1));
+        //::ScreenToClient(m_hParent,(LPPOINT) (&rc+1));
         ::InvalidateRect(m_hParent, &rc, TRUE);
         ::UpdateWindow(m_hParent);
     }
@@ -137,11 +141,11 @@ public:
         return  bRet;
     }
 
-	virtual BOOL onPaint()
-	{
-		PAINTSTRUCT ps;
-		HDC hdc;
-		hdc = BeginPaint(m_hSelf, &ps);
+    virtual BOOL onPaint()
+    {
+        PAINTSTRUCT ps;
+        HDC hdc;
+        hdc = BeginPaint(m_hSelf, &ps);
 
         RECT rc;
 
@@ -176,9 +180,9 @@ public:
         FillSolidRect(hdc, x + cx, y, -1, cy, loCol);
         FillSolidRect(hdc, x, y + cy, cx, -1, loCol);
 
-		EndPaint(m_hSelf, &ps);
+        EndPaint(m_hSelf, &ps);
 
-		return FALSE;
+        return FALSE;
 
     }
 private:
@@ -278,6 +282,12 @@ public:
 
         m_hist->create();
 
+
+        m_infobar = new UInfoBar(m_hDlg);
+        m_infobar->setPos(5, 350, 520, 120);
+        //m_infobar->setStyles(WS_BORDER);
+        m_infobar->create();
+
         return TRUE;
     }
 
@@ -333,6 +343,8 @@ public:
     huys::ADT::UAutoPtr<UTransStatic> m_pTrans;
 
     huys::ADT::UAutoPtr<UHistogramCtrl> m_hist;
+
+    huys::ADT::UAutoPtr<UInfoBar> m_infobar;
 
     HBRUSH m_hBkBrush;
 };
