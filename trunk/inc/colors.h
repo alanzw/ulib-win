@@ -90,6 +90,9 @@ const COLORREF darkorchid     = RGB(0x99, 0x32, 0xCC);
 const COLORREF indigo         = RGB(0x4B, 0x00, 0x82);
 
 const COLORREF xpblue         = RGB(0x64, 0x95, 0xED);
+
+const COLORREF darkgreen      = RGB(0x00, 0x64, 0x00);
+const COLORREF seagreen       = RGB(0x2E, 0x8B, 0x57);
 };
 
 #endif //COLORS_H

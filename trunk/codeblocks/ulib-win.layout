@@ -19,8 +19,8 @@
 	<File name="..\inc\ufont.h" open="0" top="0" tabpos="0">
 		<Cursor position="695" topLine="22" />
 	</File>
-	<File name="..\inc\ugdi.h" open="0" top="0" tabpos="2">
-		<Cursor position="2179" topLine="7" />
+	<File name="..\inc\ugdi.h" open="1" top="0" tabpos="2">
+		<Cursor position="2179" topLine="42" />
 	</File>
 	<File name="..\inc\uicon.h" open="0" top="0" tabpos="0">
 		<Cursor position="356" topLine="4" />
@@ -94,8 +94,8 @@
 	<File name="..\src\ulistview.cpp" open="0" top="0" tabpos="21">
 		<Cursor position="2920" topLine="99" />
 	</File>
-	<File name="..\src\umsg.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="245" topLine="9" />
+	<File name="..\src\umsg.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="7193" topLine="272" />
 	</File>
 	<File name="..\src\upanel.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="2246" topLine="98" />

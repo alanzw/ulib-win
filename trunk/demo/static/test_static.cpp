@@ -10,9 +10,12 @@
 
 #include "colors.h"
 
+#include "adt/uautoptr.h"
+
 //
 #include "ulcd.h"
 #include "uled.h"
+#include "uhistogram.h"
 
 using huys::UDialogBox;
 
@@ -203,26 +206,13 @@ class UDialogExt : public UDialogBox
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-          m_pSubStatic(NULL),
-          m_pIconStatic(NULL),
-          m_pBevelLine(NULL),
-          m_pLCDCtrl(NULL),
-          m_pLEDCtrl(NULL),
-          m_pTrans(NULL)
+        : UDialogBox(hInst, nID)
     {
-        m_hBkBrush = (HBRUSH)::CreateSolidBrush(huys::green);
+        m_hBkBrush = (HBRUSH)::CreateSolidBrush(huys::xpblue);
     }
 
     ~UDialogExt()
     {
-        CHECK_PTR(m_pSubStatic);
-        CHECK_PTR(m_pIconStatic);
-        CHECK_PTR(m_pBevelLine);
-        CHECK_PTR(m_pLCDCtrl);
-        CHECK_PTR(m_pLEDCtrl);
-        CHECK_PTR(m_pTrans);
-
         if (m_hBkBrush)
             ::DeleteObject(m_hBkBrush);
     }
@@ -268,6 +258,25 @@ public:
         m_pLEDCtrl->setStyles(WS_BORDER | WS_THICKFRAME);
         m_pLEDCtrl->create();
         m_pLEDCtrl->setPosition(&rcLED);
+
+        m_hist = new UHistogramCtrl(m_hDlg);
+        m_hist->setPos(20, 240, 200, 80);
+        m_hist->setStyles(WS_BORDER);
+
+        POINT pts[] = {
+            {10, 20},
+            {15, 10},
+            {20, 30},
+            {40, 40},
+            {50, 70},
+            {60, 40},
+            {70, 75},
+            {80, 50}
+        };
+
+        m_hist->addPos(pts, 8);
+
+        m_hist->create();
 
         return TRUE;
     }
@@ -316,12 +325,14 @@ public:
         return FALSE;
     }
  private:
-    USubStatic *m_pSubStatic;
-    UIconStatic *m_pIconStatic;
-    UBevelLine *m_pBevelLine;
-    ULCDCtrl *m_pLCDCtrl;
-    ULEDCtrl *m_pLEDCtrl;
-    UTransStatic *m_pTrans;
+    huys::ADT::UAutoPtr<USubStatic> m_pSubStatic;
+    huys::ADT::UAutoPtr<UIconStatic> m_pIconStatic;
+    huys::ADT::UAutoPtr<UBevelLine> m_pBevelLine;
+    huys::ADT::UAutoPtr<ULCDCtrl> m_pLCDCtrl;
+    huys::ADT::UAutoPtr<ULEDCtrl> m_pLEDCtrl;
+    huys::ADT::UAutoPtr<UTransStatic> m_pTrans;
+
+    huys::ADT::UAutoPtr<UHistogramCtrl> m_hist;
 
     HBRUSH m_hBkBrush;
 };

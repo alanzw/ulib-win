@@ -2,7 +2,7 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
 		<Project filename="ulib-win.cbp" />
-		<Project filename="static.cbp">
+		<Project filename="static.cbp" active="1">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="calc.cbp">
@@ -55,7 +55,7 @@
 		<Project filename="mytree.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="timer.cbp" active="1">
+		<Project filename="timer.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 	</Workspace>
