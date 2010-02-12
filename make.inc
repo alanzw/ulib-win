@@ -124,5 +124,5 @@ DOCDIR = $(TOPDIR)/doc
 LIBDIR = $(TOPDIR)/lib
 #
 #
-%.o : %.cpp $(HEADER)
+%.o : %.cpp $(HEADERS)
 	$(CXX) -c -o $@ $< $(CXXFLAGS) $(INCS)

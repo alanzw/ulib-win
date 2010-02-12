@@ -118,6 +118,7 @@ public:
 
         m_pRoundBtn = new URoundButton(m_hDlg, IDC_BN_ROUND, m_hInst);
         m_pRoundBtn->setPos(680, 250, 50, 50);
+        m_pRoundBtn->setColorFocusCircle(huys::blue);
         m_pRoundBtn->create();
         m_pRoundBtn->resize();
         m_pRoundBtn->setWindowText(_T("P"));
@@ -213,7 +214,8 @@ private:
         }
         else
         {
-            m_pImageBtn->setAlignMode(UImageButton::TEXT_INCLUDE | UImageButton::IMAGE_RIGHT | UImageButton::IMAGE_VCENTER);
+            m_pImageBtn->setAlignMode(UImageButton::TEXT_INCLUDE | 
+                UImageButton::IMAGE_RIGHT | UImageButton::IMAGE_VCENTER);
         }
         bFlag = !bFlag;
         m_pImageBtn->reset();

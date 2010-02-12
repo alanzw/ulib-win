@@ -22,7 +22,7 @@ public:
     //
     operator HBITMAP ()
     {
-        return m_hBitmap;
+        return (HBITMAP)m_hObj;
     }
 
     //
@@ -31,7 +31,10 @@ public:
         return m_bi;
     }
 
-    HBITMAP getHandle() const {return m_hBitmap;}
+    //HBITMAP getHandle() {return m_hObj;}
+
+    //
+    BOOL create(int nWidth, int nHeight, UINT cPlanes, UINT cBitsPerPel, const void * lpvBits);
 
     //
     BOOL show(HDC &hdc, RECT &rc);
@@ -39,14 +42,22 @@ public:
     BOOL showTransparent(HDC &hdc, RECT &rc);
 
     //
+    BOOL showExtend(HDC hdc, LPRECT lpRect, int nX, int nY);
+    
+    //
     BOOL createMappedBitmap(HINSTANCE hInst, UINT uImageID, huys::Color clrFrom, huys::Color clrTo);
     BOOL copyImage(HBITMAP hBitmap);
 
     BOOL destroyBitmap();
+    
+    HRGN convert2Rgn(COLORREF cTransparentColor, COLORREF cTolerance);
+    
+public:
+
 protected:
     LONG m_Height;
     LONG m_Width;
-    HBITMAP m_hBitmap;
+    //HBITMAP m_hObj;
     BITMAP m_bi;
     HBITMAP m_hOldBitmap;
     HPALETTE m_hPalette;

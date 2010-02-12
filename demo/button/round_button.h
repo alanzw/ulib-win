@@ -7,6 +7,7 @@
 #include <cstdlib>
 
 #include "uregion.h"
+#include "colors.h"
 
 #define min(X,Y) ((X) < (Y) ?  (X) : (Y))
 
@@ -14,8 +15,11 @@ class URoundButton : public UOwnerDrawnButton
 {
 public:
     URoundButton(HWND hParent, UINT nResource, HINSTANCE hInst)
-    : UOwnerDrawnButton(hParent, nResource, hInst)
-    {}
+    : UOwnerDrawnButton(hParent, nResource, hInst),
+      m_clrFocusCircle(huys::black),
+      m_clrBackground(::GetSysColor(COLOR_BTNFACE))
+    {
+    }
 
     virtual ~URoundButton()
     {}
@@ -69,24 +73,30 @@ public:
 
         HANDLE hObject = ::GetStockObject(NULL_BRUSH);
         HANDLE hOldObject = ::SelectObject(hdc, hObject);
-        ::SetBkColor(hdc, ::GetSysColor(COLOR_BTNFACE));
+        ::SetBkColor(hdc, m_clrBackground);
         ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rc, NULL, 0, NULL);
 
         // Draw the focus circle around the button
         if ((state & ODS_FOCUS) && m_bDrawDashedFocusCircle)
-            DrawCircle(hdc, m_ptCenter, nRadius--, RGB(0,0,0));
+            DrawCircle(hdc, m_ptCenter, nRadius--, m_clrFocusCircle);
 
         // Draw the raised/sunken edges of the button (unless flat)
-        if (nStyle & BS_FLAT) {
+        if (nStyle & BS_FLAT)
+        {
             DrawCircle(hdc, m_ptCenter, nRadius--, RGB(0,0,0));
             DrawCircle(hdc, m_ptCenter, nRadius--, ::GetSysColor(COLOR_3DHIGHLIGHT));
-        } else {
-            if ((state & ODS_SELECTED))    {
+        }
+        else
+        {
+            if ((state & ODS_SELECTED))
+            {
                 DrawCircle(hdc, m_ptCenter, nRadius--,
                        ::GetSysColor(COLOR_3DDKSHADOW), ::GetSysColor(COLOR_3DHIGHLIGHT));
                 DrawCircle(hdc, m_ptCenter, nRadius--,
                        ::GetSysColor(COLOR_3DSHADOW), ::GetSysColor(COLOR_3DLIGHT));
-            } else {
+            }
+            else
+            {
                 DrawCircle(hdc, m_ptCenter, nRadius--,
                        ::GetSysColor(COLOR_3DHIGHLIGHT), ::GetSysColor(COLOR_3DDKSHADOW));
                 DrawCircle(hdc, m_ptCenter, nRadius--,
@@ -127,11 +137,17 @@ public:
 
         // Draw the focus circle on the inside of the button
         if ((state & ODS_FOCUS) && m_bDrawDashedFocusCircle)
-            DrawCircle(hdc, m_ptCenter, nRadius-2, RGB(0,0,0), TRUE);
+            DrawCircle(hdc, m_ptCenter, nRadius-2, m_clrFocusCircle, TRUE);
 
         ::RestoreDC(hdc, nSavedDC);
         return TRUE;
         UNREFERENCED_LOCAL_VARIABLE(hOldObject);
+    }
+
+    //
+    void setColorFocusCircle(huys::Color clr)
+    {
+        m_clrFocusCircle = clr;
     }
 private:
     URegion m_rgn;
@@ -139,6 +155,8 @@ private:
     LONG m_nRadius;
     BOOL   m_bDrawDashedFocusCircle;
 
+    huys::Color m_clrFocusCircle;
+    huys::Color m_clrBackground;
 private:
 
 

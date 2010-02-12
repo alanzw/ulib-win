@@ -10,14 +10,21 @@ CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 
 #
-OBJ = test_button.o
+OBJ = test_button.o    \
+      color_button.o   \
+
 BIN = test_button.exe
 RC  = button.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/ucontrol.h \
-		 $(INCDIR)/ubutton.h \
-		 $(INCDIR)/udialog.h
+HEADERS = $(INCDIR)/ucontrol.h \
+		  $(INCDIR)/ubutton.h  \
+		  $(INCDIR)/udialog.h  \
+		  round_button.h       \
+          color_button.h       \
+          cool_button.h        \
+          imagebutton.h        \
+
 #
 all: $(BIN)
 
