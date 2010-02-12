@@ -14,6 +14,7 @@
 #include "umsg.h"
 #include "ubitmap.h"
 #include "uicon.h"
+#include "ustatic.h"
 
 #include "cool_button.h"
 #include "imagebutton.h"
@@ -21,6 +22,78 @@
 #include "pulse_button.h"
 
 #include "adt/uautoptr.h"
+
+class USkinStatic : public UStatic
+{
+public:
+    USkinStatic(HWND hParent, UINT nBitmap)
+        : UStatic(hParent, IDC_STATIC, ::GetModuleHandle(NULL))
+    {
+        m_dwStyles &= ~SS_SIMPLE;
+        _ubm.loadFromResource(nBitmap, m_hInstance);
+    }
+
+    virtual BOOL create()
+    {
+        BOOL bRet = UStatic::create();
+        this->subclassProc();
+        return  bRet;
+    }
+
+    BOOL onPaint()
+    {
+    //!! BeginPaint will eat previous control text drawing or other actions
+        PAINTSTRUCT ps;
+        HDC hdc;
+        hdc = BeginPaint(m_hSelf, &ps);
+    ////hdc = ::GetDC(m_hSelf);
+        onDraw(hdc);
+
+    ////::ReleaseDC(m_hSelf, hdc);
+        EndPaint(m_hSelf, &ps);
+        return FALSE;
+    }
+//private:
+protected:
+    virtual void onDraw(HDC hdc)
+    {
+        RECT rc;
+        this->getClientRect(&rc);
+
+        _ubm.showStretch(hdc, rc);
+    }
+
+private:
+    UBitmap _ubm;
+};
+
+class USkinStatusBar : public USkinStatic
+{
+public:
+    USkinStatusBar(HWND hParent, UINT nBitmap)
+    : USkinStatic(hParent, nBitmap)
+    {}
+
+    BOOL loadBmpSB(UINT nBitmap, HINSTANCE hInst = ::GetModuleHandle(NULL))
+    {
+        return _ubmSB.loadFromResource(nBitmap, hInst);
+    }
+
+private:
+    UBitmap _ubmSB;
+private:
+    void onDraw(HDC hdc)
+    {
+        USkinStatic::onDraw(hdc);
+
+        if (!_ubmSB.isNull())
+        {
+            _ubmSB.drawImage(hdc, 5, 5, 0, 0, 4, 3);
+            _ubmSB.drawImage(hdc, 25, 5, 0, 1, 4, 3);
+            _ubmSB.drawImage(hdc, 45, 5, 0, 2, 4, 3);
+        }
+    }
+};
 
 using huys::UDialogBox;
 
@@ -127,6 +200,15 @@ public:
         m_pPulseBtn->setPos(680, 100, 50, 50);
         m_pPulseBtn->create();
         m_pPulseBtn->setWindowText(_T("CC"));
+
+        m_skinStatic = new USkinStatic(m_hDlg, IDB_STATUSBAR);
+        m_skinStatic->setPos(20, 400, 100, 27);
+        m_skinStatic->create();
+
+        m_skinStatusBar = new USkinStatusBar(m_hDlg, IDB_STATUSBAR);
+        m_skinStatusBar->setPos(150, 400, 100, 27);
+        m_skinStatusBar->loadBmpSB(IDB_STATUSTOOLBAR);
+        m_skinStatusBar->create();
         return TRUE;
     }
 
@@ -204,6 +286,9 @@ private:
     huys::ADT::UAutoPtr<UImageButton> m_pImageBtn;
     huys::ADT::UAutoPtr<URoundButton> m_pRoundBtn;
     huys::ADT::UAutoPtr<UPulseButton> m_pPulseBtn;
+
+    huys::ADT::UAutoPtr<USkinStatic> m_skinStatic;
+    huys::ADT::UAutoPtr<USkinStatusBar> m_skinStatusBar;
 private:
     BOOL onBnImage()
     {
@@ -214,7 +299,7 @@ private:
         }
         else
         {
-            m_pImageBtn->setAlignMode(UImageButton::TEXT_INCLUDE | 
+            m_pImageBtn->setAlignMode(UImageButton::TEXT_INCLUDE |
                 UImageButton::IMAGE_RIGHT | UImageButton::IMAGE_VCENTER);
         }
         bFlag = !bFlag;

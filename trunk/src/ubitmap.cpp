@@ -250,6 +250,35 @@ BOOL UBitmap::showTransparent(HDC &hdc, RECT &rc)
     return TRUE;
 }
 
+BOOL UBitmap::drawImage(HDC hdc, int x, int y, int nX, int nY, int nCol, int nRow)
+{
+    //nX-=1;
+	//nY-=1;
+	//
+	int w = getWidth()/nCol;
+	int h = getHeight()/nRow;
+    
+	HDC hMemDC = ::CreateCompatibleDC(hdc);
+	m_hOldBitmap = (HBITMAP)::SelectObject(hMemDC, m_hObj );
+    
+    ::StretchBlt( hdc, 
+                  x,
+                  y,
+                  w,
+                  h,
+                  hMemDC,
+                  w*nX,
+                  h*nY, 
+                  w,
+                  h,
+                  SRCCOPY );
+
+	::SelectObject(hMemDC, m_hOldBitmap);
+
+
+    return TRUE;
+}
+
 BOOL UBitmap::createMappedBitmap(HINSTANCE hInst, UINT uImageID, huys::Color clrFrom, huys::Color clrTo )
 {
     assert(NULL == m_hObj);

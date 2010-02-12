@@ -40,6 +40,9 @@ public:
     BOOL show(HDC &hdc, RECT &rc);
     BOOL showStretch(HDC &hdc, RECT &rc);
     BOOL showTransparent(HDC &hdc, RECT &rc);
+    
+    //
+    BOOL drawImage(HDC hdc, int x, int y, int nX, int nY, int nCol, int nRow);
 
     //
     BOOL showExtend(HDC hdc, LPRECT lpRect, int nX, int nY);

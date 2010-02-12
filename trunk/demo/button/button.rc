@@ -13,6 +13,9 @@ IDB_NORMAL          BITMAP  DISCARDABLE     "s1.bmp"
 IDB_HOVER           BITMAP  DISCARDABLE     "s2.bmp"
 IDB_DOWN            BITMAP  DISCARDABLE     "s3.bmp"
 IDB_IMAGE           BITMAP  DISCARDABLE     "image.bmp"
+
+IDB_STATUSBAR       BITMAP  DISCARDABLE     "StatusBar.bmp"
+IDB_STATUSTOOLBAR   BITMAP  DISCARDABLE     "StatusToolBar.bmp"
 //
 // Dialog resources
 //

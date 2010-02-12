@@ -10,3 +10,6 @@
 #define IDB_HOVER  502
 #define IDB_DOWN   503
 #define IDB_IMAGE  504
+
+#define IDB_STATUSBAR 600
+#define IDB_STATUSTOOLBAR 601
