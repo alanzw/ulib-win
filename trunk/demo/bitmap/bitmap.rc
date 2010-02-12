@@ -17,13 +17,16 @@ IDB_MIN_FOCUS           BITMAP  DISCARDABLE     "min_focu.bmp"
 IDB_MIN_NORMAL          BITMAP  DISCARDABLE     "min_norm.bmp"
 IDB_RESTORE_FOCUS       BITMAP  DISCARDABLE     "res_focu.bmp"
 IDB_RESTORE_NORMAL      BITMAP  DISCARDABLE     "res_norm.bmp"
+IDB_RESTORE_DEACTIVE    BITMAP  DISCARDABLE     "res_deactive.bmp"
 IDB_EXIT_FOCUS          BITMAP  DISCARDABLE     "exit_foc.bmp"
 IDB_EXIT_NORMAL         BITMAP  DISCARDABLE     "exit_nor.bmp"
+
+IDB_BACKGROUND          BITMAP  DISCARDABLE     "leafy.bmp"
 
 //
 // Dialog resources
 //
-IDD_TEST DIALOGEX 0,0,353,199
+IDD_TEST DIALOGEX 0,0,400,400
 STYLE DS_CENTER | DS_SETFONT | WS_CAPTION
 CAPTION "Test_bitmap"
 FONT 8,"MS Shell Dlg",400,0,0

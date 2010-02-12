@@ -14,6 +14,8 @@
 #define IDB_MIN_NORMAL                  134
 #define IDB_RESTORE_FOCUS               135
 #define IDB_RESTORE_NORMAL              136
-#define IDB_EXIT_FOCUS                  137
-#define IDB_EXIT_NORMAL                 138
+#define IDB_RESTORE_DEACTIVE            137
+#define IDB_EXIT_FOCUS                  138
+#define IDB_EXIT_NORMAL                 139
+#define IDB_BACKGROUND                  140
 
