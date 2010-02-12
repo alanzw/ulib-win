@@ -11,6 +11,8 @@
 #include "umsg.h"
 #include "udlgapp.h"
 
+#include "adt/uautoptr.h"
+
 #include "skin.h"
 
 using huys::UDialogBox;
@@ -34,19 +36,10 @@ public:
         IStart( m_hInst, ::GetCurrentThreadId() );
     }
 
-    ~USkinnedDialog()
-    {
-        CHECK_PTR(m_pBnTest);
-        CHECK_PTR(m_pCKTest);
-        CHECK_PTR(m_pRATest);
-        CHECK_PTR(m_pRASecond);
-        CHECK_PTR(m_pGBTest);
-        CHECK_PTR(m_pIconTest);
-        CHECK_PTR(m_pDlgTest);
-    }
-
     virtual BOOL onInit()
     {
+        ::SetWindowText(m_hDlg, "test_skindlg");
+    
         m_pBnTest = new UButton(m_hDlg, IDC_BUTTON_UE, m_hInst);
         m_pBnTest->setStyles(WS_TABSTOP);
         m_pBnTest->setPos(20, 60, 90, 100);
@@ -100,6 +93,22 @@ public:
     virtual BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
     {
         ::PostMessage(m_hDlg, WM_NCLBUTTONDOWN, (WPARAM)HTCAPTION, (LPARAM)lParam);
+        
+        POINT pt = {
+            GET_X_LPARAM(lParam),
+            GET_Y_LPARAM(lParam)
+        };
+        
+        if (PtInRect(&rtExitButton, pt))
+        {
+            return this->onClose();
+        }
+        
+        if (PtInRect(&rtMinButton, pt))
+        {
+            return ::ShowWindow(m_hDlg, SW_MINIMIZE);
+        }        
+        
         return UDialogBox::onLButtonDown(wParam, lParam);
     }
 
@@ -176,20 +185,22 @@ public:
 private:
     HMODULE m_hDll;
     HRSRC m_hRes;
-    UButton *m_pBnTest;
-    UCheckButton *m_pCKTest;
-    URadioButton *m_pRATest;
-    URadioButton *m_pRASecond;
-    UGroupBox *m_pGBTest;
-    UIconButton *m_pIconTest;
+    huys::ADT::UAutoPtr<UButton> m_pBnTest;
+    huys::ADT::UAutoPtr<UCheckButton> m_pCKTest;
+    huys::ADT::UAutoPtr<URadioButton> m_pRATest;
+    huys::ADT::UAutoPtr<URadioButton> m_pRASecond;
+    huys::ADT::UAutoPtr<UGroupBox> m_pGBTest;
+    huys::ADT::UAutoPtr<UIconButton> m_pIconTest;
 
     UDialogBox * m_pDlgTest;
-
+    RECT rtMinButton, rtMaxButton, rtExitButton;
+    //RECT rtWnd, rtTitle, rtButtons;
+private:
     void drawTitleBar()
     {
         HDC hdc = GetWindowDC(m_hDlg);
 
-        RECT rtMinButton, rtMaxButton, rtExitButton;
+        //RECT rtMinButton, rtMaxButton, rtExitButton;
 
         HBRUSH hBrush, hOldBrush;
         hBrush = ::CreateSolidBrush(RGB(0,100,255));
@@ -258,8 +269,6 @@ private:
 
         ::SelectObject(hDisplayMemDC, hOldBitmap);
         ::DeleteObject(hBitmap);
-
-
 
         //button
         rtButtons = rtMinButton;
