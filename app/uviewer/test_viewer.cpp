@@ -8,6 +8,14 @@
 #include "ubitmap.h"
 #include "ulistbox.h"
 #include "umsg.h"
+#include "ustatic.h"
+
+#include "ucommondialog.h"
+
+#include "upicture.h"
+
+#include "adt/uautoptr.h"
+#include "adt/ustring.h"
 
 using huys::UDialogBox;
 
@@ -16,11 +24,6 @@ class UDialogViewer : public UDialogBox
 public:
     UDialogViewer(HINSTANCE hInst, UINT nID)
     : UDialogBox(hInst, nID) {}
-
-    ~UDialogViewer()
-    {
-        CHECK_PTR(m_pBack);
-    }
 
     BOOL onInit()
     {
@@ -45,11 +48,17 @@ public:
         {
             return this->onSelChange();
         }
+        
+        if (IDC_BN_LOAD == LOWORD(wParam))
+        {
+            return this->onBnLoad();
+        }
 
         return UDialogBox::onCommand(wParam, lParam);
     }
 private:
-    UBitmap *m_pBack;
+    huys::ADT::UAutoPtr<UBitmap> m_pBack;
+    UPicture pic;
 
     BOOL onSelChange()
     {
@@ -57,8 +66,23 @@ private:
         UListBox ulb;
         ulb.fromID(m_hDlg, IDC_LIST_IMAGES);
         ulb.getText(ulb.getCurSel(), buf);
-        showMsg(buf, "info", m_hDlg);
+        //showMsg(buf, "info", m_hDlg);
+        
+        showPicture(buf);
+
         return FALSE;
+    }
+    
+    void showPicture(LPCTSTR sPath)
+    {
+        pic.load(sPath);
+        HDC hdc = ::GetDC(m_hDlg);
+        RECT rc;
+        UStatic ustatic;
+        ustatic.fromID(m_hDlg, IDC_STATIC_IMAGE);
+        ustatic.getClientRect(&rc);
+        ustatic.clientToDialog(m_hDlg, &rc);
+        pic.show(hdc, &rc); 
     }
 
     BOOL addFilenames()
@@ -72,10 +96,9 @@ private:
         ::GetCurrentDirectory(MAX_PATH, cdir);
         //int length = strlen(dir);
         ZeroMemory(dirs, sizeof(dirs));
-        strcpy(dirs, cdir);
-        strcat(dirs, "\\*.bmp");
-        //wsprintf(dirs, "%s\%s; %s\%s; %s\%s",
-        //    cdir, "*.bmp", "", "*.jpg", cdir, "*.ico");
+        //strcpy(dirs, cdir);
+        //strcat(dirs, "\\*.bmp|*.jpg");
+        wsprintf(dirs, "%s\\%s", cdir, "*.bmp");
 
         WIN32_FIND_DATA findData;
         HANDLE hFind = INVALID_HANDLE_VALUE;
@@ -101,6 +124,20 @@ private:
         }
 
         FindClose(hFind);
+        return TRUE;
+    }
+    
+    BOOL onBnLoad()
+    {
+        UCommonDialog::UFileDialog filedlg(m_hDlg);
+        if (filedlg.open())
+        {
+            //UListBox ulb;
+            //ulb.fromID(m_hDlg, IDC_LIST_IMAGES);
+            //ulb.addString(filedlg.getName());
+            showPicture(filedlg.getName());
+        }
+    
         return TRUE;
     }
 };

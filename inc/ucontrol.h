@@ -38,6 +38,7 @@ public:
     HINSTANCE getHInstance() const {return m_hInstance;}
     UINT getResID() const {return m_nResourceID;}
     BOOL getClientRect(RECT *rc);
+    void clientToDialog(HWND hDlg, LPRECT lpRect);
 
     //
     BOOL setPosition(const RECT *rect);
