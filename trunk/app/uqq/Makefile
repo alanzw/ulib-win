@@ -5,7 +5,7 @@ include $(TOPDIR)/make.inc
 
 #
 INCS = -I"$(TOPDIR)/inc"
-LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin -lshlwapi  -luuid -lole32 -loleaut32
+LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin
 CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 
@@ -20,7 +20,7 @@ RES = ${RC:.rc=.res}
 #
 HEADER = $(INCDIR)/udialogx.h \
          ContactListBox.h     \
-         upicture.h  \
+         $(INCDIR)/upicture.h  \
 
 #
 all: $(BIN)

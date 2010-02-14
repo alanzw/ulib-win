@@ -280,6 +280,14 @@ BOOL UControl::getClientRect( RECT *rc )
     return TRUE;
 }
 
+void UControl::clientToDialog(HWND hDlg, LPRECT lpRect)
+{
+    ::ClientToScreen(m_hSelf, (LPPOINT)lpRect);
+    ::ClientToScreen(m_hSelf, ((LPPOINT)lpRect)+1);
+    ::ScreenToClient(hDlg, (LPPOINT)lpRect);
+    ::ScreenToClient(hDlg, ((LPPOINT)lpRect)+1);
+}
+
 // TODO: fix me!
 UControl * UControl::fromHandle( HWND hwnd )
 {

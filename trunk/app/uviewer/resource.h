@@ -9,3 +9,4 @@
 
 #define IDC_LIST_IMAGES                   1001
 #define IDC_STATIC_IMAGE                  1002
+#define IDC_BN_LOAD                       2001
