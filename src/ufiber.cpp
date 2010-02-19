@@ -49,7 +49,7 @@ void UFiber::attach(LPVOID p)
 
 LPVOID UFiber::detach()
 {
-    LPVOID result = _fiber; 
+    LPVOID result = _fiber;
     _fiber = NULL;
     return result;
 }

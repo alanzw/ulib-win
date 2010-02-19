@@ -129,6 +129,7 @@ SUBDIRS = \
           propsheet   \
           deviceman   \
           cpl         \
+          wnet        \
 
 #
 all:
