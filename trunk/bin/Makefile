@@ -1,16 +1,7 @@
 #
-include ../make.inc
-
+TOPDIR = ..
 #
-SRCDIR = ../src
-INCDIR = ../inc
-OBJDIR = ../obj
-BINDIR = ../bin
-LIBDIR = ../lib
-RESDIR = ../res
-
-DEMODIR = ../demo
-DOCDIR  = ../doc
+include $(TOPDIR)/make.inc
 
 #
 all :
