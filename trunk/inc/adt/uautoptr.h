@@ -96,7 +96,7 @@ public:
 private:
     TypePtr _p;
 private:
-    UAutoPtr& operator= (UAutoPtr& rhs) const;
+    //UAutoPtr& operator= (UAutoPtr& rhs) const;
 
 };
 

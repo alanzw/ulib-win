@@ -23,12 +23,8 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB) $(RES)
+	$(CXX) -o $(BIN) $^ $(LIBS) $(RES)
 	cp -v $@ $(BINDIR)/$@
-
-#
-test_tabctrl.o : test_tabctrl.cpp $(HEADER)
-	$(CXX) -c -DBUILD_EXE -o $@ $< $(CXXFLAGS) $(INC)
 
 .PHONY : test
 test :

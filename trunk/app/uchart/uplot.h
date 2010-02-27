@@ -25,9 +25,16 @@ template <typename T>
 class Plot2D
 {
 public:
+
 private:
     UAxis<T> axis_x;
     UAxis<T> axis_y;
+};
+
+class GridLine
+{
+public:
+
 };
 
 #endif // U_PLOT_H

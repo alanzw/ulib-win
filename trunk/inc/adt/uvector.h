@@ -13,7 +13,11 @@ namespace ADT
 {
 
 using std::allocator;
-using std::max;
+#if (_MSC_VER <= 1200)  // VC6
+
+#else
+  using std::max;
+#endif // (_MSC_VER <= 1200)
 using std::uninitialized_copy;
 using std::uninitialized_fill;
 using std::ostream;

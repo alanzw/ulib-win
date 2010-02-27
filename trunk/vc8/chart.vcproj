@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="tabctrl"
-	ProjectGUID="{7C06D1E1-B5C3-43FD-BCC4-2A83422E432E}"
-	RootNamespace="tabctrl"
+	Name="chart"
+	ProjectGUID="{D0063B80-19E8-4EE9-A83E-A84CBCFF3B7C}"
+	RootNamespace="chart"
 	>
 	<Platforms>
 		<Platform
@@ -17,7 +17,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release\tabctrl"
+			IntermediateDirectory=".\Release"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -42,22 +42,21 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Release/tabctrl.tlb"
+				TypeLibraryName=".\Release/chart.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="../inc"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;BUILD_EXE"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
-				PrecompiledHeaderFile=".\Release/tabctrl.pch"
-				AssemblerListingLocation=".\Release/tabctrl/"
-				ObjectFile=".\Release/tabctrl/"
-				ProgramDataBaseFileName=".\Release/tabctrl/"
+				PrecompiledHeaderFile=".\Release/chart.pch"
+				AssemblerListingLocation=".\Release/"
+				ObjectFile=".\Release/"
+				ProgramDataBaseFileName=".\Release/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -74,11 +73,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\Release/tabctrl.exe"
+				OutputFile=".\Release/chart.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="./Release"
-				ProgramDatabaseFile=".\Release/tabctrl.pdb"
+				ProgramDatabaseFile=".\Release/chart.pdb"
 				SubSystem="2"
 				TargetMachine="1"
 			/>
@@ -94,7 +92,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Release/tabctrl.bsc"
+				OutputFile=".\Release/chart.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -112,7 +110,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory=".\Debug"
-			IntermediateDirectory=".\Debug\tabctrl"
+			IntermediateDirectory=".\Debug/chart"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -137,7 +135,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/tabctrl.tlb"
+				TypeLibraryName=".\Debug/chart.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -148,107 +146,10 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				PrecompiledHeaderFile=".\Debug/tabctrl.pch"
-				AssemblerListingLocation=".\Debug/tabctrl/"
-				ObjectFile=".\Debug/tabctrl/"
-				ProgramDataBaseFileName=".\Debug/tabctrl/"
-				WarningLevel="3"
-				SuppressStartupBanner="true"
-				DebugInformationFormat="4"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1033"
-				AdditionalIncludeDirectories="../res;../ico"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				OutputFile=".\Debug/tabctrl.exe"
-				LinkIncremental="2"
-				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="./Debug"
-				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\Debug/tabctrl.pdb"
-				SubSystem="2"
-				TargetMachine="1"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile=".\Debug/tabctrl.bsc"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Debug-static|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="_DEBUG"
-				MkTypLibCompatible="true"
-				SuppressStartupBanner="true"
-				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/tabctrl.tlb"
-				HeaderFileName=""
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="../inc"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;WITHOUT_DLL"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
-				PrecompiledHeaderFile=".\Debug/tabctrl.pch"
-				AssemblerListingLocation=".\Debug/tabctrl/"
-				ObjectFile=".\Debug/tabctrl/"
-				ProgramDataBaseFileName=".\Debug/tabctrl/"
+				PrecompiledHeaderFile=".\Debug/chart/chart.pch"
+				AssemblerListingLocation=".\Debug/chart/"
+				ObjectFile=".\Debug/chart/"
+				ProgramDataBaseFileName=".\Debug/chart/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -267,13 +168,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="msimg32.lib"
-				OutputFile=".\Debug/tabctrl.exe"
+				OutputFile=".\Debug/chart.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="./Debug"
+				GenerateManifest="false"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\Debug/tabctrl.pdb"
+				ProgramDatabaseFile=".\Debug/chart.pdb"
 				SubSystem="2"
 				TargetMachine="1"
 			/>
@@ -289,7 +190,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Debug/tabctrl.bsc"
+				OutputFile=".\Debug/chart.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -313,7 +214,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="..\demo\tabctrl\test_tabctrl.cpp"
+				RelativePath="..\app\uchart\test_chart.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -332,8 +233,20 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\app\uchart\uchart.cpp"
+				>
 				<FileConfiguration
-					Name="Debug-static|Win32"
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -348,16 +261,36 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\demo\tabctrl\resource.h"
+				RelativePath="..\demo\dialog\resource.h"
+				>
+			</File>
+			<File
+				RelativePath="..\app\uchart\uchart.h"
+				>
+			</File>
+			<File
+				RelativePath="..\app\uchart\udata.h"
+				>
+			</File>
+			<File
+				RelativePath="..\app\uchart\ulegend.h"
+				>
+			</File>
+			<File
+				RelativePath="..\app\uchart\uplot.h"
+				>
+			</File>
+			<File
+				RelativePath="..\app\uchart\usettings.h"
 				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
-			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
+			Filter="ico;cur;bmp;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
 			<File
-				RelativePath="..\demo\tabctrl\tabctrl.rc"
+				RelativePath="..\app\uchart\chart.rc"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -365,7 +298,7 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\demo\tabctrl"
+						AdditionalIncludeDirectories="\ulib-win\app\uchart"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -374,18 +307,13 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\demo\tabctrl"
+						AdditionalIncludeDirectories="\ulib-win\app\uchart"
 					/>
 				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug-static|Win32"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\demo\tabctrl"
-					/>
-				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\demo\dialog\ulib.ico"
+				>
 			</File>
 		</Filter>
 	</Files>

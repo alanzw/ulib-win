@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="gb2312"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="9.00"
 	Name="libuwin_dll"
 	ProjectGUID="{30463FCE-93F2-4F31-BFB5-355DFFB5CC66}"
 	RootNamespace="libuwin_dll"
+	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -67,8 +68,8 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
-				Culture="1033"
-				AdditionalIncludeDirectories="../ico;../res"
+				Culture="2052"
+				AdditionalIncludeDirectories="../res;../ico"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -76,13 +77,15 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib comctl32.lib opengl32.lib glu32.lib msimg32.lib psapi.lib"
-				OutputFile="Debug/libuwin_debug.vc8.dll"
+				OutputFile="Debug/libuwin_debug.vc9.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\Debug/libuwin_debug.vc8.pdb"
-				ImportLibrary="Debug/libuwin_debug.vc8.dll.lib"
+				ProgramDatabaseFile=".\Debug/libuwin_debug.vc9.pdb"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="Debug/libuwin_debug.vc9.dll.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -104,9 +107,6 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -177,6 +177,8 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile=".\Release/libuwin_release.vc8.pdb"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
 				ImportLibrary="Release/libuwin_release.vc8.dll.lib"
 				TargetMachine="1"
 			/>
@@ -199,9 +201,6 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -273,6 +272,8 @@
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\Debug/libuwin_debug.vc8.pdb"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
 				ImportLibrary="Debug/libuwin_debug.vc8.dll.lib"
 				TargetMachine="1"
 			/>
@@ -295,9 +296,6 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -877,6 +875,10 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath=".\resource.h"
+				>
+			</File>
+			<File
 				RelativePath="..\inc\ubasewindow.h"
 				>
 			</File>
@@ -1026,10 +1028,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath="..\res\manifest.xml"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

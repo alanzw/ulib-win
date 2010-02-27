@@ -30,6 +30,9 @@
 // 'this' : used in base member initializer list
 #pragma warning (disable:4355)
 
+//
+#pragma warning (disable:4996)
+
 #endif
 
 /// Force all EXEs/DLLs to use STRICT type checking.

@@ -18,6 +18,11 @@ UChartControl::UChartControl(HWND hParent, UINT nResource, HINSTANCE hInst)
 UChartControl::~UChartControl()
 {}
 
+BOOL UChartControl::create()
+{
+    return UStatic::create() && subclassProc();
+}
+
 BOOL UChartControl::onCtrlColor(WPARAM wParam, LPARAM lParam)
 {
 
@@ -99,3 +104,4 @@ BOOL UChartControl::onEraseBkgnd(HDC hdc)
 
     return TRUE;
 }
+

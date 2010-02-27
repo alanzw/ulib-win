@@ -327,7 +327,7 @@ public:
     UString & format(const T * fmt, ...)
     {
         T buf[4096];
-        T * p;
+        T * p = buf;
         size_type n;
 
         va_list args;
