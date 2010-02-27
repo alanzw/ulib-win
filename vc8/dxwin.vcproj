@@ -4,6 +4,7 @@
 	Version="8.00"
 	Name="dxwin"
 	ProjectGUID="{EE43C4FC-A6CD-4671-8B67-143C711795CA}"
+	RootNamespace="dxwin"
 	>
 	<Platforms>
 		<Platform
@@ -161,7 +162,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
-				Culture="2052"
+				Culture="1033"
 				AdditionalIncludeDirectories="../res;../ico"
 			/>
 			<Tool

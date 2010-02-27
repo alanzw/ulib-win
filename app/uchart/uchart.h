@@ -9,6 +9,7 @@ public:
     UChartControl(HWND hParent, UINT nID, HINSTANCE hInst);
     virtual ~UChartControl();
 
+    BOOL create();
     //
     BOOL onEraseBkgnd(HDC hdc);
 

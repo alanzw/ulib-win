@@ -4,6 +4,7 @@
 	Version="8.00"
 	Name="calc"
 	ProjectGUID="{2FCD3DFB-4467-41C9-B220-93E6B303224E}"
+	RootNamespace="calc"
 	>
 	<Platforms>
 		<Platform
@@ -171,6 +172,7 @@
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="./Debug"
+				GenerateManifest="false"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\Debug/calc.pdb"
 				SubSystem="2"

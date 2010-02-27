@@ -109,6 +109,14 @@ SOURCE=..\demo\dialog\resource.h
 
 SOURCE=..\app\uchart\uchart.h
 # End Source File
+# Begin Source File
+
+SOURCE=..\app\uchart\ulegend.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\app\uchart\uplot.h
+# End Source File
 # End Group
 # Begin Group "Resource Files"
 

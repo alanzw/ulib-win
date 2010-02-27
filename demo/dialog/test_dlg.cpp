@@ -34,9 +34,10 @@ public:
 
     BOOL onInit()
     {
+#if (_MFC_VER > 1200)
         this->modifyExStyles(WS_EX_LAYERED);
         ::SetLayeredWindowAttributes(m_hDlg, 0, 129,LWA_ALPHA);
-
+#endif // (_MFC_VER > 1200)
         HMENU hMenu = GetSystemMenu (m_hDlg, FALSE) ;
 
         AppendMenu (hMenu, MF_SEPARATOR, 0,           NULL) ;
@@ -167,6 +168,7 @@ public:
         HDROP hDropInfo = (HDROP)wParam;
         WORD wNumFilesDropped = ::DragQueryFile(hDropInfo, -1, NULL, 0);
         showMsgFormat(_T("dropfile"), _T("%u"), wNumFilesDropped);
+		return FALSE;
     }
 
     BOOL rotateCaption()
@@ -177,6 +179,7 @@ public:
         sCaption[nLength] = sCaption[0];
         sCaption[nLength+1] = '\0';
         ::SetWindowText(m_hDlg, &sCaption[1]);
+		return FALSE;
     }
 };
 

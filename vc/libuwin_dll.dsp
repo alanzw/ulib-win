@@ -138,6 +138,10 @@ SOURCE=..\src\uedit.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\ufont.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\ugdi.cpp
 # End Source File
 # Begin Source File
@@ -242,6 +246,10 @@ SOURCE=..\inc\uedit.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\inc\ufont.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\inc\ugdi.h
 # End Source File
 # Begin Source File
@@ -308,6 +316,20 @@ SOURCE=..\inc\uworkaround.h
 # Begin Group "Resource Files"
 
 # PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
+# Begin Source File
+
+SOURCE=..\res\u.rc
+
+!IF  "$(CFG)" == "libuwin_dll - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "libuwin_dll - Win32 Debug"
+
+# ADD BASE RSC /l 0x804 /i "\ulib-win\res"
+# ADD RSC /l 0x804 /i "../res" /i "../ico" /i "\ulib-win\res"
+
+!ENDIF 
+
+# End Source File
 # End Group
 # End Target
 # End Project
