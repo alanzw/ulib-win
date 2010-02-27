@@ -96,11 +96,11 @@ UPrinterDialog::UPrinterDialog(HWND hwnd)
     m_pd.hwndOwner   = m_hWnd;
     m_pd.hDevMode    = NULL;     // Don't forget to free or store hDevMode.
     m_pd.hDevNames   = NULL;     // Don't forget to free or store hDevNames.
-    m_pd.Flags       = PD_USEDEVMODECOPIESANDCOLLATE | PD_RETURNDC; 
+    m_pd.Flags       = PD_USEDEVMODECOPIESANDCOLLATE | PD_RETURNDC;
     m_pd.nCopies     = 1;
-    m_pd.nFromPage   = 0xFFFF; 
-    m_pd.nToPage     = 0xFFFF; 
-    m_pd.nMinPage    = 1; 
+    m_pd.nFromPage   = 0xFFFF;
+    m_pd.nToPage     = 0xFFFF;
+    m_pd.nMinPage    = 1;
     m_pd.nMaxPage    = 0xFFFF;
 }
 
@@ -113,6 +113,24 @@ UPrinterDialog::~UPrinterDialog()
 BOOL UPrinterDialog::choose()
 {
     return PrintDlg(&m_pd);
+}
+
+UFindReplaceDialog::UFindReplaceDialog( HWND hOwner )
+{
+    // Initialize FINDREPLACE
+    ZeroMemory(&m_fr, sizeof(m_fr));
+    m_fr.lStructSize = sizeof(m_fr);
+    m_fr.hwndOwner = hOwner;
+    m_fr.lpstrFindWhat = m_buffer;
+    m_fr.wFindWhatLen = 1024;
+    m_fr.Flags = 0;
+}
+
+BOOL UFindReplaceDialog::go( LPCTSTR lpText )
+{
+    lstrcpy(m_buffer, lpText);
+    m_hDlg = FindText(&m_fr);
+    return FALSE;
 }
 
 

@@ -114,6 +114,10 @@ SOURCE=..\src\ucomboboxex.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\ucommondialog.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\uconf.cpp
 # End Source File
 # Begin Source File
@@ -166,6 +170,10 @@ SOURCE=..\src\ulib.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\ulistbox.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\umsg.cpp
 # End Source File
 # Begin Source File
@@ -174,7 +182,15 @@ SOURCE=..\src\uobject.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\uprinter.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\urebar.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\uregkey.cpp
 # End Source File
 # Begin Source File
 
@@ -219,6 +235,10 @@ SOURCE=..\inc\ucombobox.h
 # Begin Source File
 
 SOURCE=..\inc\ucomboboxex.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\ucommondialog.h
 # End Source File
 # Begin Source File
 
@@ -274,6 +294,10 @@ SOURCE=..\inc\ulib.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\inc\ulistbox.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\inc\umsg.h
 # End Source File
 # Begin Source File
@@ -282,7 +306,15 @@ SOURCE=..\inc\uobject.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\inc\uprinter.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\inc\urebar.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\uregkey.h
 # End Source File
 # Begin Source File
 
@@ -325,7 +357,7 @@ SOURCE=..\res\u.rc
 !ELSEIF  "$(CFG)" == "libuwin_dll - Win32 Debug"
 
 # ADD BASE RSC /l 0x804 /i "\ulib-win\res"
-# ADD RSC /l 0x804 /i "../res" /i "../ico" /i "\ulib-win\res"
+# ADD RSC /l 0x804 /i "\ulib-win\res" /i "../res" /i "../ico"
 
 !ENDIF 
 

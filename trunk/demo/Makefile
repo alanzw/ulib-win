@@ -130,6 +130,7 @@ SUBDIRS = \
           deviceman   \
           cpl         \
           wnet        \
+          printer     \
 
 #
 all:

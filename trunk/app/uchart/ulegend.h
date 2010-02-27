@@ -1,9 +1,9 @@
-#ifndef U_LEGEND_H
-#define U_LEGEND_H
+#ifndef U_CHART_LEGEND_H
+#define U_CHART_LEGEND_H
 
 class ULegend
 {
 
 };
 
-#endif // U_LEGEND_H
+#endif // U_CHART_LEGEND_H
