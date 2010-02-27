@@ -3,7 +3,7 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
-Project: "adt"=".\adt.dsp" - Package Owner=<4>
+Project: "adt"=".\algo.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -64,6 +64,18 @@ Package=<4>
 ###############################################################################
 
 Project: "comboboxex"=".\comboboxex.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "commondlg"=".\commondlg.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -151,6 +163,18 @@ Package=<4>
 ###############################################################################
 
 Project: "mesh2d_opengl"=".\mesh2d_opengl.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "printer"=".\printer.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{

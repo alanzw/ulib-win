@@ -47,7 +47,7 @@ int knap(int s, int n)
 int knap2(int T, int n)
 {
     int length = n;
-    int f;
+    //int f;
     int i = n;
     int ans = 0;
     StackInt st;

@@ -17,7 +17,6 @@ public:
     virtual BOOL onCtrlColor(WPARAM wParam, LPARAM lParam);
 
     virtual BOOL onPaint();
-protected:
 private:
     HBRUSH m_hbrush;
 };

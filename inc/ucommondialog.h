@@ -71,7 +71,7 @@ private:
  * @class UPrinterDialog
  * @brief Choose a printer
  */
-class UPrinterDialog
+class ULIB_API UPrinterDialog
 {
 public:
     UPrinterDialog(HWND hwnd);
@@ -84,6 +84,19 @@ public:
 private:
     PRINTDLG m_pd;
     HWND m_hWnd;
+};
+
+class ULIB_API UFindReplaceDialog
+{
+public:
+    UFindReplaceDialog(HWND hOwner);
+
+    BOOL go(LPCTSTR lpText);
+private:
+    FINDREPLACE m_fr;
+    TCHAR m_buffer[1024];
+    HWND m_hDlg;
+
 };
 
 }; // namespace UCommonDialog

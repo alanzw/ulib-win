@@ -2,13 +2,13 @@
 #define U_PLOT_H
 
 template <typename T, int dim>
-struct UPOSITION
+struct UPosition
 {
     T val[dim];
 };
 
 template <typename TV>
-struct UAxis
+struct UAxisData
 {
     TV start;
     TV end;
@@ -19,6 +19,13 @@ struct UAxis
 struct UTitle
 {
     TCHAR *lpText;
+    UPosition<long, 2> pos; 
+};
+
+struct ULabel
+{
+    long tick;
+    long start;
 };
 
 template <typename T>
@@ -27,14 +34,11 @@ class Plot2D
 public:
 
 private:
-    UAxis<T> axis_x;
-    UAxis<T> axis_y;
-};
+    UAxisData<T> axis_x;
+    UAxisData<T> axis_y;
 
-class GridLine
-{
-public:
-
+    UTitle _title_x;
+    UTitle _title_y;
 };
 
 #endif // U_PLOT_H

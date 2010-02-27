@@ -1,6 +1,7 @@
 #ifndef U_VECTOR_H
 #define U_VECTOR_H
 
+#define NOMINMAX
 #include <memory>
 #include <algorithm>
 #include <iostream>
@@ -14,10 +15,11 @@ namespace ADT
 
 using std::allocator;
 #if (_MSC_VER <= 1200)  // VC6
-
+   #define max(x, y) std::_cpp_max(x,y)
 #else
   using std::max;
 #endif // (_MSC_VER <= 1200)
+
 using std::uninitialized_copy;
 using std::uninitialized_fill;
 using std::ostream;
@@ -112,6 +114,15 @@ public:
         value_type temp = back();
         cutTo(size()-1);
         return temp;
+    }
+
+    void append(const_iterator start, const_iterator end)
+    {
+        const_iterator it = start;
+        for (; it!=end; ++it)
+        {
+            push_back(*start);
+        }
     }
 
     reference_type at(size_type n)
@@ -228,7 +239,7 @@ private:
 
     void create(const_iterator begin, const_iterator end)
     {
-        data = alloc.allocate(end-begin);
+        data = alloc.allocate(end-begin, 0);
         limit = avail = uninitialized_copy(begin, end, data);
     }
 
