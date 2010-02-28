@@ -28,7 +28,8 @@ class UDialogChart : public UDialogBox
     };
 public:
     UDialogChart(HINSTANCE hInst, UINT nID)
-    : UDialogBox(hInst, nID) {}
+    : UDialogBox(hInst, nID)
+    {}
 
     virtual BOOL onInit()
     {
@@ -52,6 +53,7 @@ public:
 
         m_chart = new UChartControl(m_hDlg, IDC_CHART_CTRL, m_hInst);
         m_chart->setRect(&rc);
+        m_chart->setText(_T(""));
         m_chart->create();
 
         //::InvalidateRect(m_hDlg, NULL, TRUE);

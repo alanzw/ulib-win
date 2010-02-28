@@ -202,11 +202,11 @@ public:
         m_pPulseBtn->setWindowText(_T("CC"));
 
         m_skinStatic = new USkinStatic(m_hDlg, IDB_STATUSBAR);
-        m_skinStatic->setPos(20, 400, 100, 27);
+        m_skinStatic->setPos(20, 450, 100, 27);
         m_skinStatic->create();
 
         m_skinStatusBar = new USkinStatusBar(m_hDlg, IDB_STATUSBAR);
-        m_skinStatusBar->setPos(150, 400, 100, 27);
+        m_skinStatusBar->setPos(150, 450, 100, 27);
         m_skinStatusBar->loadBmpSB(IDB_STATUSTOOLBAR);
         m_skinStatusBar->create();
         return TRUE;

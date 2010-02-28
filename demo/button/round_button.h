@@ -9,7 +9,9 @@
 #include "uregion.h"
 #include "colors.h"
 
+#ifndef min
 #define min(X,Y) ((X) < (Y) ?  (X) : (Y))
+#endif // min
 
 class URoundButton : public UOwnerDrawnButton
 {
@@ -251,7 +253,7 @@ private:
             const double Pi_on_2 = Pi * 0.5;
             //         Three_Pi_on_2 = Pi * 1.5;
             COLORREF crColour;
-            double   dAngle = atan2(lYoffset, lXoffset);
+            double   dAngle = atan2((double)lYoffset, (double)lXoffset);
 
             //Draw the current pixel, reflected across all eight arcs
             crColour = GetColour(dAngle, crBright, crDark);

@@ -1,6 +1,10 @@
 #ifndef U_PLOT_H
 #define U_PLOT_H
 
+#include "adt/ustring.h"
+
+typedef huys::ADT::UStringAnsi UTString;
+
 template <typename T, int dim>
 struct UPosition
 {
@@ -18,7 +22,7 @@ struct UAxisData
 
 struct UTitle
 {
-    TCHAR *lpText;
+    UTString title;
     UPosition<long, 2> pos; 
 };
 
