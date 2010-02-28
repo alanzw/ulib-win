@@ -6,6 +6,8 @@
 #include "uusagebar.h"
 #include "uusagegraph.h"
 
+#include "usys.h"
+
 class UTabChild : public UDialogBox
 {
 public:
@@ -399,6 +401,13 @@ public:
         m_pUsageGraphNet->subclass(IDC_NETWORK_UTILIZATION, m_hDlg);
         m_pUsageGraphNet->invalidate(TRUE);
 
+        UListView ulv;
+        ulv.fromHandle(::GetDlgItem(m_hDlg, IDC_LIST_ADAPTER));
+        ulv.addColTextWidth(0, "Adapter Name", 125);
+        ulv.addColTextWidth(1, "Network Utilization", 180);
+        ulv.addColTextWidth(2, "Link Speed", 100);
+        ulv.addColTextWidth(3, "State", 75);
+
         return TRUE;
     }
 private:
@@ -414,6 +423,20 @@ public:
 
     virtual BOOL onInit()
     {
+        UListView ulv;
+        ulv.fromHandle(::GetDlgItem(m_hDlg, IDC_LIST_USER));
+        ulv.addColTextWidth(0, "User", 125);
+        ulv.addColTextWidth(1, "ID", 100);
+        ulv.addColTextWidth(2, "Status", 100);
+        ulv.addColTextWidth(3, "Client Name", 75);
+        ulv.addColTextWidth(4, "Session", 75);
+
+        TCHAR user[256];
+        getUserName(user, 256);
+
+        ulv.addItemTextImage(0, user, 0);
+        //ulv.setItemText(0, 1, "0");
+        //ulv.setItemText(0, 2, "SYSTEM");
         return TRUE;
     }
 };

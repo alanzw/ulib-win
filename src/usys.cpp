@@ -1,4 +1,5 @@
 #define _WIN32_WINNT 0x0501
+#define WINVER 0x0500
 
 #include <windows.h>
 #include <tchar.h>
@@ -6,7 +7,7 @@
 #include <reason.h>
 
 #include "usys.h"
-
+#include "umsg.h"
 
 USystem::USystem()
 {
@@ -119,13 +120,15 @@ int USystem::getWindowCaptionHeight()
 extern "C" {
 #endif
 
+#if 0
+
 // Message
-void showMsg(const char *szMsg, const char *szTitle/*="Info"*/)
+void __stdcall showMsg(const char *szMsg, const char *szTitle/*="Info"*/)
 {
     ::MessageBox(NULL, szMsg, szTitle, MB_OK|MB_ICONINFORMATION);
 }
 //
-void showError(const char *msg)
+void __stdcall showError(const char *msg)
 {
     DWORD eNum;
     TCHAR sysMsg[256];
@@ -176,15 +179,18 @@ void __stdcall showErrorInfo(DWORD eNum)
         eNum, sysMsg );
     showMsg(str);
 }
+
+#endif
+
 // Volume Information
-void getVolSerialNum(char *sn, const char *vol/*="C:\\"*/)
+void __stdcall getVolSerialNum(char *sn, const char *vol/*="C:\\"*/)
 {
     DWORD dwSn;
     GetVolumeInformation(vol, NULL, 0, &dwSn, NULL, NULL, NULL, 0);
     wsprintf(sn, "%X-%X", HIWORD(dwSn), LOWORD(dwSn));
 }
 
-int getVolumeList(char *vlmList)
+int __stdcall getVolumeList(char *vlmList)
 {
     DWORD dwDrives;
     if (!(dwDrives = ::GetLogicalDrives()))
@@ -213,8 +219,9 @@ int getVolumeList(char *vlmList)
 }
 
 // XP cdkey
-void getXPKey(char *cdkey)
+void __stdcall getXPKey(char *cdkey)
 {
+    int i;
     //get DigitalProductId
     HKEY hkey = 0;
     LONG lResult = 0L;
@@ -246,14 +253,14 @@ void getXPKey(char *cdkey)
     char decodedChars[decodeLength + 1];
     ::memset(decodedChars, 0, decodeLength + 1);
     byte hexPid[keyEndIndex - keyStartIndex + 1];
-    for (int i = keyStartIndex; i <= keyEndIndex; i++)
+    for (i = keyStartIndex; i <= keyEndIndex; i++)
     {
         hexPid[i - keyStartIndex] = digitalProductId[i];
     }
     //
     delete[] digitalProductId;
     //
-    for (int i = decodeLength - 1; i >= 0; i--)
+    for (i = decodeLength - 1; i >= 0; i--)
     {
         // Every sixth char is a separator.
         if ((i + 1) % 6 == 0)
@@ -280,13 +287,13 @@ void getXPKey(char *cdkey)
 }
 
 //
-void getComputerName(char *hostname)
+void __stdcall getComputerName(char *hostname)
 {
     DWORD bufsize = MAX_COMPUTERNAME_LENGTH + 1;
     ::GetComputerName(hostname, &bufsize);
 }
 
-void getOSVersion(char *osver)
+void __stdcall getOSVersion(char *osver)
 {
     DWORD dwVersion = 0;
     DWORD dwMajorVersion = 0;
@@ -312,7 +319,7 @@ void getOSVersion(char *osver)
         dwBuild);
 }
 
-void getOSName(char *osname)
+void __stdcall getOSName(char *osname)
 {
     DWORD dwVersion = ::GetVersion();
     //   Get   the   Windows   version.
@@ -334,7 +341,7 @@ typedef struct _ASTAT_
     NAME_BUFFER    NameBuff [30];
 }ASTAT, * PASTAT;
 
-void getMacAddress(char *macAddr)
+void __stdcall getMacAddress(char *macAddr)
 {
     int lana_num = 6;
     NCB ncb;
@@ -375,7 +382,7 @@ void getMacAddress(char *macAddr)
 
 }
 
-int getAdapterNum()
+int __stdcall getAdapterNum()
 {
     NCB ncb;
     UCHAR uRetCode;
@@ -395,43 +402,41 @@ int getAdapterNum()
 }
 
 //
-int getUserName(char *uname)
+DWORD __stdcall getUserName(TCHAR *uname, DWORD dwSize)
 {
-    TCHAR  infoBuf[INFO_BUFFER_SIZE];
-    DWORD  bufCharCount = INFO_BUFFER_SIZE;
+    DWORD  bufCharCount = dwSize;
 
-    if( !GetUserName( infoBuf, &bufCharCount ) )
+    if( 0 == ::GetUserName( uname, &bufCharCount ) )
     {
-        showMsg(TEXT("Cannot GetUserName"));
-        return 1;
+        showMsg(TEXT("Cannot GetUserName!"));
+        return -1;
     }
 
-    strcpy(uname, infoBuf);
-    return 0;
+    return bufCharCount;
 }
 
-int turnOffMonitor(HWND hwnd)
+int __stdcall turnOffMonitor(HWND hwnd)
 {
-    ::SendMessage(hwnd, WM_SYSCOMMAND, SC_MONITORPOWER,   2);
+    return ::SendMessage(hwnd, WM_SYSCOMMAND, SC_MONITORPOWER,   2);
 }
 
-int turnOnMonitor(HWND hwnd)
+int __stdcall turnOnMonitor(HWND hwnd)
 {
-    ::SendMessage(hwnd, WM_SYSCOMMAND, SC_MONITORPOWER,   0);
+    return ::SendMessage(hwnd, WM_SYSCOMMAND, SC_MONITORPOWER,   0);
 }
 
-int showScreenSave(HWND hwnd)
+int __stdcall showScreenSave(HWND hwnd)
 {
-    ::SendMessage(hwnd, WM_SYSCOMMAND, SC_SCREENSAVE, 0);
+    return ::SendMessage(hwnd, WM_SYSCOMMAND, SC_SCREENSAVE, 0);
 }
 
-int showStartMenu(HWND hwnd)
+int __stdcall showStartMenu(HWND hwnd)
 {
-    ::SendMessage(hwnd, WM_SYSCOMMAND, SC_TASKLIST, 0);
+    return ::SendMessage(hwnd, WM_SYSCOMMAND, SC_TASKLIST, 0);
 }
 
 
-int shutdownWindows()
+int __stdcall shutdownWindows()
 {
     HANDLE hToken;
     TOKEN_PRIVILEGES tkp;
@@ -467,23 +472,23 @@ int shutdownWindows()
     return 0;
 }
 
-int addIcon2Desktop()
+int __stdcall addIcon2Desktop()
 {
     return 0;
 }
 
-int addIcon2MyComputer()
+int __stdcall addIcon2MyComputer()
 {
     return 0;
 }
 
 
-bool setDesktopWallpaper( LPTSTR sFilePath )
+bool __stdcall setDesktopWallpaper( LPTSTR sFilePath )
 {
     return (FALSE != ::SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, sFilePath, SPIF_UPDATEINIFILE));
 }
 
-bool removeDesktopWallpaper()
+bool __stdcall removeDesktopWallpaper()
 {
     return setDesktopWallpaper(_T(""));
 }
@@ -495,18 +500,18 @@ bool removeDesktopWallpaper()
 #define SETWALLPAPER_DEFAULT    ((LPWSTR)-1)
 #endif
 
-bool resetDesktopWallpaper()
+bool __stdcall resetDesktopWallpaper()
 {
     return setDesktopWallpaper(NULL);
     //return setDesktopWallpaper(SETWALLPAPER_DEFAULT);
 }
 
-DWORD getEnvironmentVariable(LPCTSTR sVarName, LPTSTR sBuf, DWORD dwSize)
+DWORD __stdcall getEnvironmentVariable(LPCTSTR sVarName, LPTSTR sBuf, DWORD dwSize)
 {
     return ::GetEnvironmentVariable(sVarName, sBuf, dwSize);
 }
 
-BOOL setEnvironmentVariable(LPCTSTR sVarName, LPCTSTR sValue)
+BOOL __stdcall setEnvironmentVariable(LPCTSTR sVarName, LPCTSTR sValue)
 {
     return ::SetEnvironmentVariable(sVarName, sValue);
 }

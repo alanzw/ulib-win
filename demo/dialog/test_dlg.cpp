@@ -46,10 +46,9 @@ public:
         AppendMenu (hMenu, MF_STRING, IDM_SYS_REMOVE, TEXT ("Remove Additions")) ;
 
         UButton ubn(m_hDlg, IDC_BN_OK, m_hInst);
+        ubn.setPos(100, 150, 100, 100);
         ubn.create();
-        RECT rc = {350, 150, 400, 200};
         ubn.setWindowText(_T("OK"));
-        ubn.setPosition(&rc);
 
         this->setDlgIconBig(::LoadIcon(NULL, IDI_QUESTION));
 

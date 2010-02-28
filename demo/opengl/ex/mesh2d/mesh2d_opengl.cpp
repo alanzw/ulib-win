@@ -96,10 +96,11 @@ public:
 
     void drawLines(void)
     {
+        int i, j;
         glLineWidth(1.5);
         glColor3f(1.0f, 0.0f, 0.0f);
         glBegin(GL_LINE_STRIP);
-        for (int i=0; i<91; ++i)
+        for (i=0; i<91; ++i)
         {
             glVertex2f((GLfloat)xy[i][0].x, (GLfloat)xy[i][0].y);
         }
@@ -108,10 +109,10 @@ public:
 
         glLineWidth(1.0);
         glColor3f(1.0f, 1.0f, 1.0f);
-        for (int j=1; j<20; ++j)
+        for (j=1; j<20; ++j)
         {
             glBegin (GL_LINE_STRIP);
-            for (int i=0; i<91; ++i)
+            for (i=0; i<91; ++i)
             {
                 glVertex2f((GLfloat)xy[i][j].x, (GLfloat)xy[i][j].y);
             }
@@ -121,7 +122,7 @@ public:
         glLineWidth(1.5);
         glColor3f(1.0f, 0.0f, 0.0f);
         glBegin(GL_LINE_STRIP);
-        for (int i=0; i<91; ++i)
+        for (i=0; i<91; ++i)
         {
             glVertex2f((GLfloat)xy[i][20].x, (GLfloat)xy[i][20].y);
         }
@@ -131,7 +132,7 @@ public:
         glLineWidth(1.5);
         glColor3f(1.0f, 0.0f, 0.0f);
         glBegin(GL_LINE_STRIP);
-        for (int j=0; j<21; ++j)
+        for (j=0; j<21; ++j)
         {
             glVertex2f((GLfloat)xy[0][j].x, (GLfloat)xy[0][j].y);
         }
@@ -141,10 +142,10 @@ public:
         glLineWidth(1.0);
         glLineWidth(1.0);
         glColor3f(1.0f, 1.0f, 1.0f);
-        for (int i=1; i<90; ++i)
+        for (i=1; i<90; ++i)
         {
             glBegin (GL_LINE_STRIP);
-            for (int j=0; j<21; ++j)
+            for (j=0; j<21; ++j)
             {
                 glVertex2f((GLfloat)xy[i][j].x, (GLfloat)xy[i][j].y);
             }
@@ -154,7 +155,7 @@ public:
         glLineWidth(1.5);
         glColor3f(1.0f, 0.0f, 0.0f);
         glBegin(GL_LINE_STRIP);
-        for (int j=0; j<21; ++j)
+        for (j=0; j<21; ++j)
         {
             glVertex2f((GLfloat)xy[90][j].x, (GLfloat)xy[90][j].y);
         }

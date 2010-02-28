@@ -37,8 +37,10 @@ public:
     //
     BOOL attach(HWND hParent);
     //
+#if(WINVER >= 0x0500)
     BOOL setMenuInfo(LPCMENUINFO lpcmi);
 	BOOL getMenuInfo(LPMENUINFO lpmi);
+#endif
     //
     HMENU getHandle() const { return (HMENU)m_hObj;}
 

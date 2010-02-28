@@ -185,7 +185,7 @@ public:
     virtual BOOL onNotify(WPARAM wParam, LPARAM lParam)
     {
         UINT code = ((LPNMHDR)lParam)->code;
-        if (TCN_SELCHANGE == code);
+        if (TCN_SELCHANGE == code)
         {
             return this->onTabSelChange();
         }
