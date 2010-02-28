@@ -9,6 +9,8 @@
 #include "udlgapp.h"
 #include "udc.h"
 
+#include "adt/uautoptr.h"
+
 int CaptureAnImage(HWND hWnd, LPCTSTR sFilename = _T("C:\\default_cap.bmp"));
 
 using huys::UDialogBox;
@@ -20,14 +22,8 @@ class UDialogExt : public UDialogBox
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-    : UDialogBox(hInst, nID),
-      m_pBtn(0)
+    : UDialogBox(hInst, nID)
     {}
-
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_pBtn);
-    }
 
     BOOL onInit()
     {
@@ -62,6 +58,13 @@ public:
 		RECT rc = {250, 250, 300, 300};
 		udc.fillRect(&rc, hBrush);
 
+        HBRUSH hBrushRed = (HBRUSH)::GetStockObject(WHITE_BRUSH);
+
+        rc.left += 200;
+        rc.right += 200;
+        udc.frameRect(&rc, hBrush);
+        udc.invertRect(&rc);
+
 		RECT rcClient;
 		::GetClientRect(m_hDlg, &rcClient);
 	
@@ -70,15 +73,25 @@ public:
 		udc.setMapMode(MM_HIENGLISH);
 
 		//SetViewportOrgEx(hdc, 100, 100, NULL);
-
+        udc.setPenColor(huys::red);
+        udc.setBrushColor(huys::aliceblue);
 
 		RECT rc2 = {3500, 2000, 4000, 3000};
-		udc.fillRect(&rc2, hBrush);
+		//udc.fillRect(&rc2, hBrush);
+        udc.rectangle(&rc2);
+
+        udc.setPenColor(huys::green);
+        udc.setBrushColor(huys::xpblue);
+
+        rc2.left += 2000;
+        rc2.right += 2000;
+        udc.rectangle(&rc2);
+        //udc.invertRect(&rc2);
 
 		udc.dettach();
 	}
 private:
-    UButton *m_pBtn;
+    huys::ADT::UAutoPtr<UButton> m_pBtn;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

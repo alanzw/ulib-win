@@ -256,6 +256,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="..\src\udc.cpp" />
     <ClCompile Include="..\src\udebug.cpp" />
     <ClCompile Include="..\src\udialogx.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -357,6 +358,7 @@
     <ClInclude Include="..\inc\ucomboboxex.h" />
     <ClInclude Include="..\inc\uconf.h" />
     <ClInclude Include="..\inc\ucontrol.h" />
+    <ClInclude Include="..\inc\udc.h" />
     <ClInclude Include="..\inc\udebug.h" />
     <ClInclude Include="..\inc\udialogx.h" />
     <ClInclude Include="..\inc\uedit.h" />

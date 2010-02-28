@@ -569,3 +569,4 @@ BOOL UBitmap::showExtend(HDC hdc, LPRECT lpRect, int nX, int nY)
 
     return TRUE;
 }
+
