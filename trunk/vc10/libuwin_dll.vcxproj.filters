@@ -45,6 +45,9 @@
     <ClCompile Include="..\src\uedit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\ufont.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\ugdi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -73,6 +76,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\urebar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uregion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\usplashwnd.cpp">
@@ -128,6 +134,9 @@
     <ClInclude Include="..\inc\uedit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\inc\ufont.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\inc\ugdi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -156,6 +165,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\urebar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\uregion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\usplashwnd.h">
@@ -190,6 +202,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\res\manifest.xml" />
+    <ResourceCompile Include="..\res\u.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

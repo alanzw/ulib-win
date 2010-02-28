@@ -75,12 +75,12 @@ bool URegion::createPolyPolygon( const POINT *lppt, const INT *lpPolyCounts, int
 
 bool URegion::ptInRgn( int x, int y )
 {
-    return ::PtInRegion((HRGN)m_hObj, x, y);
+    return TRUE == ::PtInRegion((HRGN)m_hObj, x, y);
 }
 
 bool URegion::rectInRgn( const LPRECT lpRect )
 {
-    return ::RectInRegion((HRGN)m_hObj, lpRect);
+    return TRUE == ::RectInRegion((HRGN)m_hObj, lpRect);
 }
 
 int URegion::combine(HRGN hRgnSrc1, HRGN hRgnSrc2, int nMode)
@@ -99,17 +99,17 @@ int URegion::combine( URegion &ur, int nMode )
 
 bool URegion::isEqual(HRGN hRgn)
 {
-    return ::EqualRgn((HRGN)m_hObj, hRgn);
+    return TRUE == ::EqualRgn((HRGN)m_hObj, hRgn);
 }
 
 bool URegion::fill(HDC hdc, HBRUSH hBrush)
 {
-    return ::FillRgn(hdc, (HRGN)m_hObj, hBrush);
+    return TRUE == ::FillRgn(hdc, (HRGN)m_hObj, hBrush);
 }
 
 bool URegion::paint( HDC hdc )
 {
-    return ::PaintRgn(hdc, (HRGN)m_hObj);
+    return TRUE == ::PaintRgn(hdc, (HRGN)m_hObj);
 }
 
 int URegion::offset( int x, int y )
@@ -124,12 +124,12 @@ int URegion::getRgnBox( LPRECT lpRect )
 
 bool URegion::invert( HDC hdc )
 {
-    return ::InvertRgn(hdc, (HRGN)m_hObj);
+    return TRUE == ::InvertRgn(hdc, (HRGN)m_hObj);
 }
 
 bool URegion::frame( HDC hdc, HBRUSH hbr, int nWidth, int nHeight )
 {
-    return ::FrameRgn(hdc, (HRGN)m_hObj, hbr, nWidth, nHeight);
+    return TRUE == ::FrameRgn(hdc, (HRGN)m_hObj, hbr, nWidth, nHeight);
 }
 
 int URegion::getPolyFillMode( HDC hdc )

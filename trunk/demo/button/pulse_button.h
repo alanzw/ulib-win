@@ -80,7 +80,7 @@ public:
         };
 
 
-        _bMouseOver = PtInRect(&rc, pt);
+        _bMouseOver = (TRUE  == PtInRect(&rc, pt));
 
         ::InvalidateRect(m_hSelf, NULL, TRUE);
 

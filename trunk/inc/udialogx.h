@@ -128,6 +128,8 @@ protected:
     HWND m_hParent;
 
     DlgMode m_mode;
+
+    BOOL m_bShowAnimation;
 private:
 };
 

@@ -49,5 +49,9 @@
     printf(text)
 #endif
 
+#ifndef UNREFERENCED_LOCAL_VARIABLE
+  #define UNREFERENCED_LOCAL_VARIABLE
+#endif // UNREFERENCED_LOCAL_VARIABLE
+
 #endif // U_WARNINGS_H
 

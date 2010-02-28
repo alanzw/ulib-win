@@ -70,6 +70,7 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</EmbedManifest>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -99,6 +100,7 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0804</Culture>
+      <AdditionalIncludeDirectories>..\res;..\ico;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;comctl32.lib;opengl32.lib;glu32.lib;msimg32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -108,11 +110,16 @@
       <ProgramDatabaseFile>.\Debug/libuwin_debug.vc10.pdb</ProgramDatabaseFile>
       <ImportLibrary>Debug/libuwin_debug.vc10.dll.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <GenerateManifest>false</GenerateManifest>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>.\Debug/libuwin_dll.bsc</OutputFile>
     </Bscmake>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
@@ -266,6 +273,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="..\src\ufont.cpp" />
     <ClCompile Include="..\src\ugdi.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -318,6 +326,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="..\src\uregion.cpp" />
     <ClCompile Include="..\src\usplashwnd.cpp" />
     <ClCompile Include="..\src\ustatic.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -351,6 +360,7 @@
     <ClInclude Include="..\inc\udebug.h" />
     <ClInclude Include="..\inc\udialogx.h" />
     <ClInclude Include="..\inc\uedit.h" />
+    <ClInclude Include="..\inc\ufont.h" />
     <ClInclude Include="..\inc\ugdi.h" />
     <ClInclude Include="..\inc\ugldialog.h" />
     <ClInclude Include="..\inc\uglut.h" />
@@ -361,6 +371,7 @@
     <ClInclude Include="..\inc\uobject.h" />
     <ClInclude Include="..\inc\upanel.h" />
     <ClInclude Include="..\inc\urebar.h" />
+    <ClInclude Include="..\inc\uregion.h" />
     <ClInclude Include="..\inc\usplashwnd.h" />
     <ClInclude Include="..\inc\ustatic.h" />
     <ClInclude Include="..\inc\utabctrl.h" />
@@ -373,7 +384,7 @@
     <ClInclude Include="..\inc\uworkaround.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\res\manifest.xml" />
+    <ResourceCompile Include="..\res\u.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

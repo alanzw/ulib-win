@@ -20,6 +20,9 @@ UDialogBox::UDialogBox(HINSTANCE hInst, UINT nID, DLGPROC lpDialogFunc, HWND hPa
 
     //
     m_mode = U_DLG_MODALESS;
+
+    //
+    m_bShowAnimation = FALSE;
 }
 
 UDialogBox::~UDialogBox()
@@ -37,14 +40,22 @@ BOOL UDialogBox::create()
 
     assert(NULL != m_hDlg);
 
+    if (m_bShowAnimation)
+    {
 #if (WINVER >= 0x0500)
-    AnimateWindow(m_hDlg, 1000, AW_SLIDE|AW_HOR_POSITIVE);
-    RECT rc;
-    GetClientRect(m_hDlg, &rc);
-    ::InvalidateRect(m_hDlg, &rc, FALSE);
+        AnimateWindow(m_hDlg, 1000, AW_SLIDE|AW_HOR_POSITIVE);
+        RECT rc;
+        GetClientRect(m_hDlg, &rc);
+        ::InvalidateRect(m_hDlg, &rc, FALSE);
 #else
-    ShowWindow(m_hDlg, SW_SHOW);
+        ShowWindow(m_hDlg, SW_SHOW);
 #endif
+    }
+    else
+    {
+        ShowWindow(m_hDlg, SW_SHOW);
+    }
+
 
     if (!m_hParent)
     {
@@ -73,10 +84,12 @@ HWND UDialogBox::getHWND()
 
 BOOL UDialogBox::onCancel()
 {
-
+    if (m_bShowAnimation)
+    {
 #if (WINVER >= 0x0500)
-    AnimateWindow(m_hDlg, 1000, AW_BLEND|AW_HIDE);
+        AnimateWindow(m_hDlg, 1000, AW_BLEND|AW_HIDE);
 #endif
+    }
 
     if (U_DLG_MODAL == m_mode)
     {
