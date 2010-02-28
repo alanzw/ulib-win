@@ -36,6 +36,9 @@
     <ClCompile Include="..\src\ucontrol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\udc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\udebug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -123,6 +126,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\ucontrol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\udc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\udebug.h">

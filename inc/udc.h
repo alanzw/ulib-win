@@ -66,28 +66,44 @@ public:
         int nYOriginSrc,
         DWORD dwRop);
 
-	// Mapping
-	/*
-		MM_ANISOTROPIC
-		MM_HIENGLISH
-		MM_HIMETRIC
-		MM_ISOTROPIC
-		MM_LOENGLISH
-		MM_LOMETRIC
-		MM_TEXT
-		MM_TWIPS
-	 */
-	int getMapMode();
-	void setMapMode(int nMode);
+    // Mapping
+    /*
+        MM_ANISOTROPIC
+        MM_HIENGLISH
+        MM_HIMETRIC
+        MM_ISOTROPIC
+        MM_LOENGLISH
+        MM_LOMETRIC
+        MM_TEXT
+        MM_TWIPS
+     */
+    int getMapMode();
+    void setMapMode(int nMode);
 
-	// Viewport
-	void setViewportOrg(int x, int y);
+    // Viewport
+    void setViewportOrg(int x, int y);
 
-	//
-	void setWindowOrg(int x, int y);
+    //
+    void setWindowOrg(int x, int y);
 
-	//
-	void fillRect(LPCRECT lpRect, HBRUSH hBrush);
+    //
+    BOOL rectangle(int nLeft, int nTop, int nRight, int nBottom);
+    BOOL rectangle(LPCRECT lpRect);
+    //
+    int fillRect(LPCRECT lpRect, HBRUSH hBrush);
+
+    //
+    int frameRect(LPCRECT lpRect, HBRUSH hBrush);
+
+    //
+    BOOL invertRect(LPCRECT lpRect);
+
+    //
+    BOOL roundRect(int nLeft, int nTop, int nRight, int nBottom, int nWidth, int nHeight);
+
+    //
+    BOOL DPToLP(LPPOINT lpPoints, int nCount);
+    BOOL LPToDP(LPPOINT lpPoints, int nCount);
 private:
 };
 
@@ -101,6 +117,15 @@ public:
 private:
     HWND m_hWnd;
     PAINTSTRUCT m_ps;
+};
+
+class ULIB_API UPrivateDC : public UDevContext
+{
+public:
+    UPrivateDC(HWND hWnd);
+    ~UPrivateDC();
+private:
+    HWND m_hWnd;
 };
 
 class ULIB_API UMemDC : public UDevContext
