@@ -44,6 +44,11 @@ public:
     HGDIOBJ getCurObj(UINT uObjectType);
 
     //
+    huys::Color setBKColor(huys::Color clr);
+    huys::Color getBKColor();
+    int setBKMode(int iMode);
+    int getBKMode();
+    //
     int setStretchBltMode(int iStretchMode);
     BOOL stretchBlt(
         int nXOriginDest,
@@ -104,6 +109,11 @@ public:
     //
     BOOL DPToLP(LPPOINT lpPoints, int nCount);
     BOOL LPToDP(LPPOINT lpPoints, int nCount);
+
+    //
+    BOOL textOut(int nX, int nY, LPCTSTR lpString, int cbString);
+    int drawText(LPCTSTR lpchText, int nCount, LPRECT lpRect, UINT uFormat);
+    int drawTextEx(LPTSTR lpchText, int nCount, LPRECT lpRect, UINT uFormat, LPDRAWTEXTPARAMS lpDTParams = NULL);
 private:
 };
 

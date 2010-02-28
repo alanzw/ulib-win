@@ -89,7 +89,7 @@ LRESULT CALLBACK MouseProc(int nCode,WPARAM wParam,LPARAM lParam)
 }
 
 //The CBT hook Procedure (Computer Based Training Hook)
-LRESULT CALLBACK CBTProc(int nCode, WPARAM wParam, LPARAM lParam)
+static LRESULT CALLBACK CBTProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
     if (nCode==HCBT_ACTIVATE || nCode == HCBT_MINMAX || nCode == HCBT_MOVESIZE || nCode == HCBT_SETFOCUS)  //Called when the application window is activated
     {

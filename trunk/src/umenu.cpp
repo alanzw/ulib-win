@@ -76,6 +76,7 @@ BOOL UMenu::attach(HWND hParent)
     return TRUE;
 }
 
+#if(WINVER >= 0x0500)
 BOOL UMenu::setMenuInfo(LPCMENUINFO lpcmi)
 {
     return ::SetMenuInfo(*this, lpcmi);
@@ -85,6 +86,7 @@ BOOL UMenu::getMenuInfo(LPMENUINFO lpmi)
 {
     return ::GetMenuInfo(*this, lpmi);
 }
+#endif
 
 BOOL UMenu::addSubMenu( HMENU hSubMenu, TCHAR *lpText )
 {

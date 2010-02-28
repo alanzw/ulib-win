@@ -28,9 +28,8 @@ public:
     BOOL onInit()
     {
         m_pBtn = new UButton(m_hDlg, ID_UBUTTON, m_hInst);
-        RECT rc = {20, 20, 160, 160};
+        m_pBtn->setPos(300, 200, 100, 100);
         m_pBtn->create();
-        m_pBtn->setPosition(&rc);
         m_pBtn->setWindowText(_T("Capture"));
         return TRUE;
     }
@@ -55,15 +54,19 @@ public:
 		UDC udc;
 		udc.attach(hdc);
 		
-		RECT rc = {250, 250, 300, 300};
+		RECT rc = {10, 10, 60, 110};
 		udc.fillRect(&rc, hBrush);
 
-        HBRUSH hBrushRed = (HBRUSH)::GetStockObject(WHITE_BRUSH);
+        udc.setBKColor(::GetSysColor(COLOR_BTNFACE));
+        udc.textOut(rc.left + 15, rc.bottom+10, "1", 1);
 
-        rc.left += 200;
-        rc.right += 200;
+        HBRUSH hBrushWhite = (HBRUSH)::GetStockObject(WHITE_BRUSH);
+
+        rc.left += 100;
+        rc.right += 100;
         udc.frameRect(&rc, hBrush);
-        udc.invertRect(&rc);
+        //udc.invertRect(&rc);
+        udc.textOut(rc.left + 15, rc.bottom+10, "2", 1);
 
 		RECT rcClient;
 		::GetClientRect(m_hDlg, &rcClient);
@@ -76,17 +79,19 @@ public:
         udc.setPenColor(huys::red);
         udc.setBrushColor(huys::aliceblue);
 
-		RECT rc2 = {3500, 2000, 4000, 3000};
+		RECT rc2 = {2500, 2100, 3000, 3100};
 		//udc.fillRect(&rc2, hBrush);
         udc.rectangle(&rc2);
+        udc.textOut(rc2.left + 150, rc2.top - 100, "3", 1);
 
-        udc.setPenColor(huys::green);
+        udc.setPenColor(huys::aqua);
         udc.setBrushColor(huys::xpblue);
 
-        rc2.left += 2000;
-        rc2.right += 2000;
+        rc2.left += 1000;
+        rc2.right += 1000;
         udc.rectangle(&rc2);
         //udc.invertRect(&rc2);
+        udc.textOut(rc2.left + 150, rc2.top - 100, "4", 1);
 
 		udc.dettach();
 	}

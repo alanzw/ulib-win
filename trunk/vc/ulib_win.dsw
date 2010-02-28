@@ -3,7 +3,7 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
-Project: "adt"=".\algo.dsp" - Package Owner=<4>
+Project: "algo"=".\algo.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -88,6 +88,18 @@ Package=<4>
 ###############################################################################
 
 Project: "conf"=".\conf.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "dc"=".\dc.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{

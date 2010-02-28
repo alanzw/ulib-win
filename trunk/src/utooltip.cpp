@@ -29,6 +29,8 @@
     #define TTM_SETTITLEA           (WM_USER + 32)  // wParam = TTI_*, lParam = char* szTitle
     #define TTM_SETTITLEW           (WM_USER + 33)  // wParam = TTI_*, lParam = wchar* szTitle
   #endif
+
+  #define TTS_BALLOON	0x40 
 #endif
 
   #ifndef TTM_SETTITLE

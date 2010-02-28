@@ -70,7 +70,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LIBUWIN_DLL_EXPORTS" /YX /FD /GZ /c
-# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "../inc" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LIBUWIN_DLL_EXPORTS" /D "BUILD_DLL" /D "HU_DEBUG" /YX /FD /GZ /c
+# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "../inc" /I "." /I "./fix" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LIBUWIN_DLL_EXPORTS" /D "BUILD_DLL" /D "HU_DEBUG" /YX /FD /GZ /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x804 /d "_DEBUG"
@@ -126,6 +126,10 @@ SOURCE=..\src\ucontrol.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\udc.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\udebug.cpp
 # End Source File
 # Begin Source File
@@ -158,6 +162,10 @@ SOURCE=..\src\uglut.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\uicon.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\uimagelist.cpp
 # End Source File
 # Begin Source File
@@ -174,6 +182,14 @@ SOURCE=..\src\ulistbox.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\ulistview.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\umenu.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\umsg.cpp
 # End Source File
 # Begin Source File
@@ -186,7 +202,15 @@ SOURCE=..\src\uprinter.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\uprocessman.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\urebar.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\uregion.cpp
 # End Source File
 # Begin Source File
 
@@ -198,11 +222,23 @@ SOURCE=..\src\ustatic.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\ustatusbar.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\usys.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\utabctrl.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\src\utoolbar.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\utooltip.cpp
 # End Source File
 # Begin Source File
 
@@ -250,6 +286,10 @@ SOURCE=..\inc\ucontrol.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\inc\udc.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\inc\udebug.h
 # End Source File
 # Begin Source File
@@ -282,6 +322,10 @@ SOURCE=..\inc\uglut.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\inc\uicon.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\inc\uimagelist.h
 # End Source File
 # Begin Source File
@@ -298,6 +342,14 @@ SOURCE=..\inc\ulistbox.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\inc\ulistview.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\umenu.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\inc\umsg.h
 # End Source File
 # Begin Source File
@@ -310,7 +362,15 @@ SOURCE=..\inc\uprinter.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\inc\uprocessman.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\inc\urebar.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\uregion.h
 # End Source File
 # Begin Source File
 
@@ -322,11 +382,23 @@ SOURCE=..\inc\ustatic.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\inc\ustatusbar.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\usys.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\inc\utabctrl.h
 # End Source File
 # Begin Source File
 
 SOURCE=..\inc\utoolbar.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\utooltip.h
 # End Source File
 # Begin Source File
 

@@ -10,11 +10,11 @@
 #define IDI_ULIB 20
 #endif
 
-//#ifdef MINGW_RC
+#ifdef MINGW_RC
 
 IDI_APP ICON DISCARDABLE "u.ico"
 
-
+#endif
 
 IDI_ULIB ICON DISCARDABLE "ulib.ico"
 
@@ -27,4 +27,4 @@ IDI_ULIB ICON DISCARDABLE "ulib.ico"
 1                   24   "manifest.xml"
 
 
-//#endif
+

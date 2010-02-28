@@ -179,6 +179,41 @@ BOOL UDevContext::LPToDP(LPPOINT lpPoints, int nCount)
     return ::LPtoDP((HDC)m_hObj, lpPoints, nCount);
 }
 
+BOOL UDevContext::textOut( int nX, int nY, LPCTSTR lpString, int cbString )
+{
+    return ::TextOut((HDC)m_hObj, nX, nY, lpString, cbString);
+}
+
+int UDevContext::drawText( LPCTSTR lpchText, int nCount, LPRECT lpRect, UINT uFormat )
+{
+    return ::DrawText((HDC)m_hObj, lpchText, nCount, lpRect, uFormat);
+}
+
+int UDevContext::drawTextEx( LPTSTR lpchText, int nCount, LPRECT lpRect, UINT uFormat, LPDRAWTEXTPARAMS lpDTParams /*= NULL*/ )
+{
+    return ::DrawTextEx((HDC)m_hObj, lpchText, nCount, lpRect, uFormat, lpDTParams);
+}
+
+huys::Color UDevContext::setBKColor( huys::Color clr )
+{
+    return ::SetBkColor((HDC)m_hObj, clr);
+}
+
+int UDevContext::setBKMode( int iMode )
+{
+    return ::SetBkMode((HDC)m_hObj, iMode);
+}
+
+int UDevContext::getBKMode()
+{
+    return ::GetBkMode((HDC)m_hObj);
+}
+
+huys::Color UDevContext::getBKColor()
+{
+    return ::GetBkColor((HDC)m_hObj);
+}
+
 UPaintDC::UPaintDC(HWND hWnd)
 {
     m_hWnd = hWnd;

@@ -14,9 +14,9 @@ set FLUENT_HELP=%FLUENT_INC%\nthelp\main.hlp
 
 set PATH=%FLUENT_INC%\ntbin\ntx86;%FLUENT_INC%\ntbin\ntx86\opengl;%FLUENT_INC%\fluent6.3.26\vki\ntx86;%FLUENT_INC%\license\ntx86;%PATH%
 
-set FLUENT_PROG=fluent
+set FLUENT_PROD=fluent
 
-set FLUENT_PROG_DIR=%FLUENT_INC%\fluent6.3.26
+set FLUENT_PROD_DIR=%FLUENT_INC%\fluent6.3.26
 
 set FLUENT_ADDONS=%FLUENT_INC%\addons
 

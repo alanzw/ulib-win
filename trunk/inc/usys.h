@@ -51,12 +51,15 @@ extern "C" {
 #define XP_KEY_LENGTH        30
 #define OS_NAME_LENGTH       20
 
+#if 0
 // Message
 ULIB_API void __stdcall showMsg(const char *szMsg, const char *szTitle="Info");
 //
 ULIB_API void __stdcall showError(const char *msg);
 
 ULIB_API void __stdcall showErrorInfo(DWORD eNum);
+
+#endif
 
 // Volume Information
 
@@ -79,7 +82,7 @@ ULIB_API void __stdcall getMacAddress(char *macAddr);
 ULIB_API int __stdcall getAdapterNum();
 
 //
-ULIB_API int __stdcall getUserName(char *uname);
+ULIB_API DWORD __stdcall getUserName(TCHAR *uname, DWORD dwSize);
 
 // Monitor
 ULIB_API int __stdcall turnOffMonitor(HWND hwnd);
