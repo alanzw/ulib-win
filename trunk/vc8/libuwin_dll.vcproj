@@ -502,6 +502,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\src\udc.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\udebug.cpp"
 				>
 			</File>
@@ -902,6 +906,10 @@
 			</File>
 			<File
 				RelativePath="..\inc\ucontrol.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\udc.h"
 				>
 			</File>
 			<File

@@ -40,15 +40,15 @@ bool UMenu::destroy()
     return true;
 }
 
-BOOL UMenu::append(UINT uMenuItem, TCHAR *lpszText)
+BOOL UMenu::append(UINT uMenuItem, LPCTSTR lpszText)
 {
     //m_childIds.push_back(uMenuItem);
-    return ::AppendMenu(*this, MF_STRING, uMenuItem, lpszText);
+    return ::AppendMenu(*this, MF_STRING, uMenuItem, (LPTSTR)lpszText);
 }
 
 BOOL UMenu::append( UINT uMenuItem, HBITMAP hbmp )
 {
-    return ::AppendMenu(*this, MF_BITMAP, uMenuItem, (LPCTSTR) hbmp);
+    return ::AppendMenu(*this, MF_BITMAP, uMenuItem, (LPTSTR) hbmp);
 }
 
 BOOL UMenu::load(HINSTANCE hInst, LPCSTR lpMenuName)
@@ -175,6 +175,11 @@ int UMenu::getMenuStringByID(UINT uId, LPTSTR sText, int nMaxCount)
 int UMenu::getMenuStringByPos(UINT uPos, LPTSTR sText, int nMaxCount)
 {
     return ::GetMenuString(*this, uPos, sText, nMaxCount, MF_BYPOSITION);
+}
+
+BOOL UMenu::addSeparator()
+{
+    return ::AppendMenu(*this, MF_SEPARATOR, -1, NULL);
 }
 
 

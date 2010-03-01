@@ -11,6 +11,8 @@
 #include "uimagelist.h"
 #include "umsg.h"
 
+#include "adt/uautoptr.h"
+
 using huys::UDialogBox;
 
 class UTabChild : public UDialogBox
@@ -74,23 +76,16 @@ class UDialogExt : public UDialogBox
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-          m_pTabCtrl(0),
-          m_pIml(0),
-          m_pChildDlg(0)
+    : UDialogBox(hInst, nID)
     {}
-
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_pTabCtrl);
-        CHECK_PTR(m_pIml);
-        CHECK_PTR(m_pChildDlg);
-    }
 
     virtual BOOL onInit()
     {
+        setDlgIconSmall(IDI_APP);
+
         m_pIml = new UImageList(1, 16, 16);
         m_pIml->addIcon(IDI_APP, m_hInst);
+        m_pIml->addIcon(IDI_ULIB, m_hInst);
 
         m_pTabCtrl = new UTabCtrl(m_hDlg, IDC_TABCTRL, m_hInst);
         m_pTabCtrl->create();
@@ -104,18 +99,10 @@ public:
         rcClient.right -= 10;
         m_pTabCtrl->setPosition(&rcClient);
 
-        m_pTabCtrl->setImageList(m_pIml->getHandle());
+        m_pTabCtrl->setImageList(m_pIml);
 
-        TCITEM tie;
-
-        tie.mask = TCIF_TEXT | TCIF_IMAGE;
-        tie.iImage = 0;
-        tie.pszText = (LPTSTR)_T("HelloTab");
-
-        m_pTabCtrl->insertItem(0, &tie);
-
-        tie.pszText = (LPTSTR)_T("Second");
-        m_pTabCtrl->insertItem(1, &tie);
+        m_pTabCtrl->insertItemTextImage(0, _T("HelloTab"), 0);
+        m_pTabCtrl->insertItemTextImage(1, _T("SecondTab"), 1);
 
         m_pChildDlg = new UTabChild(m_hInst, IDD_CHILD, *m_pTabCtrl);
         m_pChildDlg->create();
@@ -141,6 +128,7 @@ public:
         ::MoveWindow(m_pChildDlg2->getHWND(), rc.left, rc.top, rc.right-rc.left, rc.bottom-rc.top, TRUE);
 
         m_pChildDlg->update();
+
         return TRUE;
     }
 
@@ -176,10 +164,10 @@ public:
 		return UDialogBox::DialogProc(message, wParam, lParam);
 	}
 private:
-    UTabCtrl *m_pTabCtrl;
-    UImageList *m_pIml;
-    UTabChild *m_pChildDlg;
-    UTabChild *m_pChildDlg2;
+    huys::ADT::UAutoPtr<UTabCtrl> m_pTabCtrl;
+    huys::ADT::UAutoPtr<UImageList> m_pIml;
+    huys::ADT::UAutoPtr<UTabChild> m_pChildDlg;
+    huys::ADT::UAutoPtr<UTabChild> m_pChildDlg2;
 private:
     BOOL onTabSelChange()
     {

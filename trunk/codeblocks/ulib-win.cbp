@@ -20,6 +20,10 @@
 					<Add option="-DHU_DEBUG" />
 					<Add directory="..\inc" />
 				</Compiler>
+				<ResourceCompiler>
+					<Add directory="..\ico" />
+					<Add directory="..\res" />
+				</ResourceCompiler>
 				<Linker>
 					<Add library="user32" />
 					<Add library="gdi32" />
@@ -27,6 +31,9 @@
 					<Add library="shlwapi" />
 					<Add library="ole32" />
 					<Add library="psapi" />
+					<Add library="uuid" />
+					<Add library="oleaut32" />
+					<Add library="netapi32" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -53,6 +60,8 @@
 		<Unit filename="..\inc\ucombobox.h" />
 		<Unit filename="..\inc\uconsole.h" />
 		<Unit filename="..\inc\ucontrol.h" />
+		<Unit filename="..\inc\ucustomctrl.h" />
+		<Unit filename="..\inc\udc.h" />
 		<Unit filename="..\inc\udebug.h" />
 		<Unit filename="..\inc\udialogx.h" />
 		<Unit filename="..\inc\uedit.h" />
@@ -68,12 +77,14 @@
 		<Unit filename="..\inc\umsg.h" />
 		<Unit filename="..\inc\uobject.h" />
 		<Unit filename="..\inc\upanel.h" />
+		<Unit filename="..\inc\upicture.h" />
 		<Unit filename="..\inc\uprocessman.h" />
 		<Unit filename="..\inc\urebar.h" />
 		<Unit filename="..\inc\uregion.h" />
 		<Unit filename="..\inc\ushell.h" />
 		<Unit filename="..\inc\ustatic.h" />
 		<Unit filename="..\inc\ustatusbar.h" />
+		<Unit filename="..\inc\usys.h" />
 		<Unit filename="..\inc\utabctrl.h" />
 		<Unit filename="..\inc\utimer.h" />
 		<Unit filename="..\inc\utoolbar.h" />
@@ -81,12 +92,18 @@
 		<Unit filename="..\inc\uwinapp.h" />
 		<Unit filename="..\inc\uwndclassx.h" />
 		<Unit filename="..\inc\uworkaround.h" />
+		<Unit filename="..\res\u.rc">
+			<Option compilerVar="WINDRES" />
+			<Option compiler="gcc" use="1" buildCommand="$rescomp -i $file -J rc -o $resource_output -O coff $res_includes -DMINGW_RC" />
+		</Unit>
 		<Unit filename="..\src\ubasewindow.cpp" />
 		<Unit filename="..\src\ubitmap.cpp" />
 		<Unit filename="..\src\ubutton.cpp" />
 		<Unit filename="..\src\ucombobox.cpp" />
 		<Unit filename="..\src\uconsole.cpp" />
 		<Unit filename="..\src\ucontrol.cpp" />
+		<Unit filename="..\src\ucustomctrl.cpp" />
+		<Unit filename="..\src\udc.cpp" />
 		<Unit filename="..\src\udebug.cpp" />
 		<Unit filename="..\src\udialogx.cpp" />
 		<Unit filename="..\src\uedit.cpp" />
@@ -102,12 +119,14 @@
 		<Unit filename="..\src\umsg.cpp" />
 		<Unit filename="..\src\uobject.cpp" />
 		<Unit filename="..\src\upanel.cpp" />
+		<Unit filename="..\src\upicture.cpp" />
 		<Unit filename="..\src\uprocessman.cpp" />
 		<Unit filename="..\src\urebar.cpp" />
 		<Unit filename="..\src\uregion.cpp" />
 		<Unit filename="..\src\ushell.cpp" />
 		<Unit filename="..\src\ustatic.cpp" />
 		<Unit filename="..\src\ustatusbar.cpp" />
+		<Unit filename="..\src\usys.cpp" />
 		<Unit filename="..\src\utabctrl.cpp" />
 		<Unit filename="..\src\utimer.cpp" />
 		<Unit filename="..\src\utoolbar.cpp" />

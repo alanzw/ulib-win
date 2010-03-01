@@ -90,10 +90,10 @@ public:
     virtual BOOL onKillFocus() {return FALSE;}
     virtual BOOL onKeyDown(WPARAM wParam, LPARAM lParam) {return FALSE;}
     virtual BOOL onKeyUp(WPARAM wParam, LPARAM lParam) {return FALSE;}
-
-	//
-	virtual BOOL onSize(WPARAM wParam, LPARAM lParam) {return FALSE;}
-	virtual BOOL onMove(WPARAM wParam, LPARAM lParam) {return FALSE;}
+    virtual BOOL onCommand(WPARAM wParam, LPARAM lParam) {return FALSE;}
+    //
+    virtual BOOL onSize(WPARAM wParam, LPARAM lParam) {return FALSE;}
+    virtual BOOL onMove(WPARAM wParam, LPARAM lParam) {return FALSE;}
     //
     BOOL setTimer(UINT_PTR nIDEvent, UINT uElapse);
     BOOL killTimer(UINT_PTR nIDEvent);
@@ -110,8 +110,8 @@ public:
     virtual BOOL onDrawItem(WPARAM,LPARAM){return FALSE;}
     virtual BOOL onMeasureItem(WPARAM, LPARAM) {return FALSE;}
 
-	//
-	virtual BOOL onEraseBkgnd(HDC hdc) {return FALSE;}
+    //
+    virtual BOOL onEraseBkgnd(HDC hdc) {return FALSE;}
 
     //////////////////////////////////////////////////////////////////////////
     virtual BOOL subclass(HWND hCtrl);

@@ -2,7 +2,7 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
 		<Project filename="ulib-win.cbp" />
-		<Project filename="static.cbp" active="1">
+		<Project filename="static.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="calc.cbp">
@@ -49,7 +49,7 @@
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="tabctrl.cbp" />
-		<Project filename="menu.cbp">
+		<Project filename="menu.cbp" active="1">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="mytree.cbp">
@@ -58,5 +58,9 @@
 		<Project filename="timer.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
+		<Project filename="customctrl.cbp">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
+		<Project filename="chart.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

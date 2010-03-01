@@ -27,7 +27,9 @@
 #include "udc.h"
 
 UDevContext::UDevContext()
-: UGDIObject()
+: UGDIObject(),
+  m_hOldBrush(NULL),
+  m_hOldPen(NULL)
 {}
 
 UDevContext::~UDevContext()
@@ -62,7 +64,7 @@ huys::Color UDevContext::setPenColor(huys::Color clr)
 
 huys::Color UDevContext::setBrushColor(huys::Color clr)
 {
-    //    Select DC_BRUSH so you can change the brush color from the 
+    //    Select DC_BRUSH so you can change the brush color from the
     //    default WHITE_BRUSH to any other color
     ::SelectObject((HDC)m_hObj, ::GetStockObject(DC_BRUSH));
     return ::SetDCBrushColor((HDC)m_hObj, clr);
@@ -70,17 +72,30 @@ huys::Color UDevContext::setBrushColor(huys::Color clr)
 
 huys::Color UDevContext::getPenColor()
 {
+#ifdef _MSC_VER
     return ::GetDCPenColor((HDC)m_hObj);
+#else
+    return 0;
+#endif
 }
 
 huys::Color UDevContext::getBrushColor()
 {
+#ifdef _MSC_VER
     return ::GetDCBrushColor((HDC)m_hObj);
+#else
+    return 0;
+#endif
 }
 
 HGDIOBJ UDevContext::getCurObj(UINT uObjectType)
 {
     return ::GetCurrentObject((HDC)m_hObj, uObjectType);
+}
+
+HANDLE UDevContext::selectObj(HANDLE hObj)
+{
+    return ::SelectObject((HDC)m_hObj, hObj);
 }
 
 int UDevContext::setStretchBltMode( int iStretchMode )
@@ -212,6 +227,17 @@ int UDevContext::getBKMode()
 huys::Color UDevContext::getBKColor()
 {
     return ::GetBkColor((HDC)m_hObj);
+}
+
+BOOL UDevContext::drawLine( int nX1, int nY1, int nX2, int nY2 )
+{
+    return ::MoveToEx((HDC)m_hObj, nX1, nY1, NULL) &&
+           ::LineTo((HDC)m_hObj, nX2, nY2);
+}
+
+huys::Color UDevContext::setTextColor( huys::Color clr )
+{
+    return ::SetTextColor((HDC)m_hObj, clr);
 }
 
 UPaintDC::UPaintDC(HWND hWnd)
