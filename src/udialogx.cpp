@@ -429,10 +429,20 @@ BOOL UDialogBox::setDlgIconBig(HICON hIcon)
 {
     return this->sendMsg(WM_SETICON, (WPARAM)ICON_BIG, (LPARAM)hIcon);
 }
+
+BOOL UDialogBox::setDlgIconBig(UINT nID)
+{
+    return this->setDlgIconBig(::LoadIcon(m_hInst, MAKEINTRESOURCE(nID)));
+}
 //
 BOOL UDialogBox::setDlgIconSmall(HICON hIcon)
 {
     return this->sendMsg(WM_SETICON, (WPARAM)ICON_SMALL, (LPARAM)hIcon);
+}
+
+BOOL UDialogBox::setDlgIconSmall(UINT nID)
+{
+    return this->setDlgIconSmall(::LoadIcon(m_hInst, MAKEINTRESOURCE(nID)));
 }
 
 BOOL UDialogBox::onPaint()

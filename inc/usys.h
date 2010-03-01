@@ -98,7 +98,7 @@ ULIB_API int __stdcall addIcon2Desktop();
 ULIB_API int __stdcall addIcon2MyComputer();
 
 //
-ULIB_API bool __stdcall setDesktopWallpaper(LPTSTR sFilePath);
+ULIB_API bool __stdcall setDesktopWallpaper(LPCTSTR sFilePath);
 ULIB_API bool __stdcall removeDesktopWallpaper();
 ULIB_API bool __stdcall resetDesktopWallpaper();
 

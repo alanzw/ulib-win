@@ -96,6 +96,15 @@ public:
         m_hObj = hRgn;
         return *this;
     }
+
+    void setRgn(HRGN hRgn)
+    {
+        m_hObj = hRgn;
+    }
+
+    HRGN bitmapRegion(HBITMAP hBitmap,
+                      COLORREF cTransparentColor = RGB(0,0,0),
+                      BOOL bIsTransparent=TRUE);
 private:
 };
 

@@ -284,6 +284,9 @@ void __stdcall getXPKey(char *cdkey)
     //
     //MessageBox(NULL, decodedChars, "Info", MB_OK);
     memcpy(cdkey, decodedChars, decodeLength+1);
+
+    UNREFERENCED_LOCAL_VARIABLE(ret0);
+    UNREFERENCED_LOCAL_VARIABLE(ret1);
 }
 
 //
@@ -324,14 +327,20 @@ void __stdcall getOSName(char *osname)
     DWORD dwVersion = ::GetVersion();
     //   Get   the   Windows   version.
     DWORD dwWindowsMajorVersion = (DWORD)(LOBYTE(LOWORD(dwVersion)));
-    DWORD dwWindowsMinorVersion   =   (DWORD)(HIBYTE(LOWORD(dwVersion)));
+    //DWORD dwWindowsMinorVersion = (DWORD)(HIBYTE(LOWORD(dwVersion)));
     //   Get   the   build   number   for   Windows   NT/Windows   2000   or   Win32s.
-    if (dwVersion   <   0x80000000)   //   Windows   NT/2000
+    if (dwVersion < 0x80000000)   //   Windows   NT/2000
+    {
         wsprintf(osname, "Windows   NT/2000   %ld", (DWORD)(HIWORD(dwVersion)));
+    }
     else if (dwWindowsMajorVersion < 4)   //   Win32s
+    {
         wsprintf(osname, "Win32s   %ld", (DWORD)(HIWORD(dwVersion) & ~0x8000) );
+    }
     else   //   Windows   95/98   --   No   build   number
+    {
         wsprintf(osname, "Windows   95/98");
+    }
 }
 
 //
@@ -483,9 +492,9 @@ int __stdcall addIcon2MyComputer()
 }
 
 
-bool __stdcall setDesktopWallpaper( LPTSTR sFilePath )
+bool __stdcall setDesktopWallpaper( LPCTSTR sFilePath )
 {
-    return (FALSE != ::SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, sFilePath, SPIF_UPDATEINIFILE));
+    return (FALSE != ::SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, (LPTSTR)sFilePath, SPIF_UPDATEINIFILE));
 }
 
 bool __stdcall removeDesktopWallpaper()

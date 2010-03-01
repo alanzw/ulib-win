@@ -40,21 +40,21 @@ public:
     BOOL show(HDC &hdc, RECT &rc);
     BOOL showStretch(HDC &hdc, RECT &rc);
     BOOL showTransparent(HDC &hdc, RECT &rc);
-    
+
     //
     BOOL drawImage(HDC hdc, int x, int y, int nX, int nY, int nCol, int nRow);
 
     //
     BOOL showExtend(HDC hdc, LPRECT lpRect, int nX, int nY);
-    
+
     //
     BOOL createMappedBitmap(HINSTANCE hInst, UINT uImageID, huys::Color clrFrom, huys::Color clrTo);
     BOOL copyImage(HBITMAP hBitmap);
 
     BOOL destroyBitmap();
-    
+
     HRGN convert2Rgn(COLORREF cTransparentColor, COLORREF cTolerance);
-    
+
 public:
 
 protected:

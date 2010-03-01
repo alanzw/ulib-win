@@ -4,14 +4,17 @@
 	<File name="..\inc\ubasewindow.h" open="0" top="0" tabpos="1">
 		<Cursor position="2274" topLine="60" />
 	</File>
+	<File name="..\inc\ubitmap.h" open="0" top="0" tabpos="0">
+		<Cursor position="317" topLine="5" />
+	</File>
 	<File name="..\inc\ubutton.h" open="0" top="0" tabpos="1">
-		<Cursor position="2354" topLine="106" />
+		<Cursor position="1590" topLine="80" />
 	</File>
 	<File name="..\inc\ucontrol.h" open="0" top="0" tabpos="2">
 		<Cursor position="1759" topLine="85" />
 	</File>
 	<File name="..\inc\udialogx.h" open="0" top="0" tabpos="7">
-		<Cursor position="570" topLine="24" />
+		<Cursor position="2653" topLine="81" />
 	</File>
 	<File name="..\inc\uedit.h" open="0" top="0" tabpos="6">
 		<Cursor position="445" topLine="12" />
@@ -19,20 +22,23 @@
 	<File name="..\inc\ufont.h" open="0" top="0" tabpos="0">
 		<Cursor position="695" topLine="22" />
 	</File>
-	<File name="..\inc\ugdi.h" open="1" top="0" tabpos="2">
+	<File name="..\inc\ugdi.h" open="0" top="0" tabpos="2">
 		<Cursor position="2179" topLine="42" />
 	</File>
 	<File name="..\inc\uicon.h" open="0" top="0" tabpos="0">
 		<Cursor position="356" topLine="4" />
 	</File>
 	<File name="..\inc\uimagelist.h" open="0" top="0" tabpos="9">
-		<Cursor position="64" topLine="0" />
+		<Cursor position="64" topLine="16" />
 	</File>
 	<File name="..\inc\ulib.h" open="0" top="0" tabpos="1">
 		<Cursor position="5567" topLine="237" />
 	</File>
 	<File name="..\inc\ulistview.h" open="0" top="0" tabpos="20">
-		<Cursor position="1372" topLine="30" />
+		<Cursor position="1012" topLine="32" />
+	</File>
+	<File name="..\inc\uobject.h" open="1" top="0" tabpos="1">
+		<Cursor position="1188" topLine="63" />
 	</File>
 	<File name="..\inc\upanel.h" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
@@ -44,7 +50,7 @@
 		<Cursor position="137" topLine="0" />
 	</File>
 	<File name="..\inc\uregion.h" open="0" top="0" tabpos="4">
-		<Cursor position="2489" topLine="70" />
+		<Cursor position="2629" topLine="86" />
 	</File>
 	<File name="..\inc\ushell.h" open="0" top="0" tabpos="1">
 		<Cursor position="699" topLine="7" />
@@ -53,7 +59,13 @@
 		<Cursor position="429" topLine="0" />
 	</File>
 	<File name="..\inc\ustatusbar.h" open="0" top="0" tabpos="18">
-		<Cursor position="287" topLine="0" />
+		<Cursor position="130" topLine="0" />
+	</File>
+	<File name="..\inc\usys.h" open="1" top="0" tabpos="9">
+		<Cursor position="1968" topLine="90" />
+	</File>
+	<File name="..\inc\utabctrl.h" open="0" top="0" tabpos="0">
+		<Cursor position="179" topLine="0" />
 	</File>
 	<File name="..\inc\utoolbar.h" open="0" top="0" tabpos="2">
 		<Cursor position="872" topLine="19" />
@@ -64,8 +76,14 @@
 	<File name="..\inc\uworkaround.h" open="0" top="0" tabpos="3">
 		<Cursor position="650" topLine="25" />
 	</File>
+	<File name="..\res\u.rc" open="0" top="0" tabpos="0">
+		<Cursor position="119" topLine="0" />
+	</File>
 	<File name="..\src\ubasewindow.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="4426" topLine="0" />
+	</File>
+	<File name="..\src\ubitmap.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2570" topLine="94" />
 	</File>
 	<File name="..\src\ubutton.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="6330" topLine="27" />
@@ -73,11 +91,14 @@
 	<File name="..\src\ucontrol.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="6308" topLine="246" />
 	</File>
+	<File name="..\src\udc.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="2007" topLine="87" />
+	</File>
 	<File name="..\src\udebug.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="102" topLine="0" />
 	</File>
 	<File name="..\src\udialogx.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="4426" topLine="34" />
+		<Cursor position="9605" topLine="424" />
 	</File>
 	<File name="..\src\ufont.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="998" topLine="46" />
@@ -94,7 +115,7 @@
 	<File name="..\src\ulistview.cpp" open="0" top="0" tabpos="21">
 		<Cursor position="2920" topLine="99" />
 	</File>
-	<File name="..\src\umsg.cpp" open="1" top="0" tabpos="1">
+	<File name="..\src\umsg.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="7193" topLine="272" />
 	</File>
 	<File name="..\src\upanel.cpp" open="0" top="0" tabpos="4">
@@ -106,11 +127,20 @@
 	<File name="..\src\urebar.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2330" topLine="43" />
 	</File>
+	<File name="..\src\uregion.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="4076" topLine="146" />
+	</File>
 	<File name="..\src\ushell.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="2628" topLine="94" />
 	</File>
 	<File name="..\src\ustatusbar.cpp" open="0" top="0" tabpos="19">
-		<Cursor position="594" topLine="10" />
+		<Cursor position="88" topLine="0" />
+	</File>
+	<File name="..\src\usys.cpp" open="1" top="1" tabpos="8">
+		<Cursor position="6792" topLine="272" />
+	</File>
+	<File name="..\src\utabctrl.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="659" topLine="20" />
 	</File>
 	<File name="..\src\utoolbar.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="3242" topLine="118" />

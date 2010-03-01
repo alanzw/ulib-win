@@ -31,11 +31,6 @@ public:
     : _p(p)
     {}
 
-    UAutoPtr(UAutoPtr &p)
-    {
-
-    }
-
     ~UAutoPtr()
     {
         if(_p)
@@ -50,9 +45,15 @@ public:
         return (T*)_p;
     }
 
+    template <typename TP>
+    operator TP() const
+    {
+        return static_cast<TP>(*static_cast<T*>(_p));
+    }
+
     T* operator->() const
     {
-        return (T*)_p;
+        return static_cast<T*>(_p);
     }
 
     UAutoPtr & operator=(T *p)
@@ -72,7 +73,7 @@ public:
         x._p = 0;
         return *this;
     }
-    
+
     BOOL operator==(T * ptr) const
     {
         return _p == ptr;

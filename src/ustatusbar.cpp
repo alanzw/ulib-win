@@ -9,7 +9,7 @@
 UStatusBar::UStatusBar(HWND hParent, UINT nResource, HINSTANCE hInst)
 : UControl(hParent, nResource, hInst)
 {
-    m_dwStyles |= SBARS_SIZEGRIP;
+    //m_dwStyles |= SBARS_SIZEGRIP;
 }
 
 UStatusBar::~UStatusBar()

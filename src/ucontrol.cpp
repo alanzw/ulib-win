@@ -226,6 +226,8 @@ BOOL UControl::onMessage(UINT message, WPARAM wParam, LPARAM lParam)
     {
     case WM_PAINT:
         return this->onPaint();
+    case WM_COMMAND:
+        return this->onCommand(wParam, lParam);
     case WM_LBUTTONDOWN:
         return onLButtonDown(wParam, lParam);
     case WM_RBUTTONDOWN:

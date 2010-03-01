@@ -10,36 +10,37 @@ public:
     virtual ~UMenu();
     virtual HMENU create();
     virtual HMENU createPopup();
-	//
-	virtual bool destroy();
-	
     //
-    BOOL append(UINT uMenuItem, TCHAR *lpText);
+    virtual bool destroy();
+
+    //
+    BOOL append(UINT uMenuItem, LPCTSTR lpText);
     BOOL append(UINT uMenuItem, HBITMAP hbmp);
     BOOL addSubMenu(HMENU hSubMenu, TCHAR *lpText);
+    BOOL addSeparator();
     //
     BOOL load(HINSTANCE hInst, LPCSTR lpMenuName);
-	//
-	BOOL getMenu(HWND hWnd);
+    //
+    BOOL getMenu(HWND hWnd);
 
-	//
-	operator HMENU ()
-	{ return (HMENU)m_hObj; }
+    //
+    operator HMENU ()
+    { return (HMENU)m_hObj; }
 
-	//
-	HMENU getSubMenu(int nPos);
+    //
+    HMENU getSubMenu(int nPos);
 
     //
     BOOL trackPopup(UINT uFlag, int x, int y);
 
-	//
-	BOOL trackSubPopup(int nPos, UINT uFlag, int x, int y); 
+    //
+    BOOL trackSubPopup(int nPos, UINT uFlag, int x, int y);
     //
     BOOL attach(HWND hParent);
     //
 #if(WINVER >= 0x0500)
     BOOL setMenuInfo(LPCMENUINFO lpcmi);
-	BOOL getMenuInfo(LPMENUINFO lpmi);
+    BOOL getMenuInfo(LPMENUINFO lpmi);
 #endif
     //
     HMENU getHandle() const { return (HMENU)m_hObj;}
@@ -48,11 +49,11 @@ public:
     UINT getItemID(int nPos);
     BOOL checkItemByID(UINT uId);
     BOOL checkItemByPos(int nPos);
-	BOOL uncheckItemByID(UINT uId);
-	BOOL uncheckItemByPos(UINT uPos);
+    BOOL uncheckItemByID(UINT uId);
+    BOOL uncheckItemByPos(UINT uPos);
 
-	BOOL isItemChecked(UINT uId);
-	BOOL isItemDisabled(UINT uId);
+    BOOL isItemChecked(UINT uId);
+    BOOL isItemDisabled(UINT uId);
 
     //
     BOOL setBmpByID(UINT nId, HBITMAP hBmpUnChked, HBITMAP hBmpChk);
@@ -65,20 +66,20 @@ public:
     //
     int getItemCount();
 
-	//
-	UINT getMenuStateByID(UINT uId);
-	UINT getMenuStateByPos(UINT uPos);
+    //
+    UINT getMenuStateByID(UINT uId);
+    UINT getMenuStateByPos(UINT uPos);
 
-	//
-	int getMenuStringByID(UINT uId, LPTSTR sText, int nMaxCount);
-	int getMenuStringByPos(UINT uPos, LPTSTR sText, int nMaxCount);
+    //
+    int getMenuStringByID(UINT uId, LPTSTR sText, int nMaxCount);
+    int getMenuStringByPos(UINT uPos, LPTSTR sText, int nMaxCount);
 
-	//
-	
+    //
+
 protected:
     //HMENU m_hMenu;
     HWND m_hParent;
-	BOOL bManaged;
+    BOOL bManaged;
 private:
     //std::vector<UINT> m_childIds;
 };

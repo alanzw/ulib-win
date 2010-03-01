@@ -17,6 +17,8 @@
 #include "umenu.h"
 #include "uprocessman.h"
 
+#include "adt/uautoptr.h"
+
 using huys::UDialogBox;
 
 #include "utabchild.h"
@@ -45,22 +47,15 @@ class UDialogExt : public UDialogBox
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID)
+    : UDialogBox(hInst, nID)
     {
         ::ZeroMemory(&m_pTabChild, sizeof(m_pTabChild));
     }
 
-    ~UDialogExt()
-    {
-        for (int i=0; i<6; ++i)
-        {
-            CHECK_PTR(m_pTabChild[i]);
-        }
-        CHECK_PTR(m_pStatusBar);
-    }
-
     virtual BOOL onInit()
     {
+        setDlgIconSmall(IDI_APP);
+
         if (!m_UMainMenu.getMenu(m_hDlg))
         {
             return FALSE;
@@ -192,8 +187,8 @@ public:
         return UDialogBox::onNotify(wParam, lParam);
     }
 private:
-    UTabChild *m_pTabChild[6];
-    UStatusBar *m_pStatusBar;
+    huys::ADT::UAutoPtr<UTabChild> m_pTabChild[6];
+    huys::ADT::UAutoPtr<UStatusBar> m_pStatusBar;
     //
     UMenu m_UMainMenu;
 private:

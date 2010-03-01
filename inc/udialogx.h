@@ -25,18 +25,18 @@ public:
     typedef enum {
         U_DLG_MODALESS,
         U_DLG_MODAL
-    } DlgMode;  
-    
+    } DlgMode;
+
     DlgMode getMode() const
     { return m_mode; }
-    
+
     virtual BOOL setParentH(HWND hParent);
 
     virtual BOOL create();
     virtual BOOL hide();
     virtual BOOL show();
     virtual BOOL destroy();
-    
+
     //
     virtual BOOL modifyStyles(DWORD dwStyle);
     virtual BOOL modifyExStyles(DWORD dwStyle);
@@ -89,7 +89,9 @@ public:
 
     //
     BOOL setDlgIconBig(HICON hIcon);
+    BOOL setDlgIconBig(UINT nID);
     BOOL setDlgIconSmall(HICON hIcon);
+    BOOL setDlgIconSmall(UINT nID);
 
     //
     BOOL setDlgItemText(UINT uID, LPCTSTR lpString);
@@ -100,14 +102,14 @@ public:
     UINT getDlgItemText(UINT uID, LPTSTR lpString, int nMaxCount);
     BOOL getDlgItemInt(UINT uID, int *lpValue, BOOL bSigned = FALSE);
     int getDlgCtrlID(HWND hCtrl);
-    
+
     //
     BOOL setWindowRgn(HRGN hRgn, BOOL bRedraw = TRUE);
-    
+
     //
     BOOL setTopMost();
     BOOL setNoTopMost();
-    
+
     //
     BOOL redraw();
     BOOL bringToTop();

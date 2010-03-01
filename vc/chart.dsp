@@ -103,7 +103,7 @@ SOURCE=..\app\uchart\uchart.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\demo\dialog\resource.h
+SOURCE=..\app\uchart\resource.h
 # End Source File
 # Begin Source File
 
