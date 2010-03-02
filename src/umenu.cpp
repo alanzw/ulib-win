@@ -88,9 +88,9 @@ BOOL UMenu::getMenuInfo(LPMENUINFO lpmi)
 }
 #endif
 
-BOOL UMenu::addSubMenu( HMENU hSubMenu, TCHAR *lpText )
+BOOL UMenu::addSubMenu( HMENU hSubMenu, LPCTSTR lpText )
 {
-    return ::AppendMenu(*this, MF_STRING|MF_POPUP, (UINT_PTR)hSubMenu, lpText);
+    return ::AppendMenu(*this, MF_STRING|MF_POPUP, (UINT_PTR)hSubMenu, (LPTSTR)lpText);
 }
 
 UINT UMenu::getItemID( int nPos )

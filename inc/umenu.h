@@ -16,7 +16,7 @@ public:
     //
     BOOL append(UINT uMenuItem, LPCTSTR lpText);
     BOOL append(UINT uMenuItem, HBITMAP hbmp);
-    BOOL addSubMenu(HMENU hSubMenu, TCHAR *lpText);
+    BOOL addSubMenu(HMENU hSubMenu, LPCTSTR lpText);
     BOOL addSeparator();
     //
     BOOL load(HINSTANCE hInst, LPCSTR lpMenuName);

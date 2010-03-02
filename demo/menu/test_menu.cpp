@@ -27,8 +27,8 @@ public:
     virtual BOOL onInit()
     {
         umn.createPopup();
-        TCHAR S_HELP[] = _T("&help");
-        umn.append(IDM_HELP, S_HELP);
+
+        umn.append(IDM_HELP, _T("&help"));
 
         MENUINFO mi = {0};
         mi.cbSize = sizeof(MENUINFO);
@@ -75,21 +75,19 @@ public:
         //AppendMenu(umn.getHandle(), MF_BITMAP, IDM_ICON1, (LPCTSTR) hbmp1);
         //AppendMenu(umn.getHandle(), MF_BITMAP, IDM_ICON2, (LPCTSTR) hbmp2);
         //AppendMenu(umn.getHandle(), MF_BITMAP, IDM_ICON3, (LPCTSTR) hbmp3);
+        umn.addSeparator();
 
         umn.append(IDM_ICON1, hbmp1);
         umn.append(IDM_ICON2, hbmp2);
         umn.append(IDM_ICON3, hbmp3);
 
-        TCHAR S_POPUP[] = _T("&popup");
-        //umn.append(3334, S_POPUP);
+        umn.addSeparator();
 
         upop.createPopup();
-        TCHAR S_QUIT[] = _T("&quit");
-        upop.append(3335, S_QUIT);
+        upop.append(3335, _T("&quit"));
 
-        //::AppendMenu(umn.getHandle(), MF_STRING|MF_POPUP, (UINT_PTR)upop.getHandle(), S_POPUP);
-        umn.addSubMenu(upop, S_POPUP);
-        //::CheckMenuItem(umn.getHandle(), 3333, MF_CHECKED);
+        umn.addSubMenu(upop, _T("&popup"));
+
         umn.checkItemByPos(0);
 
         return TRUE;
@@ -107,7 +105,7 @@ public:
 
     virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
-        switch (wParam)
+        switch (LOWORD(wParam))
         {
         case IDM_HELP:
             showMsg("&Help!");
@@ -130,9 +128,9 @@ public:
         case IDM_ICON3:
             showMsg("Icon3");
             break;
-
+        default:
+            ;
         }
-
         return UDialogBox::onCommand(wParam, lParam);
     }
 private:

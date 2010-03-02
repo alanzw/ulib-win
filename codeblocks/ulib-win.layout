@@ -13,8 +13,8 @@
 	<File name="..\inc\ucontrol.h" open="0" top="0" tabpos="2">
 		<Cursor position="1759" topLine="85" />
 	</File>
-	<File name="..\inc\udialogx.h" open="0" top="0" tabpos="7">
-		<Cursor position="2653" topLine="81" />
+	<File name="..\inc\udialogx.h" open="1" top="0" tabpos="7">
+		<Cursor position="2521" topLine="74" />
 	</File>
 	<File name="..\inc\uedit.h" open="0" top="0" tabpos="6">
 		<Cursor position="445" topLine="12" />
@@ -36,6 +36,9 @@
 	</File>
 	<File name="..\inc\ulistview.h" open="0" top="0" tabpos="20">
 		<Cursor position="1012" topLine="32" />
+	</File>
+	<File name="..\inc\umenu.h" open="1" top="1" tabpos="5">
+		<Cursor position="360" topLine="2" />
 	</File>
 	<File name="..\inc\uobject.h" open="1" top="0" tabpos="1">
 		<Cursor position="1188" topLine="63" />
@@ -61,8 +64,8 @@
 	<File name="..\inc\ustatusbar.h" open="0" top="0" tabpos="18">
 		<Cursor position="130" topLine="0" />
 	</File>
-	<File name="..\inc\usys.h" open="1" top="0" tabpos="9">
-		<Cursor position="1968" topLine="90" />
+	<File name="..\inc\usys.h" open="1" top="0" tabpos="4">
+		<Cursor position="1968" topLine="85" />
 	</File>
 	<File name="..\inc\utabctrl.h" open="0" top="0" tabpos="0">
 		<Cursor position="179" topLine="0" />
@@ -97,8 +100,8 @@
 	<File name="..\src\udebug.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="102" topLine="0" />
 	</File>
-	<File name="..\src\udialogx.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="9605" topLine="424" />
+	<File name="..\src\udialogx.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="9275" topLine="412" />
 	</File>
 	<File name="..\src\ufont.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="998" topLine="46" />
@@ -114,6 +117,9 @@
 	</File>
 	<File name="..\src\ulistview.cpp" open="0" top="0" tabpos="21">
 		<Cursor position="2920" topLine="99" />
+	</File>
+	<File name="..\src\umenu.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="1503" topLine="75" />
 	</File>
 	<File name="..\src\umsg.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="7193" topLine="272" />
@@ -136,7 +142,7 @@
 	<File name="..\src\ustatusbar.cpp" open="0" top="0" tabpos="19">
 		<Cursor position="88" topLine="0" />
 	</File>
-	<File name="..\src\usys.cpp" open="1" top="1" tabpos="8">
+	<File name="..\src\usys.cpp" open="1" top="0" tabpos="3">
 		<Cursor position="6792" topLine="272" />
 	</File>
 	<File name="..\src\utabctrl.cpp" open="0" top="0" tabpos="0">

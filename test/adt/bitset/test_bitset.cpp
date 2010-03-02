@@ -179,5 +179,11 @@ void test()
 int main()
 {
     B8::test();
+    
+    char a[] = {0, 1, 2, 3};
+    int *p = (int *)a;
+    printf("%d\n", *p);
+    printf("%hd\n", *p);
+    printf("%0x\n", *p);
     return 0;
 }

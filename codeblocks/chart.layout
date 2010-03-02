@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="..\app\uchart\test_chart.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="0" topLine="0" />
+	<File name="..\app\uchart\test_chart.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="260" topLine="87" />
 	</File>
-	<File name="..\app\uchart\uchart.cpp" open="1" top="0" tabpos="3">
+	<File name="..\app\uchart\uchart.cpp" open="1" top="0" tabpos="8">
 		<Cursor position="1934" topLine="73" />
 	</File>
-	<File name="..\app\uchart\ulegend.h" open="1" top="0" tabpos="1">
+	<File name="..\app\uchart\ulegend.h" open="1" top="0" tabpos="6">
 		<Cursor position="99" topLine="0" />
 	</File>
-	<File name="..\app\uchart\uplot.h" open="1" top="0" tabpos="2">
+	<File name="..\app\uchart\uplot.h" open="1" top="0" tabpos="7">
 		<Cursor position="0" topLine="11" />
 	</File>
 </CodeBlocks_layout_file>
