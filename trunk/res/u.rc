@@ -3,11 +3,11 @@
 // Icons
 
 #ifndef IDI_APP
-#define IDI_APP  10
+#define IDI_APP  1
 #endif
 
 #ifndef IDI_ULIB
-#define IDI_ULIB 20
+#define IDI_ULIB 2
 #endif
 
 #ifdef MINGW_RC
