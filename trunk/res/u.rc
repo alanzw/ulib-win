@@ -10,6 +10,10 @@
 #define IDI_ULIB 2
 #endif
 
+#ifndef IDI_HELP
+#define IDI_HELP 3
+#endif
+
 #ifdef MINGW_RC
 
 IDI_APP ICON DISCARDABLE "u.ico"
@@ -18,7 +22,7 @@ IDI_APP ICON DISCARDABLE "u.ico"
 
 IDI_ULIB ICON DISCARDABLE "ulib.ico"
 
-
+IDI_HELP ICON DISCARDABLE "help.ico"
 
 //
 // Manifest resources

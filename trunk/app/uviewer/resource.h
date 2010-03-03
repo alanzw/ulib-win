@@ -2,6 +2,9 @@
 #define IDC_STATIC (-1)
 #endif
 
+#define IDI_HELP                          3
+
+
 #define IDI_VIEWER                        5
 #define IDD_VIEWER                        102
 

@@ -48,7 +48,7 @@ public:
         {
             return this->onSelChange();
         }
-        
+
         if (IDC_BN_LOAD == LOWORD(wParam))
         {
             return this->onBnLoad();
@@ -59,6 +59,7 @@ public:
 private:
     huys::ADT::UAutoPtr<UBitmap> m_pBack;
     UPicture pic;
+    UBitmap bmp;
 
     BOOL onSelChange()
     {
@@ -67,12 +68,12 @@ private:
         ulb.fromID(m_hDlg, IDC_LIST_IMAGES);
         ulb.getText(ulb.getCurSel(), buf);
         //showMsg(buf, "info", m_hDlg);
-        
+
         showPicture(buf);
 
         return FALSE;
     }
-    
+
     void showPicture(LPCTSTR sPath)
     {
         pic.load(sPath);
@@ -82,7 +83,7 @@ private:
         ustatic.fromID(m_hDlg, IDC_STATIC_IMAGE);
         ustatic.getClientRect(&rc);
         ustatic.clientToDialog(m_hDlg, &rc);
-        pic.show(hdc, &rc); 
+        pic.show(hdc, &rc);
     }
 
     BOOL addFilenames()
@@ -126,7 +127,7 @@ private:
         FindClose(hFind);
         return TRUE;
     }
-    
+
     BOOL onBnLoad()
     {
         UCommonDialog::UFileDialog filedlg(m_hDlg);
@@ -138,7 +139,7 @@ private:
             //ulb.addString(filedlg.getName());
             showPicture(filedlg.getName());
         }
-    
+
         return TRUE;
     }
 };
