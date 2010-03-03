@@ -148,7 +148,7 @@ BOOL UPicture::show(HDC hDC, LPRECT pDrawRect, LPRECT pSrcRect)
 {
     if (hDC == NULL || m_pIPicture == NULL) return FALSE;
 
-    RECT recrDest = *pDrawRect;
+    //RECT recrDest = *pDrawRect;
 
     long Width  = 0;
     long Height = 0;

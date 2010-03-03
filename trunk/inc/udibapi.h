@@ -43,7 +43,7 @@ ULIB_API DWORD WINAPI BytesPerLine( LPBITMAPINFOHEADER lpBMIH );
 ULIB_API WORD WINAPI DIBNumColors(LPSTR lpbi);
 
 ULIB_API HGLOBAL WINAPI CopyHandle(HGLOBAL h);
-
+ULIB_API LPBYTE ConvertDIBFormat( LPBITMAPINFO lpSrcDIB, UINT nWidth, UINT nHeight, UINT nColors, BOOL bStretch );
 ULIB_API void SetMonoDIBPixel( LPBYTE pANDBits, DWORD dwWidth, DWORD dwHeight, DWORD x, DWORD y, BOOL bWhite );
 
 ULIB_API BOOL WINAPI SaveDIB(HDIB hDib, HANDLE hFile);
@@ -55,7 +55,7 @@ ULIB_API HDIB WINAPI ReadDIBFileName(LPCTSTR lpFilename);
 //
 ULIB_API HANDLE DDBToDIB( HBITMAP hBitmap, DWORD dwCompression, HPALETTE hPal );
 
-ULIB_API BOOL WriteDIB( LPCTSTR szFile, HANDLE hDIB);
+ULIB_API BOOL WINAPI WriteDIB( LPCTSTR szFile, HANDLE hDIB);
 
 ULIB_API void TransparentBlt( HDC hdcDest,
                      int nXDest,

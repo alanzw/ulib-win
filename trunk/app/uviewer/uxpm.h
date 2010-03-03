@@ -21,7 +21,7 @@
  *
  */
 
-#ifnef U_XPM_H
+#ifndef U_XPM_H
 #define U_XPM_H
 
 typedef unsigned long Pixel;    /* Index into colormap */
