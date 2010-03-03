@@ -36,6 +36,7 @@ public:
     ~UFileDialog();
     BOOL open();
     LPCTSTR getName() const {return szFile;}
+    void setFilter(LPCTSTR lpFilter);
 private:
     OPENFILENAME m_ofn;
     HWND m_hWnd;

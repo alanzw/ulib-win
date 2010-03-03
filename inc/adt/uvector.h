@@ -14,10 +14,10 @@ namespace ADT
 {
 
 using std::allocator;
-#if (_MSC_VER <= 1200)  // VC6
-#ifndef max
-   #define max(x, y) std::_cpp_max(x,y)
-#endif
+#if !(_MSC_VER > 1200)  // VC6
+  #ifndef max
+    #define max(x, y) std::_cpp_max(x,y)
+  #endif
 #else
   using std::max;
 #endif // (_MSC_VER <= 1200)
