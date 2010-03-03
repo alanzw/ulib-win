@@ -790,6 +790,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\src\uregion.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\usplashwnd.cpp"
 				>
 			</File>
@@ -826,6 +830,10 @@
 			</File>
 			<File
 				RelativePath="..\src\ustatusbar.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\usys.cpp"
 				>
 			</File>
 			<File
@@ -981,6 +989,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\inc\uregion.h"
+				>
+			</File>
+			<File
 				RelativePath="..\inc\usplashwnd.h"
 				>
 			</File>
@@ -990,6 +1002,10 @@
 			</File>
 			<File
 				RelativePath="..\inc\ustatusbar.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\usys.h"
 				>
 			</File>
 			<File

@@ -115,6 +115,13 @@ int USystem::getWindowCaptionHeight()
     return ::GetSystemMetrics(SM_CYCAPTION);
 }
 
+DWORD USystem::getPhysicMem()
+{
+    MEMORYSTATUS Mem = {0};
+    ::GlobalMemoryStatus(&Mem);
+    return (DWORD)Mem.dwTotalPhys/(1024*1024);
+}
+
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
 extern "C" {

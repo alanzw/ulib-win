@@ -16,6 +16,8 @@
 #include "ucalc.h"
 #include "ueval.h"
 
+#include "adt/uautoptr.h"
+
 const char * g_cap[] = {
     "7",  "8",   "9",  "/",
     "4",  "5",   "6",  "*",
@@ -33,25 +35,12 @@ class UMyWindow : public UBaseWindow
     };
 public:
    UMyWindow()
-       : UBaseWindow(NULL, ::GetModuleHandle(NULL)),
-         m_pEdtFormula(0),
-         m_pBnEval(0)
+       : UBaseWindow(NULL, ::GetModuleHandle(NULL))
    {
         this->setTitle(_T("UCalc Test 0.0.1"));
         this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
 
         ZeroMemory((void *)m_pBnNum, sizeof(m_pBnNum));
-   }
-
-   ~UMyWindow()
-   {
-        CHECK_PTR(m_pEdtFormula);
-        CHECK_PTR(m_pBnEval);
-
-        for(int i=0; i<16; i++)
-        {
-            CHECK_PTR(m_pBnNum[i]);
-        }
    }
 
    BOOL onCreate()
@@ -174,10 +163,10 @@ private:
         return TRUE;
     }
 private:
-    UEdit *m_pEdtFormula;
-    UButton *m_pBnEval;
+	huys::ADT::UAutoPtr<UEdit> m_pEdtFormula;
+    huys::ADT::UAutoPtr<UButton> m_pBnEval;
 
-    UButton *m_pBnNum[16];
+    huys::ADT::UAutoPtr<UButton> m_pBnNum[16];
 
     TString m_sFormula;
 

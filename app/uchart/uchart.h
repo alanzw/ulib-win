@@ -21,6 +21,9 @@ public:
 
     BOOL onCommand(WPARAM wParam, LPARAM lParam);
     BOOL onRButtonDown(WPARAM wParam, LPARAM lParam);
+
+    //
+    void showHelp();
 private:
     HBRUSH m_hbrush;
 

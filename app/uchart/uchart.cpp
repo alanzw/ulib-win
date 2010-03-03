@@ -89,11 +89,11 @@ BOOL UChartControl::onPaint()
     }
 
     dc.drawLine(rc.left, rc.top, rc.right, rc.bottom);
-    
+
     dc.setTextColor(huys::white);
     dc.textOut(300, 20, _T("Chart Demo"), 10);
-	dc.textOut(380, 380, _T("x"), 1);
-	dc.textOut(13, 200, _T("y"), 1);
+    dc.textOut(380, 380, _T("x"), 1);
+    dc.textOut(13, 200, _T("y"), 1);
     return FALSE;
 }
 
@@ -124,7 +124,7 @@ BOOL UChartControl::onRButtonDown( WPARAM wParam, LPARAM lParam )
     //umn.trackPopup(TPM_RIGHTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y);
     umn.trackPopup(TPM_LEFTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y);
 
-    return FALSE;   
+    return FALSE;
 }
 
 BOOL UChartControl::onCommand( WPARAM wParam, LPARAM lParam )
@@ -189,6 +189,13 @@ public:
 
 BOOL UChartControl::onMenuHelp()
 {
+    showHelp();
+
+    return FALSE;
+}
+
+void UChartControl::showHelp()
+{
     if (win == 0)
     {
         win = new UHelpWindow(m_hSelf);
@@ -198,7 +205,5 @@ BOOL UChartControl::onMenuHelp()
     {
         win->show();
     }
-    
-    return FALSE;   
 }
 

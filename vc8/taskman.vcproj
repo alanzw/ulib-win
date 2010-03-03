@@ -171,6 +171,7 @@
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="./Debug"
+				GenerateManifest="false"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\Debug/taskman.pdb"
 				SubSystem="2"
@@ -181,6 +182,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
+				EmbedManifest="false"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -259,11 +261,11 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\app\utaskman\resource.h"
+				RelativePath="..\demo\dialog\resource.h"
 				>
 			</File>
 			<File
-				RelativePath="..\demo\dialog\resource.h"
+				RelativePath="..\app\utaskman\resource.h"
 				>
 			</File>
 			<File

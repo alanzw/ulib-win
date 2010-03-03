@@ -25,7 +25,7 @@ class UDialogChart : public UDialogBox
         IDC_EDIT_CTRL  = 1112,
         IDC_BTN_PRINT  = 1113,
         IDC_BTN_SAVE   = 1114,
-		IDC_BTN_HELP   = 1115
+        IDC_BTN_HELP   = 1115
     };
 public:
     UDialogChart(HINSTANCE hInst, UINT nID)
@@ -49,10 +49,10 @@ public:
         m_btnSave->create();
         m_btnSave->setWindowText(_T("Save"));
 
-		m_btnHelp = new UButton(m_hDlg, IDC_BTN_HELP, m_hInst);
-		m_btnHelp->setPos(350, 5, 100, 40);
-		m_btnHelp->create();
-		m_btnHelp->setWindowText(_T("Help"));
+        m_btnHelp = new UButton(m_hDlg, IDC_BTN_HELP, m_hInst);
+        m_btnHelp->setPos(350, 5, 100, 40);
+        m_btnHelp->create();
+        m_btnHelp->setWindowText(_T("Help"));
 
         rc.top += 50;
         rc.bottom -= 120;
@@ -95,8 +95,8 @@ public:
             return onBnPrint();
         case IDC_BTN_SAVE:
             return onBnSave();
-		case IDC_BTN_HELP:
-			return onBnHelp();
+        case IDC_BTN_HELP:
+            return onBnHelp();
         default:
             return UDialogBox::onCommand(wParam, lParam);
         }
@@ -106,7 +106,7 @@ private:
     huys::ADT::UAutoPtr<UEdit> m_edit;
     huys::ADT::UAutoPtr<UButton> m_btnPrint;
     huys::ADT::UAutoPtr<UButton> m_btnSave;
-	huys::ADT::UAutoPtr<UButton> m_btnHelp;
+    huys::ADT::UAutoPtr<UButton> m_btnHelp;
 private:
     BOOL onBnPrint()
     {
@@ -120,11 +120,11 @@ private:
         return FALSE;
     }
 
-	BOOL onBnHelp()
-	{
-		showMsg(_T("Not Implemented yet!"), _T("Info"), m_hDlg);
-		return FALSE;
-	}
+    BOOL onBnHelp()
+    {
+        m_chart->showHelp();
+        return FALSE;
+    }
 };
 
 UDLGAPP_T(UDialogChart, IDD_CHART);
