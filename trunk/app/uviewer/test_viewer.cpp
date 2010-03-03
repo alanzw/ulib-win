@@ -130,6 +130,7 @@ private:
     BOOL onBnLoad()
     {
         UCommonDialog::UFileDialog filedlg(m_hDlg);
+        filedlg.setFilter(_T("All\0*.*\0Bitmap\0*.bmp\0PNG\0*.png\0"));
         if (filedlg.open())
         {
             //UListBox ulb;

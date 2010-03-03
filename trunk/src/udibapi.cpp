@@ -8,6 +8,7 @@
 #include <exception>
 
 #include "udibapi.h"
+#include "ufile.h"
 
 //
 namespace huys
@@ -297,6 +298,11 @@ WORD WINAPI PaletteSize(LPSTR lpbi)
     }
 }
 
+DWORD WINAPI BytesPerLine( LPBITMAPINFOHEADER lpBMIH )
+{
+    return WIDTHBYTES(lpBMIH->biWidth * lpBMIH->biPlanes * lpBMIH->biBitCount);
+}
+
 //
 WORD WINAPI DIBNumColors(LPSTR lpbi)
 {
@@ -372,6 +378,27 @@ HGLOBAL WINAPI CopyHandle(HGLOBAL h)
     }
 
     return hCopy;
+}
+
+//
+void SetMonoDIBPixel( LPBYTE pANDBits, DWORD dwWidth, DWORD dwHeight, DWORD x, DWORD y, BOOL bWhite )
+{
+    DWORD	ByteIndex;
+    BYTE    BitNumber;
+
+    // Find the byte on which this scanline begins
+    ByteIndex = (dwHeight - y - 1) * WIDTHBYTES(dwWidth);
+    // Find the byte containing this pixel
+    ByteIndex += (x >> 3);
+    // Which bit is it?
+    BitNumber = (BYTE)( 7 - (x % 8) );
+
+    if( bWhite )
+        // Turn it on
+        pANDBits[ByteIndex] |= (1<<BitNumber);
+    else
+        // Turn it off
+        pANDBits[ByteIndex] &= ~(1<<BitNumber);
 }
 
 //
@@ -472,6 +499,16 @@ BOOL WINAPI SaveDIB(HDIB hDib, HANDLE hFile)
     return TRUE;
 }
 
+BOOL WINAPI SaveDIBFilename(HDIB hDib, LPCTSTR lpFilename)
+{
+    UFile ufile;
+    if (!ufile.open(lpFilename))
+    {
+        return FALSE;
+    }
+    return SaveDIB(hDib, ufile);
+}
+
 //
 HDIB WINAPI ReadDIBFile(HANDLE hFile)
 {
@@ -532,6 +569,17 @@ HDIB WINAPI ReadDIBFile(HANDLE hFile)
     ::GlobalUnlock((HGLOBAL)hDIB);
 
     return hDIB;
+}
+
+HDIB WINAPI ReadDIBFileName(LPCTSTR lpFilename)
+{
+    UFile ufile;
+    if (!ufile.open(lpFilename))
+    {
+        return NULL;
+    }
+    
+    return ReadDIBFile(ufile);
 }
 
 // DDBToDIB        - Creates a DIB from a DDB

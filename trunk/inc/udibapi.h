@@ -26,33 +26,38 @@ DECLARE_HANDLE(HDIB);
 #define WIDTHBYTES(bits)  (( (bits) + 31) / 32*4)
 
 //
-BOOL WINAPI PaintDIB(HDC, LPRECT, HDIB, LPRECT, HPALETTE hPal);
+ULIB_API BOOL WINAPI PaintDIB(HDC, LPRECT, HDIB, LPRECT, HPALETTE hPal);
 
-BOOL WINAPI CreateDIBPalette(HDIB hDIB, HPALETTE hPal);
+ULIB_API BOOL WINAPI CreateDIBPalette(HDIB hDIB, HPALETTE hPal);
 
-LPSTR WINAPI FindDIBBits(LPSTR lpbi);
+ULIB_API LPSTR WINAPI FindDIBBits(LPSTR lpbi);
 
-DWORD WINAPI DIBWidth(LPSTR lpDIB);
+ULIB_API DWORD WINAPI DIBWidth(LPSTR lpDIB);
 
-DWORD WINAPI DIBHeight(LPSTR lpDIB);
+ULIB_API DWORD WINAPI DIBHeight(LPSTR lpDIB);
 
-WORD WINAPI PaletteSize(LPSTR lpbi);
+ULIB_API WORD WINAPI PaletteSize(LPSTR lpbi);
 
-WORD WINAPI DIBNumColors(LPSTR lpbi);
+ULIB_API DWORD WINAPI BytesPerLine( LPBITMAPINFOHEADER lpBMIH );
 
-HGLOBAL WINAPI CopyHandle(HGLOBAL h);
+ULIB_API WORD WINAPI DIBNumColors(LPSTR lpbi);
 
-BOOL WINAPI SaveDIB(HDIB hDib, HANDLE hFile);
+ULIB_API HGLOBAL WINAPI CopyHandle(HGLOBAL h);
 
-HDIB WINAPI ReadDIBFile(HANDLE hFile);
+ULIB_API void SetMonoDIBPixel( LPBYTE pANDBits, DWORD dwWidth, DWORD dwHeight, DWORD x, DWORD y, BOOL bWhite );
 
+ULIB_API BOOL WINAPI SaveDIB(HDIB hDib, HANDLE hFile);
+ULIB_API BOOL WINAPI SaveDIBFilename(HDIB hDib, LPCTSTR lpFilename);
+
+ULIB_API HDIB WINAPI ReadDIBFile(HANDLE hFile);
+ULIB_API HDIB WINAPI ReadDIBFileName(LPCTSTR lpFilename);
 
 //
-HANDLE DDBToDIB( HBITMAP hBitmap, DWORD dwCompression, HPALETTE hPal );
+ULIB_API HANDLE DDBToDIB( HBITMAP hBitmap, DWORD dwCompression, HPALETTE hPal );
 
-BOOL WriteDIB( LPTSTR szFile, HANDLE hDIB);
+ULIB_API BOOL WriteDIB( LPCTSTR szFile, HANDLE hDIB);
 
-void TransparentBlt( HDC hdcDest,
+ULIB_API void TransparentBlt( HDC hdcDest,
                      int nXDest,
                      int nYDest,
                      int nWidth,
@@ -64,10 +69,10 @@ void TransparentBlt( HDC hdcDest,
                      HPALETTE hPal );
 
 //
-HBITMAP GetSrcBit(HDC hDC,DWORD BitWidth, DWORD BitHeight);
+ULIB_API HBITMAP GetSrcBit(HDC hDC,DWORD BitWidth, DWORD BitHeight);
 
 //
-BOOL SaveBmp(HBITMAP hBitmap, LPCTSTR FileName);
+ULIB_API BOOL SaveBmp(HBITMAP hBitmap, LPCTSTR FileName);
 
 }; // namespace huys
 

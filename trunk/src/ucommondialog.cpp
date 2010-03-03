@@ -56,6 +56,11 @@ BOOL UFileDialog::open()
     return ::GetOpenFileName(&m_ofn);
 }
 
+void UFileDialog::setFilter(LPCTSTR lpFilter)
+{
+    m_ofn.lpstrFilter = lpFilter;
+}
+
 UFontDialog::UFontDialog( HWND hwnd )
 : m_hWnd(hwnd)
 {

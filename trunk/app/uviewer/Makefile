@@ -12,12 +12,14 @@ CXXFLAGS += -DBUILD_EXE
 #
 OBJ = \
  test_viewer.o \
+ uico.o
 
 BIN = test_viewer.exe
 RC  = viewer.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/udialogx.h
+HEADER = $(INCDIR)/udialogx.h \
+         uico.h
 #
 all: $(BIN)
 
