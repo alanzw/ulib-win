@@ -138,11 +138,19 @@ SOURCE=..\src\udialogx.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\udibapi.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\udllman.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\src\uedit.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\ufile.cpp
 # End Source File
 # Begin Source File
 
@@ -195,6 +203,10 @@ SOURCE=..\src\umsg.cpp
 # Begin Source File
 
 SOURCE=..\src\uobject.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\upicture.cpp
 # End Source File
 # Begin Source File
 
@@ -298,11 +310,19 @@ SOURCE=..\inc\udialogx.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\inc\udibapi.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\inc\udllman.h
 # End Source File
 # Begin Source File
 
 SOURCE=..\inc\uedit.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\ufile.h
 # End Source File
 # Begin Source File
 
@@ -355,6 +375,10 @@ SOURCE=..\inc\umsg.h
 # Begin Source File
 
 SOURCE=..\inc\uobject.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\upicture.h
 # End Source File
 # Begin Source File
 

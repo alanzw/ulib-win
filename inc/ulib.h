@@ -238,6 +238,7 @@ inline void checked_delete(T * x)
   #endif
   
   #pragma comment(lib, "netapi32.lib")
+  #pragma comment(lib, "shlwapi.lib")
 #endif // BUILD_DLL
 #endif // _MSC_VER
 

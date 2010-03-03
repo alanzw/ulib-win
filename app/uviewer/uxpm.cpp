@@ -23,10 +23,10 @@
 
 UXpm::UXpm(const char *sFilename)
 {
-    #error Not implemented yet.
+
 }
 
 bool UXpm::parse()
 {
-    #error Not implemented yet.
+   return false;
 }

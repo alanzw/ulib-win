@@ -7,23 +7,23 @@
 // bacuase of the design of the UI. It needs to draw the entire icon
 // 4 times, so we limit how big one can be. The ICO spec puts no limit
 // on icon sizes.
-#define MAX_ICON_WIDTH	128              // Max width
-#define MIN_ICON_WIDTH	16               // Min width
-#define MAX_ICON_HEIGHT	MAX_ICON_WIDTH   // Max height
-#define MIN_ICON_HEIGHT	MIN_ICON_WIDTH   // Min height
+#define MAX_ICON_WIDTH    128              // Max width
+#define MIN_ICON_WIDTH    16               // Min width
+#define MAX_ICON_HEIGHT    MAX_ICON_WIDTH   // Max height
+#define MIN_ICON_HEIGHT    MIN_ICON_WIDTH   // Min height
 
 // How big do the MDI child windows need to be to display the icon and
 // the listbox?
-#define WINDOW_WIDTH		( ( MAX_ICON_WIDTH * 2 ) + 30 )
-#define WINDOW_HEIGHT		( ( MAX_ICON_HEIGHT * 2 ) + 150 )
+#define WINDOW_WIDTH        ( ( MAX_ICON_WIDTH * 2 ) + 30 )
+#define WINDOW_HEIGHT        ( ( MAX_ICON_HEIGHT * 2 ) + 150 )
 
 // Utility macro to calculate a rectangle's width/height
-#define RectWidth(r)		((r).right - (r).left + 1)
-#define RectHeight(r)		((r).bottom - (r).top + 1)
+#define RectWidth(r)        ((r).right - (r).left + 1)
+#define RectHeight(r)        ((r).bottom - (r).top + 1)
 
 /****************************************************************************\
 *     FUNCTIONS:
-*      EXPORTS: 
+*      EXPORTS:
 *               ReadIconFromICOFile        - Reads Icon from ICO file
 *               WriteIconToICOFile         - Writes Icon to ICO file
 *               MakeIconFromResource       - Makes HICON from a resource
@@ -61,15 +61,15 @@
 // Resource Position info - size and offset of a resource in a file
 typedef struct
 {
-    DWORD	dwBytes;
-    DWORD	dwOffset;
+    DWORD    dwBytes;
+    DWORD    dwOffset;
 } RESOURCEPOSINFO, *LPRESOURCEPOSINFO;
 // EXE/DLL icon information - filename, instance handle and ID
 typedef struct
 {
-    LPCTSTR    	szFileName;
-    HINSTANCE	hInstance;
-    LPTSTR    	lpID;
+    LPCTSTR        szFileName;
+    HINSTANCE    hInstance;
+    LPTSTR        lpID;
 } EXEDLLICONINFO, *LPEXEDLLICONINFO;
 /****************************************************************************/
 
@@ -106,7 +106,7 @@ BOOL DIBToIconImage( LPICONIMAGE lpii, LPBYTE lpDIB, BOOL bStretch );
 *
 *     PURPOSE:  Makes an HICON from an icon resource
 *
-*     PARAMS:   LPICONIMAGE	lpIcon - pointer to the icon resource
+*     PARAMS:   LPICONIMAGE    lpIcon - pointer to the icon resource
 *
 *     RETURNS:  HICON - handle to the new icon, NULL for failure
 *
@@ -116,7 +116,7 @@ BOOL DIBToIconImage( LPICONIMAGE lpii, LPBYTE lpDIB, BOOL bStretch );
 \****************************************************************************/
 HICON MakeIconFromResource( LPICONIMAGE lpIcon )
 {
-    HICON        	hIcon = NULL;
+    HICON            hIcon = NULL;
 
     // Sanity Check
     if( lpIcon == NULL )
@@ -124,15 +124,15 @@ HICON MakeIconFromResource( LPICONIMAGE lpIcon )
     if( lpIcon->lpBits == NULL )
         return NULL;
     // Let the OS do the real work :)
-    hIcon = CreateIconFromResourceEx( lpIcon->lpBits, lpIcon->dwNumBytes, TRUE, 0x00030000, 
+    hIcon = CreateIconFromResourceEx( lpIcon->lpBits, lpIcon->dwNumBytes, TRUE, 0x00030000,
             (*(LPBITMAPINFOHEADER)(lpIcon->lpBits)).biWidth, (*(LPBITMAPINFOHEADER)(lpIcon->lpBits)).biHeight/2, 0 );
-    
+
     // It failed, odds are good we're on NT so try the non-Ex way
     if( hIcon == NULL )
     {
         // We would break on NT if we try with a 16bpp image
         if(lpIcon->lpbi->bmiHeader.biBitCount != 16)
-        {	
+        {
             hIcon = CreateIconFromResource( lpIcon->lpBits, lpIcon->dwNumBytes, TRUE, 0x00030000 );
         }
     }
@@ -160,39 +160,39 @@ HICON MakeIconFromResource( LPICONIMAGE lpIcon )
 \****************************************************************************/
 LPICONRESOURCE ReadIconFromICOFile( LPCTSTR szFileName )
 {
-    LPICONRESOURCE    	lpIR = NULL, lpNew = NULL;
-    HANDLE            	hFile = NULL;
-    LPRESOURCEPOSINFO	lpRPI = NULL;
+    LPICONRESOURCE        lpIR = NULL, lpNew = NULL;
+    HANDLE                hFile = NULL;
+    LPRESOURCEPOSINFO    lpRPI = NULL;
     UINT                i;
-    DWORD            	dwBytesRead;
-    LPICONDIRENTRY    	lpIDE = NULL;
+    DWORD                dwBytesRead;
+    LPICONDIRENTRY        lpIDE = NULL;
 
 
     // Open the file
     if( (hFile = CreateFile( szFileName, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL )) == INVALID_HANDLE_VALUE )
     {
-        MessageBox( hWndMain, "Error Opening File for Reading", szFileName, MB_OK );
+        //MessageBox( hWndMain, "Error Opening File for Reading", szFileName, MB_OK );
         return NULL;
     }
     // Allocate memory for the resource structure
-    if( (lpIR = malloc( sizeof(ICONRESOURCE) )) == NULL )
+    if( (lpIR = (LPICONRESOURCE)malloc( sizeof(ICONRESOURCE) )) == NULL )
     {
-        MessageBox( hWndMain, "Error Allocating Memory", szFileName, MB_OK );
+        //MessageBox( hWndMain, "Error Allocating Memory", szFileName, MB_OK );
         CloseHandle( hFile );
         return NULL;
     }
     // Read in the header
     if( (lpIR->nNumImages = ReadICOHeader( hFile )) == (UINT)-1 )
     {
-        MessageBox( hWndMain, "Error Reading File Header", szFileName, MB_OK );
+        //MessageBox( hWndMain, "Error Reading File Header", szFileName, MB_OK );
         CloseHandle( hFile );
         free( lpIR );
         return NULL;
     }
     // Adjust the size of the struct to account for the images
-    if( (lpNew = realloc( lpIR, sizeof(ICONRESOURCE) + ((lpIR->nNumImages-1) * sizeof(ICONIMAGE)) )) == NULL )
+    if( (lpNew = (LPICONRESOURCE)realloc( lpIR, sizeof(ICONRESOURCE) + ((lpIR->nNumImages-1) * sizeof(ICONIMAGE)) )) == NULL )
     {
-        MessageBox( hWndMain, "Error Allocating Memory", szFileName, MB_OK );
+        //MessageBox( hWndMain, "Error Allocating Memory", szFileName, MB_OK );
         CloseHandle( hFile );
         free( lpIR );
         return NULL;
@@ -202,9 +202,9 @@ LPICONRESOURCE ReadIconFromICOFile( LPCTSTR szFileName )
     lstrcpy( lpIR->szOriginalICOFileName, szFileName );
     lstrcpy( lpIR->szOriginalDLLFileName, "" );
     // Allocate enough memory for the icon directory entries
-    if( (lpIDE = malloc( lpIR->nNumImages * sizeof( ICONDIRENTRY ) ) ) == NULL )
+    if( (lpIDE = (LPICONDIRENTRY)malloc( lpIR->nNumImages * sizeof( ICONDIRENTRY ) ) ) == NULL )
     {
-        MessageBox( hWndMain, "Error Allocating Memory", szFileName, MB_OK );
+        //MessageBox( hWndMain, "Error Allocating Memory", szFileName, MB_OK );
         CloseHandle( hFile );
         free( lpIR );
         return NULL;
@@ -212,14 +212,14 @@ LPICONRESOURCE ReadIconFromICOFile( LPCTSTR szFileName )
     // Read in the icon directory entries
     if( ! ReadFile( hFile, lpIDE, lpIR->nNumImages * sizeof( ICONDIRENTRY ), &dwBytesRead, NULL ) )
     {
-        MessageBox( hWndMain, "Error Reading File", szFileName, MB_OK );
+        //MessageBox( hWndMain, "Error Reading File", szFileName, MB_OK );
         CloseHandle( hFile );
         free( lpIR );
         return NULL;
     }
     if( dwBytesRead != lpIR->nNumImages * sizeof( ICONDIRENTRY ) )
     {
-        MessageBox( hWndMain, "Error Reading File", szFileName, MB_OK );
+        //MessageBox( hWndMain, "Error Reading File", szFileName, MB_OK );
         CloseHandle( hFile );
         free( lpIR );
         return NULL;
@@ -228,9 +228,9 @@ LPICONRESOURCE ReadIconFromICOFile( LPCTSTR szFileName )
     for( i = 0; i < lpIR->nNumImages; i++ )
     {
         // Allocate memory for the resource
-        if( (lpIR->IconImages[i].lpBits = malloc(lpIDE[i].dwBytesInRes)) == NULL )
+        if( (lpIR->IconImages[i].lpBits = (LPBYTE)malloc(lpIDE[i].dwBytesInRes)) == NULL )
         {
-            MessageBox( hWndMain, "Error Allocating Memory", szFileName, MB_OK );
+            //MessageBox( hWndMain, "Error Allocating Memory", szFileName, MB_OK );
             CloseHandle( hFile );
             free( lpIR );
             free( lpIDE );
@@ -240,7 +240,7 @@ LPICONRESOURCE ReadIconFromICOFile( LPCTSTR szFileName )
         // Seek to beginning of this image
         if( SetFilePointer( hFile, lpIDE[i].dwImageOffset, NULL, FILE_BEGIN ) == 0xFFFFFFFF )
         {
-            MessageBox( hWndMain, "Error Seeking in File", szFileName, MB_OK );
+            //MessageBox( hWndMain, "Error Seeking in File", szFileName, MB_OK );
             CloseHandle( hFile );
             free( lpIR );
             free( lpIDE );
@@ -249,7 +249,7 @@ LPICONRESOURCE ReadIconFromICOFile( LPCTSTR szFileName )
         // Read it in
         if( ! ReadFile( hFile, lpIR->IconImages[i].lpBits, lpIDE[i].dwBytesInRes, &dwBytesRead, NULL ) )
         {
-            MessageBox( hWndMain, "Error Reading File", szFileName, MB_OK );
+            //MessageBox( hWndMain, "Error Reading File", szFileName, MB_OK );
             CloseHandle( hFile );
             free( lpIR );
             free( lpIDE );
@@ -257,7 +257,7 @@ LPICONRESOURCE ReadIconFromICOFile( LPCTSTR szFileName )
         }
         if( dwBytesRead != lpIDE[i].dwBytesInRes )
         {
-            MessageBox( hWndMain, "Error Reading File", szFileName, MB_OK );
+            //MessageBox( hWndMain, "Error Reading File", szFileName, MB_OK );
             CloseHandle( hFile );
             free( lpIDE );
             free( lpIR );
@@ -266,14 +266,14 @@ LPICONRESOURCE ReadIconFromICOFile( LPCTSTR szFileName )
         // Set the internal pointers appropriately
         if( ! AdjustIconImagePointers( &(lpIR->IconImages[i]) ) )
         {
-            MessageBox( hWndMain, "Error Converting to Internal Format", szFileName, MB_OK );
+            //MessageBox( hWndMain, "Error Converting to Internal Format", szFileName, MB_OK );
             CloseHandle( hFile );
             free( lpIDE );
             free( lpIR );
             return NULL;
         }
     }
-    // Clean up	
+    // Clean up
     free( lpIDE );
     free( lpRPI );
     CloseHandle( hFile );
@@ -312,9 +312,9 @@ BOOL AdjustIconImagePointers( LPICONIMAGE lpImage )
     // How many colors?
     lpImage->Colors = lpImage->lpbi->bmiHeader.biPlanes * lpImage->lpbi->bmiHeader.biBitCount;
     // XOR bits follow the header and color table
-    lpImage->lpXOR = FindDIBBits((LPSTR)lpImage->lpbi);
+    lpImage->lpXOR = (LPBYTE)huys::FindDIBBits((LPSTR)lpImage->lpbi);
     // AND bits follow the XOR bits
-    lpImage->lpAND = lpImage->lpXOR + (lpImage->Height*BytesPerLine((LPBITMAPINFOHEADER)(lpImage->lpbi)));
+    lpImage->lpAND = lpImage->lpXOR + (lpImage->Height*huys::BytesPerLine((LPBITMAPINFOHEADER)(lpImage->lpbi)));
     return TRUE;
 }
 /* End AdjustIconImagePointers() *******************************************/
@@ -339,7 +339,7 @@ BOOL AdjustIconImagePointers( LPICONIMAGE lpImage )
 UINT ReadICOHeader( HANDLE hFile )
 {
     WORD    Input;
-    DWORD	dwBytesRead;
+    DWORD    dwBytesRead;
 
     // Read the 'reserved' WORD
     if( ! ReadFile( hFile, &Input, sizeof( WORD ), &dwBytesRead, NULL ) )
@@ -390,11 +390,11 @@ UINT ReadICOHeader( HANDLE hFile )
 *                July '95 - Created
 *
 \****************************************************************************/
-BOOL CALLBACK MyEnumProcedure( HANDLE  hModule, LPCTSTR  lpszType, LPTSTR  lpszName, LONG  lParam )	
+BOOL CALLBACK MyEnumProcedure( HANDLE  hModule, LPCTSTR  lpszType, LPTSTR  lpszName, LONG  lParam )
 {
-    TCHAR	szBuffer[256];
+    TCHAR    szBuffer[256];
     LONG    nIndex = LB_ERR;
-    LPTSTR	lpID = NULL;
+    LPTSTR    lpID = NULL;
 
     // Name is from MAKEINTRESOURCE()
     if( HIWORD(lpszName) == 0 )
@@ -409,9 +409,9 @@ BOOL CALLBACK MyEnumProcedure( HANDLE  hModule, LPCTSTR  lpszType, LPTSTR  lpszN
         wsprintf( szBuffer, "Icon [%s]", lpID );
     }
     // Add it to the listbox
-    nIndex = SendDlgItemMessage( (HWND)lParam, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)(szBuffer) );
+    //nIndex = SendDlgItemMessage( (HWND)lParam, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)(szBuffer) );
     // Set the item data to be the name of the resource so we can get it later
-    SendDlgItemMessage( (HWND)lParam, IDC_LIST1, LB_SETITEMDATA, (WPARAM)nIndex, (LPARAM)lpID );
+    //SendDlgItemMessage( (HWND)lParam, IDC_LIST1, LB_SETITEMDATA, (WPARAM)nIndex, (LPARAM)lpID );
     return TRUE;
 }
 /* End MyEnumProcedure() ***************************************************/
@@ -435,11 +435,11 @@ BOOL CALLBACK MyEnumProcedure( HANDLE  hModule, LPCTSTR  lpszType, LPTSTR  lpszN
 \****************************************************************************/
 HICON GetIconFromInstance( HINSTANCE hInstance, LPTSTR nIndex )
 {
-    HICON	hIcon = NULL;
-    HRSRC	hRsrc = NULL;
-    HGLOBAL	hGlobal = NULL;
-    LPVOID	lpRes = NULL;
-    int    	nID;
+    HICON    hIcon = NULL;
+    HRSRC    hRsrc = NULL;
+    HGLOBAL    hGlobal = NULL;
+    LPVOID    lpRes = NULL;
+    int        nID;
 
     // Find the group icon
     if( (hRsrc = FindResource( hInstance, nIndex, RT_GROUP_ICON )) == NULL )
@@ -450,7 +450,7 @@ HICON GetIconFromInstance( HINSTANCE hInstance, LPTSTR nIndex )
         return NULL;
 
     // Find this particular image
-    nID = LookupIconIdFromDirectory( lpRes, TRUE );
+    nID = LookupIconIdFromDirectory( (LPBYTE)lpRes, TRUE );
     if( (hRsrc = FindResource( hInstance, MAKEINTRESOURCE(nID), RT_ICON )) == NULL )
         return NULL;
     if( (hGlobal = LoadResource( hInstance, hRsrc )) == NULL )
@@ -458,189 +458,16 @@ HICON GetIconFromInstance( HINSTANCE hInstance, LPTSTR nIndex )
     if( (lpRes = LockResource(hGlobal)) == NULL )
         return NULL;
     // Let the OS make us an icon
-    hIcon = CreateIconFromResource( lpRes, SizeofResource(hInstance,hRsrc), TRUE, 0x00030000 );
+    hIcon = CreateIconFromResource( (LPBYTE)lpRes, SizeofResource(hInstance,hRsrc), TRUE, 0x00030000 );
     return hIcon;
 }
 /* End GetIconFromInstance() ***********************************************/
 
 
-
-/****************************************************************************
-*
-*     FUNCTION: ExtractDlgProc
-*
-*     PURPOSE:  Window Procedure for the Extract Dialog
-*
-*     PARAMS:   HWND hWnd     - This window handle
-*               UINT Msg      - Which Message?
-*               WPARAM wParam - message parameter
-*               LPARAM lParam - message parameter
-*
-*     RETURNS:  BOOL - FALSE for cancel, TRUE for ok
-*
-* History:
-*                July '95 - Created
-*
-\****************************************************************************/
-BOOL CALLBACK ExtractDlgProc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam )
-{
-    // Variable that holds info on this EXE/DLL
-    static LPEXEDLLICONINFO lpEDII;
-
-    switch( Msg )
-    {
-        // During Paint, we will draw the currently selected icon
-        case WM_PAINT:
-        {
-            HDC                	hDC;
-            PAINTSTRUCT        	ps;
-            DWORD            	nIndex;
-            LPTSTR            	lpIconID;
-
-            hDC = BeginPaint( hWnd, &ps );
-            // Get the current selection
-            if( (nIndex = SendDlgItemMessage( hWnd, IDC_LIST1, LB_GETCURSEL, 0, 0 )) != CB_ERR )
-            {
-                // Get the data associated with the current selection - its the icon name
-                if( (lpIconID = (LPTSTR)SendDlgItemMessage( hWnd, IDC_LIST1, LB_GETITEMDATA, nIndex, 0 )) != (LPTSTR)CB_ERR )
-                {
-                    RECT        Rect, ButtonRect, DlgRect;
-                    HWND        hWndButton;
-                    HICON    	hIcon;
-                    ICONINFO    IconInfo;
-                    BITMAP    	bm;
-                    POINT    	UpperLeft, LowerRight;
-
-                    // Make an Icon
-                    hIcon = GetIconFromInstance( lpEDII->hInstance, lpIconID );
-                    // Locate the icon
-                    GetIconInfo( hIcon, &IconInfo );
-                    GetObject( IconInfo.hbmColor, sizeof(BITMAP), &bm );
-                    hWndButton = GetDlgItem( hWnd, IDCANCEL );
-                    GetWindowRect( hWndButton, &ButtonRect );
-                    GetWindowRect( hWnd, &DlgRect );
-                    UpperLeft.x = ButtonRect.left;
-                    UpperLeft.y = ButtonRect.bottom;
-                    LowerRight.x = ButtonRect.right;
-                    LowerRight.y = DlgRect.bottom;
-                    ScreenToClient( hWnd, &UpperLeft );
-                    ScreenToClient( hWnd, &LowerRight );
-                    SetRect( &Rect, UpperLeft.x, UpperLeft.y, LowerRight.x, LowerRight.y );
-                    // Draw it
-                    DrawIcon( hDC, Rect.left + ((Rect.right - Rect.left - bm.bmWidth)/2), 
-                            Rect.top + ((Rect.bottom - Rect.top - bm.bmHeight)/2), hIcon );
-                    // Kill it
-                    DestroyIcon( hIcon );
-                }
-            }
-            EndPaint( hWnd, &ps );
-        }
-        break; // End WM_PAINT
-
-        // Dialog is being initialized
-        case WM_INITDIALOG:
-        {
-            UINT    nCount;
-            TCHAR	szBuffer[MAX_PATH], szFileTitle[MAX_PATH];
-
-            // Are we being sent data about an EXE/DLL?
-            if( (lpEDII = (LPEXEDLLICONINFO)lParam) != NULL )
-            {
-                // Set the title of the dialog to reflect the EXE/DLL filename
-                GetFileTitle( lpEDII->szFileName, szFileTitle, MAX_PATH );
-                wsprintf( szBuffer, "Extract Icon [%s]", szFileTitle );
-                SetWindowText( hWnd, szBuffer );
-                // Fill in the listbox with the icons available
-                if( ! EnumResourceNames( lpEDII->hInstance, RT_GROUP_ICON, MyEnumProcedure, (LPARAM)hWnd ) )
-                {
-                    MessageBox( hWnd, "Error Enumerating Icons", "Error", MB_OK );
-                    PostMessage( hWnd, WM_CLOSE, 0, 0 );
-                }
-                SendDlgItemMessage( hWnd, IDC_LIST1, LB_SETCURSEL, 0, 0 );
-                // If we have <= 1, post an OK message
-                if( (nCount = SendDlgItemMessage(hWnd, IDC_LIST1, LB_GETCOUNT, 0, 0)) == 1 )
-                {
-                    PostMessage( hWnd, WM_COMMAND, IDOK, 0 );
-                }
-                // If there were no icons, let the user know
-                if( nCount == 0 )
-                {
-                    MessageBox( hWnd, "No Icons in this File", "Error", MB_OK );
-                    PostMessage( hWnd, WM_CLOSE, 0, 0 );
-                }
-            }
-            return FALSE;
-        }
-        break; // End WM_INITDIALOG
-
-        // Shut 'er down
-        case WM_CLOSE:
-            PostMessage( hWnd, WM_COMMAND, IDCANCEL, 0l );
-        break; // End WM_CLOSE
-
-        // Children are sending messages
-        case WM_COMMAND:
-            switch( LOWORD(wParam) )
-            {
-                // Its the listbox, just redraw the icon
-                case IDC_LIST1:
-                    switch( HIWORD(wParam) )
-                    {
-                        case CBN_SELCHANGE:
-                        case CBN_SELENDOK:
-                            InvalidateRect( hWnd, NULL, TRUE );
-                        break;
-                    }
-                break; // End IDC_LIST1
-
-                // User has chosen an icon, shut it down
-                case IDOK:
-                {
-                    LONG nIndex;
-
-                    lpEDII->lpID = NULL;
-                    if( (nIndex = SendDlgItemMessage( hWnd, IDC_LIST1, LB_GETCURSEL, 0, 0 )) != LB_ERR )
-                        lpEDII->lpID = (LPTSTR)SendDlgItemMessage( hWnd, IDC_LIST1, LB_GETITEMDATA, nIndex, 0 );
-                    EndDialog( hWnd, TRUE );
-                }
-                break; // End IDOK
-
-                // BAIL!
-                case IDCANCEL:
-                    EndDialog( hWnd, FALSE );
-                break; // End IDCANCEL
-
-            }
-        break;
-        default:
-            return FALSE;
-        break;
-    }
-    return TRUE;
-}
-/* End ExtractDlgProc() ****************************************************/
-
-
-
-
-/****************************************************************************
-*
-*     FUNCTION: ChooseIconFromEXEFile
-*
-*     PURPOSE:  Ask the user which icon he/she wants from the DLL/EXE
-*
-*     PARAMS:   LPEXEDLLICONINFO lpEDII - info on this DLL/EXE
-*
-*     RETURNS:  LPTSTR - pointer to the resource name
-*
-* History:
-*                July '95 - Created
-*
-\****************************************************************************/
 LPTSTR ChooseIconFromEXEFile( LPEXEDLLICONINFO lpEDII )
 {
     // Just launch the dialog box and let it handle it
-    if( DialogBoxParam( hInst, MAKEINTRESOURCE(IDD_EXTRACTDLG), hWndMain, ExtractDlgProc, (LPARAM)(lpEDII) ) )
+    //if( DialogBoxParam( hInst, MAKEINTRESOURCE(IDD_EXTRACTDLG), hWndMain, ExtractDlgProc, (LPARAM)(lpEDII) ) )
     {
         // User chose 'Ok'
         return lpEDII->lpID;
@@ -648,8 +475,6 @@ LPTSTR ChooseIconFromEXEFile( LPEXEDLLICONINFO lpEDII )
     // User chose 'Cancel', or an error occurred, fail the call
     return NULL;
 }
-/* End ChooseIconFromEXEFile() **********************************************/
-
 
 
 
@@ -669,16 +494,16 @@ LPTSTR ChooseIconFromEXEFile( LPEXEDLLICONINFO lpEDII )
 \****************************************************************************/
 LPICONRESOURCE ReadIconFromEXEFile( LPCTSTR szFileName )
 {
-    LPICONRESOURCE    	lpIR = NULL, lpNew = NULL;
-    HINSTANCE        	hLibrary;
-    LPTSTR            	lpID;
-    EXEDLLICONINFO    	EDII;
+    LPICONRESOURCE        lpIR = NULL, lpNew = NULL;
+    HINSTANCE            hLibrary;
+    LPTSTR                lpID;
+    EXEDLLICONINFO        EDII;
 
     // Load the DLL/EXE - NOTE: must be a 32bit EXE/DLL for this to work
     if( (hLibrary = LoadLibraryEx( szFileName, NULL, LOAD_LIBRARY_AS_DATAFILE )) == NULL )
     {
         // Failed to load - abort
-        MessageBox( hWndMain, "Error Loading File - Choose a 32bit DLL or EXE", szFileName, MB_OK );
+        //MessageBox( hWndMain, "Error Loading File - Choose a 32bit DLL or EXE", szFileName, MB_OK );
         return NULL;
     }
     // Store the info
@@ -687,8 +512,8 @@ LPICONRESOURCE ReadIconFromEXEFile( LPCTSTR szFileName )
     // Ask the user, "Which Icon?"
     if( (lpID = ChooseIconFromEXEFile( &EDII )) != NULL )
     {
-        HRSRC        	hRsrc = NULL;
-        HGLOBAL        	hGlobal = NULL;
+        HRSRC            hRsrc = NULL;
+        HGLOBAL            hGlobal = NULL;
         LPMEMICONDIR    lpIcon = NULL;
         UINT            i;
 
@@ -703,15 +528,15 @@ LPICONRESOURCE ReadIconFromEXEFile( LPCTSTR szFileName )
             FreeLibrary( hLibrary );
             return NULL;
         }
-        if( (lpIcon = LockResource(hGlobal)) == NULL )
+        if( (lpIcon = (LPMEMICONDIR)LockResource(hGlobal)) == NULL )
         {
             FreeLibrary( hLibrary );
             return NULL;
         }
         // Allocate enough memory for the images
-        if( (lpIR = malloc( sizeof(ICONRESOURCE) + ((lpIcon->idCount-1) * sizeof(ICONIMAGE)) )) == NULL )
+        if( (lpIR = (LPICONRESOURCE)malloc( sizeof(ICONRESOURCE) + ((lpIcon->idCount-1) * sizeof(ICONIMAGE)) )) == NULL )
         {
-            MessageBox( hWndMain, "Error Allocating Memory", szFileName, MB_OK );
+            //MessageBox( hWndMain, "Error Allocating Memory", szFileName, MB_OK );
             FreeLibrary( hLibrary );
             return NULL;
         }
@@ -737,12 +562,12 @@ LPICONRESOURCE ReadIconFromEXEFile( LPCTSTR szFileName )
             }
             // Store a copy of the resource locally
             lpIR->IconImages[i].dwNumBytes = SizeofResource( hLibrary, hRsrc );
-            lpIR->IconImages[i].lpBits = malloc( lpIR->IconImages[i].dwNumBytes );
+            lpIR->IconImages[i].lpBits = (LPBYTE)malloc( lpIR->IconImages[i].dwNumBytes );
             memcpy( lpIR->IconImages[i].lpBits, LockResource( hGlobal ), lpIR->IconImages[i].dwNumBytes );
             // Adjust internal pointers
             if( ! AdjustIconImagePointers( &(lpIR->IconImages[i]) ) )
             {
-                MessageBox( hWndMain, "Error Converting to Internal Format", szFileName, MB_OK );
+                //MessageBox( hWndMain, "Error Converting to Internal Format", szFileName, MB_OK );
                 free( lpIR );
                 FreeLibrary( hLibrary );
                 return NULL;
@@ -774,7 +599,7 @@ LPICONRESOURCE ReadIconFromEXEFile( LPCTSTR szFileName )
 BOOL WriteICOHeader( HANDLE hFile, UINT nNumEntries )
 {
     WORD    Output;
-    DWORD	dwBytesWritten;
+    DWORD    dwBytesWritten;
 
     // Write 'reserved' WORD
     Output = 0;
@@ -820,7 +645,7 @@ BOOL WriteICOHeader( HANDLE hFile, UINT nNumEntries )
 \****************************************************************************/
 DWORD CalculateImageOffset( LPICONRESOURCE lpIR, UINT nIndex )
 {
-    DWORD	dwSize;
+    DWORD    dwSize;
     UINT    i;
 
     // Calculate the ICO header size
@@ -855,20 +680,20 @@ DWORD CalculateImageOffset( LPICONRESOURCE lpIR, UINT nIndex )
 \****************************************************************************/
 BOOL WriteIconToICOFile( LPICONRESOURCE lpIR, LPCTSTR szFileName )
 {
-    HANDLE    	hFile;
+    HANDLE        hFile;
     UINT        i;
-    DWORD    	dwBytesWritten;
+    DWORD        dwBytesWritten;
 
     // open the file
     if( (hFile = CreateFile( szFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL )) == INVALID_HANDLE_VALUE )
     {
-        MessageBox( hWndMain, "Error Opening File for Writing", szFileName, MB_OK );
+        //MessageBox( hWndMain, "Error Opening File for Writing", szFileName, MB_OK );
         return FALSE;
     }
     // Write the header
     if( ! WriteICOHeader( hFile, lpIR->nNumImages ) )
     {
-        MessageBox( hWndMain, "Error Writing ICO File", szFileName, MB_OK );
+        //MessageBox( hWndMain, "Error Writing ICO File", szFileName, MB_OK );
         CloseHandle( hFile );
         return FALSE;
     }
@@ -933,18 +758,18 @@ BOOL WriteIconToICOFile( LPICONRESOURCE lpIR, LPCTSTR szFileName )
 \****************************************************************************/
 BOOL IconImageToClipBoard( LPICONIMAGE lpii )
 {
-    HANDLE	hGlobal;
-    LPSTR	lpBits;
+    HANDLE    hGlobal;
+    LPSTR    lpBits;
 
     // Open the clipboard
-    if( OpenClipboard( hWndMain ) )
+    //if( OpenClipboard( hWndMain ) )
     {
         // empty it
         if( EmptyClipboard() )
         {
             // Make a buffer to send to clipboard
             hGlobal = GlobalAlloc( GMEM_MOVEABLE | GMEM_DDESHARE, lpii->dwNumBytes );
-            lpBits = GlobalLock( hGlobal );
+            lpBits = (LPSTR)GlobalLock( hGlobal );
             // Copy the bits to the buffer
             memcpy( lpBits, lpii->lpBits, lpii->dwNumBytes );
             // Adjust for funky height*2 thing
@@ -981,17 +806,17 @@ BOOL IconImageToClipBoard( LPICONIMAGE lpii )
 BOOL IconImageFromClipBoard( LPICONIMAGE lpii, BOOL bStretchToFit )
 {
     LPBITMAPINFO    lpbi;
-    HANDLE        	hClipGlobal;
+    HANDLE            hClipGlobal;
     BOOL            bRet = FALSE;
 
     // Open the clipboard
-    if( OpenClipboard( hWndMain ) )
+    //if( OpenClipboard( hWndMain ) )
     {
         // Get the CF_DIB data from it
         if( (hClipGlobal = GetClipboardData( CF_DIB )) != NULL )
         {
             // Lock it down
-            if( (lpbi=GlobalLock(hClipGlobal)) != NULL )
+            if( (lpbi=(LPBITMAPINFO)GlobalLock(hClipGlobal)) != NULL )
             {
                 // Convert it to an icon image
                 bRet = DIBToIconImage( lpii, (LPBYTE)lpbi, bStretchToFit );
@@ -1025,39 +850,39 @@ BOOL IconImageFromClipBoard( LPICONIMAGE lpii, BOOL bStretchToFit )
 \****************************************************************************/
 BOOL DIBToIconImage( LPICONIMAGE lpii, LPBYTE lpDIB, BOOL bStretch )
 {
-    LPBYTE    	lpNewDIB;
+    LPBYTE        lpNewDIB;
 
     // Sanity check
     if( lpDIB == NULL )
         return FALSE;
 
     // Let the DIB engine convert color depths if need be
-    lpNewDIB = ConvertDIBFormat( (LPBITMAPINFO)lpDIB, lpii->Width, lpii->Height, lpii->Colors, bStretch );
+    lpNewDIB = (LPBYTE)huys::ConvertDIBFormat( (LPBITMAPINFO)lpDIB, lpii->Width, lpii->Height, lpii->Colors, bStretch );
 
     // Now we have a cool new DIB of the proper size/color depth
     // Lets poke it into our data structures and be done with it
 
     // How big is it?
-    lpii->dwNumBytes = sizeof( BITMAPINFOHEADER )                    	// Header
-                    + PaletteSize( (LPSTR)lpNewDIB )                    // Palette
-                    + lpii->Height * BytesPerLine( (LPBITMAPINFOHEADER)lpNewDIB )	// XOR mask
-                    + lpii->Height * WIDTHBYTES( lpii->Width );        	// AND mask
+    lpii->dwNumBytes = sizeof( BITMAPINFOHEADER )                        // Header
+        + huys::PaletteSize( (LPSTR)lpNewDIB )                    // Palette
+        + lpii->Height * huys::BytesPerLine( (LPBITMAPINFOHEADER)lpNewDIB )    // XOR mask
+                    + lpii->Height * WIDTHBYTES( lpii->Width );            // AND mask
 
     // If there was already an image here, free it
     if( lpii->lpBits != NULL )
         free( lpii->lpBits );
     // Allocate enough room for the new image
-    if( (lpii->lpBits = malloc( lpii->dwNumBytes )) == NULL )
+    if( (lpii->lpBits = (LPBYTE)malloc( lpii->dwNumBytes )) == NULL )
     {
         free( lpii );
         return FALSE;
     }
     // Copy the bits
-    memcpy( lpii->lpBits, lpNewDIB, sizeof( BITMAPINFOHEADER ) + huys::PaletteSize( (LPBYTE)lpNewDIB ) );
+    memcpy( lpii->lpBits, lpNewDIB, sizeof( BITMAPINFOHEADER ) + huys::PaletteSize( (LPSTR)lpNewDIB ) );
     // Adjust internal pointers/variables for new image
     lpii->lpbi = (LPBITMAPINFO)(lpii->lpBits);
     lpii->lpbi->bmiHeader.biHeight *= 2;
-    lpii->lpXOR = huys::FindDIBBits( (LPBYTE)(lpii->lpBits) );
+    lpii->lpXOR = (LPBYTE)huys::FindDIBBits( (LPSTR)(lpii->lpBits) );
     memcpy( lpii->lpXOR, huys::FindDIBBits((LPSTR)lpNewDIB), lpii->Height * huys::BytesPerLine( (LPBITMAPINFOHEADER)lpNewDIB ) );
     lpii->lpAND = lpii->lpXOR + lpii->Height * huys::BytesPerLine( (LPBITMAPINFOHEADER)lpNewDIB );
     memset( lpii->lpAND, 0, lpii->Height * WIDTHBYTES( lpii->Width ) );
@@ -1086,7 +911,7 @@ BOOL DIBToIconImage( LPICONIMAGE lpii, LPBYTE lpDIB, BOOL bStretch )
 \****************************************************************************/
 BOOL CreateBlankNewFormatIcon( LPICONIMAGE lpii )
 {
-    DWORD            	dwFinalSize;
+    DWORD                dwFinalSize;
     BITMAPINFOHEADER    bmih;
 
     // Fill in the bitmap header
@@ -1094,7 +919,7 @@ BOOL CreateBlankNewFormatIcon( LPICONIMAGE lpii )
     bmih.biSize = sizeof( BITMAPINFOHEADER );
     bmih.biBitCount = lpii->Colors;
     bmih.biClrUsed = 0;
-    
+
     // How big will the final thing be?
     // Well, it'll have a header
     dwFinalSize = sizeof( BITMAPINFOHEADER );
@@ -1114,14 +939,14 @@ BOOL CreateBlankNewFormatIcon( LPICONIMAGE lpii )
     lpii->lpAND = lpii->lpXOR + (lpii->Height * WIDTHBYTES( lpii->Width * lpii->Colors ));
 
     // The bitmap header is zeros, fill it out
-    lpii->lpbi->bmiHeader.biSize = sizeof( BITMAPINFOHEADER ); 
+    lpii->lpbi->bmiHeader.biSize = sizeof( BITMAPINFOHEADER );
     lpii->lpbi->bmiHeader.biWidth = lpii->Width;
     // Don't forget the funky height*2 icon resource thing
-    lpii->lpbi->bmiHeader.biHeight = lpii->Height * 2; 
-    lpii->lpbi->bmiHeader.biPlanes = 1; 
-    lpii->lpbi->bmiHeader.biBitCount = lpii->Colors; 
-    lpii->lpbi->bmiHeader.biCompression = BI_RGB; 
-                   
+    lpii->lpbi->bmiHeader.biHeight = lpii->Height * 2;
+    lpii->lpbi->bmiHeader.biPlanes = 1;
+    lpii->lpbi->bmiHeader.biBitCount = lpii->Colors;
+    lpii->lpbi->bmiHeader.biCompression = BI_RGB;
+
     return TRUE;
 }
 /* End CreateBlankNewFormatIcon() ******************************************/
@@ -1132,7 +957,7 @@ BOOL CreateBlankNewFormatIcon( LPICONIMAGE lpii )
 *
 *     FUNCTION: GetXORImageRect
 *
-*     PURPOSE:  Given a bounding Rect, calculates the XOR mask display Rect 
+*     PURPOSE:  Given a bounding Rect, calculates the XOR mask display Rect
 *
 *     PARAMS:   RECT        Rect   - Bounding rect for drawing area
 *               LPICONIMAGE lpIcon - pointer to icon image data
@@ -1180,7 +1005,7 @@ RECT GetXORImageRect( RECT Rect, LPICONIMAGE lpIcon )
 \****************************************************************************/
 BOOL DrawXORMask( HDC hDC, RECT Rect, LPICONIMAGE lpIcon )
 {
-    int            	x, y;
+    int                x, y;
 
     // Sanity checks
     if( lpIcon == NULL )
@@ -1227,7 +1052,7 @@ BOOL DrawXORMask( HDC hDC, RECT Rect, LPICONIMAGE lpIcon )
 BOOL DrawANDMask( HDC hDC, RECT Rect, LPICONIMAGE lpIcon )
 {
     LPBITMAPINFO    lpbi;
-    int            	x, y;
+    int                x, y;
 
     // Sanity checks
     if( lpIcon == NULL )
@@ -1296,9 +1121,9 @@ BOOL DrawANDMask( HDC hDC, RECT Rect, LPICONIMAGE lpIcon )
 \****************************************************************************/
 BOOL MakeNewANDMaskBasedOnPoint( LPICONIMAGE lpIcon, POINT pt )
 {
-    HBITMAP        	hXORBitmap, hOldXORBitmap;
-    HDC            	hDC, hMemDC1;
-    LPBYTE        	pXORBits;
+    HBITMAP            hXORBitmap, hOldXORBitmap;
+    HDC                hDC, hMemDC1;
+    LPBYTE            pXORBits;
     COLORREF        crTransparentColor;
     LONG            i,j;
 
@@ -1318,7 +1143,7 @@ BOOL MakeNewANDMaskBasedOnPoint( LPICONIMAGE lpIcon, POINT pt )
     // Set the color table if need be
     if( lpIcon->lpbi->bmiHeader.biBitCount <= 8 )
         SetDIBColorTable( hMemDC1, 0, huys::DIBNumColors((LPSTR)(lpIcon->lpbi)), lpIcon->lpbi->bmiColors);
-    
+
     // What's the transparent color?
     crTransparentColor = GetPixel( hMemDC1, pt.x, pt.y );
 
@@ -1331,16 +1156,16 @@ BOOL MakeNewANDMaskBasedOnPoint( LPICONIMAGE lpIcon, POINT pt )
             if( GetPixel( hMemDC1, i, j ) == crTransparentColor )
             {
                 // Yes, so set the pixel in AND mask, and clear it in XOR mask
-                huys::SetMonoDIBPixel( lpIcon->lpAND, lpIcon->lpbi->bmiHeader.biWidth, lpIcon->lpbi->bmiHeader.biHeight, i, j, TRUE );     
+                huys::SetMonoDIBPixel( lpIcon->lpAND, lpIcon->lpbi->bmiHeader.biWidth, lpIcon->lpbi->bmiHeader.biHeight, i, j, TRUE );
                 if( lpIcon->lpbi->bmiHeader.biBitCount == 1 )
-                    huys::SetMonoDIBPixel( pXORBits, lpIcon->lpbi->bmiHeader.biWidth, lpIcon->lpbi->bmiHeader.biHeight, i, j, FALSE );     
+                    huys::SetMonoDIBPixel( pXORBits, lpIcon->lpbi->bmiHeader.biWidth, lpIcon->lpbi->bmiHeader.biHeight, i, j, FALSE );
                 else
                     SetPixelV( hMemDC1, i, j, RGB(0,0,0) );
             }
             else
             {
                 // No, so clear pixel in AND mask
-                huys::SetMonoDIBPixel( lpIcon->lpAND, lpIcon->lpbi->bmiHeader.biWidth, lpIcon->lpbi->bmiHeader.biHeight, i, j, FALSE );    
+                huys::SetMonoDIBPixel( lpIcon->lpAND, lpIcon->lpbi->bmiHeader.biWidth, lpIcon->lpbi->bmiHeader.biHeight, i, j, FALSE );
             }
         }
     }
@@ -1384,7 +1209,7 @@ BOOL MakeNewANDMaskBasedOnPoint( LPICONIMAGE lpIcon, POINT pt )
 \****************************************************************************/
 BOOL IconImageFromBMPFile( LPCTSTR szFileName, LPICONIMAGE lpii, BOOL bStretchToFit )
 {
-    LPBYTE        	lpDIB = NULL;
+    LPBYTE            lpDIB = NULL;
     BOOL            bRet = FALSE;
 
     if( (lpDIB=(LPBYTE)huys::ReadDIBFileName(szFileName)) == NULL )

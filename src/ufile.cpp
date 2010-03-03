@@ -125,19 +125,19 @@ DWORD UFile::pos()
 bool UFile::lock(DWORD dwOffset, DWORD dwSize)
 {
     assert( INVALID_HANDLE_VALUE != m_hObj );
-    return ::LockFile(m_hObj, dwOffset, 0, dwSize, 0);
+    return TRUE == ::LockFile(m_hObj, dwOffset, 0, dwSize, 0);
 }
 
 bool UFile::unlock(DWORD dwOffset, DWORD dwSize)
 {
     assert( INVALID_HANDLE_VALUE != m_hObj );
-    return ::UnlockFile(m_hObj, dwOffset, 0, dwSize, 0);
+    return TRUE == ::UnlockFile(m_hObj, dwOffset, 0, dwSize, 0);
 }
 
 bool UFile::flush()
 {
     assert( INVALID_HANDLE_VALUE != m_hObj );
-    return ::FlushFileBuffers(m_hObj);
+    return TRUE == ::FlushFileBuffers(m_hObj);
 }
 
 DWORD UFile::size() const
