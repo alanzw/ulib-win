@@ -19,6 +19,8 @@
 
 #include "adt/uautoptr.h"
 
+#include "usys.h"
+
 using huys::UDialogBox;
 
 #include "utabchild.h"
@@ -134,9 +136,11 @@ public:
         int aWidths[] = { 100, 250, 450 };
         m_pStatusBar->setParts(3, aWidths);
 
+		TCHAR buf[512];
+		wsprintf(buf, _T("Memory Usage: %ld M"), USystem::getPhysicMem());
         m_pStatusBar->setText(0, _T("Processes: "));
         m_pStatusBar->setText(1, _T("CPU Usage: "));
-        m_pStatusBar->setText(2, _T("Memory Usage: "));
+        m_pStatusBar->setText(2, buf);
 
         return TRUE;
     }

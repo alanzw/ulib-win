@@ -47,6 +47,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3dcreator", "3dcreator.vcproj", "{14B569C7-3EDA-470D-8BF2-9A260C3E1898}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chart", "chart.vcproj", "{D0063B80-19E8-4EE9-A83E-A84CBCFF3B7C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{30463FCE-93F2-4F31-BFB5-355DFFB5CC66} = {30463FCE-93F2-4F31-BFB5-355DFFB5CC66}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "menu", "menu.vcproj", "{D3357E35-3EEB-4FA2-AD43-C7D4F68ABF44}"
 EndProject

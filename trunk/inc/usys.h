@@ -35,6 +35,9 @@ public:
 
     //
     int getWindowCaptionHeight();
+
+    //
+    static DWORD getPhysicMem();
 protected:
 private:
     TCHAR *m_pBuffer;
