@@ -97,14 +97,14 @@ BOOL UBitmap::loadFromFile(const TCHAR *path)
    return TRUE;
 }
 
-BOOL UBitmap::loadFromResource(UINT nResID, HINSTANCE hInst/*= NULL*/)
+BOOL UBitmap::loadFromResource(UINT nResID, HINSTANCE hInst/*= NULL*/, int cx/*=0*/, int cy/*=0*/)
 {
     m_hObj = (HBITMAP)LoadImage(
         hInst,
         MAKEINTRESOURCE(nResID),
         IMAGE_BITMAP,
-        0,
-        0,
+        cx,
+        cy,
         LR_CREATEDIBSECTION);
 
     //

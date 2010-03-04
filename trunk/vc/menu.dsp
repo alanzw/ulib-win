@@ -1,24 +1,24 @@
-# Microsoft Developer Studio Project File - Name="button" - Package Owner=<4>
+# Microsoft Developer Studio Project File - Name="menu" - Package Owner=<4>
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
 # ** DO NOT EDIT **
 
 # TARGTYPE "Win32 (x86) Application" 0x0101
 
-CFG=button - Win32 Debug
+CFG=menu - Win32 Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
-!MESSAGE NMAKE /f "button.mak".
+!MESSAGE NMAKE /f "menu.mak".
 !MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "button.mak" CFG="button - Win32 Debug"
+!MESSAGE NMAKE /f "menu.mak" CFG="menu - Win32 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "button - Win32 Release" (based on "Win32 (x86) Application")
-!MESSAGE "button - Win32 Debug" (based on "Win32 (x86) Application")
+!MESSAGE "menu - Win32 Release" (based on "Win32 (x86) Application")
+!MESSAGE "menu - Win32 Debug" (based on "Win32 (x86) Application")
 !MESSAGE 
 
 # Begin Project
@@ -29,7 +29,7 @@ CPP=cl.exe
 MTL=midl.exe
 RSC=rc.exe
 
-!IF  "$(CFG)" == "button - Win32 Release"
+!IF  "$(CFG)" == "menu - Win32 Release"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
@@ -39,7 +39,7 @@ RSC=rc.exe
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "Release"
-# PROP Intermediate_Dir "Release/button"
+# PROP Intermediate_Dir "Release"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /YX /FD /c
 # ADD CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /YX /FD /c
@@ -54,7 +54,7 @@ LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
 
-!ELSEIF  "$(CFG)" == "button - Win32 Debug"
+!ELSEIF  "$(CFG)" == "menu - Win32 Debug"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
@@ -64,7 +64,7 @@ LINK32=link.exe
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
 # PROP Output_Dir "Debug"
-# PROP Intermediate_Dir "Debug/button"
+# PROP Intermediate_Dir "Debug/menu"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /YX /FD /GZ /c
@@ -84,18 +84,14 @@ LINK32=link.exe
 
 # Begin Target
 
-# Name "button - Win32 Release"
-# Name "button - Win32 Debug"
+# Name "menu - Win32 Release"
+# Name "menu - Win32 Debug"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=..\demo\button\color_button.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\demo\button\test_button.cpp
+SOURCE=..\demo\menu\test_menu.cpp
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -103,31 +99,11 @@ SOURCE=..\demo\button\test_button.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\demo\button\button.rc
+SOURCE=..\demo\menu\menu.rc
 # End Source File
 # Begin Source File
 
-SOURCE=..\demo\button\color_button.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\demo\button\cool_button.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\demo\button\imagebutton.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\demo\button\pulse_button.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\demo\button\resource.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\demo\button\round_button.h
+SOURCE=..\demo\menu\resource.h
 # End Source File
 # End Group
 # End Target

@@ -30,6 +30,7 @@ public:
         : UStatic(hParent, IDC_STATIC, ::GetModuleHandle(NULL))
     {
         m_dwStyles &= ~SS_SIMPLE;
+        m_dwStyles |= SS_NOTIFY;
         _ubm.loadFromResource(nBitmap, m_hInstance);
     }
 
@@ -71,7 +72,10 @@ class USkinStatusBar : public USkinStatic
 {
 public:
     USkinStatusBar(HWND hParent, UINT nBitmap)
-    : USkinStatic(hParent, nBitmap)
+    : USkinStatic(hParent, nBitmap),
+      _bFocusedInfo(false),
+      _bFocusedUser(false),
+      _bFocusedConfig(false)
     {}
 
     BOOL loadBmpSB(UINT nBitmap, HINSTANCE hInst = ::GetModuleHandle(NULL))
@@ -79,8 +83,56 @@ public:
         return _ubmSB.loadFromResource(nBitmap, hInst);
     }
 
+    BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
+    {
+        POINT pt = {
+            GET_X_LPARAM(lParam), 
+            GET_Y_LPARAM(lParam)
+        };
+
+        RECT rc = {
+            5,
+            5,
+            25,
+            25
+        };
+
+        if (PtInRect(&rc, pt))
+        {
+            _bFocusedInfo = true;
+        }
+
+        ::OffsetRect(&rc, 20, 0);
+        if (PtInRect(&rc, pt))
+        {
+            _bFocusedUser = true;
+        }
+
+        ::OffsetRect(&rc, 20, 0);
+        if (PtInRect(&rc, pt))
+        {
+            _bFocusedConfig = true;
+        }      
+
+
+        invalidate(TRUE);
+
+        return FALSE;
+    }
+
+    BOOL onLButtonUp(WPARAM wParam, LPARAM lParam)
+    {
+        _bFocusedInfo = false;
+        _bFocusedUser = false;
+        _bFocusedConfig = false;
+        invalidate(TRUE);
+        return FALSE;
+    }
 private:
     UBitmap _ubmSB;
+    bool _bFocusedInfo;
+    bool _bFocusedUser;
+    bool _bFocusedConfig;
 private:
     void onDraw(HDC hdc)
     {
@@ -88,9 +140,33 @@ private:
 
         if (!_ubmSB.isNull())
         {
-            _ubmSB.drawImage(hdc, 5, 5, 0, 0, 4, 3);
-            _ubmSB.drawImage(hdc, 25, 5, 0, 1, 4, 3);
-            _ubmSB.drawImage(hdc, 45, 5, 0, 2, 4, 3);
+           if (_bFocusedInfo)
+           {
+               _ubmSB.drawImage(hdc, 5, 5, 1, 0, 4, 3);
+           }
+           else
+           {
+                _ubmSB.drawImage(hdc, 5, 5, 0, 0, 4, 3);
+           }
+
+           if (_bFocusedUser)
+           {
+               _ubmSB.drawImage(hdc, 25, 5, 1, 1, 4, 3);
+           }
+           else
+           {
+                _ubmSB.drawImage(hdc, 25, 5, 0, 1, 4, 3);
+           }
+
+           if (_bFocusedConfig)
+           {
+               _ubmSB.drawImage(hdc, 45, 5, 1, 2, 4, 3);
+           }
+           else
+           {
+               _ubmSB.drawImage(hdc, 45, 5, 0, 2, 4, 3);
+           }
+           
         }
     }
 };
@@ -124,7 +200,7 @@ public:
     virtual BOOL onInit()
     {
 
-        m_Icon.loadImage(m_hInst, IDI_APP, 32, 32);
+        m_Icon.loadImage(m_hInst, IDI_HELP, 32, 32);
 
         RECT rcRa = {250, 190, 350, 290};
         RECT rcRa2 = {420, 190, 520, 290};
