@@ -59,6 +59,7 @@ private:
 private:
     void onDraw(HDC hdc, LPRECT lpRect)
     {
+        long i;
         // background
         huys::URectangle ur(*lpRect);
         ur.setLineColor(huys::black);
@@ -69,7 +70,7 @@ private:
         // grid
         huys::ULine ul(lpRect->left, lpRect->top, lpRect->right, lpRect->top);
         ul.setLineColor(huys::seagreen);
-        for (long i=lpRect->top; i < lpRect->bottom; i+=10)
+        for (i=lpRect->top; i < lpRect->bottom; i+=10)
         {
             ul.offsetY(10);
             ul.Draw(hdc);
@@ -77,7 +78,7 @@ private:
 
         ul.SetStartPnt(lpRect->left, lpRect->top);
         ul.SetEndPnt(lpRect->left, lpRect->bottom);
-        for (long i=lpRect->left; i < lpRect->right; i+=10)
+        for (i=lpRect->left; i < lpRect->right; i+=10)
         {
             ul.offsetX(10);
             ul.Draw(hdc);

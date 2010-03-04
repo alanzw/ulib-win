@@ -11,6 +11,8 @@
 
 #include "uicon.h"
 
+#pragma comment(lib, "msimg32")
+
 class UInfoBar : public UStatic
 {
 public:

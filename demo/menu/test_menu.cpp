@@ -11,6 +11,7 @@
 #include "umenu.h"
 #include "udlgapp.h"
 #include "umsg.h"
+#include "ubitmap.h"
 
 using huys::UDialogBox;
 
@@ -40,46 +41,17 @@ public:
 
         ::SetMenuInfo(hMenu, &mi);
 
-        HBITMAP hbmp1;    // handle to pie chart bitmap
-        HBITMAP hbmp2;    // handle to line chart bitmap
-        HBITMAP hbmp3;    // handle to bar chart bitmap
+        ubmp[0].loadFromResource(IDB_ICON1, m_hInst, 32, 32);
+        ubmp[1].loadFromResource(IDB_ICON2, m_hInst, 32, 32);
+        ubmp[2].loadFromResource(IDB_ICON3, m_hInst, 32, 32);
 
-        //hbmp1 = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDI_ICON1));
-        //hbmp2 = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDI_ICON2));
-        //hbmp3 = LoadBitmap(m_hInst, MAKEINTRESOURCE(IDI_ICON3));
-        hbmp1 = (HBITMAP)::LoadImage( m_hInst, // small class icon
-                   MAKEINTRESOURCE(IDB_ICON1),
-                   IMAGE_BITMAP,
-                   GetSystemMetrics(SM_CXSMICON),
-                   GetSystemMetrics(SM_CYSMICON),
-                   LR_DEFAULTCOLOR);
+        ::SetMenuItemBitmaps(hMenu, IDM_EXIT, MF_BYCOMMAND, ubmp[0], ubmp[1]);
 
-        hbmp2 = (HBITMAP)::LoadImage( m_hInst, // small class icon
-                   MAKEINTRESOURCE(IDB_ICON2),
-                   IMAGE_BITMAP,
-                   GetSystemMetrics(SM_CXSMICON),
-                   GetSystemMetrics(SM_CYSMICON),
-                   LR_DEFAULTCOLOR);
-
-        hbmp3 = (HBITMAP)::LoadImage( m_hInst, // small class icon
-                   MAKEINTRESOURCE(IDB_ICON3),
-                   IMAGE_BITMAP,
-                   GetSystemMetrics(SM_CXSMICON),
-                   GetSystemMetrics(SM_CYSMICON),
-                   LR_DEFAULTCOLOR);
-
-        assert(hbmp1 != 0);
-
-        ::SetMenuItemBitmaps(hMenu, IDM_EXIT, MF_BYCOMMAND, hbmp1, hbmp2);
-
-        //AppendMenu(umn.getHandle(), MF_BITMAP, IDM_ICON1, (LPCTSTR) hbmp1);
-        //AppendMenu(umn.getHandle(), MF_BITMAP, IDM_ICON2, (LPCTSTR) hbmp2);
-        //AppendMenu(umn.getHandle(), MF_BITMAP, IDM_ICON3, (LPCTSTR) hbmp3);
         umn.addSeparator();
 
-        umn.append(IDM_ICON1, hbmp1);
-        umn.append(IDM_ICON2, hbmp2);
-        umn.append(IDM_ICON3, hbmp3);
+        umn.append(IDM_ICON1, ubmp[0]);
+        umn.append(IDM_ICON2, ubmp[1]);
+        umn.append(IDM_ICON3, ubmp[2]);
 
         umn.addSeparator();
 
@@ -136,6 +108,8 @@ public:
 private:
     UMenu umn;
     UMenu upop;
+
+    UBitmap ubmp[3];
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

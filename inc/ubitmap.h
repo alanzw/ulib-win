@@ -13,7 +13,7 @@ public:
     virtual ~UBitmap();
     //
     BOOL loadFromFile(const TCHAR *path);
-    BOOL loadFromResource(UINT nResID, HINSTANCE hInst=NULL);
+    BOOL loadFromResource(UINT nResID, HINSTANCE hInst=NULL, int cx=0, int cy=0);
 
     //
     LONG getHeight() const {return m_Height;}
