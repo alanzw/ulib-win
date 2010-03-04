@@ -28,7 +28,7 @@ public:
         hitTop = 4,
         hitRight = 5,
         hitBottom = 6,
-        hitLeft = 7, 
+        hitLeft = 7,
         hitMiddle = 8
     };
 public:
@@ -36,8 +36,8 @@ public:
     URectTracker(LPRECT lpRect, UINT nStyle);
     ~URectTracker();
 
-	//
-	void draw(HDC hdc) const;
+    //
+    void draw(HDC hdc) const;
 private:
     RECT m_rect;
     UINT m_nStyle;
@@ -45,3 +45,4 @@ private:
 };
 
 #endif // U_RECT_TRACKER_H
+
