@@ -95,3 +95,4 @@ void CRC32::crc_addText(unsigned long *crc32_table, unsigned long *pCRC, unsigne
 }; // namespace crypto
 
 }; // namespace huys
+

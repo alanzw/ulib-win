@@ -18,3 +18,4 @@ void URectTracker::draw( HDC hdc ) const
 {
 
 }
+

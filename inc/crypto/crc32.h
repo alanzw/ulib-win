@@ -28,3 +28,4 @@ private:
 
 
 #endif // HUYS_CRC32_H
+
