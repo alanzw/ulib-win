@@ -128,10 +128,10 @@ protected:
 
     ///
     BOOL sendMsg(UINT, WPARAM =0, LPARAM =0);
-
+    BOOL postMsg(UINT, WPARAM =0, LPARAM =0);
     //////////////////////////////////////////////////////////////////////////
     BOOL sendMsgParent(UINT uMessage, WPARAM wParam=0, LPARAM lParam=0);
-
+    BOOL postMsgParent(UINT uMessage, WPARAM wParam=0, LPARAM lParam=0);
     ///
     BOOL setLong();
 

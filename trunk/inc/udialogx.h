@@ -118,7 +118,7 @@ public:
     BOOL bInitialized;
 protected:
     BOOL sendMsg(UINT, WPARAM wParam=0, LPARAM lParam=0);
-
+    BOOL postMsg(UINT message, WPARAM wParam =0, LPARAM lParam =0);
     BOOL sendChildMsg(UINT nID, UINT nMessage, WPARAM wParam=0, LPARAM lParam=0);
 
     BOOL setLong();

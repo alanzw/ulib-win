@@ -271,6 +271,11 @@ BOOL UDialogBox::sendMsg(UINT message, WPARAM wParam/*=0*/, LPARAM lParam/*=lPar
     return ::SendMessage(m_hDlg, message, wParam, lParam);
 }
 
+BOOL UDialogBox::postMsg(UINT message, WPARAM wParam/*=0*/, LPARAM lParam/*=lParam*/)
+{
+    return ::PostMessage(m_hDlg, message, wParam, lParam);
+}
+
 BOOL UDialogBox::setLong()
 {
     return ::SetWindowLong(m_hDlg, GWL_USERDATA, LONG(this));

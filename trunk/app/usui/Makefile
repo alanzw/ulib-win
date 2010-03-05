@@ -40,7 +40,7 @@ $(BIN) : $(OBJ) $(RES)
 
 .PHONY : test
 test :
-	$(WINE) $(BINDIR)/$(BIN)     
+	$(WINE) $(BINDIR)/$(BIN)
 #
 .PHONY : clean
 clean :

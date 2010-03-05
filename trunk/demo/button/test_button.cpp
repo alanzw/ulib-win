@@ -71,6 +71,10 @@ private:
 class USkinStatusBar : public USkinStatic
 {
 public:
+    enum {
+        USSM_BNCLICKED = WM_USER + 112
+    };
+public:
     USkinStatusBar(HWND hParent, UINT nBitmap)
     : USkinStatic(hParent, nBitmap),
       _bFocusedInfo(false),
@@ -86,7 +90,7 @@ public:
     BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
     {
         POINT pt = {
-            GET_X_LPARAM(lParam), 
+            GET_X_LPARAM(lParam),
             GET_Y_LPARAM(lParam)
         };
 
@@ -112,7 +116,7 @@ public:
         if (PtInRect(&rc, pt))
         {
             _bFocusedConfig = true;
-        }      
+        }
 
 
         invalidate(TRUE);
@@ -126,6 +130,35 @@ public:
         _bFocusedUser = false;
         _bFocusedConfig = false;
         invalidate(TRUE);
+
+        POINT pt = {
+            GET_X_LPARAM(lParam),
+            GET_Y_LPARAM(lParam)
+        };
+
+        RECT rc = {
+            5,
+            5,
+            25,
+            25
+        };
+
+        if (PtInRect(&rc, pt))
+        {
+            this->sendMsgParent(USSM_BNCLICKED, 0, 0);
+        }
+
+        ::OffsetRect(&rc, 20, 0);
+        if (PtInRect(&rc, pt))
+        {
+            this->sendMsgParent(USSM_BNCLICKED, 0, 1);
+        }
+
+        ::OffsetRect(&rc, 20, 0);
+        if (PtInRect(&rc, pt))
+        {
+            this->sendMsgParent(USSM_BNCLICKED, 0, 2);
+        }
         return FALSE;
     }
 private:
@@ -166,7 +199,7 @@ private:
            {
                _ubmSB.drawImage(hdc, 45, 5, 0, 2, 4, 3);
            }
-           
+
         }
     }
 };
@@ -345,6 +378,31 @@ public:
         default:
             return UDialogBox::onCommand(wParam, lParam);
         }
+    }
+
+    BOOL DialogProc(UINT nMessage, WPARAM wParam, LPARAM lParam)
+    {
+        if (USkinStatusBar::USSM_BNCLICKED == nMessage)
+        {
+            switch (lParam)
+            {
+            case 0:
+                showMsg(_T("SSBBN : info"), _T("info"), m_hDlg);
+                break;
+            case 1:
+                showMsg(_T("SSBBN : user"), _T("info"), m_hDlg);
+                break;
+            case 2:
+                showMsg(_T("SSBBN : cfg"), _T("info"), m_hDlg);
+                break;
+            default:
+                showMsg(_T("SSBBN : unknown"), _T("info"), m_hDlg);
+                break;
+            }
+            return FALSE;
+        }
+
+        return UDialogBox::DialogProc(nMessage, wParam, lParam);
     }
 private:
     huys::ADT::UAutoPtr<UButton> m_pBtn;
