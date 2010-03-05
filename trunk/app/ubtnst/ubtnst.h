@@ -6,10 +6,14 @@
 class UButtonST : public UButton
 {
 public:
+    
+public:
     UButtonST(HWND hParent, UINT nID, HINSTANCE hInst);
     UButtonST();
     UButtonST(UBaseWindow *pWndParent, UINT nID);
     ~UButtonST();
+public:
+    
 private:
 
 };

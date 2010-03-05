@@ -6,6 +6,8 @@
 #include "uwinapp.h"
 #include "ubasewindow.h"
 
+#include "adt/uautoptr.h"
+
 #include "ubtnst.h"
 
 class UMyWindow : public UBaseWindow
@@ -18,11 +20,6 @@ public:
     : UBaseWindow(NULL, ::GetModuleHandle(NULL))
     {
         this->setTitle(_T("UBtnST Test 0.0.1"));
-    }
-
-    ~UMyWindow()
-    {
-        CHECK_PTR(m_pBnSt);
     }
 
     BOOL onCreate()
@@ -48,7 +45,7 @@ public:
         }
     }
 private:
-    UButtonST *m_pBnSt;
+    huys::ADT::UAutoPtr<UButtonST> m_pBnSt;
 
 private:
     BOOL onBnSt()
