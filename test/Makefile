@@ -53,6 +53,7 @@ SUBDIRS =        \
       dispatch   \
       memento    \
       singleton  \
+      dataalign  \
       
 #
 .PHONY: all
