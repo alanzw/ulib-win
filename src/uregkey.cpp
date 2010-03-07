@@ -76,3 +76,32 @@ LONG URegKey::queryValueEx(DWORD &lpType, LPBYTE lpData, DWORD &dwSize)
  {
     return ERROR_SUCCESS == ::RegSetValueEx(hKey, lpValueName, 0, dwType, lpData, cbData);
  }
+
+ 
+BOOL URegKey::saveKey(LPCTSTR lpFile, LPSECURITY_ATTRIBUTES lpSecurityAttributes /*= NULL*/)
+{
+    HANDLE hToken;
+    TOKEN_PRIVILEGES tkp;
+
+    // Get a token for this process.
+    if (!OpenProcessToken(GetCurrentProcess(),
+        TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
+        return 1;
+
+    // Get the LUID for the shutdown privilege.
+    LookupPrivilegeValue(NULL, SE_BACKUP_NAME,
+        &tkp.Privileges[0].Luid);
+
+    tkp.PrivilegeCount = 1;  // one privilege to set
+    tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+
+    // Get the shutdown privilege for this process.
+
+    AdjustTokenPrivileges(hToken, FALSE, &tkp, 0,
+        (PTOKEN_PRIVILEGES)NULL, 0);
+
+    if (GetLastError() != ERROR_SUCCESS)
+        return 1;
+
+    return ERROR_SUCCESS == ::RegSaveKey(m_hSubKey, lpFile, lpSecurityAttributes);
+}

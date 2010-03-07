@@ -165,6 +165,38 @@ void set_fpu (unsigned int mode)
     }
 }
 
+__inline __declspec(naked) unsigned int getKernel32()
+{
+    __asm {
+        push esi
+        push ecx
+        mov esi,fs:0
+        lodsd
+retry:
+        cmp [eax],0xffffffff
+        je exit//如果到达最后一个节点(它的pfnHandler指向UnhandledExceptionFilter)
+        mov eax,[eax]//否则往后遍历,一直到最后一个节点
+        jmp retry
+exit:
+        mov eax, [eax+4]
+FindMZ:
+        and eax,0xffff0000//根据PE执行文件以64k对界的特征加快查找速度
+        cmp word ptr [eax],'ZM'//根据PE可执行文件特征查找KERNEL32.DLL的基址
+        jne MoveUp//如果当前地址不符全MZ头部特征,则向上查找
+        mov ecx,[eax+0x3c]
+        add ecx,eax
+        cmp word ptr [ecx],'EP'//根据PE可执行文件特征查找KERNEL32.DLL的基址
+        je Found//如果符合MZ及PE头部特征,则认为已经找到,并通过Eax返回给调用者
+MoveUp:
+        dec eax//准备指向下一个界起始地址
+        jmp FindMZ
+Found:
+        pop ecx
+        pop esi
+        ret
+    }
+}
+
 #endif // _MSC_VER
 
 #ifdef __GNUC__

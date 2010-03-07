@@ -18,7 +18,7 @@ RES =
 #
 HEADER =
 
-SUBDIRS = hello fsfilter
+SUBDIRS = hello fsfilter process_spy procobsrv
 #
 all:
 	$(MAKEALL_SUBDIRS)
