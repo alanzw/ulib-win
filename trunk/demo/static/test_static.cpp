@@ -250,6 +250,10 @@ public:
         m_pBevelLine = new UBevelLine(m_hDlg);
         m_pBevelLine->create();
         m_pBevelLine->setPosition(&rcLine);
+        
+        m_pBevelLineVertical = new UBevelLine(m_hDlg);
+        m_pBevelLineVertical->setPos(320, 20, 200, 30);
+        m_pBevelLineVertical->create();
 
         RECT rcLCD = {360, 40, 460, 200};
         m_pLCDCtrl = new ULCDCtrl(m_hDlg, IDC_STATIC_LCD);
@@ -338,6 +342,7 @@ public:
     huys::ADT::UAutoPtr<USubStatic> m_pSubStatic;
     huys::ADT::UAutoPtr<UIconStatic> m_pIconStatic;
     huys::ADT::UAutoPtr<UBevelLine> m_pBevelLine;
+    huys::ADT::UAutoPtr<UBevelLine> m_pBevelLineVertical;
     huys::ADT::UAutoPtr<ULCDCtrl> m_pLCDCtrl;
     huys::ADT::UAutoPtr<ULEDCtrl> m_pLEDCtrl;
     huys::ADT::UAutoPtr<UTransStatic> m_pTrans;

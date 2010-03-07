@@ -49,10 +49,13 @@ int main(int argc, char *argv[])
     int iarray[6] = {-3, -7, 0, 5, 3, 9};
     int *piarray = iarray;
     int sum = huys::sum(piarray, sizeof(iarray)/sizeof(iarray[0]));
-    printf("Sum should be 7 --- it is %d", sum);
+    printf("Sum should be 7 --- it is %d\n", sum);
+
+#ifdef _MSC_VER
+    printf("Kernel Base : %0.8X\n", huys::getKernel32());
+#endif // _MSC_VER
 
     getchar();
-
     return 0;
 }
 
