@@ -5,13 +5,14 @@ include $(TOPDIR)/make.inc
 
 #
 INCS = -I"$(TOPDIR)/inc"
-LIBS = -L"$(TOPDIR)/lib" -luwin
+LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin
 CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 
 #
 OBJ = test_numerical.o \
-      unumerical.o
+      unumerical.o     \
+      umatrix.o        \
 
 
 BIN = test_numerical.exe
@@ -24,7 +25,7 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LDFLAGS)
+	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
 
 #

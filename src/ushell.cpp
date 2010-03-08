@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <tchar.h>
 #include <shlwapi.h>
+#include <shlobj.h>
 
 /// For Vista and later versions
 #if (WINVER >= 0x0600)
@@ -112,6 +113,49 @@ BOOL addExtension(LPTSTR sPath, LPCTSTR sExtension)
 void removeExtension(LPTSTR sPath)
 {
     ::PathRemoveExtension(sPath);
+}
+
+BOOL createLink(LPSTR szPath,LPSTR szLink)
+{
+    ::CoInitialize(NULL);
+
+    HRESULT hres;
+    IShellLink* psl;
+    IPersistFile* ppf;
+    WCHAR wsz[MAX_PATH];
+
+    hres = ::CoCreateInstance(CLSID_ShellLink,
+        NULL,
+        CLSCTX_INPROC_SERVER,
+        IID_IShellLink,
+        (void**)&psl);
+    if(FAILED(hres))
+        return FALSE;
+
+    psl->SetPath(szPath);
+
+    hres = psl->QueryInterface(IID_IPersistFile, (void**)&ppf);
+    if(FAILED(hres))
+        return FALSE;
+
+    ::MultiByteToWideChar(CP_ACP, 0, szLink, -1, wsz, MAX_PATH);
+
+    hres = ppf->Save(wsz, STGM_READWRITE);
+
+    ppf->Release();
+    psl->Release();
+
+    ::CoUninitialize();
+    return TRUE;
+}
+
+BOOL getDesktopPath(LPTSTR sPath)
+{
+    LPITEMIDLIST ppidl;
+    SHGetSpecialFolderLocation(NULL, CSIDL_DESKTOPDIRECTORY, &ppidl);
+    SHGetPathFromIDList(ppidl, sPath);
+
+    return TRUE;
 }
 
 }; // namespace Path

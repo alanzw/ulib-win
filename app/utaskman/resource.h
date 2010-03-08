@@ -41,3 +41,10 @@
 #define IDM_ABOUT                       40007
 #define IDM_BKCOLOR                     40008
 #define IDM_TEXTCOLOR                   40009
+#define IDM_STANDBY                     40010
+#define IDM_HIBERNATE                   40011
+#define IDM_TURNOFF                     40012
+#define IDM_RESTART                     40013
+#define IDM_LOGOFF                      40014
+#define IDM_SWITCH                      40015
+

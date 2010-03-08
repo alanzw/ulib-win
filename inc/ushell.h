@@ -42,6 +42,10 @@ ULIB_API BOOL addExtension(LPTSTR sPath, LPCTSTR sExtension);
 
 ULIB_API void removeExtension(LPTSTR sPath);
 
+ULIB_API BOOL createLink(LPSTR szPath,LPSTR szLink);
+
+ULIB_API BOOL getDesktopPath(LPTSTR sPath);
+
 }; // namespace Path
 
 
