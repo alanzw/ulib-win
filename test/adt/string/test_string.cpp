@@ -1,7 +1,55 @@
 #include <iostream>
+#include <vector>
 
 #include "adt/ustring.h"
 
+
+huys::ADT::UStringAnsi test_unicode(const char* buf)
+{
+    std::vector<char> unicode(10);
+    unicode[0] = '1';
+    unicode[1] = '2';
+    unicode[2] = '\0';
+
+    return &unicode[0];
+}
+
+class CA
+{
+public:
+    CA()
+    {
+        std::cout << "CA()!" << std::endl;
+        p = new char[2];
+    }
+    
+    ~CA()
+    {
+        std::cout << "~CA()!" << std::endl;
+        delete[] p;
+    }
+    
+    char *p;
+};
+
+class CB
+{
+public:
+    CB(CA *)
+    {
+      std::cout << "CB()!" << std::endl;  
+    }
+    ~CB()
+    {
+        std::cout << "~CB()!" << std::endl;
+    }
+};
+
+char * createCB()
+{
+    CA a;
+    return a.p;
+}
 
 int main()
 {
@@ -36,7 +84,14 @@ int main()
     cout << s2.reverse().c_str() << endl;
 
     cout << "=========================" << endl;
+    
+    cout << test_unicode(NULL).c_str() << endl; 
 
+    cout << "BIGIN calling createCB!" << std::endl;
+    
+    createCB();
 
+    cout << "End calling createCB!" << std::endl;
+    
     return 0;
 }
