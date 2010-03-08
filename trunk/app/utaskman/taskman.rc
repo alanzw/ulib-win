@@ -29,6 +29,15 @@ BEGIN
         MENUITEM "BKColor", IDM_BKCOLOR
         MENUITEM "TextColor", IDM_TEXTCOLOR
     END
+    POPUP "Shutdown"
+    BEGIN
+        MENUITEM "Standby",  IDM_STANDBY
+        MENUITEM "Hibernate", IDM_HIBERNATE
+        MENUITEM "Turnoff",   IDM_TURNOFF
+        MENUITEM "Restart",   IDM_RESTART
+        MENUITEM "Logoff",    IDM_LOGOFF
+        MENUITEM "Switch User",IDM_SWITCH
+    END
     POPUP "Help"
     BEGIN
         MENUITEM "About", IDM_ABOUT

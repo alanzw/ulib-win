@@ -81,7 +81,7 @@ public:
 
     UTable<K,D,H> & clear();
 
-#if (_MSC_VER <= 1200)
+#if defined(_MSC_VER) && (_MSC_VER <= 1200)
     friend std::ostream & operator<< ( std::ostream &output, const UTable<K,D,H> &table );	
 #else
     friend std::ostream & operator<< <>( std::ostream &output, const UTable<K,D,H> &table );

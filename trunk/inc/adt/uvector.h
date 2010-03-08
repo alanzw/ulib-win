@@ -1,7 +1,10 @@
 #ifndef U_VECTOR_H
 #define U_VECTOR_H
 
+#ifndef NOMINMAX
 #define NOMINMAX
+#endif // NOMINMAX
+
 #include <memory>
 #include <algorithm>
 #include <iostream>
