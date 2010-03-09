@@ -26,12 +26,16 @@ private:
 class ULIB_API USendKey
 {
 public:
-    enum {
-
+    enum USK_Keys {
+        USK_CTL_C = 0,
+        USK_CTL_V = 1,
+        USK_TAB   = 2
     };
 public:
     USendKey();
     ~USendKey();
+
+    BOOL doIt(USK_Keys k);
 private:
     bool activeTargetWnd(HWND hWnd);
 };

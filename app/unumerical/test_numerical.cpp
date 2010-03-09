@@ -8,8 +8,14 @@
 #include "ubasewindow.h"
 #include "ugdi.h"
 #include "colors.h"
+#include "udc.h"
+
+#include "adt/ustring.h"
 
 #include "unumerical.h"
+
+typedef huys::ADT::UStringAnsi TString;
+
 
 class UMyWindow : public UBaseWindow
 {
@@ -22,6 +28,8 @@ public:
    {
         this->setTitle(_T("UNumerical Test 0.0.1"));
         this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
+
+        _buf = "test@root >";
    }
 
    ~UMyWindow()
@@ -37,7 +45,7 @@ public:
     //
     virtual void onDraw(HDC hdc)
     {
-
+        drawBufferText(hdc);
     }
     //
     virtual BOOL onEraseBkgnd(HDC hdc)
@@ -60,6 +68,8 @@ public:
             return onMenuAbout();
         case IDM_EXIT:
             return UBaseWindow::onClose();
+        case IDM_SOLVE:
+            return onMenuSolve();
         default:
             return UBaseWindow::onCommand(wParam, lParam);
         }
@@ -70,6 +80,54 @@ private:
         this->showMsg(_T("UNumerical v0.0.1"), _T("About"));
         return FALSE;
     }
+
+    BOOL onMenuSolve()
+    {
+        _buf += "\r"
+                " A = \r"
+                "  [\r"
+                "      0.2368  0.2471  0.2568  1.2671   \r"
+                "      0.1968  0.2071  1.2168  0.2271   \r"
+                "      0.1581  1.1675  0.1768  0.1871   \r"
+                "      1.1161  0.1254  0.1397  0.1490   \r"
+                "  ]\r";
+
+        _buf += " b = \r"
+                "  [\r"
+                "    1.8471    \r"
+                "    1.7471    \r"
+                "    1.6471    \r"
+                "    1.5471    \r"
+                "  ]\r";
+        _buf += "\rSolution :\r";
+
+
+        updateView();
+
+        return FALSE;
+    }
+
+
+    //
+    void drawBufferText(HDC hdc)
+    {
+        RECT rc = {0};
+        ::GetClientRect(*this, &rc);
+        ::InflateRect(&rc, -5, -5);
+        USmartDC dc(hdc);
+        dc.setBKColor(huys::black);
+        dc.setTextColor(huys::white);
+        dc.drawText(_buf, _buf.length(), &rc, DT_TOP);
+
+    }
+
+    void updateView()
+    {
+        invalidate(TRUE);
+    }
+
+private:
+    TString _buf;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)

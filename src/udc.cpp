@@ -209,6 +209,11 @@ int UDevContext::drawTextEx( LPTSTR lpchText, int nCount, LPRECT lpRect, UINT uF
     return ::DrawTextEx((HDC)m_hObj, lpchText, nCount, lpRect, uFormat, lpDTParams);
 }
 
+BOOL UDevContext::extTextOut(int x, int y, UINT fuOptions, LPRECT lpRect, LPCTSTR lpchText, int nCount, const INT *lpDx)
+{
+    return ::ExtTextOut((HDC)m_hObj, x, y, fuOptions, lpRect, lpchText, nCount, lpDx);
+}
+
 huys::Color UDevContext::setBKColor( huys::Color clr )
 {
     return ::SetBkColor((HDC)m_hObj, clr);
@@ -260,6 +265,16 @@ UPrivateDC::UPrivateDC(HWND hWnd)
 UPrivateDC::~UPrivateDC()
 {
     ::ReleaseDC(m_hWnd, (HDC)m_hObj);
+}
+
+USmartDC::USmartDC(HDC hdc)
+{
+    attach(hdc);
+}
+
+USmartDC::~USmartDC()
+{
+    dettach();
 }
 
 UMemDC::UMemDC(HDC hdc)

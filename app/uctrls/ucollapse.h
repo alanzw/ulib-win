@@ -13,19 +13,19 @@ class UCollapseGroupBox : public UOwnerDrawnButton
     typedef huys::ADT::UVector<HWND> USubCtrls;
 public:
     UCollapseGroupBox(HWND hParent, UINT nID, HINSTANCE hInst)
-    : UOwnerDrawnButton(hParent, nID, hInst), m_bExpand(TRUE)
+    : UOwnerDrawnButton(hParent, nID, hInst), m_bExpand(TRUE), m_bMoveMarked(FALSE)
     {
         setStyles(SWP_NOREPOSITION|WS_CLIPSIBLINGS);
     }
 
     UCollapseGroupBox(UBaseWindow *pWndParent, UINT nID)
-    : UOwnerDrawnButton(pWndParent, nID), m_bExpand(TRUE)
+    : UOwnerDrawnButton(pWndParent, nID), m_bExpand(TRUE), m_bMoveMarked(FALSE)
     {
         setStyles(SWP_NOREPOSITION|WS_CLIPSIBLINGS);
     }
 
     UCollapseGroupBox()
-        : m_bExpand(TRUE)
+        : m_bExpand(TRUE), m_bMoveMarked(FALSE)
     {}
 
     ~UCollapseGroupBox()
@@ -143,6 +143,7 @@ public:
 
         if (PtInRect(&m_rcTitleSelf, pt))
         {
+        /*
             if (m_bExpand)
             {
                 this->setPosition(&m_rcTitle);
@@ -153,6 +154,12 @@ public:
                 this->setPosition(&m_rcWindow);
                 m_bExpand = TRUE;
             }
+        */
+            m_bMoveMarked = TRUE;
+            //::SetCapture(m_hSelf);
+
+            m_ptStart.x = pt.x;
+            m_ptStart.y = pt.y;
 
             updateSubCtrl();
         }
@@ -166,6 +173,42 @@ public:
 
         return TRUE;
     }
+
+    BOOL onLButtonUp(WPARAM wParam, LPARAM lParam)
+    {
+        if (m_bMoveMarked)
+        {
+            m_bMoveMarked = FALSE;
+            //::ReleaseCapture();
+        }
+    }
+
+    BOOL onMouseMove(WPARAM wParam, LPARAM lParam)
+    {
+        RECT rc;
+        TRACKMOUSEEVENT tme;
+
+        this->getClientRect(&rc);
+
+        POINT pt = {
+            GET_X_LPARAM(lParam),
+            GET_Y_LPARAM(lParam)
+        };
+
+        if (m_bMoveMarked && MK_LBUTTON == wParam)
+        {
+            rc.left += pt.x - m_ptStart.x;
+            rc.right += pt.x - m_ptStart.x;
+            rc.top += pt.y - m_ptStart.y;
+            rc.bottom += pt.y - m_ptStart.y;
+
+            clientToDialog(m_hParent, &rc);
+
+            this->setPosition(&rc);
+        }
+
+    }
+
 
     void addSubCtrl(HWND hWnd)
     {
@@ -206,6 +249,9 @@ private:
     BOOL m_bExpand;
 
     USubCtrls m_subctrls;
+
+    BOOL m_bMoveMarked;
+    POINT m_ptStart;
 };
 
 #endif // U_COLLAPSE_H

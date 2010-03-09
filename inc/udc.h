@@ -116,11 +116,33 @@ public:
 
     //
     BOOL drawLine(int nX1, int nY1, int nX2, int nY2);
-
+    
     //
     BOOL textOut(int nX, int nY, LPCTSTR lpString, int cbString);
+    
+    // uFormat : 
+    //   DT_BOTTOM
+    //   DT_CALCRECT
+    //   DT_CENTER
+    //   DT_END_ELLIPSIS
+    //   DT_EXPANDTABS
+    //   DT_INTERNAL
+    //   DT_LEFT
+    //   DT_NOCLIP
+    //   DT_NOPREFIX
+    //   DT_RIGHT
+    //   DT_RTLREADING
+    //   DT_SINGLELINE
+    //   DT_TABSTOP
+    //   DT_TOP
+    //   DT_VCENTER
+    //   DT_WORD_ELLIPSIS
+    //   DT_WORDBREAK
     int drawText(LPCTSTR lpchText, int nCount, LPRECT lpRect, UINT uFormat);
     int drawTextEx(LPTSTR lpchText, int nCount, LPRECT lpRect, UINT uFormat, LPDRAWTEXTPARAMS lpDTParams = NULL);
+    
+    //
+    BOOL extTextOut(int x, int y, UINT fuOptions, LPRECT lpRect, LPCTSTR lpchText, int nCount, const INT *lpDx);
 private:
     HBRUSH m_hOldBrush;
     HPEN m_hOldPen;
@@ -145,6 +167,13 @@ public:
     ~UPrivateDC();
 private:
     HWND m_hWnd;
+};
+
+class ULIB_API USmartDC : public UDevContext
+{
+public:
+    USmartDC(HDC hdc);
+    ~USmartDC();
 };
 
 class ULIB_API UMemDC : public UDevContext
