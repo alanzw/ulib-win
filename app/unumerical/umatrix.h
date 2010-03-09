@@ -24,6 +24,10 @@ public:
     void printL();
     int Solve();
     void showX();
+    double *getSolution() const
+    {
+        return solu;
+    }
 protected:
 private:
     double *sums;

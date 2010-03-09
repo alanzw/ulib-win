@@ -53,6 +53,16 @@ void UFont::create()
     this->createFont();
 }
 
+void UFont::setFontHeight(int n)
+{
+    m_lf.lfHeight = n;
+}
+
+void UFont::setFontWidth(int n)
+{
+    m_lf.lfWidth = n;
+}
+
 void UFont::setFontHeightRatio(int n)
 {
     m_lf.lfHeight *= n;
