@@ -142,6 +142,9 @@ private:
 typedef UPoint<int> UPointI;
 typedef URect<int>  URectI;
 typedef USize<int>  USizeI;
+typedef UPoint<long> UPointL;
+typedef URect<long> URectL;
+typedef USize<long> USizeL;
 
 }; // namespace huys
 

@@ -10,16 +10,16 @@ CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 
 #
-OBJ = test_ctrls.o
-BIN = test_ctrls.exe
-RC  = ctrls.rc
+OBJ = test_clock.o \
+      uclock.o
+
+BIN = test_clock.exe
+RC  = clock.rc
 RES = ${RC:.rc=.res}
 #
-HEADERS = $(INCDIR)/udialogx.h \
-          uctrls.h \
-          ucollapse.h \
-          ucollapsepanel.h \
-
+HEADER = $(INCDIR)/ubasewindow.h \
+         $(INCDIR)/uwinapp.h     \
+         uclock.h
 #
 all: $(BIN)
 

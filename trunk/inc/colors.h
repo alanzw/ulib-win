@@ -93,6 +93,10 @@ const COLORREF xpblue         = RGB(0x64, 0x95, 0xED);
 
 const COLORREF darkgreen      = RGB(0x00, 0x64, 0x00);
 const COLORREF seagreen       = RGB(0x2E, 0x8B, 0x57);
+
+const COLORREF royalblue      = RGB(0x41, 0x69, 0xE1);
+const COLORREF navy           = RGB(0x00, 0x00, 0x80);
+
 };
 
 #endif //COLORS_H

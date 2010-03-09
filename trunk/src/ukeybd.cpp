@@ -30,6 +30,47 @@ int UKeyboard::getType()
     return ::GetKeyboardType(0);
 }
 
+USendKey::USendKey()
+{
+}
+
+USendKey::~USendKey()
+{
+
+}
+
+BOOL USendKey::doIt(USendKey::USK_Keys k)
+{
+    switch(k)
+    {
+    case USK_CTL_C:
+        {
+        ::keybd_event(VK_CONTROL, 0, 0, 0);
+        ::keybd_event(0x43, 0, 0, 0);
+        ::keybd_event(0x43, 0, KEYEVENTF_KEYUP, 0);
+        ::keybd_event(VK_CONTROL, 0, KEYEVENTF_KEYUP, 0);
+        }
+        break;
+    case USK_CTL_V:
+        {
+        ::keybd_event(VK_CONTROL, 0, 0, 0);
+        ::keybd_event(0x56, 0, 0, 0);
+        ::keybd_event(0x56, 0, KEYEVENTF_KEYUP, 0);
+        ::keybd_event(VK_CONTROL, 0, KEYEVENTF_KEYUP, 0);
+        }
+        break;
+    case USK_TAB:
+        {
+        ::keybd_event(VK_TAB,0,0,0);
+        ::keybd_event(VK_TAB,0,KEYEVENTF_KEYUP,0);
+        }
+        break;
+    default:
+        break;
+    }
+
+    return TRUE;
+}
 
 bool USendKey::activeTargetWnd( HWND hWnd )
 {

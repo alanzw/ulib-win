@@ -13,4 +13,3 @@
 #define IDM_STOP                        206
 #define IDM_NUMBER                      207
 #define IDM_ABOUT                       208
-#define IDM_SOLVE                       209

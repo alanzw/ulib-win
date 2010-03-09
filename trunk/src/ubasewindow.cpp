@@ -198,10 +198,42 @@ BOOL UBaseWindow::onMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
     case WM_SIZE:
         return onSize(wParam, lParam);
     case WM_CTLCOLORSTATIC:
-        return ::SendMessage((HWND)lParam, WM_NOTIFY + WM_REFLECT_CTLCOLOR, wParam, lParam);
+    case WM_CTLCOLOREDIT:
+        return this->onCtrlColor(wParam, lParam);
+    case WM_MEASUREITEM:
+        return this->onMeasureItem(wParam, lParam);
+    case WM_DRAWITEM:
+        return this->onDrawItem(wParam, lParam);
     default:
         return defaultMessageHandler(uMessage, wParam, lParam);
     }
+}
+
+BOOL UBaseWindow::onCtrlColor(WPARAM wParam, LPARAM lParam)
+{
+    return ::SendMessage((HWND)lParam, WM_NOTIFY + WM_REFLECT_CTLCOLOR, wParam, lParam);
+}
+
+BOOL UBaseWindow::onMeasureItem(WPARAM wParam, LPARAM lParam)
+{
+    LPMEASUREITEMSTRUCT lpm = (LPMEASUREITEMSTRUCT) lParam;
+    BOOL bRet;
+
+    switch (lpm->CtlType)
+    {
+    case ODT_COMBOBOX:
+    case ODT_LISTBOX:
+        bRet = ::SendMessage(::GetDlgItem(m_hSelf, lpm->CtlID), WM_NOTIFY + WM_REFLECT_MEASUREITEM, wParam, lParam);
+        break;
+    }
+    return bRet;
+}
+
+BOOL UBaseWindow::onDrawItem( WPARAM wParam, LPARAM lParam )
+{
+    HWND hwnd =  ((LPDRAWITEMSTRUCT) lParam)->hwndItem;
+    BOOL bRet = ::SendMessage(hwnd, WM_NOTIFY + WM_REFLECT_DRAWITEM, wParam, lParam);
+    return bRet;
 }
 
 LRESULT UBaseWindow::WindowProc( UINT uMessage, WPARAM wParam, LPARAM lParam )

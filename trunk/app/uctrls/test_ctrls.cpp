@@ -23,6 +23,8 @@
 
 #include "udlgapp.h"
 #include "udialogx.h"
+#include "adt/uautoptr.h"
+
 #include "uctrls.h"
 #include "ucollapsepanel.h"
 
@@ -35,20 +37,8 @@ class UDialogCtrls : public UDialogBox
     };
 public:
     UDialogCtrls(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-        m_pCtrlFactory(0),
-        m_pgbox(0),
-        m_pButton(0),
-        m_pPanel(0)
+        : UDialogBox(hInst, nID)
     {}
-
-    ~UDialogCtrls()
-    {
-        CHECK_PTR(m_pCtrlFactory);
-        CHECK_PTR(m_pgbox);
-        CHECK_PTR(m_pButton);
-        CHECK_PTR(m_pPanel);
-    }
 
     BOOL onInit()
     {
@@ -115,11 +105,11 @@ public:
         }
     }
 private:
-    UCtrlFactory *m_pCtrlFactory;
+    huys::ADT::UAutoPtr<UCtrlFactory> m_pCtrlFactory;
     UCollapseGroupBox ucgbox;
-    UCollapseGroupBox *m_pgbox;
-    UButton *m_pButton;
-    UCollapsePanel *m_pPanel;
+    huys::ADT::UAutoPtr<UCollapseGroupBox> m_pgbox;
+    huys::ADT::UAutoPtr<UButton> m_pButton;
+    huys::ADT::UAutoPtr<UCollapsePanel> m_pPanel;
 };
 
 UDLGAPP_T(UDialogCtrls, IDD_CTRLS);
