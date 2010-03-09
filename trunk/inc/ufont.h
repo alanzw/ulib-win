@@ -29,7 +29,8 @@ public:
     }
 
     void create();
-
+    void setFontHeight(int n);
+    void setFontWidth(int n);
     void setFontHeightRatio(int n);
     void setFontWidthRatio(int n);
     void setFontFaceName(const TCHAR * lfFaceName);

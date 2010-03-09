@@ -9,10 +9,12 @@
 #include "ugdi.h"
 #include "colors.h"
 #include "udc.h"
+#include "ufont.h"
 
 #include "adt/ustring.h"
 
 #include "unumerical.h"
+#include "umatrix.h"
 
 typedef huys::ADT::UStringAnsi TString;
 
@@ -38,7 +40,11 @@ public:
    BOOL onCreate()
    {
        this->setIconBig(IDI_APP);
-
+        
+        _font.setFontHeight(20);
+        _font.setFontFaceName(_T("Arial"));
+        _font.create();
+        
        return UBaseWindow::onCreate();
    }
 
@@ -101,7 +107,31 @@ private:
                 "  ]\r";
         _buf += "\rSolution :\r";
 
+        double a[]=
+        {
+            0.2368,0.2471,0.2568,1.2671,
+            0.1968,0.2071,1.2168,0.2271,
+            0.1581,1.1675,0.1768,0.1871,
+            1.1161,0.1254,0.1397,0.1490
+        };
 
+        double b[4]=
+            { 1.8471,1.7471,1.6471,1.5471 };
+
+        Linequ equ1(4);
+        equ1.setLinequ(a,b);
+        if (equ1.Solve())
+        {
+            TString tmp;
+            double *p = equ1.getSolution();
+            tmp.format(" [\r   %.4lf\r   %.4lf\r   %.4lf\r   %.4lf\r ]\r", p[0], p[1], p[2], p[3]);
+            _buf += tmp;
+        }
+        else
+        {
+            _buf += "\r  Failed!!! \r\r";
+        }
+        
         updateView();
 
         return FALSE;
@@ -117,8 +147,10 @@ private:
         USmartDC dc(hdc);
         dc.setBKColor(huys::black);
         dc.setTextColor(huys::white);
-        dc.drawText(_buf, _buf.length(), &rc, DT_TOP);
 
+        HFONT hOldFont = (HFONT)dc.selectObj(_font);
+        dc.drawText(_buf, _buf.length(), &rc, DT_TOP);
+        dc.selectObj(hOldFont);
     }
 
     void updateView()
@@ -128,6 +160,7 @@ private:
 
 private:
     TString _buf;
+    UFont _font;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)

@@ -65,10 +65,10 @@ BOOL URefMan::create()
 
     rc.bottom += 200;
     rc.top = rc.bottom - 190;
-    
+
     m_edt = new UEdit(m_hSelf, 11113, m_hInstance);
     m_edt->setRect(&rc);
     m_edt->create();
-    
+
     return bRet;
 }

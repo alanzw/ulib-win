@@ -33,7 +33,7 @@ public:
 
        return UBaseWindow::onCreate();
    }
-   
+
    BOOL onClose()
    {
         this->killTimer(ID_TIMER_CLOCK);
@@ -56,13 +56,13 @@ public:
         urc.Draw(hdc);
         return TRUE;
     }
-    
+
     BOOL onTimer(WPARAM wParam, LPARAM lParam)
     {
         if (ID_TIMER_CLOCK == wParam)
         {
             go_update();
-            
+
             return FALSE;
         }
         return UBaseWindow::onTimer(wParam, lParam);
@@ -70,7 +70,7 @@ public:
 private:
 
 #define London 0
-#define Beijing 8   
+#define Beijing 8
     struct time_HHMMSS
     {
        char HH[4];
@@ -81,47 +81,47 @@ private:
     //
     int drawCurrentTime(HDC hdc)
     {
-        SYSTEMTIME st;    
+        SYSTEMTIME st;
         GetSystemTime(&st);
         struct time_HHMMSS time1;
         char MyTime[256] = "";
-        
+
         int iTimeZone = Beijing;
-    
+
         GetSystemTime(&st);
-        
+
         itoa(st.wHour+iTimeZone, time1.HH,10);
         itoa(st.wMinute, time1.MM, 10);
         itoa(st.wSecond, time1.SS, 10);
-        
+
         //char MyTime[14]="";
         strcpy(MyTime,"");
-        
+
         if ((st.wHour+iTimeZone)<10)
         strcat(MyTime,"0");
         strcat(MyTime,time1.HH);
-        
+
         strcat(MyTime,":");
-        
+
         if (st.wMinute<10)
         strcat(MyTime,"0");
         strcat(MyTime,time1.MM);
-        
+
         strcat(MyTime,":");
-        
+
         if (st.wSecond<10)
-        strcat(MyTime,"0");              
+        strcat(MyTime,"0");
         strcat(MyTime,time1.SS);
-        
+
         RECT rect;
         GetClientRect (*this, &rect) ;
         ::SetBkColor(hdc, huys::black);
         ::SetTextColor(hdc, huys::green);
         ::DrawText(hdc, TEXT (MyTime), -1, &rect,
-            DT_SINGLELINE | DT_CENTER | DT_VCENTER) ; 
-        return 0; 
+            DT_SINGLELINE | DT_CENTER | DT_VCENTER) ;
+        return 0;
     }
-    
+
     void go_update()
     {
         this->invalidate();
