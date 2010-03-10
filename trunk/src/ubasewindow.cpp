@@ -396,3 +396,8 @@ BOOL UBaseWindow::isActive()
     return (::GetActiveWindow() == m_hSelf);
 }
 
+BOOL UBaseWindow::setWindowRgn(HRGN hRgn, BOOL bRedraw /* = TRUE */)
+{
+    return ::SetWindowRgn(m_hSelf, hRgn, bRedraw);
+}
+

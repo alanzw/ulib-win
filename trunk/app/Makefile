@@ -9,33 +9,12 @@
 include ../make.inc
 
 #
-CFLAGS   =
-CXXFLAGS =
-INC      = -I"../inc"
-LIB      = -L"../lib"
-LDFLAGS  =
-#
-SRCDIR = ../src
-INCDIR = ../inc
-OBJDIR = ../obj
-BINDIR = ../bin
-LIBDIR = ../lib
-RESDIR = ../res
-
-DEMODIR = ../demo
-
-DOCDIR  = ../doc
-
-#
-HEADER =
-
-#
 SUBDIRS = u360safe uchart ukav uqq uscript utaskman \
           uwget uviewer ufluent usysadm ucontour ublogger \
           usdp uctrls unetchat ubtnst udeskutil ugrid ulife \
           uterminal ucontact uhys uctrlbar u3dcreator usui \
           unumerical uglsurf ucalc usort umytree uguievent \
-          uexplorer uincome urefman ucapture uclock
+          uexplorer uincome urefman ucapture uclock uqq2009
 
 #
 .PHONY: all
