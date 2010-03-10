@@ -162,7 +162,7 @@ public:
 
     //
     BOOL onCtrlColor(WPARAM wParam, LPARAM lParam);
-    
+
     //
     BOOL onMeasureItem(WPARAM wParam, LPARAM lParam);
     BOOL onDrawItem(WPARAM wParam, LPARAM lParam);
