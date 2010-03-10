@@ -23,9 +23,9 @@ public:
 
     BOOL draw(HWND hwnd, const int x, const int y);
     BOOL draw(HWND hwnd, const POINT *pt);
-    
+
     BOOL drawEx(HDC hdc, int x, int y, int cx, int cy);
-    
+
     HICON getHICON();
 protected:
 
