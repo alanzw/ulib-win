@@ -206,6 +206,9 @@ public:
             return TRUE;
         }
     }
+    
+    //
+    BOOL setWindowRgn(HRGN hRgn, BOOL bRedraw = TRUE);
 
     void setMenu(LPCTSTR lpMenuName)
     { m_lpMenuName = lpMenuName; }

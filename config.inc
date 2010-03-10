@@ -114,6 +114,7 @@ OBJS = $(KENERL_OBJS)  $(GUI_OBJS) $(SYSTEM_OBJS) $(GRAPHIC_OBJS) $(CONFIG_OBJS)
        ucmdline.o    \
        uprinter.o    \
        ucursor.o     \
+       ucaret.o      \
        udc.o         \
        ushell.o      \
        umci.o        \

@@ -39,8 +39,8 @@ public:
     UUserObject();
     ~UUserObject();
 
-    bool load();
-    bool create();
+    virtual bool load();
+    virtual bool create();
 	// 
     virtual bool destroy() = 0;
 protected:

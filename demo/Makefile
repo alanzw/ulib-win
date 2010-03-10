@@ -19,6 +19,7 @@ SUBDIRS = \
           ddk         \
           debug       \
           dialog      \
+          dib         \
           dll         \
           dx          \
           edit        \

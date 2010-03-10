@@ -383,7 +383,7 @@ HGLOBAL WINAPI CopyHandle(HGLOBAL h)
 //
 void SetMonoDIBPixel( LPBYTE pANDBits, DWORD dwWidth, DWORD dwHeight, DWORD x, DWORD y, BOOL bWhite )
 {
-    DWORD	ByteIndex;
+    DWORD    ByteIndex;
     BYTE    BitNumber;
 
     // Find the byte on which this scanline begins
@@ -578,7 +578,7 @@ HDIB WINAPI ReadDIBFileName(LPCTSTR lpFilename)
     {
         return NULL;
     }
-    
+
     return ReadDIBFile(ufile);
 }
 
@@ -1060,12 +1060,12 @@ BOOL CopyColorTable( LPBITMAPINFO lpTarget, LPBITMAPINFO lpSource )
             return TRUE;
         }
         else
-        { // Source is != 8bpp, use halftone palette                
+        { // Source is != 8bpp, use halftone palette
             HPALETTE        hPal;
-            HDC            	hDC = GetDC( NULL );
+            HDC                hDC = GetDC( NULL );
             PALETTEENTRY    pe[256];
             UINT            i;
-            
+
             hPal = CreateHalftonePalette( hDC );
             ReleaseDC( NULL, hDC );
             GetPaletteEntries( hPal, 0, 256, pe );
@@ -1080,7 +1080,7 @@ BOOL CopyColorTable( LPBITMAPINFO lpTarget, LPBITMAPINFO lpSource )
             return TRUE;
         }
         break; // end 8bpp
-        
+
         // 4bpp - need 16 entry color table
     case 4:
         if( lpSource->bmiHeader.biBitCount == 4 )
@@ -1093,7 +1093,7 @@ BOOL CopyColorTable( LPBITMAPINFO lpTarget, LPBITMAPINFO lpSource )
             HPALETTE        hPal;
             PALETTEENTRY    pe[256];
             UINT            i;
-            
+
             hPal = (HPALETTE)GetStockObject( DEFAULT_PALETTE );
             GetPaletteEntries( hPal, 0, 16, pe );
             for(i=0;i<16;i++)
@@ -1106,7 +1106,7 @@ BOOL CopyColorTable( LPBITMAPINFO lpTarget, LPBITMAPINFO lpSource )
             return TRUE;
         }
         break; // end 4bpp
-        
+
         // 1bpp - need 2 entry mono color table
     case 1:
         lpTarget->bmiColors[0].rgbRed = 0;
@@ -1118,7 +1118,7 @@ BOOL CopyColorTable( LPBITMAPINFO lpTarget, LPBITMAPINFO lpSource )
         lpTarget->bmiColors[1].rgbBlue = 255;
         lpTarget->bmiColors[1].rgbReserved = 0;
         break; // end 1bpp
-        
+
         // no color table for the > 8bpp modes
     case 32:
     case 24:
@@ -1133,11 +1133,11 @@ BOOL CopyColorTable( LPBITMAPINFO lpTarget, LPBITMAPINFO lpSource )
 LPBYTE ConvertDIBFormat( LPBITMAPINFO lpSrcDIB, UINT nWidth, UINT nHeight, UINT nbpp, BOOL bStretch )
 {
     LPBITMAPINFO    lpbmi = NULL;
-    LPBYTE        	lpSourceBits, lpTargetBits, lpResult;
-    HDC            	hDC = NULL, hSourceDC, hTargetDC;
-    HBITMAP        	hSourceBitmap, hTargetBitmap, hOldTargetBitmap, hOldSourceBitmap;
-    DWORD        	dwSourceBitsSize, dwTargetBitsSize, dwTargetHeaderSize;
-    
+    LPBYTE            lpSourceBits, lpTargetBits, lpResult;
+    HDC                hDC = NULL, hSourceDC, hTargetDC;
+    HBITMAP            hSourceBitmap, hTargetBitmap, hOldTargetBitmap, hOldSourceBitmap;
+    DWORD            dwSourceBitsSize, dwTargetBitsSize, dwTargetHeaderSize;
+
     // Allocate and fill out a BITMAPINFO struct for the new DIB
     // Allow enough room for a 256-entry color table, just in case
     dwTargetHeaderSize = sizeof( BITMAPINFO ) + ( 256 * sizeof( RGBQUAD ) );
@@ -1159,29 +1159,29 @@ LPBYTE ConvertDIBFormat( LPBITMAPINFO lpSrcDIB, UINT nWidth, UINT nHeight, UINT 
         free( lpbmi );
         return NULL;
     }
-    
+
     // Gonna use DIBSections and BitBlt() to do the conversion, so make 'em
     hDC = GetDC( NULL );
     hTargetBitmap = CreateDIBSection( hDC, lpbmi, DIB_RGB_COLORS, (void **)&lpTargetBits, NULL, 0 );
     hSourceBitmap = CreateDIBSection( hDC, lpSrcDIB, DIB_RGB_COLORS, (void **)&lpSourceBits, NULL, 0 );
     hSourceDC = CreateCompatibleDC( hDC );
     hTargetDC = CreateCompatibleDC( hDC );
-    
+
     // Flip the bits on the source DIBSection to match the source DIB
     dwSourceBitsSize = lpSrcDIB->bmiHeader.biHeight * BytesPerLine(&(lpSrcDIB->bmiHeader));
     dwTargetBitsSize = lpbmi->bmiHeader.biHeight * BytesPerLine(&(lpbmi->bmiHeader));
     memcpy( lpSourceBits, FindDIBBits((LPSTR)lpSrcDIB), dwSourceBitsSize );
-    
+
     // Select DIBSections into DCs
     hOldSourceBitmap = (HBITMAP)SelectObject( hSourceDC, hSourceBitmap );
     hOldTargetBitmap = (HBITMAP)SelectObject( hTargetDC, hTargetBitmap );
-    
+
     // Set the color tables for the DIBSections
     if( lpSrcDIB->bmiHeader.biBitCount <= 8 )
         SetDIBColorTable( hSourceDC, 0, 1 << lpSrcDIB->bmiHeader.biBitCount, lpSrcDIB->bmiColors );
     if( lpbmi->bmiHeader.biBitCount <= 8 )
         SetDIBColorTable( hTargetDC, 0, 1 << lpbmi->bmiHeader.biBitCount, lpbmi->bmiColors );
-    
+
     // If we are asking for a straight copy, do it
     if( (lpSrcDIB->bmiHeader.biWidth==lpbmi->bmiHeader.biWidth) && (lpSrcDIB->bmiHeader.biHeight==lpbmi->bmiHeader.biHeight) )
     {
@@ -1201,27 +1201,27 @@ LPBYTE ConvertDIBFormat( LPBITMAPINFO lpSrcDIB, UINT nWidth, UINT nHeight, UINT 
             BitBlt( hTargetDC, 0, 0, lpbmi->bmiHeader.biWidth, lpbmi->bmiHeader.biHeight, hSourceDC, 0, 0, SRCCOPY );
         }
     }
-    
+
     // Clean up and delete the DCs
     SelectObject( hSourceDC, hOldSourceBitmap );
     SelectObject( hSourceDC, hOldTargetBitmap );
     DeleteDC( hSourceDC );
     DeleteDC( hTargetDC );
     ReleaseDC( NULL, hDC );
-    
+
     // Flush the GDI batch, so we can play with the bits
     GdiFlush();
-    
+
     // Allocate enough memory for the new CF_DIB, and copy bits
     lpResult = (LPBYTE)malloc( dwTargetHeaderSize + dwTargetBitsSize );
     memcpy( lpResult, lpbmi, dwTargetHeaderSize );
     memcpy( huys::FindDIBBits( (LPSTR)lpResult ), lpTargetBits, dwTargetBitsSize );
-    
+
     // final cleanup
     DeleteObject( hTargetBitmap );
     DeleteObject( hSourceBitmap );
     free( lpbmi );
-    
+
     return lpResult;
 }
 
