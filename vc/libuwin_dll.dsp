@@ -238,6 +238,10 @@ SOURCE=..\src\ustatusbar.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\usync.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\usys.cpp
 # End Source File
 # Begin Source File
@@ -407,6 +411,10 @@ SOURCE=..\inc\ustatic.h
 # Begin Source File
 
 SOURCE=..\inc\ustatusbar.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\usync.h
 # End Source File
 # Begin Source File
 
