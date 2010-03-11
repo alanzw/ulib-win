@@ -541,6 +541,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\src\udibapi.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\uedit.cpp"
 				>
 				<FileConfiguration
@@ -570,6 +574,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\src\ufile.cpp"
+				>
 			</File>
 			<File
 				RelativePath="..\src\ufont.cpp"
@@ -929,7 +937,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\inc\udibapi.h"
+				>
+			</File>
+			<File
 				RelativePath="..\inc\uedit.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\ufile.h"
 				>
 			</File>
 			<File
