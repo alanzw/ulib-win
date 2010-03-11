@@ -1225,4 +1225,11 @@ LPBYTE ConvertDIBFormat( LPBITMAPINFO lpSrcDIB, UINT nWidth, UINT nHeight, UINT 
     return lpResult;
 }
 
+UDib::UDib()
+{}
+
+UDib::~UDib()
+{}
+
+
 }; // namespace huys

@@ -223,7 +223,7 @@ BOOL TransparentBlt(
 );
 */
 
-BOOL UBitmap::showTransparent(HDC &hdc, RECT &rc)
+BOOL UBitmap::showTransparent(HDC &hdc, RECT &rc, UINT crTransparent)
 {
 #if (WINVER >= 0x0410)
     HDC hMemDC = ::CreateCompatibleDC(hdc);
@@ -241,7 +241,7 @@ BOOL UBitmap::showTransparent(HDC &hdc, RECT &rc)
         0,
         m_Width,
         m_Height,
-        SRCCOPY);
+        crTransparent);
     SelectObject(hMemDC, m_hOldBitmap);
     //DeleteObject( m_hObj );
     SelectPalette(hdc, m_hOldPalette, FALSE);
