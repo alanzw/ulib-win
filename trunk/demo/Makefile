@@ -14,6 +14,7 @@ SUBDIRS = \
           conf        \
           console     \
           cursor      \
+          caret       \
           datetimepick\
           dde         \
           ddk         \

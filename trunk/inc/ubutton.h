@@ -46,8 +46,6 @@ public:
     //
     BOOL check();
     BOOL uncheck();
-protected:
-private:
 };
 
 
@@ -60,8 +58,6 @@ public:
     //
     BOOL check();
     BOOL uncheck();
-protected:
-private:
 };
 
 
@@ -72,11 +68,7 @@ public:
     UGroupBox() {}
     UGroupBox(UBaseWindow *pWndParent, UINT nID);
     virtual ~UGroupBox();
-protected:
-private:
 };
-
-
 
 class ULIB_API UIconButton : public UButton
 {
@@ -85,8 +77,6 @@ public:
     UIconButton() {}
     virtual ~UIconButton();
     BOOL setIcon(HICON hicon);
-protected:
-private:
 };
 
 class ULIB_API UBitmapButton : public UButton
@@ -95,9 +85,6 @@ public:
     UBitmapButton(HWND hParent, UINT nResource, HINSTANCE hInst);
     virtual ~UBitmapButton();
     BOOL setBitmap(HBITMAP hbm);
-    //BOOL setBitmap(const UBitmap &ubm);
-protected:
-private:
 };
 
 class ULIB_API UIconTextButton : public UIconButton
@@ -106,8 +93,6 @@ public:
     UIconTextButton(HWND hParent, UINT nResource, HINSTANCE hInst);
     UIconTextButton() {}
     virtual ~UIconTextButton();
-protected:
-private:
 };
 
 class ULIB_API UOwnerDrawnButton : public UButton
@@ -119,8 +104,6 @@ public:
     virtual ~UOwnerDrawnButton();
     virtual BOOL create();
     virtual BOOL onDrawItem(WPARAM,LPARAM);
-protected:
-private:
 };
 
 #endif // U_BUTTON_H

@@ -8,8 +8,9 @@
 #include "ubasewindow.h"
 #include "ugdi.h"
 #include "colors.h"
-
+#include "udc.h"
 #include "ucaret.h"
+#include "ufont.h"
 
 class UMyWindow : public UBaseWindow
 {
@@ -26,10 +27,14 @@ public:
    BOOL onCreate()
    {
        this->setIconBig(IDI_APP);
-       
+
        _caret.create(*this, NULL, 2, 100);
        _caret.setPos(100, 100);
-       
+
+       _font.setFontHeight(100);
+       _font.setFontFaceName(_T("Courier New"));
+       _font.create();
+
        return UBaseWindow::onCreate();
    }
 
@@ -63,19 +68,45 @@ public:
             return UBaseWindow::onCommand(wParam, lParam);
         }
     }
-    
+
+    //
+    BOOL onChar(WPARAM wParam, LPARAM lParam)
+    {
+        if (wParam >= '0' && wParam <= 'z')
+        {
+            UPrivateDC dc(*this);
+            TCHAR buf[2];
+            buf[0] = wParam;
+            buf[1] = '\0';
+            dc.setTextColor(huys::white);
+            dc.setBKColor(huys::red);
+            HFONT hOldFont = (HFONT)dc.selectObj(_font);
+
+            dc.textOut(100, 100, buf, 1);
+            dc.selectObj(hOldFont);
+
+        }
+
+        if (wParam == VK_ESCAPE)
+        {
+            return UBaseWindow::onClose();
+        }
+
+        return UBaseWindow::onChar(wParam, lParam);
+    }
+
     BOOL filterMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
     {
         if (WM_SETFOCUS == uMessage)
         {
             _caret.show(*this);
         }
-        
+
         if (WM_KILLFOCUS == uMessage)
         {
             _caret.hide(*this);
         }
-    
+
         return UBaseWindow::filterMessage(uMessage, wParam, lParam);
     }
 private:
@@ -84,9 +115,10 @@ private:
         this->showMsg(_T("UTerminal v0.0.1"), _T("About"));
         return FALSE;
     }
-    
+
 private:
     UCaret _caret;
+    UFont _font;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)

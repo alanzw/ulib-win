@@ -116,11 +116,11 @@ public:
 
     //
     BOOL drawLine(int nX1, int nY1, int nX2, int nY2);
-    
+
     //
     BOOL textOut(int nX, int nY, LPCTSTR lpString, int cbString);
-    
-    // uFormat : 
+
+    // uFormat :
     //   DT_BOTTOM
     //   DT_CALCRECT
     //   DT_CENTER
@@ -140,7 +140,7 @@ public:
     //   DT_WORDBREAK
     int drawText(LPCTSTR lpchText, int nCount, LPRECT lpRect, UINT uFormat);
     int drawTextEx(LPTSTR lpchText, int nCount, LPRECT lpRect, UINT uFormat, LPDRAWTEXTPARAMS lpDTParams = NULL);
-    
+
     //
     BOOL extTextOut(int x, int y, UINT fuOptions, LPRECT lpRect, LPCTSTR lpchText, int nCount, const INT *lpDx);
 private:

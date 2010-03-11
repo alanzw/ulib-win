@@ -18,6 +18,11 @@ bool UCaret::destroy()
     return TRUE == ::DestroyCaret();
 }
 
+BOOL UCaret::getPos(LPPOINT lpp)
+{
+    return ::GetCaretPos(lpp);
+}
+
 void UCaret::setPos(int x, int y)
 {
     ::SetCaretPos(x, y);
@@ -32,3 +37,15 @@ void UCaret::hide(HWND hWnd)
 {
     ::HideCaret(hWnd);
 }
+
+UINT UCaret::getBlinkTime()
+{
+    return ::GetCaretBlinkTime();
+}
+
+BOOL UCaret::setBlinkTime(UINT uMs)
+{
+    return ::SetCaretBlinkTime(uMs);
+}
+
+
