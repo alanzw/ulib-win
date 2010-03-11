@@ -10,7 +10,7 @@
 //
 // Icon resources
 //
-IDI_CTRLS            ICON          "ctrls.ico"
+IDI_TABBAR            ICON          "tabbar.ico"
 
 
 //

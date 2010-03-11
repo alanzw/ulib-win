@@ -85,7 +85,7 @@ DWORD playMIDIFile(HWND hWndNotify, LPSTR lpszMIDIFileName)
 
     // The output port is not the MIDI mapper.
     // Ask if the user wants to continue.
-    if (LOWORD(mciStatusParms.dwReturn) != MIDI_MAPPER)
+    if ( mciStatusParms.dwReturn != MIDI_MAPPER)
     {
         if ( MessageBox(hWndNotify,
               "The MIDI mapper is not available. Continue?",
@@ -152,44 +152,44 @@ DWORD playWAVEFile(HWND hWndNotify, LPSTR lpszWAVEFileName)
     return 0L;
 }
 
-BOOL openCDDriver(BOOL bOpen)  
-{  
-    DWORD dwReturn;  
-    MCI_OPEN_PARMS mciOpenParms;  
-    UINT wDeviceID;  
-    BOOL bSucc = TRUE;  
-   
-    // Open the device by specifying the device name.  
-    mciOpenParms.lpstrDeviceType = "cdaudio";  
-    if  (dwReturn = mciSendCommand(NULL, MCI_OPEN, MCI_OPEN_TYPE, (DWORD)(LPVOID)&mciOpenParms))  
-    {  
-        // Failed to open device.    
-        // Don't close device; just return error.  
-        return FALSE;  
-    }  
-   
+BOOL openCDDriver(BOOL bOpen)
+{
+    DWORD dwReturn;
+    MCI_OPEN_PARMS mciOpenParms;
+    UINT wDeviceID;
+    BOOL bSucc = TRUE;
+
+    // Open the device by specifying the device name.
+    mciOpenParms.lpstrDeviceType = "cdaudio";
+    if  (dwReturn = mciSendCommand(NULL, MCI_OPEN, MCI_OPEN_TYPE, (DWORD)(LPVOID)&mciOpenParms))
+    {
+        // Failed to open device.
+        // Don't close device; just return error.
+        return FALSE;
+    }
+
     // The device opened successfully
-    // Get the device ID.  
-    wDeviceID = mciOpenParms.wDeviceID;  
-    MCI_SET_PARMS mciSetParms;  
-    if (bOpen)  
-    {  
-       if(dwReturn = mciSendCommand(wDeviceID, MCI_SET, MCI_SET_DOOR_OPEN, (DWORD)(LPSTR)&mciSetParms))  
-       {  
-            //ErrorProc(dwReturn);  
-            bSucc   =   FALSE;  
-        }  
-    }  
-    else  
-    {  
-        if(dwReturn = mciSendCommand(wDeviceID, MCI_SET, MCI_SET_DOOR_CLOSED, (DWORD)(LPSTR)&mciSetParms))  
-        {  
-            //ErrorProc(dwReturn);  
-            bSucc   =   FALSE;  
-        }  
-    }  
-    mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);  
-    return   bSucc;  
+    // Get the device ID.
+    wDeviceID = mciOpenParms.wDeviceID;
+    MCI_SET_PARMS mciSetParms;
+    if (bOpen)
+    {
+       if(dwReturn = mciSendCommand(wDeviceID, MCI_SET, MCI_SET_DOOR_OPEN, (DWORD)(LPSTR)&mciSetParms))
+       {
+            //ErrorProc(dwReturn);
+            bSucc   =   FALSE;
+        }
+    }
+    else
+    {
+        if(dwReturn = mciSendCommand(wDeviceID, MCI_SET, MCI_SET_DOOR_CLOSED, (DWORD)(LPSTR)&mciSetParms))
+        {
+            //ErrorProc(dwReturn);
+            bSucc   =   FALSE;
+        }
+    }
+    mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
+    return   bSucc;
 }
 
 
@@ -200,3 +200,4 @@ DWORD MP3Player::muteAll()
 
 
 }; // namespace UMCI
+

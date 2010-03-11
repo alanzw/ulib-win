@@ -40,11 +40,11 @@ public:
    BOOL onCreate()
    {
        this->setIconBig(IDI_APP);
-        
+
         _font.setFontHeight(20);
         _font.setFontFaceName(_T("Arial"));
         _font.create();
-        
+
        return UBaseWindow::onCreate();
    }
 
@@ -131,7 +131,7 @@ private:
         {
             _buf += "\r  Failed!!! \r\r";
         }
-        
+
         updateView();
 
         return FALSE;

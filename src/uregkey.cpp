@@ -105,3 +105,4 @@ BOOL URegKey::saveKey(LPCTSTR lpFile, LPSECURITY_ATTRIBUTES lpSecurityAttributes
 
     return ERROR_SUCCESS == ::RegSaveKey(m_hSubKey, lpFile, lpSecurityAttributes);
 }
+

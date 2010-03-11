@@ -14,7 +14,8 @@ SUBDIRS = u360safe uchart ukav uqq uscript utaskman \
           usdp uctrls unetchat ubtnst udeskutil ugrid ulife \
           uterminal ucontact uhys uctrlbar u3dcreator usui \
           unumerical uglsurf ucalc usort umytree uguievent \
-          uexplorer uincome urefman ucapture uclock uqq2009
+          uexplorer uincome urefman ucapture uclock uqq2009 \
+          utabbar
 
 #
 .PHONY: all
