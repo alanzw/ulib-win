@@ -74,6 +74,17 @@ ULIB_API HBITMAP GetSrcBit(HDC hDC,DWORD BitWidth, DWORD BitHeight);
 //
 ULIB_API BOOL SaveBmp(HBITMAP hBitmap, LPCTSTR FileName);
 
+
+class ULIB_API UDib
+{
+public:
+    UDib();
+    
+    ~UDib();
+    
+};
+
+
 }; // namespace huys
 
 #endif

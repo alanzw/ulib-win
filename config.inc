@@ -69,8 +69,14 @@ CRYPTO_OBJS =     \
     md5.o         \
     crc32.o       \
 
-DB_OBJS =         \
-#    uodbc.o       \
+ifeq ($(PLATFORM), win32)
+    DB_OBJS =         \
+        uodbc.o       \
+
+else
+    DB_OBJS =
+endif
+
 
 OBJS = $(KENERL_OBJS)  $(GUI_OBJS) $(SYSTEM_OBJS) $(GRAPHIC_OBJS) $(CONFIG_OBJS) $(CRYPTO_OBJS) \
        $(DB_OBJS)    \

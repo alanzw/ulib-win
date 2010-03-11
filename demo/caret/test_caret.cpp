@@ -32,6 +32,7 @@ public:
        _caret.setPos(100, 100);
 
        _font.setFontHeight(100);
+       _font.setFontWidth(50);
        _font.setFontFaceName(_T("Courier New"));
        _font.create();
 
