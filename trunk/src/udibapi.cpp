@@ -149,9 +149,7 @@ BOOL WINAPI CreateDIBPalette(HDIB hDIB, HPALETTE hPal)
     if (wNumColors != 0)
     {
         //
-        hLogPal = ::GlobalAlloc(GHND, sizeof(LPLOGPALETTE)
-                                      + sizeof(PALETTEENTRY)
-                                       * wNumColors);
+        hLogPal = ::GlobalAlloc(GHND, sizeof(LPLOGPALETTE)+sizeof(PALETTEENTRY)*wNumColors);
         //
         if (hLogPal == 0)
         {
@@ -514,7 +512,8 @@ HDIB WINAPI ReadDIBFile(HANDLE hFile)
 {
     BITMAPFILEHEADER bmfHeader;
     DWORD dwBitsSize;
-    HDIB hDIB;
+    DWORD dwNumRead;
+	HDIB hDIB;
     LPSTR pDIB;
 
     ULARGE_INTEGER BitsSize;
@@ -524,7 +523,7 @@ HDIB WINAPI ReadDIBFile(HANDLE hFile)
     dwBitsSize = BitsSize.QuadPart;
 
     //
-    if (!::ReadFile(hFile, (LPSTR)&bmfHeader, sizeof(bmfHeader), NULL, NULL))
+    if (!::ReadFile(hFile, (LPVOID)&bmfHeader, sizeof(bmfHeader), &dwNumRead, NULL))
     {
         //
         return NULL;
@@ -579,7 +578,8 @@ HDIB WINAPI ReadDIBFileName(LPCTSTR lpFilename)
         return NULL;
     }
 
-    return ReadDIBFile(ufile);
+   HDIB hDib = ReadDIBFile(ufile);
+   return hDib;
 }
 
 // DDBToDIB        - Creates a DIB from a DDB

@@ -8,6 +8,7 @@
 #include "ubasewindow.h"
 #include "ugdi.h"
 #include "colors.h"
+#include "ufile.h"
 
 #include "udibapi.h"
 
@@ -17,7 +18,8 @@ public:
    UMyWindow()
    : UBaseWindow(NULL, ::GetModuleHandle(NULL))
    {
-        this->setTitle(_T("UCaret Test 0.0.1"));
+        this->setTitle(_T("UDIB Test 0.0.1"));
+		this->setPos(0, 0, 400, 300);
    }
 
    ~UMyWindow()
@@ -25,10 +27,11 @@ public:
 
    BOOL onCreate()
    {
-       this->setIconBig(IDI_APP);
+       this->setIconBig(IDI_PEN);
        
-       _dib = huys::ReadDIBFileName(_T("bk.bmp"));
-       huys::CreateDIBPalette(_dib, _pal);
+	   UFile file;
+	   file.open(_T("bk.bmp"));
+       _dib = huys::ReadDIBFile(file);
        return UBaseWindow::onCreate();
    }
 
@@ -37,7 +40,7 @@ public:
     {
         RECT rc = {0};
         this->getClientRect(&rc);
-        huys::PaintDIB(hdc, &rc, _dib, &rc, _pal);
+        huys::PaintDIB(hdc, &rc, _dib, &rc, NULL);
     }
     //
     virtual BOOL onEraseBkgnd(HDC hdc)
@@ -68,7 +71,7 @@ public:
 private:
     BOOL onMenuAbout()
     {
-        this->showMsg(_T("UTerminal v0.0.1"), _T("About"));
+        this->showMsg(_T("UDIB v0.0.1"), _T("About"));
         return FALSE;
     }
 private:

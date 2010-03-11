@@ -35,10 +35,10 @@ bool UUserObject::load()
     return true;
 }
 
-bool UUserObject::create()
-{
-    return true;
-}
+//bool UUserObject::create()
+//{
+//   return true;
+//}
 
 UKernelObject::UKernelObject()
 {
