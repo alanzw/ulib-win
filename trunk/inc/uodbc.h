@@ -20,7 +20,7 @@ public:
     void disconnect();
     bool exec(const char *stmt);
     bool getData(int col, char *buf, int nBufsize, SQLINTEGER *cbData);
-	//
+    //
     SQLLEN getRows();
     //
     SQLRETURN fetchScroll(SQLSMALLINT FetchOrientation, SQLLEN FetchOffset);
@@ -41,7 +41,7 @@ public:
 
     //
     SQLRETURN setLoginTimeout(int nSec);
-    
+
     //
     void extract_error(char *fn);
 private:

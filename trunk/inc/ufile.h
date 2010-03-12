@@ -47,8 +47,6 @@ private:
     TCHAR m_sFilename[MAX_PATH];
 };
 
-#ifdef USE_C_FILE
-
 class ULIB_API UCFile
 {
     typedef enum {
@@ -65,103 +63,38 @@ class ULIB_API UCFile
         UCFEM_BINARY
     } UCFExtraMode;
 public:
-    UCFile(const char *sFilename = "default")
-    {
-        strcpy(m_sFilename, sFilename);
-    }
-    ~UCFile()
-    {}
+    UCFile(const char *sFilename = "default");
+    
+    ~UCFile();
     //
-    bool create(bool bOverwriten = true)
-    {
-        const char *sMode = (bOverwriten ? "w":"w+");
-        m_pFile = fopen(m_sFilename, sMode);
-        return true;
-    }
+    bool create(bool bOverwriten = true);
     //
-    bool open(const char *mode)
-    {
-        m_pFile = fopen(m_sFilename, mode);
-        return true;
-    }
-    bool close()
-    {
-        fclose(m_pFile);
-        return true;
-    }
+    bool open(const char *mode);
+    bool close();
 
-    bool reopen(const char *mode)
-    {
-        freopen(m_sFilename, mode, m_pFile);
-        return true;
-    }
+    bool reopen(const char *mode);
 
-    bool isOpen() const
-    {
-        return (NULL == m_pFile);
-    }
+    bool isOpen() const;
 
-    bool isEOF() const
-    {
-        return 0 != feof(m_pFile);
-    }
+    bool isEOF() const;
     
-    bool read(void *buf, size_t size)
-    {
-        return 1 == fread(buf, size, 1, m_pFile);
-    }
-    bool write(const void *buf, size_t size)
-    {
-        return 1 == fwrite(buf, size, 1, m_pFile);
-    }
+    bool read(void *buf, size_t size);
+    bool write(const void *buf, size_t size);
     
-    size_t size()
-    {
-        size_t s = 0;
-        this->seek(m_pFile, 0, SEEK_END);
-        s = this->tell(m_pFile);
-        this->rewind();
-        return s;
-    }
+    size_t size();
 
-    bool directStdOut(const char *mode)
-    {
-        m_pFile = freopen(m_sFilename, mode, stdout);
-        return true;
-    }
+    bool directStdOut(const char *mode);
 
-    bool directStdErr(const char *mode)
-    {
-        m_pFile = freopen(m_sFilename, mode, stderr);
-        return true;
-    }
+    bool directStdErr(const char *mode);
 
-    bool directStdIn(const char *mode)
-    {
-        m_pFile = freopen(m_sFilename, mode, stdin);
-        return true;
-    }
+    bool directStdIn(const char *mode);
 
-    bool flush()
-    {
-        fflush(m_pFile);
-        return true;
-    }
+    bool flush();
 
-    bool seek(long int offset, int origin)
-    {
-        return (0 != fseek(m_pFile, offset, origin) );
-    }
-
-    long tell()
-    {
-        return ftell(m_pFile);
-    }
+    bool seek(long int offset, int origin);
+    long tell();
     
-    void rewind()
-    {
-        ::rewind(m_pFile);
-    }
+    void rewind();
 private:
     char m_sFilename[MAX_PATH];
     FILE *m_pFile;
@@ -169,10 +102,10 @@ private:
 
 class ULIB_API UCTempFile
 {
-
+public:
+    UCTempFile();
 };
 
-#endif // USE_C_FILE
 
 #endif // U_FILE_H
 

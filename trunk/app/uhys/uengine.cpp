@@ -35,6 +35,7 @@ UEngine::~UEngine()
 void UEngine::doString(const char *str)
 {
     m_parser.tokenize(str);
+    m_parser.peek();
 }
 
 void UEngine::doFile(const char *file)

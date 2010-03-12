@@ -152,3 +152,109 @@ DWORD UFile::type() const
     return ::GetFileType(m_hObj);
 }
 
+UCFile::UCFile(const char *sFilename)
+: m_pFile(NULL)
+{
+    strcpy(m_sFilename, sFilename);
+}
+
+UCFile::~UCFile()
+{
+    if (m_pFile)
+    {
+        close();
+    }
+}
+
+//
+bool UCFile::create(bool bOverwriten /*= true*/)
+{
+    const char *sMode = (bOverwriten ? "w":"w+");
+    m_pFile = fopen(m_sFilename, sMode);
+    return true;
+}
+//
+bool UCFile::open(const char *mode)
+{
+    m_pFile = fopen(m_sFilename, mode);
+    return true;
+}
+bool UCFile::close()
+{
+    fclose(m_pFile);
+    m_pFile = NULL;
+    return true;
+}
+
+bool UCFile::reopen(const char *mode)
+{
+    freopen(m_sFilename, mode, m_pFile);
+    return true;
+}
+
+bool UCFile::isOpen() const
+{
+    return (NULL == m_pFile);
+}
+
+bool UCFile::isEOF() const
+{
+    return 0 != feof(m_pFile);
+}
+
+bool UCFile::read(void *buf, size_t size)
+{
+    return 1 == fread(buf, size, 1, m_pFile);
+}
+bool UCFile::write(const void *buf, size_t size)
+{
+    return 1 == fwrite(buf, size, 1, m_pFile);
+}
+
+size_t UCFile::size()
+{
+    size_t s = 0;
+    this->seek(0, SEEK_END);
+    s = this->tell();
+    this->rewind();
+    return s;
+}
+
+bool UCFile::directStdOut(const char *mode)
+{
+    m_pFile = freopen(m_sFilename, mode, stdout);
+    return true;
+}
+
+bool UCFile::directStdErr(const char *mode)
+{
+    m_pFile = freopen(m_sFilename, mode, stderr);
+    return true;
+}
+
+bool UCFile::directStdIn(const char *mode)
+{
+    m_pFile = freopen(m_sFilename, mode, stdin);
+    return true;
+}
+
+bool UCFile::flush()
+{
+    fflush(m_pFile);
+    return true;
+}
+
+bool UCFile::seek(long int offset, int origin)
+{
+    return (0 != fseek(m_pFile, offset, origin) );
+}
+
+long UCFile::tell()
+{
+    return ftell(m_pFile);
+}
+
+void UCFile::rewind()
+{
+    ::rewind(m_pFile);
+}

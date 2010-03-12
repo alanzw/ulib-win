@@ -3,7 +3,7 @@
  *
  *       Filename:  upaser.h
  *
- *    Description:  
+ *    Description:
  *
  *        Version:  1.0
  *        Created:  10/01/2009 02:46:38 AM
@@ -35,6 +35,9 @@ public:
     ~UPaser();
     //
     bool tokenize(const char *code);
+
+    //
+    void peek();
 private:
     TokenVec m_tokens;
 };
