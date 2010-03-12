@@ -15,6 +15,13 @@
 
 #include "ubasewindow.h"
 #include "uwinapp.h"
+#include "ubitmap.h"
+#include "uregion.h"
+
+
+#include "adt/uautoptr.h"
+
+#include "uglassbutton.h"
 
 using namespace Gdiplus;
 
@@ -23,34 +30,13 @@ class UGDIPlusButton : public UBaseWindow
 public:
     UGDIPlusButton(UBaseWindow *pWndParent, UINT nID)
         : UBaseWindow(*pWndParent, NULL, _T("UGDIPLUSBUTTON"), nID),
-        m_hRgn(0), m_pCachedBitmap(0),
+        m_pCachedBitmap(0),
         m_bMouseOver(FALSE),
         m_bTracking(FALSE),
         m_bMouseClicked(FALSE),
         m_bDirtyBuffer(TRUE)
     {
         addStyles(WS_CHILD);
-    }
-
-    ~UGDIPlusButton()
-    {
-
-    }
-
-    BOOL onDestroy()
-    {
-        if (m_pCachedBitmap)
-        {
-            delete m_pCachedBitmap;
-            m_pCachedBitmap = NULL;
-        }
-
-        if (m_hRgn)
-        {
-            DeleteObject(m_hRgn);
-            m_hRgn = NULL;
-        }
-        return FALSE;
     }
 
     void onDraw(HDC hdc)
@@ -163,9 +149,9 @@ public:
         return TRUE;
     }
 private:
-    HRGN m_hRgn;
+    URegion m_rgn;
     RECT m_rcClient;
-    CachedBitmap *m_pCachedBitmap;
+    huys::ADT::UAutoPtr<CachedBitmap> m_pCachedBitmap;
     /** m_bMouseOver: set to true then the mouse coursor move over the control */
     BOOL m_bMouseOver;
     /** m_bTracking: helps in establishing mouse-over-control event*/
@@ -201,7 +187,7 @@ public:
 
         // Apply CDialog offset
         rgn.Translate((int)ptParent.x, (int)ptParent.y);
-        m_hRgn = rgn.GetHRGN(&graphics);
+        m_rgn = rgn.GetHRGN(&graphics);
         //this->show();
         //this->update();
 

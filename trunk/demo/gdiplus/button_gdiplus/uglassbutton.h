@@ -6,7 +6,7 @@
 class UGlassButton : public UOwnerDrawnButton
 {
 public:
-    UGlassButton(HWND hParent, UINT nResource, HINSTANCE hInst);
+    UGlassButton(HWND hParent, UINT nResource, HINSTANCE hInst)
     : UOwnerDrawnButton(hParent, nResource, hInst)
     {
 

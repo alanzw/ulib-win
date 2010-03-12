@@ -1,20 +1,15 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+
+#
+include $(TOPDIR)/make.inc
 
 #
 CFLAGS =
 CXXFLAGS = 
-INC = -I"../../inc"
-LIB = -L"../../lib"
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib"
 
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-
-BINDIR = ../../bin
 #
 OBJ = test_pe.o
 
@@ -28,16 +23,9 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB)
+	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $(BIN) $(BINDIR)/$(BIN)
 
-#
-test_pe.o : test_pe.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-$(RES) : $(RC) resource.h
-	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
 #
 .PHONY : test
 test :

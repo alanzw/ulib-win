@@ -3,7 +3,7 @@
 #define UNICODE 1
 #define _UNICODE 1
 
-/* The code of interest is in the subroutine GetDriveGeometry. The 
+/* The code of interest is in the subroutine GetDriveGeometry. The
    code in main shows how to interpret the results of the call. */
 
 #include <windows.h>
@@ -12,14 +12,14 @@
 
 BOOL GetDriveGeometry(DISK_GEOMETRY *pdg)
 {
-  HANDLE hDevice;               // handle to the drive to be examined 
+  HANDLE hDevice;               // handle to the drive to be examined
   BOOL bResult;                 // results flag
   DWORD junk;                   // discard results
 
   hDevice = CreateFile(TEXT("\\\\.\\PhysicalDrive0"),  // drive to open
                     0,                // no access to the drive
                     FILE_SHARE_READ | // share mode
-                    FILE_SHARE_WRITE, 
+                    FILE_SHARE_WRITE,
                     NULL,             // default security attributes
                     OPEN_EXISTING,    // disposition
                     0,                // file attributes
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 
   bResult = GetDriveGeometry (&pdg);
 
-  if (bResult) 
+  if (bResult)
   {
     printf("Cylinders = %I64d\n", pdg.Cylinders);
     printf("Tracks/cylinder = %ld\n", (ULONG) pdg.TracksPerCylinder);
@@ -61,8 +61,8 @@ int main(int argc, char *argv[])
       (ULONG)pdg.SectorsPerTrack * (ULONG)pdg.BytesPerSector;
     printf("Disk size = %I64d (Bytes) = %I64d (Gb)\n", DiskSize,
            DiskSize / (1024 * 1024 * 1024));
-  } 
-  else 
+  }
+  else
   {
     printf ("GetDriveGeometry failed. Error %ld.\n", GetLastError ());
   }
