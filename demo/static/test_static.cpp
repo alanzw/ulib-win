@@ -10,6 +10,9 @@
 #include "ustatic.h"
 #include "udlgapp.h"
 
+#include "ubitmap.h"
+#include "uicon.h"
+
 #include "colors.h"
 
 #include "adt/uautoptr.h"
@@ -60,14 +63,46 @@ public:
     : UStatic(hParent, nResource, hInst)
     {
          m_dwStyles &= ~SS_SIMPLE;
-         m_dwStyles |= WS_BORDER | SS_ICON | SS_REALSIZEIMAGE;
+         m_dwStyles |= SS_ICON | SS_REALSIZEIMAGE;
     }
 
-    BOOL setIcon(UINT nID)
+    BOOL setIcon(UINT nID, HINSTANCE hInst = ::GetModuleHandle(NULL))
     {
-        this->sendMsg(STM_SETICON, (WPARAM)LoadIcon(m_hInstance, MAKEINTRESOURCE(nID)));
+        if (!_ico.isNull())
+        {
+            _ico.destroy();
+        }
+        _ico.loadIconEx(hInst, nID);
+        this->sendMsg(STM_SETICON, (WPARAM)(HICON)_ico);
         return TRUE;
     }
+private:
+    UIcon _ico;
+};
+
+class UBitmapStatic : public UStatic
+{
+public:
+    UBitmapStatic(HWND hParent, UINT nResource, HINSTANCE hInst)
+    : UStatic(hParent, nResource, hInst)
+    {
+        m_dwStyles &= ~SS_SIMPLE;
+        m_dwStyles |= SS_BITMAP | SS_REALSIZEIMAGE;
+    }
+    
+    BOOL setBitmap(UINT nID, HINSTANCE hInst = ::GetModuleHandle(NULL))
+    {
+        if (!_bmp.isNull())
+        {
+            _bmp.destroyBitmap();
+        }
+        
+        _bmp.loadFromResource(nID, hInst);
+        this->sendMsg(STM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)(HBITMAP)(_bmp));
+        return TRUE;
+    }
+private:
+    UBitmap _bmp;
 };
 
 class UTransStatic : public UStatic
@@ -206,7 +241,8 @@ class UDialogExt : public UDialogBox
         IDC_STATIC_ICON = 10112,
         IDC_STATIC_LCD  = 10113,
         IDC_STATIC_LED  = 10114,
-        IDC_STATIC_TRANS = 10115
+        IDC_STATIC_TRANS = 10115,
+        IDC_STATIC_BITMAP = 10116
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
@@ -238,6 +274,11 @@ public:
         m_pIconStatic->create();
         m_pIconStatic->setPosition(&ico_rc);
         m_pIconStatic->setIcon(IDI_APP);
+        
+        m_pBitmapStatic = new UBitmapStatic(m_hDlg, IDC_STATIC_BITMAP, m_hInst);
+        m_pBitmapStatic->setPos(200, 100, 50, 50);
+        m_pBitmapStatic->create();
+        m_pBitmapStatic->setBitmap(IDB_CHAT);
 
         RECT trans_rc = {270, 200, 320, 250};
         m_pTrans = new UTransStatic(m_hDlg, IDC_STATIC_TRANS, m_hInst);
@@ -269,7 +310,7 @@ public:
 
         m_hist = new UHistogramCtrl(m_hDlg);
         m_hist->setPos(20, 240, 200, 80);
-        m_hist->setStyles(WS_BORDER);
+        //m_hist->setStyles(WS_BORDER);
 
         POINT pts[] = {
             {10, 20},
@@ -341,6 +382,7 @@ public:
  private:
     huys::ADT::UAutoPtr<USubStatic> m_pSubStatic;
     huys::ADT::UAutoPtr<UIconStatic> m_pIconStatic;
+    huys::ADT::UAutoPtr<UBitmapStatic> m_pBitmapStatic;
     huys::ADT::UAutoPtr<UBevelLine> m_pBevelLine;
     huys::ADT::UAutoPtr<UBevelLine> m_pBevelLineVertical;
     huys::ADT::UAutoPtr<ULCDCtrl> m_pLCDCtrl;

@@ -74,6 +74,13 @@ public:
         int nXOriginSrc,
         int nYOriginSrc,
         DWORD dwRop);
+    
+    BOOL patBlt(
+        int nLeft,
+        int nTop,
+        int nWidth,
+        int nHeight,
+        DWORD dwRop);
 
     // Mapping
     /*
