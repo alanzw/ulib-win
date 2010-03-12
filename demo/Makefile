@@ -46,6 +46,7 @@ SUBDIRS = \
           mouse       \
           msg         \
           opengl      \
+          pe          \
           pipe        \
           plugin      \
           process     \

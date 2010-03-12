@@ -20,99 +20,99 @@
 
 class UColorStatic : public UStatic
 {
-	enum {
-		ID_TIMER_INTERNAL = 22
-	};
+    enum {
+        ID_TIMER_INTERNAL = 22
+    };
 public:
-	UColorStatic(HWND hParent, UINT nResource, HINSTANCE hInst)
-		: UStatic(hParent, nResource, hInst)
-	{
-		m_dwStyles &= ~SS_SIMPLE;
-		m_dwStyles |= SS_CENTER | SS_CENTERIMAGE;
+    UColorStatic(HWND hParent, UINT nResource, HINSTANCE hInst)
+        : UStatic(hParent, nResource, hInst)
+    {
+        m_dwStyles &= ~SS_SIMPLE;
+        m_dwStyles |= SS_CENTER | SS_CENTERIMAGE;
 
-		m_clr = huys::red;
-		m_hbrush = ::CreateSolidBrush(m_clr);
-		m_bFlag = TRUE;
-	}
+        m_clr = huys::red;
+        m_hbrush = ::CreateSolidBrush(m_clr);
+        m_bFlag = TRUE;
+    }
 
-	~UColorStatic()
-	{
-		this->killTimer(ID_TIMER_INTERNAL);
-	}
+    ~UColorStatic()
+    {
+        this->killTimer(ID_TIMER_INTERNAL);
+    }
 
-	virtual BOOL create()
-	{
-		BOOL bRet = UStatic::create();
-		this->subclassProc();
-		this->setTimer(ID_TIMER_INTERNAL, 500);
-		return  bRet;
-	}
+    virtual BOOL create()
+    {
+        BOOL bRet = UStatic::create();
+        this->subclassProc();
+        this->setTimer(ID_TIMER_INTERNAL, 500);
+        return  bRet;
+    }
 
-	virtual BOOL onTimer(WPARAM wParam, LPARAM lParam)
-	{
-		switch (wParam)
-		{
-		case ID_TIMER_INTERNAL:
-			{
-				if (m_bFlag)
-				{
-					m_clr = huys::red;
-				}
-				else
-				{
-					m_clr = huys::blue;
-				}
-				m_bFlag = !m_bFlag;
-				::DeleteObject(m_hbrush);
-				m_hbrush = ::CreateSolidBrush(m_clr);
-				this->invalidate();
-				return FALSE;
-			}
-		default:
-			;
-		}
-		return FALSE;
-	}
+    virtual BOOL onTimer(WPARAM wParam, LPARAM lParam)
+    {
+        switch (wParam)
+        {
+        case ID_TIMER_INTERNAL:
+            {
+                if (m_bFlag)
+                {
+                    m_clr = huys::red;
+                }
+                else
+                {
+                    m_clr = huys::blue;
+                }
+                m_bFlag = !m_bFlag;
+                ::DeleteObject(m_hbrush);
+                m_hbrush = ::CreateSolidBrush(m_clr);
+                this->invalidate();
+                return FALSE;
+            }
+        default:
+            ;
+        }
+        return FALSE;
+    }
 
-	virtual BOOL onCtrlColor(WPARAM wParam, LPARAM lParam)
-	{
-		HDC hdc = (HDC)wParam;
-		//    HWND hwnd = (HWND)lParam;
-		//    RECT rc;
+    virtual BOOL onCtrlColor(WPARAM wParam, LPARAM lParam)
+    {
+        HDC hdc = (HDC)wParam;
+        //    HWND hwnd = (HWND)lParam;
+        //    RECT rc;
 
-		//::SelectObject(hdc, m_hbrush);
-		::SetTextColor(hdc, huys::white);
-		::SetBkColor(hdc, m_clr);
+        //::SelectObject(hdc, m_hbrush);
+        ::SetTextColor(hdc, huys::white);
+        ::SetBkColor(hdc, m_clr);
 
-		return (BOOL)m_hbrush;
-	}
+        return (BOOL)m_hbrush;
+    }
 
-	BOOL onMessage( UINT message, WPARAM wParam, LPARAM lParam )
-	{
-		switch(message)
-		{
-		case WM_ERASEBKGND:
-			return this->onEraseBackground(wParam, lParam);
-		default:
-			return UStatic::onMessage(message, wParam, lParam);
-		}
-	}
+    BOOL onMessage( UINT message, WPARAM wParam, LPARAM lParam )
+    {
+        switch(message)
+        {
+        case WM_ERASEBKGND:
+            return this->onEraseBackground(wParam, lParam);
+        default:
+            return UStatic::onMessage(message, wParam, lParam);
+        }
+    }
 
-	BOOL onEraseBackground(WPARAM wParam, LPARAM lParam)
-	{
-		HDC hdc = (HDC)wParam;
-		RECT rc;
-		this->getClientRect(&rc);
-		HBRUSH holdbrush = (HBRUSH)::SelectObject(hdc, m_hbrush);
-		::Rectangle(hdc, rc.left, rc.top, rc.right, rc.bottom);
-		::SelectObject(hdc, holdbrush);
+    BOOL onEraseBackground(WPARAM wParam, LPARAM lParam)
+    {
+        HDC hdc = (HDC)wParam;
+        RECT rc;
+        this->getClientRect(&rc);
+        HBRUSH holdbrush = (HBRUSH)::SelectObject(hdc, m_hbrush);
+        ::Rectangle(hdc, rc.left, rc.top, rc.right, rc.bottom);
+        ::SelectObject(hdc, holdbrush);
 
-		return TRUE;
-	}
+        return TRUE;
+    }
 private:
     HBRUSH m_hbrush;
-	huys::Color m_clr;
-	BOOL m_bFlag;
+    huys::Color m_clr;
+    BOOL m_bFlag;
 };
 
 using huys::UDialogBox;
@@ -136,7 +136,7 @@ public:
 
     virtual BOOL onInit()
     {
-	    ::InvalidateRect(m_hDlg, NULL, TRUE);
+        ::InvalidateRect(m_hDlg, NULL, TRUE);
 
         m_pBnGo = new UButton(m_hDlg, IDC_BN_GO, m_hInst);
         m_pBnGo->create();
