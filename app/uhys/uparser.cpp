@@ -90,6 +90,16 @@ bool UPaser::tokenize(const char *code)
     return true;
 }
 
+void UPaser::peek()
+{
+    std::cout << "============ peek ==============" << std::endl;
+    for (TokenVec::const_iterator it = m_tokens.begin(); it != m_tokens.end(); ++it)
+    {
+        std::cout << "---" << it->c_str() << std::endl;
+    }
+    std::cout << "============ end ==============" << std::endl;
+}
+
 }; // ScriptEngine
 
 }; // namespace huys

@@ -27,7 +27,7 @@ SQLRETURN DataBase::init()
 {
     SQLRETURN ret = SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &_hEnv);
     ret = SQLSetEnvAttr(_hEnv, SQL_ATTR_ODBC_VERSION, (void*)SQL_OV_ODBC3, 0);
-    
+
     return ret;
 }
 
@@ -44,7 +44,7 @@ bool DataBase::exec( const char *stmt )
     if (0 == _hStmt)
     {
         SQLAllocHandle(SQL_HANDLE_STMT, _hConn, &_hStmt);
-	    SQLSetStmtAttr(_hStmt, SQL_ATTR_CURSOR_TYPE, (SQLPOINTER) SQL_CURSOR_STATIC, 0);
+        SQLSetStmtAttr(_hStmt, SQL_ATTR_CURSOR_TYPE, (SQLPOINTER) SQL_CURSOR_STATIC, 0);
     }
 
     RETCODE ret = SQLExecDirect(_hStmt, (SQLCHAR*)stmt, SQL_NTS);
@@ -65,14 +65,14 @@ SQLLEN DataBase::getRows()
 {
     SQLLEN nRows = 0;
     SQLRETURN status;
-    while (true)						// loop forever
-	{
-		status = SQLFetch(_hStmt);			// fetch a row of data
-		if (status == SQL_NO_DATA_FOUND) break;		// if No Data was returned then exit the loop
-    
-		nRows++;					// add 1 to the row counter
-	}
-    
+    while (true)                        // loop forever
+    {
+        status = SQLFetch(_hStmt);            // fetch a row of data
+        if (status == SQL_NO_DATA_FOUND) break;        // if No Data was returned then exit the loop
+
+        nRows++;                    // add 1 to the row counter
+    }
+
     return nRows;
 }
 
@@ -88,7 +88,7 @@ SQLSMALLINT DataBase::getResultCols()
     return cols;
 }
 
-SQLRETURN DataBase::describeCol( 
+SQLRETURN DataBase::describeCol(
     SQLSMALLINT ColumnNumber,
     SQLCHAR *ColumnName,
     SQLSMALLINT BufferLength,
