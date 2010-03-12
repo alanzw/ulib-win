@@ -133,6 +133,15 @@ BOOL UDevContext::bitBlt( int nXOriginDest,
         nXOriginSrc, nYOriginSrc, dwRop );
 }
 
+BOOL UDevContext::patBlt( int nLeft,
+                          int nTop,
+                          int nWidth,
+                          int nHeight,
+                          DWORD dwRop)
+{
+    return ::PatBlt(*this, nLeft, nTop, nWidth, nHeight, dwRop);
+}
+
 void UDevContext::setMapMode( int nMode )
 {
     ::SetMapMode((HDC)m_hObj, nMode);

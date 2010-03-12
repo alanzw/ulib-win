@@ -47,6 +47,8 @@ private:
     TCHAR m_sFilename[MAX_PATH];
 };
 
+#include <stdio.h>
+
 class ULIB_API UCFile
 {
     typedef enum {

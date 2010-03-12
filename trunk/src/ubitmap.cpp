@@ -36,6 +36,11 @@ BOOL UBitmap::create(int nWidth, int nHeight, UINT cPlanes, UINT cBitsPerPel, co
     return NULL != m_hObj;
 }
 
+HBITMAP UBitmap::createCompatibleBitmap(HDC hdc, int w, int h)
+{
+    return (HBITMAP)(m_hObj = ::CreateCompatibleBitmap(hdc, w, h));
+}
+
 BOOL UBitmap::loadFromFile(const TCHAR *path)
 {
     m_hObj = (HBITMAP)LoadImage(

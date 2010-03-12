@@ -35,7 +35,7 @@ public:
 
     //
     BOOL create(int nWidth, int nHeight, UINT cPlanes, UINT cBitsPerPel, const void * lpvBits);
-
+    HBITMAP createCompatibleBitmap(HDC hdc, int w, int h);
     //
     BOOL show(HDC &hdc, RECT &rc);
     BOOL showStretch(HDC &hdc, RECT &rc);
