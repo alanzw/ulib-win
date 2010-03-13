@@ -92,7 +92,7 @@ public:
         us[0]->setWindowText("Name:");
 
        m_pEdtName = new UEdit(this, ID_ED_NAME);
-       m_pEdtName->setPos(80, 20, 100, 25);
+       m_pEdtName->setPos(80, 20, 100, 20);
        m_pEdtName->create();
 
        us[1] = new UTransStatic(this, 2333);
@@ -102,7 +102,7 @@ public:
 
        m_pCboSex = new UComboBox(this, ID_CB_SEX);
        m_pCboSex->setStyles(CBS_DROPDOWN);
-       m_pCboSex->setPos(240, 20, 100, 25);
+       m_pCboSex->setPos(240, 20, 100, 20);
        m_pCboSex->create();
        m_pCboSex->addText(_T("F"));
        m_pCboSex->addText(_T("M"));
@@ -113,7 +113,7 @@ public:
        us[2]->setWindowText("Address:");
 
        m_pEdtAddr= new UEdit(this, ID_ED_ADDR);
-       m_pEdtAddr->setPos(440, 20, 200, 25);
+       m_pEdtAddr->setPos(440, 20, 200, 20);
        m_pEdtAddr->create();
 
        m_pContactList = new UListView(this, ID_LISTCTRL);

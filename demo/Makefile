@@ -8,6 +8,7 @@ SUBDIRS = \
           animation   \
           bitmap      \
           button      \
+          brush       \
           clipboard   \
           combobox    \
           comboboxex  \

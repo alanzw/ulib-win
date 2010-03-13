@@ -26,10 +26,10 @@ public:
         UMapNode *backward;
         UMapNode *forword;
     };
-    
+
     typedef UMapNode TNode;
-    
-   
+
+
 public:
     UMap()
     {

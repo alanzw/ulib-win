@@ -126,3 +126,5 @@ OBJS = $(KENERL_OBJS)  $(GUI_OBJS) $(SYSTEM_OBJS) $(GRAPHIC_OBJS) $(CONFIG_OBJS)
        umci.o        \
        umixer.o      \
        ubrush.o      \
+       upalette.o    \
+
