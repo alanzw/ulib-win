@@ -20,6 +20,7 @@ SUBDIRS = btree  \
           table  \
           queue  \
           recursion \
+          functional \
           
 #
 all:

@@ -16,6 +16,8 @@
 #include "unumerical.h"
 #include "umatrix.h"
 
+#include "udx_tecplot.h"
+
 typedef huys::ADT::UStringAnsi TString;
 
 
