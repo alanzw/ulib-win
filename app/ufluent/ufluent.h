@@ -24,13 +24,19 @@ enum Fluent_Section_Index {
 class UFluentReader
 {
 public:
+    UFluentReader();
+
+    ~UFluentReader();
 private:
+
 };
 
 class UFluentScheme
 {
 public:
+
 private:
+
 };
 
 }; // namespace huys
