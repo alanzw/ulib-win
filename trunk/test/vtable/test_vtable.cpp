@@ -29,6 +29,19 @@ public:
     int int_in_d;
 };
 
+class Base {
+
+public:
+
+    virtual void f() { cout << "Base::f" << endl; }
+
+    virtual void g() { cout << "Base::g" << endl; }
+
+    virtual void h() { cout << "Base::h" << endl; }
+
+};
+
+
 int main()
 {
     cout << "======= Virtual Method Table Testing ==================" << endl;
@@ -55,6 +68,19 @@ int main()
 
     delete b2;
     delete d;
+
+    cout << "--------------------------------------------" << endl;
+    typedef void(*Fun)(void);
+    Base b;
+    Fun *ptr=(Fun*&)b;//
+    cout << "sizeof(Base) : " << sizeof(Base) << endl; //
+    cout << "VTable address: " << (int *)&b << endl;
+    cout << (int *)(*(int *)(&b)) << endl;//
+    cout << ptr << endl;//
+    cout << &Base::f << endl;
+    cout << ptr[0] <<endl;//
+    ptr[0]();//
+
 
     return 0;
 }

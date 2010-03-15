@@ -6,6 +6,7 @@
 // Message
 void ULIB_API showMsg(const TCHAR *szMsg, const TCHAR *szTitle=_T("Info"), HWND hOwner=NULL);
 
+int ULIB_API showYesNoMsgbox(const TCHAR *szMsg, const TCHAR *szTitle=_T("Info"), HWND hOwner=NULL);
 //
 int ULIB_API showMsgFormat(const TCHAR * szCaption, const TCHAR * szFormat, ...);
 

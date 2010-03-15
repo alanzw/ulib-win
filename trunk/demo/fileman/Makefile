@@ -5,7 +5,7 @@ include $(TOPDIR)/make.inc
 
 #
 INCS = -I"$(TOPDIR)/inc"
-LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin
+LIBS = -L"$(TOPDIR)/lib" -mwindows
 CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 #
@@ -23,10 +23,6 @@ $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
 
-#
-test_fileman.o : test_fileman.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INCS)
-    
 #
 .PHONY : test
 test :
