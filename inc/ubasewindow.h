@@ -90,7 +90,9 @@ public:
 
     //
     BOOL setWindowPos(HWND hWndInsertAfter, int x, int y, int cx, int cy, UINT uFlag);
-
+    //
+    BOOL setTopMost();
+    BOOL setNoTopMost();
     //
     BOOL setWindowPlacement(WINDOWPLACEMENT *lpwndpl);
     BOOL getWindowPlacement(WINDOWPLACEMENT *lpwndpl);
@@ -209,6 +211,9 @@ public:
     
     //
     BOOL setWindowRgn(HRGN hRgn, BOOL bRedraw = TRUE);
+    
+    //
+    BOOL adjustWindowRectEx();
 
     void setMenu(LPCTSTR lpMenuName)
     { m_lpMenuName = lpMenuName; }
@@ -238,6 +243,7 @@ public:
     BOOL isActive();
 protected:
     virtual BOOL onPreRegisterWindowClass(huys::UWindowClass &uwc) {return FALSE;}
+    virtual BOOL onPreCreateWindow() {return TRUE;}
 private:
     HWND m_hParent;
     HWND m_hSelf;

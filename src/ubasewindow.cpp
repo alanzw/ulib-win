@@ -113,6 +113,12 @@ bool UBaseWindow::create()
     {
         m_lpWindowTitle = _T("ubasewindow");
     }
+    
+    //
+    if (!onPreCreateWindow())
+    {
+        return false;
+    }
 
     ::CreateWindowEx(
         m_dwExStyles,          // dwExStyle
@@ -383,6 +389,21 @@ BOOL UBaseWindow::getClientRect(LPRECT lpRect)
 BOOL UBaseWindow::moveWindow(int x, int y, int cx, int cy, BOOL bRepaint /*= FALSE*/)
 {
     return ::MoveWindow(m_hSelf, x, y, cx, cy, bRepaint);
+}
+
+BOOL UBaseWindow::adjustWindowRectEx()
+{
+    return ::AdjustWindowRectEx(&m_rcWindow, m_dwStyles, FALSE, m_dwExStyles);
+}
+
+BOOL UBaseWindow::setTopMost()
+{
+    return ::SetWindowPos(m_hSelf, HWND_TOPMOST, 0,0,0,0, SWP_NOMOVE|SWP_NOSIZE);
+}
+
+BOOL UBaseWindow::setNoTopMost()
+{
+    return ::SetWindowPos(m_hSelf, HWND_NOTOPMOST, 0,0,0,0, SWP_NOMOVE|SWP_NOSIZE);
 }
 
 

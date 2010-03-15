@@ -29,6 +29,11 @@ void showMsg(const TCHAR *szMsg, const TCHAR *szTitle/*=_T("Info")*/, HWND hOwne
     ::MessageBox(hOwner, szMsg, szTitle, MB_OK|MB_ICONINFORMATION);
 }
 
+int ULIB_API showYesNoMsgbox(const TCHAR *szMsg, const TCHAR *szTitle/*=_T("Info")*/, HWND hOwner/*=NULL*/)
+{
+    return ::MessageBox(hOwner, szMsg, szTitle, MB_YESNO|MB_ICONQUESTION);
+}
+
 //
 int showMsgFormat(const TCHAR * szCaption, const TCHAR * szFormat, ...)
 {
