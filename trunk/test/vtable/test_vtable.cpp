@@ -41,6 +41,69 @@ public:
 
 };
 
+typedef void(*Fun)();
+typedef void(*XFun)(int,int,int); 
+
+class BaseClass
+{
+public:
+    BaseClass()
+    {
+        test();
+    }
+
+    virtual void fun1()
+    {
+        cout << " fun1 " << endl;
+    }
+
+    virtual void fun2(int x ,int y)
+    {
+        cout <<"x:"<< x <<" y:"<<y<< " fun2 " << endl;
+    }
+
+    void test()
+    {
+        //得到vtable里第一个函数地址（fun1）
+        Fun fun = (Fun)*(int*)*(int*)this;
+        fun();
+
+        //得到vtable里第二个函数地址（fun2）
+        XFun xfun = (XFun)*((int*)*(int*)this + 1);
+        xfun(1,2,3);//
+    }
+};
+
+class subclass:public BaseClass
+{
+public:
+    virtual void fun1()
+    {
+        cout << "virtual void subclass:fun1()!\n" << endl;
+    }
+};
+
+
+int v_test()
+{
+    subclass subclassobj ;
+    cout<<"*************test suclass.test()*****************************"<<endl;
+    subclassobj.test();
+    cout<<"*************&subclass::test*****************************"<<endl;
+    Fun *testFun = (Fun*)(*(int *)(&subclassobj));
+    cout << testFun << endl;
+    (*testFun)();//这里出现段错误,
+    
+    void * p = (int *)&subclassobj + 1;
+    cout << p << endl;
+    cout << &BaseClass::test << endl;
+    testFun = (Fun*)p;
+    (*testFun)();//这里出现段错误,
+    
+    return 0;
+}
+
+
 
 int main()
 {
@@ -80,7 +143,9 @@ int main()
     cout << &Base::f << endl;
     cout << ptr[0] <<endl;//
     ptr[0]();//
-
+    
+    cout << "--------------------------------------------" << endl;
+    v_test();
 
     return 0;
 }
