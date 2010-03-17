@@ -10,15 +10,15 @@ public:
     UBrush();
 
     ~UBrush();
-    
+
     operator HBRUSH()
     {
         return (HBRUSH)m_hObj;
     }
-    
+
     HBRUSH createSolidBrush(huys::Color clr);
 private:
-    
+
 };
 
 #endif // U_BRUSH_H

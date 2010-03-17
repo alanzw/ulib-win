@@ -22,7 +22,7 @@ RES =
 #
 HEADER =
 
-SUBDIRS = hello graph
+SUBDIRS = hello graph skybox
 #
 all:
 	$(MAKEALL_SUBDIRS)

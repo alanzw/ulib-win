@@ -20,12 +20,12 @@ void BMP_Texture(UINT textureArray[], LPSTR sFileName, int ID)
     HBITMAP hBMP;                                                        // Handle Of The Bitmap
     BITMAP bmp;
 
-    hBMP=(HBITMAP)LoadImage( GetModuleHandle(NULL), 
-							 sFileName,
-							 IMAGE_BITMAP,
-							 0,
-							 0,
-							 LR_CREATEDIBSECTION | LR_LOADFROMFILE );
+    hBMP=(HBITMAP)LoadImage( GetModuleHandle(NULL),
+                             sFileName,
+                             IMAGE_BITMAP,
+                             0,
+                             0,
+                             LR_CREATEDIBSECTION | LR_LOADFROMFILE );
 
     if (!hBMP)                                                            // Does The Bitmap Exist?
         return;
@@ -80,9 +80,9 @@ public:
 
         glTranslatef(0, 0,-5.0f);
 
-    	glBindTexture(GL_TEXTURE_2D, TextureArray[0]);
+        glBindTexture(GL_TEXTURE_2D, TextureArray[0]);
 
-    	glBegin(GL_QUADS);
+        glBegin(GL_QUADS);
         // top left vertex
         glTexCoord2f(0.0f, 1.0f);
         glVertex3f(-1, 1, 0);
@@ -95,8 +95,8 @@ public:
         // top right vertex
         glTexCoord2f(1.0f, 1.0f);
         glVertex3f(1, 1, 0);
-		//
-    	glEnd();
+        //
+        glEnd();
 
         return TRUE;
     }
