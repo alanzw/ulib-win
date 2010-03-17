@@ -19,6 +19,7 @@ SUBDIRS =          \
           interface\
           portmap  \
           httpmt   \
+          httpclient\
 
 #
 .PHONY: all
