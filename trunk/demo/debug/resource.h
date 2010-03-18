@@ -2,7 +2,7 @@
 #define IDC_STATIC (-1)
 #endif
 
-#define IDI_EYE   1
+#define IDI_EYE   10
 
 #define IDD_TEST  1000
 
