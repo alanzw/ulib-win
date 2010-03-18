@@ -22,6 +22,7 @@
 #include "uled.h"
 #include "uhistogram.h"
 #include "uinfobar.h"
+#include "umeterctrl.h"
 
 
 using huys::UDialogBox;
@@ -332,6 +333,10 @@ public:
         m_infobar->setPos(5, 350, 520, 120);
         //m_infobar->setStyles(WS_BORDER);
         m_infobar->create();
+        
+        m_meter = new UMeterCtrl(m_hDlg);
+        m_meter->setPos(200, 360, 100, 100);
+        m_meter->create();
 
         return TRUE;
     }
@@ -392,6 +397,8 @@ public:
     huys::ADT::UAutoPtr<UHistogramCtrl> m_hist;
 
     huys::ADT::UAutoPtr<UInfoBar> m_infobar;
+    
+    huys::ADT::UAutoPtr<UMeterCtrl> m_meter;
 
     HBRUSH m_hBkBrush;
 };

@@ -9,6 +9,8 @@
 #include "udlgapp.h"
 #include "ucmdline.h"
 
+#include "adt/uautoptr.h"
+
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
@@ -18,14 +20,8 @@ class UDialogExt : public UDialogBox
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-    : UDialogBox(hInst, nID),
-      m_pEdit(0)
+    : UDialogBox(hInst, nID)
     {}
-
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_pEdit);
-    }
 
     BOOL onInit()
     {
@@ -49,7 +45,7 @@ public:
         return TRUE;
     }
 private:
-    UEdit *m_pEdit;
+    huys::ADT::UAutoPtr<UEdit> m_pEdit;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

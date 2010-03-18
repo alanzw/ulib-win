@@ -16,13 +16,14 @@ BIN = test_static.exe
 RC  = static.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/ucontrol.h \
+HEADERS= $(INCDIR)/ucontrol.h \
 		 $(INCDIR)/ustatic.h \
 		 $(INCDIR)/udialog.h \
 		 ulcd.h \
 		 uled.h \
 		 uhistogram.h \
 		 uinfobar.h   \
+		 umeterctrl.h \
 
 #
 all: $(BIN)
