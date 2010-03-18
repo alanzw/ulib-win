@@ -10,7 +10,13 @@
 #include "uwinapp.h"
 #include "ubasewindow.h"
 
-struct CUSTOMVERTEX {FLOAT X, Y, Z, RHW; DWORD COLOR;};
+struct CUSTOMVERTEX {
+    FLOAT X;
+    FLOAT Y;
+    FLOAT Z;
+    FLOAT RHW;
+    DWORD COLOR;
+};
 #define CUSTOMFVF (D3DFVF_XYZRHW | D3DFVF_DIFFUSE)
 
 class UDXWindow : public UBaseWindow
@@ -156,18 +162,6 @@ private:
     LPDIRECT3DDEVICE9 pDevice;
     LPDIRECT3DVERTEXBUFFER9 pVB;
 };
-
-//class UDXWinapp : public UWinApp
-//{
-//public:
-//    bool init( HINSTANCE hInst /*= NULL*/ )
-//    {
-//        m_pMainWindow = new UDXWindow(hInst);
-//        m_pMainWindow->create();
-//
-//        return true;
-//    }
-//};
 
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)

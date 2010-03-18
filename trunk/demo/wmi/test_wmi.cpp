@@ -1,16 +1,18 @@
 #include "resource.h"
 
 #ifndef _MSC_VER
-#error Only msc is supported.
+  #error Only msc is supported.
 #endif
 
 #define _WIN32_DCOM
-#include <iostream>
-using namespace std;
+
 #include <comdef.h>
 #include <Wbemidl.h>
 
 #pragma comment(lib, "wbemuuid.lib")
+
+#include <iostream>
+using namespace std;
 
 int main(int argc, char **argv)
 {
@@ -75,7 +77,6 @@ int main(int argc, char **argv)
     // to make IWbemServices calls.
 
     hres = pLoc->ConnectServer(
-
         _bstr_t(L"ROOT\\CIMV2"), // WMI namespace
         NULL,                    // User name
         NULL,                    // User password
@@ -171,7 +172,6 @@ int main(int argc, char **argv)
 
     // Cleanup
     // ========
-
     pSvc->Release();
     pLoc->Release();
     CoUninitialize();

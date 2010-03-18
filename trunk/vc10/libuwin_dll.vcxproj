@@ -309,6 +309,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="..\src\umenu.cpp" />
     <ClCompile Include="..\src\umsg.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -369,6 +370,7 @@
     <ClInclude Include="..\inc\uicon.h" />
     <ClInclude Include="..\inc\uimagelist.h" />
     <ClInclude Include="..\inc\ulib.h" />
+    <ClInclude Include="..\inc\umenu.h" />
     <ClInclude Include="..\inc\umsg.h" />
     <ClInclude Include="..\inc\uobject.h" />
     <ClInclude Include="..\inc\upanel.h" />
