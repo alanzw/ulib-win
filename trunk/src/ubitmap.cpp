@@ -257,21 +257,21 @@ BOOL UBitmap::showTransparent(HDC &hdc, RECT &rc, UINT crTransparent)
 }
 
 BOOL UBitmap::showTransparentEx(HDC hdc, LPRECT lpRect, UINT crTransparent)
-{   
+{
     int nWidthDest = lpRect->right - lpRect->left;
     int nHeightDest = lpRect->bottom - lpRect->top;
-    
+
     HBITMAP hOldImageBMP, hImageBMP = CreateCompatibleBitmap(hdc, nWidthDest, nHeightDest);    // 创建兼容位图
     HBITMAP hOldMaskBMP, hMaskBMP = CreateBitmap(nWidthDest, nHeightDest, 1, 1, NULL);            // 创建单色掩码位图
-    HDC hImageDC = CreateCompatibleDC(hdc);//临时DC 
-    HDC hMaskDC = CreateCompatibleDC(hdc);//临时掩码DC 
+    HDC hImageDC = CreateCompatibleDC(hdc);//临时DC
+    HDC hMaskDC = CreateCompatibleDC(hdc);//临时掩码DC
     hOldImageBMP = (HBITMAP)SelectObject(hImageDC, hImageBMP);
     hOldMaskBMP = (HBITMAP)SelectObject(hMaskDC, hMaskBMP);
 
     // 将源DC中的位图拷贝到临时DC中,源DC已经载入位图
     //BitBlt(hImageDC, 0, 0, nWidthDest, nHeightDest, hdcSrc, nXOriginSrc, nYOriginSrc, SRCCOPY);
     ::SelectObject(hImageDC, m_hObj);
- 
+
     // 设置临时DC的透明色
     SetBkColor(hImageDC, crTransparent);
 
@@ -279,12 +279,12 @@ BOOL UBitmap::showTransparentEx(HDC hdc, LPRECT lpRect, UINT crTransparent)
     // 位图来自临时DC
     BitBlt(hMaskDC, 0, 0, nWidthDest, nHeightDest, hImageDC, 0, 0, SRCCOPY);
 
-    // 
+    //
     SetBkColor(hImageDC, RGB(0,0,0));
     SetTextColor(hImageDC, RGB(255,255,255));
     BitBlt(hImageDC, 0, 0, nWidthDest, nHeightDest, hMaskDC, 0, 0, SRCAND);
 
-    // 
+    //
     SetBkColor(hdc,RGB(255,255,255));
     SetTextColor(hdc,RGB(0,0,0));
     BitBlt(hdc, lpRect->left, lpRect->top, nWidthDest, nHeightDest, hMaskDC, 0, 0, SRCAND);
@@ -292,7 +292,7 @@ BOOL UBitmap::showTransparentEx(HDC hdc, LPRECT lpRect, UINT crTransparent)
     //
     BitBlt(hdc, lpRect->left, lpRect->top, nWidthDest, nHeightDest, hImageDC, 0, 0, SRCPAINT);
 
-    //   
+    //
     SelectObject(hImageDC, hOldImageBMP);
     DeleteDC(hImageDC);
     SelectObject(hMaskDC, hOldMaskBMP);
@@ -309,17 +309,17 @@ BOOL UBitmap::showTransparentMask(HDC hdc, LPRECT lpRect, HBITMAP mask, UINT crT
     int nHeightDest = lpRect->bottom - lpRect->top;
 
     HBITMAP hOldImageBMP, hImageBMP = CreateCompatibleBitmap(hdc, nWidthDest, nHeightDest);
-    HDC hImageDC = CreateCompatibleDC(hdc); 
+    HDC hImageDC = CreateCompatibleDC(hdc);
     hOldImageBMP = (HBITMAP)SelectObject(hImageDC, hImageBMP);
-    HDC hMaskDC = CreateCompatibleDC(hdc);//临时掩码DC 
- 
+    HDC hMaskDC = CreateCompatibleDC(hdc);//临时掩码DC
 
-    
+
+
     //
     //BitBlt(hImageDC, 0, 0, nWidthDest, nHeightDest, hdcSrc, nXOriginSrc, nYOriginSrc, SRCCOPY);
     SelectObject(hImageDC, m_hObj);
-    SelectObject(hMaskDC, mask); 
-    
+    SelectObject(hMaskDC, mask);
+
      // 设置临时DC的透明色
     SetBkColor(hImageDC, crTransparent);
     // 生成透明区域为黑色，其它区域保持不变的位图
@@ -332,38 +332,38 @@ BOOL UBitmap::showTransparentMask(HDC hdc, LPRECT lpRect, HBITMAP mask, UINT crT
     BitBlt(hdc, 0, 0, nWidthDest, nHeightDest, hMaskDC, 0, 0, SRCAND);
      // "或"运算,生成最终效果
     BitBlt(hdc, 0, 0, nWidthDest, nHeightDest, hImageDC, 0, 0, SRCPAINT);
-    // 清理、恢复    
+    // 清理、恢复
     SelectObject(hImageDC, hOldImageBMP);
     DeleteDC(hImageDC);
     DeleteObject(hImageBMP);
-    
+
     return TRUE;
 }
 
 BOOL UBitmap::drawImage(HDC hdc, int x, int y, int nX, int nY, int nCol, int nRow)
 {
     //nX-=1;
-	//nY-=1;
-	//
-	int w = getWidth()/nCol;
-	int h = getHeight()/nRow;
-    
-	HDC hMemDC = ::CreateCompatibleDC(hdc);
-	m_hOldBitmap = (HBITMAP)::SelectObject(hMemDC, m_hObj );
-    
-    ::StretchBlt( hdc, 
+    //nY-=1;
+    //
+    int w = getWidth()/nCol;
+    int h = getHeight()/nRow;
+
+    HDC hMemDC = ::CreateCompatibleDC(hdc);
+    m_hOldBitmap = (HBITMAP)::SelectObject(hMemDC, m_hObj );
+
+    ::StretchBlt( hdc,
                   x,
                   y,
                   w,
                   h,
                   hMemDC,
                   w*nX,
-                  h*nY, 
+                  h*nY,
                   w,
                   h,
                   SRCCOPY );
 
-	::SelectObject(hMemDC, m_hOldBitmap);
+    ::SelectObject(hMemDC, m_hOldBitmap);
 
 
     return TRUE;
@@ -590,7 +590,7 @@ BOOL UBitmap::showExtend(HDC hdc, LPRECT lpRect, int nX, int nY)
     if (nX==0 && nY==0)
     {
         showStretch(hMemDC, *lpRect);
-        
+
         return TRUE;
     }
 

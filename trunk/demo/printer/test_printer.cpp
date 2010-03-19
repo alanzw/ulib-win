@@ -108,15 +108,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdSh
     return app.run();
 }
 
-// 
-// RawDataToPrinter - sends binary data directly to a printer 
-//  
-// szPrinterName: NULL-terminated string specifying printer name 
-// lpData:        Pointer to raw data bytes 
-// dwCount        Length of lpData in bytes 
-//  
-// Returns: TRUE for success, FALSE for failure. 
-//  
+//
+// RawDataToPrinter - sends binary data directly to a printer
+//
+// szPrinterName: NULL-terminated string specifying printer name
+// lpData:        Pointer to raw data bytes
+// dwCount        Length of lpData in bytes
+//
+// Returns: TRUE for success, FALSE for failure.
+//
 BOOL RawDataToPrinter(LPTSTR szPrinterName, LPBYTE lpData, DWORD dwCount)
 {
     BOOL     bStatus = FALSE;
@@ -124,32 +124,32 @@ BOOL RawDataToPrinter(LPTSTR szPrinterName, LPBYTE lpData, DWORD dwCount)
     DOC_INFO_1 DocInfo;
     DWORD      dwJob = 0L;
     DWORD      dwBytesWritten = 0L;
-    
-    // Open a handle to the printer. 
+
+    // Open a handle to the printer.
     bStatus = OpenPrinter( szPrinterName, &hPrinter, NULL );
     if (bStatus) {
-        // Fill in the structure with info about this "document." 
+        // Fill in the structure with info about this "document."
         DocInfo.pDocName = (LPTSTR)_T("My Document");
         DocInfo.pOutputFile = NULL;
         DocInfo.pDatatype = (LPTSTR)_T("RAW");
-        
-        // Inform the spooler the document is beginning. 
+
+        // Inform the spooler the document is beginning.
         dwJob = StartDocPrinter( hPrinter, 1, (LPBYTE)&DocInfo );
         if (dwJob > 0) {
-            // Start a page. 
+            // Start a page.
             bStatus = StartPagePrinter( hPrinter );
             if (bStatus) {
-                // Send the data to the printer. 
+                // Send the data to the printer.
                 bStatus = WritePrinter( hPrinter, lpData, dwCount, &dwBytesWritten);
                 EndPagePrinter (hPrinter);
             }
-            // Inform the spooler that the document is ending. 
+            // Inform the spooler that the document is ending.
             EndDocPrinter( hPrinter );
         }
-        // Close the printer handle. 
+        // Close the printer handle.
         ClosePrinter( hPrinter );
     }
-    // Check to see if correct number of bytes were written. 
+    // Check to see if correct number of bytes were written.
     if (!bStatus || (dwBytesWritten != dwCount)) {
         bStatus = FALSE;
     } else {
@@ -158,16 +158,16 @@ BOOL RawDataToPrinter(LPTSTR szPrinterName, LPBYTE lpData, DWORD dwCount)
     return bStatus;
 }
 
-// 
-//  RawDataToXpsPrinter - sends binary data directly to a printer 
-//          with an XPSDrv Printer Driver 
-//  
-// szPrinterName: NULL-terminated string specifying printer name 
-// lpData:        Pointer to raw data bytes 
-// dwCount        Length of lpData in bytes 
-//  
-// Returns: TRUE for success, FALSE for failure. 
-//  
+//
+//  RawDataToXpsPrinter - sends binary data directly to a printer
+//          with an XPSDrv Printer Driver
+//
+// szPrinterName: NULL-terminated string specifying printer name
+// lpData:        Pointer to raw data bytes
+// dwCount        Length of lpData in bytes
+//
+// Returns: TRUE for success, FALSE for failure.
+//
 BOOL RawDataToXpsPrinter (LPTSTR szPrinterName, LPBYTE lpData, DWORD dwCount)
 {
     BOOL     bStatus = FALSE;
@@ -175,41 +175,41 @@ BOOL RawDataToXpsPrinter (LPTSTR szPrinterName, LPBYTE lpData, DWORD dwCount)
     DOC_INFO_1       DocInfo;
     DWORD    dwPrtJob = 0L;
     DWORD    dwBytesWritten = 0L;
-    
-    // Open a handle to the printer. 
+
+    // Open a handle to the printer.
     bStatus = OpenPrinter (szPrinterName, &hPrinter, NULL);
-    
+
     if (bStatus) {
-        // Fill in the structure with info about this "document." 
+        // Fill in the structure with info about this "document."
         DocInfo.pDocName = (LPTSTR)_T("My Document");
         DocInfo.pOutputFile = NULL;
         DocInfo.pDatatype = (LPTSTR)_T("XPS_PASS");
-        
+
         dwPrtJob = StartDocPrinter (
             hPrinter,
             1,
             (LPBYTE)&DocInfo);
-        
+
         if (dwPrtJob > 0) {
-            // Send the data to the printer. 
+            // Send the data to the printer.
             bStatus = WritePrinter (
                 hPrinter,
                 lpData,
                 dwCount,
                 &dwBytesWritten);
         }
-        
+
         EndDocPrinter (hPrinter);
-        
-        // Close the printer handle. 
+
+        // Close the printer handle.
         bStatus = ClosePrinter(hPrinter);
     }
-    
+
     if (!bStatus || (dwCount != dwBytesWritten)) {
         bStatus = FALSE;
     } else {
         bStatus = TRUE;
     }
-    
+
     return bStatus;
-}  
+}

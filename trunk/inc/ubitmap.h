@@ -44,7 +44,7 @@ public:
     BOOL showTransparentMask(HDC hdc, LPRECT lpRect, HBITMAP mask, UINT crTransparent);
     //
     BOOL drawImage(HDC hdc, int x, int y, int nX, int nY, int nCol, int nRow);
-    
+
     //
     BOOL showExtend(HDC hdc, LPRECT lpRect, int nX, int nY);
 

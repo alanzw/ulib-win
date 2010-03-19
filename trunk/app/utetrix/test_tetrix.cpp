@@ -8,18 +8,20 @@
 #include "ubasewindow.h"
 #include "ugdi.h"
 #include "colors.h"
-#include "ufile.h"
 
-#include "udibapi.h"
+#include "utetrix.h"
 
 class UMyWindow : public UBaseWindow
 {
+    enum {
+        ID_TERMINAL = 11002
+    };
 public:
    UMyWindow()
    : UBaseWindow(NULL, ::GetModuleHandle(NULL))
    {
-        this->setTitle(_T("UDIB Test 0.0.1"));
-        this->setPos(0, 0, 400, 300);
+        this->setTitle(_T("UTetrix Test 0.0.1"));
+        this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
    }
 
    ~UMyWindow()
@@ -27,20 +29,15 @@ public:
 
    BOOL onCreate()
    {
-       this->setIconBig(IDI_PEN);
+       this->setIconBig(IDI_APP);
 
-       UFile file;
-       file.open(_T("bk.bmp"));
-       _dib = huys::ReadDIBFile(file);
        return UBaseWindow::onCreate();
    }
 
     //
     virtual void onDraw(HDC hdc)
     {
-        RECT rc = {0};
-        this->getClientRect(&rc);
-        huys::PaintDIB(hdc, &rc, _dib, &rc, NULL);
+
     }
     //
     virtual BOOL onEraseBkgnd(HDC hdc)
@@ -67,16 +64,12 @@ public:
             return UBaseWindow::onCommand(wParam, lParam);
         }
     }
-
 private:
     BOOL onMenuAbout()
     {
-        this->showMsg(_T("UDIB v0.0.1"), _T("About"));
+        this->showMsg(_T("UTetrix v0.0.1"), _T("About"));
         return FALSE;
     }
-private:
-    huys::HDIB _dib;
-    HPALETTE _pal;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
