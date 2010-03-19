@@ -1,5 +1,5 @@
-#ifndef U_BUTTONST_H
-#define U_BUTTONST_H
+#ifndef U_CLOCK_H
+#define U_CLOCK_H
 
 #include "ustatic.h"
 
@@ -13,4 +13,4 @@ private:
 
 };
 
-#endif // U_BUTTONST_H
+#endif // U_CLOCK_H
