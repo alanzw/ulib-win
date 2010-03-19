@@ -58,6 +58,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dib", "dib.vcproj", "{22910
 		{30463FCE-93F2-4F31-BFB5-355DFFB5CC66} = {30463FCE-93F2-4F31-BFB5-355DFFB5CC66}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "skybox", "skybox.vcproj", "{B416593D-D96D-42EC-B7FE-CED7C2020653}"
+	ProjectSection(ProjectDependencies) = postProject
+		{30463FCE-93F2-4F31-BFB5-355DFFB5CC66} = {30463FCE-93F2-4F31-BFB5-355DFFB5CC66}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "keyboard", "keyboard.vcproj", "{B2029D83-1108-4760-8102-699EA856EF28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -191,6 +198,18 @@ Global
 		{229101D5-9000-4456-BD3B-312D1F9A2BC3}.Debug-static|Win32.Build.0 = Debug-static|Win32
 		{229101D5-9000-4456-BD3B-312D1F9A2BC3}.Release|Win32.ActiveCfg = Release|Win32
 		{229101D5-9000-4456-BD3B-312D1F9A2BC3}.Release|Win32.Build.0 = Release|Win32
+		{B416593D-D96D-42EC-B7FE-CED7C2020653}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B416593D-D96D-42EC-B7FE-CED7C2020653}.Debug|Win32.Build.0 = Debug|Win32
+		{B416593D-D96D-42EC-B7FE-CED7C2020653}.Debug-static|Win32.ActiveCfg = Debug-static|Win32
+		{B416593D-D96D-42EC-B7FE-CED7C2020653}.Debug-static|Win32.Build.0 = Debug-static|Win32
+		{B416593D-D96D-42EC-B7FE-CED7C2020653}.Release|Win32.ActiveCfg = Release|Win32
+		{B416593D-D96D-42EC-B7FE-CED7C2020653}.Release|Win32.Build.0 = Release|Win32
+		{B2029D83-1108-4760-8102-699EA856EF28}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B2029D83-1108-4760-8102-699EA856EF28}.Debug|Win32.Build.0 = Debug|Win32
+		{B2029D83-1108-4760-8102-699EA856EF28}.Debug-static|Win32.ActiveCfg = Debug-static|Win32
+		{B2029D83-1108-4760-8102-699EA856EF28}.Debug-static|Win32.Build.0 = Debug-static|Win32
+		{B2029D83-1108-4760-8102-699EA856EF28}.Release|Win32.ActiveCfg = Release|Win32
+		{B2029D83-1108-4760-8102-699EA856EF28}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

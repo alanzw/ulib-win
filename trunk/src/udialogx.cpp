@@ -175,7 +175,7 @@ BOOL UDialogBox::DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
         return this->onLButtonUp(wParam, lParam);
     case WM_RBUTTONUP:
         return this->onRButtonUp(wParam, lParam);
-    case WM_CHAR:
+    case WM_CHAR: // ? !!!DialogBox never get this!!
         return this->onChar(wParam, lParam);
     case WM_CLOSE:
         return this->onClose();
@@ -391,6 +391,11 @@ BOOL UDialogBox::onNCDestroy()
     return FALSE;
 }
 
+BOOL UDialogBox::onPreTranslateMessage(LPMSG msg)
+{
+    return FALSE;
+}
+
 BOOL UDialogBox::go()
 {
     BOOL bRet;
@@ -398,6 +403,11 @@ BOOL UDialogBox::go()
 
     while ((bRet = GetMessage(&msg, NULL, 0, 0)) != 0)
     {
+        if ( (msg.hwnd == m_hDlg || ::GetParent(msg.hwnd) == m_hDlg)&& onPreTranslateMessage(&msg))
+        {
+            continue;
+        }
+    
         if (bRet == -1)
         {
             // Handle the error and possibly exit

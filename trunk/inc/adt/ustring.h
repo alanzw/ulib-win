@@ -337,7 +337,8 @@ public:
 
         p += (n < 0) ? sizeof(buf) - 1 : n;
 
-        while ( p > buf  &&  isspace(p[-1]) )
+        //while ( p > buf  &&  isspace(p[-1]) )
+        while ( p > buf && ' ' ==p[-1] )
         {
             *--p = '\0';
         }

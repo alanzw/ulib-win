@@ -685,6 +685,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\src\ukeybd.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\ulib.cpp"
 				>
 				<FileConfiguration
@@ -970,6 +974,10 @@
 			</File>
 			<File
 				RelativePath="..\inc\uimagelist.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\ukeybd.h"
 				>
 			</File>
 			<File
