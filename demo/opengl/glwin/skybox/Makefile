@@ -7,7 +7,7 @@ include $(TOPDIR)/make.inc
 INCS = -I"$(INCDIR)"
 LIBS = -L"$(LIBDIR)" -mwindows -luwin -lopengl32 -lglu32
 CFLAGS += $(INCS)
-CXXFLAGS += $(INCS) -DBUILD_EXE
+CXXFLAGS += $(INCS) -DBUILD_EXE -DHU_DEBUG
 LDFLAGS = $(LIBS)
 #
 OBJ = skybox_glwin.o \

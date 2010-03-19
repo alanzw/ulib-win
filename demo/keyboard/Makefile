@@ -23,15 +23,9 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB) $(RES)
+	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
 
-#
-test_keyboard.o : test_keyboard.cpp $(HEADER)
-	$(CXX) -c -DBUILD_EXE -o $@ $< $(CXXFLAGS) $(INC)
-
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $< -o $@ -O coff -I"$(RESDIR)" -I"$(ICODIR)"
 #
 .PHONY : test
 test :

@@ -45,6 +45,10 @@ public:
 
     static BOOL CALLBACK DefaultDlgProc(HWND hDlg, UINT message,
         WPARAM wParam, LPARAM lParam);
+        
+    //
+    virtual BOOL onPreTranslateMessage(LPMSG msg); 
+    
     //
     virtual BOOL onInit() {return TRUE;}
     virtual BOOL onCancel();
