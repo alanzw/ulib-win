@@ -39,7 +39,7 @@ void DoIt(char *szFileName, DWORD dwFlags)
 {
     printf("\n\nAttempting to read %s, with 0x%x flags\n", szFileName, dwFlags);
 
-    HANDLE hFile = CreateFile(szFileName, 
+    HANDLE hFile = CreateFile(szFileName,
         GENERIC_READ,
         FILE_SHARE_READ,
         NULL,
@@ -80,7 +80,7 @@ int main(int argc, char* argv[])
     {
         return -2;
     }
-    
+
     // Try with no backup flag - should get access denied.
     DoIt(argv[1], FILE_ATTRIBUTE_NORMAL);
 

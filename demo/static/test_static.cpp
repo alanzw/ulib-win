@@ -88,22 +88,59 @@ public:
     : UStatic(hParent, nResource, hInst)
     {
         m_dwStyles &= ~SS_SIMPLE;
-        m_dwStyles |= SS_BITMAP | SS_REALSIZEIMAGE;
+        setText(_T(""));
+        //m_dwStyles |= SS_BITMAP | SS_REALSIZEIMAGE;
+    }
+    
+    virtual BOOL create()
+    {
+        BOOL bRet = UStatic::create();
+        this->subclassProc();
+        return  bRet;
     }
     
     BOOL setBitmap(UINT nID, HINSTANCE hInst = ::GetModuleHandle(NULL))
     {
-        if (!_bmp.isNull())
-        {
-            _bmp.destroyBitmap();
-        }
+        //if (!_bmp.isNull())
+        //{
+        //    _bmp.destroyBitmap();
+        //}
         
         _bmp.loadFromResource(nID, hInst);
-        this->sendMsg(STM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)(HBITMAP)(_bmp));
+        //this->sendMsg(STM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)(HBITMAP)(_bmp));
+        invalidate(TRUE);
+
         return TRUE;
+    }
+    
+    virtual BOOL onPaint()
+    {
+        PAINTSTRUCT ps;
+        HDC hdc;
+        hdc = BeginPaint(m_hSelf, &ps);
+
+        RECT rc;
+
+        this->getClientRect(&rc);
+
+        onDraw(hdc, &rc);
+
+        EndPaint(m_hSelf, &ps);
+
+        return FALSE;
+
     }
 private:
     UBitmap _bmp;
+private:
+    void onDraw(HDC hdc, LPRECT lpRect)
+    {
+        if (!_bmp.isNull())
+        {
+            //_bmp.showStretch(hdc, *lpRect);
+            _bmp.showTransparentEx(hdc, lpRect, huys::black);
+        }
+    }
 };
 
 class UTransStatic : public UStatic
@@ -277,7 +314,7 @@ public:
         m_pIconStatic->setIcon(IDI_APP);
         
         m_pBitmapStatic = new UBitmapStatic(m_hDlg, IDC_STATIC_BITMAP, m_hInst);
-        m_pBitmapStatic->setPos(200, 100, 50, 50);
+        m_pBitmapStatic->setPos(180, 60, 128, 128);
         m_pBitmapStatic->create();
         m_pBitmapStatic->setBitmap(IDB_CHAT);
 

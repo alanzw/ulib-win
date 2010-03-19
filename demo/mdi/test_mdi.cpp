@@ -122,6 +122,25 @@ public:
     }
 };
 
+class UClientChildWindowPaint : public UClientChildWindow
+{
+public:
+    UClientChildWindowPaint(HWND hParent, HINSTANCE hInst)
+    : UClientChildWindow(hParent, hInst)
+    {}
+
+    virtual void onDraw(HDC hdc)
+    {
+        RECT rect = {0};
+        SetTextColor (hdc, huys::red) ;
+
+        GetClientRect (*this, &rect) ;
+
+        DrawText (hdc, TEXT ("Paint it!"), -1, &rect,
+            DT_SINGLELINE | DT_CENTER | DT_VCENTER) ;
+    }
+};
+
 class UClientWindow : public UBaseWindow
 {
     typedef huys::ADT::UVector<UClientChildWindow *> ChildWindows;
@@ -180,6 +199,13 @@ public:
     BOOL createChild()
     {
         UClientChildWindow *p = new UClientChildWindow(*this, getInstance());
+        _cws.push_back(p);
+        return p->create();
+    }
+
+    BOOL createChildPaint()
+    {
+        UClientChildWindow *p = new UClientChildWindowPaint(*this, getInstance());
         _cws.push_back(p);
         return p->create();
     }
@@ -275,6 +301,8 @@ public:
         {
         case IDM_NEW:
             return onMenuNew();
+        case IDM_NEWPAINT:
+            return onMenuNewPaint();
         case IDM_ABOUT:
             return onMenuAbout();
         default:
@@ -308,6 +336,12 @@ private:
     BOOL onMenuNew()
     {
         m_pClientWindow->createChild();
+        return FALSE;
+    }
+
+    BOOL onMenuNewPaint()
+    {
+        m_pClientWindow->createChildPaint();
         return FALSE;
     }
 

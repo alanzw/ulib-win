@@ -16,6 +16,7 @@ BEGIN
     POPUP "file(&f)"
     BEGIN
         MENUITEM "new(&n)", IDM_NEW
+        MENUITEM "new paint", IDM_NEWPAINT
     END
     POPUP "help(&h)"
     BEGIN
