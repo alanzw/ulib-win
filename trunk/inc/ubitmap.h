@@ -40,10 +40,11 @@ public:
     BOOL show(HDC &hdc, RECT &rc);
     BOOL showStretch(HDC &hdc, RECT &rc);
     BOOL showTransparent(HDC &hdc, RECT &rc, UINT crTransparent);
-
+    BOOL showTransparentEx(HDC hdc, LPRECT rc, UINT crTransparent);
+    BOOL showTransparentMask(HDC hdc, LPRECT lpRect, HBITMAP mask, UINT crTransparent);
     //
     BOOL drawImage(HDC hdc, int x, int y, int nX, int nY, int nCol, int nRow);
-
+    
     //
     BOOL showExtend(HDC hdc, LPRECT lpRect, int nX, int nY);
 

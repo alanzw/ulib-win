@@ -18,7 +18,6 @@ IDI_CHAT    ICON   MOVEABLE PURE LOADONCALL     "chat.ico"
 //
 IDB_CHAT   BITMAP     "cc.bmp"
 
-
 //
 // Dialog resources
 //

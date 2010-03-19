@@ -162,7 +162,15 @@ private:
                 ptRecess[i].x = m_ptBoundary[i].x;
                 ptRecess[i].y = m_ptBoundary[i].y - 1;
             }
-
+            ptRecess[0].x = ptRecess[0].x + 1 ;
+            ptRecess[nRef-1].x = ptRecess[nRef-1].x - 1 ;
+            for (int i=nHalfPoints; i<nRef; i++)
+            {
+                ptRecess[i].x = m_ptBoundary[i].x ;
+                ptRecess[i].y = m_ptBoundary[i].y+1 ;
+            }
+            ptRecess[nHalfPoints].x = ptRecess[nHalfPoints].x - 1 ;
+            ptRecess[nRef-1].x = ptRecess[nRef-1].x + 1 ;
             
             if (!m_rgn.isNull())
             {
@@ -173,9 +181,46 @@ private:
             huys::UPolyLine poly(ptRecess, nHalfPoints+1);
             poly.Draw(m_pMemDC);
             
-            poly.setPoints(&ptRecess[nHalfPoints], nHalfPoints+1);
+            poly.setPoints(&ptRecess[nHalfPoints], nHalfPoints);
             poly.Draw(m_pMemDC);
- 
+            
+            huys::ULine line(ptRecess[0].x, ptRecess[0].y, ptRecess[nRef-1].x, ptRecess[nRef-1].y);
+            line.Draw(m_pMemDC);
+            
+            m_pMemDC->polygon(m_ptBoundary, nRef);
+            
+            // draw the right side tick marks
+            int dX, dY;
+            for (nAngleDeg=90; nAngleDeg>nStartAngleDeg; nAngleDeg-=nTickDeg)
+            {
+                angleRad = nAngleDeg*radPerdeg ;
+
+                // move to the top of the tick mark
+                dX = m_nBottomCX + m_nTopRadius*cos(angleRad) ;
+                dY = m_nBottomCY - m_nTopRadius*sin(angleRad) ;
+                m_pMemDC->moveTo(ROUND(dX), ROUND(dY)) ;
+
+                // move to the bottom of the tick mark
+                dX = m_nBottomCX + temp*cos(angleRad) ;
+                dY = m_nBottomCY - temp*sin(angleRad) ;
+                m_pMemDC->lineTo(ROUND(dX), ROUND(dY)) ;
+            }
+
+            // draw the left side tick marks
+            for (nAngleDeg=90+nTickDeg; nAngleDeg<nEndAngleDeg; nAngleDeg+=nTickDeg)
+            {
+                angleRad = nAngleDeg*radPerdeg ;
+
+                // move to the top of the tick mark
+                dX = m_nBottomCX + m_nTopRadius*cos(angleRad) ;
+                dY = m_nBottomCY - m_nTopRadius*sin(angleRad) ;
+                m_pMemDC->moveTo(ROUND(dX), ROUND(dY)) ;
+
+                // move to the bottom of the tick mark
+                dX = m_nBottomCX + temp*cos(angleRad) ;
+                dY = m_nBottomCY - temp*sin(angleRad) ;
+                m_pMemDC->lineTo(ROUND(dX), ROUND(dY)) ;
+            }
         }
 
         ::BitBlt(hdc, 0, 0, lpRect->right-lpRect->left, lpRect->bottom-lpRect->top, m_pMemDC, 0, 0, SRCCOPY);

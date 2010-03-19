@@ -10,6 +10,7 @@
 #include "udlgapp.h"
 #include "uglut.h"
 
+
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //                                        BMP TEXTURE LOADER
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,6 +33,9 @@ void BMP_Texture(UINT textureArray[], LPSTR sFileName, int ID)
 
     ::GetObject(hBMP, sizeof(bmp), &bmp);
 
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 4);		 // Pixel Storage Mode (Word Alignment / 4 Bytes)
+
+
     glGenTextures(1, &textureArray[ID]);
     glBindTexture(GL_TEXTURE_2D, textureArray[ID]);
     gluBuild2DMipmaps(GL_TEXTURE_2D, 3, bmp.bmWidth, bmp.bmHeight, GL_RGB, GL_UNSIGNED_BYTE, bmp.bmBits);
@@ -39,6 +43,33 @@ void BMP_Texture(UINT textureArray[], LPSTR sFileName, int ID)
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
 
     ::DeleteObject(hBMP);                                                    // Delete The Object
+}
+
+void showBitmap(LPBITMAP lpb, int w, int h)
+{
+	GLubyte *Pixels = new GLubyte[lpb->bmWidth * lpb->bmHeight *3 ];
+	int *p = (int *)(lpb->bmBits);
+	
+	long temp;
+	for (long i=0; i<lpb->bmHeight; i++)
+	{
+	  for (long j=0; j<lpb->bmWidth; j++)
+	  {
+	   	temp=i* lpb->bmWidth * 3+ j * 3;
+	   Pixels[temp+0] =
+				 GetRValue(p[j*lpb->bmWidth + lpb->bmHeight-i-1]);
+	   Pixels[temp+1] =
+				 GetGValue(p[j*lpb->bmWidth + lpb->bmHeight-i-1]);
+	   Pixels[temp+2] =
+				 GetBValue(p[j*lpb->bmWidth + lpb->bmHeight-i-1]);
+	  }
+	}
+	
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glRasterPos2i(w/2-lpb->bmWidth/2, h/2+lpb->bmHeight/2);
+	glDrawPixels(lpb->bmWidth,lpb->bmHeight,GL_RGB,GL_UNSIGNED_BYTE,Pixels);
+
+	//delete Pixels;
 }
 
 using huys::UGLDialog;
@@ -67,10 +98,27 @@ public:
         glEnable(GL_TEXTURE_2D);
 
         BMP_Texture(TextureArray, "texture.bmp", 0);
+		//HBITMAP hBMP;// Handle Of The Bitmap
+		
+		//hBMP=(HBITMAP)LoadImage( GetModuleHandle(NULL),
+		//						 "texture.bmp",
+		//						 IMAGE_BITMAP,
+		//						 0,
+		//						 0,
+		//						 LR_CREATEDIBSECTION | LR_LOADFROMFILE );
+		
+		//if (!hBMP)															  // Does The Bitmap Exist?
+		//	return FALSE;
+		
+		//::GetObject(hBMP, sizeof(bmp), &bmp);
 
+
+		
         return TRUE;
     }
 
+	BITMAP bmp;
+	
     virtual BOOL animate()
     {
         // Clear Screen And Depth Buffer
@@ -79,6 +127,7 @@ public:
         glLoadIdentity();
 
         glTranslatef(0, 0,-5.0f);
+
 
         glBindTexture(GL_TEXTURE_2D, TextureArray[0]);
 
@@ -97,7 +146,13 @@ public:
         glVertex3f(1, 1, 0);
         //
         glEnd();
+/*
 
+		RECT rc;
+        ::GetClientRect(m_hDlg, &rc);
+
+		//showBitmap(&bmp, rc.right-rc.left, rc.bottom-rc.top);
+	*/	
         return TRUE;
     }
 

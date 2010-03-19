@@ -249,6 +249,21 @@ BOOL UDevContext::drawLine( int nX1, int nY1, int nX2, int nY2 )
            ::LineTo((HDC)m_hObj, nX2, nY2);
 }
 
+BOOL UDevContext::polygon(const POINT *lpPoints, int nCount)
+{
+    return ::Polygon((HDC)m_hObj, lpPoints, nCount);
+}
+
+BOOL UDevContext::moveTo(int x, int y)
+{
+    return ::MoveToEx((HDC)m_hObj, x, y, NULL);
+}
+
+BOOL UDevContext::lineTo(int x, int y)
+{
+    return ::LineTo((HDC)m_hObj, x, y);
+}
+
 huys::Color UDevContext::setTextColor( huys::Color clr )
 {
     return ::SetTextColor((HDC)m_hObj, clr);

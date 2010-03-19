@@ -125,6 +125,12 @@ public:
     BOOL drawLine(int nX1, int nY1, int nX2, int nY2);
 
     //
+    BOOL polygon(const POINT *lpPoints, int nCount);
+    
+    BOOL moveTo(int x, int y);
+    BOOL lineTo(int x, int y);
+    
+    //
     BOOL textOut(int nX, int nY, LPCTSTR lpString, int cbString);
 
     // uFormat :

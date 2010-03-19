@@ -3,6 +3,7 @@
 #include <tchar.h>
 #include <assert.h>
 #include "ubitmap.h"
+#include "udc.h"
 
 #ifndef ASSERT
 #define ASSERT assert
@@ -214,7 +215,7 @@ BOOL UBitmap::showStretch( HDC &hdc, RECT &rc)
 
 /*
 BOOL TransparentBlt(
-  __in  HDC hdcDest,
+  __in  HDC hdc,
   __in  int xoriginDest,
   __in  int yoriginDest,
   __in  int wDest,
@@ -252,6 +253,90 @@ BOOL UBitmap::showTransparent(HDC &hdc, RECT &rc, UINT crTransparent)
     SelectPalette(hdc, m_hOldPalette, FALSE);
     //DeleteObject( m_hPalette );
 #endif // (WINVER >= 0x0410)
+    return TRUE;
+}
+
+BOOL UBitmap::showTransparentEx(HDC hdc, LPRECT lpRect, UINT crTransparent)
+{   
+    int nWidthDest = lpRect->right - lpRect->left;
+    int nHeightDest = lpRect->bottom - lpRect->top;
+    
+    HBITMAP hOldImageBMP, hImageBMP = CreateCompatibleBitmap(hdc, nWidthDest, nHeightDest);    // 创建兼容位图
+    HBITMAP hOldMaskBMP, hMaskBMP = CreateBitmap(nWidthDest, nHeightDest, 1, 1, NULL);            // 创建单色掩码位图
+    HDC hImageDC = CreateCompatibleDC(hdc);//临时DC 
+    HDC hMaskDC = CreateCompatibleDC(hdc);//临时掩码DC 
+    hOldImageBMP = (HBITMAP)SelectObject(hImageDC, hImageBMP);
+    hOldMaskBMP = (HBITMAP)SelectObject(hMaskDC, hMaskBMP);
+
+    // 将源DC中的位图拷贝到临时DC中,源DC已经载入位图
+    //BitBlt(hImageDC, 0, 0, nWidthDest, nHeightDest, hdcSrc, nXOriginSrc, nYOriginSrc, SRCCOPY);
+    ::SelectObject(hImageDC, m_hObj);
+ 
+    // 设置临时DC的透明色
+    SetBkColor(hImageDC, crTransparent);
+
+    // 生成透明区域为白色，其它区域为黑色的临时掩码DC的掩码位图
+    // 位图来自临时DC
+    BitBlt(hMaskDC, 0, 0, nWidthDest, nHeightDest, hImageDC, 0, 0, SRCCOPY);
+
+    // 
+    SetBkColor(hImageDC, RGB(0,0,0));
+    SetTextColor(hImageDC, RGB(255,255,255));
+    BitBlt(hImageDC, 0, 0, nWidthDest, nHeightDest, hMaskDC, 0, 0, SRCAND);
+
+    // 
+    SetBkColor(hdc,RGB(255,255,255));
+    SetTextColor(hdc,RGB(0,0,0));
+    BitBlt(hdc, lpRect->left, lpRect->top, nWidthDest, nHeightDest, hMaskDC, 0, 0, SRCAND);
+
+    //
+    BitBlt(hdc, lpRect->left, lpRect->top, nWidthDest, nHeightDest, hImageDC, 0, 0, SRCPAINT);
+
+    //   
+    SelectObject(hImageDC, hOldImageBMP);
+    DeleteDC(hImageDC);
+    SelectObject(hMaskDC, hOldMaskBMP);
+    DeleteDC(hMaskDC);
+    DeleteObject(hImageBMP);
+    DeleteObject(hMaskBMP);
+
+    return TRUE;
+}
+
+BOOL UBitmap::showTransparentMask(HDC hdc, LPRECT lpRect, HBITMAP mask, UINT crTransparent)
+{
+    int nWidthDest = lpRect->right - lpRect->left;
+    int nHeightDest = lpRect->bottom - lpRect->top;
+
+    HBITMAP hOldImageBMP, hImageBMP = CreateCompatibleBitmap(hdc, nWidthDest, nHeightDest);
+    HDC hImageDC = CreateCompatibleDC(hdc); 
+    hOldImageBMP = (HBITMAP)SelectObject(hImageDC, hImageBMP);
+    HDC hMaskDC = CreateCompatibleDC(hdc);//临时掩码DC 
+ 
+
+    
+    //
+    //BitBlt(hImageDC, 0, 0, nWidthDest, nHeightDest, hdcSrc, nXOriginSrc, nYOriginSrc, SRCCOPY);
+    SelectObject(hImageDC, m_hObj);
+    SelectObject(hMaskDC, mask); 
+    
+     // 设置临时DC的透明色
+    SetBkColor(hImageDC, crTransparent);
+    // 生成透明区域为黑色，其它区域保持不变的位图
+    SetBkColor(hImageDC, RGB(0,0,0));
+    SetTextColor(hImageDC, RGB(255,255,255));
+    BitBlt(hImageDC, 0, 0, nWidthDest, nHeightDest, hMaskDC, 0, 0, SRCAND);
+    // 透明部分保持屏幕不变，其它部分变成黑色
+    SetBkColor(hdc,RGB(255,255,255));
+    SetTextColor(hdc,RGB(0,0,0));
+    BitBlt(hdc, 0, 0, nWidthDest, nHeightDest, hMaskDC, 0, 0, SRCAND);
+     // "或"运算,生成最终效果
+    BitBlt(hdc, 0, 0, nWidthDest, nHeightDest, hImageDC, 0, 0, SRCPAINT);
+    // 清理、恢复    
+    SelectObject(hImageDC, hOldImageBMP);
+    DeleteDC(hImageDC);
+    DeleteObject(hImageBMP);
+    
     return TRUE;
 }
 
