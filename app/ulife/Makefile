@@ -11,7 +11,9 @@ CXXFLAGS += -DBUILD_EXE
 
 #
 OBJ = test_life.o \
-      ulife.o
+      ulife.o     \
+      ulife_kernel.o \
+
 
 BIN = test_life.exe
 RC  = life.rc
@@ -21,12 +23,15 @@ HEADER = $(INCDIR)/ubasewindow.h \
          $(INCDIR)/uwinapp.h     \
          ulife.h
 #
-all: $(BIN)
+all: $(BIN) console_life.exe
 
 #
 $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
+
+console_life.exe : console_life.o ulife_kernel.o
+	$(CXX) -o $@ $^
 
 #
 .PHONY : test
@@ -35,5 +40,5 @@ test :
 #
 .PHONY : clean
 clean :
-	$(RM) ${OBJ} ${RES} ${BIN}
+	$(RM) ${OBJ} ${RES} ${BIN} *.o *.exe
 

@@ -55,13 +55,13 @@ int main(void)
 {
     int iArray[10]={16, -1, 3, 11, 2, 5, 8, 20, 9, 4};
     int *result = partition(iArray, iArray+10, less10);
-    cout << "按小于10进行分割" << endl;
+    cout << "Partition by less than 10" << endl;
     for_each(iArray, iArray+10, print);
     cout <<endl;
     cout << "partition number: " << *result <<endl;
     int iArray2[10]={16, -1, 3, 11, 2, 5, 8, 20, 9, 4};
     int *result2 = __partition(iArray2, iArray2+10, less10);
-    cout << "按小于10进行分割" << endl;
+    cout << "Partition by less than 10" << endl;
     for_each(iArray2, iArray2+10, print);
     cout <<endl;
     cout << "partition number: " << *result2 <<endl;

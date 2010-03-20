@@ -21,7 +21,8 @@ SUBDIRS = btree  \
           queue  \
           recursion \
           functional \
-          
+          bitset    \
+
 #
 all:
 	$(MAKEALL_SUBDIRS)

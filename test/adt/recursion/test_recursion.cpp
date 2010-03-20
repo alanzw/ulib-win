@@ -109,6 +109,8 @@ public:
     {
 
     }
+
+    friend void solve_from(Queens &config);
 private:
     int count;
     int board_size;

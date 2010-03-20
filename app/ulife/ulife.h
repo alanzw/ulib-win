@@ -11,10 +11,10 @@ public:
     ULifeCtrl();
     ULifeCtrl(UBaseWindow *pWndParent, UINT nID);
     ~ULifeCtrl();
-    
+
     //
     BOOL create();
-    
+
     //
     BOOL onPaint();
 private:
