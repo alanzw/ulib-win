@@ -22,9 +22,6 @@ public:
         this->setTitle(_T("ULifeCtrl Test 0.0.1"));
    }
 
-   ~UMyWindow()
-   {}
-
    BOOL onCreate()
    {
        this->setIconBig(IDI_APP);
@@ -42,6 +39,9 @@ public:
         {
         case VK_ESCAPE:
             return UBaseWindow::onClose();
+        case VK_SPACE:
+            m_pLifeCtrl->updateState();
+            return FALSE;
         default:
             return UBaseWindow::onChar(wParam, lParam);
         }

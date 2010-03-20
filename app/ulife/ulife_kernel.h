@@ -19,19 +19,31 @@
 #ifndef U_LIFE_KERNEL_H
 #define U_LIFE_KERNEL_H
 
-class ULifeGame
+//#include <exception>
+
+class ULifeBoard
 {
+public:
     enum {
-        maxrow = 20,
-        maxcol = 60
+        maxrow = 10,
+        maxcol = 10
     };
 public:
     void initialize();
     void print();
     void update();
+    
+    int getState(int row, int col) const;
+    int invertState(int row, int col);
 private:
     int grid[maxrow+2][maxcol+2];
     int neighbor_count(int row, int col);
+public:
+ //   class ULifeException : public std::exception
+ //   {
+ //   public:
+ //       ULifeException() {}
+ //   };
 };
 
 

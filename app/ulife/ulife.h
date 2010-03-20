@@ -4,6 +4,8 @@
 #include "ustatic.h"
 #include "ubasewindow.h"
 
+#include "ulife_kernel.h"
+
 class ULifeCtrl : public UStatic
 {
 public:
@@ -17,8 +19,21 @@ public:
 
     //
     BOOL onPaint();
+    
+    //
+    void updateState();
+    
+    //
+    BOOL onLButtonDown(WPARAM wParam, LPARAM lParam);
 private:
     HBRUSH m_hbrush;
+    
+    ULifeBoard _board;
+    
+    bool _bInitialied;
+    
+    int _dx;
+    int _dy;
 };
 
 #endif // U_BUTTONST_H

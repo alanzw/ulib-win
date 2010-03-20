@@ -22,7 +22,7 @@ using std::endl;
 
 #include "ulife_kernel.h"
 
-int ULifeGame::neighbor_count(int row, int col)
+int ULifeBoard::neighbor_count(int row, int col)
 {
     int i, j;
     int count = 0;
@@ -37,7 +37,7 @@ int ULifeGame::neighbor_count(int row, int col)
     return count;
 }
 
-void ULifeGame::update()
+void ULifeBoard::update()
 {
     int row, col;
     int new_grid[maxrow+2][maxcol+2];
@@ -71,12 +71,12 @@ void ULifeGame::update()
 
 }
 
-void ULifeGame::initialize()
+void ULifeBoard::initialize()
 {
     int row, col;
-    for (row=0; row<=maxrow; ++row)
+    for (row=0; row<=maxrow+1; ++row)
     {
-        for (col=0; col<=maxcol; ++col)
+        for (col=0; col<=maxcol+1; ++col)
         {
             grid[row][col] = 0;
         }
@@ -88,10 +88,9 @@ void ULifeGame::initialize()
     grid[8][5] = 1;
     grid[9][5] = 1;
     grid[10][5] = 1;
-
 }
 
-void ULifeGame::print()
+void ULifeBoard::print()
 {
     int row, col;
     cout << "\nThe current Life configuration is :" << endl;
@@ -106,11 +105,33 @@ void ULifeGame::print()
             }
             else
             {
-                cout << 'x';
+                cout << '-';
             }
         }
         cout << endl;
     }
     cout << endl;
+}
+
+int ULifeBoard::getState(int row, int col) const
+{
+    if (row <= 0 || row > maxrow || col <=0 || col>maxcol)
+    {
+        throw 1111;
+    }
+    
+    return grid[row][col];
+}
+
+int ULifeBoard::invertState(int row, int col)
+{
+    if (row <= 0 || row > maxrow || col <=0 || col>maxcol)
+    {
+        throw 1111;
+    }
+    
+    grid[row][col] = !grid[row][col];
+    
+    return grid[row][col];
 }
 
