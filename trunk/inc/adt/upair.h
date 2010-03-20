@@ -51,7 +51,7 @@ public:
         return !(*this == p);
     }
 
-    explicit const UPair & operator=(const UPair &p)
+    const UPair & operator=(const UPair &p)
     {
         _first = p._first;
         _second = p._second;
