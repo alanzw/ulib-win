@@ -53,7 +53,7 @@ bool user_say_yes()
 
 int main()
 {
-    ULifeGame config;
+    ULifeBoard config;
     //
     config.initialize();
     config.print();
