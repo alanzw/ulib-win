@@ -22,6 +22,9 @@ SUBDIRS = btree  \
           recursion \
           functional \
           bitset    \
+          set       \
+          multiset  \
+          multimap  \
 
 #
 all:

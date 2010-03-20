@@ -61,6 +61,19 @@ public:
         return 0==_count;
     }
 
+    bool full() const
+    {
+        return maxqueue == _count;
+    }
+
+    void clear()
+    {
+        while (!empty())
+        {
+            serve();
+        }
+    }
+
     Error_code append(const entry_type &item)
     {
         if (_count >= maxqueue)
