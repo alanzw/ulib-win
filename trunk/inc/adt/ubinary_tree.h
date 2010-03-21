@@ -109,7 +109,7 @@ public:
 
     Binary_tree(const Binary_tree<Entry> &original)
     {
-
+        
     }
 
     Binary_tree & operator = (const Binary_tree<Entry> &original)
@@ -251,6 +251,16 @@ protected:
     Node *_root;
 private:
 };
+
+/* 
+ * Binary Search Tree
+ * --------
+ * 1. The key of the root (if it exists) is greater than the key in any node in the
+ *    left subtree of the root.
+ * 2. The key of the root (if it exists) is less than the the key in any node in the
+ *    right subtree of the root.
+ * 3. The left and right subtrees of the root are again binary search tree.
+ */
 
 template <class Record>
 class Search_tree : public Binary_tree<Record>

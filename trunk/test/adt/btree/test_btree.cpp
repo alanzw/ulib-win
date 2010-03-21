@@ -20,12 +20,16 @@ int main()
 
     b_tree.insert(11);
 
+    cout << "-----------------------------------------------------" << endl;
+    cout << "After insert:" << endl;
     cout << "Size of tree : "  << b_tree.size() << endl;
     cout << "Height of tree : "  << b_tree.height() << endl;
 
     b_tree.insert(10);
     b_tree.insert(12);
 
+    cout << "-----------------------------------------------------" << endl;
+    cout << "After insert:" << endl;
     cout << "Size of tree : "  << b_tree.size() << endl;
     cout << "Height of tree : "  << b_tree.height() << endl;
 
@@ -42,10 +46,20 @@ int main()
     cout << endl;
 
     b_tree.mirror();
+    
+    cout << "-----------------------------------------------------" << endl;
+    cout << "After mirror:" << endl;
+
     cout << "Inorder : ";
     b_tree.inorder(printTree);
     cout << endl;
-
+    cout << "Preorder : ";
+    b_tree.preorder(printTree);
+    cout << endl;
+    cout << "Postorder : ";
+    b_tree.postorder(printTree);
+    cout << endl;
+    
     //class TTClass;
     //typedef char type_must_be_complete[sizeof(TTClass)?1:-1];
     //(void)sizeof(type_must_be_complete);
@@ -68,7 +82,9 @@ int main()
     cout << endl;
 
     stree.remove(3);
-
+    
+    cout << "-----------------------------------------------------" << endl;
+    cout << "After remove:" << endl;
     cout << "Inorder : ";
     stree.inorder(printTree);
     cout << endl;
