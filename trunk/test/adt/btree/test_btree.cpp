@@ -63,6 +63,22 @@ int main()
     //class TTClass;
     //typedef char type_must_be_complete[sizeof(TTClass)?1:-1];
     //(void)sizeof(type_must_be_complete);
+    
+    huys::ADT::Binary_tree<int> new_tree(b_tree);
+    cout << "-----------------------------------------------------" << endl;
+    cout << "Copy tree:" << endl;
+
+    cout << "Inorder : ";
+    new_tree.inorder(printTree);
+    cout << endl;
+    cout << "Preorder : ";
+    new_tree.preorder(printTree);
+    cout << endl;
+    cout << "Postorder : ";
+    new_tree.postorder(printTree);
+    cout << endl;
+    
+    
 
     cout << "-----------------------------------------------------" << endl;
 
