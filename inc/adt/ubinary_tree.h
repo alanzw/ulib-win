@@ -107,14 +107,15 @@ public:
         mirror_node(_root);
     }
 
-    Binary_tree(const Binary_tree<Entry> &original)
+    Binary_tree(const Binary_tree<Entry, V> &origin)
+    : _root(0)
     {
-        
+        copy_tree(origin._root);
     }
 
-    Binary_tree & operator = (const Binary_tree<Entry> &original)
+    Binary_tree & operator = (const Binary_tree<Entry, V> &origin)
     {
-
+        copy_tree(origin._root);
     }
 
     ~Binary_tree()
@@ -246,6 +247,16 @@ protected:
             node->left = node->right;
             node->right = temp;
         }
+    }
+    
+    void copy_tree(Node *sub_root_origin)
+    {
+        if ( 0 != sub_root_origin )
+        {
+            insert(sub_root_origin->data);
+            copy_tree(sub_root_origin->left);
+            copy_tree(sub_root_origin->right);
+        } 
     }
 protected:
     Node *_root;
