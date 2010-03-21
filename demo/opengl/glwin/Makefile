@@ -1,28 +1,11 @@
 #
-include ../../../make.inc
+TOPDIR = ../../..
 
 #
-CFLAGS =
-CXXFLAGS =
-INC = -I"../../../inc"
-LIBS = -L"../../../lib" -mwindows -luwin
+include $(TOPDIR)/make.inc
 
-#
-SRCDIR = ../../../src
-INCDIR = ../../../inc
-OBJDIR = ../../../obj
-RESDIR = ../../../res
-ICODIR = ../../../ico
-BINDIR = ../../../bin
-#
-OBJ =
-BIN =
-RC  =
-RES =
-#
-HEADER =
 
-SUBDIRS = hello graph skybox
+SUBDIRS = hello graph skybox tga jpeg
 #
 all:
 	$(MAKEALL_SUBDIRS)
