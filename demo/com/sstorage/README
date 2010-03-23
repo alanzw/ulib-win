@@ -1,4 +1,0 @@
-Structured Storage provides file and data persistence in COM by handling a
-single file as a structured collection of objects known as storages and streams.
-
-
