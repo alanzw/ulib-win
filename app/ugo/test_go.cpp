@@ -39,16 +39,26 @@ public:
         switch (wParam)
         {
         case VK_ESCAPE:
-        case IDM_EXIT:
             return UBaseWindow::onClose();
         case VK_SPACE:
             m_pGoCtrl->updateState();
             return FALSE;
+        default:
+            return UBaseWindow::onChar(wParam, lParam);
+        }
+    }
+    
+    BOOL onCommand(WPARAM wParam, LPARAM lParam)
+    {
+        switch (LOWORD(wParam))
+        {
+        case IDM_EXIT:
+            return UBaseWindow::onClose();
         case IDM_NEW:
             m_pGoCtrl->clear();
             return FALSE;
         default:
-            return UBaseWindow::onChar(wParam, lParam);
+            return UBaseWindow::onCommand(wParam, lParam);
         }
     }
 private:

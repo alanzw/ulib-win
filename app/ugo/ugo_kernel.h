@@ -28,6 +28,15 @@ public:
         maxrow = 19,
         maxcol = 19
     };
+
+    struct UStep {
+        bool bBlack;
+        unsigned short sNum;
+        struct {
+          unsigned char cRow;
+          unsigned char cCol;
+        } pos;
+    };
 public:
     void initialize();
     void print();

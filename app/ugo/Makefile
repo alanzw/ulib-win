@@ -19,9 +19,11 @@ BIN = test_life.exe
 RC  = go.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/ubasewindow.h \
+HEADERS = $(INCDIR)/ubasewindow.h \
          $(INCDIR)/uwinapp.h     \
-         ugo.h
+         ugo.h                   \
+         ugo_kernel.h            \
+
 #
 all: $(BIN)
 
