@@ -1,28 +1,17 @@
 @echo off
 
-rem filename : build.bat
-rem author   : huys
-rem updated : 2008.11.21.
-rem version  : 0.1
+rm -vf *.ncb *.opt
 
-echo **************************
-echo ** ulib-win 0.1
-echo ** author : huys
-echo ** build  : 200901
-echo **************************
-echo -------
-echo -------
+rm -rvf examples/base/Debug
+rm -vf examples/base/*.plg
 
-echo ==========================
-echo Start cleaning
-echo ==========================
+rm -rvf examples/window/Debug
+rm -vf examples/window/*.plg
 
-rem
-make clean
+rm -rvf examples/wtlbase/Debug
+rm -vf examples/wtlbase/*.plg
 
-
-echo ==========================
-echo End cleaning
-echo ==========================
+rm -rvf examples/wtlclock/Debug
+rm -vf examples/wtlclock/*.plg
 
 @pause
