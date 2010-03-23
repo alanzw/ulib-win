@@ -164,6 +164,8 @@ void UGoCtrl::clear()
             _board.setState(0, k, m);
         }
     }
+
+    _nStep = 0;
     invalidate();
 }
 
