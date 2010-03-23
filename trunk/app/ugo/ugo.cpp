@@ -145,6 +145,7 @@ BOOL UGoCtrl::onLButtonDown(WPARAM wParam, LPARAM lParam)
         _board.setState(state, i, j);
         ++_nStep;
         invalidate();
+        ::PlaySound("move.wav", NULL, SND_FILENAME | SND_ASYNC);
     }
     return FALSE;
 }
