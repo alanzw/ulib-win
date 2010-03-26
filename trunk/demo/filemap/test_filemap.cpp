@@ -116,7 +116,7 @@ int main(void)
         0,                   // high-order 32 bits of file offset
         dwFileMapStart,      // low-order 32 bits of file offset
         dwMapViewSize);      // number of bytes to map
-    
+
     if (lpMapAddress == NULL)
     {
         printf("lpMapAddress is NULL: last error: %d\n", GetLastError());
@@ -150,6 +150,6 @@ int main(void)
     {
         printf("\nError %ld occurred closing the file!", GetLastError());
     }
-    
+
     return 0;
 }

@@ -39,7 +39,7 @@ int _tmain()
     }
 
     MessageBox(NULL, pBuf, TEXT("Process2"), MB_OK);
-    
+
     _tprintf(pBuf);
 
     UnmapViewOfFile(pBuf);

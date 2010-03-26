@@ -8,6 +8,7 @@
 #include "ubasewindow.h"
 #include "ugdi.h"
 #include "colors.h"
+#include "adt/uautoptr.h"
 
 #include "usortctrl.h"
 
@@ -32,7 +33,7 @@ public:
        this->setIconBig(IDI_APP);
 
        m_pSortCtrl = new USortCtrl(this, ID_SORTCTRL);
-       m_pSortCtrl->setPos(100, 100, 300, 300);
+       m_pSortCtrl->setPos(100, 200, 300, 300);
        m_pSortCtrl->create();
        m_pSortCtrl->setWindowText(_T("123"));
 
@@ -83,7 +84,7 @@ public:
         }
     }
 private:
-    USortCtrl *m_pSortCtrl;
+    huys::ADT::UAutoPtr<USortCtrl> m_pSortCtrl;
 private:
     BOOL onMenuAbout()
     {
