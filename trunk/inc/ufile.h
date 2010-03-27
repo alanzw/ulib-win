@@ -66,7 +66,7 @@ class ULIB_API UCFile
     } UCFExtraMode;
 public:
     UCFile(const char *sFilename = "default");
-    
+
     ~UCFile();
     //
     bool create(bool bOverwriten = true);
@@ -79,10 +79,10 @@ public:
     bool isOpen() const;
 
     bool isEOF() const;
-    
+
     bool read(void *buf, size_t size);
     bool write(const void *buf, size_t size);
-    
+
     size_t size();
 
     bool directStdOut(const char *mode);
@@ -95,7 +95,7 @@ public:
 
     bool seek(long int offset, int origin);
     long tell();
-    
+
     void rewind();
 private:
     char m_sFilename[MAX_PATH];

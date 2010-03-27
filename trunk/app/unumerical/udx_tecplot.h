@@ -72,7 +72,7 @@ public:
 
     bool write(const char * filename)
     {
-        
+
 
         return true;
     }
