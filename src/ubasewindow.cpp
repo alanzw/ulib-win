@@ -391,6 +391,12 @@ BOOL UBaseWindow::moveWindow(int x, int y, int cx, int cy, BOOL bRepaint /*= FAL
     return ::MoveWindow(m_hSelf, x, y, cx, cy, bRepaint);
 }
 
+BOOL UBaseWindow::moveWindow(LPRECT lpRect, BOOL bRepaint /*= FALSE*/)
+{
+    return this->moveWindow(lpRect->left, lpRect->top,
+        lpRect->right-lpRect->left, lpRect->bottom-lpRect->top, bRepaint);
+}
+
 BOOL UBaseWindow::adjustWindowRectEx()
 {
     return ::AdjustWindowRectEx(&m_rcWindow, m_dwStyles, FALSE, m_dwExStyles);

@@ -100,6 +100,7 @@ public:
     BOOL getClientRect(LPRECT lpRect);
     //
     BOOL moveWindow(int x, int y, int cx, int cy, BOOL bRepaint = FALSE);
+    BOOL moveWindow(LPRECT lpRect, BOOL bRepaint = FALSE);
 
     /* !!! Default Message Handler Entry Point
      *
