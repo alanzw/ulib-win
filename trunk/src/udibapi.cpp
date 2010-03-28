@@ -4,7 +4,7 @@
 #include <errno.h>
 #include <math.h>
 #include <direct.h>
-
+#include <assert.h>
 #include <exception>
 
 #include "udibapi.h"
@@ -93,6 +93,122 @@ BOOL WINAPI PaintDIB(HDC hDC,
 
     return bSuccess;
 }
+
+/*************************************************************************
+ *
+ * PaintBitmap()
+ *
+ * Parameters:
+ *
+ * HDC hDC          - DC to do output to
+ *
+ * LPRECT lpDCRect  - rectangle on DC to do output to
+ *
+ * HBITMAP hDDB     - handle to device-dependent bitmap (DDB)
+ *
+ * LPRECT lpDDBRect - rectangle of DDB to output into lpDCRect
+ *
+ * HPALETTE hPalette - handle to the palette to use with hDDB
+ *
+ * Return Value:
+ *
+ * BOOL             - TRUE if bitmap was drawn, FLASE otherwise
+ *
+ * Description:
+ *
+ * Painting routine for a DDB.  Calls BitBlt() or
+ * StretchBlt() to paint the DDB.  The DDB is
+ * output to the specified DC, at the coordinates given
+ * in lpDCRect.  The area of the DDB to be output is
+ * given by lpDDBRect.  The specified palette is used.
+ *
+ * NOTE: This function always selects the palette as background. Before
+ * calling this function, be sure your palette is selected to desired
+ * priority (foreground or background).
+ *
+ * History:   
+ *            
+ *   Date      Author               Reason         
+ *   6/1/91    Garrett McAuliffe    Created         
+ *   12/12/91  Patrick Schreiber    Added return value, realizepalette,
+ *                                       header and some comments
+ *   6/8/92    Patrick Schreiber    Select palette as background always, added
+ *                                  NOTE above.
+ *
+ ************************************************************************/
+BOOL PaintBitmap(HDC      hDC,
+                     LPRECT   lpDCRect, 
+                     HBITMAP  hDDB, 
+                     LPRECT   lpDDBRect, 
+                     HPALETTE hPal)
+{
+   HDC      hMemDC;            // Handle to memory DC
+   HBITMAP  hOldBitmap;        // Handle to previous bitmap
+   HPALETTE hOldPal1 = NULL;   // Handle to previous palette
+   HPALETTE hOldPal2 = NULL;   // Handle to previous palette
+   BOOL     bSuccess = FALSE;  // Success/fail flag
+
+   /* Create a memory DC */
+   hMemDC = CreateCompatibleDC (hDC);
+
+   /* If this failed, return FALSE */
+   if (!hMemDC)
+      return FALSE;
+
+   /* If we have a palette, select and realize it */
+   if (hPal)
+   {
+      hOldPal1 = SelectPalette(hMemDC, hPal, TRUE);
+      hOldPal2 = SelectPalette(hDC, hPal, TRUE);
+      RealizePalette(hDC);
+   }
+
+   /* Select bitmap into the memory DC */
+   hOldBitmap = (HBITMAP)SelectObject (hMemDC, hDDB);
+
+   /* Make sure to use the stretching mode best for color pictures */   
+   SetStretchBltMode (hDC, COLORONCOLOR);
+
+   /* Determine whether to call StretchBlt() or BitBlt() */ 
+   if ((RECTWIDTH(lpDCRect)  == RECTWIDTH(lpDDBRect)) &&
+       (RECTHEIGHT(lpDCRect) == RECTHEIGHT(lpDDBRect)))
+      bSuccess = BitBlt(hDC,
+                        lpDCRect->left,
+                        lpDCRect->top,
+                        lpDCRect->right - lpDCRect->left,
+                        lpDCRect->bottom - lpDCRect->top,
+                        hMemDC,
+                        lpDDBRect->left,
+                        lpDDBRect->top,
+                        SRCCOPY);
+   else
+      bSuccess = StretchBlt(hDC,
+                            lpDCRect->left, 
+                            lpDCRect->top, 
+                            lpDCRect->right - lpDCRect->left,
+                            lpDCRect->bottom - lpDCRect->top,
+                            hMemDC,
+                            lpDDBRect->left, 
+                            lpDDBRect->top, 
+                            lpDDBRect->right - lpDDBRect->left,
+                            lpDDBRect->bottom - lpDDBRect->top,
+                            SRCCOPY);
+
+   /* Clean up */
+   SelectObject(hMemDC, hOldBitmap);
+
+   if (hOldPal1)
+      SelectPalette (hMemDC, hOldPal1, FALSE);
+
+   if (hOldPal2)
+      SelectPalette (hDC, hOldPal2, FALSE);
+
+   DeleteDC (hMemDC);
+
+   /* Return with success/fail flag */
+   return bSuccess;
+}
+
 
 //
 BOOL WINAPI CreateDIBPalette(HDIB hDIB, HPALETTE hPal)
@@ -280,6 +396,121 @@ DWORD WINAPI DIBHeight(LPSTR lpDIB)
     }
 }
 
+/*************************************************************************
+ *
+ * PalEntriesOnDevice()
+ *
+ * Parameter:
+ *
+ * HDC hDC          - device context
+ *
+ * Return Value:
+ *
+ * int              - number of palette entries on device
+ *
+ * Description:
+ *
+ * This function gets the number of palette entries on the specified device
+ *
+ * History:   Date      Author               Reason
+ *            6/01/91   Garrett McAuliffe    Created
+ *            9/15/91   Patrick Schreiber    Added header and comments
+ *
+ ************************************************************************/
+int PalEntriesOnDevice(HDC hDC)
+{
+   int nColors;  // number of colors
+
+   /*  Find out the number of palette entries on this
+    *  device.
+    */
+
+   nColors = GetDeviceCaps(hDC, SIZEPALETTE);
+
+   /*  For non-palette devices, we'll use the # of system
+    *  colors for our palette size.
+    */
+   if (!nColors)
+      nColors = GetDeviceCaps(hDC, NUMCOLORS);
+   assert(nColors);
+   return nColors;
+}
+
+/*************************************************************************
+ *
+ * GetSystemPalette()
+ *
+ * Parameters:
+ *
+ * None
+ *
+ * Return Value:
+ *
+ * HPALETTE         - handle to a copy of the current system palette
+ *
+ * Description:
+ *
+ * This function returns a handle to a palette which represents the system
+ * palette.  The system RGB values are copied into our logical palette using
+ * the GetSystemPaletteEntries function.  
+ *
+ * History:   
+ *            
+ *    Date      Author               Reason        
+ *    6/01/91   Garrett McAuliffe    Created        
+ *    9/15/91   Patrick Schreiber    Added header and comments
+ *    12/20/91  Mark Bader           Added GetSystemPaletteEntries call
+ *
+ ************************************************************************/
+HPALETTE GetSystemPalette(void)
+{
+   HDC hDC;                // handle to a DC
+   static HPALETTE hPal = NULL;   // handle to a palette
+   HANDLE hLogPal;         // handle to a logical palette
+   LPLOGPALETTE lpLogPal;  // pointer to a logical palette
+   int nColors;            // number of colors
+
+   /* Find out how many palette entries we want. */
+
+   hDC = GetDC(NULL);
+   if (!hDC)
+      return NULL;
+   nColors = PalEntriesOnDevice(hDC);   // Number of palette entries
+
+   /* Allocate room for the palette and lock it. */
+   hLogPal = GlobalAlloc(GHND, sizeof(LOGPALETTE) + nColors * sizeof(
+             PALETTEENTRY));
+
+   /* if we didn't get a logical palette, return NULL */
+   if (!hLogPal)
+      return NULL;
+
+   /* get a pointer to the logical palette */
+   lpLogPal = (LPLOGPALETTE)GlobalLock(hLogPal);
+
+   /* set some important fields */
+   lpLogPal->palVersion = PALVERSION;
+   lpLogPal->palNumEntries = nColors;
+
+   /* Copy the current system palette into our logical palette */
+
+   GetSystemPaletteEntries(hDC, 0, nColors, 
+                           (LPPALETTEENTRY)(lpLogPal->palPalEntry));
+
+   /*  Go ahead and create the palette.  Once it's created,
+    *  we no longer need the LOGPALETTE, so free it.
+    */
+
+   hPal = CreatePalette(lpLogPal);
+
+   /* clean up */
+   GlobalUnlock(hLogPal);
+   GlobalFree(hLogPal);
+   ReleaseDC(NULL, hDC);
+
+   return hPal;
+}
+
 //
 WORD WINAPI PaletteSize(LPSTR lpbi)
 {
@@ -377,6 +608,319 @@ HGLOBAL WINAPI CopyHandle(HGLOBAL h)
 
     return hCopy;
 }
+
+/*************************************************************************
+ *
+ * CopyWindowToDIB()
+ *
+ * Parameters:
+ *
+ * HWND hWnd        - specifies the window
+ *
+ * WORD fPrintArea  - specifies the window area to copy into the device-
+ *                    independent bitmap
+ *
+ * Return Value:
+ *
+ * HDIB             - identifies the device-independent bitmap
+ *
+ * Description:
+ *
+ * This function copies the specified part(s) of the window to a device-
+ * independent bitmap.
+ *
+ * History:   Date      Author              Reason
+ *            9/15/91   Patrick Schreiber   Created
+ *            9/25/91   Patrick Schreiber   Added header and comments
+ *
+ ************************************************************************/
+HDIB CopyWindowToDIB(HWND hWnd, WORD fPrintArea)
+{
+   HDIB hDIB = NULL;  // handle to DIB
+
+   /* check for a valid window handle */
+
+   if (!hWnd)
+      return NULL;
+   switch (fPrintArea)
+      {
+   case PW_WINDOW: // copy entire window
+   {
+      RECT rectWnd;
+
+      /* get the window rectangle */
+
+      GetWindowRect(hWnd, &rectWnd);
+
+      /*  get the DIB of the window by calling
+       *  CopyScreenToDIB and passing it the window rect
+       */
+      hDIB = CopyScreenToDIB(&rectWnd);
+   }
+      break;
+
+   case PW_CLIENT: // copy client area
+   {
+      RECT rectClient;
+      POINT pt1, pt2;
+
+      /* get the client area dimensions */
+
+      GetClientRect(hWnd, &rectClient);
+
+      /* convert client coords to screen coords */
+      pt1.x = rectClient.left;
+      pt1.y = rectClient.top;
+      pt2.x = rectClient.right;
+      pt2.y = rectClient.bottom;
+      ClientToScreen(hWnd, &pt1);
+      ClientToScreen(hWnd, &pt2);
+      rectClient.left = pt1.x;
+      rectClient.top = pt1.y;
+      rectClient.right = pt2.x;
+      rectClient.bottom = pt2.y;
+
+      /*  get the DIB of the client area by calling
+       *  CopyScreenToDIB and passing it the client rect
+       */
+      hDIB = CopyScreenToDIB(&rectClient);
+   }
+      break;
+
+   default:    // invalid print area
+      return NULL;
+      }
+
+   /* return the handle to the DIB */
+   return hDIB;
+}
+
+
+/*************************************************************************
+ *
+ * CopyScreenToDIB()
+ *
+ * Parameter:
+ *
+ * LPRECT lpRect    - specifies the window
+ *
+ * Return Value:
+ *
+ * HDIB             - identifies the device-independent bitmap
+ *
+ * Description:
+ *
+ * This function copies the specified part of the screen to a device-
+ * independent bitmap.
+ *
+ * History:   Date      Author             Reason
+ *            9/15/91   Patrick Schreiber  Created
+ *            9/25/91   Patrick Schreiber  Added header and comments
+ *            12/10/91  Patrick Schreiber  Released palette
+ *
+ ************************************************************************/
+HDIB CopyScreenToDIB(LPRECT lpRect)
+{
+   HBITMAP hBitmap;    // handle to device-dependent bitmap
+   HPALETTE hPalette;  // handle to palette
+   HDIB hDIB = NULL;   // handle to DIB
+
+   /*  get the device-dependent bitmap in lpRect by calling
+    *  CopyScreenToBitmap and passing it the rectangle to grab
+    */
+   hBitmap = CopyScreenToBitmap(lpRect);
+
+   /* check for a valid bitmap handle */
+   if (!hBitmap)
+      return NULL;
+
+   /* get the current palette */
+   hPalette = GetSystemPalette();
+
+   /* convert the bitmap to a DIB */
+   hDIB = BitmapToDIB(hBitmap, hPalette);
+
+   /* clean up */
+   DeleteObject(hPalette);
+   DeleteObject(hBitmap);
+
+   /* return handle to the packed-DIB */
+   return hDIB;
+}
+
+/*************************************************************************
+ *
+ * CopyWindowToBitmap()
+ *
+ * Parameters:
+ *
+ * HWND hWnd        - specifies the window
+ *
+ * WORD fPrintArea  - specifies the window area to copy into the device-
+ *                    dependent bitmap
+ *
+ * Return Value:
+ *
+ * HDIB         - identifies the device-dependent bitmap
+ *
+ * Description:
+ *
+ * This function copies the specified part(s) of the window to a device-
+ * dependent bitmap.
+ *
+ * History:   Date      Author              Reason
+ *            9/15/91   Patrick Schreiber   Created
+ *            9/25/91   Patrick Schreiber   Added header and comments
+ *
+ ************************************************************************/
+HBITMAP CopyWindowToBitmap(HWND hWnd, WORD fPrintArea)
+{
+   HBITMAP hBitmap = NULL;  // handle to device-dependent bitmap
+
+   /* check for a valid window handle */
+
+   if (!hWnd)
+      return NULL;
+   switch (fPrintArea)
+      {
+   case PW_WINDOW: // copy entire window
+   {
+      RECT rectWnd;
+
+      /* get the window rectangle */
+
+      GetWindowRect(hWnd, &rectWnd);
+
+      /*  get the bitmap of that window by calling
+       *  CopyScreenToBitmap and passing it the window rect
+       */
+      hBitmap = CopyScreenToBitmap(&rectWnd);
+   }
+   break;
+
+   case PW_CLIENT: // copy client area
+   {
+      RECT rectClient;
+      POINT pt1, pt2;
+
+      /* get client dimensions */
+
+      GetClientRect(hWnd, &rectClient);
+
+      /* convert client coords to screen coords */
+      pt1.x = rectClient.left;
+      pt1.y = rectClient.top;
+      pt2.x = rectClient.right;
+      pt2.y = rectClient.bottom;
+      ClientToScreen(hWnd, &pt1);
+      ClientToScreen(hWnd, &pt2);
+      rectClient.left = pt1.x;
+      rectClient.top = pt1.y;
+      rectClient.right = pt2.x;
+      rectClient.bottom = pt2.y;
+
+      /*  get the bitmap of the client area by calling
+       *  CopyScreenToBitmap and passing it the client rect
+       */
+      hBitmap = CopyScreenToBitmap(&rectClient);
+   }
+   break;
+
+   default:    // invalid print area
+      return NULL;
+      }
+
+   /* return handle to the bitmap */
+   return hBitmap;
+}
+
+
+/*************************************************************************
+ *
+ * CopyScreenToBitmap()
+ *
+ * Parameter:
+ *
+ * LPRECT lpRect    - specifies the window
+ *
+ * Return Value:
+ *
+ * HDIB             - identifies the device-dependent bitmap
+ *
+ * Description:
+ *
+ * This function copies the specified part of the screen to a device-
+ * dependent bitmap.
+ *
+ * History:   Date      Author             Reason
+ *            9/15/91   Patrick Schreiber  Created
+ *            9/25/91   Patrick Schreiber  Added header and comments
+ *
+ ************************************************************************/
+HBITMAP CopyScreenToBitmap(LPRECT lpRect)
+{
+   HDC hScrDC, hMemDC;           // screen DC and memory DC
+   HBITMAP hBitmap, hOldBitmap;  // handles to deice-dependent bitmaps
+   int nX, nY, nX2, nY2;         // coordinates of rectangle to grab
+   int nWidth, nHeight;          // DIB width and height
+   int xScrn, yScrn;             // screen resolution
+
+   /* check for an empty rectangle */
+
+   if (IsRectEmpty(lpRect))
+      return NULL;
+
+   /*  create a DC for the screen and create
+    *  a memory DC compatible to screen DC
+    */
+   hScrDC = CreateDC("DISPLAY", NULL, NULL, NULL);
+   hMemDC = CreateCompatibleDC(hScrDC);
+
+   /* get points of rectangle to grab */
+   nX = lpRect->left;
+   nY = lpRect->top;
+   nX2 = lpRect->right;
+   nY2 = lpRect->bottom;
+
+   /* get screen resolution */
+   xScrn = GetDeviceCaps(hScrDC, HORZRES);
+   yScrn = GetDeviceCaps(hScrDC, VERTRES);
+
+   /* make sure bitmap rectangle is visible */
+   if (nX < 0)
+      nX = 0;
+   if (nY < 0)
+      nY = 0;
+   if (nX2 > xScrn)
+      nX2 = xScrn;
+   if (nY2 > yScrn)
+      nY2 = yScrn;
+   nWidth = nX2 - nX;
+   nHeight = nY2 - nY;
+
+   /* create a bitmap compatible with the screen DC */
+   hBitmap = CreateCompatibleBitmap(hScrDC, nWidth, nHeight);
+
+   /* select new bitmap into memory DC */
+   hOldBitmap = (HBITMAP)SelectObject(hMemDC, hBitmap);
+
+   /* bitblt screen DC to memory DC */
+   BitBlt(hMemDC, 0, 0, nWidth, nHeight, hScrDC, nX, nY, SRCCOPY);
+
+   /*  select old bitmap back into memory DC and get handle to
+    *  bitmap of the screen
+    */
+   hBitmap = (HBITMAP)SelectObject(hMemDC, hOldBitmap);
+
+   /* clean up */
+   DeleteDC(hScrDC);
+   DeleteDC(hMemDC);
+
+   /* return handle to the bitmap */
+   return hBitmap;
+}
+
+
 
 //
 void SetMonoDIBPixel( LPBYTE pANDBits, DWORD dwWidth, DWORD dwHeight, DWORD x, DWORD y, BOOL bWhite )
@@ -706,6 +1250,170 @@ HANDLE DDBToDIB( HBITMAP hBitmap, DWORD dwCompression, HPALETTE hPal )
     ReleaseDC(NULL,hDC);
     return hDIB;
 }
+
+/*************************************************************************
+ *
+ * BitmapToDIB()
+ *
+ * Parameters:
+ *
+ * HBITMAP hBitmap  - specifies the bitmap to convert
+ *
+ * HPALETTE hPal    - specifies the palette to use with the bitmap
+ *
+ * Return Value:
+ *
+ * HDIB             - identifies the device-dependent bitmap
+ *
+ * Description:
+ *
+ * This function creates a DIB from a bitmap using the specified palette.
+ *
+ * History:   Date      Author               Reason
+ *            6/01/91   Garrett McAuliffe    Created
+ *            9/15/91   Patrick Schreiber    Added header and comments
+ *            12/10/91  Patrick Schreiber    Added bits per pixel validation
+ *                                           and check GetObject return value
+ *
+ ************************************************************************/
+HDIB BitmapToDIB(HBITMAP hBitmap, HPALETTE hPal)
+{
+   BITMAP bm;                   // bitmap structure
+   BITMAPINFOHEADER bi;         // bitmap header
+   BITMAPINFOHEADER *lpbi;  // pointer to BITMAPINFOHEADER
+   DWORD dwLen;                 // size of memory block
+   HANDLE hDIB, h;              // handle to DIB, temp handle
+   HDC hDC;                     // handle to DC
+   WORD biBits;                 // bits per pixel
+
+   /* check if bitmap handle is valid */
+
+   if (!hBitmap)
+      return NULL;
+
+   /* fill in BITMAP structure, return NULL if it didn't work */
+   if (!GetObject(hBitmap, sizeof(bm), (LPSTR)&bm))
+      return NULL;
+
+   /* if no palette is specified, use default palette */
+   if (hPal == NULL)
+      hPal = (HPALETTE)GetStockObject(DEFAULT_PALETTE);
+
+   /* calculate bits per pixel */
+   biBits = bm.bmPlanes * bm.bmBitsPixel;
+
+   /* make sure bits per pixel is valid */
+   if (biBits <= 1)
+      biBits = 1;
+   else if (biBits <= 4)
+      biBits = 4;
+   else if (biBits <= 8)
+      biBits = 8;
+   else /* if greater than 8-bit, force to 24-bit */
+      biBits = 24;
+
+   /* initialize BITMAPINFOHEADER */
+   bi.biSize = sizeof(BITMAPINFOHEADER);
+   bi.biWidth = bm.bmWidth;
+   bi.biHeight = bm.bmHeight;
+   bi.biPlanes = 1;
+   bi.biBitCount = biBits;
+   bi.biCompression = BI_RGB;
+   bi.biSizeImage = 0;
+   bi.biXPelsPerMeter = 0;
+   bi.biYPelsPerMeter = 0;
+   bi.biClrUsed = 0;
+   bi.biClrImportant = 0;
+
+   /* calculate size of memory block required to store BITMAPINFO */
+   dwLen = bi.biSize + PaletteSize((LPSTR)&bi);
+
+   /* get a DC */
+   hDC = GetDC(NULL);
+
+   /* select and realize our palette */
+   hPal = SelectPalette(hDC, hPal, FALSE);
+   RealizePalette(hDC);
+
+   /* alloc memory block to store our bitmap */
+   hDIB = GlobalAlloc(GHND, dwLen);
+
+   /* if we couldn't get memory block */
+   if (!hDIB)
+   {
+      /* clean up and return NULL */
+      SelectPalette(hDC, hPal, TRUE);
+      RealizePalette(hDC);
+      ReleaseDC(NULL, hDC);
+      return NULL;
+   }
+
+   /* lock memory and get pointer to it */
+   lpbi = (BITMAPINFOHEADER *)GlobalLock(hDIB);
+
+   /* use our bitmap info. to fill BITMAPINFOHEADER */
+   *lpbi = bi;
+
+   /*  call GetDIBits with a NULL lpBits param, so it will calculate the
+    *  biSizeImage field for us
+    */
+   GetDIBits(hDC, hBitmap, 0, (WORD)bi.biHeight, NULL, (LPBITMAPINFO)lpbi,
+         DIB_RGB_COLORS);
+
+   /* get the info. returned by GetDIBits and unlock memory block */
+   bi = *lpbi;
+   GlobalUnlock(hDIB);
+
+   /* if the driver did not fill in the biSizeImage field, make one up */
+   if (bi.biSizeImage == 0)
+      bi.biSizeImage = WIDTHBYTES((DWORD)bm.bmWidth * biBits) * bm.bmHeight;
+
+   /* realloc the buffer big enough to hold all the bits */
+   dwLen = bi.biSize + PaletteSize((LPSTR)&bi) + bi.biSizeImage;
+   if (h = GlobalReAlloc(hDIB, dwLen, 0))
+      hDIB = h;
+   else
+   {
+      /* clean up and return NULL */
+      GlobalFree(hDIB);
+      hDIB = NULL;
+      SelectPalette(hDC, hPal, TRUE);
+      RealizePalette(hDC);
+      ReleaseDC(NULL, hDC);
+      return NULL;
+   }
+
+   /* lock memory block and get pointer to it */
+   lpbi = (BITMAPINFOHEADER *)GlobalLock(hDIB);
+
+   /*  call GetDIBits with a NON-NULL lpBits param, and actualy get the
+    *  bits this time
+    */
+   if (GetDIBits(hDC, hBitmap, 0, (WORD)bi.biHeight, (LPSTR)lpbi + (WORD)lpbi
+         ->biSize + PaletteSize((LPSTR)lpbi), (LPBITMAPINFO)lpbi,
+         DIB_RGB_COLORS) == 0)
+   {
+      /* clean up and return NULL */
+      GlobalUnlock(hDIB);
+      hDIB = NULL;
+      SelectPalette(hDC, hPal, TRUE);
+      RealizePalette(hDC);
+      ReleaseDC(NULL, hDC);
+      return NULL;
+   }
+   bi = *lpbi;
+
+   /* clean up */
+   GlobalUnlock(hDIB);
+   SelectPalette(hDC, hPal, TRUE);
+   RealizePalette(hDC);
+   ReleaseDC(NULL, hDC);
+
+   /* return handle to the DIB */
+   return (HDIB)hDIB;
+}
+
+
 
 // WriteDIB        - Writes a DIB to file
 // Returns        - TRUE on success

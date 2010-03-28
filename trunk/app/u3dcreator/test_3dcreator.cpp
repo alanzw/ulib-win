@@ -11,6 +11,7 @@
 #include "colors.h"
 
 #include "ulistbox.h"
+#include "ustatic.h"
 
 #include "adt/uautoptr.h"
 
@@ -59,9 +60,95 @@ public:
         this->hide();
         return FALSE;
     }
+    
+    BOOL onSize(WPARAM wParam, LPARAM lParam)
+    {
+        RECT rc;
+        ::GetWindowRect(getParent(), &rc);
+        rc.left = rc.right - 200;
+        rc.top = rc.bottom - 200;
+        this->moveWindow(&rc);
+    }
 private:
     huys::ADT::UAutoPtr<UListBox> _pListBox;
 };
+
+
+class UDockWindow : public UBaseWindow
+{
+public:
+    UDockWindow(UBaseWindow *pWndParent)
+    : UBaseWindow(pWndParent)
+    {
+        RECT rc;
+        ::GetClientRect(getParent(), &rc);
+        rc.left = rc.right - 200;
+        setRect(&rc);
+        setMenu(0);
+        setWndClassName(_T("HUYS_DOCK_WINDOW_CLASS"));
+        setTitle(_T("DOCK"));
+
+        addStyles(WS_CHILD);
+        setExStyles(WS_EX_TOOLWINDOW | WS_EX_TOPMOST | WS_EX_APPWINDOW);
+    }
+
+    BOOL onCreate()
+    {
+        _label = new UStatic(this, _T("Properties"));
+        _label->setPos(40, 40, 100, 100);
+        _label->create();
+
+        return UBaseWindow::onCreate();
+    }
+
+    BOOL onClose()
+    {
+        this->hide();
+        return FALSE;
+    }
+    
+    BOOL onSize(WPARAM wParam, LPARAM lParam)
+    {
+        RECT rc;
+        ::GetClientRect(getParent(), &rc);
+        rc.left = rc.right - 200;
+        this->moveWindow(&rc);
+    }
+    
+    void onDraw(HDC hdc)
+    {
+        HBRUSH hbTitle = ::CreateSolidBrush(huys::xpblue);
+        RECT rcWindow = {0};
+        this->getClientRect(&rcWindow);
+        
+        RECT rcTitle = {
+            rcWindow.left,
+            rcWindow.top,
+            rcWindow.right,
+            rcWindow.top + 20
+        };
+        
+        ::FillRect( hdc, &rcTitle, hbTitle);
+        ::SetTextColor( hdc, huys::white );
+        ::SetBkColor( hdc, huys::xpblue );
+        LPCTSTR m_sTitle = _T("dock");
+        ::TextOut( hdc,
+                   rcWindow.left+5,
+                   rcWindow.top+2,
+                   m_sTitle,
+                   lstrlen(m_sTitle));
+        
+        ::TextOut( hdc,
+                   rcWindow.right-20,
+                   rcWindow.top+2,
+                   "X",
+                   1);
+        
+    }
+private:
+    huys::ADT::UAutoPtr<UStatic> _label;
+};
+
 
 class UMyWindow : public UBaseWindow
 {
@@ -86,6 +173,9 @@ public:
         win = new UTraceWindow(this);
         //win->setPos(100, 100, 200, 200);
         win->create();
+        
+        dockWin = new UDockWindow(this);
+        dockWin->create();
 
         return UBaseWindow::onCreate();
     }
@@ -133,6 +223,13 @@ public:
             return UBaseWindow::onChar(wParam, lParam);
         }
     }
+    
+    BOOL onSize(WPARAM wParam, LPARAM lParam)
+    {
+        //::SendMessage(win, WM_SIZE,0,0);
+        ::SendMessage(dockWin, WM_SIZE,0,0);
+        return UBaseWindow::onSize(wParam, lParam);
+    }
 private:
     BOOL onMenuAbout()
     {
@@ -152,6 +249,7 @@ private:
     }
 
     huys::ADT::UAutoPtr<UTraceWindow> win;
+    huys::ADT::UAutoPtr<UDockWindow> dockWin;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
