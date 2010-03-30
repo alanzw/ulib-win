@@ -3,6 +3,11 @@
 
 #include "initterm.h"
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 #pragma data_seg(".CRT$XCA")
 _PVFV __xc_a[] = { NULL };
 
@@ -14,7 +19,7 @@ _PVFV __xc_z[] = { NULL };
 
 #pragma comment(linker, "/merge:.CRT=.data")
 
-typedef void (__cdecl *_PVFV)(void);
+//typedef void (__cdecl *_PVFV)(void);
 
 void __cdecl _initterm (_PVFV * pfbegin, _PVFV * pfend)
 {
@@ -41,7 +46,7 @@ static unsigned cur_atexitlist_entries = 0;
 void __cdecl _atexit_init(void)
 {
     max_atexitlist_entries = 32;
-    pf_atexitlist = (_PVFV *)calloc( max_atexitlist_entries,
+    pf_atexitlist = (_PVFV *)HeapAlloc( GetProcessHeap(), max_atexitlist_entries,
                                      sizeof(_PVFV*) );
 }
 
@@ -65,3 +70,8 @@ void __cdecl _DoExit( void )
                     pf_atexitlist + cur_atexitlist_entries );
     }
 }
+
+#ifdef __cplusplus
+}
+#endif
+

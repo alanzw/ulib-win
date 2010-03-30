@@ -30,9 +30,6 @@ public:
         : UDialogBox(hInst, nID)
     {}
 
-    ~UDialogExt()
-    {}
-
     virtual BOOL onInit()
     {
         m_pListCtrl = new UListView(m_hDlg, ID_LISTCTRL, m_hInst);
@@ -64,7 +61,7 @@ public:
 
 
         m_pListCustom = new UCustomListView(m_hDlg, ID_LIST_CUSTOM, m_hInst);
-        m_pListCustom->setPos(280, rc.top+10, 200, 200);
+        m_pListCustom->setPos(280, rc.top+10, 300, 200);
         m_pListCustom->setStyles(LVS_REPORT | LVS_EDITLABELS);
         m_pListCustom->create();
 

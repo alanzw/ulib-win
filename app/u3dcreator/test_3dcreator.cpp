@@ -60,7 +60,7 @@ public:
         this->hide();
         return FALSE;
     }
-    
+
     BOOL onSize(WPARAM wParam, LPARAM lParam)
     {
         RECT rc;
@@ -106,7 +106,7 @@ public:
         this->hide();
         return FALSE;
     }
-    
+
     BOOL onSize(WPARAM wParam, LPARAM lParam)
     {
         RECT rc;
@@ -114,20 +114,20 @@ public:
         rc.left = rc.right - 200;
         this->moveWindow(&rc);
     }
-    
+
     void onDraw(HDC hdc)
     {
         HBRUSH hbTitle = ::CreateSolidBrush(huys::xpblue);
         RECT rcWindow = {0};
         this->getClientRect(&rcWindow);
-        
+
         RECT rcTitle = {
             rcWindow.left,
             rcWindow.top,
             rcWindow.right,
             rcWindow.top + 20
         };
-        
+
         ::FillRect( hdc, &rcTitle, hbTitle);
         ::SetTextColor( hdc, huys::white );
         ::SetBkColor( hdc, huys::xpblue );
@@ -137,13 +137,13 @@ public:
                    rcWindow.top+2,
                    m_sTitle,
                    lstrlen(m_sTitle));
-        
+
         ::TextOut( hdc,
                    rcWindow.right-20,
                    rcWindow.top+2,
                    "X",
                    1);
-        
+
     }
 private:
     huys::ADT::UAutoPtr<UStatic> _label;
@@ -173,7 +173,7 @@ public:
         win = new UTraceWindow(this);
         //win->setPos(100, 100, 200, 200);
         win->create();
-        
+
         dockWin = new UDockWindow(this);
         dockWin->create();
 
@@ -223,7 +223,7 @@ public:
             return UBaseWindow::onChar(wParam, lParam);
         }
     }
-    
+
     BOOL onSize(WPARAM wParam, LPARAM lParam)
     {
         //::SendMessage(win, WM_SIZE,0,0);

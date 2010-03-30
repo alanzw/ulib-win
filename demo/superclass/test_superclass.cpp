@@ -11,6 +11,8 @@
 #include "uedit.h"
 #include "colors.h"
 
+#include "adt/uautoptr.h"
+
 //HINSTANCE g_hInst = 0;
 const UINT ID_BTN_OK = 5555;
 const UINT ID_BTN_CANCEL = 5556;
@@ -66,21 +68,6 @@ class UDialogExt : public UDialogBox
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
     : UDialogBox(hInst, nID) {}
-
-    ~UDialogExt()
-    {
-        if (m_pUBtnOK)
-        {
-            delete m_pUBtnOK;
-            m_pUBtnOK = NULL;
-        }
-
-        if (m_pUBtnCancel)
-        {
-            delete m_pUBtnCancel;
-            m_pUBtnCancel = NULL;
-        }
-    }
 
     virtual BOOL onInit()
     {
@@ -146,8 +133,8 @@ public:
         return FALSE;
     }
 private:
-    UPushButton *m_pUBtnOK;
-    UPushButton *m_pUBtnCancel;
+    huys::ADT::UAutoPtr<UPushButton> m_pUBtnOK;
+    huys::ADT::UAutoPtr<UPushButton> m_pUBtnCancel;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

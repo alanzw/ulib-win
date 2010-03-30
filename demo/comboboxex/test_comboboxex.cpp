@@ -15,6 +15,7 @@
 #include "ucombobox.h"
 #include "udlgapp.h"
 #include "uimagelist.h"
+#include "adt/uautoptr.h"
 
 #define HU_VERIFY assert
 
@@ -30,15 +31,9 @@ class UDialogExt : public UDialogBox
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
     : UDialogBox(hInst, nID),
-      m_pCombo(0),
       m_uiml(1, 32, 32)
     {
         m_uiml.addIcon(IDI_APP, m_hInst);
-    }
-
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_pCombo);
     }
 
     BOOL onInit()
@@ -60,7 +55,7 @@ public:
         return TRUE;
     }
 private:
-    UComboBoxEx *m_pCombo;
+    huys::ADT::UAutoPtr<UComboBoxEx> m_pCombo;
     UImageList m_uiml;
 };
 

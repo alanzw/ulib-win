@@ -10,6 +10,8 @@
 #include "udlgapp.h"
 #include "ucustomctrl.h"
 
+#include "adt/uautoptr.h"
+
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
@@ -19,14 +21,8 @@ class UDialogExt : public UDialogBox
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-    : UDialogBox(hInst, nID),
-      m_pCTCtrl(0)
+    : UDialogBox(hInst, nID)
     {
-    }
-
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_pCTCtrl);
     }
 
     BOOL onInit()
@@ -38,7 +34,7 @@ public:
         return TRUE;
     }
 private:
-    UCustomCtrl *m_pCTCtrl;
+    huys::ADT::UAutoPtr<UCustomCtrl> m_pCTCtrl;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

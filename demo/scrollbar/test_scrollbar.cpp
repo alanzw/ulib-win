@@ -44,7 +44,7 @@ public:
         m_pScrollBarV->setStyles(SBS_VERT);
         m_pScrollBarV->setPos(450, 50, 20, 200);
         m_pScrollBarV->create();
-        m_pScrollBarV->setRange(1, 600);
+        m_pScrollBarV->setRange(1, 400);
         m_pScrollBarV->setScrollPos(50);
 
         _bmp.loadFromResource(IDB_PICTURE, m_hInst);
@@ -65,7 +65,7 @@ public:
 
     void onDraw(HDC hdc)
     {
-        _bmp.show(hdc, 100, 80, 300, 200, _nStartX, _nStartY);
+        _bmp.show(hdc, 100, 100, 300, 200, _nStartX, _nStartY);
     }
 
 private:
@@ -118,7 +118,7 @@ private:
 
         _nStartX = m_pScrollBar->getScrollPos();
 
-        RECT rcPicture = { 100, 80, 400, 280 };
+        RECT rcPicture = { 100, 100, 400, 300 };
         this->redraw(&rcPicture);
 
         return FALSE;
@@ -166,7 +166,7 @@ private:
 
         _nStartY = m_pScrollBarV->getScrollPos();
 
-        RECT rcPicture = { 100, 80, 400, 280 };
+        RECT rcPicture = { 100, 100, 400, 300 };
         this->redraw(&rcPicture);
 
         return FALSE;

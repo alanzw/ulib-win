@@ -10,13 +10,6 @@ CFLAGS +=  $(INCS) -v -O2 -fno-asm -fno-builtin -fno-builtin-function
 CXXFLAGS += $(INCS) -fno-builtin-function
 LDFLAGS += $(LIBS) -v -nostartfiles -nostdlib -lkernel32 -luser32
 #
-SRCDIR = $(TOPDIR)/src
-INCDIR = $(TOPDIR)/inc
-OBJDIR = $(TOPDIR)/obj
-RESDIR = $(TOPDIR)/res
-ICODIR = $(TOPDIR)/ico
-BINDIR = $(TOPDIR)/bin
-#
 OBJS = test_tinycrt.o \
        crt0tcon.o     \
        argcargv.o     \

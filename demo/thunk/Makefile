@@ -1,20 +1,14 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+
+#
+include $(TOPDIR)/make.inc
 
 #
 CFLAGS =
 CXXFLAGS = 
-INC = -I"../../inc"
-LIB = -L"../../lib" -mwindows
-
-#
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
+INC = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -mwindows
 
 #	
 SRC = test_thunk.cpp
@@ -32,15 +26,8 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $(OBJ) $(LIB) $(RES)
+	$(CXX) -o $(BIN) $(OBJ) $(LIBS) $(RES)
 	cp -v $@ $(BINDIR)/$@
-#
-$(OBJ) : $(SRC) $(HEADER)
-	$(CXX) -c -DBUILD_EXE $(SRC) $(CXXFLAGS) $(INC)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
     
 #
 .PHONY : test

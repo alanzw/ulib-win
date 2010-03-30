@@ -9,6 +9,7 @@
 #include "ubutton.h"
 #include "ufont.h"
 #include "ucommondialog.h"
+#include "adt/uautoptr.h"
 
 using huys::UDialogBox;
 
@@ -19,14 +20,8 @@ class UDialogExt : public UDialogBox
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-          m_pBnGo(0)
+        : UDialogBox(hInst, nID)
     {}
-
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_pBnGo);
-    }
 
     virtual BOOL onInit()
     {
@@ -79,7 +74,7 @@ public:
 
 protected:
 private:
-    UButton *m_pBnGo;
+    huys::ADT::UAutoPtr<UButton> m_pBnGo;
     UFont m_font;
 };
 

@@ -5,7 +5,11 @@
 //#include <stdlib.h>
 //#include <string.h>
 
-extern "C" int __cdecl printf(const char * format, ...);
+extern "C" {
+
+__declspec(dllimport)  int __cdecl printf(const char * format, ...);
+
+}
 
 int main( int argc, char *argv[] )
 {
