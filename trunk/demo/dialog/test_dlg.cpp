@@ -12,7 +12,7 @@
 #include "ubitmap.h"
 #include "ubutton.h"
 #include "umsg.h"
-
+#include "udllman.h"
 
 using huys::UDialogBox;
 
@@ -34,10 +34,19 @@ public:
 
     BOOL onInit()
     {
-#if (_MFC_VER > 1200)
+#if defined(_MSC_VER) && (_MSC_VER > 1200)
         this->modifyExStyles(WS_EX_LAYERED);
         ::SetLayeredWindowAttributes(m_hDlg, 0, 129,LWA_ALPHA);
-#endif // (_MFC_VER > 1200)
+#else
+
+#ifndef LWA_ALPHA
+#define LWA_ALPHA 2
+#endif
+        this->modifyExStyles(WS_EX_LAYERED);
+        UDllMan dlm(_T("user32.dll"));
+        dlm.callFunc<BOOL, HWND, COLORREF, BYTE, DWORD>(_T("SetLayeredWindowAttributes"),
+            m_hDlg, 0, 129, LWA_ALPHA);
+#endif // _MSC_VER
         HMENU hMenu = GetSystemMenu (m_hDlg, FALSE) ;
 
         AppendMenu (hMenu, MF_SEPARATOR, 0,           NULL) ;
@@ -167,7 +176,7 @@ public:
         HDROP hDropInfo = (HDROP)wParam;
         WORD wNumFilesDropped = ::DragQueryFile(hDropInfo, -1, NULL, 0);
         showMsgFormat(_T("dropfile"), _T("%u"), wNumFilesDropped);
-		return FALSE;
+        return FALSE;
     }
 
     BOOL rotateCaption()
@@ -178,7 +187,7 @@ public:
         sCaption[nLength] = sCaption[0];
         sCaption[nLength+1] = '\0';
         ::SetWindowText(m_hDlg, &sCaption[1]);
-		return FALSE;
+        return FALSE;
     }
 };
 

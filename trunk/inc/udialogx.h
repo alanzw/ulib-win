@@ -115,7 +115,7 @@ public:
     BOOL setNoTopMost();
 
     //
-    BOOL redraw();
+    BOOL redraw(LPRECT lpRect = NULL);
     BOOL bringToTop();
     BOOL update();
     //

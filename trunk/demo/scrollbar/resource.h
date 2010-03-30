@@ -7,3 +7,4 @@
 #define IDD_TEST           100
 
 #define IDR_TOOLBAR1       102
+#define IDB_PICTURE        103

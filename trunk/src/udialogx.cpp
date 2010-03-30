@@ -529,9 +529,9 @@ BOOL UDialogBox::bringToTop()
     return ::BringWindowToTop(m_hDlg);
 }
 
-BOOL UDialogBox::redraw()
+BOOL UDialogBox::redraw(LPRECT lpRect)
 {
-    return ::InvalidateRect(m_hDlg, NULL, TRUE);
+    return ::InvalidateRect(m_hDlg, lpRect, TRUE);
 }
 
 BOOL UDialogBox::update()

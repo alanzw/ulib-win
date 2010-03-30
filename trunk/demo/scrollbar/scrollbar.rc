@@ -18,6 +18,8 @@
 //
 IDR_TOOLBAR1        BITMAP        "bitmap1.bmp"
 
+IDB_PICTURE         BITMAP        "leafy.bmp"
+
 //
 // Dialog resources
 //
