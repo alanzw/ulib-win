@@ -8,8 +8,7 @@
 
 // Force the linker to include USER32.LIB
 //#pragma comment(linker, "/defaultlib:user32.lib")
-
-extern "C" int __cdecl printf(const char * format, ...)
+__declspec(dllexport) int __cdecl printf(const char * format, ...)
 {
     char szBuff[1024];
     int retValue;

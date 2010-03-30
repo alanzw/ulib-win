@@ -20,7 +20,6 @@ BOOL WINAPI DllMain(HANDLE hDllHandle, DWORD dwReason, LPVOID lpreserved)
 // Modified version of the Visual C++ startup code.  Simplified to
 // make it easier to read.  Only supports ANSI programs.
 //
-extern "C"
 BOOL WINAPI _DllMainCRTStartup(HANDLE hDllHandle, DWORD dwReason, LPVOID lpreserved)
 {
     if ( dwReason == DLL_PROCESS_ATTACH )

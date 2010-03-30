@@ -7,8 +7,9 @@ include $(TOPDIR)/make.inc
 INCS = -I"$(TOPDIR)/inc"
 LIBS = -L"$(TOPDIR)/lib"
 CFLAGS +=  $(INCS) -O2 -fno-asm -fno-builtin -fno-builtin-function
-CXXFLAGS += $(INCS) -fno-builtin-function
-LDFLAGS += $(LIBS) -nostartfiles -nostdlib -lkernel32 -luser32
+CXXFLAGS += $(INCS) -O2 -fno-asm -fno-builtin -fno-builtin-function
+LDFLAGS += $(LIBS) 
+#-nostartfiles -nostdlib -lkernel32 -luser32
 
 #
 OBJS = test_libctiny.o \
@@ -26,7 +27,7 @@ all: $(BIN)
 
 #
 $(BIN) : test_libctiny.o $(RES) libtcrt.dll.a
-	$(CC) -o $(BIN) $^ $(LDFLAGS)
+	$(CXX) -o $(BIN) $^ $(LDFLAGS)
 	cp -vf $(BIN) $(BINDIR)/$(BIN)
 
 libtcrt.dll.a : libtcrt.dll
@@ -40,7 +41,7 @@ libtcrt.dll : dllcrt0.o initterm.o printf.o
 
 #
 %.o : %.cpp $(HEADER)
-	$(CC) -c -o $@ -DBUILD_EXE $< $(CFLAGS)
+	$(CXX) -c -o $@ -DBUILD_EXE $< $(CFLAGS)
 
 #
 .PHONY : test
