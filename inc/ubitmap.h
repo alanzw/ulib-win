@@ -38,6 +38,13 @@ public:
     HBITMAP createCompatibleBitmap(HDC hdc, int w, int h);
     //
     BOOL show(HDC &hdc, RECT &rc);
+    BOOL show( HDC hdc,
+               int nXOriginDest,
+               int nYOriginDest,
+               int nWidthDest,
+               int nHeightDest,
+               int  nXOriginSrc,
+               int nYOriginSrc);
     BOOL showStretch(HDC &hdc, RECT &rc);
     BOOL showTransparent(HDC &hdc, RECT &rc, UINT crTransparent);
     BOOL showTransparentEx(HDC hdc, LPRECT rc, UINT crTransparent);

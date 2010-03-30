@@ -188,6 +188,35 @@ BOOL UBitmap::show( HDC &hdc,
     return TRUE;
 }
 
+BOOL UBitmap::show( HDC hdc,
+               int nXOriginDest,
+               int nYOriginDest,
+               int nWidthDest,
+               int nHeightDest,
+               int nXOriginSrc,
+               int nYOriginSrc)
+{
+    HDC hMemDC = ::CreateCompatibleDC(hdc);
+    m_hOldBitmap = (HBITMAP)::SelectObject(hMemDC, m_hObj);
+    m_hOldPalette = ::SelectPalette(hdc, m_hPalette, FALSE);
+    ::RealizePalette(hdc);
+
+    ::BitBlt( hdc,
+              nXOriginDest,
+              nXOriginDest,
+              nWidthDest,
+              nHeightDest,
+              hMemDC,
+              nXOriginSrc,
+              nYOriginSrc,
+              SRCCOPY );
+    SelectObject(hMemDC, m_hOldBitmap);
+    //DeleteObject( m_hObj );
+    SelectPalette(hdc, m_hOldPalette, FALSE);
+    //DeleteObject( m_hPalette );
+    return TRUE;
+}
+
 BOOL UBitmap::showStretch( HDC &hdc, RECT &rc)
 {
     HDC hMemDC = ::CreateCompatibleDC(hdc);

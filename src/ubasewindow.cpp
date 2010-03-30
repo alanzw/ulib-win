@@ -428,3 +428,24 @@ BOOL UBaseWindow::setWindowRgn(HRGN hRgn, BOOL bRedraw /* = TRUE */)
     return ::SetWindowRgn(m_hSelf, hRgn, bRedraw);
 }
 
+BOOL UBaseWindow::modifyStyles(DWORD dwStyle)
+{
+    DWORD dwOldStyle = ::GetWindowLong(m_hSelf, GWL_STYLE);
+    DWORD dwNewStyle = dwOldStyle | dwStyle;
+    if (dwOldStyle == dwNewStyle)
+        return FALSE;
+
+//    return ::SetWindowLongPtr(m_hSelf, GWL_STYLE, dwNewStyle);
+    return ::SetWindowLong(m_hSelf, GWL_STYLE, dwNewStyle);
+}
+
+BOOL UBaseWindow::modifyExStyles(DWORD dwStyle)
+{
+    DWORD dwOldStyle = ::GetWindowLong(m_hSelf, GWL_EXSTYLE);
+    DWORD dwNewStyle = dwOldStyle | dwStyle;
+    if (dwOldStyle == dwNewStyle)
+        return FALSE;
+
+//    return ::SetWindowLongPtr(m_hSelf, GWL_STYLE, dwNewStyle);
+    return ::SetWindowLong(m_hSelf, GWL_EXSTYLE, dwNewStyle);
+}

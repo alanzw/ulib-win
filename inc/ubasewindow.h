@@ -211,6 +211,10 @@ public:
     }
     
     //
+    virtual BOOL modifyStyles(DWORD dwStyle);
+    virtual BOOL modifyExStyles(DWORD dwStyle);
+    
+    //
     BOOL setWindowRgn(HRGN hRgn, BOOL bRedraw = TRUE);
     
     //

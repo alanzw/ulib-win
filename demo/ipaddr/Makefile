@@ -23,7 +23,7 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB) $(RES)
+	$(CXX) -o $(BIN) $^ $(LIBS) $(RES)
 	cp -v $@ $(BINDIR)/$@
 
 #

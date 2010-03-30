@@ -24,6 +24,7 @@
 #include "usplashwnd.h"
 #include "uwndclassx.h"
 #include "umsg.h"
+#include "udllman.h"
 
 LPCTSTR m_cSplashWndClass = _T("USplashWindow_{B7434340-E3F8-4b53-B576-CB607DDEAF9D}");
 
@@ -32,16 +33,19 @@ enum {
 };
 
 USplashWindow::USplashWindow(HINSTANCE hInst)
-: UBaseWindow(NULL, hInst, m_cSplashWndClass)
+: UBaseWindow(NULL, hInst, m_cSplashWndClass),
+  _clrTrans(huys::white)
 {
     ::ZeroMemory(m_sFilename, sizeof(m_sFilename));
     //setWndClassName(m_cSplashWndClass);
     setStyles(WS_POPUP|WS_VISIBLE);
     setTitle(_T("splash"));
+    setExStyles(WS_EX_TOPMOST | WS_EX_TOOLWINDOW);
 }
 
 USplashWindow::USplashWindow( LPCTSTR sFileName )
-: UBaseWindow(NULL, ::GetModuleHandle(NULL))
+: UBaseWindow(NULL, ::GetModuleHandle(NULL)),
+  _clrTrans(huys::white)
 {
     ::ZeroMemory(m_sFilename, sizeof(m_sFilename));
     this->setBmp(sFileName);
@@ -145,6 +149,17 @@ bool USplashWindow::showByTimer(DWORD dwDelayedTime /*= 3000*/)
     return true;
 }
 
+bool USplashWindow::showTransparent(huys::Color clr, DWORD dwDelayedTime)
+{
+    assert(this->create());
+    setTransparentColor(clr);
+    update();
+    show();
+    ::SetForegroundWindow(*this);
+    setTimer(ID_SPLASH_TIMER, dwDelayedTime);
+    return true;
+}
+
 void USplashWindow::onDraw(HDC hdc)
 {
     RECT rc;
@@ -186,7 +201,32 @@ void USplashWindow::killFlash()
     setHandle(NULL);
 }
 
+bool USplashWindow::setTransparentColor(huys::Color clr)
+{
+    _clrTrans = clr;
 
+#if defined(_MSC_VER) && (_MSC_VER > 1200)
+        this->modifyExStyles(WS_EX_LAYERED);
+        ::SetLayeredWindowAttributes(*this, _clrTrans, 0, LWA_COLORKEY);
+#else
+
+#ifndef LWA_COLORKEY
+#define LWA_COLORKEY 1
+#endif
+        this->modifyExStyles(WS_EX_LAYERED);
+        UDllMan dlm(_T("user32.dll"));
+        dlm.callFunc<BOOL, HWND, COLORREF, BYTE, DWORD>(_T("SetLayeredWindowAttributes"),
+            *this, _clrTrans, 0, LWA_COLORKEY);
+
+#endif // (_MFC_VER > 1200)
+}
+
+BOOL USplashWindow::onPreRegisterWindowClass(huys::UWindowClass &uwc)
+{
+    uwc.setBKBrush((HBRUSH)::GetStockObject(WHITE_BRUSH));
+    uwc.setStyles(CS_BYTEALIGNCLIENT | CS_BYTEALIGNWINDOW);
+    return FALSE;
+}
 /*
 void USplashWindow::centerWindow()
 {
