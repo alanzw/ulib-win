@@ -24,9 +24,6 @@ public:
         this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
    }
 
-   ~UMyWindow()
-   {}
-
    BOOL onCreate()
    {
        this->setIconBig(IDI_APP);

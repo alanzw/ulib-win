@@ -34,4 +34,7 @@ private:
     double *solu;
 };
 
+
+bool TridiagonalSolve (const double *a, const double *b, double *c, double *d, double *x, unsigned int n);
+
 #endif // U_MATRIX_H
