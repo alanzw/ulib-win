@@ -3,7 +3,7 @@ include ../../make.inc
 
 #
 CFLAGS =
-CXXFLAGS = 
+CXXFLAGS = -DBUILD_EXE
 INC = -I"../../inc"
 LIB = -L"../../lib" -luwin
 

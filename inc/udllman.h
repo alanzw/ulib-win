@@ -119,7 +119,7 @@ public:
     {
         return DllFunc3<T, TP1, TP2, TP3>::callEx(*this, lpProcName, para1, para2, para3);
     }
-    
+
     template <class TRet, class TPara1, class TPara2, class TPara3, class TPara4>
     struct DllFunc4
     {
