@@ -62,6 +62,66 @@ GetDllDirectoryW(
 #endif // _WIN32_WINNT >= 0x0502
 */
 
+/*
+NTSYSAPI
+NTSTATUS
+NTAPI
+LdrQueryProcessModuleInformation(
+    OUT PSYSTEM_MODULE_INFORMATION SystemModuleInformationBuffer,
+    IN ULONG BufferSize,
+    OUT PULONG RequiredSize OPTIONAL );
+*/
+#ifndef MAXIMUM_FILENAME_LENGTH
+#define MAXIMUM_FILENAME_LENGTH 255
+#endif // MAXIMUM_FILENAME_LENGTH
+
+typedef struct _SYSTEM_MODULE {
+    ULONG Reserved1;
+    ULONG Reserved2;
+    PVOID ImageBaseAddress;
+    ULONG ImageSize;
+    ULONG Flags;
+    WORD Id;
+    WORD Rank;
+    WORD w018;
+    WORD NameOffset;
+    BYTE Name[MAXIMUM_FILENAME_LENGTH];
+} SYSTEM_MODULE, *PSYSTEM_MODULE;
+
+typedef struct _SYSTEM_MODULE_INFORMATION {
+    ULONG ModulesCount;
+    SYSTEM_MODULE Modules[0];
+} SYSTEM_MODULE_INFORMATION, *PSYSTEM_MODULE_INFORMATION;
+
+void list_modules()
+{
+    PSYSTEM_MODULE_INFORMATION psmi;
+    ULONG size = 0;
+
+    //
+    UDllMan udm(_T("ntdll.dll"));
+    udm.callFunc<LONG, PSYSTEM_MODULE_INFORMATION, ULONG, PULONG>(_T("LdrQueryProcessModuleInformation"), (PSYSTEM_MODULE_INFORMATION)0, (ULONG)0, &size);
+
+    cout << "size: " << size << endl;
+    //cout << "sizeof SYSTEM_MODULE_INFORMATION: " << sizeof(SYSTEM_MODULE_INFORMATION) << endl;
+
+    LPBYTE lpBuffer = new BYTE[size];
+
+    udm.callFunc<LONG, PSYSTEM_MODULE_INFORMATION, ULONG, PULONG>(_T("LdrQueryProcessModuleInformation"), (PSYSTEM_MODULE_INFORMATION)lpBuffer, size, 0);
+
+    psmi = (PSYSTEM_MODULE_INFORMATION)lpBuffer;
+    int num = psmi->ModulesCount;
+
+    cout << "======== modules : " << num << "============" << endl;
+    for (int i=0; i<num; ++i)
+    {
+        cout << i << "  :  " << psmi->Modules[i].Name << endl;
+    }
+
+    delete[] lpBuffer;
+}
+
+
 int main(int argc, char *argv[])
 {
     try {
@@ -120,7 +180,9 @@ int main(int argc, char *argv[])
         cout << e->what() << endl;
     }
 
-    cin.ignore();
+    list_modules();
+
+   cin.ignore();
    return 0;
 }
 

@@ -136,7 +136,7 @@ BOOL WINAPI PaintDIB(HDC hDC,
  *                                  NOTE above.
  *
  ************************************************************************/
-BOOL PaintBitmap(HDC      hDC,
+BOOL WINAPI PaintBitmap(HDC      hDC,
                      LPRECT   lpDCRect, 
                      HBITMAP  hDDB, 
                      LPRECT   lpDDBRect, 
@@ -417,7 +417,7 @@ DWORD WINAPI DIBHeight(LPSTR lpDIB)
  *            9/15/91   Patrick Schreiber    Added header and comments
  *
  ************************************************************************/
-int PalEntriesOnDevice(HDC hDC)
+int WINAPI PalEntriesOnDevice(HDC hDC)
 {
    int nColors;  // number of colors
 
@@ -462,7 +462,7 @@ int PalEntriesOnDevice(HDC hDC)
  *    12/20/91  Mark Bader           Added GetSystemPaletteEntries call
  *
  ************************************************************************/
-HPALETTE GetSystemPalette(void)
+HPALETTE WINAPI GetSystemPalette(void)
 {
    HDC hDC;                // handle to a DC
    static HPALETTE hPal = NULL;   // handle to a palette
@@ -1468,7 +1468,7 @@ BOOL WINAPI WriteDIB( LPCTSTR szFile, HANDLE hDIB)
 // colorTransparent    - The transparent color
 // hPal            - Logical palette to be used with bitmap. Can be NULL
 
-void TransparentBlt( HDC hdcDest, int nXDest, int nYDest, int nWidth,
+void WINAPI TransparentBlt( HDC hdcDest, int nXDest, int nYDest, int nWidth,
                     int nHeight, HBITMAP hBitmap, int nXSrc, int nYSrc,
                     COLORREF colorTransparent, HPALETTE hPal )
 {
@@ -1534,7 +1534,7 @@ void TransparentBlt( HDC hdcDest, int nXDest, int nYDest, int nWidth,
         SelectObject( hMemDC, hOldMemBmp );
 }
 
-HBITMAP GetSrcBit(HDC hDC,DWORD BitWidth, DWORD BitHeight)
+HBITMAP WINAPI GetSrcBit(HDC hDC,DWORD BitWidth, DWORD BitHeight)
 {
     HDC hBufDC;
     HBITMAP hBitmap, hBitTemp;
@@ -1670,7 +1670,7 @@ HBITMAP GetSrcBit(HDC hDC,DWORD BitWidth, DWORD BitHeight)
 //    return hDIB;
 //}
 
-BOOL SaveBmp(HBITMAP hBitmap, LPCTSTR FileName)
+BOOL WINAPI SaveBmp(HBITMAP hBitmap, LPCTSTR FileName)
 {
     //…Ë±∏√Ë ˆ±Ì
     HDC hDC;

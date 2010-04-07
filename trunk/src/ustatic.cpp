@@ -18,7 +18,7 @@ UStatic::UStatic(UBaseWindow *pWndParent, LPCTSTR lpText)
 : UControl(pWndParent, IDC_STATIC),
   m_pText(lpText)
 {
-	m_dwStyles |= SS_SIMPLE;
+	//m_dwStyles |= SS_SIMPLE;
 }
 
 UStatic::UStatic(UBaseWindow *pWndParent, UINT nID)

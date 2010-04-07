@@ -43,11 +43,11 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LIBUWIN_DLL_EXPORTS" /YX /FD /c
-# ADD CPP /nologo /MT /W3 /GX /O2 /I "../inc" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LIBUWIN_DLL_EXPORTS" /D "BUILD_DLL" /YX /FD /c
+# ADD CPP /nologo /MT /W3 /GX /O2 /I "../inc" /I "." /I "./fix" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LIBUWIN_DLL_EXPORTS" /D "BUILD_DLL" /YX /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x804 /d "NDEBUG"
-# ADD RSC /l 0x804 /d "NDEBUG"
+# ADD RSC /l 0x804 /i "../ico" /i "../res" /d "NDEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
@@ -74,7 +74,7 @@ LINK32=link.exe
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x804 /d "_DEBUG"
-# ADD RSC /l 0x804 /d "_DEBUG"
+# ADD RSC /l 0x804 /i "../ico" /d "_DEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
@@ -460,8 +460,8 @@ SOURCE=..\res\u.rc
 
 !ELSEIF  "$(CFG)" == "libuwin_dll - Win32 Debug"
 
-# ADD BASE RSC /l 0x804 /i "\ulib-win\res"
-# ADD RSC /l 0x804 /i "\ulib-win\res" /i "../res" /i "../ico"
+# ADD BASE RSC /l 0x804 /i "\DEV\ulib-win\res" /i "\ulib-win\res"
+# ADD RSC /l 0x804 /i "\DEV\ulib-win\res" /i "\ulib-win\res" /i "../res" /i "../ico"
 
 !ENDIF 
 
