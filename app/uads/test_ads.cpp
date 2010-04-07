@@ -9,6 +9,7 @@
 #include "ugdi.h"
 #include "colors.h"
 #include "ubutton.h"
+#include "ulistbox.h"
 
 #include "adt/uautoptr.h"
 #include "adt/ustring.h"
@@ -17,12 +18,75 @@ typedef huys::ADT::UStringAnsi TString;
 
 #include "uads.h"
 
+class UTraceWindow : public UBaseWindow
+{
+    enum {
+        ID_LB_TRACE = 1111
+    };
+public:
+    UTraceWindow(UBaseWindow *pWndParent)
+    : UBaseWindow(pWndParent)
+    {
+        RECT rc;
+        ::GetWindowRect(getParent(), &rc);
+        rc.left = rc.right+5;
+        rc.right += 200;
+        rc.top = rc.bottom - 200;
+        setRect(&rc);
+        setMenu(0);
+        setWndClassName(_T("HUYS_TRACE_WINDOW_CLASS"));
+        setTitle(_T("Trace"));
+
+        setExStyles(WS_EX_TOOLWINDOW | WS_EX_TOPMOST | WS_EX_APPWINDOW);
+    }
+
+    BOOL onCreate()
+    {
+        _pListBox = new UListBox(this, ID_LB_TRACE);
+        RECT rc;
+        this->getClientRect(&rc);
+        _pListBox->setRect(&rc);
+        _pListBox->setStyles(WS_VSCROLL);
+        _pListBox->create();
+
+        return UBaseWindow::onCreate();
+    }
+
+    void addLine(LPCTSTR sLine)
+    {
+        _pListBox->addString(sLine);
+    }
+
+    BOOL onClose()
+    {
+        this->hide();
+        return FALSE;
+    }
+
+    BOOL onSize(WPARAM wParam, LPARAM lParam)
+    {
+        RECT rc;
+        ::GetWindowRect(getParent(), &rc);
+        rc.left = rc.right+5;
+        rc.right += 200;
+        rc.top = rc.bottom - 200;
+        this->moveWindow(&rc);
+        return FALSE;
+    }
+private:
+    huys::ADT::UAutoPtr<UListBox> _pListBox;
+};
+
 class UMyWindow : public UBaseWindow
 {
     enum {
-        ID_ADSm_start = 11002,
-        ID_BNm_start  = 12000,
-        ID_BNm_stop   = 12001
+        ID_ADS_START = 11002,
+        ID_BN_START  = 12000,
+        ID_BN_STOP   = 12001
+    };
+
+    enum {
+        ID_TIMER_UPDATE = 1111
     };
 public:
     UMyWindow()
@@ -31,6 +95,8 @@ public:
         this->setTitle(_T("数据采集 0.0.1"));
         this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
         this->setPos(100, 100, 800, 600);
+
+        m_val = 0;
     }
 
     ~UMyWindow()
@@ -73,15 +139,20 @@ public:
             m_source2[i]->setWindowText(tmp);
         }
 
-        m_start = new UButton(this, ID_BNm_start);
+        m_start = new UButton(this, ID_BN_START);
         m_start->setPos(640, 140, 100, 100);
         m_start->create();
         m_start->setWindowText(_T("启动"));
 
-        m_stop = new UButton(this, ID_BNm_stop);
+        m_stop = new UButton(this, ID_BN_STOP);
         m_stop->setPos(640, 320, 100, 100);
         m_stop->create();
         m_stop->setWindowText(_T("停止"));
+
+
+        win = new UTraceWindow(this);
+        //win->setPos(100, 100, 200, 200);
+        win->create();
 
         return UBaseWindow::onCreate();
     }
@@ -112,13 +183,30 @@ public:
             return onMenuAbout();
         case IDM_EXIT:
             return UBaseWindow::onClose();
-        case ID_BNm_start:
+        case ID_BN_START:
             return onBnStart();
-        case ID_BNm_stop:
+        case ID_BN_STOP:
             return onBnStop();
         default:
             return UBaseWindow::onCommand(wParam, lParam);
         }
+    }
+
+    BOOL onTimer(WPARAM wParam, LPARAM lParam)
+    {
+        switch (wParam)
+        {
+        case ID_TIMER_UPDATE:
+            {
+                ++m_val;
+                updateUI();
+                logData();
+                return FALSE;
+            }
+        default:
+            ;
+        }
+        return FALSE;
     }
 private:
     huys::ADT::UAutoPtr<UADSample> m_source[8];
@@ -127,6 +215,10 @@ private:
     huys::ADT::UAutoPtr<UStatic> m_lable2;
     huys::ADT::UAutoPtr<UButton> m_start;
     huys::ADT::UAutoPtr<UButton> m_stop;
+
+    int m_val;
+
+    huys::ADT::UAutoPtr<UTraceWindow> win;
 private:
     BOOL onMenuAbout()
     {
@@ -137,13 +229,34 @@ private:
     BOOL onBnStart()
     {
         this->showMsg(_T("开始采集"), _T("提示"));
+        this->setTimer(ID_TIMER_UPDATE, 500);
         return FALSE;
     }
 
     BOOL onBnStop()
     {
         this->showMsg(_T("结束采集"), _T("提示"));
+        this->killTimer(ID_TIMER_UPDATE);
         return FALSE;
+    }
+
+    BOOL updateUI()
+    {
+        TString tmp;
+        tmp.format("%d", m_val);
+
+        m_source[0]->setWindowText(tmp);
+
+        return FALSE;
+    }
+
+    BOOL logData()
+    {
+        TString tmp;
+        tmp.format("%d", m_val);
+
+        win->addLine(tmp);
+        return TRUE;
     }
 };
 
