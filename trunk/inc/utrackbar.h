@@ -10,6 +10,11 @@ public:
     UTrackBar() {};
     virtual ~UTrackBar();
     virtual BOOL create();
+    
+    BOOL setRange(int min, int max, BOOL bRedraw = TRUE);
+    BOOL setRangeSize(int nSize);
+    BOOL setTicFreq(int nFreq);
+    BOOL setTPos(int nNewPos, BOOL bRedraw = TRUE);
 protected:
 private:
 

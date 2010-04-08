@@ -13,7 +13,7 @@ enum _Color {
     _red,
     _black
 };
-    
+
 template <class Entry>
 struct RB_node
 {
@@ -21,16 +21,16 @@ struct RB_node
     RB_node<Entry> *left;
     RB_node<Entry> *right;
     _Color color;
-    
-    
-    
+
+
+
     RB_node(const Record &new_entry)
     {
         color = red;
         data = new_entry;
         left = right = NULL;
     }
-    
+
     RB_node()
     {
         color = red;
@@ -38,7 +38,7 @@ struct RB_node
     }
 
     void set_color(_Color c) { color = c; }
-    
+
     Color get_color() const { return color; }
 };
 

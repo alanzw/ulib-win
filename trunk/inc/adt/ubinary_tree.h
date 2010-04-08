@@ -248,7 +248,7 @@ protected:
             node->right = temp;
         }
     }
-    
+
     void copy_tree(Node *sub_root_origin)
     {
         if ( 0 != sub_root_origin )
@@ -256,14 +256,14 @@ protected:
             insert(sub_root_origin->data);
             copy_tree(sub_root_origin->left);
             copy_tree(sub_root_origin->right);
-        } 
+        }
     }
 protected:
     Node *_root;
 private:
 };
 
-/* 
+/*
  * Binary Search Tree
  * --------
  * 1. The key of the root (if it exists) is greater than the key in any node in the
@@ -293,7 +293,7 @@ public:
 
         Binary_node<Record> * found = search_for_node(this->_root, target);
 
-        if (NULL = found)
+        if (NULL == found)
         {
             result = not_present;
         }
