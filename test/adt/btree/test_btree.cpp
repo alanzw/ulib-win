@@ -46,7 +46,7 @@ int main()
     cout << endl;
 
     b_tree.mirror();
-    
+
     cout << "-----------------------------------------------------" << endl;
     cout << "After mirror:" << endl;
 
@@ -59,11 +59,11 @@ int main()
     cout << "Postorder : ";
     b_tree.postorder(printTree);
     cout << endl;
-    
+
     //class TTClass;
     //typedef char type_must_be_complete[sizeof(TTClass)?1:-1];
     //(void)sizeof(type_must_be_complete);
-    
+
     huys::ADT::Binary_tree<int> new_tree(b_tree);
     cout << "-----------------------------------------------------" << endl;
     cout << "Copy tree:" << endl;
@@ -77,8 +77,8 @@ int main()
     cout << "Postorder : ";
     new_tree.postorder(printTree);
     cout << endl;
-    
-    
+
+
 
     cout << "-----------------------------------------------------" << endl;
 
@@ -98,7 +98,7 @@ int main()
     cout << endl;
 
     stree.remove(3);
-    
+
     cout << "-----------------------------------------------------" << endl;
     cout << "After remove:" << endl;
     cout << "Inorder : ";

@@ -8,6 +8,7 @@
 #include "ubasewindow.h"
 #include "ugdi.h"
 #include "colors.h"
+#include "adt/uautoptr.h"
 
 #include "utetrix.h"
 
@@ -28,6 +29,11 @@ public:
    {
        this->setIconBig(IDI_APP);
 
+       _tetrix = new UTetrix(this);
+       _tetrix->setStyles(WS_BORDER);
+       _tetrix->setPos(100, 100, 200, 400);
+       _tetrix->create();
+
        return UBaseWindow::onCreate();
    }
 
@@ -42,7 +48,7 @@ public:
         RECT rc = {0};
         ::GetClientRect(*this, &rc);
         huys::URectangle urc(rc);
-        urc.setFilledColor(huys::black);
+        urc.setFilledColor(huys::gray);
         urc.setFilledStyle(BS_SOLID);
         urc.Draw(hdc);
         return TRUE;
@@ -57,14 +63,32 @@ public:
             return onMenuAbout();
         case IDM_EXIT:
             return UBaseWindow::onClose();
+        case IDM_START:
+            return onStart();
+        case IDM_STOP:
+            return onStop();
         default:
             return UBaseWindow::onCommand(wParam, lParam);
         }
     }
 private:
+    huys::ADT::UAutoPtr<UTetrix> _tetrix;
+private:
     BOOL onMenuAbout()
     {
         this->showMsg(_T("UTetrix v0.0.1"), _T("About"));
+        return FALSE;
+    }
+
+    BOOL onStart()
+    {
+        _tetrix->Start();
+        return FALSE;
+    }
+
+    BOOL onStop()
+    {
+        _tetrix->Pause();
         return FALSE;
     }
 };
