@@ -22,13 +22,13 @@ public:
         std::cout << "CA()!" << std::endl;
         p = new char[2];
     }
-    
+
     ~CA()
     {
         std::cout << "~CA()!" << std::endl;
         delete[] p;
     }
-    
+
     char *p;
 };
 
@@ -37,7 +37,7 @@ class CB
 public:
     CB(CA *)
     {
-      std::cout << "CB()!" << std::endl;  
+      std::cout << "CB()!" << std::endl;
     }
     ~CB()
     {
@@ -84,14 +84,14 @@ int main()
     cout << s2.reverse().c_str() << endl;
 
     cout << "=========================" << endl;
-    
-    cout << test_unicode(NULL).c_str() << endl; 
+
+    cout << test_unicode(NULL).c_str() << endl;
 
     cout << "BIGIN calling createCB!" << std::endl;
-    
+
     createCB();
 
     cout << "End calling createCB!" << std::endl;
-    
+
     return 0;
 }
