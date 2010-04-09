@@ -63,7 +63,7 @@ int main()
     cout << "========================= " << endl;
     v3.resize(5);
     cout << v3[4] << endl;
-    
+
     v3[0] = 3;
     cout << "========================= " << endl;
     cout << "Size of v3 : " << v3.size() << endl;
@@ -80,9 +80,9 @@ int main()
             ++it;
         }
     }
-    cout << "Size of v3 : " << v3.size() << endl;    
+    cout << "Size of v3 : " << v3.size() << endl;
     cout << v3;
-    
+
     cin.ignore();
 
     return 0;

@@ -1,6 +1,8 @@
 #ifndef U_BINARY_TREE_H
 #define U_BINARY_TREE_H
 
+#include "adt/uqueue.h"
+
 namespace huys
 {
 
@@ -72,9 +74,24 @@ public:
         recursive_postorder(_root, visit);
     }
 
+    void doubleorder(Visit visit)
+    {
+        recursive_doubleorder(_root, visit);
+    }
+
+    void levelbylevel(Visit visit)
+    {
+        helper_levelbylevel(visit);
+    }
+
     int size() const
     {
         return recursive_size(_root);
+    }
+
+    int width() const
+    {
+        return helper_width(_root);
     }
 
     void clear()
@@ -115,6 +132,7 @@ public:
 
     Binary_tree & operator = (const Binary_tree<Entry, V> &origin)
     {
+        clear();
         copy_tree(origin._root);
     }
 
@@ -157,6 +175,41 @@ protected:
         }
     }
 
+    //
+    void recursive_doubleorder(Node *sub_root, Visit visit)
+    {
+        if ( 0 != sub_root )
+        {
+            (*visit)(sub_root->data);
+            recursive_doubleorder(sub_root->left, visit);
+            (*visit)(sub_root->data);
+            recursive_doubleorder(sub_root->right, visit);
+        }
+    }
+
+    void helper_levelbylevel(Visit visit)
+    {
+        UQueue<Node *> queue;
+        queue.append(this->_root);
+        while (!queue.empty())
+        {
+            Node * p = queue.front();
+            visit(p->data);
+
+            if (0 != p->left)
+            {
+                queue.append(p->left);
+            }
+
+            if (0 != p->right)
+            {
+                queue.append(p->right);
+            }
+
+            queue.serve();
+        }
+    }
+
     int recursive_size(Node *node) const
     {
         if ( 0 == node )
@@ -168,6 +221,16 @@ protected:
             return ( recursive_size(node->left) + 1 + recursive_size(node->right) );
         }
     }
+
+    int helper_width(Node *sub_root)
+    {
+        int w = 0;
+
+
+
+        return w;
+    }
+
 
     void destroy_tree(Node *node)
     {
@@ -429,6 +492,18 @@ public:
         return success;
     }
 private:
+
+};
+
+template <class T>
+class AVL_tree
+{
+
+};
+
+template <class T>
+class Splay_tree
+{
 
 };
 

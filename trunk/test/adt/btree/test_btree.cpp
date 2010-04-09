@@ -45,6 +45,14 @@ int main()
     b_tree.postorder(printTree);
     cout << endl;
 
+    cout << "Doubleorder : ";
+    b_tree.doubleorder(printTree);
+    cout << endl;
+
+    cout << "levelbylevel : ";
+    b_tree.levelbylevel(printTree);
+    cout << endl;
+
     b_tree.mirror();
 
     cout << "-----------------------------------------------------" << endl;
