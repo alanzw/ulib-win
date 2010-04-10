@@ -125,6 +125,7 @@ UTetrix::UTetrix(UBaseWindow *pWndParent, UINT nID)
 : UStatic(pWndParent, nID)
 {
     m_dwStyles &= ~SS_SIMPLE;
+    m_dwStyles |= SS_NOTIFY;
     m_nResourceID = nID;
 
     isFallingFinished = false;
@@ -388,6 +389,7 @@ void UTetrix::DrawSquare(UPaintDC & dc, int x, int y, Tetrominoes shape)
     darkpen.SetCap(wxCAP_PROJECTING);
     dc.SetPen(darkpen);
 */
+    dc.setPenColor(light[int(shape)]);
     dc.drawLine(x, y + SquareHeight() - 1, x, y);
     dc.drawLine(x, y, x + SquareWidth() - 1, y);
 
@@ -403,7 +405,7 @@ void UTetrix::DrawSquare(UPaintDC & dc, int x, int y, Tetrominoes shape)
     dc.DrawRectangle(x + 1, y + 1, SquareWidth() - 2,
         SquareHeight() - 2);
 */
-    dc.setBKMode(TRANSPARENT);
+    //dc.setBKMode(TRANSPARENT);
     dc.setBrushColor(colors[int(shape)]);
     dc.rectangle(x + 1, y + 1, SquareWidth() - 2,
         SquareHeight() - 2);

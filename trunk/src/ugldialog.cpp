@@ -30,7 +30,7 @@ BOOL UGLDialog::go()
     {
         return FALSE;
     }
-    
+
     //BOOL bQuit = FALSE;
     MSG msg;
 
@@ -99,6 +99,8 @@ BOOL UGLDialog::animate()
     glEnd();
 
     glBegin(GL_POLYGON);
+#define IDI_ULIB  2
+#define IDI_HELP  3
     glVertex2f(0.5,0.5);
     glVertex2f(0.0,0.8);
     glVertex2f(0.8,0.8);

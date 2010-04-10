@@ -21,7 +21,7 @@ UGLGraph* myGraph;
 class UGLWindow : public UBaseWindow
 {
 public:
-    UGLWindow(HINSTANCE hInst = ::GetModuleHandle(NULL))
+    UGLWindow(HINSTANCE hInst = GetModuleHandle(NULL))
     : UBaseWindow(NULL, hInst),
     m_hdc(0), m_hrc(0)
     {
@@ -38,7 +38,7 @@ public:
     {
         initGL();
 
-        this->setIconBig(IDI_APP);
+        this->setIconBig(IDI_ULIB);
 
         return UBaseWindow::onCreate();
     }

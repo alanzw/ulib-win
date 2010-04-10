@@ -21,21 +21,21 @@ public:
     : UGLDialog(hInst, nID)
     {}
 
-	BOOL initGL()
-	{
-		RECT rc;
-		::GetClientRect(m_hDlg, &rc);
-		UGlut::ResizeScene(rc.right-rc.left, rc.bottom-rc.top);
+    BOOL initGL()
+    {
+        RECT rc;
+        ::GetClientRect(m_hDlg, &rc);
+        UGlut::ResizeScene(rc.right-rc.left, rc.bottom-rc.top);
 
-		glShadeModel(GL_SMOOTH);                             // Enable Smooth Shading
-		glClearColor(0.0f, 0.0f, 0.0f, 0.5f);                // Black Background
-		glClearDepth(1.0f);                                  // Depth Buffer Setup
-		glEnable(GL_DEPTH_TEST);                             // Enables Depth Testing
-		glDepthFunc(GL_LEQUAL);                              // The Type Of Depth Testing To Do
-		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);   // Really Nice Perspective Calculations
+        glShadeModel(GL_SMOOTH);                             // Enable Smooth Shading
+        glClearColor(0.0f, 0.0f, 0.0f, 0.5f);                // Black Background
+        glClearDepth(1.0f);                                  // Depth Buffer Setup
+        glEnable(GL_DEPTH_TEST);                             // Enables Depth Testing
+        glDepthFunc(GL_LEQUAL);                              // The Type Of Depth Testing To Do
+        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);   // Really Nice Perspective Calculations
 
-		return TRUE;
-	}
+        return TRUE;
+    }
 
     virtual BOOL animate()
     {
@@ -44,10 +44,10 @@ public:
         // Reset The Current Modelview Matrix
         glLoadIdentity();
 
-		gluLookAt (0.0, 0.0, 7.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-		//glScalef(0.5f, 0.5f, 0.5f);
+        gluLookAt (0.0, 0.0, 7.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+        //glScalef(0.5f, 0.5f, 0.5f);
 
-		UGlut::switchToWireframe();
+        UGlut::switchToWireframe();
 
         //glTranslatef(0.0f, 0.0f,-7.0f);    // Translate Into The Screen 7.0 Units
         glRotatef(rotqube,0.0f,1.0f,0.0f);    // Rotate The cube around the Y axis
@@ -85,7 +85,7 @@ public:
         glVertex3f( 1.0f,-1.0f,-1.0f);    // Bottom Right Of The Quad (Right)
         glEnd();            // End Drawing The Cube
 
-		UGlut::switchToSolid();
+        UGlut::switchToSolid();
 
         rotqube +=0.9f;            // Increase Angle
 
