@@ -31,7 +31,7 @@ public:
 
        _tetrix = new UTetrix(this);
        _tetrix->setStyles(WS_BORDER);
-       _tetrix->setPos(100, 100, 200, 400);
+       _tetrix->setPos(100, 100, 200, 300);
        _tetrix->create();
 
        return UBaseWindow::onCreate();
@@ -42,7 +42,7 @@ public:
     {
 
     }
-    //
+    /*
     virtual BOOL onEraseBkgnd(HDC hdc)
     {
         RECT rc = {0};
@@ -53,7 +53,7 @@ public:
         urc.Draw(hdc);
         return TRUE;
     }
-
+    */
     //
     virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {

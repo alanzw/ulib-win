@@ -3,8 +3,16 @@
 
 #include "ustatic.h"
 
-enum Tetrominoes { NoShape, ZShape, SShape, LineShape, 
-                  TShape, SquareShape, LShape, MirroredLShape };
+enum Tetrominoes {
+    NoShape,
+    ZShape,
+    SShape,
+    LineShape, 
+    TShape,
+    SquareShape,
+    LShape,
+    MirroredLShape
+};
 
 class Shape
 {

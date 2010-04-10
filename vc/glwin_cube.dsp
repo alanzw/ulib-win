@@ -1,24 +1,24 @@
-# Microsoft Developer Studio Project File - Name="opengl" - Package Owner=<4>
+# Microsoft Developer Studio Project File - Name="glwin_cube" - Package Owner=<4>
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
 # ** DO NOT EDIT **
 
 # TARGTYPE "Win32 (x86) Application" 0x0101
 
-CFG=opengl - Win32 Debug
+CFG=glwin_cube - Win32 Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
-!MESSAGE NMAKE /f "opengl.mak".
+!MESSAGE NMAKE /f "glwin_cube.mak".
 !MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "opengl.mak" CFG="opengl - Win32 Debug"
+!MESSAGE NMAKE /f "glwin_cube.mak" CFG="glwin_cube - Win32 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "opengl - Win32 Release" (based on "Win32 (x86) Application")
-!MESSAGE "opengl - Win32 Debug" (based on "Win32 (x86) Application")
+!MESSAGE "glwin_cube - Win32 Release" (based on "Win32 (x86) Application")
+!MESSAGE "glwin_cube - Win32 Debug" (based on "Win32 (x86) Application")
 !MESSAGE 
 
 # Begin Project
@@ -29,7 +29,7 @@ CPP=cl.exe
 MTL=midl.exe
 RSC=rc.exe
 
-!IF  "$(CFG)" == "opengl - Win32 Release"
+!IF  "$(CFG)" == "glwin_cube - Win32 Release"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
@@ -54,7 +54,7 @@ LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comwinx32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comwinx32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
 
-!ELSEIF  "$(CFG)" == "opengl - Win32 Debug"
+!ELSEIF  "$(CFG)" == "glwin_cube - Win32 Debug"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
@@ -78,20 +78,20 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comwinx32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib libuwin.dll.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept /libpath:"./Debug"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opengl32.lib glu32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept /libpath:"./Debug"
 
 !ENDIF 
 
 # Begin Target
 
-# Name "opengl - Win32 Release"
-# Name "opengl - Win32 Debug"
+# Name "glwin_cube - Win32 Release"
+# Name "glwin_cube - Win32 Debug"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=..\demo\opengl\test_opengl.cpp
+SOURCE=..\demo\opengl\glwin\cube\cube_glwin.cpp
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -99,7 +99,7 @@ SOURCE=..\demo\opengl\test_opengl.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\demo\opengl\resource.h
+SOURCE=..\demo\opengl\glwin\cube\resource.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"
@@ -107,11 +107,7 @@ SOURCE=..\demo\opengl\resource.h
 # PROP Default_Filter "ico;cur;bmp;winx;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 # Begin Source File
 
-SOURCE=..\demo\opengl\opengl.rc
-# End Source File
-# Begin Source File
-
-SOURCE=..\demo\opengl\ulib.ico
+SOURCE=..\demo\opengl\glwin\cube\cube.rc
 # End Source File
 # End Group
 # End Target

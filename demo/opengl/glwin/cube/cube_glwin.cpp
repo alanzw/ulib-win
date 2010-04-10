@@ -28,20 +28,20 @@ public:
         uwc.setStyles(CS_OWNDC);
         return FALSE;
     }
-    
+
     BOOL onPreCreateWindow()
     {
         if (IDYES == showYesNoMsgbox(_T("Fullscreen?"), _T("Start Fullscreen?")))
         {
             m_bFullscreen = TRUE;
         }
-        
+
         int width= 640;
         int height = 480;
         int bits=16;
-        
+
         setPos(0, 0, width, height);
-        
+
         if (m_bFullscreen)
         {
             DEVMODE dmScreenSettings;                                // Device Mode
@@ -68,9 +68,9 @@ public:
                     return FALSE;                                    // Return FALSE
                 }
             }
-        
+
         }
-    
+
         if (m_bFullscreen)
         {
             setStyles(WS_POPUP);
@@ -82,9 +82,9 @@ public:
             //setStyles(WS_OVERLAPPEDWINDOW);
             setExStyles(WS_EX_APPWINDOW | WS_EX_WINDOWEDGE);
         }
-        
+
         adjustWindowRectEx();
-    
+
         return TRUE;
     }
 
@@ -102,7 +102,7 @@ public:
             //ReSizeGLScene(640, 480); // Set Up Our Perspective GL Screen
         }
         setTopMost();
-        
+
         return UBaseWindow::onCreate();
     }
 
@@ -139,19 +139,43 @@ private:
     HDC m_hdc;
     HGLRC m_hrc;
     UIcon m_uico;
-    
+
     BOOL m_bFullscreen;
-    
+
     GLfloat    cnt1;
+
+    UGlut::UGLCube cube;
 private:
     BOOL initGL()
     {
         UGlut::EnableOpenGL(*this, m_hdc, m_hrc);
 
+        glMatrixMode(GL_PROJECTION);
+
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+
+        glEnable(GL_LIGHTING);
+        glEnable(GL_CULL_FACE);
+
+        GLfloat lightAmbient[] = {0.2f, 0.2f, 0.2f, 1.0f};
+        GLfloat lightDiffuse[] = {0.7f, 0.1f, 0.7f, 1.0f};
+        GLfloat lightPosition[] = {0.0f, 0.0f, 1.0f, 1.0f};
+
+        glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmbient);
+        glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiffuse);
+
+        glEnable(GL_LIGHT0);
+
+        glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+
+        cube.size(0.5f);
+        cube.setColor(1.f, 0.f, 1.f);
+
         return TRUE;
     }
-    
-    
+
+
     void ReSizeGLScene(GLsizei width, GLsizei height)        // Resize And Initialize The GL Window
     {
         if (height==0)                                        // Prevent A Divide By Zero By
@@ -177,49 +201,12 @@ private:
 
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT);
-        //glScalef(0.5,0.5,0.5);
-        glRotatef(cnt1,0,0,1);
-        //
-        glBegin(GL_LINES);
-
-        //
-        glColor3f(1.f, 0.f, 0.f);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(1.0f, 0.0f, 0.0f);
-        glVertex3f(1.0f, 0.0f, 0.0f);
-        glVertex3f(0.9f, 0.1f, 0.0f);
-        glVertex3f(1.0f, 0.0f, 0.0f);
-        glVertex3f(0.9f, -0.1f, 0.0f);
-
-        //
-        glColor3f(0.f, 1.f, 0.f);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(0.0f, 1.0f, 0.0f);
-        glVertex3f(0.0f, 1.0f, 0.0f);
-        glVertex3f(0.1f, 0.9f, 0.0f);
-        glVertex3f(0.0f, 1.0f, 0.0f);
-        glVertex3f(-0.1f, 0.9f, 0.0f);
-
-        //
-        glColor3f(0.f, 0.f, 1.f);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(0.0f, 0.0f, 1.0f);
-        glVertex3f(0.0f, 0.0f, 1.0f);
-        glVertex3f(0.0f, 0.1f, 0.9f);
-        glVertex3f(0.0f, 0.0f, 1.0f);
-        glVertex3f(0.0f, -0.1f, 0.9f);
-
-        //
-        glEnd();
-
-        //
-        glBegin(GL_POLYGON);
-        glVertex2f(0.0f, 0.2f);
-        glVertex2f(1.0f, 0.5f);
-        glVertex2f(1.0f, 1.0f);
-        glEnd();
         
-        cnt1+=(cnt1>10?.0f:0.05f); 
+        glRotatef(cnt1, 0.f, 0.5f, 0.5f);
+
+        cube.render();
+
+        cnt1+=(cnt1>10?.0f:0.05f);
     }
 };
 
