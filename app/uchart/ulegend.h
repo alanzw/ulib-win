@@ -3,6 +3,9 @@
 
 class ULegend
 {
+public:
+
+private:
 
 };
 

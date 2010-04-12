@@ -319,7 +319,10 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="..\src\uobject.cpp" />
+    <ClCompile Include="..\src\upalette.cpp" />
     <ClCompile Include="..\src\upanel.cpp" />
+    <ClCompile Include="..\src\uprogressbar.cpp" />
+    <ClCompile Include="..\src\upropsheet.cpp" />
     <ClCompile Include="..\src\urebar.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -373,7 +376,10 @@
     <ClInclude Include="..\inc\umenu.h" />
     <ClInclude Include="..\inc\umsg.h" />
     <ClInclude Include="..\inc\uobject.h" />
+    <ClInclude Include="..\inc\upalette.h" />
     <ClInclude Include="..\inc\upanel.h" />
+    <ClInclude Include="..\inc\uprogressbar.h" />
+    <ClInclude Include="..\inc\upropsheet.h" />
     <ClInclude Include="..\inc\urebar.h" />
     <ClInclude Include="..\inc\uregion.h" />
     <ClInclude Include="..\inc\usplashwnd.h" />

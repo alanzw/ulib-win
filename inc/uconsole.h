@@ -14,27 +14,33 @@ BOOL ULIB_API PrintMsg (HANDLE hOut, LPCTSTR pMsg);
 
 /* Output messages to STDOUT */
 BOOL ULIB_API PrintStdout(LPCTSTR pMsg);
+
+/* Output messages to STDOUT in the specific format. */
 BOOL ULIB_API PrintStdoutFormat(const TCHAR * szFormat, ...);
 
 /* Prompt the user at the console and get a response. */
 BOOL ULIB_API ConsolePrompt( LPCTSTR pPromptMsg,
-                           LPTSTR pResponse,
-                           DWORD MaxTchar,
-                           BOOL Echo );
+                             LPTSTR pResponse,
+                             DWORD MaxTchar,
+                             BOOL Echo );
 
 /* General-purpose function for reporting system errors. */
-void ULIB_API ReportError(LPCTSTR UserMessage,
-                 DWORD ExitCode,
-                 BOOL PrintErrorMsg);
+void ULIB_API ReportError( LPCTSTR UserMessage,
+                           DWORD ExitCode,
+                           BOOL PrintErrorMsg);
 
 /* Function that does the work:
    read input data and copy it to standard output. */
 void ULIB_API CatFile (HANDLE hInFile, HANDLE hOutFile);
+
+/* */
 void ULIB_API CatFileEx(HANDLE hInFile, HANDLE hOutFile);
 
 /* ASCII to Unicode file copy function.
-Behavior is modeled after CopyFile. */
+   Behavior is modeled after CopyFile. */
 BOOL ULIB_API Ascii2Unicode (LPCTSTR fIn, LPCTSTR fOut, BOOL bFailIfExists);
+
+/*  */
 BOOL ULIB_API Ascii2UnicodeOpt(LPCTSTR fIn, LPCTSTR fOut, BOOL bFailIfExists);
 
 //

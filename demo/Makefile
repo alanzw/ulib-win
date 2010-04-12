@@ -135,6 +135,7 @@ SUBDIRS = \
           cpl         \
           wnet        \
           printer     \
+          palette     \
 
 #
 all:

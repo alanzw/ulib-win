@@ -26,5 +26,6 @@ BOOL UPropSheet::create( PROPSHEETPAGE *ppsp, int nPages, LPSTR lpCaption)
     m_psh.ppsp = ppsp;
     m_psh.pszCaption = lpCaption;
     ::PropertySheet(&m_psh);
+    return TRUE;
 }
 

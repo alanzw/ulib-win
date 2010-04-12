@@ -175,6 +175,18 @@ private:
     DWORD m_dwRadius;
 };
 
+class ULIB_API UPolygon : public UShape
+{
+public:
+	UPolygon(POINT *pts=NULL, int num=0);
+	virtual ~UPolygon();
+	virtual void Draw(HDC hdc);
+	void setPoints(POINT *pts, int num);
+private:
+	POINT *m_pts;
+	int m_num;
+};
+
 } // namespace huys
 
 #endif // U_GDI_H
