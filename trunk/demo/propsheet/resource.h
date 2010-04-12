@@ -3,7 +3,8 @@
 #endif
 
 #define IDI_APP   1
-
+#define IDD_PROP  101
+#define IDD_PROP2  102
 #define IDD_TEST  100
 
 

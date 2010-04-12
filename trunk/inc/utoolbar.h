@@ -2,11 +2,13 @@
 #define U_TOOLBAR_H
 
 #include "ucontrol.h"
+#include "ubasewindow.h"
 
 class ULIB_API UToolBar : public UControl
 {
 public:
     UToolBar(HWND hParent, UINT nResource, HINSTANCE hInst);
+    UToolBar(UBaseWindow *pWnd, UINT nResource);
     UToolBar() {}
     ~UToolBar();
     virtual BOOL create();

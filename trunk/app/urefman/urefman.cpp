@@ -1,3 +1,7 @@
+#include "resource.h"
+
+#define _WIN32_IE 0x0300
+
 #include <windows.h>
 #include <tchar.h>
 #include <commctrl.h>
@@ -5,7 +9,7 @@
 #include "urefman.h"
 
 URefMan::URefMan(HWND hParent, UINT nID, HINSTANCE hInst)
-: UStatic(hParent, nID, hInst)
+: UStatic(hParent, nID, hInst), m_mainCategory(0)
 {}
 
 URefMan::URefMan()
@@ -15,7 +19,7 @@ URefMan::~URefMan()
 {}
 
 URefMan::URefMan(UBaseWindow *pWndParent, UINT nID)
-: UStatic(pWndParent, nID)
+: UStatic(pWndParent, nID), m_mainCategory(0)
 {}
 
 BOOL URefMan::create()
@@ -24,7 +28,7 @@ BOOL URefMan::create()
 
     m_tv = new UTreeView(m_hSelf, 11111, m_hInstance);
 
-    m_tv->setStyles(TVS_HASLINES| TVS_LINESATROOT | TVS_HASBUTTONS);
+    m_tv->setStyles(TVS_HASLINES| TVS_LINESATROOT | TVS_HASBUTTONS | TVS_CHECKBOXES);
 
     RECT rc;
     this->getClientRect(&rc);
@@ -33,21 +37,17 @@ BOOL URefMan::create()
     rc.bottom -= 5;
 
     m_tv->setRect(&rc);
-
     m_tv->create();
 
-    char str[] = "My Computer";
+    m_img = new UImageList(IDB_IMAGES, m_hInstance);
+    m_tv->setNormalImageList(m_img);
 
-    HTREEITEM item = m_tv->addTextRoot(str);
+    char str[] = "My References";
 
-    char str2[] = "C:";
-    m_tv->addTextChild(item, str2);
-
-    char str3[] = "D:";
-    m_tv->addTextChild(item, str3);
+    m_mainCategory = m_tv->addTextRoot(str);
 
     m_list = new UListView(m_hSelf, 11112, m_hInstance);
-    m_list->setStyles(LVS_REPORT | LVS_EDITLABELS);
+    m_list->setStyles(LVS_REPORT | LVS_EDITLABELS );
 
     this->getClientRect(&rc);
 
@@ -71,4 +71,10 @@ BOOL URefMan::create()
     m_edt->create();
 
     return bRet;
+}
+
+BOOL URefMan::addCategory(LPCTSTR sCatName, int iImage /*= 0*/)
+{
+    m_tv->addTextChild(m_mainCategory, sCatName, iImage);
+    return TRUE;
 }

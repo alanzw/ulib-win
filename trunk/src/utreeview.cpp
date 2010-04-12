@@ -73,13 +73,13 @@ HTREEITEM UTreeView::addTextRoot( LPCTSTR lpText )
     return this->addTextChild(TVI_ROOT, (LPTSTR)lpText);
 }
 
-HTREEITEM UTreeView::addTextChild( HTREEITEM hParent, LPCTSTR lpText )
+HTREEITEM UTreeView::addTextChild( HTREEITEM hParent, LPCTSTR lpText, int iImage /*=0*/)
 {
     TVITEM tvi;
     tvi.pszText = (LPTSTR)lpText;
-    tvi.mask = TVIF_TEXT | TVIF_PARAM;
+    tvi.mask = TVIF_TEXT | TVIF_IMAGE | TVIF_PARAM;
     tvi.cchTextMax = sizeof(tvi.pszText)/sizeof(tvi.pszText[0]);
-
+    tvi.iImage = iImage;
     return this->addItemChild(hParent, &tvi);
 }
 

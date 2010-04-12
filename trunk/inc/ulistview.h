@@ -29,6 +29,9 @@ public:
     ~UListView();
     //
     virtual BOOL create();
+	//
+	BOOL setExStylesListView(DWORD dwStyle);
+
     //
     virtual BOOL addColumn(int iCol, LPLVCOLUMN lplvc);
     //
