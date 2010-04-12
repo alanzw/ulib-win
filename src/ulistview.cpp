@@ -154,3 +154,8 @@ BOOL UListView::setBKImage(TCHAR *url, int xPos, int yPos)
         && this->sendMsg(LVM_SETBKIMAGE, 0, (LPARAM)(LPLVBKIMAGE)&plvbki);
 
 }
+
+BOOL UListView::setExStylesListView( DWORD dwStyle )
+{
+	return this->sendMsg(LVM_SETEXTENDEDLISTVIEWSTYLE, 0, dwStyle);
+}

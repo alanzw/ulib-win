@@ -10,7 +10,7 @@ public:
     virtual ~UTreeView();
 
     UTreeView();
-    
+
     UTreeView(UBaseWindow *pWndParent, UINT nID);
     //
     virtual BOOL create();
@@ -21,7 +21,7 @@ public:
     virtual HTREEITEM addItemChild(HTREEITEM hParent, TVITEM *ptvi);
     //
     virtual HTREEITEM addTextRoot(LPCTSTR lpText);
-    virtual HTREEITEM addTextChild(HTREEITEM hParent, LPCTSTR lpText);
+    virtual HTREEITEM addTextChild(HTREEITEM hParent, LPCTSTR lpText, int iImage=0);
     //
     virtual BOOL setImageList(HIMAGELIST himl, int iImage);
     virtual BOOL setNormalImageList(HIMAGELIST himl);

@@ -1,3 +1,5 @@
+#define _WIN32_IE 0x0500
+
 #include "resource.h"
 
 #include <windows.h>
@@ -8,6 +10,7 @@
 #include "ubasewindow.h"
 #include "ugdi.h"
 #include "colors.h"
+#include "utoolbar.h"
 
 #include "adt/uautoptr.h"
 
@@ -30,13 +33,22 @@ public:
    {
        this->setIconBig(IDI_APP);
 
+        m_toolbar = new UToolBar(this, IDB_IMAGES);
+        m_toolbar->setStyles(TBSTYLE_FLAT);
+        //m_toolbar->create();
+
        m_refman = new URefMan(this, ID_REFMAN);
 
        RECT rc = {0};
        this->getClientRect(&rc);
+       //rc.top += 16;
 
        m_refman->setRect(&rc);
        m_refman->create();
+
+       m_refman->addCategory(_T("turbulent"), 1);
+       m_refman->addCategory(_T("combustion"), 2);
+
 
        return UBaseWindow::onCreate();
    }
@@ -79,6 +91,7 @@ private:
     }
 
     huys::ADT::UAutoPtr<URefMan> m_refman;
+    huys::ADT::UAutoPtr<UToolBar> m_toolbar;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)

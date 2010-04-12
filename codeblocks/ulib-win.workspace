@@ -7,7 +7,7 @@
 		<Project filename="calc.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="chart.cbp" active="1" />
+		<Project filename="chart.cbp" />
 		<Project filename="console.cbp" />
 		<Project filename="ctrls.cbp">
 			<Depends filename="ulib-win.cbp" />
@@ -15,7 +15,11 @@
 		<Project filename="customctrl.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
+		<Project filename="edit.cbp" />
 		<Project filename="explorer.cbp">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
+		<Project filename="filesplit.cbp" active="1">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="floatwnd.cbp">
@@ -39,9 +43,11 @@
 		<Project filename="qq.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
+		<Project filename="qq2009.cbp" />
 		<Project filename="rebar.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
+		<Project filename="refman.cbp" />
 		<Project filename="static.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>

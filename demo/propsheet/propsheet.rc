@@ -23,6 +23,20 @@ FONT 8,"MS Shell Dlg",400,0,0
 BEGIN
 END
 
+IDD_PROP DIALOGEX 0,0,353,199
+STYLE  WS_POPUP
+CAPTION "Test_propsheet"
+FONT 8,"MS Shell Dlg",400,0,0
+BEGIN
+END
+
+IDD_PROP2 DIALOGEX 0,0,353,199
+STYLE  WS_POPUP
+CAPTION "Test_propsheet"
+FONT 8,"MS Shell Dlg",400,0,0
+BEGIN
+END
+
 //
 // Version Information resources
 //

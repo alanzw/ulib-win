@@ -3,7 +3,7 @@
 #endif
 
 #define IDI_APP                         1
-
+#define IDB_IMAGES                      12
 #define IDR_MENU_MAIN                   200
 #define IDM_NEW                         201
 #define IDM_LOAD                        202
