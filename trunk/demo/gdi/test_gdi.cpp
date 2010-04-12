@@ -12,6 +12,8 @@
 #include "ugdi.h"
 #include "uregion.h"
 
+#include "adt/uautoptr.h"
+
 #define  WM_SHELLNOTIFY  WM_USER+5
 
 NOTIFYICONDATA ntd;
@@ -32,21 +34,6 @@ class UDialogExt : public UDialogBox
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
     : UDialogBox(hInst, nID) {}
-
-    ~UDialogExt()
-    {
-        if (m_pUBtnOK)
-        {
-            delete m_pUBtnOK;
-            m_pUBtnOK = NULL;
-        }
-
-        if (m_pUBtnCancel)
-        {
-            delete m_pUBtnCancel;
-            m_pUBtnCancel = NULL;
-        }
-    }
 
     virtual BOOL onInit()
     {
@@ -76,7 +63,7 @@ public:
         ntd.uID = IDI_APP;
         ntd.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
         ntd.uCallbackMessage = WM_SHELLNOTIFY;
-        ntd.hIcon = ::LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_APP));
+        ntd.hIcon = ::LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_HELP));
         lstrcpy( ntd.szTip, "hello");
 
         hPopupMenu = CreatePopupMenu();
@@ -172,8 +159,8 @@ public:
         return UDialogBox::onDestroy();
     }
 private:
-    UPushButton *m_pUBtnOK;
-    UPushButton *m_pUBtnCancel;
+	huys::ADT::UAutoPtr<UPushButton> m_pUBtnOK;
+    huys::ADT::UAutoPtr<UPushButton> m_pUBtnCancel;
 private:
     void draw(HDC hdc, RECT &rc)
     {

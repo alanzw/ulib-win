@@ -476,4 +476,39 @@ void UCircle::setRadius( DWORD radius )
     m_dwRadius = radius;
 }
 
+
+UPolygon::UPolygon( POINT *pts/*=NULL*/, int num/*=0*/ )
+: m_pts(pts), m_num(num)
+{}
+
+UPolygon::~UPolygon()
+{}
+
+void UPolygon::Draw( HDC hdc )
+{
+	HPEN hNewPen;
+	hNewPen = ::CreatePenIndirect(&(this->LinePen));
+	HPEN hOldPen = (HPEN)::SelectObject(hdc, hNewPen);
+
+	HBRUSH hNewBrush;
+	hNewBrush = ::CreateBrushIndirect(&(this->FilledBrush));
+	HBRUSH hOldBrush = (HBRUSH)::SelectObject(hdc, hNewBrush);
+	::Polygon(hdc, m_pts, m_num);
+
+	::SelectObject(hdc, hOldPen);
+	::SelectObject(hdc, hOldBrush);
+
+	::DeleteObject(hNewPen);
+	::DeleteObject(hNewBrush);
+}
+
+void UPolygon::setPoints( POINT *pts, int num )
+{
+	m_pts = pts;
+	m_num = num;
+}
+
+
+
+
 }; // namespace huys

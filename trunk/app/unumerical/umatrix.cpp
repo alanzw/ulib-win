@@ -242,7 +242,7 @@ bool TridiagonalSolve (const double *a, const double *b, double *c, double *d, d
     c[0] /= b[0];   /* Division by zero risk. */
     d[0] /= b[0];   /* Division by zero would imply a singular matrix.
                      */
-    for (int i = 1; i < n; i++)
+    for (unsigned int i = 1; i < n; i++)
     {
         double id = 1 / (b[i] - c[i-1] * a[i]);  /* Division by zero risk. */
         if (id < 1.e-8)

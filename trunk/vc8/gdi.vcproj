@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="menu"
-	ProjectGUID="{D3357E35-3EEB-4FA2-AD43-C7D4F68ABF44}"
+	Name="gdi"
+	ProjectGUID="{929FEE0F-63D6-4B3D-9A4A-9E3BB87D8BAE}"
 	>
 	<Platforms>
 		<Platform
@@ -16,7 +16,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release\menu"
+			IntermediateDirectory=".\Release\gdi"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -41,7 +41,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Release/menu.tlb"
+				TypeLibraryName=".\Release/gdi.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -53,10 +53,10 @@
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
-				PrecompiledHeaderFile=".\Release/menu.pch"
-				AssemblerListingLocation=".\Release/menu/"
-				ObjectFile=".\Release/menu/"
-				ProgramDataBaseFileName=".\Release/menu/"
+				PrecompiledHeaderFile=".\Release/gdi.pch"
+				AssemblerListingLocation=".\Release/gdi/"
+				ObjectFile=".\Release/gdi/"
+				ProgramDataBaseFileName=".\Release/gdi/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -73,11 +73,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\Release/menu.exe"
+				OutputFile=".\Release/gdi.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="./Release"
-				ProgramDatabaseFile=".\Release/menu.pdb"
+				ProgramDatabaseFile=".\Release/gdi.pdb"
 				SubSystem="2"
 				TargetMachine="1"
 			/>
@@ -93,7 +93,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Release/menu.bsc"
+				OutputFile=".\Release/gdi.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -111,7 +111,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory=".\Debug"
-			IntermediateDirectory=".\Debug\menu"
+			IntermediateDirectory=".\Debug\gdi"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -136,7 +136,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/menu.tlb"
+				TypeLibraryName=".\Debug/gdi.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -147,10 +147,10 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				PrecompiledHeaderFile=".\Debug/menu.pch"
-				AssemblerListingLocation=".\Debug/menu/"
-				ObjectFile=".\Debug/menu/"
-				ProgramDataBaseFileName=".\Debug/menu/"
+				PrecompiledHeaderFile=".\Debug/gdi.pch"
+				AssemblerListingLocation=".\Debug/gdi/"
+				ObjectFile=".\Debug/gdi/"
+				ProgramDataBaseFileName=".\Debug/gdi/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -169,13 +169,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\Debug/menu.exe"
+				OutputFile=".\Debug/gdi.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="./Debug"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\Debug/menu.pdb"
+				ProgramDatabaseFile=".\Debug/gdi.pdb"
 				SubSystem="2"
 				TargetMachine="1"
 			/>
@@ -192,7 +192,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Debug/menu.bsc"
+				OutputFile=".\Debug/gdi.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -235,7 +235,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/menu.tlb"
+				TypeLibraryName=".\Debug/gdi.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -246,10 +246,10 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				PrecompiledHeaderFile=".\Debug/menu.pch"
-				AssemblerListingLocation=".\Debug/menu/"
-				ObjectFile=".\Debug/menu/"
-				ProgramDataBaseFileName=".\Debug/menu/"
+				PrecompiledHeaderFile=".\Debug/gdi.pch"
+				AssemblerListingLocation=".\Debug/gdi/"
+				ObjectFile=".\Debug/gdi/"
+				ProgramDataBaseFileName=".\Debug/gdi/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -268,12 +268,12 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\Debug/menu.exe"
+				OutputFile=".\Debug/gdi.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="./Debug"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\Debug/menu.pdb"
+				ProgramDatabaseFile=".\Debug/gdi.pdb"
 				SubSystem="2"
 				TargetMachine="1"
 			/>
@@ -289,7 +289,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Debug/menu.bsc"
+				OutputFile=".\Debug/gdi.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -313,7 +313,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="..\demo\menu\test_menu.cpp"
+				RelativePath="..\demo\gdi\test_gdi.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -348,7 +348,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\demo\menu\resource.h"
+				RelativePath="..\demo\gdi\resource.h"
 				>
 			</File>
 		</Filter>
@@ -357,7 +357,7 @@
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
 			<File
-				RelativePath="..\demo\menu\menu.rc"
+				RelativePath="..\demo\gdi\gdi.rc"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -365,7 +365,7 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\demo\menu"
+						AdditionalIncludeDirectories="\ulib-win\demo\gdi"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -374,7 +374,7 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\demo\menu"
+						AdditionalIncludeDirectories="\ulib-win\demo\gdi"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -383,7 +383,7 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\demo\menu"
+						AdditionalIncludeDirectories="\ulib-win\demo\gdi"
 					/>
 				</FileConfiguration>
 			</File>

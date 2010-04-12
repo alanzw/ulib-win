@@ -15,8 +15,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{50BFE8B6-6EFC-487F-95E3-5CF6A75EA256}</ProjectGuid>
-    <RootNamespace>splash</RootNamespace>
+    <ProjectGuid>{286EA622-292A-4CE1-9A9D-AEDE86C53D71}</ProjectGuid>
+    <RootNamespace>propsheet</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'" Label="Configuration">
@@ -53,10 +53,10 @@
   <PropertyGroup>
     <_ProjectFileVersion>10.0.21006.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release\splash\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release\propsheet\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\splash\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\propsheet\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">$(Configuration)\</IntDir>
@@ -78,7 +78,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\Release/splash.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Release/propsheet.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -90,10 +90,10 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>.\Release/splash.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Release/splash/</AssemblerListingLocation>
-      <ObjectFileName>.\Release/splash/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Release/splash/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\Release/propsheet.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/propsheet/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/propsheet/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/propsheet/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </ClCompile>
@@ -102,16 +102,16 @@
       <Culture>0x0804</Culture>
     </ResourceCompile>
     <Link>
-      <OutputFile>.\Release/splash.exe</OutputFile>
+      <OutputFile>.\Release/propsheet.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>./Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\Release/splash.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\Release/propsheet.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Release/splash.bsc</OutputFile>
+      <OutputFile>.\Release/propsheet.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -120,7 +120,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\Debug/splash.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Debug/propsheet.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -131,10 +131,10 @@
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>.\Debug/splash.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Debug/splash/</AssemblerListingLocation>
-      <ObjectFileName>.\Debug/splash/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Debug/splash/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\Debug/propsheet.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/propsheet/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/propsheet/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/propsheet/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -145,18 +145,18 @@
       <AdditionalIncludeDirectories>../res;../ico;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <OutputFile>.\Debug/splash.exe</OutputFile>
+      <OutputFile>.\Debug/propsheet.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>./Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\Debug/splash.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\Debug/propsheet.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateManifest>false</GenerateManifest>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Debug/splash.bsc</OutputFile>
+      <OutputFile>.\Debug/propsheet.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">
@@ -165,7 +165,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\Debug/splash.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Debug/propsheet.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -176,10 +176,10 @@
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>.\Debug/splash.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Debug/splash/</AssemblerListingLocation>
-      <ObjectFileName>.\Debug/splash/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Debug/splash/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\Debug/propsheet.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/propsheet/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/propsheet/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/propsheet/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -191,21 +191,21 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>msimg32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>.\Debug/splash.exe</OutputFile>
+      <OutputFile>.\Debug/propsheet.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>./Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\Debug/splash.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\Debug/propsheet.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Debug/splash.bsc</OutputFile>
+      <OutputFile>.\Debug/propsheet.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\demo\splash\test_splash.cpp">
+    <ClCompile Include="..\demo\propsheet\test_propsheet.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -214,23 +214,17 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\demo\splash\resource.h" />
+    <ClInclude Include="..\demo\propsheet\resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\demo\splash\splash.rc">
+    <ResourceCompile Include="..\demo\propsheet\propsheet.rc">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">\ulib-win\demo\splash;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">\ulib-win\demo\propsheet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">\ulib-win\demo\splash;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">\ulib-win\demo\propsheet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">\ulib-win\demo\splash;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">\ulib-win\demo\propsheet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="libuwin_dll.vcxproj">
-      <Project>{30463fce-93f2-4f31-bfb5-355dffb5cc66}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

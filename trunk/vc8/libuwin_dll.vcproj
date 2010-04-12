@@ -767,6 +767,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\upalette.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\upanel.cpp"
 				>
 			</File>
@@ -1006,6 +1010,10 @@
 			</File>
 			<File
 				RelativePath="..\inc\uobject.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\upalette.h"
 				>
 			</File>
 			<File

@@ -78,7 +78,16 @@
     <ClCompile Include="..\src\uobject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\upalette.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\upanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uprogressbar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\upropsheet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\urebar.cpp">
@@ -173,7 +182,16 @@
     <ClInclude Include="..\inc\uobject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\inc\upalette.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\inc\upanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\uprogressbar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\upropsheet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\urebar.h">

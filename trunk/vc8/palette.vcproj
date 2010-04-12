@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="menu"
-	ProjectGUID="{D3357E35-3EEB-4FA2-AD43-C7D4F68ABF44}"
+	Name="palette"
+	ProjectGUID="{C87AE9AD-2109-4295-B0B5-FD17B69225E1}"
 	>
 	<Platforms>
 		<Platform
@@ -16,7 +16,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release\menu"
+			IntermediateDirectory=".\Release\palette"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -41,7 +41,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Release/menu.tlb"
+				TypeLibraryName=".\Release/palette.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -53,10 +53,10 @@
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
-				PrecompiledHeaderFile=".\Release/menu.pch"
-				AssemblerListingLocation=".\Release/menu/"
-				ObjectFile=".\Release/menu/"
-				ProgramDataBaseFileName=".\Release/menu/"
+				PrecompiledHeaderFile=".\Release/palette.pch"
+				AssemblerListingLocation=".\Release/palette/"
+				ObjectFile=".\Release/palette/"
+				ProgramDataBaseFileName=".\Release/palette/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -73,11 +73,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\Release/menu.exe"
+				OutputFile=".\Release/palette.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="./Release"
-				ProgramDatabaseFile=".\Release/menu.pdb"
+				ProgramDatabaseFile=".\Release/palette.pdb"
 				SubSystem="2"
 				TargetMachine="1"
 			/>
@@ -93,7 +93,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Release/menu.bsc"
+				OutputFile=".\Release/palette.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -111,7 +111,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory=".\Debug"
-			IntermediateDirectory=".\Debug\menu"
+			IntermediateDirectory=".\Debug\palette"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -136,7 +136,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/menu.tlb"
+				TypeLibraryName=".\Debug/palette.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -147,10 +147,10 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				PrecompiledHeaderFile=".\Debug/menu.pch"
-				AssemblerListingLocation=".\Debug/menu/"
-				ObjectFile=".\Debug/menu/"
-				ProgramDataBaseFileName=".\Debug/menu/"
+				PrecompiledHeaderFile=".\Debug/palette.pch"
+				AssemblerListingLocation=".\Debug/palette/"
+				ObjectFile=".\Debug/palette/"
+				ProgramDataBaseFileName=".\Debug/palette/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -169,13 +169,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\Debug/menu.exe"
+				OutputFile=".\Debug/palette.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="./Debug"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\Debug/menu.pdb"
+				ProgramDatabaseFile=".\Debug/palette.pdb"
 				SubSystem="2"
 				TargetMachine="1"
 			/>
@@ -192,7 +192,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Debug/menu.bsc"
+				OutputFile=".\Debug/palette.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -235,7 +235,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/menu.tlb"
+				TypeLibraryName=".\Debug/palette.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -246,10 +246,10 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				PrecompiledHeaderFile=".\Debug/menu.pch"
-				AssemblerListingLocation=".\Debug/menu/"
-				ObjectFile=".\Debug/menu/"
-				ProgramDataBaseFileName=".\Debug/menu/"
+				PrecompiledHeaderFile=".\Debug/palette.pch"
+				AssemblerListingLocation=".\Debug/palette/"
+				ObjectFile=".\Debug/palette/"
+				ProgramDataBaseFileName=".\Debug/palette/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -268,12 +268,12 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\Debug/menu.exe"
+				OutputFile=".\Debug/palette.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="./Debug"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\Debug/menu.pdb"
+				ProgramDatabaseFile=".\Debug/palette.pdb"
 				SubSystem="2"
 				TargetMachine="1"
 			/>
@@ -289,7 +289,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Debug/menu.bsc"
+				OutputFile=".\Debug/palette.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -313,7 +313,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="..\demo\menu\test_menu.cpp"
+				RelativePath="..\demo\palette\test_palette.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -348,7 +348,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\demo\menu\resource.h"
+				RelativePath="..\demo\palette\resource.h"
 				>
 			</File>
 		</Filter>
@@ -357,7 +357,7 @@
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
 			<File
-				RelativePath="..\demo\menu\menu.rc"
+				RelativePath="..\demo\palette\palette.rc"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -365,7 +365,7 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\demo\menu"
+						AdditionalIncludeDirectories="\ulib-win\demo\palette"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -374,7 +374,7 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\demo\menu"
+						AdditionalIncludeDirectories="\ulib-win\demo\palette"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -383,7 +383,7 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\demo\menu"
+						AdditionalIncludeDirectories="\ulib-win\demo\palette"
 					/>
 				</FileConfiguration>
 			</File>
