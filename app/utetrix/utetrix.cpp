@@ -6,101 +6,6 @@
 
 #include "utetrix.h"
 
-void Shape::SetShape(Tetrominoes shape)
-{
-    static const int coordsTable[8][4][2] = {
-        { { 0, 0 },   { 0, 0 },   { 0, 0 },   { 0, 0 } },
-        { { 0, -1 },  { 0, 0 },   { -1, 0 },  { -1, 1 } },
-        { { 0, -1 },  { 0, 0 },   { 1, 0 },   { 1, 1 } },
-        { { 0, -1 },  { 0, 0 },   { 0, 1 },   { 0, 2 } },
-        { { -1, 0 },  { 0, 0 },   { 1, 0 },   { 0, 1 } },
-        { { 0, 0 },   { 1, 0 },   { 0, 1 },   { 1, 1 } },
-        { { -1, -1 }, { 0, -1 },  { 0, 0 },   { 0, 1 } },
-        { { 1, -1 },  { 0, -1 },  { 0, 0 },   { 0, 1 } }
-    };
-
-    for (int i = 0; i < 4 ; i++) {
-        for (int j = 0; j < 2; ++j)
-            coords[i][j] = coordsTable[shape][i][j];
-    }
-    pieceShape = shape;
-}
-
-
-
-void Shape::SetRandomShape()
-{
-  int x = rand() % 7 + 1;
-  SetShape(Tetrominoes(x));
-}
-
-int Shape::MinX() const
-{
-  int m = coords[0][0];
-  for (int i=0; i<4; i++) {
-      m = min(m, coords[i][0]);
-  }
-  return m;
-}
-
-int Shape::MaxX() const
-{
-  int m = coords[0][0];
-  for (int i=0; i<4; i++) {
-      m = max(m, coords[i][0]);
-  }
-  return m;
-}
-
-int Shape::MinY() const
-{
-  int m = coords[0][1];
-  for (int i=0; i<4; i++) {
-      m = min(m, coords[i][1]);
-  }
-  return m;
-}
-
-int Shape::MaxY() const
-{
-  int m = coords[0][1];
-  for (int i=0; i<4; i++) {
-      m = max(m, coords[i][1]);
-  }
-  return m;
-}
-
-Shape Shape::RotateLeft() const
-{
-    if (pieceShape == SquareShape)
-        return *this;
-
-    Shape result;
-    result.pieceShape = pieceShape;
-    for (int i = 0; i < 4; ++i) {
-        result.SetX(i, y(i));
-        result.SetY(i, -x(i));
-    }
-    return result;
-}
-
-Shape Shape::RotateRight() const
-{
-    if (pieceShape == SquareShape)
-        return *this;
-
-    Shape result;
-    result.pieceShape = pieceShape;
-    for (int i = 0; i < 4; ++i) {
-        result.SetX(i, -y(i));
-        result.SetY(i, x(i));
-    }
-    return result;
-}
-
-
-
-
 UTetrix::UTetrix(HWND hParent, UINT nID, HINSTANCE hInst)
 : UStatic(hParent, nID, hInst)
 {
@@ -115,8 +20,7 @@ UTetrix::UTetrix(HWND hParent, UINT nID, HINSTANCE hInst)
 }
 
 UTetrix::UTetrix()
-{
-}
+{}
 
 UTetrix::~UTetrix()
 {}
@@ -154,8 +58,10 @@ BOOL UTetrix::onPaint()
     int boardTop = rc.bottom-rc.top - BoardHeight * SquareHeight();
 
 
-    for (int i = 0; i < BoardHeight; ++i) {
-        for (int j = 0; j < BoardWidth; ++j) {
+    for (int i = 0; i < BoardHeight; ++i)
+    {
+        for (int j = 0; j < BoardWidth; ++j)
+        {
             Tetrominoes shape = ShapeAt(j, BoardHeight - i - 1);
             if (shape != NoShape)
                 DrawSquare(dc, 0 + j * SquareWidth(),
@@ -163,8 +69,10 @@ BOOL UTetrix::onPaint()
         }
     }
 
-    if (curPiece.GetShape() != NoShape) {
-        for (int i = 0; i < 4; ++i) {
+    if (curPiece.GetShape() != NoShape)
+    {
+        for (int i = 0; i < 4; ++i)
+        {
             int x = curX + curPiece.x(i);
             int y = curY - curPiece.y(i);
             DrawSquare(dc, 0 + x * SquareWidth(),
@@ -181,11 +89,14 @@ BOOL UTetrix::onPaint()
 void UTetrix::Start()
 {
     if (isPaused)
+    {
         return;
+    }
 
     isStarted = true;
     isFallingFinished = false;
     numLinesRemoved = 0;
+
     ClearBoard();
 
     NewPiece();
@@ -198,9 +109,12 @@ void UTetrix::Pause()
         return;
 
     isPaused = !isPaused;
-    if (isPaused) {
+    if (isPaused)
+    {
         this->killTimer(ID_TIMER_UPDATE);
-    } else {
+    }
+    else
+    {
         this->setTimer(ID_TIMER_UPDATE, 300);
     }
     invalidate();
@@ -214,7 +128,8 @@ BOOL UTetrix::onKeyDown(WPARAM wParam, LPARAM lParam)
 
     int keycode = wParam;
 
-    if (keycode == 'p' || keycode == 'P') {
+    if (keycode == 'p' || keycode == 'P')
+    {
         Pause();
         return FALSE;
     }
@@ -222,7 +137,8 @@ BOOL UTetrix::onKeyDown(WPARAM wParam, LPARAM lParam)
     if (isPaused)
         return FALSE;
 
-    switch (keycode) {
+    switch (keycode)
+    {
     case VK_LEFT:
         TryMove(curPiece, curX - 1, curY);
         break;
@@ -254,10 +170,13 @@ BOOL UTetrix::onKeyDown(WPARAM wParam, LPARAM lParam)
 
 BOOL UTetrix::onTimer(WPARAM wParam, LPARAM lParam)
 {
-    if (isFallingFinished) {
+    if (isFallingFinished)
+    {
         isFallingFinished = false;
         NewPiece();
-    } else {
+    }
+    else
+    {
         OneLineDown();
     }
 }
@@ -272,7 +191,8 @@ void UTetrix::ClearBoard()
 void UTetrix::DropDown()
 {
     int newY = curY;
-    while (newY > 0) {
+    while (newY > 0)
+    {
         if (!TryMove(curPiece, curX, newY - 1))
             break;
         --newY;
@@ -288,7 +208,8 @@ void UTetrix::OneLineDown()
 
 void UTetrix::PieceDropped()
 {
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < 4; ++i)
+    {
         int x = curX + curPiece.x(i);
         int y = curY - curPiece.y(i);
         ShapeAt(x, y) = curPiece.GetShape();
@@ -304,11 +225,14 @@ void UTetrix::RemoveFullLines()
 {
      int numFullLines = 0;
 
-     for (int i = BoardHeight - 1; i >= 0; --i) {
+     for (int i = BoardHeight - 1; i >= 0; --i)
+     {
          bool lineIsFull = true;
 
-         for (int j = 0; j < BoardWidth; ++j) {
-             if (ShapeAt(j, i) == NoShape) {
+         for (int j = 0; j < BoardWidth; ++j)
+         {
+             if (ShapeAt(j, i) == NoShape)
+             {
                  lineIsFull = false;
                  break;
              }
@@ -316,7 +240,8 @@ void UTetrix::RemoveFullLines()
 
          if (lineIsFull) {
              ++numFullLines;
-             for (int k = i; k < BoardHeight - 1; ++k) {
+             for (int k = i; k < BoardHeight - 1; ++k)
+             {
                  for (int j = 0; j < BoardWidth; ++j)
                      ShapeAt(j, k) = ShapeAt(j, k + 1);
              }
@@ -338,7 +263,8 @@ void UTetrix::NewPiece()
     curX = BoardWidth / 2 + 1;
     curY = BoardHeight - 1 + curPiece.MinY();
 
-    if (!TryMove(curPiece, curX, curY)) {
+    if (!TryMove(curPiece, curX, curY))
+    {
         curPiece.SetShape(NoShape);
         killTimer(ID_TIMER_UPDATE);
         isStarted = false;
@@ -347,7 +273,8 @@ void UTetrix::NewPiece()
 
 bool UTetrix::TryMove(const Shape& newPiece, int newX, int newY)
 {
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < 4; ++i)
+    {
         int x = newX + newPiece.x(i);
         int y = newY - newPiece.y(i);
         if (x < 0 || x >= BoardWidth || y < 0 || y >= BoardHeight)

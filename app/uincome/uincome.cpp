@@ -16,3 +16,10 @@ UIncome::UIncome()
 UIncome::~UIncome()
 {}
 
+UIncome::UIncome(UBaseWindow *pWndParent, UINT nID)
+: UStatic(pWndParent, nID)
+{
+    m_dwStyles &= ~SS_SIMPLE;
+    m_dwStyles |= SS_NOTIFY;
+    m_nResourceID = nID;
+}

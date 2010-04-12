@@ -311,7 +311,7 @@ public:
         RECT ico_rc = {200, 200, 250, 250};
         m_pIconStatic->create();
         m_pIconStatic->setPosition(&ico_rc);
-        m_pIconStatic->setIcon(IDI_APP);
+        m_pIconStatic->setIcon(IDI_ULIB);
         
         m_pBitmapStatic = new UBitmapStatic(m_hDlg, IDC_STATIC_BITMAP, m_hInst);
         m_pBitmapStatic->setPos(180, 60, 128, 128);

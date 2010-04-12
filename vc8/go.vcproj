@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="toolbar"
-	ProjectGUID="{126C6BE6-3085-4B1B-81F2-401E1B70AD36}"
-	RootNamespace="toolbar"
+	Name="go"
+	ProjectGUID="{ECDBB491-F264-481B-AD7F-5D0A4BD56DED}"
+	RootNamespace="go"
 	>
 	<Platforms>
 		<Platform
@@ -17,7 +17,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release\toolbar"
+			IntermediateDirectory=".\Release"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -42,22 +42,21 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Release/toolbar.tlb"
+				TypeLibraryName=".\Release/go.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="../inc"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;BUILD_EXE"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
-				PrecompiledHeaderFile=".\Release/toolbar.pch"
-				AssemblerListingLocation=".\Release/toolbar/"
-				ObjectFile=".\Release/toolbar/"
-				ProgramDataBaseFileName=".\Release/toolbar/"
+				PrecompiledHeaderFile=".\Release/go.pch"
+				AssemblerListingLocation=".\Release/"
+				ObjectFile=".\Release/"
+				ProgramDataBaseFileName=".\Release/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -74,11 +73,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\Release/toolbar.exe"
+				OutputFile=".\Release/go.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="./Release"
-				ProgramDatabaseFile=".\Release/toolbar.pdb"
+				ProgramDatabaseFile=".\Release/go.pdb"
 				SubSystem="2"
 				TargetMachine="1"
 			/>
@@ -94,7 +92,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Release/toolbar.bsc"
+				OutputFile=".\Release/go.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -112,7 +110,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory=".\Debug"
-			IntermediateDirectory=".\Debug\toolbar"
+			IntermediateDirectory=".\Debug/go"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -137,7 +135,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/toolbar.tlb"
+				TypeLibraryName=".\Debug/go.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -148,10 +146,10 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				PrecompiledHeaderFile=".\Debug/toolbar.pch"
-				AssemblerListingLocation=".\Debug/toolbar/"
-				ObjectFile=".\Debug/toolbar/"
-				ProgramDataBaseFileName=".\Debug/toolbar/"
+				PrecompiledHeaderFile=".\Debug/go/go.pch"
+				AssemblerListingLocation=".\Debug/go/"
+				ObjectFile=".\Debug/go/"
+				ProgramDataBaseFileName=".\Debug/go/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -170,112 +168,14 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\Debug/toolbar.exe"
+				AdditionalDependencies="winmm.lib"
+				OutputFile=".\Debug/go.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="./Debug"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\Debug/toolbar.pdb"
-				SubSystem="2"
-				TargetMachine="1"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-				EmbedManifest="false"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile=".\Debug/toolbar.bsc"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Debug-static|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="_DEBUG"
-				MkTypLibCompatible="true"
-				SuppressStartupBanner="true"
-				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/toolbar.tlb"
-				HeaderFileName=""
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="../inc"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;WITHOUT_DLL"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
-				PrecompiledHeaderFile=".\Debug/toolbar.pch"
-				AssemblerListingLocation=".\Debug/toolbar/"
-				ObjectFile=".\Debug/toolbar/"
-				ProgramDataBaseFileName=".\Debug/toolbar/"
-				WarningLevel="3"
-				SuppressStartupBanner="true"
-				DebugInformationFormat="4"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="2052"
-				AdditionalIncludeDirectories="../res;../ico"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="msimg32.lib"
-				OutputFile=".\Debug/toolbar.exe"
-				LinkIncremental="2"
-				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="./Debug"
-				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\Debug/toolbar.pdb"
+				ProgramDatabaseFile=".\Debug/go.pdb"
 				SubSystem="2"
 				TargetMachine="1"
 			/>
@@ -291,7 +191,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Debug/toolbar.bsc"
+				OutputFile=".\Debug/go.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -315,7 +215,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="..\demo\toolbar\test_toolbar.cpp"
+				RelativePath="..\app\ugo\test_go.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -334,8 +234,20 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\app\ugo\ugo.cpp"
+				>
 				<FileConfiguration
-					Name="Debug-static|Win32"
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -343,6 +255,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\app\ugo\ugo_kernel.cpp"
+				>
 			</File>
 		</Filter>
 		<Filter
@@ -350,16 +266,24 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\demo\toolbar\resource.h"
+				RelativePath="..\demo\dialog\resource.h"
+				>
+			</File>
+			<File
+				RelativePath="..\app\ugo\ugo.h"
+				>
+			</File>
+			<File
+				RelativePath="..\app\ugo\ugo_kernel.h"
 				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
-			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
+			Filter="ico;cur;bmp;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
 			<File
-				RelativePath="..\demo\toolbar\toolbar.rc"
+				RelativePath="..\app\ugo\go.rc"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -367,7 +291,7 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\demo\toolbar"
+						AdditionalIncludeDirectories="\ulib-win\app\ugo"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -376,18 +300,13 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\demo\toolbar"
+						AdditionalIncludeDirectories="\ulib-win\app\ugo"
 					/>
 				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug-static|Win32"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\demo\toolbar"
-					/>
-				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\demo\dialog\ulib.ico"
+				>
 			</File>
 		</Filter>
 	</Files>

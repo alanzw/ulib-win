@@ -117,7 +117,7 @@
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
-			CharacterSet="1"
+			CharacterSet="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -175,6 +175,7 @@
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="./Debug"
+				GenerateManifest="false"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\Debug/button_gdiplus.pdb"
 				SubSystem="2"
@@ -185,6 +186,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
+				EmbedManifest="false"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -324,6 +326,10 @@
 			>
 			<File
 				RelativePath="..\demo\gdiplus\button_gdiplus\resource.h"
+				>
+			</File>
+			<File
+				RelativePath="..\demo\gdiplus\button_gdiplus\uglassbutton.h"
 				>
 			</File>
 		</Filter>

@@ -9,6 +9,8 @@
 #include "ugdi.h"
 #include "colors.h"
 
+#include "adt/uautoptr.h"
+
 #include "uincome.h"
 
 class UMyWindow : public UBaseWindow
@@ -18,14 +20,11 @@ class UMyWindow : public UBaseWindow
     };
 public:
    UMyWindow()
-   : UBaseWindow(NULL, ::GetModuleHandle(NULL))
+   : UBaseWindow(NULL, GetModuleHandle(NULL))
    {
         this->setTitle(_T("UIncome Test 0.0.1"));
         this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
    }
-
-   ~UMyWindow()
-   {}
 
    BOOL onCreate()
    {

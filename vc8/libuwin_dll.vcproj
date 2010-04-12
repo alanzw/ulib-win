@@ -720,6 +720,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\src\ulistbox.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\ulistview.cpp"
 				>
 			</File>
@@ -982,6 +986,10 @@
 			</File>
 			<File
 				RelativePath="..\inc\ulib.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\ulistbox.h"
 				>
 			</File>
 			<File

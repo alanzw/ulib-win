@@ -261,7 +261,7 @@ public:
         /************************************************/
 
         // Create a cached bitmap for double buffering
-        if (m_pCachedBitmap) delete m_pCachedBitmap;
+        //if (m_pCachedBitmap) delete m_pCachedBitmap;
         m_pCachedBitmap = new CachedBitmap(pMemBitmap, &graphics);
 
         delete pMemBitmap;
@@ -274,16 +274,10 @@ class GDIPlusWindow : public UBaseWindow
 {
 public:
     GDIPlusWindow()
-        : UBaseWindow(NULL, NULL),
-        m_pGDIPlusButton(NULL)
+        : UBaseWindow(NULL, NULL)
     {
         setTitle(_T("GDIPlus Window"));
         addStyles(WS_CLIPCHILDREN);
-    }
-
-    ~GDIPlusWindow()
-    {
-        CHECK_PTR(m_pGDIPlusButton);
     }
 
     virtual BOOL onCreate()
@@ -353,7 +347,7 @@ private:
     GdiplusStartupInput gdiplusStartupInput;
     ULONG_PTR gdiplusToken;
 
-    UGDIPlusButton *m_pGDIPlusButton;
+	huys::ADT::UAutoPtr<UGDIPlusButton> m_pGDIPlusButton;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)

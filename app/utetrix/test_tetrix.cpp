@@ -42,18 +42,18 @@ public:
     {
 
     }
-    /*
+
     virtual BOOL onEraseBkgnd(HDC hdc)
     {
         RECT rc = {0};
         ::GetClientRect(*this, &rc);
         huys::URectangle urc(rc);
-        urc.setFilledColor(huys::gray);
+        urc.setFilledColor(huys::pink);
         urc.setFilledStyle(BS_SOLID);
         urc.Draw(hdc);
         return TRUE;
     }
-    */
+
     //
     virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
