@@ -16,6 +16,8 @@
  * =====================================================================================
  */
 
+#define _WIN32_WINNT 0x0501
+
 #include <windows.h>
 #include <tchar.h>
 
@@ -219,6 +221,7 @@ bool USplashWindow::setTransparentColor(huys::Color clr)
             *this, _clrTrans, 0, LWA_COLORKEY);
 
 #endif // (_MFC_VER > 1200)
+	return true;
 }
 
 BOOL USplashWindow::onPreRegisterWindowClass(huys::UWindowClass &uwc)

@@ -11,7 +11,8 @@ CXXFLAGS += -DBUILD_EXE
 
 #
 OBJ = test_tetrix.o \
-      utetrix.o
+      utetrix.o     \
+      ushape.o
 
 BIN = test_tetrix.exe
 RC  = tetrix.rc
@@ -19,7 +20,9 @@ RES = ${RC:.rc=.res}
 #
 HEADER = $(INCDIR)/ubasewindow.h \
          $(INCDIR)/uwinapp.h     \
-         utetrix.h
+         utetrix.h               \
+         ushape.h                \
+
 #
 all: $(BIN)
 

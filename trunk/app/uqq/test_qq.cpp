@@ -73,7 +73,7 @@ public:
         rc.left += 50;
         rc.right += 50;
         pic[2].show(hdc, &rc);
-        
+
         rc.top = 580;
         rc.bottom = rc.top + 40;
         pic[2].show(hdc, &rc);
