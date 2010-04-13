@@ -79,7 +79,7 @@ class UMyWindow : public UBaseWindow
     };
 public:
    UMyWindow()
-   : UBaseWindow(NULL, ::GetModuleHandle(NULL))
+   : UBaseWindow(NULL, GetModuleHandle(NULL))
    {
         this->setTitle(_T("UContact Test 0.0.1"));
    }
@@ -113,7 +113,7 @@ public:
        us[2]->setWindowText("Address:");
 
        m_pEdtAddr= new UEdit(this, ID_ED_ADDR);
-       m_pEdtAddr->setPos(440, 20, 200, 20);
+       m_pEdtAddr->setPos(440, 20, 200, 30);
        m_pEdtAddr->create();
 
        m_pContactList = new UListView(this, ID_LISTCTRL);

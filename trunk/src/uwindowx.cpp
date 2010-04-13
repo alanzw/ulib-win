@@ -20,7 +20,7 @@ UWindowClass::UWindowClass(LPCTSTR lpszClassName, HINSTANCE hInstance)
     m_wcx.style = CS_HREDRAW | CS_VREDRAW | CS_GLOBALCLASS;
     m_wcx.lpfnWndProc = WindowProcedure;
     m_wcx.hInstance = hInstance;
-    m_wcx.hbrBackground = (HBRUSH)(COLOR_WINDOW);
+    m_wcx.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
     m_wcx.lpszClassName = lpszClassName;
     //
     m_wcx.lpszMenuName = NULL;

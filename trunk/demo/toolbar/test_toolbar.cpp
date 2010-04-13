@@ -87,6 +87,7 @@ public:
 
         // Initialize button info.
         // IDM_NEW, IDM_OPEN, and IDM_SAVE are application-defined command constants.
+/*
         TBBUTTON tbButtons[4] =
         {
             { MAKELONG(0, 0), IDM_NEW, TBSTATE_ENABLED,
@@ -97,16 +98,15 @@ public:
             TBSTYLE_AUTOSIZE, {0}, 0, (INT_PTR)"Save"},
             { 100, 0, TBSTATE_ENABLED, TBSTYLE_SEP, {0}, 0, -1}
         };
-        m_putl->addButtons(4, tbButtons);
-/*
-        m_putl->addButton(MAKELONG(0, 0), IDM_NEW, TBSTATE_ENABLED|TBSTYLE_DROPDOWN,
-                          TBSTYLE_AUTOSIZE, (INT_PTR)"New");
-        m_putl->addButton(MAKELONG(1, 0), IDM_OPEN, TBSTATE_ENABLED,
-                          TBSTYLE_AUTOSIZE, (INT_PTR)"Open");
-        m_putl->addButton(MAKELONG(2, 0), IDM_SAVE, TBSTATE_ENABLED,
-                          TBSTYLE_AUTOSIZE, (INT_PTR)"Save");
-        m_putl->addSeparator(100);                          
 */
+        //m_putl->addButtons(4, tbButtons);
+
+        m_putl->addButton(MAKELONG(0, 0), IDM_NEW, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE| TBSTYLE_DROPDOWN, (INT_PTR)"New");
+        m_putl->addButton(MAKELONG(1, 0), IDM_OPEN, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, (INT_PTR)"Open");
+        m_putl->addButton(MAKELONG(2, 0), IDM_SAVE, 0, TBSTYLE_AUTOSIZE, (INT_PTR)"Save");
+        m_putl->addSeparator(100);
+
+
         m_putl->autosize();
         m_putl->show();
         m_putl->enableButton(IDM_SAVE);

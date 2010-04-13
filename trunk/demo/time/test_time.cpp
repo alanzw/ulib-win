@@ -8,54 +8,78 @@
 #include "udlgapp.h"
 #include "uicon.h"
 #include "ubutton.h"
+#include "utime.h"
+#include "ustatic.h"
+
+#include "adt/uautoptr.h"
+#include "adt/ustring.h"
 
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
 {
     enum {
-        IDC_BN_GO = 1021
+        ID_TIMER_UPDATE = 1021
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-          m_pBnGo(0)
+        : UDialogBox(hInst, nID)
     {}
-
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_pBnGo);
-    }
 
     virtual BOOL onInit()
     {
-        m_pBnGo = new UButton(m_hDlg, IDC_BN_GO, m_hInst);
-        m_pBnGo->create();
-        m_pBnGo->setWindowText(_T("GO"));
+        UTime time;
+        time.getSysTime();
 
-        RECT rc = { 200, 100, 380, 150};
-        m_pBnGo->setPosition(&rc);
+        huys::ADT::UStringAnsi text;
+        text.format("SysTime: %d-%d-%d %d:%d:%d",
+                    time.year(), time.month(), time.day(),
+                    time.hour(), time.minute(), time.second());
+
+        m_label = new UStatic(m_hDlg, -1, m_hInst);
+        m_label->setPos(100, 100, 200, 100);
+        m_label->setText(text);
+        m_label->create();
+
+        setTimer(ID_TIMER_UPDATE, 1000);
+
+        return TRUE;
     }
 
     virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
         switch (LOWORD(wParam))
         {
-        case IDC_BN_GO:
-            return onBnGo();
+        case 0:
         default:
             return UDialogBox::onCommand(wParam, lParam);
         }
     }
 
-    BOOL onBnGo()
+    BOOL onClose()
     {
+        killTimer(ID_TIMER_UPDATE);
+        return UDialogBox::onClose();
+    }
+
+    BOOL onTimer(WPARAM wParam, LPARAM lParam)
+    {
+        if (ID_TIMER_UPDATE == wParam)
+        {
+            UTime time;
+            time.getSysTime();
+
+            huys::ADT::UStringAnsi text;
+            text.format("SysTime: %d-%d-%d %d:%d:%d",
+                    time.year(), time.month(), time.day(),
+                    time.hour(), time.minute(), time.second());
+            m_label->setWindowText(text);
+        }
         return FALSE;
     }
 
-protected:
 private:
-    UButton *m_pBnGo;
+    huys::ADT::UAutoPtr<UStatic> m_label;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

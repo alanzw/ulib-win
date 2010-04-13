@@ -7,6 +7,7 @@
 #include "uedit.h"
 #include "uimagelist.h"
 #include "adt/uautoptr.h"
+#include "adt/ustring.h"
 
 class URefMan : public UStatic
 {
@@ -26,6 +27,14 @@ private:
     huys::ADT::UAutoPtr<UImageList> m_img;
 
     HTREEITEM m_mainCategory;
+
+public:
+    typedef huys::ADT::UStringAnsi UString;
+    struct _reference {
+        UString title;
+        UString author;
+        UString from;
+    };
 };
 
 #endif // U_EXPLORER_H

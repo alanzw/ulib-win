@@ -9,13 +9,18 @@
 		</Project>
 		<Project filename="chart.cbp" />
 		<Project filename="combobox.cbp" />
+		<Project filename="commondlg.cbp" />
 		<Project filename="console.cbp" />
+		<Project filename="contact.cbp">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
 		<Project filename="ctrls.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="customctrl.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
+		<Project filename="debug.cbp" />
 		<Project filename="edit.cbp" />
 		<Project filename="explorer.cbp">
 			<Depends filename="ulib-win.cbp" />
@@ -26,6 +31,7 @@
 		<Project filename="floatwnd.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
+		<Project filename="life.cbp" />
 		<Project filename="listbox.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
@@ -41,6 +47,9 @@
 		<Project filename="mytree.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
+		<Project filename="propsheet.cbp">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
 		<Project filename="qq.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
@@ -48,7 +57,10 @@
 		<Project filename="rebar.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="refman.cbp" />
+		<Project filename="refman.cbp">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
+		<Project filename="sdi.cbp" />
 		<Project filename="static.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
@@ -65,6 +77,9 @@
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="tabctrl.cbp" />
+		<Project filename="time.cbp">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
 		<Project filename="timer.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>

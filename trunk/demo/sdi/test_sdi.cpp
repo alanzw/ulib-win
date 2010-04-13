@@ -233,6 +233,7 @@ public:
    BOOL onMenuAbout()
    {
         static_cast<UMyDockWindow *>(m_dwin.at(0))->goDock();
+        return FALSE;
    }
 
    BOOL onSize(WPARAM wParam, LPARAM lParam)

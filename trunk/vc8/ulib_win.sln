@@ -82,6 +82,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "filesplit", "filesplit.vcpr
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "propsheet", "propsheet.vcproj", "{FB5DAB99-D56D-4EAC-8BD4-139BF483070D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{30463FCE-93F2-4F31-BFB5-355DFFB5CC66} = {30463FCE-93F2-4F31-BFB5-355DFFB5CC66}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

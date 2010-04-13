@@ -1,14 +1,14 @@
 #ifndef U_FILESPLIT_H
 #define U_FILESPLIT_H
 
-#include "ustatic.h"
-
-class UFileSplit : public UStatic
+class UFileSplit
 {
 public:
-    UFileSplit(HWND hParent, UINT nID, HINSTANCE hInst);
     UFileSplit();
     ~UFileSplit();
+
+    static BOOL split(LPCTSTR sFilename, DWORD dwEachSize, DWORD dwBufferSize,
+               LPCTSTR sOutFile);
 private:
 
 };

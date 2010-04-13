@@ -169,7 +169,7 @@ typedef struct {
 typedef LONG (WINAPI *PROCNTQSI)(UINT,PVOID,ULONG,PULONG);
 
 PROCNTQSI NtQuerySystemInformation;
- 
+
 UINT USystem::getCPUUsage()
 {
     SYSTEM_PERFORMANCE_INFORMATION SysPerfInfo;

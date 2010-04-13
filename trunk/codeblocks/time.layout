@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="..\demo\time\test_time.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1376" topLine="20" />
+	</File>
+	<File name="..\demo\time\time.rc" open="0" top="0" tabpos="0">
+		<Cursor position="398" topLine="6" />
+	</File>
+</CodeBlocks_layout_file>

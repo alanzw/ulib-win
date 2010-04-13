@@ -28,16 +28,17 @@ BOOL UColorDialog::choose()
 
 
 UFileDialog::UFileDialog( HWND hWnd )
+: sFilename(MAX_PATH)
 {
     // Initialize OPENFILENAME
     ZeroMemory(&m_ofn, sizeof(m_ofn));
     m_ofn.lStructSize = sizeof(m_ofn);
     m_ofn.hwndOwner = hWnd;
-    m_ofn.lpstrFile = szFile;
+    m_ofn.lpstrFile = sFilename;
     // Set lpstrFile[0] to '\0' so that GetOpenFileName does not
     // use the contents of szFile to initialize itself.
     m_ofn.lpstrFile[0] = '\0';
-    m_ofn.nMaxFile = sizeof(szFile);
+    m_ofn.nMaxFile = sFilename.buffer_size();
     m_ofn.lpstrFilter = "All\0*.*\0Text\0*.TXT\0";
     m_ofn.nFilterIndex = 1;
     m_ofn.lpstrFileTitle = NULL;
@@ -53,12 +54,35 @@ UFileDialog::~UFileDialog()
 
 BOOL UFileDialog::open()
 {
-    return ::GetOpenFileName(&m_ofn);
+    BOOL bRet = ::GetOpenFileName(&m_ofn);
+
+
+
+    if (!bRet)
+    {
+        BYTE size = *((BYTE *)m_ofn.lpstrFile);
+        sFilename.reserve(size+2);
+        return ::GetOpenFileName(&m_ofn);
+    }
+    else
+    {
+        return bRet;
+    }
 }
 
 void UFileDialog::setFilter(LPCTSTR lpFilter)
 {
     m_ofn.lpstrFilter = lpFilter;
+}
+
+void UFileDialog::setFlags(DWORD dwFlags)
+{
+    m_ofn.Flags = dwFlags;
+}
+
+WORD UFileDialog::getFileOffset() const
+{
+    return m_ofn.nFileOffset;
 }
 
 UFontDialog::UFontDialog( HWND hwnd )

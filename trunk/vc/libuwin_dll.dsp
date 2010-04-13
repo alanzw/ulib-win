@@ -74,7 +74,7 @@ LINK32=link.exe
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x804 /d "_DEBUG"
-# ADD RSC /l 0x804 /i "../ico" /d "_DEBUG"
+# ADD RSC /l 0x804 /i "../ico" /i "../res" /d "_DEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
@@ -460,8 +460,10 @@ SOURCE=..\res\u.rc
 
 !ELSEIF  "$(CFG)" == "libuwin_dll - Win32 Debug"
 
-# ADD BASE RSC /l 0x804 /i "\DEV\ulib-win\res" /i "\ulib-win\res"
-# ADD RSC /l 0x804 /i "\DEV\ulib-win\res" /i "\ulib-win\res" /i "../res" /i "../ico"
+# ADD BASE RSC /l 0x804 /i "\ulib-win\res" /i "\DEV\ulib-win\res"
+# SUBTRACT BASE RSC /i "../ico" /i "../res"
+# ADD RSC /l 0x804 /i "..\res" /i "..\ico" /i "\ulib-win\res"
+# SUBTRACT RSC /i "../ico" /i "../res"
 
 !ENDIF 
 

@@ -91,7 +91,6 @@ public:
 
         addToolbar();
 
-
         this->setDlgIconBig(::LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_EYE)));
 
         return TRUE;
@@ -124,6 +123,7 @@ private:
     void addToolbar()
     {
         toolbar = new UToolBar(m_hDlg, 0, m_hInst);
+        toolbar->setStyles(TBSTYLE_FLAT);
         toolbar->create();
         toolbar->addBitmap(1, IDB_OPEN);
         toolbar->addBitmap(1, IDB_SAVE);
@@ -136,6 +136,7 @@ private:
         toolbar->addSeparator(4);
         toolbar->addButton(3, IDM_HELP, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE);
         toolbar->autosize();
+        toolbar->show();
     }
 
     BOOL onMenuOpen()

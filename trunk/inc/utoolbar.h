@@ -19,7 +19,7 @@ public:
     BOOL addBitmap(int n, UINT nBitmap, HINSTANCE hInst = ::GetModuleHandle(NULL));
     //
     virtual BOOL addButtons(int num, TBBUTTON *ptbb);
-    BOOL addButton(TBBUTTON *ptbb, int n = 0);
+    BOOL addButton(TBBUTTON *ptbb, int n = 1);
     BOOL addButton(int iBitmap, int iCommand, BYTE fsState, BYTE fsStyle, INT_PTR iString = -1);
     virtual BOOL autosize();
     //
