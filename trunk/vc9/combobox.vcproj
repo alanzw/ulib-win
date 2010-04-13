@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="chart"
-	ProjectGUID="{600D313D-4980-461E-AA92-8B2D3A599647}"
-	RootNamespace="chart"
+	Name="combobox"
+	ProjectGUID="{CA0907A7-954E-40DA-BF7A-479CFB673711}"
+	RootNamespace="combobox"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
@@ -18,7 +18,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release"
+			IntermediateDirectory=".\Release\combobox"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -43,21 +43,22 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Release/chart.tlb"
+				TypeLibraryName=".\Release/combobox.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
+				AdditionalIncludeDirectories="../inc"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;BUILD_EXE"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
-				PrecompiledHeaderFile=".\Release/chart.pch"
-				AssemblerListingLocation=".\Release/"
-				ObjectFile=".\Release/"
-				ProgramDataBaseFileName=".\Release/"
+				PrecompiledHeaderFile=".\Release/combobox.pch"
+				AssemblerListingLocation=".\Release/combobox/"
+				ObjectFile=".\Release/combobox/"
+				ProgramDataBaseFileName=".\Release/combobox/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -74,10 +75,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\Release/chart.exe"
+				OutputFile=".\Release/combobox.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				ProgramDatabaseFile=".\Release/chart.pdb"
+				AdditionalLibraryDirectories="./Release"
+				ProgramDatabaseFile=".\Release/combobox.pdb"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -95,7 +97,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Release/chart.bsc"
+				OutputFile=".\Release/combobox.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -110,7 +112,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory=".\Debug"
-			IntermediateDirectory=".\Debug/chart"
+			IntermediateDirectory=".\Debug\combobox"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -135,7 +137,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/chart.tlb"
+				TypeLibraryName=".\Debug/combobox.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -146,10 +148,10 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				PrecompiledHeaderFile=".\Debug/chart/chart.pch"
-				AssemblerListingLocation=".\Debug/chart/"
-				ObjectFile=".\Debug/chart/"
-				ProgramDataBaseFileName=".\Debug/chart/"
+				PrecompiledHeaderFile=".\Debug/combobox.pch"
+				AssemblerListingLocation=".\Debug/combobox/"
+				ObjectFile=".\Debug/combobox/"
+				ProgramDataBaseFileName=".\Debug/combobox/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -168,13 +170,111 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\Debug/chart.exe"
+				OutputFile=".\Debug/combobox.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="./Debug"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\Debug/chart.pdb"
+				ProgramDatabaseFile=".\Debug/combobox.pdb"
+				SubSystem="2"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+				EmbedManifest="false"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\Debug/combobox.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug-static|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Debug/combobox.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="../inc"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;WITHOUT_DLL"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="1"
+				PrecompiledHeaderFile=".\Debug/combobox.pch"
+				AssemblerListingLocation=".\Debug/combobox/"
+				ObjectFile=".\Debug/combobox/"
+				ProgramDataBaseFileName=".\Debug/combobox/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="2052"
+				AdditionalIncludeDirectories="../res;../ico"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="msimg32.lib"
+				OutputFile=".\Debug/combobox.exe"
+				LinkIncremental="2"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="./Debug"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile=".\Debug/combobox.pdb"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -192,7 +292,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Debug/chart.bsc"
+				OutputFile=".\Debug/combobox.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -213,7 +313,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="..\app\uchart\test_chart.cpp"
+				RelativePath="..\demo\combobox\test_combobox.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -232,20 +332,8 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\app\uchart\uchart.cpp"
-				>
 				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug-static|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -260,58 +348,16 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\app\uchart\resource.h"
-				>
-			</File>
-			<File
-				RelativePath="..\app\uchart\uchart.h"
-				>
-			</File>
-			<File
-				RelativePath="..\app\uchart\udata.h"
-				>
-			</File>
-			<File
-				RelativePath="..\app\uchart\ulegend.h"
-				>
-			</File>
-			<File
-				RelativePath="..\app\uchart\uplot.h"
-				>
-			</File>
-			<File
-				RelativePath="..\app\uchart\usettings.h"
+				RelativePath="..\demo\combobox\resource.h"
 				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
-			Filter="ico;cur;bmp;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
+			Filter="rc"
 			>
 			<File
-				RelativePath="..\app\uchart\chart.rc"
-				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\app\uchart"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\app\uchart"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\demo\dialog\ulib.ico"
+				RelativePath="..\demo\combobox\combobox.rc"
 				>
 			</File>
 		</Filter>

@@ -7,13 +7,17 @@ class ULIB_API UComboBoxEx : public UControl
 {
 public:
     UComboBoxEx(HWND hParent, UINT nResource, HINSTANCE hInst);
+    //
+    UComboBoxEx(UBaseWindow *pWndParent, UINT nID);
+
+    //
     virtual ~UComboBoxEx();
 
     //
     virtual BOOL create();
 
     //
-    bool addItem(int nIndex, LPTSTR sText, int cchTextMax);
+    bool addItem(int nIndex, LPCTSTR sText, int cchTextMax);
 
     //
     HWND getCombo();

@@ -3,7 +3,7 @@
 #endif
 
 #define IDI_APP   1
-
+#define IDI_ULIB  2
 #define IDD_TEST  10001
 
 #define IDB_HELP_FOCUS                  129

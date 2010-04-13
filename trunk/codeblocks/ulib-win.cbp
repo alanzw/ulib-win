@@ -58,6 +58,7 @@
 		<Unit filename="..\inc\ubitmap.h" />
 		<Unit filename="..\inc\ubutton.h" />
 		<Unit filename="..\inc\ucombobox.h" />
+		<Unit filename="..\inc\ucomboboxex.h" />
 		<Unit filename="..\inc\uconsole.h" />
 		<Unit filename="..\inc\ucontrol.h" />
 		<Unit filename="..\inc\ucustomctrl.h" />
@@ -100,6 +101,7 @@
 		<Unit filename="..\src\ubitmap.cpp" />
 		<Unit filename="..\src\ubutton.cpp" />
 		<Unit filename="..\src\ucombobox.cpp" />
+		<Unit filename="..\src\ucomboboxex.cpp" />
 		<Unit filename="..\src\uconsole.cpp" />
 		<Unit filename="..\src\ucontrol.cpp" />
 		<Unit filename="..\src\ucustomctrl.cpp" />

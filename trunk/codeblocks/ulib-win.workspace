@@ -8,6 +8,7 @@
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="chart.cbp" />
+		<Project filename="combobox.cbp" />
 		<Project filename="console.cbp" />
 		<Project filename="ctrls.cbp">
 			<Depends filename="ulib-win.cbp" />

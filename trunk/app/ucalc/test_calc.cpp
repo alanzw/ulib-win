@@ -45,7 +45,7 @@ public:
 
    BOOL onCreate()
    {
-       this->setIconBig(IDI_APP);
+       this->setIconBig(IDI_ULIB);
 
        m_pEdtFormula = new UEdit(this, ID_EDT_FORMULA);
        m_pEdtFormula->setPos(100, 100, 300, 50);

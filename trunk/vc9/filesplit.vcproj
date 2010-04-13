@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="chart"
-	ProjectGUID="{600D313D-4980-461E-AA92-8B2D3A599647}"
-	RootNamespace="chart"
+	Name="filesplit"
+	ProjectGUID="{F702CD24-3064-4458-BF85-8674EB909065}"
+	RootNamespace="filesplit"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
@@ -43,7 +43,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Release/chart.tlb"
+				TypeLibraryName=".\Release/filesplit.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -54,7 +54,7 @@
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
-				PrecompiledHeaderFile=".\Release/chart.pch"
+				PrecompiledHeaderFile=".\Release/filesplit.pch"
 				AssemblerListingLocation=".\Release/"
 				ObjectFile=".\Release/"
 				ProgramDataBaseFileName=".\Release/"
@@ -74,10 +74,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\Release/chart.exe"
+				OutputFile=".\Release/filesplit.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				ProgramDatabaseFile=".\Release/chart.pdb"
+				ProgramDatabaseFile=".\Release/filesplit.pdb"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -95,7 +95,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Release/chart.bsc"
+				OutputFile=".\Release/filesplit.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -110,7 +110,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory=".\Debug"
-			IntermediateDirectory=".\Debug/chart"
+			IntermediateDirectory=".\Debug/filesplit"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -135,7 +135,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/chart.tlb"
+				TypeLibraryName=".\Debug/filesplit.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -146,10 +146,10 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				PrecompiledHeaderFile=".\Debug/chart/chart.pch"
-				AssemblerListingLocation=".\Debug/chart/"
-				ObjectFile=".\Debug/chart/"
-				ProgramDataBaseFileName=".\Debug/chart/"
+				PrecompiledHeaderFile=".\Debug/filesplit/filesplit.pch"
+				AssemblerListingLocation=".\Debug/filesplit/"
+				ObjectFile=".\Debug/filesplit/"
+				ProgramDataBaseFileName=".\Debug/filesplit/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -168,13 +168,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\Debug/chart.exe"
+				OutputFile=".\Debug/filesplit.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="./Debug"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\Debug/chart.pdb"
+				ProgramDatabaseFile=".\Debug/filesplit.pdb"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -192,7 +192,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Debug/chart.bsc"
+				OutputFile=".\Debug/filesplit.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -213,7 +213,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="..\app\uchart\test_chart.cpp"
+				RelativePath="..\app\ufilesplit\test_filesplit.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -234,7 +234,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\app\uchart\uchart.cpp"
+				RelativePath="..\app\ufilesplit\ufilesplit.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -260,27 +260,11 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\app\uchart\resource.h"
+				RelativePath="..\app\ufilesplit\resource.h"
 				>
 			</File>
 			<File
-				RelativePath="..\app\uchart\uchart.h"
-				>
-			</File>
-			<File
-				RelativePath="..\app\uchart\udata.h"
-				>
-			</File>
-			<File
-				RelativePath="..\app\uchart\ulegend.h"
-				>
-			</File>
-			<File
-				RelativePath="..\app\uchart\uplot.h"
-				>
-			</File>
-			<File
-				RelativePath="..\app\uchart\usettings.h"
+				RelativePath="..\app\ufilesplit\ufilesplit.h"
 				>
 			</File>
 		</Filter>
@@ -289,7 +273,7 @@
 			Filter="ico;cur;bmp;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
 			<File
-				RelativePath="..\app\uchart\chart.rc"
+				RelativePath="..\app\ufilesplit\filesplit.rc"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -297,7 +281,7 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\app\uchart"
+						AdditionalIncludeDirectories="\ulib-win\app\ufilesplit"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -306,13 +290,9 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="\ulib-win\app\uchart"
+						AdditionalIncludeDirectories="\ulib-win\app\ufilesplit"
 					/>
 				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\demo\dialog\ulib.ico"
-				>
 			</File>
 		</Filter>
 	</Files>
