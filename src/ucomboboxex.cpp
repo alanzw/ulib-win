@@ -13,6 +13,11 @@ UComboBoxEx::UComboBoxEx(HWND hParent,
 : UControl(hParent, nResource, hInst)
 {}
 
+UComboBoxEx::UComboBoxEx(UBaseWindow *pWndParent, UINT nID)
+: UControl(pWndParent, nID)
+{}
+
+
 UComboBoxEx::~UComboBoxEx()
 {}
 
@@ -28,14 +33,14 @@ BOOL UComboBoxEx::create()
     return UControl::create(_T("ComboBoxEx32"));
 }
 
-bool UComboBoxEx::addItem(int nIndex, LPTSTR sText, int cchTextMax)
+bool UComboBoxEx::addItem(int nIndex, LPCTSTR sText, int cchTextMax)
 {
     COMBOBOXEXITEM cbei;
     ::ZeroMemory(&cbei, sizeof(COMBOBOXEXITEM));
     // Set the mask common to all items.
     cbei.mask = CBEIF_TEXT | CBEIF_IMAGE | CBEIF_SELECTEDIMAGE;
     cbei.iItem = nIndex;
-    cbei.pszText = sText;
+    cbei.pszText = (LPTSTR)sText;
     cbei.cchTextMax = cchTextMax;
     cbei.iImage = 0;
     cbei.iSelectedImage = 0;

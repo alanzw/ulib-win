@@ -4,6 +4,7 @@
 	Version="9.00"
 	Name="calc"
 	ProjectGUID="{2FCD3DFB-4467-41C9-B220-93E6B303224E}"
+	RootNamespace="calc"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
@@ -171,6 +172,7 @@
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="./Debug"
+				GenerateManifest="false"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\Debug/calc.pdb"
 				SubSystem="2"
@@ -183,6 +185,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
+				EmbedManifest="false"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -279,7 +282,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\demo\dialog\resource.h"
+				RelativePath="..\app\ucalc\resource.h"
 				>
 			</File>
 			<File

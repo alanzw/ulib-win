@@ -3,7 +3,8 @@
 #endif
 
 #define IDI_APP                         1
-
+#define IDI_ULIB                        2
+#define IDI_HELP                        3
 #define IDR_MENU_MAIN                   200
 #define IDM_NEW                         201
 #define IDM_EXIT                        202

@@ -93,6 +93,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
+				EmbedManifest="false"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -500,6 +501,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\src\udc.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\udebug.cpp"
 				>
 			</File>
@@ -875,10 +880,6 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\resource.h"
-				>
-			</File>
-			<File
 				RelativePath="..\inc\ubasewindow.h"
 				>
 			</File>
@@ -904,6 +905,10 @@
 			</File>
 			<File
 				RelativePath="..\inc\ucontrol.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\udc.h"
 				>
 			</File>
 			<File
@@ -1021,7 +1026,6 @@
 		</Filter>
 		<Filter
 			Name="Resource Files"
-			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
 			<File
 				RelativePath="..\res\u.rc"

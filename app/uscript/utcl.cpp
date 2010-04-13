@@ -28,12 +28,12 @@ UTcl::~UTcl()
 bool UTcl::initialize()
 {
     tcl_interp = Tcl_CreateInterp();
-    
+
     if ( tcl_interp == NULL )
     {
         return false;
     }
-    
+
     return true;
 }
 

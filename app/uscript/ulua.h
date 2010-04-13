@@ -34,7 +34,7 @@ class ULua
 public:
     bool initialize();
     bool finalize();
-    
+
     int parse(const char *sText);
 private:
     lua_State *m_interpreter;

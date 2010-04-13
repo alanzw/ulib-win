@@ -2,7 +2,7 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="..\inc\ubasewindow.h" open="0" top="0" tabpos="1">
-		<Cursor position="2473" topLine="96" />
+		<Cursor position="3885" topLine="142" />
 	</File>
 	<File name="..\inc\ubitmap.h" open="0" top="0" tabpos="0">
 		<Cursor position="317" topLine="5" />
@@ -10,8 +10,11 @@
 	<File name="..\inc\ubutton.h" open="0" top="0" tabpos="1">
 		<Cursor position="1590" topLine="80" />
 	</File>
+	<File name="..\inc\ucombobox.h" open="1" top="0" tabpos="3">
+		<Cursor position="211" topLine="0" />
+	</File>
 	<File name="..\inc\ucontrol.h" open="0" top="0" tabpos="2">
-		<Cursor position="403" topLine="10" />
+		<Cursor position="3545" topLine="97" />
 	</File>
 	<File name="..\inc\udialogx.h" open="0" top="0" tabpos="7">
 		<Cursor position="2521" topLine="74" />
@@ -76,14 +79,17 @@
 	<File name="..\inc\utreeview.h" open="0" top="0" tabpos="0">
 		<Cursor position="574" topLine="13" />
 	</File>
+	<File name="..\inc\uwndclassx.h" open="1" top="0" tabpos="1">
+		<Cursor position="1217" topLine="44" />
+	</File>
 	<File name="..\inc\uworkaround.h" open="0" top="0" tabpos="3">
 		<Cursor position="650" topLine="25" />
 	</File>
 	<File name="..\res\u.rc" open="0" top="0" tabpos="0">
 		<Cursor position="119" topLine="0" />
 	</File>
-	<File name="..\src\ubasewindow.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="4342" topLine="218" />
+	<File name="..\src\ubasewindow.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="6417" topLine="251" />
 	</File>
 	<File name="..\src\ubitmap.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2570" topLine="94" />
@@ -91,8 +97,14 @@
 	<File name="..\src\ubutton.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="6330" topLine="27" />
 	</File>
-	<File name="..\src\ucontrol.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="6308" topLine="246" />
+	<File name="..\src\ucombobox.cpp" open="1" top="1" tabpos="5">
+		<Cursor position="269" topLine="0" />
+	</File>
+	<File name="..\src\ucomboboxex.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="669" topLine="26" />
+	</File>
+	<File name="..\src\ucontrol.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="1659" topLine="9" />
 	</File>
 	<File name="..\src\udc.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="2007" topLine="87" />
@@ -154,7 +166,7 @@
 	<File name="..\src\utreeview.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="1724" topLine="23" />
 	</File>
-	<File name="..\src\uwindowx.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="1904" topLine="0" />
+	<File name="..\src\uwindowx.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="559" topLine="12" />
 	</File>
 </CodeBlocks_layout_file>

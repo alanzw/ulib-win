@@ -15,7 +15,9 @@ UComboBox::UComboBox()
 
 UComboBox::UComboBox(UBaseWindow *pWndParent, UINT nID)
 : UControl(pWndParent, nID)
-{}
+{
+    m_dwStyles |= CBS_DROPDOWN;
+}
 
 
 UComboBox::~UComboBox()

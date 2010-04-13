@@ -42,14 +42,15 @@ public:
 #ifndef WS_EX_LAYERED
 #define WS_EX_LAYERED 1
 #endif
+
 #ifndef LWA_ALPHA
 #define LWA_ALPHA 2
 #endif
 
         this->modifyExStyles(WS_EX_LAYERED);
         UDllMan dlm(_T("user32.dll"));
-        dlm.callFunc<BOOL, HWND, COLORREF, BYTE, DWORD>(_T("SetLayeredWindowAttributes"),
-            m_hDlg, 0, 129, LWA_ALPHA);
+        //dlm.callFunc<BOOL, HWND, COLORREF, BYTE, DWORD>(_T("SetLayeredWindowAttributes"),
+        //    m_hDlg, 0, 129, LWA_ALPHA);
 #endif // _MSC_VER
         HMENU hMenu = GetSystemMenu (m_hDlg, FALSE) ;
 

@@ -11,8 +11,10 @@
 #include "ugdi.h"
 #include "colors.h"
 #include "ubutton.h"
+#include "ustatic.h"
 #include "uedit.h"
 #include "ulistview.h"
+#include "ucomboboxex.h"
 #include "adt/uautoptr.h"
 
 #include "ufilesplit.h"
@@ -20,11 +22,12 @@
 class UMyWindow : public UBaseWindow
 {
     enum {
-		ID_BUTTON_ADD   = 11001,
+        ID_BUTTON_ADD   = 11001,
         ID_BUTTON_GO    = 11002,
         ID_TIMER_CLOCK = 11003,
-		ID_LISTVIEW_FILES = 11004,
-		ID_FILE_OUTPUT   = 11005
+        ID_LISTVIEW_FILES = 11004,
+        ID_FILE_OUTPUT   = 11005,
+		ID_FILE_SIZE    = 11006
     };
 public:
    UMyWindow()
@@ -37,41 +40,56 @@ public:
 
    BOOL onCreate()
    {
-       this->setIconBig(IDI_APP);
+       this->setIconBig(IDI_HELP);
        this->setTimer(ID_TIMER_CLOCK, 1000);
 
-		m_lv = new UListView(this, ID_LISTVIEW_FILES);
-		m_lv->setStyles(LVS_REPORT | LVS_EDITLABELS);
-		m_lv->setPos(50, 50, 300, 200);
-		m_lv->create();
+       m_label = new UStatic(this, -1);
+       m_label->setPos(160, 20, 100, 20);
+       m_label->setText(_T("Split"));
+        m_label->create();
 
-		m_lv->setExStylesListView(LVS_EX_GRIDLINES);
+        m_lv = new UListView(this, ID_LISTVIEW_FILES);
+        m_lv->setStyles(LVS_REPORT | LVS_EDITLABELS);
+        m_lv->setPos(50, 50, 300, 200);
+        m_lv->create();
 
-		m_lv->addColTextWidth(0, "index", 50);
-		m_lv->addColTextWidth(1, "filename", 100);
-		m_lv->addColTextWidth(2, "other", 150);
+        m_lv->setExStylesListView(LVS_EX_GRIDLINES);
 
-		m_lv->addItemTextImage(0, "1", 0);
-		m_lv->setItemText(0, 1, _T("a.rar"));
-		m_lv->addItemTextImage(1, "2", 0);
-		m_lv->setItemText(1, 1, _T("b.rar"));
-		m_lv->addItemTextImage(2, "3", 0);
-		m_lv->setItemText(2, 1, _T("c.rar"));
+        m_lv->addColTextWidth(0, "index", 50);
+        m_lv->addColTextWidth(1, "filename", 100);
+        m_lv->addColTextWidth(2, "other", 150);
 
-		m_add = new UButton(this, ID_BUTTON_ADD);
-		m_add->setPos(400, 60, 100, 50);
-		m_add->create();
-		m_add->setWindowText(_T("Add Files"));
+        m_lv->addItemTextImage(0, "1", 0);
+        m_lv->setItemText(0, 1, _T("a.rar"));
+        m_lv->addItemTextImage(1, "2", 0);
+        m_lv->setItemText(1, 1, _T("b.rar"));
+        m_lv->addItemTextImage(2, "3", 0);
+        m_lv->setItemText(2, 1, _T("c.rar"));
+
+        m_add = new UButton(this, ID_BUTTON_ADD);
+        m_add->setPos(400, 60, 100, 50);
+        m_add->create();
+        m_add->setWindowText(_T("Add Files"));
+
+		m_size = new UComboBoxEx(this, ID_FILE_SIZE);
+		m_size->setStyles(CBS_DROPDOWN);
+		m_size->setPos(400, 140, 100, 200);
+		m_size->create();
+		RECT rc = {400, 140, 500, 390};
+		m_size->setPosition(&rc);
+		m_size->addItem(0, _T("1  M"), 20);
+		m_size->addItem(1, _T("10 M"), 20);
+		m_size->setCurSel(0);
 
         m_go = new UButton(this, ID_BUTTON_GO);
-        m_go->setPos(400, 140, 100, 50);
+        m_go->setPos(400, 240, 100, 50);
         m_go->create();
         m_go->setWindowText(_T("Go"));
 
-		m_output = new UEdit(this, ID_FILE_OUTPUT);
-		m_output->setStyles(ES_MULTILINE);
-		m_output->setPos(50, 270, 300, 50);
-		m_output->create();
+        m_output = new UEdit(this, ID_FILE_OUTPUT);
+        m_output->setStyles(ES_MULTILINE);
+        m_output->setPos(50, 270, 300, 50);
+        m_output->create();
 
        return UBaseWindow::onCreate();
    }
@@ -87,7 +105,7 @@ public:
     {
 
     }
-    //
+
     virtual BOOL onEraseBkgnd(HDC hdc)
     {
         RECT rc = {0};
@@ -123,10 +141,12 @@ public:
         }
     }
 private:
-	huys::ADT::UAutoPtr<UButton> m_add;
+    huys::ADT::UAutoPtr<UStatic> m_label;
+    huys::ADT::UAutoPtr<UButton> m_add;
     huys::ADT::UAutoPtr<UButton> m_go;
-	huys::ADT::UAutoPtr<UListView> m_lv;
-	huys::ADT::UAutoPtr<UEdit> m_output;
+    huys::ADT::UAutoPtr<UListView> m_lv;
+    huys::ADT::UAutoPtr<UEdit> m_output;
+	huys::ADT::UAutoPtr<UComboBoxEx> m_size;
 private:
     //
     void go_update()

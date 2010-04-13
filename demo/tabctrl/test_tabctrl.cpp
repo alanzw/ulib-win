@@ -153,16 +153,16 @@ public:
         }
     }
 
-	virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
-	{
-		if ( WM_MOVE == message )
-		{
-			m_pChildDlg->update();
-			m_pChildDlg2->update();
-		}
+    virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
+    {
+        if ( WM_MOVE == message )
+        {
+            m_pChildDlg->update();
+            m_pChildDlg2->update();
+        }
 
-		return UDialogBox::DialogProc(message, wParam, lParam);
-	}
+        return UDialogBox::DialogProc(message, wParam, lParam);
+    }
 private:
     huys::ADT::UAutoPtr<UTabCtrl> m_pTabCtrl;
     huys::ADT::UAutoPtr<UImageList> m_pIml;
@@ -188,8 +188,8 @@ private:
             m_pChildDlg2->setRedraw();
             return FALSE;
             }
-		default:
-			return FALSE;
+        default:
+            return FALSE;
         }
     }
 

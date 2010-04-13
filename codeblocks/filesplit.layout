@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+	<File name="..\app\ufilesplit\filesplit.rc" open="0" top="0" tabpos="0">
+		<Cursor position="160" topLine="0" />
+	</File>
 	<File name="..\app\ufilesplit\test_filesplit.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="1842" topLine="55" />
+		<Cursor position="2668" topLine="93" />
 	</File>
 	<File name="..\app\ufilesplit\ufilesplit.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="212" topLine="0" />
 	</File>
-	<File name="..\app\ufilesplit\ufilesplit.h" open="1" top="1" tabpos="3">
-		<Cursor position="110" topLine="0" />
+	<File name="..\app\ufilesplit\ufilesplit.h" open="1" top="1" tabpos="8">
+		<Cursor position="66" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>
