@@ -29,3 +29,8 @@ BOOL UPropSheet::create( PROPSHEETPAGE *ppsp, int nPages, LPSTR lpCaption)
     return TRUE;
 }
 
+void UPropSheet::addPage()
+{
+
+
+}

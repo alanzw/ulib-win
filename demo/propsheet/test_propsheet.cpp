@@ -73,47 +73,48 @@ private:
     huys::ADT::UAutoPtr<UPushButton> m_pUBtnOK;
     huys::ADT::UAutoPtr<UPushButton> m_pUBtnCancel;
 private:
-	BOOL onBnOK()
-	{
-	PROPSHEETPAGE psp[2];
-    PROPSHEETHEADER psh;
+    BOOL onBnOK()
+    {
 
-    psp[1].dwSize = sizeof(PROPSHEETPAGE);
-    psp[1].dwFlags = PSP_USEICONID | PSP_USETITLE;
-		
-    psp[1].hInstance = m_hInst;
-    psp[1].pszTemplate = (LPCTSTR)IDD_PROP;
-    psp[1].pszIcon = MAKEINTRESOURCE(IDI_APP);
-	psp[1].pfnDlgProc = (DLGPROC)DefDlgProc;
-    psp[1].pszTitle = "合并";
-    psp[1].lParam =0;
-    psp[1].pfnCallback = NULL;
+        PROPSHEETPAGE psp[2];
+        PROPSHEETHEADER psh;
 
-    psp[0].dwSize = sizeof(PROPSHEETPAGE);
-    psp[0].dwFlags = PSP_USEICONID | PSP_USETITLE|PSP_HASHELP;
-    psp[0].hInstance =m_hInst;
-    psp[0].pszTemplate = (LPCTSTR)IDD_PROP2;
-    psp[0].pszIcon = (LPCTSTR)IDI_APP;
-    psp[0].pfnDlgProc =(DLGPROC)DefDlgProc;
-    psp[0].pszTitle = "分割";
-    psp[0].lParam = 0;
-    psp[0].pfnCallback = NULL;
+        psp[1].dwSize = sizeof(PROPSHEETPAGE);
+        psp[1].dwFlags = PSP_USEICONID | PSP_USETITLE;
 
-    psh.dwSize = sizeof(PROPSHEETHEADER);
-    psh.dwFlags = PSH_USEICONID | PSH_PROPSHEETPAGE;
-    psh.hwndParent =NULL;
-    psh.hInstance = m_hInst;
-    psh.pszIcon = MAKEINTRESOURCE(IDI_APP);
-    psh.pszCaption = (LPSTR)"split";
-    psh.nPages = sizeof(psp) / sizeof(PROPSHEETPAGE);
-    psh.nStartPage = 0;
-    psh.ppsp = (LPCPROPSHEETPAGE) &psp;
-    psh.pfnCallback =0;
+        psp[1].hInstance = m_hInst;
+        psp[1].pszTemplate = (LPCTSTR)IDD_PROP;
+        psp[1].pszIcon = MAKEINTRESOURCE(IDI_HELP);
+        psp[1].pfnDlgProc = NULL;
+        psp[1].pszTitle = "合并";
+        psp[1].lParam =0;
+        psp[1].pfnCallback = NULL;
 
-    PropertySheet(&psh);
+        psp[0].dwSize = sizeof(PROPSHEETPAGE);
+        psp[0].dwFlags = PSP_USEICONID | PSP_USETITLE|PSP_HASHELP;
+        psp[0].hInstance =m_hInst;
+        psp[0].pszTemplate = (LPCTSTR)IDD_PROP2;
+        psp[0].pszIcon = MAKEINTRESOURCE(IDI_HELP);
+        psp[0].pfnDlgProc =NULL;
+        psp[0].pszTitle = "分割";
+        psp[0].lParam = 0;
+        psp[0].pfnCallback = NULL;
 
-	return FALSE;
-	}
+        psh.dwSize = sizeof(PROPSHEETHEADER);
+        psh.dwFlags = PSH_USEICONID | PSH_PROPSHEETPAGE;
+        psh.hwndParent =m_hDlg;
+        psh.hInstance = m_hInst;
+        psh.pszIcon = MAKEINTRESOURCE(IDI_HELP);
+        psh.pszCaption = (LPSTR)"split";
+        psh.nPages = sizeof(psp) / sizeof(PROPSHEETPAGE);
+        psh.nStartPage = 0;
+        psh.ppsp = (LPCPROPSHEETPAGE) &psp;
+        psh.pfnCallback =0;
+
+        PropertySheet(&psh);
+
+        return FALSE;
+    }
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

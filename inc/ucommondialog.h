@@ -3,6 +3,8 @@
 
 #include "ulib.h"
 #include "colors.h"
+#include "adt/ustring.h"
+
 
 namespace UCommonDialog
 {
@@ -35,13 +37,16 @@ public:
     UFileDialog(HWND hWnd);
     ~UFileDialog();
     BOOL open();
-    LPCTSTR getName() const {return szFile;}
+    LPCTSTR getName() const {return sFilename.c_str();}
     void setFilter(LPCTSTR lpFilter);
+    void setFlags(DWORD dwFlags);
+    WORD getFileOffset() const;
 private:
     OPENFILENAME m_ofn;
     HWND m_hWnd;
-    TCHAR szFile[260];       // buffer for file name
+    //TCHAR szFile[260];  // buffer for file name
     //HANDLE m_hFile;
+    huys::ADT::UStringAnsi sFilename;
 };
 
 
@@ -77,9 +82,9 @@ class ULIB_API UPrinterDialog
 public:
     UPrinterDialog(HWND hwnd);
     ~UPrinterDialog();
-    
+
     BOOL choose();
-    
+
     HDC getHDC() const
     { return m_pd.hDC; }
 private:

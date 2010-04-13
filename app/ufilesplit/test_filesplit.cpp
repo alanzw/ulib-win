@@ -14,8 +14,11 @@
 #include "ustatic.h"
 #include "uedit.h"
 #include "ulistview.h"
-#include "ucomboboxex.h"
+#include "ucombobox.h"
 #include "adt/uautoptr.h"
+#include "adt/ustring.h"
+#include "ucommondialog.h"
+#include "umsg.h"
 
 #include "ufilesplit.h"
 
@@ -27,15 +30,17 @@ class UMyWindow : public UBaseWindow
         ID_TIMER_CLOCK = 11003,
         ID_LISTVIEW_FILES = 11004,
         ID_FILE_OUTPUT   = 11005,
-		ID_FILE_SIZE    = 11006
+        ID_FILE_SIZE    = 11006,
+        ID_FILE_UNIT    = 11009,
+        ID_BUTTON_SELECT = 11007
     };
 public:
    UMyWindow()
-   : UBaseWindow(NULL, ::GetModuleHandle(NULL))
+   : UBaseWindow(NULL, GetModuleHandle(NULL))
    {
         this->setTitle(_T("UFileSplit 0.0.1"));
         this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
-        this->setPos(0, 0, 600, 400);
+        this->setPos(0, 0, 800, 600);
    }
 
    BOOL onCreate()
@@ -46,50 +51,65 @@ public:
        m_label = new UStatic(this, -1);
        m_label->setPos(160, 20, 100, 20);
        m_label->setText(_T("Split"));
-        m_label->create();
+       m_label->create();
 
         m_lv = new UListView(this, ID_LISTVIEW_FILES);
         m_lv->setStyles(LVS_REPORT | LVS_EDITLABELS);
-        m_lv->setPos(50, 50, 300, 200);
+        m_lv->setPos(50, 50, 500, 400);
         m_lv->create();
 
         m_lv->setExStylesListView(LVS_EX_GRIDLINES);
 
         m_lv->addColTextWidth(0, "index", 50);
-        m_lv->addColTextWidth(1, "filename", 100);
-        m_lv->addColTextWidth(2, "other", 150);
-
+        m_lv->addColTextWidth(1, "filename", 300);
+        m_lv->addColTextWidth(2, "other", 100);
+/*
         m_lv->addItemTextImage(0, "1", 0);
         m_lv->setItemText(0, 1, _T("a.rar"));
         m_lv->addItemTextImage(1, "2", 0);
         m_lv->setItemText(1, 1, _T("b.rar"));
         m_lv->addItemTextImage(2, "3", 0);
         m_lv->setItemText(2, 1, _T("c.rar"));
-
+        //this->modifyExStyles(WS_EX_LAYERED);
+*/
         m_add = new UButton(this, ID_BUTTON_ADD);
-        m_add->setPos(400, 60, 100, 50);
+        m_add->setPos(580, 60, 100, 50);
         m_add->create();
         m_add->setWindowText(_T("Add Files"));
 
-		m_size = new UComboBoxEx(this, ID_FILE_SIZE);
-		m_size->setStyles(CBS_DROPDOWN);
-		m_size->setPos(400, 140, 100, 200);
-		m_size->create();
-		RECT rc = {400, 140, 500, 390};
-		m_size->setPosition(&rc);
-		m_size->addItem(0, _T("1  M"), 20);
-		m_size->addItem(1, _T("10 M"), 20);
-		m_size->setCurSel(0);
+        m_size = new UComboBox(this, ID_FILE_SIZE);
+        m_size->setStyles(CBS_DROPDOWN);
+        m_size->setPos(580, 140, 60, 200);
+        m_size->create();
+        m_size->addText(_T("1"));
+        m_size->addText(_T("10"));
+        m_size->addText(_T("100"));
+        m_size->addText(_T("1000"));
+        m_size->setCurSel(0);
+
+        m_unit = new UComboBox(this, ID_FILE_UNIT);
+        m_unit->setStyles(CBS_DROPDOWNLIST);
+        m_unit->setPos(650, 140, 40, 50);
+        m_unit->create();
+        m_unit->addText(_T("K"));
+        m_unit->addText(_T("M"));
+        m_unit->addText(_T("G"));
+        m_unit->setCurSel(0);
 
         m_go = new UButton(this, ID_BUTTON_GO);
-        m_go->setPos(400, 240, 100, 50);
+        m_go->setPos(580, 240, 100, 50);
         m_go->create();
         m_go->setWindowText(_T("Go"));
 
         m_output = new UEdit(this, ID_FILE_OUTPUT);
         m_output->setStyles(ES_MULTILINE);
-        m_output->setPos(50, 270, 300, 50);
+        m_output->setPos(50, 470, 350, 50);
         m_output->create();
+
+        m_select = new UButton(this, ID_BUTTON_SELECT);
+        m_select->setPos(420, 470, 60, 50);
+        m_select->create();
+        m_select->setWindowText(_T("Select"));
 
        return UBaseWindow::onCreate();
    }
@@ -106,16 +126,16 @@ public:
 
     }
 
-    virtual BOOL onEraseBkgnd(HDC hdc)
-    {
-        RECT rc = {0};
-        ::GetClientRect(*this, &rc);
-        huys::URectangle urc(rc);
-        urc.setFilledColor(huys::black);
-        urc.setFilledStyle(BS_SOLID);
-        urc.Draw(hdc);
-        return TRUE;
-    }
+   virtual BOOL onEraseBkgnd(HDC hdc)
+   {
+       RECT rc = {0};
+       ::GetClientRect(*this, &rc);
+       huys::URectangle urc(rc);
+       urc.setFilledColor(huys::gray);
+       urc.setFilledStyle(BS_SOLID);
+       urc.Draw(hdc);
+       return TRUE;
+   }
 
     BOOL onTimer(WPARAM wParam, LPARAM lParam)
     {
@@ -134,8 +154,12 @@ public:
         {
         case IDM_EXIT:
             return UBaseWindow::onClose();
+        case ID_BUTTON_ADD:
+            return onBnAdd();
         case ID_BUTTON_GO:
             return onBnGo();
+        case ID_BUTTON_SELECT:
+            return onBnSelect();
         default:
             return UBaseWindow::onCommand(wParam, lParam);
         }
@@ -146,16 +170,75 @@ private:
     huys::ADT::UAutoPtr<UButton> m_go;
     huys::ADT::UAutoPtr<UListView> m_lv;
     huys::ADT::UAutoPtr<UEdit> m_output;
-	huys::ADT::UAutoPtr<UComboBoxEx> m_size;
+    huys::ADT::UAutoPtr<UButton> m_select;
+    huys::ADT::UAutoPtr<UComboBox> m_size;
+    huys::ADT::UAutoPtr<UComboBox> m_unit;
+    huys::ADT::UStringAnsi m_sOutputFile;
 private:
     //
     void go_update()
     {
     }
 
+    BOOL onBnAdd()
+    {
+        UCommonDialog::UFileDialog filedlg(*this);
+        filedlg.setFlags(OFN_ALLOWMULTISELECT|OFN_EXPLORER);
+        if (filedlg.open())
+        {
+            const TCHAR * pbuff = filedlg.getName();
+            huys::ADT::UStringAnsi filename = pbuff;
+            huys::ADT::UStringAnsi tmp(MAX_PATH);
+
+            if (filename.length() > filedlg.getFileOffset())
+            {
+                int nCount = m_lv->getItemCount();
+                m_lv->addItemTextImage(nCount, tmp.format("%d", nCount+1), 0);
+                m_lv->setItemText(nCount, 1, filename);
+            }
+            else
+            {
+                pbuff += filedlg.getFileOffset();
+
+                while ('\0' != pbuff[0])
+                {
+                    int nCount = m_lv->getItemCount();
+                    m_lv->addItemTextImage(nCount, tmp.format("%d", nCount+1), 0);
+                    m_lv->setItemText(nCount, 1, tmp.format("%s\\%s", filename.c_str(), pbuff));
+
+                    pbuff += lstrlen(pbuff)+1;
+                }
+            }
+        }
+
+        return FALSE;
+    }
+
     BOOL onBnGo()
     {
+        huys::ADT::UStringAnsi fin_name(MAX_PATH);
+        huys::ADT::UStringAnsi fout_name(MAX_PATH);
 
+
+
+        m_output->getWindowText(fout_name, MAX_PATH);
+
+        UFileSplit::split(fout_name, 1000, 100, fout_name);
+
+
+        return FALSE;
+    }
+
+    BOOL onBnSelect()
+    {
+        UCommonDialog::UFileDialog filedlg(*this);
+        filedlg.setFlags(OFN_EXPLORER);
+        if (filedlg.open())
+        {
+            m_sOutputFile = filedlg.getName();
+
+            m_output->setWindowText(m_sOutputFile);
+        }
         return FALSE;
     }
 };

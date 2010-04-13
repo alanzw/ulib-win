@@ -8,10 +8,10 @@
 
 int main(int argc, char *argv[])
 {
-    UToolHelp uth; 
+    UToolHelp uth;
     uth.listProcesses();
-    //uth.listProcessModules(::GetCurrentProcessId());    
-   
+    //uth.listProcessModules(::GetCurrentProcessId());
+
     getchar();
     return 0;
 }

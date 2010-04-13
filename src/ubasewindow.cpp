@@ -113,7 +113,7 @@ bool UBaseWindow::create()
     {
         m_lpWindowTitle = _T("ubasewindow");
     }
-    
+
     //
     if (!onPreCreateWindow())
     {
@@ -205,7 +205,11 @@ BOOL UBaseWindow::onMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
         return onSize(wParam, lParam);
     case WM_CTLCOLORSTATIC:
     case WM_CTLCOLOREDIT:
-        return this->onCtrlColor(wParam, lParam);
+        {
+        HBRUSH hbr = 0;
+        if (0 != (hbr = (HBRUSH)this->onCtrlColor(wParam, lParam))) return (BOOL)hbr;
+        return defaultMessageHandler(uMessage, wParam, lParam);
+        }
     case WM_MEASUREITEM:
         return this->onMeasureItem(wParam, lParam);
     case WM_DRAWITEM:
