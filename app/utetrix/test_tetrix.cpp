@@ -71,6 +71,17 @@ public:
             return UBaseWindow::onCommand(wParam, lParam);
         }
     }
+    
+    BOOL onChar(WPARAM wParam, LPARAM lParam)
+    {
+        switch (wParam)
+        {
+        case VK_ESCAPE:
+            return UBaseWindow::onClose();
+        default:
+            return UBaseWindow::onChar(wParam, lParam);
+        }
+    }
 private:
     huys::ADT::UAutoPtr<UTetrix> _tetrix;
 private:

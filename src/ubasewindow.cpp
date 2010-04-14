@@ -73,7 +73,7 @@ UBaseWindow::UBaseWindow( HWND hParent /*= NULL*/,
 
 UBaseWindow::UBaseWindow(UBaseWindow *pWndParent)
 : m_hParent(pWndParent->getHandle()), m_hSelf(NULL), m_hInst(NULL), m_lpMenuName(NULL),
-m_dwStyles(WS_VISIBLE|WS_SYSMENU),
+m_dwStyles(WS_VISIBLE),
 m_dwExStyles(0),
 m_lpWindowClass(0),
 m_lpWindowTitle(NULL),
