@@ -63,15 +63,7 @@ public:
         m_lv->addColTextWidth(0, "index", 50);
         m_lv->addColTextWidth(1, "filename", 300);
         m_lv->addColTextWidth(2, "other", 100);
-/*
-        m_lv->addItemTextImage(0, "1", 0);
-        m_lv->setItemText(0, 1, _T("a.rar"));
-        m_lv->addItemTextImage(1, "2", 0);
-        m_lv->setItemText(1, 1, _T("b.rar"));
-        m_lv->addItemTextImage(2, "3", 0);
-        m_lv->setItemText(2, 1, _T("c.rar"));
-        //this->modifyExStyles(WS_EX_LAYERED);
-*/
+
         m_add = new UButton(this, ID_BUTTON_ADD);
         m_add->setPos(580, 60, 100, 50);
         m_add->create();
@@ -164,6 +156,19 @@ public:
             return UBaseWindow::onCommand(wParam, lParam);
         }
     }
+
+    BOOL onChar(WPARAM wParam, LPARAM lParam)
+    {
+        switch (wParam)
+        {
+        case VK_ESCAPE:
+            return UBaseWindow::onClose();
+        default:
+            return UBaseWindow::onChar(wParam, lParam);
+        }
+    }
+
+
 private:
     huys::ADT::UAutoPtr<UStatic> m_label;
     huys::ADT::UAutoPtr<UButton> m_add;

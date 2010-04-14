@@ -8,7 +8,7 @@
 #include "ubasewindow.h"
 #include "ugdi.h"
 #include "colors.h"
-
+#include "uregion.h"
 #include "uclock.h"
 
 class UMyWindow : public UBaseWindow
@@ -24,12 +24,25 @@ public:
         this->setTitle(_T("UClock 0.0.1"));
         //this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
         this->setPos(0, 0, 150, 180);
+        this->setStyles(WS_POPUP);
    }
 
    BOOL onCreate()
    {
        this->setIconBig(IDI_APP);
        this->setTimer(ID_TIMER_CLOCK, 1000);
+
+         RECT rc;
+        ::GetWindowRect(*this, &rc);
+        rc.right -= rc.left;
+        rc.bottom -= rc.top;
+        rc.left = 0;
+        rc.top = 0;
+
+
+        m_rgn.createRoundRect(rc.left,rc.top,rc.right,rc.bottom,150,150);
+
+        this->setWindowRgn(m_rgn);
 
        return UBaseWindow::onCreate();
    }
@@ -67,8 +80,27 @@ public:
         }
         return UBaseWindow::onTimer(wParam, lParam);
     }
-private:
 
+    BOOL onChar(WPARAM wParam, LPARAM lParam)
+    {
+        switch (wParam)
+        {
+        case VK_ESCAPE:
+            return UBaseWindow::onClose();
+        default:
+            return UBaseWindow::onChar(wParam, lParam);
+        }
+    }
+
+    BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
+    {
+        this->postMsg(WM_NCLBUTTONDOWN, (WPARAM)HTCAPTION, (LPARAM)lParam);
+        return FALSE;
+    }
+
+private:
+    URegion m_rgn;
+private:
 #define London 0
 #define Beijing 8
     struct time_HHMMSS
