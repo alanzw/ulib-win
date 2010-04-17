@@ -14,7 +14,7 @@
 		<Project filename="contact.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="ctrls.cbp" active="1">
+		<Project filename="ctrls.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="customctrl.cbp">
@@ -61,7 +61,7 @@
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="sdi.cbp" />
-		<Project filename="static.cbp">
+		<Project filename="static.cbp" active="1">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="statusbar.cbp">

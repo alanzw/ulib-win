@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="..\app\uctrls\test_ctrls.cpp" open="1" top="0" tabpos="3">
+	<File name="..\app\uctrls\test_ctrls.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="2244" topLine="76" />
 	</File>
-	<File name="..\app\uctrls\ucollapse.h" open="1" top="1" tabpos="4">
+	<File name="..\app\uctrls\ucollapse.h" open="0" top="0" tabpos="4">
 		<Cursor position="5422" topLine="181" />
 	</File>
 	<File name="..\app\uctrls\ucollapsepanel.h" open="0" top="0" tabpos="1">
