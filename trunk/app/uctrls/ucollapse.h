@@ -181,6 +181,7 @@ public:
             m_bMoveMarked = FALSE;
             //::ReleaseCapture();
         }
+        return FALSE;
     }
 
     BOOL onMouseMove(WPARAM wParam, LPARAM lParam)
@@ -206,7 +207,7 @@ public:
 
             this->setPosition(&rc);
         }
-
+        return FALSE;
     }
 
 

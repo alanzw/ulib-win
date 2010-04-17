@@ -25,6 +25,8 @@
 class UMyWindow : public UBaseWindow
 {
     enum {
+        ID_RADIOBTN_SPLIT = 10110,
+        ID_RADIOBTN_MERGE = 10111,
         ID_BUTTON_ADD   = 11001,
         ID_BUTTON_GO    = 11002,
         ID_TIMER_CLOCK = 11003,
@@ -48,60 +50,65 @@ public:
        this->setIconBig(IDI_HELP);
        this->setTimer(ID_TIMER_CLOCK, 1000);
 
-       m_label = new UStatic(this, -1);
-       m_label->setPos(160, 20, 100, 20);
-       m_label->setText(_T("Split"));
-       m_label->create();
+       m_rbSplit = new URadioButton(this, ID_RADIOBTN_SPLIT);
+       m_rbSplit->setPos(120, 20, 100, 20);
+       m_rbSplit->create();
+       m_rbSplit->setWindowText(_T("split"));
 
-        m_lv = new UListView(this, ID_LISTVIEW_FILES);
-        m_lv->setStyles(LVS_REPORT | LVS_EDITLABELS);
-        m_lv->setPos(50, 50, 500, 400);
-        m_lv->create();
+       m_rbMerge = new URadioButton(this, ID_RADIOBTN_MERGE);
+       m_rbMerge->setPos(240, 20, 100, 20);
+       m_rbMerge->create();
+       m_rbMerge->setWindowText(_T("merge"));
 
-        m_lv->setExStylesListView(LVS_EX_GRIDLINES);
+       m_lv = new UListView(this, ID_LISTVIEW_FILES);
+       m_lv->setStyles(LVS_REPORT | LVS_EDITLABELS);
+       m_lv->setPos(50, 50, 500, 400);
+       m_lv->create();
 
-        m_lv->addColTextWidth(0, "index", 50);
-        m_lv->addColTextWidth(1, "filename", 300);
-        m_lv->addColTextWidth(2, "other", 100);
+       m_lv->setExStylesListView(LVS_EX_GRIDLINES);
 
-        m_add = new UButton(this, ID_BUTTON_ADD);
-        m_add->setPos(580, 60, 100, 50);
-        m_add->create();
-        m_add->setWindowText(_T("Add Files"));
+       m_lv->addColTextWidth(0, "index", 50);
+       m_lv->addColTextWidth(1, "filename", 300);
+       m_lv->addColTextWidth(2, "other", 100);
 
-        m_size = new UComboBox(this, ID_FILE_SIZE);
-        m_size->setStyles(CBS_DROPDOWN);
-        m_size->setPos(580, 140, 60, 200);
-        m_size->create();
-        m_size->addText(_T("1"));
-        m_size->addText(_T("10"));
-        m_size->addText(_T("100"));
-        m_size->addText(_T("1000"));
-        m_size->setCurSel(0);
+       m_add = new UButton(this, ID_BUTTON_ADD);
+       m_add->setPos(580, 60, 100, 50);
+       m_add->create();
+       m_add->setWindowText(_T("Add Files"));
 
-        m_unit = new UComboBox(this, ID_FILE_UNIT);
-        m_unit->setStyles(CBS_DROPDOWNLIST);
-        m_unit->setPos(650, 140, 40, 50);
-        m_unit->create();
-        m_unit->addText(_T("K"));
-        m_unit->addText(_T("M"));
-        m_unit->addText(_T("G"));
-        m_unit->setCurSel(0);
+       m_size = new UComboBox(this, ID_FILE_SIZE);
+       m_size->setStyles(CBS_DROPDOWN);
+       m_size->setPos(580, 140, 60, 200);
+       m_size->create();
+       m_size->addText(_T("1"));
+       m_size->addText(_T("10"));
+       m_size->addText(_T("100"));
+       m_size->addText(_T("1000"));
+       m_size->setCurSel(0);
 
-        m_go = new UButton(this, ID_BUTTON_GO);
-        m_go->setPos(580, 240, 100, 50);
-        m_go->create();
-        m_go->setWindowText(_T("Go"));
+       m_unit = new UComboBox(this, ID_FILE_UNIT);
+       m_unit->setStyles(CBS_DROPDOWNLIST);
+       m_unit->setPos(650, 140, 40, 50);
+       m_unit->create();
+       m_unit->addText(_T("K"));
+       m_unit->addText(_T("M"));
+       m_unit->addText(_T("G"));
+       m_unit->setCurSel(0);
 
-        m_output = new UEdit(this, ID_FILE_OUTPUT);
-        m_output->setStyles(ES_MULTILINE);
-        m_output->setPos(50, 470, 350, 50);
-        m_output->create();
+       m_go = new UButton(this, ID_BUTTON_GO);
+       m_go->setPos(580, 240, 100, 50);
+       m_go->create();
+       m_go->setWindowText(_T("Go"));
 
-        m_select = new UButton(this, ID_BUTTON_SELECT);
-        m_select->setPos(420, 470, 60, 50);
-        m_select->create();
-        m_select->setWindowText(_T("Select"));
+       m_output = new UEdit(this, ID_FILE_OUTPUT);
+       m_output->setStyles(ES_MULTILINE);
+       m_output->setPos(50, 470, 350, 50);
+       m_output->create();
+
+       m_select = new UButton(this, ID_BUTTON_SELECT);
+       m_select->setPos(420, 470, 60, 50);
+       m_select->create();
+       m_select->setWindowText(_T("Select"));
 
        return UBaseWindow::onCreate();
    }
@@ -170,7 +177,6 @@ public:
 
 
 private:
-    huys::ADT::UAutoPtr<UStatic> m_label;
     huys::ADT::UAutoPtr<UButton> m_add;
     huys::ADT::UAutoPtr<UButton> m_go;
     huys::ADT::UAutoPtr<UListView> m_lv;
@@ -179,6 +185,8 @@ private:
     huys::ADT::UAutoPtr<UComboBox> m_size;
     huys::ADT::UAutoPtr<UComboBox> m_unit;
     huys::ADT::UStringAnsi m_sOutputFile;
+    huys::ADT::UAutoPtr<URadioButton> m_rbSplit;
+    huys::ADT::UAutoPtr<URadioButton> m_rbMerge;
 private:
     //
     void go_update()

@@ -23,6 +23,7 @@
 				</ResourceCompiler>
 				<Linker>
 					<Add library="uwin" />
+					<Add library="msimg32" />
 					<Add directory="bin\debug" />
 				</Linker>
 			</Target>

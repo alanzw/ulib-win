@@ -7,13 +7,13 @@
 	<File name="..\app\ufilesplit\resource.h" open="0" top="0" tabpos="10">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="..\app\ufilesplit\test_filesplit.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="6112" topLine="211" />
+	<File name="..\app\ufilesplit\test_filesplit.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="4561" topLine="185" />
 	</File>
-	<File name="..\app\ufilesplit\ufilesplit.cpp" open="1" top="0" tabpos="3">
+	<File name="..\app\ufilesplit\ufilesplit.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="1485" topLine="54" />
 	</File>
-	<File name="..\app\ufilesplit\ufilesplit.h" open="1" top="0" tabpos="2">
+	<File name="..\app\ufilesplit\ufilesplit.h" open="0" top="0" tabpos="2">
 		<Cursor position="51" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

@@ -94,7 +94,7 @@ protected:
         ::GetClientRect(m_hDlg, &rc);
         rc.left += 200;
 
-        if (m_pChildDlg)
+        if (m_pChildDlg != 0)
         {
             ::MoveWindow(m_pChildDlg->getHWND(), rc.left, rc.top, rc.right-rc.left, rc.bottom-rc.top, TRUE);
             m_pChildDlg->show();

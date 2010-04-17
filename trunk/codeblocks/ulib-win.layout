@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="..\inc\ubasewindow.h" open="1" top="0" tabpos="5">
+	<File name="..\inc\ubasewindow.h" open="0" top="0" tabpos="5">
 		<Cursor position="5960" topLine="231" />
 	</File>
 	<File name="..\inc\ubitmap.h" open="0" top="0" tabpos="0">
 		<Cursor position="317" topLine="5" />
 	</File>
 	<File name="..\inc\ubutton.h" open="0" top="0" tabpos="1">
-		<Cursor position="1590" topLine="80" />
+		<Cursor position="939" topLine="45" />
 	</File>
 	<File name="..\inc\ucombobox.h" open="0" top="0" tabpos="3">
 		<Cursor position="211" topLine="0" />
 	</File>
-	<File name="..\inc\ucommondialog.h" open="1" top="0" tabpos="1">
+	<File name="..\inc\ucommondialog.h" open="0" top="0" tabpos="1">
 		<Cursor position="921" topLine="39" />
 	</File>
 	<File name="..\inc\ucontrol.h" open="0" top="0" tabpos="2">
@@ -25,8 +25,8 @@
 	<File name="..\inc\uedit.h" open="0" top="0" tabpos="6">
 		<Cursor position="445" topLine="12" />
 	</File>
-	<File name="..\inc\ufile.h" open="1" top="1" tabpos="6">
-		<Cursor position="282" topLine="23" />
+	<File name="..\inc\ufile.h" open="0" top="0" tabpos="6">
+		<Cursor position="641" topLine="35" />
 	</File>
 	<File name="..\inc\ufont.h" open="0" top="0" tabpos="0">
 		<Cursor position="695" topLine="22" />
@@ -43,7 +43,7 @@
 	<File name="..\inc\ulib.h" open="0" top="0" tabpos="1">
 		<Cursor position="5567" topLine="237" />
 	</File>
-	<File name="..\inc\ulistview.h" open="1" top="0" tabpos="4">
+	<File name="..\inc\ulistview.h" open="0" top="0" tabpos="4">
 		<Cursor position="1337" topLine="39" />
 	</File>
 	<File name="..\inc\umenu.h" open="0" top="0" tabpos="5">
@@ -104,7 +104,7 @@
 		<Cursor position="2570" topLine="94" />
 	</File>
 	<File name="..\src\ubutton.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="6330" topLine="27" />
+		<Cursor position="1822" topLine="69" />
 	</File>
 	<File name="..\src\ucombobox.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="468" topLine="18" />
@@ -112,7 +112,7 @@
 	<File name="..\src\ucomboboxex.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="669" topLine="26" />
 	</File>
-	<File name="..\src\ucommondialog.cpp" open="1" top="0" tabpos="2">
+	<File name="..\src\ucommondialog.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="1191" topLine="31" />
 	</File>
 	<File name="..\src\ucontrol.cpp" open="0" top="0" tabpos="1">
@@ -130,7 +130,7 @@
 	<File name="..\src\uedit.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="240" topLine="6" />
 	</File>
-	<File name="..\src\ufile.cpp" open="1" top="0" tabpos="7">
+	<File name="..\src\ufile.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="902" topLine="25" />
 	</File>
 	<File name="..\src\ufont.cpp" open="0" top="0" tabpos="4">
@@ -145,7 +145,7 @@
 	<File name="..\src\ulib.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="157" topLine="0" />
 	</File>
-	<File name="..\src\ulistview.cpp" open="1" top="0" tabpos="3">
+	<File name="..\src\ulistview.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="1977" topLine="79" />
 	</File>
 	<File name="..\src\umenu.cpp" open="0" top="0" tabpos="6">
