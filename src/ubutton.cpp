@@ -81,6 +81,14 @@ URadioButton::URadioButton(HWND hParent, UINT nResource, HINSTANCE hInst)
     m_dwStyles |= BS_AUTORADIOBUTTON;
 }
 
+URadioButton::URadioButton(UBaseWindow * pWndParent,UINT nID)
+: UButton(pWndParent, nID)
+{
+    m_dwStyles &= ~BS_DEFPUSHBUTTON;
+    m_dwStyles |= BS_AUTORADIOBUTTON;
+}
+
+
 URadioButton::~URadioButton()
 {}
 

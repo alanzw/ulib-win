@@ -71,7 +71,7 @@ public:
 
     BOOL onRButtonDown(WPARAM wParam, LPARAM lParam)
     {
-        if (0 == m_pCtrlFactory)
+        if ( m_pCtrlFactory==0 )
         {
             m_pCtrlFactory = new UButtonFactory;
             RECT rc = {100, 100, 200, 200};
@@ -82,7 +82,7 @@ public:
 
     BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
     {
-        if (0 == m_pCtrlFactory)
+        if (m_pCtrlFactory == 0)
         {
             m_pCtrlFactory = new UStaticFactory;
             RECT rc = {100, 100, 200, 200};

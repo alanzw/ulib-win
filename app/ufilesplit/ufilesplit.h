@@ -9,6 +9,9 @@ public:
 
     static BOOL split(LPCTSTR sFilename, DWORD dwEachSize, DWORD dwBufferSize,
                LPCTSTR sOutFile);
+
+    static BOOL merge(LPCTSTR *sFilenames, int nNum, DWORD dwBufferSize,
+               LPCTSTR sOutFile);
 private:
 
 };

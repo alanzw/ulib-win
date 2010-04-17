@@ -76,7 +76,6 @@ private:
     }
 private:
     huys::HDIB _dib;
-    HPALETTE _pal;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)

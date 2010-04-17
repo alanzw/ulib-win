@@ -53,6 +53,7 @@ class ULIB_API URadioButton: public UButton
 {
 public:
     URadioButton(HWND hParent, UINT nResource, HINSTANCE hInst);
+    URadioButton(UBaseWindow *pWndParent, UINT nID);
     virtual ~URadioButton();
     URadioButton() {};
     //

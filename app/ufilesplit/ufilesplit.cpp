@@ -3,7 +3,7 @@
 
 #include "ufile.h"
 #include "adt/ustring.h"
-
+#include "adt/uautoptr.h"
 #include "ufilesplit.h"
 
 typedef huys::ADT::UStringAnsi TString;
@@ -64,7 +64,7 @@ BOOL UFileSplit::split(LPCTSTR sFilename, DWORD dwEachSize, DWORD dwBufferSize, 
             fout.write(pbuf, dwRead);
             ++nIndex;
             fout.close();
-    
+
             if (nIndex <= num)
             {
                 if (!fout.create(outfilename.format("%s.%02d", sOutFile, nIndex)))
@@ -81,3 +81,9 @@ BOOL UFileSplit::split(LPCTSTR sFilename, DWORD dwEachSize, DWORD dwBufferSize, 
 
     return TRUE;
 }
+
+BOOL UFileSplit::merge(LPCTSTR *sFilenames, int nNum, DWORD dwBufferSize, LPCTSTR sOutFile)
+{
+    return TRUE;
+}
+

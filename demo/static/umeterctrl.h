@@ -85,6 +85,8 @@ private:
 private:
     void onDraw(HDC hdc, LPRECT lpRect)
     {
+        int i;
+
         if (m_pMemDC == NULL)
         {
             m_pMemDC = new UMemDC(hdc);
@@ -157,14 +159,14 @@ private:
             
             POINT ptRecess[BOUNDARY_POINTS];
             
-            for (int i=0; i<nRef; ++i)
+            for (i=0; i<nRef; ++i)
             {
                 ptRecess[i].x = m_ptBoundary[i].x;
                 ptRecess[i].y = m_ptBoundary[i].y - 1;
             }
             ptRecess[0].x = ptRecess[0].x + 1 ;
             ptRecess[nRef-1].x = ptRecess[nRef-1].x - 1 ;
-            for (int i=nHalfPoints; i<nRef; i++)
+            for (i=nHalfPoints; i<nRef; i++)
             {
                 ptRecess[i].x = m_ptBoundary[i].x ;
                 ptRecess[i].y = m_ptBoundary[i].y+1 ;

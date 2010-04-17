@@ -79,6 +79,11 @@ public:
         return _p == ptr;
     }
 
+    BOOL operator!=(T * ptr) const
+    {
+        return _p != ptr;
+    }
+
     T * release() throw()
     {
         T* tmp(_p);
