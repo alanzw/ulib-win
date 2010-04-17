@@ -64,8 +64,6 @@ public:
             return false;
         }
 
-
-
         m_clrMask = clrMask;
 
         m_uiml.addMasked(m_ubmImage, clrMask);

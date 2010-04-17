@@ -45,11 +45,18 @@ public:
         return (T*)_p;
     }
 
+#if defined(_MSC_VER) && (_MSC_VER <= 1200)
+    operator HDC() const
+    {
+        return (HDC)(*_p);
+    }
+#else
     template <typename TP>
-    operator TP() const
+        operator TP() const
     {
         return static_cast<TP>(*static_cast<T*>(_p));
     }
+#endif
 
     T* operator->() const
     {

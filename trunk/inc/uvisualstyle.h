@@ -19,9 +19,12 @@
 #ifndef U_VISUAL_STYLES_H
 #define U_VISUAL_STYLES_H
 
+#define _WIN32_WINNT 0x0501
+
 #include "ulib.h"
 
 #include <uxtheme.h>
+#include <tmschema.h>
 
 namespace VisualStyles
 {
@@ -44,8 +47,16 @@ public:
     BOOL drawBackgroud( HDC hdc,
                         int iPartId,
                         int iStateId,
-                        const RECT *pRect,
-                        const RECT *pClipRect);
+                        const RECT *lpRect,
+                        const RECT *lpClipRect = NULL);
+
+    BOOL drawEdge( HDC dc,
+                   LPRECT lpRect, 
+                   UINT uEdge = EDGE_BUMP, 
+                   UINT uFlags = BF_RECT, 
+                   int iPartID = BP_PUSHBUTTON, 
+                   int iStateID = PBS_HOT, 
+			       LPRECT lpClipRect = NULL);
 
      BOOL drawText( HDC hdc,
                    int iPartId,
@@ -57,6 +68,8 @@ public:
                    LPCRECT pRect);
 private:
     HTHEME m_hTheme;
+
+    BOOL getAppearance() const;
 };
 
 }; // namespace VisualStyles

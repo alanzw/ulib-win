@@ -241,6 +241,7 @@ inline void checked_delete(T * x)
   #pragma comment(lib, "shlwapi.lib")
   #pragma comment(lib, "msimg32")
   #pragma comment(lib, "winmm.lib")
+  #pragma comment(lib, "uxtheme.lib")
 
 #endif // BUILD_DLL
 #endif // _MSC_VER

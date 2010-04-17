@@ -30,7 +30,7 @@ public:
 
     BOOL onCreate()
     {
-        this->setIconBig(IDI_APP);
+        this->setIconBig(IDI_HELP);
 
         m_pStatusBar = new UStatusBar(*this, IDC_STATUSBAR, getInstance());
         m_pStatusBar->create();
@@ -60,6 +60,8 @@ public:
             return onMenuNew();
         case IDM_ABOUT:
             return onMenuAbout();
+        case IDC_BN_XP:
+            return onBnXP();
         default:
             return UBaseWindow::onCommand(wParam, lParam);
        }
@@ -86,7 +88,7 @@ public:
 
         return FALSE;
    }
-   
+
     BOOL onChar(WPARAM wParam, LPARAM lParam)
     {
         switch (wParam)
@@ -100,6 +102,12 @@ public:
 private:
     huys::ADT::UAutoPtr<UStatusBar> m_pStatusBar;
     huys::ADT::UAutoPtr<UButtonXP> m_pBtnXP;
+private:
+    BOOL onBnXP()
+    {
+        this->showMsg(_T("You Pressed ButtonXP!"), _T("Info"));
+        return FALSE;
+    }
 };
 
 
