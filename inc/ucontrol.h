@@ -62,6 +62,7 @@ public:
     BOOL setStyles(DWORD dwStyle);
     BOOL modifyStyles(DWORD dwStyle);
 
+    BOOL modifyExStyles(DWORD dwExStyle);
     //
     BOOL isVisible() const;
     BOOL show();

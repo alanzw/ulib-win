@@ -436,3 +436,14 @@ BOOL UControl::subclass( UINT nID, HWND hParent )
     return TRUE;
 }
 
+BOOL UControl::modifyExStyles( DWORD dwExStyle )
+{
+    DWORD dwOldExStyle = ::GetWindowLong(m_hSelf, GWL_EXSTYLE);
+    DWORD dwNewExStyle = dwOldExStyle | dwExStyle;
+    if (dwOldExStyle == dwNewExStyle)
+        return FALSE;
+    
+    //    return ::SetWindowLongPtr(m_hSelf, GWL_STYLE, dwNewStyle);
+    return ::SetWindowLong(m_hSelf, GWL_EXSTYLE, dwNewExStyle);   
+}
+
