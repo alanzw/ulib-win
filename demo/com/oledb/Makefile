@@ -1,21 +1,18 @@
 #
-include ../../../make.inc
+TOPDIR = ../../..
+
+#
+include $(TOPDIR)/make.inc
 
 #
 CFLAGS =
 CXXFLAGS =
-INCS = -I"../../../inc" -I"."
-LIBS = -L"../../../lib"
+INCS += -I"$(TOPDIR)/inc" -I"." -DBUILD_EXE
+LIBS += -L"$(TOPDIR)/lib"
 
 #
-SRCDIR = ../../../src
-INCDIR = ../../../inc
-OBJDIR = ../../../obj
-RESDIR = ../../../res
-ICODIR = ../../../ico
-#
-OBJ = oledb.o
-BIN = oledb.exe
+OBJ = test_oledb.o
+BIN = test_oledb.exe
 RC  =
 RES = ${RC:.rc=.res}
 #
@@ -24,7 +21,7 @@ HEADER =
 all: $(BIN)
 
 #
-str.exe : str.o
+oledb.exe : oledb.o
 	$(CXX) -o $@ $< -loleaut32
 
 #

@@ -1,53 +1,14 @@
 #include <windows.h>
 #include <tchar.h>
-#include <objbase.h>
-#include <unknwn.h>
+//#include <objbase.h>
+//#include <unknwn.h>
 
-template <typename T>
-class UComPtr
-{
-public:
-    typedef T Type;
-    typedef T* TypePtr;
-public:
-    UComPtr()
-    : _p(0)
-    {
-    }
+#include <oledb.h>
+#include <oledberr.h>
 
-    UComPtr(T * p)
-    {
-        if (0 != (_p=p))
-        {
-            _p->AddRef();
-        }
-    }
+#include "com/ucom.h"
 
-    ~UComPtr()
-    {
-        if(_p)
-        {
-            _p->Release();
-        }
-    }
-
-    operator T*() const
-    {
-        return (T*)_p;
-    }
-
-    T& operator*() const
-    {
-        return *_p;
-    }
-
-    T* operator->() const
-    {
-        return (T*)_p;
-    }
-private:
-    TypePtr _p;
-};
+using huys::UCOM::UComPtr;
 
 IDBInitialize *g_pDBInitialize;
 
@@ -80,10 +41,10 @@ HRESULT CreateSession()
 
 int _tmain()
 {
-    TCHAR szInitStr[1024];
+    WCHAR szInitStr[1024];
     UINT uTimeout = 15U;
     swprintf( szInitStr,
-              _T("Provider=SQLOLEDB;Data Source=%s;Initial Catalog=%s;UserId=%s;Password=%s;Connect Timeout=%u"),
+              L"Provider=SQLOLEDB;Data Source=%s;Initial Catalog=%s;UserId=%s;Password=%s;Connect Timeout=%u",
               pszServerName,
               pszDataSource,
               pszUserName,

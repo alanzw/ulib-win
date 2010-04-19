@@ -406,6 +406,58 @@ private:
     TYPEATTR  * _attr;
 };
 
+template <typename T>
+class UComPtr
+{
+public:
+    typedef T Type;
+    typedef T* TypePtr;
+public:
+    UComPtr()
+    : _p(0)
+    {
+    }
+
+    UComPtr(T * p)
+    {
+        if (0 != (_p=p))
+        {
+            _p->AddRef();
+        }
+    }
+
+    ~UComPtr()
+    {
+        if(_p)
+        {
+            _p->Release();
+        }
+    }
+
+    operator T*() const
+    {
+        return (T*)_p;
+    }
+
+    T& operator*() const
+    {
+        return *_p;
+    }
+
+    T* operator->() const
+    {
+        return (T*)_p;
+    }
+    
+    T** operator&()
+    {
+        return (T**)&_p;
+    }
+private:
+    TypePtr _p;
+};
+
+
 }; // namespace UCOM
 }; // namespace huys
 

@@ -30,9 +30,6 @@ public:
 
     }
 
-    ~ULEDCtrl()
-    {}
-
     virtual BOOL create()
     {
         BOOL bRet = UStatic::create();
