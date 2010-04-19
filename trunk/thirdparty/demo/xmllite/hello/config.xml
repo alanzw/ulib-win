@@ -1,0 +1,4 @@
+<config>    
+    <key name="mykey" value="myval"/>
+    <key name="foo" value="bar"/>
+</config>
