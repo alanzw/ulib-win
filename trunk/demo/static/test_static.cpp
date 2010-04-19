@@ -308,10 +308,10 @@ public:
         m_pSubStatic->subclassProc();
 
         m_pIconStatic = new UIconStatic(m_hDlg, IDC_STATIC_ICON, m_hInst);
-        RECT ico_rc = {200, 200, 250, 250};
+        RECT ico_rc = {200, 200, 240, 240};
         m_pIconStatic->create();
         m_pIconStatic->setPosition(&ico_rc);
-        m_pIconStatic->setIcon(IDI_ULIB);
+        m_pIconStatic->setIcon(IDI_HELP);
         
         m_pBitmapStatic = new UBitmapStatic(m_hDlg, IDC_STATIC_BITMAP, m_hInst);
         m_pBitmapStatic->setPos(180, 60, 128, 128);
