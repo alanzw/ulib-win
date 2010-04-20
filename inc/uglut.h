@@ -279,6 +279,24 @@ private:
 };
 
 
+class UGLTexture
+{
+public:
+	UGLTexture()
+		{}
+	~UGLTexture()
+		{}
+private:
+	unsigned char *m_pData;    // datas
+	unsigned int   m_nWidth;    // width (pixels)
+	unsigned int   m_nHeight;   // height (pixels)
+	unsigned int   m_nDepth;    // bits per pixel 
+
+	BITMAPINFOHEADER m_biHeader;      // image header (display on device context)
+	unsigned int     m_nWidthByte32; // width (in bytes, and 32 bits aligned)
+
+};
+
 }; // namespace UGlut
 
 #endif // U_GLUT_H

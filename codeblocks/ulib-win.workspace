@@ -47,6 +47,9 @@
 		<Project filename="mytree.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
+		<Project filename="progressbar.cbp" active="1">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
 		<Project filename="propsheet.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
@@ -61,7 +64,7 @@
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="sdi.cbp" />
-		<Project filename="static.cbp" active="1">
+		<Project filename="static.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="statusbar.cbp">

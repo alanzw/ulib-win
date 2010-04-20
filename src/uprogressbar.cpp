@@ -49,9 +49,10 @@ int UProgressBar::getStep()
 #ifdef PBM_GETSTEP
     return this->sendMsg(PBM_GETSTEP);
 #endif // PBM_GETSTEP
+    return 0;
 }
 
-BOOL UProgressBar::setPos(int nNewPos)
+BOOL UProgressBar::setPBPos(int nNewPos)
 {
 
 #if (_WIN32_WINNT >= 0x0501)
@@ -61,7 +62,7 @@ BOOL UProgressBar::setPos(int nNewPos)
     return this->sendMsg(PBM_SETPOS, nNewPos, 0);
 }
 
-BOOL UProgressBar::deltaPos(int nIncrement)
+BOOL UProgressBar::deltaPBPos(int nIncrement)
 {
 
 #if (_WIN32_WINNT >= 0x0501)
@@ -71,7 +72,7 @@ BOOL UProgressBar::deltaPos(int nIncrement)
     return this->sendMsg(PBM_DELTAPOS, nIncrement, 0);
 }
 
-UINT UProgressBar::getPos()
+UINT UProgressBar::getPBPos()
 {
     return this->sendMsg(PBM_GETPOS);
 }
@@ -88,6 +89,7 @@ BOOL UProgressBar::setState(int iState)
 #ifdef PBM_SETSTATE
     return this->sendMsg(PBM_SETSTATE, iState);
 #endif // PBM_SETSTATE
+    return 0;
 }
 
 int UProgressBar::getState()
@@ -95,6 +97,7 @@ int UProgressBar::getState()
 #ifdef PBM_GETSTATE
     return this->sendMsg(PBM_GETSTATE);
 #endif // PBM_GETSTATE
+    return 0;
 }
 
 BOOL UProgressBar::setBKColor(huys::Color clr)
@@ -112,6 +115,7 @@ huys::Color UProgressBar::getBKColor()
 #ifdef PBM_GETBKCOLOR
     return (huys::Color)this->sendMsg(PBM_GETBKCOLOR);
 #endif // PBM_GETBKCOLOR
+    return 0;
 }
 
 huys::Color UProgressBar::getBarColor()
@@ -119,5 +123,6 @@ huys::Color UProgressBar::getBarColor()
 #ifdef PBM_GETBARCOLOR
     return (huys::Color)this->sendMsg(PBM_GETBARCOLOR);
 #endif // PBM_GETBARCOLOR
+    return 0;
 }
 
