@@ -58,6 +58,9 @@
 	<File name="..\inc\uprocessman.h" open="0" top="0" tabpos="1">
 		<Cursor position="387" topLine="0" />
 	</File>
+	<File name="..\inc\uprogressbar.h" open="1" top="1" tabpos="1">
+		<Cursor position="481" topLine="9" />
+	</File>
 	<File name="..\inc\upropsheet.h" open="0" top="0" tabpos="1">
 		<Cursor position="564" topLine="15" />
 	</File>
@@ -159,6 +162,9 @@
 	</File>
 	<File name="..\src\uprocessman.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="4874" topLine="147" />
+	</File>
+	<File name="..\src\uprogressbar.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="1531" topLine="54" />
 	</File>
 	<File name="..\src\upropsheet.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="717" topLine="13" />

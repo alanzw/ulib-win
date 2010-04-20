@@ -12,7 +12,7 @@ class ULCDCtrl : public UStatic
 {
 public:
     ULCDCtrl(HWND hParent, UINT nID, HINSTANCE hInst=GetModuleHandle(NULL))
-        : UStatic(hParent, nID, hInst)
+    : UStatic(hParent, nID, hInst)
     {
         m_dwStyles &= ~SS_SIMPLE;
         m_dwStyles |= SS_NOTIFY;

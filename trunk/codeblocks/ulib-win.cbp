@@ -82,6 +82,7 @@
 		<Unit filename="..\inc\upanel.h" />
 		<Unit filename="..\inc\upicture.h" />
 		<Unit filename="..\inc\uprocessman.h" />
+		<Unit filename="..\inc\uprogressbar.h" />
 		<Unit filename="..\inc\upropsheet.h" />
 		<Unit filename="..\inc\urebar.h" />
 		<Unit filename="..\inc\uregion.h" />
@@ -128,6 +129,7 @@
 		<Unit filename="..\src\upanel.cpp" />
 		<Unit filename="..\src\upicture.cpp" />
 		<Unit filename="..\src\uprocessman.cpp" />
+		<Unit filename="..\src\uprogressbar.cpp" />
 		<Unit filename="..\src\upropsheet.cpp" />
 		<Unit filename="..\src\urebar.cpp" />
 		<Unit filename="..\src\uregion.cpp" />

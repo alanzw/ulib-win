@@ -19,7 +19,7 @@ class UMeterCtrl : public UStatic
     enum {
         ID_TIMER_UPDATE = 1222
     };
-    
+
     enum {
         BOUNDARY_POINTS = 48
     };
@@ -71,16 +71,16 @@ public:
 private:
     huys::ADT::UAutoPtr<UMemDC> m_pMemDC;
     UBitmap m_bmp;
-    
+
     huys::Color m_clrBackground;
-    
+
     URegion m_rgn;
-    
+
     int m_nBottomCX;
     int m_nBottomCY;
     int m_nTopRadius;
     int m_nBottomRadius;
-    
+
     POINT m_ptBoundary[BOUNDARY_POINTS];
 private:
     void onDraw(HDC hdc, LPRECT lpRect)
@@ -96,7 +96,7 @@ private:
             // Background
             m_pMemDC->setBrushColor(m_clrBackground);
             m_pMemDC->rectangle(lpRect);
-            
+
             //
             RECT rcLabel = {
                 lpRect->left + (lpRect->right-lpRect->left)/20,
@@ -104,11 +104,11 @@ private:
                 lpRect->right- (lpRect->right-lpRect->left)/20,
                 lpRect->bottom - (lpRect->right-lpRect->left)/20
             };
-            
+
             //
             m_nBottomCX = (lpRect->left + lpRect->right)/2;
             m_nBottomCY = lpRect->bottom - (lpRect->bottom-lpRect->top)/16;
-            
+
             m_nTopRadius = (lpRect->bottom-lpRect->top)*6/8;
             m_nBottomRadius = m_nTopRadius/2;
             //
@@ -116,12 +116,12 @@ private:
             int nStartAngleDeg = 60;
             int nEndAngleDeg = 120;
             int nTickDeg = 15;
-            
+
             int nAngleIncrementDeg = 5;
-            
+
             double leftAngleRad = nEndAngleDeg * radPerdeg;
             double rightAngleRad = nStartAngleDeg * radPerdeg;
-            
+
             // meter face
             int nRef = 0;
             double angleRad;
@@ -130,35 +130,35 @@ private:
             for (nAngleDeg = nStartAngleDeg; nAngleDeg<=nEndAngleDeg; nAngleDeg+=nAngleIncrementDeg)
             {
                 angleRad = nAngleDeg * radPerdeg;
-                
+
                 //
                 temp = m_nBottomCX + m_nTopRadius * cos(angleRad);
                 m_ptBoundary[nRef].x = ROUND(temp);
-                
+
                 temp = m_nBottomCY - m_nTopRadius * sin(angleRad);
                 m_ptBoundary[nRef].y = ROUND(temp);
-            
+
                 ++nRef;
             }
-            
+
             int nHalfPoints = nRef;
-            
+
             for (nAngleDeg = nEndAngleDeg; nAngleDeg>=nStartAngleDeg; nAngleDeg-=nAngleIncrementDeg)
             {
                 angleRad = nAngleDeg * radPerdeg;
-                
+
                 //
                 temp = m_nBottomCX + m_nBottomRadius * cos(angleRad);
                 m_ptBoundary[nRef].x = ROUND(temp);
-                
+
                 temp = m_nBottomCY - m_nBottomRadius * sin(angleRad);
                 m_ptBoundary[nRef].y = ROUND(temp);
-            
+
                 ++nRef;
             }
-            
+
             POINT ptRecess[BOUNDARY_POINTS];
-            
+
             for (i=0; i<nRef; ++i)
             {
                 ptRecess[i].x = m_ptBoundary[i].x;
@@ -173,24 +173,24 @@ private:
             }
             ptRecess[nHalfPoints].x = ptRecess[nHalfPoints].x - 1 ;
             ptRecess[nRef-1].x = ptRecess[nRef-1].x + 1 ;
-            
+
             if (!m_rgn.isNull())
             {
                 m_rgn.destroy();
             }
             m_rgn.createPolygon(m_ptBoundary, nRef, ALTERNATE);
-            
+
             huys::UPolyLine poly(ptRecess, nHalfPoints+1);
             poly.Draw(m_pMemDC);
-            
+
             poly.setPoints(&ptRecess[nHalfPoints], nHalfPoints);
             poly.Draw(m_pMemDC);
-            
+
             huys::ULine line(ptRecess[0].x, ptRecess[0].y, ptRecess[nRef-1].x, ptRecess[nRef-1].y);
             line.Draw(m_pMemDC);
-            
+
             m_pMemDC->polygon(m_ptBoundary, nRef);
-            
+
             // draw the right side tick marks
             int dX, dY;
             for (nAngleDeg=90; nAngleDeg>nStartAngleDeg; nAngleDeg-=nTickDeg)

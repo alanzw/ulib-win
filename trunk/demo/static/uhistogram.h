@@ -24,16 +24,16 @@ public:
     {
         BOOL bRet = UStatic::create();
         this->subclassProc();
-        
+
         setTimer(ID_TIMER_UPDATE, 1000);
         return  bRet;
     }
 
     virtual BOOL onPaint()
-	{
-		PAINTSTRUCT ps;
-		HDC hdc;
-		hdc = BeginPaint(m_hSelf, &ps);
+    {
+        PAINTSTRUCT ps;
+        HDC hdc;
+        hdc = BeginPaint(m_hSelf, &ps);
 
         RECT rc;
 
@@ -43,7 +43,7 @@ public:
 
         EndPaint(m_hSelf, &ps);
 
-		return FALSE;
+        return FALSE;
 
     }
 
@@ -55,13 +55,13 @@ public:
             {
                 ++_counter;
             }
-        
+
             this->go();
             invalidate(FALSE);
         }
-        
 
-    
+
+
         return FALSE;
     }
 
@@ -77,7 +77,7 @@ private:
     UBitmap m_bmp;
     typedef huys::ADT::UVector<POINT> PTList;
     PTList m_pts;
-    
+
     int _counter;
 private:
     void onDraw(HDC hdc, LPRECT lpRect)
@@ -88,8 +88,8 @@ private:
             m_bmp.createCompatibleBitmap(hdc, lpRect->right-lpRect->left,
                 lpRect->bottom-lpRect->top);
             m_pMemDC->selectObj(m_bmp);
-            
-        
+
+
         long i;
         // background
         huys::URectangle ur(*lpRect);
@@ -124,10 +124,10 @@ private:
             ul.Draw(m_pMemDC);
         }
         }
-    
+
         ::BitBlt(hdc, 0, 0, lpRect->right-lpRect->left, lpRect->bottom-lpRect->top, m_pMemDC, 0, 0, SRCCOPY);
     }
-    
+
     void go()
     {
         if (m_pMemDC != NULL)
@@ -135,13 +135,13 @@ private:
         RECT rc;
 
         this->getClientRect(&rc);
-        
+
         LPRECT lpRect = &rc;
-        
+
         UPrivateDC dc(m_hSelf);
-        
+
         m_pMemDC->bitBlt(0, 0, lpRect->right-lpRect->left, lpRect->bottom-lpRect->top, dc, 20, 0, SRCCOPY);
-    
+
 
         // background
         lpRect->left = lpRect->right - 20;
@@ -150,10 +150,10 @@ private:
         ur.setFilledColor(huys::black);
         ur.setFilledStyle(BS_SOLID);
         ur.Draw(m_pMemDC);
-        
-        
+
+
         long i;
-        
+
         // grid
         huys::ULine ul(lpRect->left, lpRect->top, lpRect->right, lpRect->top);
         ul.setLineColor(huys::seagreen);
@@ -171,14 +171,14 @@ private:
             ul.Draw(m_pMemDC);
             ul.offsetX(10);
         }
-        
+
         //
         char buf[256];
         wsprintf(buf, "%d", _counter);
         m_pMemDC->setBKColor(huys::black);
         m_pMemDC->setTextColor(huys::pink);
         m_pMemDC->textOut(100, 20, buf, lstrlen(buf));
-        
+
         }
     }
 };

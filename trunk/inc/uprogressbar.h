@@ -23,9 +23,9 @@ public:
     virtual int getStep();
 
     //
-    virtual BOOL setPos(int nNewPos);
-    virtual BOOL deltaPos(int nIncrement);
-    virtual UINT getPos();
+    virtual BOOL setPBPos(int nNewPos);
+    virtual BOOL deltaPBPos(int nIncrement);
+    virtual UINT getPBPos();
 
 #if (_WIN32_WINNT >= 0x0501)
     virtual BOOL setMarquee(BOOL bMarqueeModeOn, UINT nUpdateTimeInMs);
