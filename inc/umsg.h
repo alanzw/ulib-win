@@ -69,5 +69,6 @@ int ULIB_API CBTMessageBox(HWND hwnd,
                     LPCTSTR lpText,
                     LPCTSTR lpCaption,
                     UINT uType);                    
-                    
+
+
 #endif // U_MSG_H

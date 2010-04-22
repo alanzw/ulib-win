@@ -44,10 +44,13 @@
 		<Project filename="menu.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
+		<Project filename="msg.cbp" active="1">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
 		<Project filename="mytree.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="progressbar.cbp" active="1">
+		<Project filename="progressbar.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="propsheet.cbp">

@@ -197,6 +197,8 @@ void showCustomInfoMsg(const TCHAR *szMsg, HWND hOwner)
 ***********************************************************************/
 static HWND g_hwndTimedOwner;
 static BOOL g_bTimedOut;
+static HWND g_hwndMsgBox = NULL;
+static LPCTSTR g_msgboxTitle = NULL;
 
 /***********************************************************************
 *
@@ -213,8 +215,10 @@ void CALLBACK MessageBoxTimer(HWND hwnd,
                               DWORD dwTime)
 {
    g_bTimedOut = TRUE;
+
    if (g_hwndTimedOwner)
       EnableWindow(g_hwndTimedOwner, TRUE);
+
    PostQuitMessage(0);
 }
 
@@ -238,8 +242,9 @@ int TimedMessageBox(HWND hwndOwner,
    UINT idTimer;
    int iResult;
 
-   g_hwndTimedOwner = NULL;
+   g_hwndTimedOwner = hwndOwner;
    g_bTimedOut = FALSE;
+   g_msgboxTitle = pszTitle;
 
    if (hwndOwner && IsWindowEnabled(hwndOwner))
       g_hwndTimedOwner = hwndOwner;
