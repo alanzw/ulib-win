@@ -1,0 +1,7 @@
+[  
+    implicit_handle (handle_t hello_Binding)  
+]  
+  
+interface HelloRPC 
+{  
+}

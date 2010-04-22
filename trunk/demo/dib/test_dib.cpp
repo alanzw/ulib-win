@@ -9,7 +9,7 @@
 #include "ugdi.h"
 #include "colors.h"
 #include "ufile.h"
-
+#include "ubitmap.h"
 #include "udibapi.h"
 
 class UMyWindow : public UBaseWindow
@@ -29,9 +29,11 @@ public:
    {
        this->setIconBig(IDI_PEN);
 
-       UFile file;
-       file.open(_T("bk.bmp"));
-       _dib = huys::ReadDIBFile(file);
+       //UFile file;
+       //file.open(_T("bk.bmp"));
+       //_dib = huys::ReadDIBFile(file);
+       UBitmap bmp(IDB_BACKGROUND, getInstance());
+       _dib = huys::BitmapToDIB(bmp, NULL);
        return UBaseWindow::onCreate();
    }
 

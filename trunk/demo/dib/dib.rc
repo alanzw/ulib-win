@@ -42,7 +42,7 @@ END
 //
 // Bitmap resources
 //
-//IDB_BACKGROUND       BITMAP         "back.bmp"
+IDB_BACKGROUND       BITMAP         "bk.bmp"
 
 //
 // Dialog resources

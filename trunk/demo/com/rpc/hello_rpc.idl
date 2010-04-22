@@ -1,0 +1,9 @@
+[
+uuid(f97fa259-b638-454a-a052-75614b0da85b),
+version(1.0)
+]
+interface HelloRPC
+{
+    void HelloProc([in, string] unsigned char * pszString);  
+    void ShutDown(void);  
+}
