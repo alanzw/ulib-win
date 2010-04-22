@@ -6,28 +6,10 @@
 #
 
 #
-include ../../make.inc
+TOPDIR = ../..
 
 #
-CFLAGS   =
-CXXFLAGS =
-INC      = -I"../../inc"
-LIB      = -L"../../lib"
-LDFLAGS  =
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-BINDIR = ../../bin
-LIBDIR = ../../lib
-RESDIR = ../../res
-
-DEMODIR = ../../demo
-
-DOCDIR  = ../../doc
-
-#
-HEADER =
+include $(TOPDIR)/make.inc
 
 #
 SUBDIRS = \
@@ -42,6 +24,7 @@ SUBDIRS = \
           ipicture  \
           istream   \
           memstream \
+          rpc       \
           
 
 #

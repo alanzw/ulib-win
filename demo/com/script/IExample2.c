@@ -8,9 +8,6 @@
 #include "IExample2.h"
 
 
-
-
-
 // A count of how many objects our DLL has created (by some
 // app calling our IClassFactory object's CreateInstance())
 // which have not yet been Release()'d by the app
@@ -22,16 +19,6 @@ static DWORD        LockCount;
 
 // Where I store a pointer to my type library's TYPEINFO
 static ITypeInfo    *MyTypeInfo;
-
-
-
-
-
-
-
-
-
-
 
 // The IExample2 object ////////////////////////////////////////////////////////////
 
@@ -280,15 +267,6 @@ SetString,
 GetString};
 
 
-
-
-
-
-
-
-
-
-
 // The IClassFactory object ///////////////////////////////////////////////////////
 
 // Since we only ever need one IClassFactory object, we declare
@@ -407,18 +385,6 @@ classAddRef,
 classRelease,
 classCreateInstance,
 classLockServer};
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Miscellaneous functions ///////////////////////////////////////////////////////
