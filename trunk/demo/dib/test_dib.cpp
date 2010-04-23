@@ -6,9 +6,7 @@
 
 #include "uwinapp.h"
 #include "ubasewindow.h"
-#include "ugdi.h"
 #include "colors.h"
-#include "ufile.h"
 #include "ubitmap.h"
 #include "udibapi.h"
 
@@ -19,11 +17,8 @@ public:
    : UBaseWindow(NULL, ::GetModuleHandle(NULL))
    {
         this->setTitle(_T("UDIB Test 0.0.1"));
-        this->setPos(0, 0, 400, 300);
+        this->setPos(0, 0, 600, 600);
    }
-
-   ~UMyWindow()
-   {}
 
    BOOL onCreate()
    {
@@ -44,36 +39,13 @@ public:
         this->getClientRect(&rc);
         huys::PaintDIB(hdc, &rc, _dib, &rc, NULL);
     }
-    //
-    virtual BOOL onEraseBkgnd(HDC hdc)
-    {
-        RECT rc = {0};
-        ::GetClientRect(*this, &rc);
-        huys::URectangle urc(rc);
-        urc.setFilledColor(huys::black);
-        urc.setFilledStyle(BS_SOLID);
-        urc.Draw(hdc);
-        return TRUE;
-    }
 
-    //
-    virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
+    BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
     {
-        switch (LOWORD(wParam))
-        {
-        case IDM_ABOUT:
-            return onMenuAbout();
-        case IDM_EXIT:
-            return UBaseWindow::onClose();
-        default:
-            return UBaseWindow::onCommand(wParam, lParam);
-        }
-    }
-
-private:
-    BOOL onMenuAbout()
-    {
-        this->showMsg(_T("UDIB v0.0.1"), _T("About"));
+        huys::HDIB hNewDIB = huys::RotateDIB(_dib);
+        _dib = hNewDIB;
+        invalidate(TRUE);
+        
         return FALSE;
     }
 private:

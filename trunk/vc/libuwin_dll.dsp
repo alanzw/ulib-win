@@ -154,6 +154,10 @@ SOURCE=..\src\ufile.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\ufileman.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\ufont.cpp
 # End Source File
 # Begin Source File
@@ -331,6 +335,10 @@ SOURCE=..\inc\uedit.h
 # Begin Source File
 
 SOURCE=..\inc\ufile.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\ufileman.h
 # End Source File
 # Begin Source File
 

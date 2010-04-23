@@ -78,3 +78,13 @@ bool UFileMan::listDirFiles(const TCHAR *dir)
     FindClose(hFind);
     return TRUE;
 }
+
+DWORD UFileMan::getFileAttributes( LPCTSTR sFilename )
+{
+    return ::GetFileAttributes(sFilename);   
+}
+
+BOOL UFileMan::setFileAttributes( LPCTSTR sFilename, DWORD dwFlags )
+{
+    return ::SetFileAttributes(sFilename, dwFlags);   
+}
