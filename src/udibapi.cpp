@@ -2497,7 +2497,345 @@ HDIB WINAPI ConvertDIBFormat(HDIB hDIB, UINT nbpp, HPALETTE hPalSrc)
  
     return hNewDIB;
 }
-/* End ConvertDIBFormat() 4***************************************************/  
+/* End ConvertDIBFormat() 4***************************************************/
+
+// RotateDIB	- Create a new bitmap with rotated image
+// Returns		- Returns new bitmap with rotated image
+// hDIB			- Device-independent bitmap to rotate
+// fDegrees		- Angle of rotation in degree
+// clrBack		- Color of pixels in the resulting bitmap that do
+//			  not get covered by source pixels
+HDIB WINAPI RotateDIB(HDIB hDIB, double fDegrees, COLORREF clrBack)
+{
+	WaitCursorBegin();
+
+	// Get source bitmap info
+	LPBITMAPINFO lpBmInfo = (LPBITMAPINFO)GlobalLock(hDIB);
+	int bpp = lpBmInfo->bmiHeader.biBitCount;		// Bits per pixel
+	
+	int nColors = lpBmInfo->bmiHeader.biClrUsed ? lpBmInfo->bmiHeader.biClrUsed : 
+					1 << bpp;
+	int nWidth = lpBmInfo->bmiHeader.biWidth;
+	int nHeight = lpBmInfo->bmiHeader.biHeight;
+	int nRowBytes = ((((nWidth * bpp) + 31) & ~31) / 8);
+
+	// Make sure height is positive and biCompression is BI_RGB or BI_BITFIELDS
+	DWORD compression = lpBmInfo->bmiHeader.biCompression;
+	if( nHeight < 0 || (compression!=BI_RGB))
+	{
+		GlobalUnlock(hDIB);
+		WaitCursorEnd();
+		return NULL;
+	}
+
+	LPBYTE lpDIBBits = (LPBYTE)FindDIBBits((LPSTR)lpBmInfo);
+    
+	// Convert angle degree to radians 
+	#define PI		3.1415926
+	double radians = (fDegrees/90.0)*(PI/2);
+
+	// Compute the cosine and sine only once
+	float cosine = (float)cos(radians);
+	float sine = (float)sin(radians);
+
+	// Compute dimensions of the resulting bitmap
+	// First get the coordinates of the 3 corners other than origin
+	int x1 = (int)(-nHeight * sine);
+	int y1 = (int)(nHeight * cosine);
+	int x2 = (int)(nWidth * cosine - nHeight * sine);
+	int y2 = (int)(nHeight * cosine + nWidth * sine);
+	int x3 = (int)(nWidth * cosine);
+	int y3 = (int)(nWidth * sine);
+
+	int minx = min(0,min(x1, min(x2,x3)));
+	int miny = min(0,min(y1, min(y2,y3)));
+	int maxx = max(x1, max(x2,x3));
+	int maxy = max(y1, max(y2,y3));
+
+	int w = maxx - minx;
+	int h = maxy - miny;
+
+	// Create a DIB to hold the result
+	int nResultRowBytes = ((((w * bpp) + 31) & ~31) / 8);
+	long len = nResultRowBytes * h;
+	int nHeaderSize = ((LPBYTE)lpDIBBits-(LPBYTE)lpBmInfo) ;
+	HANDLE hDIBResult = GlobalAlloc(GHND,len+nHeaderSize);
+	// Initialize the header information
+	LPBITMAPINFO lpBmInfoResult = (LPBITMAPINFO)GlobalLock(hDIBResult);
+	memcpy( (void*)lpBmInfoResult, (void*)lpBmInfo, nHeaderSize);
+	lpBmInfoResult->bmiHeader.biWidth = w;
+	lpBmInfoResult->bmiHeader.biHeight = h;
+	lpBmInfoResult->bmiHeader.biSizeImage = len;
+
+	LPBYTE lpDIBBitsResult = (LPBYTE)FindDIBBits((LPSTR)lpBmInfoResult);
+
+	// Get the back color value (index)
+	ZeroMemory( lpDIBBitsResult, len );
+	DWORD dwBackColor;
+	switch(bpp)
+	{
+	case 1:	//Monochrome
+		if( clrBack == RGB(255,255,255) )
+			memset( lpDIBBitsResult, 0xff, len );
+		break;
+	case 4:
+	case 8:	//Search the color table
+		int i;
+		for(i = 0; i < nColors; i++ )
+		{
+			if( lpBmInfo->bmiColors[i].rgbBlue ==  GetBValue(clrBack)
+				&& lpBmInfo->bmiColors[i].rgbGreen ==  GetGValue(clrBack)
+				&& lpBmInfo->bmiColors[i].rgbRed ==  GetRValue(clrBack) )
+			{
+				if(bpp==4) i = i | i<<4;
+				memset( lpDIBBitsResult, i, len );
+				break;
+			}
+		}
+		// If not match found the color remains black
+		break;
+	case 16:
+		// Windows95 supports 5 bits each for all colors or 5 bits for red & blue
+		// and 6 bits for green - Check the color mask for RGB555 or RGB565
+		if( *((DWORD*)lpBmInfo->bmiColors) == 0x7c00 )
+		{
+			// Bitmap is RGB555
+			dwBackColor = ((GetRValue(clrBack)>>3) << 10) + 
+					((GetRValue(clrBack)>>3) << 5) +
+					(GetBValue(clrBack)>>3) ;
+		}
+		else
+		{
+			// Bitmap is RGB565
+			dwBackColor = ((GetRValue(clrBack)>>3) << 11) + 
+					((GetRValue(clrBack)>>2) << 5) +
+					(GetBValue(clrBack)>>3) ;
+		}
+		break;
+	case 24:
+	case 32:
+		dwBackColor = (((DWORD)GetRValue(clrBack)) << 16) | 
+				(((DWORD)GetGValue(clrBack)) << 8) |
+				(((DWORD)GetBValue(clrBack)));
+		break;
+	}
+
+
+	// Now do the actual rotating - a pixel at a time
+	// Computing the destination point for each source point
+	// will leave a few pixels that do not get covered
+	// So we use a reverse transform - e.i. compute the source point
+	// for each destination point
+
+	for( int y = 0; y < h; y++ )
+	{
+		for( int x = 0; x < w; x++ )
+		{
+			int sourcex = (int)((x+minx)*cosine + (y+miny)*sine);
+			int sourcey = (int)((y+miny)*cosine - (x+minx)*sine);
+			if( sourcex >= 0 && sourcex < nWidth && sourcey >= 0 
+				&& sourcey < nHeight )
+			{
+				// Set the destination pixel
+				switch(bpp)
+				{
+					BYTE mask;
+				case 1:		//Monochrome
+					mask = *((LPBYTE)lpDIBBits + nRowBytes*sourcey + 
+						sourcex/8) & (0x80 >> sourcex%8);
+					//Adjust mask for destination bitmap
+					mask = mask ? (0x80 >> x%8) : 0;
+					*((LPBYTE)lpDIBBitsResult + nResultRowBytes*(y) + 
+								(x/8)) &= ~(0x80 >> x%8);
+					*((LPBYTE)lpDIBBitsResult + nResultRowBytes*(y) + 
+								(x/8)) |= mask;
+					break;
+				case 4:
+					mask = *((LPBYTE)lpDIBBits + nRowBytes*sourcey + 
+						sourcex/2) & ((sourcex&1) ? 0x0f : 0xf0);
+					//Adjust mask for destination bitmap
+					if( (sourcex&1) != (x&1) )
+						mask = (mask&0xf0) ? (mask>>4) : (mask<<4);
+					*((LPBYTE)lpDIBBitsResult + nResultRowBytes*(y) + 
+							(x/2)) &= ~((x&1) ? 0x0f : 0xf0);
+					*((LPBYTE)lpDIBBitsResult + nResultRowBytes*(y) + 
+							(x/2)) |= mask;
+					break;
+				case 8:
+					BYTE pixel ;
+					pixel = *((LPBYTE)lpDIBBits + nRowBytes*sourcey + 
+							sourcex);
+					*((LPBYTE)lpDIBBitsResult + nResultRowBytes*(y) + 
+							(x)) = pixel;
+					break;
+				case 16:
+					DWORD dwPixel;
+					dwPixel = *((LPWORD)((LPBYTE)lpDIBBits + 
+							nRowBytes*sourcey + sourcex*2));
+					*((LPWORD)((LPBYTE)lpDIBBitsResult + 
+						nResultRowBytes*y + x*2)) = (WORD)dwPixel;
+					break;
+				case 24:
+					dwPixel = *((LPDWORD)((LPBYTE)lpDIBBits + 
+						nRowBytes*sourcey + sourcex*3)) & 0xffffff;
+					*((LPDWORD)((LPBYTE)lpDIBBitsResult + 
+						nResultRowBytes*y + x*3)) |= dwPixel;
+					break;
+				case 32:
+					dwPixel = *((LPDWORD)((LPBYTE)lpDIBBits + 
+						nRowBytes*sourcey + sourcex*4));
+					*((LPDWORD)((LPBYTE)lpDIBBitsResult + 
+						nResultRowBytes*y + x*4)) = dwPixel;
+				}
+			}
+			else 
+			{
+				// Draw the background color. The background color
+				// has already been drawn for 8 bits per pixel and less
+				switch(bpp)
+				{
+				case 16:
+					*((LPWORD)((LPBYTE)lpDIBBitsResult + 
+						nResultRowBytes*y + x*2)) = 
+						(WORD)dwBackColor;
+					break;
+				case 24:
+					*((LPDWORD)((LPBYTE)lpDIBBitsResult + 
+						nResultRowBytes*y + x*3)) |= dwBackColor;
+					break;
+				case 32:
+					*((LPDWORD)((LPBYTE)lpDIBBitsResult + 
+						nResultRowBytes*y + x*4)) = dwBackColor;
+					break;
+				}
+			}
+		}
+	}
+
+	GlobalUnlock(hDIB);
+	GlobalUnlock(hDIBResult);
+	WaitCursorEnd();
+
+	return (HDIB)hDIBResult;
+}
+
+/************************************************************************* 
+ * 
+ * RotateDIB() 
+ * 
+ * Parameters: 
+ * 
+ * HDIB hDIB				 - handle of DIB to rotate
+ * 
+ * Return Value: 
+ * 
+ * HDIB             - Handle to new DIB 
+ * 
+ * Description: 
+ * 
+ * This function rotate DIB 90 degree counter clockwise, and return
+ * the rotated DIB in a new DIB handle, let the source DIB unchanged
+ * 
+ ************************************************************************/ 
+HDIB WINAPI RotateDIB(HDIB hDib)
+{
+	WaitCursorBegin();
+
+	// old DIB
+	LPBYTE lpDIBSrc = (LPBYTE)GlobalLock(hDib);
+
+	DWORD lSrcWidth = DIBWidth((LPSTR)lpDIBSrc);
+	DWORD lSrcHeight = DIBHeight((LPSTR)lpDIBSrc);
+	WORD wBitCount = ((LPBITMAPINFOHEADER)lpDIBSrc)->biBitCount;
+	// bits position
+    LPBYTE lpOldBits = (LPBYTE)FindDIBBits((LPSTR)lpDIBSrc);
+
+	// get bytes/pixel, bytes/row of new DIB
+	double fColorBytes = (double)((double)wBitCount/8.0);
+	DWORD lSrcRowBytes = WIDTHBYTES(lSrcWidth*((DWORD)wBitCount));
+	DWORD lDestRowBytes = WIDTHBYTES(lSrcHeight*((DWORD)wBitCount));
+
+	// adjust new DIB size
+	DWORD dwDataLength = GlobalSize(hDib);
+	dwDataLength += lDestRowBytes*(lSrcWidth-1)+(DWORD)((lSrcHeight-1)*fColorBytes) - 
+				  lSrcRowBytes*(lSrcHeight-1)+(DWORD)((lSrcWidth-1)*fColorBytes);
+	HDIB hNewDib = (HDIB)GlobalAlloc(GHND, dwDataLength);
+	if (! hNewDib)
+	{
+		WaitCursorEnd();
+		return NULL;
+	}
+	// new DIB buffer
+	LPBYTE lpDIB = (LPBYTE)GlobalLock(hNewDib);
+	// copy LPBITMAPINFO from old to new
+	memcpy(lpDIB, lpDIBSrc, sizeof(BITMAPINFOHEADER)+PaletteSize((LPSTR)lpDIBSrc));
+	// swap width and height
+	((LPBITMAPINFOHEADER)lpDIB)->biHeight = lSrcWidth;
+	((LPBITMAPINFOHEADER)lpDIB)->biWidth = lSrcHeight;
+	// new bits position
+	LPBYTE lpData = (LPBYTE)FindDIBBits((LPSTR)lpDIB);
+
+	// trandform bits
+	DWORD i, j;
+	switch (wBitCount)
+	{
+	case 1:
+		for (i=0; i<lSrcHeight; ++i)
+		{
+			for (j=0; j<lSrcWidth; ++j)
+			{
+				*(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)/8)) &= ~(1<<(7-((lSrcHeight-i-1)%8)));
+				*(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)/8)) |= 
+					((*(lpOldBits+(lSrcRowBytes*i+j/8))<<(j%8))>>7)<<(7-((lSrcHeight-i-1)%8));
+			}
+		}
+		break;
+	case 4:
+		for (i=0; i<lSrcHeight; ++i)
+		{
+			for (j=0; j<lSrcWidth; ++j)
+			{
+				*(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)/2)) &= ((lSrcHeight-i-1)%2) ? 0xf0 : 0x0f;
+				*(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)/2)) |= 
+					((*(lpOldBits+(lSrcRowBytes*i+j/2))<<(j%2 ? 4 : 0))>>4)<<(((lSrcHeight-i-1)%2) ? 0 : 4);
+			}
+		}
+		break;
+	case 8:
+		for (i=0; i<lSrcHeight; ++i)
+		{
+			for (j=0; j<lSrcWidth; ++j)
+			{
+				*(lpData+(lDestRowBytes*j+lSrcHeight-i-1))
+					= *(lpOldBits+(lSrcRowBytes*i+j));
+			}
+		}
+		break;
+	case 24:
+		for (i=0; i<lSrcHeight; ++i)
+		{
+			for (j=0; j<lSrcWidth; j++)
+			{
+				*(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)*3))
+					= *(lpOldBits+(lSrcRowBytes*i+j*3));
+				*(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)*3)+1)
+					= *(lpOldBits+(lSrcRowBytes*i+j*3)+1);
+				*(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)*3)+2)
+					= *(lpOldBits+(lSrcRowBytes*i+j*3)+2);
+			}
+		}
+		break;
+	}
+
+	// cleanup
+	GlobalUnlock(hDib);
+	GlobalUnlock(hNewDib);
+	WaitCursorEnd();
+	
+	return hNewDib;
+}
+
+
 
 DWORD WINAPI DIBBitCount(LPSTR lpDIB)
 { 
