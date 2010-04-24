@@ -24,37 +24,37 @@ DECLARE_HANDLE(HDIB);
 #define PALVERSION 0x300
 
 // Image position in Canvas
-#define LEFT_UP     1
-#define CENTER_UP    2
-#define RIGHT_UP    3
-#define LEFT_CENTER    4
+#define LEFT_UP         1
+#define CENTER_UP       2
+#define RIGHT_UP        3
+#define LEFT_CENTER     4
 #define CENTER_CENTER   5
-#define CENTER_RIGHT        6
-#define LEFT_DOWN    7
-#define CENTER_DOWN    8
-#define RIGHT_DOWN    9
+#define CENTER_RIGHT    6
+#define LEFT_DOWN       7
+#define CENTER_DOWN     8
+#define RIGHT_DOWN      9
 
 /* Gray Method */
-#define MEAN_GRAY    0
+#define MEAN_GRAY      0
 #define MAXIMUM_GRAY   1
 #define WEIGHT_GRAY    2
 
 /* Color Model */
-#define RGB_COLOR    0
+#define RGB_COLOR     0
 #define CMYK_COLOR    1
-#define HSI_COLOR    2
-#define HLS_COLOR    3
-#define UNDEFINED    (-1.0)
+#define HSI_COLOR     2
+#define HLS_COLOR     3
+#define UNDEFINED     (-1.0)
 
 // Separate color
-#define SEPARATE_RED   1
+#define SEPARATE_RED     1
 #define SEPARATE_GREEN   2
-#define SEPARATE_BLUE   3
+#define SEPARATE_BLUE    3
 
 // Filte color
-#define FILTE_RED    1
+#define FILTE_RED      1
 #define FILTE_GREEN    2
-#define FILTE_BLUE    3
+#define FILTE_BLUE     3
 
 // Filter algorithm
 #define FILTER1     1
@@ -90,14 +90,14 @@ DECLARE_HANDLE(HDIB);
 
 //
 #define WIDTHBYTES(bits)  (( (bits) + 31) / 32*4)
-#define BOUND(x, mn, mx)	((x) < (mn) ? (mn) : ((x) > (mx) ? (mx) : (x)))
-#define WaitCursorBegin()	HCURSOR hcURSOR = SetCursor(LoadCursor(NULL, IDC_WAIT))
-#define WaitCursorEnd()		SetCursor(hcURSOR) 
+#define BOUND(x, mn, mx)    ((x) < (mn) ? (mn) : ((x) > (mx) ? (mx) : (x)))
+#define WaitCursorBegin()    HCURSOR hcURSOR = SetCursor(LoadCursor(NULL, IDC_WAIT))
+#define WaitCursorEnd()        SetCursor(hcURSOR)
 
 // DIB initialization
 ULIB_API HDIB WINAPI CreateDIB(DWORD, DWORD, WORD);
 ULIB_API HDIB WINAPI CreateDefaultDIB(DWORD dwWidth, DWORD dwHeight);
-ULIB_API void WINAPI DestroyDIB(HDIB); 
+ULIB_API void WINAPI DestroyDIB(HDIB);
 
 ULIB_API BOOL WINAPI SaveDIB(HDIB hDib, HANDLE hFile);
 ULIB_API BOOL WINAPI SaveDIBFilename(HDIB hDib, LPCTSTR lpFilename);
@@ -119,7 +119,7 @@ ULIB_API LPSTR WINAPI FindDIBBits(LPSTR lpbi);
 ULIB_API DWORD WINAPI DIBWidth(LPSTR lpDIB);
 ULIB_API DWORD WINAPI DIBHeight(LPSTR lpDIB);
 ULIB_API DWORD WINAPI DIBHeight(HDIB hDIB);
-ULIB_API DWORD WINAPI DIBWidth(HDIB hDIB); 
+ULIB_API DWORD WINAPI DIBWidth(HDIB hDIB);
 ULIB_API DWORD WINAPI DIBBitCount(LPSTR lpDIB);
 ULIB_API DWORD WINAPI DIBBitCount(HDIB hDIB);
 ULIB_API int WINAPI PalEntriesOnDevice(HDC hDC);

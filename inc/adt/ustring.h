@@ -197,7 +197,7 @@ public:
         m_nStrLength = size;
         m_pBuf[m_nStrLength] = '\0';
     }
-    
+
     size_type length() const
     {
         return m_nStrLength;
@@ -271,7 +271,7 @@ public:
         }
         return -1;
     }
-    
+
     UString substr(size_type start, size_type end)
     {
         if (start > end)

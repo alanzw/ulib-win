@@ -6,6 +6,7 @@
 #include <direct.h>
 #include <assert.h>
 #include <exception>
+#include <algorithm>
 
 #include "udibapi.h"
 #include "ufile.h"
@@ -13,6 +14,17 @@
 //
 namespace huys
 {
+
+
+#if defined(_MSC_VER) && !(_MSC_VER > 1200)  // VC6
+  #ifndef max
+    #define max(x, y) std::_cpp_max(x,y)
+    #define min(x, y) std::_cpp_min(x,y)
+  #endif
+#else
+  using std::max;
+  using std::min;
+#endif // (_MSC_VER <= 1200)
 
 /*************************************************************************
 *
@@ -71,7 +83,7 @@ HDIB WINAPI CreateDIB(DWORD dwWidth, DWORD dwHeight, WORD wBitCount) //´´½¨Ò»¸ö¿
     bi.biHeight = dwHeight;       // fill in height from parameter
     bi.biPlanes = 1;              // must be 1
     bi.biBitCount = wBitCount;    // from parameter
-    bi.biCompression = BI_RGB;    
+    bi.biCompression = BI_RGB;
     bi.biSizeImage = 0;           // 0's here mean "default"
     bi.biXPelsPerMeter = 0;
     bi.biYPelsPerMeter = 0;
@@ -320,10 +332,10 @@ BOOL WINAPI PaintDIB(HDC hDC,
  * calling this function, be sure your palette is selected to desired
  * priority (foreground or background).
  *
- * History:   
- *            
- *   Date      Author               Reason         
- *   6/1/91    Garrett McAuliffe    Created         
+ * History:
+ *
+ *   Date      Author               Reason
+ *   6/1/91    Garrett McAuliffe    Created
  *   12/12/91  Patrick Schreiber    Added return value, realizepalette,
  *                                       header and some comments
  *   6/8/92    Patrick Schreiber    Select palette as background always, added
@@ -331,9 +343,9 @@ BOOL WINAPI PaintDIB(HDC hDC,
  *
  ************************************************************************/
 BOOL WINAPI PaintBitmap(HDC      hDC,
-                     LPRECT   lpDCRect, 
-                     HBITMAP  hDDB, 
-                     LPRECT   lpDDBRect, 
+                     LPRECT   lpDCRect,
+                     HBITMAP  hDDB,
+                     LPRECT   lpDDBRect,
                      HPALETTE hPal)
 {
    HDC      hMemDC;            // Handle to memory DC
@@ -360,10 +372,10 @@ BOOL WINAPI PaintBitmap(HDC      hDC,
    /* Select bitmap into the memory DC */
    hOldBitmap = (HBITMAP)SelectObject (hMemDC, hDDB);
 
-   /* Make sure to use the stretching mode best for color pictures */   
+   /* Make sure to use the stretching mode best for color pictures */
    SetStretchBltMode (hDC, COLORONCOLOR);
 
-   /* Determine whether to call StretchBlt() or BitBlt() */ 
+   /* Determine whether to call StretchBlt() or BitBlt() */
    if ((RECTWIDTH(lpDCRect)  == RECTWIDTH(lpDDBRect)) &&
        (RECTHEIGHT(lpDCRect) == RECTHEIGHT(lpDDBRect)))
       bSuccess = BitBlt(hDC,
@@ -377,13 +389,13 @@ BOOL WINAPI PaintBitmap(HDC      hDC,
                         SRCCOPY);
    else
       bSuccess = StretchBlt(hDC,
-                            lpDCRect->left, 
-                            lpDCRect->top, 
+                            lpDCRect->left,
+                            lpDCRect->top,
                             lpDCRect->right - lpDCRect->left,
                             lpDCRect->bottom - lpDCRect->top,
                             hMemDC,
-                            lpDDBRect->left, 
-                            lpDDBRect->top, 
+                            lpDDBRect->left,
+                            lpDDBRect->top,
                             lpDDBRect->right - lpDDBRect->left,
                             lpDDBRect->bottom - lpDDBRect->top,
                             SRCCOPY);
@@ -562,8 +574,8 @@ DWORD WINAPI DIBWidth(LPSTR lpDIB)
     }
 }
 
-DWORD WINAPI DIBWidth(HDIB hDIB) 
-{ 
+DWORD WINAPI DIBWidth(HDIB hDIB)
+{
     LPSTR lpDIB = (LPSTR)GlobalLock(hDIB);
     DWORD dw = DIBWidth(lpDIB);
     GlobalUnlock(hDIB);
@@ -597,8 +609,8 @@ DWORD WINAPI DIBHeight(LPSTR lpDIB)
     }
 }
 
-DWORD WINAPI DIBHeight(HDIB hDIB) 
-{ 
+DWORD WINAPI DIBHeight(HDIB hDIB)
+{
     LPSTR lpDIB = (LPSTR)GlobalLock(hDIB);
     DWORD dw = DIBHeight(lpDIB);
     GlobalUnlock(hDIB);
@@ -661,12 +673,12 @@ int WINAPI PalEntriesOnDevice(HDC hDC)
  *
  * This function returns a handle to a palette which represents the system
  * palette.  The system RGB values are copied into our logical palette using
- * the GetSystemPaletteEntries function.  
+ * the GetSystemPaletteEntries function.
  *
- * History:   
- *            
- *    Date      Author               Reason        
- *    6/01/91   Garrett McAuliffe    Created        
+ * History:
+ *
+ *    Date      Author               Reason
+ *    6/01/91   Garrett McAuliffe    Created
  *    9/15/91   Patrick Schreiber    Added header and comments
  *    12/20/91  Mark Bader           Added GetSystemPaletteEntries call
  *
@@ -703,7 +715,7 @@ HPALETTE WINAPI GetSystemPalette(void)
 
    /* Copy the current system palette into our logical palette */
 
-   GetSystemPaletteEntries(hDC, 0, nColors, 
+   GetSystemPaletteEntries(hDC, 0, nColors,
                            (LPPALETTEENTRY)(lpLogPal->palPalEntry));
 
    /*  Go ahead and create the palette.  Once it's created,
@@ -741,13 +753,13 @@ DWORD WINAPI BytesPerLine( LPBITMAPINFOHEADER lpBMIH )
     return WIDTHBYTES(lpBMIH->biWidth * lpBMIH->biPlanes * lpBMIH->biBitCount);
 }
 
-DWORD WINAPI BytesPerLine(HDIB hDIB) 
-{ 
+DWORD WINAPI BytesPerLine(HDIB hDIB)
+{
     LPBYTE lpDIB = (LPBYTE)GlobalLock(hDIB);
     DWORD dw = BytesPerLine((LPBITMAPINFOHEADER)lpDIB);
     GlobalUnlock(hDIB);
     return dw;
-} 
+}
 
 
 //
@@ -1275,7 +1287,7 @@ HDIB WINAPI ReadDIBFile(HANDLE hFile)
     BITMAPFILEHEADER bmfHeader;
     DWORD dwBitsSize;
     DWORD dwNumRead;
-	HDIB hDIB;
+    HDIB hDIB;
     LPSTR pDIB;
 
     ULARGE_INTEGER BitsSize;
@@ -2056,132 +2068,132 @@ BOOL WINAPI CopyColorTable( LPBITMAPINFO lpTarget, LPBITMAPINFO lpSource )
     return TRUE;
 }
 
-/**************************************************************************** 
-* 
-*     FUNCTION: CopyColorTable 
-* 
-*     PURPOSE:  Copies the color table from one CF_DIB to another. 
-* 
-*     PARAMS:   LPBITMAPINFO lpTarget - pointer to target DIB 
-*               LPBITMAPINFO lpSource - pointer to source DIB 
-* 
-*     RETURNS:  BOOL - TRUE for success, FALSE for failure 
-* 
-\****************************************************************************/ 
-BOOL CopyColorTable( LPBITMAPINFO lpTarget, LPBITMAPINFO lpSource, HPALETTE hPalSrc ) 
-{ 
-    // What we do depends on the target's color depth 
-    switch( lpTarget->bmiHeader.biBitCount ) 
-    { 
-        // 8bpp - need 256 entry color table 
-        case 8: 
-			if (hPalSrc)
-			{ // Palette is provided, use it
-				PALETTEENTRY    pe[256]; 
-				UINT            i; 
+/****************************************************************************
+*
+*     FUNCTION: CopyColorTable
+*
+*     PURPOSE:  Copies the color table from one CF_DIB to another.
+*
+*     PARAMS:   LPBITMAPINFO lpTarget - pointer to target DIB
+*               LPBITMAPINFO lpSource - pointer to source DIB
+*
+*     RETURNS:  BOOL - TRUE for success, FALSE for failure
+*
+\****************************************************************************/
+BOOL CopyColorTable( LPBITMAPINFO lpTarget, LPBITMAPINFO lpSource, HPALETTE hPalSrc )
+{
+    // What we do depends on the target's color depth
+    switch( lpTarget->bmiHeader.biBitCount )
+    {
+        // 8bpp - need 256 entry color table
+        case 8:
+            if (hPalSrc)
+            { // Palette is provided, use it
+                PALETTEENTRY    pe[256];
+                UINT            i;
 
-				GetPaletteEntries( hPalSrc, 0, 256, pe ); 
-				for(i=0;i<256;i++) 
-				{ 
-					lpTarget->bmiColors[i].rgbRed = pe[i].peRed; 
-					lpTarget->bmiColors[i].rgbGreen = pe[i].peGreen; 
-					lpTarget->bmiColors[i].rgbBlue = pe[i].peBlue; 
-					lpTarget->bmiColors[i].rgbReserved = 0; 
-				} 
-			}
-			else
-			{ // no palette povided
-				if( lpSource->bmiHeader.biBitCount == 8 ) 
-				{ // Source is 8bpp too, copy color table 
-					memcpy( lpTarget->bmiColors, lpSource->bmiColors, 256*sizeof(RGBQUAD) ); 
-				} 
-				else 
-				{ // Source is != 8bpp, use Octree algorithm to create palette
-					HPALETTE        hPal; 
-					HDC            hDC = GetDC( NULL ); 
-					PALETTEENTRY    pe[256]; 
-					UINT            i; 
- 
-					//hPal = CreateOctreePalette((LPBYTE)lpSource, 236, 8);
-					//if (! hPal)	 // use halftone palette                 
-						hPal = CreateHalftonePalette( hDC ); 
-					ReleaseDC( NULL, hDC ); 
+                GetPaletteEntries( hPalSrc, 0, 256, pe );
+                for(i=0;i<256;i++)
+                {
+                    lpTarget->bmiColors[i].rgbRed = pe[i].peRed;
+                    lpTarget->bmiColors[i].rgbGreen = pe[i].peGreen;
+                    lpTarget->bmiColors[i].rgbBlue = pe[i].peBlue;
+                    lpTarget->bmiColors[i].rgbReserved = 0;
+                }
+            }
+            else
+            { // no palette povided
+                if( lpSource->bmiHeader.biBitCount == 8 )
+                { // Source is 8bpp too, copy color table
+                    memcpy( lpTarget->bmiColors, lpSource->bmiColors, 256*sizeof(RGBQUAD) );
+                }
+                else
+                { // Source is != 8bpp, use Octree algorithm to create palette
+                    HPALETTE        hPal;
+                    HDC            hDC = GetDC( NULL );
+                    PALETTEENTRY    pe[256];
+                    UINT            i;
 
-					GetPaletteEntries( hPal, 0, 256, pe ); 
-					DeleteObject( hPal ); 
-					for(i=0;i<256;i++) 
-					{ 
-						lpTarget->bmiColors[i].rgbRed = pe[i].peRed; 
-						lpTarget->bmiColors[i].rgbGreen = pe[i].peGreen; 
-						lpTarget->bmiColors[i].rgbBlue = pe[i].peBlue; 
-						lpTarget->bmiColors[i].rgbReserved = pe[i].peFlags; 
-					} 
-				}
-			}
-			break; // end 8bpp 
- 
-        // 4bpp - need 16 entry color table 
-        case 4: 
-			if (hPalSrc)
-			{ // Palette is provided, use it
-				PALETTEENTRY    pe[16]; 
-				UINT            i; 
+                    //hPal = CreateOctreePalette((LPBYTE)lpSource, 236, 8);
+                    //if (! hPal)     // use halftone palette
+                        hPal = CreateHalftonePalette( hDC );
+                    ReleaseDC( NULL, hDC );
 
-				GetPaletteEntries( hPalSrc, 0, 16, pe ); 
-				for(i=0;i<16;i++) 
-				{ 
-					lpTarget->bmiColors[i].rgbRed = pe[i].peRed; 
-					lpTarget->bmiColors[i].rgbGreen = pe[i].peGreen; 
-					lpTarget->bmiColors[i].rgbBlue = pe[i].peBlue; 
-					lpTarget->bmiColors[i].rgbReserved = 0; 
-				} 
-			}
-			else
-			{ // No palette is provided
-				if( lpSource->bmiHeader.biBitCount == 4 ) 
-				{ // Source is 4bpp too, copy color table 
-					memcpy( lpTarget->bmiColors, lpSource->bmiColors, 16*sizeof(RGBQUAD) ); 
-				} 
-				else 
-				{ // Source is != 4bpp, use system palette 
-					HPALETTE        hPal; 
-					PALETTEENTRY    pe[256]; 
-					UINT            i; 
- 
-					hPal = (HPALETTE)GetStockObject( DEFAULT_PALETTE ); 
-					GetPaletteEntries( hPal, 0, 16, pe ); 
-					for(i=0;i<16;i++) 
-					{ 
-						lpTarget->bmiColors[i].rgbRed = pe[i].peRed; 
-						lpTarget->bmiColors[i].rgbGreen = pe[i].peGreen; 
-						lpTarget->bmiColors[i].rgbBlue = pe[i].peBlue; 
-						lpTarget->bmiColors[i].rgbReserved = pe[i].peFlags; 
-					}
-                } 
-			}
-			break; // end 4bpp 
- 
-        // 1bpp - need 2 entry mono color table 
-        case 1: 
-            lpTarget->bmiColors[0].rgbRed = 0; 
-            lpTarget->bmiColors[0].rgbGreen = 0; 
-            lpTarget->bmiColors[0].rgbBlue = 0; 
-            lpTarget->bmiColors[0].rgbReserved = 0; 
-            lpTarget->bmiColors[1].rgbRed = 255; 
-            lpTarget->bmiColors[1].rgbGreen = 255; 
-            lpTarget->bmiColors[1].rgbBlue = 255; 
-            lpTarget->bmiColors[1].rgbReserved = 0; 
-			break; // end 1bpp 
- 
-        // no color table for the > 8bpp modes 
-        case 32: 
-        case 24: 
-        case 16: 
-        default: 
-	        break; 
-    } 
-    return TRUE; 
-} 
+                    GetPaletteEntries( hPal, 0, 256, pe );
+                    DeleteObject( hPal );
+                    for(i=0;i<256;i++)
+                    {
+                        lpTarget->bmiColors[i].rgbRed = pe[i].peRed;
+                        lpTarget->bmiColors[i].rgbGreen = pe[i].peGreen;
+                        lpTarget->bmiColors[i].rgbBlue = pe[i].peBlue;
+                        lpTarget->bmiColors[i].rgbReserved = pe[i].peFlags;
+                    }
+                }
+            }
+            break; // end 8bpp
+
+        // 4bpp - need 16 entry color table
+        case 4:
+            if (hPalSrc)
+            { // Palette is provided, use it
+                PALETTEENTRY    pe[16];
+                UINT            i;
+
+                GetPaletteEntries( hPalSrc, 0, 16, pe );
+                for(i=0;i<16;i++)
+                {
+                    lpTarget->bmiColors[i].rgbRed = pe[i].peRed;
+                    lpTarget->bmiColors[i].rgbGreen = pe[i].peGreen;
+                    lpTarget->bmiColors[i].rgbBlue = pe[i].peBlue;
+                    lpTarget->bmiColors[i].rgbReserved = 0;
+                }
+            }
+            else
+            { // No palette is provided
+                if( lpSource->bmiHeader.biBitCount == 4 )
+                { // Source is 4bpp too, copy color table
+                    memcpy( lpTarget->bmiColors, lpSource->bmiColors, 16*sizeof(RGBQUAD) );
+                }
+                else
+                { // Source is != 4bpp, use system palette
+                    HPALETTE        hPal;
+                    PALETTEENTRY    pe[256];
+                    UINT            i;
+
+                    hPal = (HPALETTE)GetStockObject( DEFAULT_PALETTE );
+                    GetPaletteEntries( hPal, 0, 16, pe );
+                    for(i=0;i<16;i++)
+                    {
+                        lpTarget->bmiColors[i].rgbRed = pe[i].peRed;
+                        lpTarget->bmiColors[i].rgbGreen = pe[i].peGreen;
+                        lpTarget->bmiColors[i].rgbBlue = pe[i].peBlue;
+                        lpTarget->bmiColors[i].rgbReserved = pe[i].peFlags;
+                    }
+                }
+            }
+            break; // end 4bpp
+
+        // 1bpp - need 2 entry mono color table
+        case 1:
+            lpTarget->bmiColors[0].rgbRed = 0;
+            lpTarget->bmiColors[0].rgbGreen = 0;
+            lpTarget->bmiColors[0].rgbBlue = 0;
+            lpTarget->bmiColors[0].rgbReserved = 0;
+            lpTarget->bmiColors[1].rgbRed = 255;
+            lpTarget->bmiColors[1].rgbGreen = 255;
+            lpTarget->bmiColors[1].rgbBlue = 255;
+            lpTarget->bmiColors[1].rgbReserved = 0;
+            break; // end 1bpp
+
+        // no color table for the > 8bpp modes
+        case 32:
+        case 24:
+        case 16:
+        default:
+            break;
+    }
+    return TRUE;
+}
 
 
 LPBYTE WINAPI ConvertDIBFormat( LPBITMAPINFO lpSrcDIB, UINT nWidth, UINT nHeight, UINT nbpp, BOOL bStretch )
@@ -2279,599 +2291,599 @@ LPBYTE WINAPI ConvertDIBFormat( LPBITMAPINFO lpSrcDIB, UINT nWidth, UINT nHeight
     return lpResult;
 }
 
-/**************************************************************************** 
-* 
-*     FUNCTION: ConvertDIBFormat 
-* 
-*     PURPOSE:  Creates a new DIB of the requested format, copies the source 
-*               image to the new DIB. 
-* 
-*     PARAMS:   LPBYTE		 lpDIB    - the source CF_DIB 
-*               UINT         nbpp     - bpp for new DIB 
-*				HPALETTE	 hPalSrc  - Palette used to set new DIB
-* 
+/****************************************************************************
+*
+*     FUNCTION: ConvertDIBFormat
+*
+*     PURPOSE:  Creates a new DIB of the requested format, copies the source
+*               image to the new DIB.
+*
+*     PARAMS:   LPBYTE         lpDIB    - the source CF_DIB
+*               UINT         nbpp     - bpp for new DIB
+*                HPALETTE     hPalSrc  - Palette used to set new DIB
+*
 *     RETURNS:  HDIB - new CF_DIB handle
-* 
-\****************************************************************************/ 
+*
+\****************************************************************************/
 HDIB WINAPI ConvertDIBFormat(LPBYTE lpDIB, UINT nbpp, HPALETTE hPalSrc)
 {
-	LPBITMAPINFO lpSrcDIB = (LPBITMAPINFO)lpDIB;
-    LPBITMAPINFO lpbmi = NULL; 
-    LPBYTE       lpSourceBits, lpTargetBits, lpResult; 
-    HDC			 hDC = NULL, hSourceDC, hTargetDC; 
-    HBITMAP      hSourceBitmap, hTargetBitmap, hOldTargetBitmap, hOldSourceBitmap; 
-    DWORD        dwSourceBitsSize, dwTargetBitsSize, dwTargetHeaderSize, dwColorNum; 
-	HDIB		 hNewDIB;
-	DWORD		 dwSize;
-	int			 nWidth, nHeight;
+    LPBITMAPINFO lpSrcDIB = (LPBITMAPINFO)lpDIB;
+    LPBITMAPINFO lpbmi = NULL;
+    LPBYTE       lpSourceBits, lpTargetBits, lpResult;
+    HDC             hDC = NULL, hSourceDC, hTargetDC;
+    HBITMAP      hSourceBitmap, hTargetBitmap, hOldTargetBitmap, hOldSourceBitmap;
+    DWORD        dwSourceBitsSize, dwTargetBitsSize, dwTargetHeaderSize, dwColorNum;
+    HDIB         hNewDIB;
+    DWORD         dwSize;
+    int             nWidth, nHeight;
 
-	nWidth = lpSrcDIB->bmiHeader.biWidth;
-	nHeight = lpSrcDIB->bmiHeader.biHeight;
+    nWidth = lpSrcDIB->bmiHeader.biWidth;
+    nHeight = lpSrcDIB->bmiHeader.biHeight;
 
-    // Allocate and fill out a BITMAPINFO struct for the new DIB 
-    if (nbpp <= 8) 
-		dwColorNum = 1 << nbpp;
-	else
-		dwColorNum = 0;
-    dwTargetHeaderSize = sizeof( BITMAPINFO ) + ( dwColorNum * sizeof( RGBQUAD ) ); 
-    lpbmi = (LPBITMAPINFO)malloc( dwTargetHeaderSize ); 
-    lpbmi->bmiHeader.biSize = sizeof( BITMAPINFOHEADER ); 
-    lpbmi->bmiHeader.biWidth = nWidth; 
-    lpbmi->bmiHeader.biHeight = nHeight; 
-    lpbmi->bmiHeader.biPlanes = 1; 
-    lpbmi->bmiHeader.biBitCount = nbpp; 
-    lpbmi->bmiHeader.biCompression = BI_RGB; 
-    lpbmi->bmiHeader.biSizeImage = 0; 
-    lpbmi->bmiHeader.biXPelsPerMeter = 0; 
-    lpbmi->bmiHeader.biYPelsPerMeter = 0; 
-    lpbmi->bmiHeader.biClrUsed = 0; 
-    lpbmi->bmiHeader.biClrImportant = 0; 
-    // Fill in the color table 
-    if( ! CopyColorTable( lpbmi, (LPBITMAPINFO)lpSrcDIB, hPalSrc ) ) 
-    { 
-        free( lpbmi ); 
-        return NULL; 
-    } 
- 
-    // Gonna use DIBSections and BitBlt() to do the conversion, so make 'em 
-	hDC = GetDC( NULL ); 
-    hTargetBitmap = CreateDIBSection( hDC, lpbmi, DIB_RGB_COLORS, (VOID **)&lpTargetBits, NULL, 0 ); 
-    hSourceBitmap = CreateDIBSection( hDC, lpSrcDIB, DIB_RGB_COLORS, (VOID **)&lpSourceBits, NULL, 0 ); 
-    hSourceDC = CreateCompatibleDC( hDC ); 
-    hTargetDC = CreateCompatibleDC( hDC ); 
- 
-    // Flip the bits on the source DIBSection to match the source DIB 
-    dwSourceBitsSize = lpSrcDIB->bmiHeader.biHeight * BytesPerLine((LPBITMAPINFOHEADER)&(lpSrcDIB->bmiHeader)); 
-    dwTargetBitsSize = lpbmi->bmiHeader.biHeight * BytesPerLine((LPBITMAPINFOHEADER)&(lpbmi->bmiHeader)); 
-    memcpy( lpSourceBits, FindDIBBits((LPSTR)lpSrcDIB), dwSourceBitsSize ); 
-    lpbmi->bmiHeader.biSizeImage = dwTargetBitsSize; 
- 
-    // Select DIBSections into DCs 
-    hOldSourceBitmap = (HBITMAP)SelectObject( hSourceDC, hSourceBitmap ); 
-    hOldTargetBitmap = (HBITMAP)SelectObject( hTargetDC, hTargetBitmap ); 
- 
-    // Set the color tables for the DIBSections 
-    if( lpSrcDIB->bmiHeader.biBitCount <= 8 ) 
-        SetDIBColorTable( hSourceDC, 0, 1 << lpSrcDIB->bmiHeader.biBitCount, lpSrcDIB->bmiColors ); 
-    if( lpbmi->bmiHeader.biBitCount <= 8 ) 
-        SetDIBColorTable( hTargetDC, 0, 1 << lpbmi->bmiHeader.biBitCount, lpbmi->bmiColors ); 
- 
-    // We are asking for a straight copy, do it 
-    BitBlt( hTargetDC, 0, 0, lpbmi->bmiHeader.biWidth, lpbmi->bmiHeader.biHeight, hSourceDC, 0, 0, SRCCOPY ); 
- 
-    // Clean up and delete the DCs 
-    SelectObject( hSourceDC, hOldSourceBitmap ); 
-    SelectObject( hTargetDC, hOldTargetBitmap ); 
-    DeleteDC( hSourceDC ); 
-    DeleteDC( hTargetDC ); 
-    ReleaseDC( NULL, hDC ); 
- 
-    // Flush the GDI batch, so we can play with the bits 
-    GdiFlush(); 
- 
-    // Allocate enough memory for the new CF_DIB, and copy bits 
-	dwSize = dwTargetHeaderSize + dwTargetBitsSize;
-	hNewDIB = (HDIB)GlobalAlloc(GHND, dwSize);
-    lpResult = (LPBYTE)GlobalLock(hNewDIB);//malloc( dwTargetHeaderSize + dwTargetBitsSize ); 
-    memcpy( lpResult, lpbmi, dwTargetHeaderSize ); 
-    memcpy( FindDIBBits( (LPSTR)lpResult ), lpTargetBits, dwTargetBitsSize ); 
- 
-    // final cleanup 
-    DeleteObject( hTargetBitmap ); 
-    DeleteObject( hSourceBitmap ); 
-    free( lpbmi ); 
-	GlobalUnlock(hNewDIB);
- 
+    // Allocate and fill out a BITMAPINFO struct for the new DIB
+    if (nbpp <= 8)
+        dwColorNum = 1 << nbpp;
+    else
+        dwColorNum = 0;
+    dwTargetHeaderSize = sizeof( BITMAPINFO ) + ( dwColorNum * sizeof( RGBQUAD ) );
+    lpbmi = (LPBITMAPINFO)malloc( dwTargetHeaderSize );
+    lpbmi->bmiHeader.biSize = sizeof( BITMAPINFOHEADER );
+    lpbmi->bmiHeader.biWidth = nWidth;
+    lpbmi->bmiHeader.biHeight = nHeight;
+    lpbmi->bmiHeader.biPlanes = 1;
+    lpbmi->bmiHeader.biBitCount = nbpp;
+    lpbmi->bmiHeader.biCompression = BI_RGB;
+    lpbmi->bmiHeader.biSizeImage = 0;
+    lpbmi->bmiHeader.biXPelsPerMeter = 0;
+    lpbmi->bmiHeader.biYPelsPerMeter = 0;
+    lpbmi->bmiHeader.biClrUsed = 0;
+    lpbmi->bmiHeader.biClrImportant = 0;
+    // Fill in the color table
+    if( ! CopyColorTable( lpbmi, (LPBITMAPINFO)lpSrcDIB, hPalSrc ) )
+    {
+        free( lpbmi );
+        return NULL;
+    }
+
+    // Gonna use DIBSections and BitBlt() to do the conversion, so make 'em
+    hDC = GetDC( NULL );
+    hTargetBitmap = CreateDIBSection( hDC, lpbmi, DIB_RGB_COLORS, (VOID **)&lpTargetBits, NULL, 0 );
+    hSourceBitmap = CreateDIBSection( hDC, lpSrcDIB, DIB_RGB_COLORS, (VOID **)&lpSourceBits, NULL, 0 );
+    hSourceDC = CreateCompatibleDC( hDC );
+    hTargetDC = CreateCompatibleDC( hDC );
+
+    // Flip the bits on the source DIBSection to match the source DIB
+    dwSourceBitsSize = lpSrcDIB->bmiHeader.biHeight * BytesPerLine((LPBITMAPINFOHEADER)&(lpSrcDIB->bmiHeader));
+    dwTargetBitsSize = lpbmi->bmiHeader.biHeight * BytesPerLine((LPBITMAPINFOHEADER)&(lpbmi->bmiHeader));
+    memcpy( lpSourceBits, FindDIBBits((LPSTR)lpSrcDIB), dwSourceBitsSize );
+    lpbmi->bmiHeader.biSizeImage = dwTargetBitsSize;
+
+    // Select DIBSections into DCs
+    hOldSourceBitmap = (HBITMAP)SelectObject( hSourceDC, hSourceBitmap );
+    hOldTargetBitmap = (HBITMAP)SelectObject( hTargetDC, hTargetBitmap );
+
+    // Set the color tables for the DIBSections
+    if( lpSrcDIB->bmiHeader.biBitCount <= 8 )
+        SetDIBColorTable( hSourceDC, 0, 1 << lpSrcDIB->bmiHeader.biBitCount, lpSrcDIB->bmiColors );
+    if( lpbmi->bmiHeader.biBitCount <= 8 )
+        SetDIBColorTable( hTargetDC, 0, 1 << lpbmi->bmiHeader.biBitCount, lpbmi->bmiColors );
+
+    // We are asking for a straight copy, do it
+    BitBlt( hTargetDC, 0, 0, lpbmi->bmiHeader.biWidth, lpbmi->bmiHeader.biHeight, hSourceDC, 0, 0, SRCCOPY );
+
+    // Clean up and delete the DCs
+    SelectObject( hSourceDC, hOldSourceBitmap );
+    SelectObject( hTargetDC, hOldTargetBitmap );
+    DeleteDC( hSourceDC );
+    DeleteDC( hTargetDC );
+    ReleaseDC( NULL, hDC );
+
+    // Flush the GDI batch, so we can play with the bits
+    GdiFlush();
+
+    // Allocate enough memory for the new CF_DIB, and copy bits
+    dwSize = dwTargetHeaderSize + dwTargetBitsSize;
+    hNewDIB = (HDIB)GlobalAlloc(GHND, dwSize);
+    lpResult = (LPBYTE)GlobalLock(hNewDIB);//malloc( dwTargetHeaderSize + dwTargetBitsSize );
+    memcpy( lpResult, lpbmi, dwTargetHeaderSize );
+    memcpy( FindDIBBits( (LPSTR)lpResult ), lpTargetBits, dwTargetBitsSize );
+
+    // final cleanup
+    DeleteObject( hTargetBitmap );
+    DeleteObject( hSourceBitmap );
+    free( lpbmi );
+    GlobalUnlock(hNewDIB);
+
     return hNewDIB;
 }
-/* End ConvertDIBFormat() 3***************************************************/ 
+/* End ConvertDIBFormat() 3***************************************************/
 
-/**************************************************************************** 
-* 
-*     FUNCTION: ConvertDIBFormat 
-* 
-*     PURPOSE:  Creates a new DIB of the requested format, copies the source 
-*               image to the new DIB. 
-* 
-*     PARAMS:   HDIB		 hDIB     - the source CF_DIB 
-*               UINT         nbpp     - bpp for new DIB 
-*				HPALETTE	 hPalSrc  - Palette used to set new DIB
-* 
+/****************************************************************************
+*
+*     FUNCTION: ConvertDIBFormat
+*
+*     PURPOSE:  Creates a new DIB of the requested format, copies the source
+*               image to the new DIB.
+*
+*     PARAMS:   HDIB         hDIB     - the source CF_DIB
+*               UINT         nbpp     - bpp for new DIB
+*                HPALETTE     hPalSrc  - Palette used to set new DIB
+*
 *     RETURNS:  HDIB - new CF_DIB handle
-* 
-\****************************************************************************/ 
+*
+\****************************************************************************/
 HDIB WINAPI ConvertDIBFormat(HDIB hDIB, UINT nbpp, HPALETTE hPalSrc)
 {
-    LPBITMAPINFO lpbmi = NULL; 
-    LPBYTE       lpSourceBits, lpTargetBits, lpResult; 
-    HDC			 hDC = NULL, hSourceDC, hTargetDC; 
-    HBITMAP      hSourceBitmap, hTargetBitmap, hOldTargetBitmap, hOldSourceBitmap; 
-    DWORD        dwSourceBitsSize, dwTargetBitsSize, dwTargetHeaderSize, dwColorNum; 
-	HDIB		 hNewDIB;
-	DWORD		 dwSize;
-	int			 nWidth, nHeight;
+    LPBITMAPINFO lpbmi = NULL;
+    LPBYTE       lpSourceBits, lpTargetBits, lpResult;
+    HDC             hDC = NULL, hSourceDC, hTargetDC;
+    HBITMAP      hSourceBitmap, hTargetBitmap, hOldTargetBitmap, hOldSourceBitmap;
+    DWORD        dwSourceBitsSize, dwTargetBitsSize, dwTargetHeaderSize, dwColorNum;
+    HDIB         hNewDIB;
+    DWORD         dwSize;
+    int             nWidth, nHeight;
 
-	// Get DIB pointer
-	if (! hDIB)
-		return NULL;
-	LPBITMAPINFO lpSrcDIB = (LPBITMAPINFO)GlobalLock(hDIB);
-	if (! lpSrcDIB)
-		return NULL;
-	nWidth = lpSrcDIB->bmiHeader.biWidth;
-	nHeight = lpSrcDIB->bmiHeader.biHeight;
+    // Get DIB pointer
+    if (! hDIB)
+        return NULL;
+    LPBITMAPINFO lpSrcDIB = (LPBITMAPINFO)GlobalLock(hDIB);
+    if (! lpSrcDIB)
+        return NULL;
+    nWidth = lpSrcDIB->bmiHeader.biWidth;
+    nHeight = lpSrcDIB->bmiHeader.biHeight;
 
-    // Allocate and fill out a BITMAPINFO struct for the new DIB 
-    if (nbpp <= 8) 
-		dwColorNum = 1 << nbpp;
-	else
-		dwColorNum = 0;
-    dwTargetHeaderSize = sizeof( BITMAPINFO ) + ( dwColorNum * sizeof( RGBQUAD ) ); 
-    lpbmi = (LPBITMAPINFO)malloc( dwTargetHeaderSize ); 
-    lpbmi->bmiHeader.biSize = sizeof( BITMAPINFOHEADER ); 
-    lpbmi->bmiHeader.biWidth = nWidth; 
-    lpbmi->bmiHeader.biHeight = nHeight; 
-    lpbmi->bmiHeader.biPlanes = 1; 
-    lpbmi->bmiHeader.biBitCount = nbpp; 
-    lpbmi->bmiHeader.biCompression = BI_RGB; 
-    lpbmi->bmiHeader.biSizeImage = 0; 
-    lpbmi->bmiHeader.biXPelsPerMeter = 0; 
-    lpbmi->bmiHeader.biYPelsPerMeter = 0; 
-    lpbmi->bmiHeader.biClrUsed = 0; 
-    lpbmi->bmiHeader.biClrImportant = 0; 
-    // Fill in the color table 
-    if( ! CopyColorTable( lpbmi, (LPBITMAPINFO)lpSrcDIB, hPalSrc ) ) 
-    { 
-        free( lpbmi ); 
-        return NULL; 
-    } 
- 
-    // Gonna use DIBSections and BitBlt() to do the conversion, so make 'em 
-	hDC = GetDC( NULL ); 
-    hTargetBitmap = CreateDIBSection( hDC, lpbmi, DIB_RGB_COLORS, (VOID **)&lpTargetBits, NULL, 0 ); 
-    hSourceBitmap = CreateDIBSection( hDC, lpSrcDIB, DIB_RGB_COLORS, (VOID **)&lpSourceBits, NULL, 0 ); 
-    hSourceDC = CreateCompatibleDC( hDC ); 
-    hTargetDC = CreateCompatibleDC( hDC ); 
- 
-    // Flip the bits on the source DIBSection to match the source DIB 
-    dwSourceBitsSize = lpSrcDIB->bmiHeader.biHeight * BytesPerLine((LPBITMAPINFOHEADER)&(lpSrcDIB->bmiHeader)); 
-    dwTargetBitsSize = lpbmi->bmiHeader.biHeight * BytesPerLine((LPBITMAPINFOHEADER)&(lpbmi->bmiHeader)); 
-    memcpy( lpSourceBits, FindDIBBits((LPSTR)lpSrcDIB), dwSourceBitsSize ); 
-    lpbmi->bmiHeader.biSizeImage = dwTargetBitsSize; 
- 
-    // Select DIBSections into DCs 
-    hOldSourceBitmap = (HBITMAP)SelectObject( hSourceDC, hSourceBitmap ); 
-    hOldTargetBitmap = (HBITMAP)SelectObject( hTargetDC, hTargetBitmap ); 
- 
-    // Set the color tables for the DIBSections 
-    if( lpSrcDIB->bmiHeader.biBitCount <= 8 ) 
-        SetDIBColorTable( hSourceDC, 0, 1 << lpSrcDIB->bmiHeader.biBitCount, lpSrcDIB->bmiColors ); 
-    if( lpbmi->bmiHeader.biBitCount <= 8 ) 
-        SetDIBColorTable( hTargetDC, 0, 1 << lpbmi->bmiHeader.biBitCount, lpbmi->bmiColors ); 
- 
-    // We are asking for a straight copy, do it 
-    BitBlt( hTargetDC, 0, 0, lpbmi->bmiHeader.biWidth, lpbmi->bmiHeader.biHeight, hSourceDC, 0, 0, SRCCOPY ); 
- 
-    // Clean up and delete the DCs 
-    SelectObject( hSourceDC, hOldSourceBitmap ); 
-    SelectObject( hTargetDC, hOldTargetBitmap ); 
-    DeleteDC( hSourceDC ); 
-    DeleteDC( hTargetDC ); 
-    ReleaseDC( NULL, hDC ); 
- 
-    // Flush the GDI batch, so we can play with the bits 
-    GdiFlush(); 
- 
-    // Allocate enough memory for the new CF_DIB, and copy bits 
-	dwSize = dwTargetHeaderSize + dwTargetBitsSize;
-	hNewDIB = (HDIB)GlobalAlloc(GHND, dwSize);
-    lpResult = (LPBYTE)GlobalLock(hNewDIB);//malloc( dwTargetHeaderSize + dwTargetBitsSize ); 
-    memcpy( lpResult, lpbmi, dwTargetHeaderSize ); 
-    memcpy( FindDIBBits( (LPSTR)lpResult ), lpTargetBits, dwTargetBitsSize ); 
- 
-    // final cleanup 
-    DeleteObject( hTargetBitmap ); 
-    DeleteObject( hSourceBitmap ); 
-    free( lpbmi ); 
-	GlobalUnlock(hDIB);
-	GlobalUnlock(hNewDIB);
- 
+    // Allocate and fill out a BITMAPINFO struct for the new DIB
+    if (nbpp <= 8)
+        dwColorNum = 1 << nbpp;
+    else
+        dwColorNum = 0;
+    dwTargetHeaderSize = sizeof( BITMAPINFO ) + ( dwColorNum * sizeof( RGBQUAD ) );
+    lpbmi = (LPBITMAPINFO)malloc( dwTargetHeaderSize );
+    lpbmi->bmiHeader.biSize = sizeof( BITMAPINFOHEADER );
+    lpbmi->bmiHeader.biWidth = nWidth;
+    lpbmi->bmiHeader.biHeight = nHeight;
+    lpbmi->bmiHeader.biPlanes = 1;
+    lpbmi->bmiHeader.biBitCount = nbpp;
+    lpbmi->bmiHeader.biCompression = BI_RGB;
+    lpbmi->bmiHeader.biSizeImage = 0;
+    lpbmi->bmiHeader.biXPelsPerMeter = 0;
+    lpbmi->bmiHeader.biYPelsPerMeter = 0;
+    lpbmi->bmiHeader.biClrUsed = 0;
+    lpbmi->bmiHeader.biClrImportant = 0;
+    // Fill in the color table
+    if( ! CopyColorTable( lpbmi, (LPBITMAPINFO)lpSrcDIB, hPalSrc ) )
+    {
+        free( lpbmi );
+        return NULL;
+    }
+
+    // Gonna use DIBSections and BitBlt() to do the conversion, so make 'em
+    hDC = GetDC( NULL );
+    hTargetBitmap = CreateDIBSection( hDC, lpbmi, DIB_RGB_COLORS, (VOID **)&lpTargetBits, NULL, 0 );
+    hSourceBitmap = CreateDIBSection( hDC, lpSrcDIB, DIB_RGB_COLORS, (VOID **)&lpSourceBits, NULL, 0 );
+    hSourceDC = CreateCompatibleDC( hDC );
+    hTargetDC = CreateCompatibleDC( hDC );
+
+    // Flip the bits on the source DIBSection to match the source DIB
+    dwSourceBitsSize = lpSrcDIB->bmiHeader.biHeight * BytesPerLine((LPBITMAPINFOHEADER)&(lpSrcDIB->bmiHeader));
+    dwTargetBitsSize = lpbmi->bmiHeader.biHeight * BytesPerLine((LPBITMAPINFOHEADER)&(lpbmi->bmiHeader));
+    memcpy( lpSourceBits, FindDIBBits((LPSTR)lpSrcDIB), dwSourceBitsSize );
+    lpbmi->bmiHeader.biSizeImage = dwTargetBitsSize;
+
+    // Select DIBSections into DCs
+    hOldSourceBitmap = (HBITMAP)SelectObject( hSourceDC, hSourceBitmap );
+    hOldTargetBitmap = (HBITMAP)SelectObject( hTargetDC, hTargetBitmap );
+
+    // Set the color tables for the DIBSections
+    if( lpSrcDIB->bmiHeader.biBitCount <= 8 )
+        SetDIBColorTable( hSourceDC, 0, 1 << lpSrcDIB->bmiHeader.biBitCount, lpSrcDIB->bmiColors );
+    if( lpbmi->bmiHeader.biBitCount <= 8 )
+        SetDIBColorTable( hTargetDC, 0, 1 << lpbmi->bmiHeader.biBitCount, lpbmi->bmiColors );
+
+    // We are asking for a straight copy, do it
+    BitBlt( hTargetDC, 0, 0, lpbmi->bmiHeader.biWidth, lpbmi->bmiHeader.biHeight, hSourceDC, 0, 0, SRCCOPY );
+
+    // Clean up and delete the DCs
+    SelectObject( hSourceDC, hOldSourceBitmap );
+    SelectObject( hTargetDC, hOldTargetBitmap );
+    DeleteDC( hSourceDC );
+    DeleteDC( hTargetDC );
+    ReleaseDC( NULL, hDC );
+
+    // Flush the GDI batch, so we can play with the bits
+    GdiFlush();
+
+    // Allocate enough memory for the new CF_DIB, and copy bits
+    dwSize = dwTargetHeaderSize + dwTargetBitsSize;
+    hNewDIB = (HDIB)GlobalAlloc(GHND, dwSize);
+    lpResult = (LPBYTE)GlobalLock(hNewDIB);//malloc( dwTargetHeaderSize + dwTargetBitsSize );
+    memcpy( lpResult, lpbmi, dwTargetHeaderSize );
+    memcpy( FindDIBBits( (LPSTR)lpResult ), lpTargetBits, dwTargetBitsSize );
+
+    // final cleanup
+    DeleteObject( hTargetBitmap );
+    DeleteObject( hSourceBitmap );
+    free( lpbmi );
+    GlobalUnlock(hDIB);
+    GlobalUnlock(hNewDIB);
+
     return hNewDIB;
 }
 /* End ConvertDIBFormat() 4***************************************************/
 
-// RotateDIB	- Create a new bitmap with rotated image
-// Returns		- Returns new bitmap with rotated image
-// hDIB			- Device-independent bitmap to rotate
-// fDegrees		- Angle of rotation in degree
-// clrBack		- Color of pixels in the resulting bitmap that do
-//			  not get covered by source pixels
+// RotateDIB    - Create a new bitmap with rotated image
+// Returns        - Returns new bitmap with rotated image
+// hDIB            - Device-independent bitmap to rotate
+// fDegrees        - Angle of rotation in degree
+// clrBack        - Color of pixels in the resulting bitmap that do
+//              not get covered by source pixels
 HDIB WINAPI RotateDIB(HDIB hDIB, double fDegrees, COLORREF clrBack)
 {
-	WaitCursorBegin();
+    WaitCursorBegin();
 
-	// Get source bitmap info
-	LPBITMAPINFO lpBmInfo = (LPBITMAPINFO)GlobalLock(hDIB);
-	int bpp = lpBmInfo->bmiHeader.biBitCount;		// Bits per pixel
-	
-	int nColors = lpBmInfo->bmiHeader.biClrUsed ? lpBmInfo->bmiHeader.biClrUsed : 
-					1 << bpp;
-	int nWidth = lpBmInfo->bmiHeader.biWidth;
-	int nHeight = lpBmInfo->bmiHeader.biHeight;
-	int nRowBytes = ((((nWidth * bpp) + 31) & ~31) / 8);
+    // Get source bitmap info
+    LPBITMAPINFO lpBmInfo = (LPBITMAPINFO)GlobalLock(hDIB);
+    int bpp = lpBmInfo->bmiHeader.biBitCount;        // Bits per pixel
 
-	// Make sure height is positive and biCompression is BI_RGB or BI_BITFIELDS
-	DWORD compression = lpBmInfo->bmiHeader.biCompression;
-	if( nHeight < 0 || (compression!=BI_RGB))
-	{
-		GlobalUnlock(hDIB);
-		WaitCursorEnd();
-		return NULL;
-	}
+    int nColors = lpBmInfo->bmiHeader.biClrUsed ? lpBmInfo->bmiHeader.biClrUsed :
+                    1 << bpp;
+    int nWidth = lpBmInfo->bmiHeader.biWidth;
+    int nHeight = lpBmInfo->bmiHeader.biHeight;
+    int nRowBytes = ((((nWidth * bpp) + 31) & ~31) / 8);
 
-	LPBYTE lpDIBBits = (LPBYTE)FindDIBBits((LPSTR)lpBmInfo);
-    
-	// Convert angle degree to radians 
-	#define PI		3.1415926
-	double radians = (fDegrees/90.0)*(PI/2);
+    // Make sure height is positive and biCompression is BI_RGB or BI_BITFIELDS
+    DWORD compression = lpBmInfo->bmiHeader.biCompression;
+    if( nHeight < 0 || (compression!=BI_RGB))
+    {
+        GlobalUnlock(hDIB);
+        WaitCursorEnd();
+        return NULL;
+    }
 
-	// Compute the cosine and sine only once
-	float cosine = (float)cos(radians);
-	float sine = (float)sin(radians);
+    LPBYTE lpDIBBits = (LPBYTE)FindDIBBits((LPSTR)lpBmInfo);
 
-	// Compute dimensions of the resulting bitmap
-	// First get the coordinates of the 3 corners other than origin
-	int x1 = (int)(-nHeight * sine);
-	int y1 = (int)(nHeight * cosine);
-	int x2 = (int)(nWidth * cosine - nHeight * sine);
-	int y2 = (int)(nHeight * cosine + nWidth * sine);
-	int x3 = (int)(nWidth * cosine);
-	int y3 = (int)(nWidth * sine);
+    // Convert angle degree to radians
+    #define PI        3.1415926
+    double radians = (fDegrees/90.0)*(PI/2);
 
-	int minx = min(0,min(x1, min(x2,x3)));
-	int miny = min(0,min(y1, min(y2,y3)));
-	int maxx = max(x1, max(x2,x3));
-	int maxy = max(y1, max(y2,y3));
+    // Compute the cosine and sine only once
+    float cosine = (float)cos(radians);
+    float sine = (float)sin(radians);
 
-	int w = maxx - minx;
-	int h = maxy - miny;
+    // Compute dimensions of the resulting bitmap
+    // First get the coordinates of the 3 corners other than origin
+    int x1 = (int)(-nHeight * sine);
+    int y1 = (int)(nHeight * cosine);
+    int x2 = (int)(nWidth * cosine - nHeight * sine);
+    int y2 = (int)(nHeight * cosine + nWidth * sine);
+    int x3 = (int)(nWidth * cosine);
+    int y3 = (int)(nWidth * sine);
 
-	// Create a DIB to hold the result
-	int nResultRowBytes = ((((w * bpp) + 31) & ~31) / 8);
-	long len = nResultRowBytes * h;
-	int nHeaderSize = ((LPBYTE)lpDIBBits-(LPBYTE)lpBmInfo) ;
-	HANDLE hDIBResult = GlobalAlloc(GHND,len+nHeaderSize);
-	// Initialize the header information
-	LPBITMAPINFO lpBmInfoResult = (LPBITMAPINFO)GlobalLock(hDIBResult);
-	memcpy( (void*)lpBmInfoResult, (void*)lpBmInfo, nHeaderSize);
-	lpBmInfoResult->bmiHeader.biWidth = w;
-	lpBmInfoResult->bmiHeader.biHeight = h;
-	lpBmInfoResult->bmiHeader.biSizeImage = len;
+    int minx = min(0,min(x1, min(x2,x3)));
+    int miny = min(0,min(y1, min(y2,y3)));
+    int maxx = max(x1, max(x2,x3));
+    int maxy = max(y1, max(y2,y3));
 
-	LPBYTE lpDIBBitsResult = (LPBYTE)FindDIBBits((LPSTR)lpBmInfoResult);
+    int w = maxx - minx;
+    int h = maxy - miny;
 
-	// Get the back color value (index)
-	ZeroMemory( lpDIBBitsResult, len );
-	DWORD dwBackColor;
-	switch(bpp)
-	{
-	case 1:	//Monochrome
-		if( clrBack == RGB(255,255,255) )
-			memset( lpDIBBitsResult, 0xff, len );
-		break;
-	case 4:
-	case 8:	//Search the color table
-		int i;
-		for(i = 0; i < nColors; i++ )
-		{
-			if( lpBmInfo->bmiColors[i].rgbBlue ==  GetBValue(clrBack)
-				&& lpBmInfo->bmiColors[i].rgbGreen ==  GetGValue(clrBack)
-				&& lpBmInfo->bmiColors[i].rgbRed ==  GetRValue(clrBack) )
-			{
-				if(bpp==4) i = i | i<<4;
-				memset( lpDIBBitsResult, i, len );
-				break;
-			}
-		}
-		// If not match found the color remains black
-		break;
-	case 16:
-		// Windows95 supports 5 bits each for all colors or 5 bits for red & blue
-		// and 6 bits for green - Check the color mask for RGB555 or RGB565
-		if( *((DWORD*)lpBmInfo->bmiColors) == 0x7c00 )
-		{
-			// Bitmap is RGB555
-			dwBackColor = ((GetRValue(clrBack)>>3) << 10) + 
-					((GetRValue(clrBack)>>3) << 5) +
-					(GetBValue(clrBack)>>3) ;
-		}
-		else
-		{
-			// Bitmap is RGB565
-			dwBackColor = ((GetRValue(clrBack)>>3) << 11) + 
-					((GetRValue(clrBack)>>2) << 5) +
-					(GetBValue(clrBack)>>3) ;
-		}
-		break;
-	case 24:
-	case 32:
-		dwBackColor = (((DWORD)GetRValue(clrBack)) << 16) | 
-				(((DWORD)GetGValue(clrBack)) << 8) |
-				(((DWORD)GetBValue(clrBack)));
-		break;
-	}
+    // Create a DIB to hold the result
+    int nResultRowBytes = ((((w * bpp) + 31) & ~31) / 8);
+    long len = nResultRowBytes * h;
+    int nHeaderSize = ((LPBYTE)lpDIBBits-(LPBYTE)lpBmInfo) ;
+    HANDLE hDIBResult = GlobalAlloc(GHND,len+nHeaderSize);
+    // Initialize the header information
+    LPBITMAPINFO lpBmInfoResult = (LPBITMAPINFO)GlobalLock(hDIBResult);
+    memcpy( (void*)lpBmInfoResult, (void*)lpBmInfo, nHeaderSize);
+    lpBmInfoResult->bmiHeader.biWidth = w;
+    lpBmInfoResult->bmiHeader.biHeight = h;
+    lpBmInfoResult->bmiHeader.biSizeImage = len;
+
+    LPBYTE lpDIBBitsResult = (LPBYTE)FindDIBBits((LPSTR)lpBmInfoResult);
+
+    // Get the back color value (index)
+    ZeroMemory( lpDIBBitsResult, len );
+    DWORD dwBackColor;
+    switch(bpp)
+    {
+    case 1:    //Monochrome
+        if( clrBack == RGB(255,255,255) )
+            memset( lpDIBBitsResult, 0xff, len );
+        break;
+    case 4:
+    case 8:    //Search the color table
+        int i;
+        for(i = 0; i < nColors; i++ )
+        {
+            if( lpBmInfo->bmiColors[i].rgbBlue ==  GetBValue(clrBack)
+                && lpBmInfo->bmiColors[i].rgbGreen ==  GetGValue(clrBack)
+                && lpBmInfo->bmiColors[i].rgbRed ==  GetRValue(clrBack) )
+            {
+                if(bpp==4) i = i | i<<4;
+                memset( lpDIBBitsResult, i, len );
+                break;
+            }
+        }
+        // If not match found the color remains black
+        break;
+    case 16:
+        // Windows95 supports 5 bits each for all colors or 5 bits for red & blue
+        // and 6 bits for green - Check the color mask for RGB555 or RGB565
+        if( *((DWORD*)lpBmInfo->bmiColors) == 0x7c00 )
+        {
+            // Bitmap is RGB555
+            dwBackColor = ((GetRValue(clrBack)>>3) << 10) +
+                    ((GetRValue(clrBack)>>3) << 5) +
+                    (GetBValue(clrBack)>>3) ;
+        }
+        else
+        {
+            // Bitmap is RGB565
+            dwBackColor = ((GetRValue(clrBack)>>3) << 11) +
+                    ((GetRValue(clrBack)>>2) << 5) +
+                    (GetBValue(clrBack)>>3) ;
+        }
+        break;
+    case 24:
+    case 32:
+        dwBackColor = (((DWORD)GetRValue(clrBack)) << 16) |
+                (((DWORD)GetGValue(clrBack)) << 8) |
+                (((DWORD)GetBValue(clrBack)));
+        break;
+    }
 
 
-	// Now do the actual rotating - a pixel at a time
-	// Computing the destination point for each source point
-	// will leave a few pixels that do not get covered
-	// So we use a reverse transform - e.i. compute the source point
-	// for each destination point
+    // Now do the actual rotating - a pixel at a time
+    // Computing the destination point for each source point
+    // will leave a few pixels that do not get covered
+    // So we use a reverse transform - e.i. compute the source point
+    // for each destination point
 
-	for( int y = 0; y < h; y++ )
-	{
-		for( int x = 0; x < w; x++ )
-		{
-			int sourcex = (int)((x+minx)*cosine + (y+miny)*sine);
-			int sourcey = (int)((y+miny)*cosine - (x+minx)*sine);
-			if( sourcex >= 0 && sourcex < nWidth && sourcey >= 0 
-				&& sourcey < nHeight )
-			{
-				// Set the destination pixel
-				switch(bpp)
-				{
-					BYTE mask;
-				case 1:		//Monochrome
-					mask = *((LPBYTE)lpDIBBits + nRowBytes*sourcey + 
-						sourcex/8) & (0x80 >> sourcex%8);
-					//Adjust mask for destination bitmap
-					mask = mask ? (0x80 >> x%8) : 0;
-					*((LPBYTE)lpDIBBitsResult + nResultRowBytes*(y) + 
-								(x/8)) &= ~(0x80 >> x%8);
-					*((LPBYTE)lpDIBBitsResult + nResultRowBytes*(y) + 
-								(x/8)) |= mask;
-					break;
-				case 4:
-					mask = *((LPBYTE)lpDIBBits + nRowBytes*sourcey + 
-						sourcex/2) & ((sourcex&1) ? 0x0f : 0xf0);
-					//Adjust mask for destination bitmap
-					if( (sourcex&1) != (x&1) )
-						mask = (mask&0xf0) ? (mask>>4) : (mask<<4);
-					*((LPBYTE)lpDIBBitsResult + nResultRowBytes*(y) + 
-							(x/2)) &= ~((x&1) ? 0x0f : 0xf0);
-					*((LPBYTE)lpDIBBitsResult + nResultRowBytes*(y) + 
-							(x/2)) |= mask;
-					break;
-				case 8:
-					BYTE pixel ;
-					pixel = *((LPBYTE)lpDIBBits + nRowBytes*sourcey + 
-							sourcex);
-					*((LPBYTE)lpDIBBitsResult + nResultRowBytes*(y) + 
-							(x)) = pixel;
-					break;
-				case 16:
-					DWORD dwPixel;
-					dwPixel = *((LPWORD)((LPBYTE)lpDIBBits + 
-							nRowBytes*sourcey + sourcex*2));
-					*((LPWORD)((LPBYTE)lpDIBBitsResult + 
-						nResultRowBytes*y + x*2)) = (WORD)dwPixel;
-					break;
-				case 24:
-					dwPixel = *((LPDWORD)((LPBYTE)lpDIBBits + 
-						nRowBytes*sourcey + sourcex*3)) & 0xffffff;
-					*((LPDWORD)((LPBYTE)lpDIBBitsResult + 
-						nResultRowBytes*y + x*3)) |= dwPixel;
-					break;
-				case 32:
-					dwPixel = *((LPDWORD)((LPBYTE)lpDIBBits + 
-						nRowBytes*sourcey + sourcex*4));
-					*((LPDWORD)((LPBYTE)lpDIBBitsResult + 
-						nResultRowBytes*y + x*4)) = dwPixel;
-				}
-			}
-			else 
-			{
-				// Draw the background color. The background color
-				// has already been drawn for 8 bits per pixel and less
-				switch(bpp)
-				{
-				case 16:
-					*((LPWORD)((LPBYTE)lpDIBBitsResult + 
-						nResultRowBytes*y + x*2)) = 
-						(WORD)dwBackColor;
-					break;
-				case 24:
-					*((LPDWORD)((LPBYTE)lpDIBBitsResult + 
-						nResultRowBytes*y + x*3)) |= dwBackColor;
-					break;
-				case 32:
-					*((LPDWORD)((LPBYTE)lpDIBBitsResult + 
-						nResultRowBytes*y + x*4)) = dwBackColor;
-					break;
-				}
-			}
-		}
-	}
+    for( int y = 0; y < h; y++ )
+    {
+        for( int x = 0; x < w; x++ )
+        {
+            int sourcex = (int)((x+minx)*cosine + (y+miny)*sine);
+            int sourcey = (int)((y+miny)*cosine - (x+minx)*sine);
+            if( sourcex >= 0 && sourcex < nWidth && sourcey >= 0
+                && sourcey < nHeight )
+            {
+                // Set the destination pixel
+                switch(bpp)
+                {
+                    BYTE mask;
+                case 1:        //Monochrome
+                    mask = *((LPBYTE)lpDIBBits + nRowBytes*sourcey +
+                        sourcex/8) & (0x80 >> sourcex%8);
+                    //Adjust mask for destination bitmap
+                    mask = mask ? (0x80 >> x%8) : 0;
+                    *((LPBYTE)lpDIBBitsResult + nResultRowBytes*(y) +
+                                (x/8)) &= ~(0x80 >> x%8);
+                    *((LPBYTE)lpDIBBitsResult + nResultRowBytes*(y) +
+                                (x/8)) |= mask;
+                    break;
+                case 4:
+                    mask = *((LPBYTE)lpDIBBits + nRowBytes*sourcey +
+                        sourcex/2) & ((sourcex&1) ? 0x0f : 0xf0);
+                    //Adjust mask for destination bitmap
+                    if( (sourcex&1) != (x&1) )
+                        mask = (mask&0xf0) ? (mask>>4) : (mask<<4);
+                    *((LPBYTE)lpDIBBitsResult + nResultRowBytes*(y) +
+                            (x/2)) &= ~((x&1) ? 0x0f : 0xf0);
+                    *((LPBYTE)lpDIBBitsResult + nResultRowBytes*(y) +
+                            (x/2)) |= mask;
+                    break;
+                case 8:
+                    BYTE pixel ;
+                    pixel = *((LPBYTE)lpDIBBits + nRowBytes*sourcey +
+                            sourcex);
+                    *((LPBYTE)lpDIBBitsResult + nResultRowBytes*(y) +
+                            (x)) = pixel;
+                    break;
+                case 16:
+                    DWORD dwPixel;
+                    dwPixel = *((LPWORD)((LPBYTE)lpDIBBits +
+                            nRowBytes*sourcey + sourcex*2));
+                    *((LPWORD)((LPBYTE)lpDIBBitsResult +
+                        nResultRowBytes*y + x*2)) = (WORD)dwPixel;
+                    break;
+                case 24:
+                    dwPixel = *((LPDWORD)((LPBYTE)lpDIBBits +
+                        nRowBytes*sourcey + sourcex*3)) & 0xffffff;
+                    *((LPDWORD)((LPBYTE)lpDIBBitsResult +
+                        nResultRowBytes*y + x*3)) |= dwPixel;
+                    break;
+                case 32:
+                    dwPixel = *((LPDWORD)((LPBYTE)lpDIBBits +
+                        nRowBytes*sourcey + sourcex*4));
+                    *((LPDWORD)((LPBYTE)lpDIBBitsResult +
+                        nResultRowBytes*y + x*4)) = dwPixel;
+                }
+            }
+            else
+            {
+                // Draw the background color. The background color
+                // has already been drawn for 8 bits per pixel and less
+                switch(bpp)
+                {
+                case 16:
+                    *((LPWORD)((LPBYTE)lpDIBBitsResult +
+                        nResultRowBytes*y + x*2)) =
+                        (WORD)dwBackColor;
+                    break;
+                case 24:
+                    *((LPDWORD)((LPBYTE)lpDIBBitsResult +
+                        nResultRowBytes*y + x*3)) |= dwBackColor;
+                    break;
+                case 32:
+                    *((LPDWORD)((LPBYTE)lpDIBBitsResult +
+                        nResultRowBytes*y + x*4)) = dwBackColor;
+                    break;
+                }
+            }
+        }
+    }
 
-	GlobalUnlock(hDIB);
-	GlobalUnlock(hDIBResult);
-	WaitCursorEnd();
+    GlobalUnlock(hDIB);
+    GlobalUnlock(hDIBResult);
+    WaitCursorEnd();
 
-	return (HDIB)hDIBResult;
+    return (HDIB)hDIBResult;
 }
 
-/************************************************************************* 
- * 
- * RotateDIB() 
- * 
- * Parameters: 
- * 
- * HDIB hDIB				 - handle of DIB to rotate
- * 
- * Return Value: 
- * 
- * HDIB             - Handle to new DIB 
- * 
- * Description: 
- * 
+/*************************************************************************
+ *
+ * RotateDIB()
+ *
+ * Parameters:
+ *
+ * HDIB hDIB                 - handle of DIB to rotate
+ *
+ * Return Value:
+ *
+ * HDIB             - Handle to new DIB
+ *
+ * Description:
+ *
  * This function rotate DIB 90 degree counter clockwise, and return
  * the rotated DIB in a new DIB handle, let the source DIB unchanged
- * 
- ************************************************************************/ 
+ *
+ ************************************************************************/
 HDIB WINAPI RotateDIB(HDIB hDib)
 {
-	WaitCursorBegin();
+    WaitCursorBegin();
 
-	// old DIB
-	LPBYTE lpDIBSrc = (LPBYTE)GlobalLock(hDib);
+    // old DIB
+    LPBYTE lpDIBSrc = (LPBYTE)GlobalLock(hDib);
 
-	DWORD lSrcWidth = DIBWidth((LPSTR)lpDIBSrc);
-	DWORD lSrcHeight = DIBHeight((LPSTR)lpDIBSrc);
-	WORD wBitCount = ((LPBITMAPINFOHEADER)lpDIBSrc)->biBitCount;
-	// bits position
+    DWORD lSrcWidth = DIBWidth((LPSTR)lpDIBSrc);
+    DWORD lSrcHeight = DIBHeight((LPSTR)lpDIBSrc);
+    WORD wBitCount = ((LPBITMAPINFOHEADER)lpDIBSrc)->biBitCount;
+    // bits position
     LPBYTE lpOldBits = (LPBYTE)FindDIBBits((LPSTR)lpDIBSrc);
 
-	// get bytes/pixel, bytes/row of new DIB
-	double fColorBytes = (double)((double)wBitCount/8.0);
-	DWORD lSrcRowBytes = WIDTHBYTES(lSrcWidth*((DWORD)wBitCount));
-	DWORD lDestRowBytes = WIDTHBYTES(lSrcHeight*((DWORD)wBitCount));
+    // get bytes/pixel, bytes/row of new DIB
+    double fColorBytes = (double)((double)wBitCount/8.0);
+    DWORD lSrcRowBytes = WIDTHBYTES(lSrcWidth*((DWORD)wBitCount));
+    DWORD lDestRowBytes = WIDTHBYTES(lSrcHeight*((DWORD)wBitCount));
 
-	// adjust new DIB size
-	DWORD dwDataLength = GlobalSize(hDib);
-	dwDataLength += lDestRowBytes*(lSrcWidth-1)+(DWORD)((lSrcHeight-1)*fColorBytes) - 
-				  lSrcRowBytes*(lSrcHeight-1)+(DWORD)((lSrcWidth-1)*fColorBytes);
-	HDIB hNewDib = (HDIB)GlobalAlloc(GHND, dwDataLength);
-	if (! hNewDib)
-	{
-		WaitCursorEnd();
-		return NULL;
-	}
-	// new DIB buffer
-	LPBYTE lpDIB = (LPBYTE)GlobalLock(hNewDib);
-	// copy LPBITMAPINFO from old to new
-	memcpy(lpDIB, lpDIBSrc, sizeof(BITMAPINFOHEADER)+PaletteSize((LPSTR)lpDIBSrc));
-	// swap width and height
-	((LPBITMAPINFOHEADER)lpDIB)->biHeight = lSrcWidth;
-	((LPBITMAPINFOHEADER)lpDIB)->biWidth = lSrcHeight;
-	// new bits position
-	LPBYTE lpData = (LPBYTE)FindDIBBits((LPSTR)lpDIB);
+    // adjust new DIB size
+    DWORD dwDataLength = GlobalSize(hDib);
+    dwDataLength += lDestRowBytes*(lSrcWidth-1)+(DWORD)((lSrcHeight-1)*fColorBytes) -
+                  lSrcRowBytes*(lSrcHeight-1)+(DWORD)((lSrcWidth-1)*fColorBytes);
+    HDIB hNewDib = (HDIB)GlobalAlloc(GHND, dwDataLength);
+    if (! hNewDib)
+    {
+        WaitCursorEnd();
+        return NULL;
+    }
+    // new DIB buffer
+    LPBYTE lpDIB = (LPBYTE)GlobalLock(hNewDib);
+    // copy LPBITMAPINFO from old to new
+    memcpy(lpDIB, lpDIBSrc, sizeof(BITMAPINFOHEADER)+PaletteSize((LPSTR)lpDIBSrc));
+    // swap width and height
+    ((LPBITMAPINFOHEADER)lpDIB)->biHeight = lSrcWidth;
+    ((LPBITMAPINFOHEADER)lpDIB)->biWidth = lSrcHeight;
+    // new bits position
+    LPBYTE lpData = (LPBYTE)FindDIBBits((LPSTR)lpDIB);
 
-	// trandform bits
-	DWORD i, j;
-	switch (wBitCount)
-	{
-	case 1:
-		for (i=0; i<lSrcHeight; ++i)
-		{
-			for (j=0; j<lSrcWidth; ++j)
-			{
-				*(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)/8)) &= ~(1<<(7-((lSrcHeight-i-1)%8)));
-				*(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)/8)) |= 
-					((*(lpOldBits+(lSrcRowBytes*i+j/8))<<(j%8))>>7)<<(7-((lSrcHeight-i-1)%8));
-			}
-		}
-		break;
-	case 4:
-		for (i=0; i<lSrcHeight; ++i)
-		{
-			for (j=0; j<lSrcWidth; ++j)
-			{
-				*(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)/2)) &= ((lSrcHeight-i-1)%2) ? 0xf0 : 0x0f;
-				*(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)/2)) |= 
-					((*(lpOldBits+(lSrcRowBytes*i+j/2))<<(j%2 ? 4 : 0))>>4)<<(((lSrcHeight-i-1)%2) ? 0 : 4);
-			}
-		}
-		break;
-	case 8:
-		for (i=0; i<lSrcHeight; ++i)
-		{
-			for (j=0; j<lSrcWidth; ++j)
-			{
-				*(lpData+(lDestRowBytes*j+lSrcHeight-i-1))
-					= *(lpOldBits+(lSrcRowBytes*i+j));
-			}
-		}
-		break;
-	case 24:
-		for (i=0; i<lSrcHeight; ++i)
-		{
-			for (j=0; j<lSrcWidth; j++)
-			{
-				*(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)*3))
-					= *(lpOldBits+(lSrcRowBytes*i+j*3));
-				*(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)*3)+1)
-					= *(lpOldBits+(lSrcRowBytes*i+j*3)+1);
-				*(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)*3)+2)
-					= *(lpOldBits+(lSrcRowBytes*i+j*3)+2);
-			}
-		}
-		break;
-	}
+    // trandform bits
+    DWORD i, j;
+    switch (wBitCount)
+    {
+    case 1:
+        for (i=0; i<lSrcHeight; ++i)
+        {
+            for (j=0; j<lSrcWidth; ++j)
+            {
+                *(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)/8)) &= ~(1<<(7-((lSrcHeight-i-1)%8)));
+                *(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)/8)) |=
+                    ((*(lpOldBits+(lSrcRowBytes*i+j/8))<<(j%8))>>7)<<(7-((lSrcHeight-i-1)%8));
+            }
+        }
+        break;
+    case 4:
+        for (i=0; i<lSrcHeight; ++i)
+        {
+            for (j=0; j<lSrcWidth; ++j)
+            {
+                *(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)/2)) &= ((lSrcHeight-i-1)%2) ? 0xf0 : 0x0f;
+                *(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)/2)) |=
+                    ((*(lpOldBits+(lSrcRowBytes*i+j/2))<<(j%2 ? 4 : 0))>>4)<<(((lSrcHeight-i-1)%2) ? 0 : 4);
+            }
+        }
+        break;
+    case 8:
+        for (i=0; i<lSrcHeight; ++i)
+        {
+            for (j=0; j<lSrcWidth; ++j)
+            {
+                *(lpData+(lDestRowBytes*j+lSrcHeight-i-1))
+                    = *(lpOldBits+(lSrcRowBytes*i+j));
+            }
+        }
+        break;
+    case 24:
+        for (i=0; i<lSrcHeight; ++i)
+        {
+            for (j=0; j<lSrcWidth; j++)
+            {
+                *(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)*3))
+                    = *(lpOldBits+(lSrcRowBytes*i+j*3));
+                *(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)*3)+1)
+                    = *(lpOldBits+(lSrcRowBytes*i+j*3)+1);
+                *(lpData+(lDestRowBytes*j+(lSrcHeight-i-1)*3)+2)
+                    = *(lpOldBits+(lSrcRowBytes*i+j*3)+2);
+            }
+        }
+        break;
+    }
 
-	// cleanup
-	GlobalUnlock(hDib);
-	GlobalUnlock(hNewDib);
-	WaitCursorEnd();
-	
-	return hNewDib;
+    // cleanup
+    GlobalUnlock(hDib);
+    GlobalUnlock(hNewDib);
+    WaitCursorEnd();
+
+    return hNewDib;
 }
 
 
 
 DWORD WINAPI DIBBitCount(LPSTR lpDIB)
-{ 
-    if (IS_WIN30_DIB(lpDIB)) 
-        return ((LPBITMAPINFOHEADER)lpDIB)->biBitCount; 
-    else 
-        return ((LPBITMAPCOREHEADER)lpDIB)->bcBitCount; 
-} 
+{
+    if (IS_WIN30_DIB(lpDIB))
+        return ((LPBITMAPINFOHEADER)lpDIB)->biBitCount;
+    else
+        return ((LPBITMAPCOREHEADER)lpDIB)->bcBitCount;
+}
 
-DWORD WINAPI DIBBitCount(HDIB hDIB) 
-{ 
+DWORD WINAPI DIBBitCount(HDIB hDIB)
+{
     LPSTR lpDIB = (LPSTR)GlobalLock(hDIB);
     DWORD dwSize = DIBBitCount(lpDIB);
     GlobalUnlock(hDIB);
     return dwSize;
-} 
+}
 
 // Definitions required for convolution image filtering
 #define KERNELCOLS 3
 #define KERNELROWS 3
 #define KERNELELEMENTS (KERNELCOLS * KERNELROWS)
 
-// struct for convolute kernel 
-typedef struct 
+// struct for convolute kernel
+typedef struct
 {
     int Element[KERNELELEMENTS];
     int Divisor;
 } KERNEL;
 
 // local use macro
-#define PIXEL_OFFSET(i, j, nWidthBytes)	\
-		(LONG)((LONG)(i)*(LONG)(nWidthBytes) + (LONG)(j)*3)
+#define PIXEL_OFFSET(i, j, nWidthBytes)    \
+        (LONG)((LONG)(i)*(LONG)(nWidthBytes) + (LONG)(j)*3)
 
 // The following kernel definitions are for convolution filtering.
 // Kernel entries are specified with a divisor to get around the
-// requirement for floating point numbers in the low pass filters. 
+// requirement for floating point numbers in the low pass filters.
 
 KERNEL HP1 = {                    // HP filter #1
   {-1, -1, -1,
@@ -2992,28 +3004,28 @@ KERNEL EdgeNorthWest = {          // North West gradient
     1                             // Divisor = 1
 };
 
-KERNEL Lap1 = {					  // Laplace filter 1
+KERNEL Lap1 = {                      // Laplace filter 1
   { 0,  1,  0,
     1, -4,  1,
     0,  1,  0},
     1                             // Divisor = 1
 };
 
-KERNEL Lap2 = {					  // Laplace filter 2
+KERNEL Lap2 = {                      // Laplace filter 2
   { -1, -1, -1,
     -1,  8, -1,
     -1, -1, -1},
     1                             // Divisor = 1
 };
 
-KERNEL Lap3 = {					  // Laplace filter 3
+KERNEL Lap3 = {                      // Laplace filter 3
   { -1, -1, -1,
     -1,  9, -1,
     -1, -1, -1},
     1                             // Divisor = 1
 };
 
-KERNEL Lap4 = {					  // Laplace filter 4
+KERNEL Lap4 = {                      // Laplace filter 4
   { 1, -2, 1,
     -2, 4, -2,
     1, -2, 1},
@@ -3021,526 +3033,526 @@ KERNEL Lap4 = {					  // Laplace filter 4
 };
 
 KERNEL Sobel[2] = {
-	{                    // Sobel1
-		{-1, 0, 1,
-		 -2, 0, 2,
-		 -1, 0, 1},
-		1                             // Divisor = 1
-	},
-	{                    // Sobel2
-		{1, 2, 1,
-		  0,  0,  0,
-		-1,-2,-1},
-		1                             // Divisor = 1
-	}
+    {                    // Sobel1
+        {-1, 0, 1,
+         -2, 0, 2,
+         -1, 0, 1},
+        1                             // Divisor = 1
+    },
+    {                    // Sobel2
+        {1, 2, 1,
+          0,  0,  0,
+        -1,-2,-1},
+        1                             // Divisor = 1
+    }
 };
 
 KERNEL Hough[2] = {
-	{                    // Hough1
-		{-1, 0, 1,
-		 -1, 0, 1,
-		 -1, 0, 1},
-		1                             // Divisor = 1
-	},
-	{                    // Hough2
-		{ 1,  1,  1,
-		  0,  0,  0,
-		 -1, -1, -1},
-		1                             // Divisor = 1
-	}
+    {                    // Hough1
+        {-1, 0, 1,
+         -1, 0, 1,
+         -1, 0, 1},
+        1                             // Divisor = 1
+    },
+    {                    // Hough2
+        { 1,  1,  1,
+          0,  0,  0,
+         -1, -1, -1},
+        1                             // Divisor = 1
+    }
 };
 
 int compare(const void *e1, const void *e2);
-void DoMedianFilterDIB(int *red, int *green, int *blue, int i, int j, 
-			WORD wBytesPerLine, LPBYTE lpDIBits);
+void DoMedianFilterDIB(int *red, int *green, int *blue, int i, int j,
+            WORD wBytesPerLine, LPBYTE lpDIBits);
 BOOL ConvoluteDIB(HDIB hDib, KERNEL *lpKernel, int Strength, int nKernelNum=1);
-void DoConvoluteDIB(int *red, int *green, int *blue, int i, int j, 
-			WORD wBytesPerLine, LPBYTE lpDIBits, KERNEL *lpKernel);
-/************************************************************************* 
- * 
- * HighPassDIB() 
- * 
- * Parameters: 
- * 
+void DoConvoluteDIB(int *red, int *green, int *blue, int i, int j,
+            WORD wBytesPerLine, LPBYTE lpDIBits, KERNEL *lpKernel);
+/*************************************************************************
+ *
+ * HighPassDIB()
+ *
+ * Parameters:
+ *
  * HDIB hDib        - objective DIB handle
  * int nAlgorithm   - specify the filter to use
  * int Strength     - operation strength set to the convolute
- * 
- * Return Value: 
- * 
+ *
+ * Return Value:
+ *
  * BOOL             - True is success, else False
- * 
- * Description: 
- * 
+ *
+ * Description:
+ *
  * High pass filtering to sharp DIB
- * 
- ************************************************************************/ 
-BOOL WINAPI HighPassDIB(HDIB hDib, int Strength, int nAlgorithm) 
+ *
+ ************************************************************************/
+BOOL WINAPI HighPassDIB(HDIB hDib, int Strength, int nAlgorithm)
 {
-	switch (nAlgorithm)
-	{
-	case FILTER1:
-		return ConvoluteDIB(hDib, &HP1, Strength);
-	case FILTER2:
-		return ConvoluteDIB(hDib, &HP2, Strength);
-	case FILTER3:
-		return ConvoluteDIB(hDib, &HP3, Strength);
-	}
+    switch (nAlgorithm)
+    {
+    case FILTER1:
+        return ConvoluteDIB(hDib, &HP1, Strength);
+    case FILTER2:
+        return ConvoluteDIB(hDib, &HP2, Strength);
+    case FILTER3:
+        return ConvoluteDIB(hDib, &HP3, Strength);
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
-/************************************************************************* 
- * 
- * LowPassDIB() 
- * 
- * Parameters: 
- * 
+/*************************************************************************
+ *
+ * LowPassDIB()
+ *
+ * Parameters:
+ *
  * HDIB hDib        - objective DIB handle
  * int nAlgorithm   - specify the filter to use
  * int Strength     - operation strength set to the convolute
- * 
- * Return Value: 
- * 
+ *
+ * Return Value:
+ *
  * BOOL             - True is success, else False
- * 
- * Description: 
- * 
+ *
+ * Description:
+ *
  * Low pass filtering to blur DIB
- * 
- ************************************************************************/ 
-BOOL WINAPI LowPassDIB(HDIB hDib, int Strength, int nAlgorithm) 
+ *
+ ************************************************************************/
+BOOL WINAPI LowPassDIB(HDIB hDib, int Strength, int nAlgorithm)
 {
-	switch (nAlgorithm)
-	{
-	case FILTER1:
-		return ConvoluteDIB(hDib, &LP1, Strength);
-	case FILTER2:
-		return ConvoluteDIB(hDib, &LP2, Strength);
-	case FILTER3:
-		return ConvoluteDIB(hDib, &LP3, Strength);
-	}
+    switch (nAlgorithm)
+    {
+    case FILTER1:
+        return ConvoluteDIB(hDib, &LP1, Strength);
+    case FILTER2:
+        return ConvoluteDIB(hDib, &LP2, Strength);
+    case FILTER3:
+        return ConvoluteDIB(hDib, &LP3, Strength);
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
-/************************************************************************* 
- * 
- * EdgeEnhanceDIB() 
- * 
- * Parameters: 
- * 
+/*************************************************************************
+ *
+ * EdgeEnhanceDIB()
+ *
+ * Parameters:
+ *
  * HDIB hDib        - objective DIB handle
  * int nAlgorithm   - specify the filter to use
  * int Strength     - operation strength set to the convolute
- * 
- * Return Value: 
- * 
+ *
+ * Return Value:
+ *
  * BOOL             - True is success, else False
- * 
- * Description: 
- * 
+ *
+ * Description:
+ *
  * Edge enhance DIB
- * 
- ************************************************************************/ 
+ *
+ ************************************************************************/
 BOOL WINAPI EdgeEnhanceDIB(HDIB hDib, int Strength, int nAlgorithm)
 {
-	switch (nAlgorithm)
-	{
-	case VERT:
-		return ConvoluteDIB(hDib, &VertEdge, Strength);
-	case HORZ:
-		return ConvoluteDIB(hDib, &HorzEdge, Strength);
-	case VERTHORZ:
-		return ConvoluteDIB(hDib, &VertHorzEdge, Strength);
-	case NORTH:
-		return ConvoluteDIB(hDib, &EdgeNorth, Strength);
-	case NORTHEAST:
-		return ConvoluteDIB(hDib, &EdgeNorthEast, Strength);
-	case EAST:
-		return ConvoluteDIB(hDib, &EdgeEast, Strength);
-	case SOUTH:
-		return ConvoluteDIB(hDib, &EdgeSouth, Strength);
-	case SOUTHEAST:
-		return ConvoluteDIB(hDib, &EdgeSouthEast, Strength);
-	case SOUTHWEST:
-		return ConvoluteDIB(hDib, &EdgeSouthWest, Strength);
-	case WEST:
-		return ConvoluteDIB(hDib, &EdgeWest, Strength);
-	case NORTHWEST:
-		return ConvoluteDIB(hDib, &EdgeNorthWest, Strength);
-	case LAP1:
-		return ConvoluteDIB(hDib, &Lap1, Strength);
-	case LAP2:
-		return ConvoluteDIB(hDib, &Lap2, Strength);
-	case LAP3:
-		return ConvoluteDIB(hDib, &Lap3, Strength);
-	case LAP4:
-		return ConvoluteDIB(hDib, &Lap4, Strength);
-	}
+    switch (nAlgorithm)
+    {
+    case VERT:
+        return ConvoluteDIB(hDib, &VertEdge, Strength);
+    case HORZ:
+        return ConvoluteDIB(hDib, &HorzEdge, Strength);
+    case VERTHORZ:
+        return ConvoluteDIB(hDib, &VertHorzEdge, Strength);
+    case NORTH:
+        return ConvoluteDIB(hDib, &EdgeNorth, Strength);
+    case NORTHEAST:
+        return ConvoluteDIB(hDib, &EdgeNorthEast, Strength);
+    case EAST:
+        return ConvoluteDIB(hDib, &EdgeEast, Strength);
+    case SOUTH:
+        return ConvoluteDIB(hDib, &EdgeSouth, Strength);
+    case SOUTHEAST:
+        return ConvoluteDIB(hDib, &EdgeSouthEast, Strength);
+    case SOUTHWEST:
+        return ConvoluteDIB(hDib, &EdgeSouthWest, Strength);
+    case WEST:
+        return ConvoluteDIB(hDib, &EdgeWest, Strength);
+    case NORTHWEST:
+        return ConvoluteDIB(hDib, &EdgeNorthWest, Strength);
+    case LAP1:
+        return ConvoluteDIB(hDib, &Lap1, Strength);
+    case LAP2:
+        return ConvoluteDIB(hDib, &Lap2, Strength);
+    case LAP3:
+        return ConvoluteDIB(hDib, &Lap3, Strength);
+    case LAP4:
+        return ConvoluteDIB(hDib, &Lap4, Strength);
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
-/************************************************************************* 
- * 
- * MedianFilterDIB() 
- * 
- * Parameters: 
- * 
+/*************************************************************************
+ *
+ * MedianFilterDIB()
+ *
+ * Parameters:
+ *
  * HDIB hDib        - objective DIB handle
- * 
- * Return Value: 
- * 
+ *
+ * Return Value:
+ *
  * BOOL             - True is success, else False
- * 
- * Description: 
- * 
+ *
+ * Description:
+ *
  * This is the media filtering function to DIB
- * 
- ************************************************************************/ 
-BOOL WINAPI MedianFilterDIB(HDIB hDib) 
+ *
+ ************************************************************************/
+BOOL WINAPI MedianFilterDIB(HDIB hDib)
 {
-	WaitCursorBegin();
+    WaitCursorBegin();
 
-	HDIB hNewDib = NULL;
-	// we only convolute 24bpp DIB, so first convert DIB to 24bpp
-	WORD wBitCount = DIBBitCount(hDib);
-	if (wBitCount != 24)
-		hNewDib = ConvertDIBFormat(hDib, 24, NULL);
-	else
-		hNewDib = (HDIB)CopyHandle(hDib);
+    HDIB hNewDib = NULL;
+    // we only convolute 24bpp DIB, so first convert DIB to 24bpp
+    WORD wBitCount = DIBBitCount(hDib);
+    if (wBitCount != 24)
+        hNewDib = ConvertDIBFormat(hDib, 24, NULL);
+    else
+        hNewDib = (HDIB)CopyHandle(hDib);
 
-	if (! hNewDib)
-	{
-		WaitCursorEnd();
-		return FALSE;
-	}
+    if (! hNewDib)
+    {
+        WaitCursorEnd();
+        return FALSE;
+    }
 
-	// new DIB attributes
-	WORD wDIBWidth = (WORD)DIBWidth(hNewDib);
-	WORD wDIBHeight = (WORD)DIBHeight(hNewDib);
-	WORD wBytesPerLine = (WORD)BytesPerLine(hNewDib);
-	DWORD dwImageSize = wBytesPerLine * wDIBHeight;
+    // new DIB attributes
+    WORD wDIBWidth = (WORD)DIBWidth(hNewDib);
+    WORD wDIBHeight = (WORD)DIBHeight(hNewDib);
+    WORD wBytesPerLine = (WORD)BytesPerLine(hNewDib);
+    DWORD dwImageSize = wBytesPerLine * wDIBHeight;
 
-	// Allocate and lock memory for filtered image data
-	HGLOBAL hFilteredBits = GlobalAlloc(GHND, dwImageSize);
-	if (!hFilteredBits) 
-	{
-		WaitCursorEnd();
-		return FALSE;
-	}
-	LPBYTE lpDestImage = (LPBYTE)GlobalLock(hFilteredBits);
+    // Allocate and lock memory for filtered image data
+    HGLOBAL hFilteredBits = GlobalAlloc(GHND, dwImageSize);
+    if (!hFilteredBits)
+    {
+        WaitCursorEnd();
+        return FALSE;
+    }
+    LPBYTE lpDestImage = (LPBYTE)GlobalLock(hFilteredBits);
 
-	// get bits address in DIB
-	LPBYTE lpDIB = (LPBYTE)GlobalLock(hNewDib);
-	LPBYTE lpDIBits = (LPBYTE)FindDIBBits((LPSTR)lpDIB);
+    // get bits address in DIB
+    LPBYTE lpDIB = (LPBYTE)GlobalLock(hNewDib);
+    LPBYTE lpDIBits = (LPBYTE)FindDIBBits((LPSTR)lpDIB);
 
-	// convolute...
-	for (int i=1; i<wDIBHeight-1; i++) 
-		for (int j=1; j<wDIBWidth-1; j++) 
-		{
-			int  red=0, green=0, blue=0; 
-			DoMedianFilterDIB(&red, &green, &blue, i, j, wBytesPerLine, lpDIBits);
+    // convolute...
+    for (int i=1; i<wDIBHeight-1; i++)
+        for (int j=1; j<wDIBWidth-1; j++)
+        {
+            int  red=0, green=0, blue=0;
+            DoMedianFilterDIB(&red, &green, &blue, i, j, wBytesPerLine, lpDIBits);
 
-			LONG lOffset= PIXEL_OFFSET(i,j, wBytesPerLine);
-			*(lpDestImage + lOffset++) = BOUND(blue, 0, 255);
-			*(lpDestImage + lOffset++) = BOUND(green, 0, 255);
-			*(lpDestImage + lOffset)   = BOUND(red, 0, 255);
-		}
+            LONG lOffset= PIXEL_OFFSET(i,j, wBytesPerLine);
+            *(lpDestImage + lOffset++) = BOUND(blue, 0, 255);
+            *(lpDestImage + lOffset++) = BOUND(green, 0, 255);
+            *(lpDestImage + lOffset)   = BOUND(red, 0, 255);
+        }
 
-	// a filtered image is available in lpDestImage
-	// copy it to DIB bits
-	memcpy(lpDIBits, lpDestImage, dwImageSize);
+    // a filtered image is available in lpDestImage
+    // copy it to DIB bits
+    memcpy(lpDIBits, lpDestImage, dwImageSize);
 
-	// cleanup temp buffers
-	GlobalUnlock(hFilteredBits);
-	GlobalFree(hFilteredBits);
-	GlobalUnlock(hNewDib);
+    // cleanup temp buffers
+    GlobalUnlock(hFilteredBits);
+    GlobalFree(hFilteredBits);
+    GlobalUnlock(hNewDib);
 
-	// rebuild hDib
-	HDIB hTmp = NULL;
-	if (wBitCount != 24)
-		hTmp = ConvertDIBFormat(hNewDib, wBitCount, NULL);
-	else
-		hTmp = (HDIB)CopyHandle(hNewDib);
-	GlobalFree(hNewDib);
-	DWORD dwSize = GlobalSize(hTmp);
-	memcpy((LPBYTE)GlobalLock(hDib), (LPBYTE)GlobalLock(hTmp), dwSize);
-	GlobalUnlock(hTmp);
-	GlobalFree(hTmp);
-	GlobalUnlock(hDib);
-	WaitCursorEnd();
+    // rebuild hDib
+    HDIB hTmp = NULL;
+    if (wBitCount != 24)
+        hTmp = ConvertDIBFormat(hNewDib, wBitCount, NULL);
+    else
+        hTmp = (HDIB)CopyHandle(hNewDib);
+    GlobalFree(hNewDib);
+    DWORD dwSize = GlobalSize(hTmp);
+    memcpy((LPBYTE)GlobalLock(hDib), (LPBYTE)GlobalLock(hTmp), dwSize);
+    GlobalUnlock(hTmp);
+    GlobalFree(hTmp);
+    GlobalUnlock(hDib);
+    WaitCursorEnd();
 
-	return TRUE;
+    return TRUE;
 }
 
-/************************************************************************* 
- * 
- * ConvoluteDIB() 
- * 
- * Parameters: 
- * 
+/*************************************************************************
+ *
+ * ConvoluteDIB()
+ *
+ * Parameters:
+ *
  * HDIB hDib        - objective DIB handle
  * KERNEL *lpKernel - pointer of kernel used to convolute with DIB
  * int Strength     - operation strength set to the convolute
  * int nKernelNum   - kernel number used to convolute
- * 
- * Return Value: 
- * 
+ *
+ * Return Value:
+ *
  * BOOL             - True is success, else False
- * 
- * Description: 
- * 
+ *
+ * Description:
+ *
  * This is the generic convolute function to DIB
- * 
- ************************************************************************/ 
-BOOL ConvoluteDIB(HDIB hDib, KERNEL *lpKernel, int Strength, int nKernelNum) 
+ *
+ ************************************************************************/
+BOOL ConvoluteDIB(HDIB hDib, KERNEL *lpKernel, int Strength, int nKernelNum)
 {
-	WaitCursorBegin();
+    WaitCursorBegin();
 
-	HDIB hNewDib = NULL;
-	// we only convolute 24bpp DIB, so first convert DIB to 24bpp
-	WORD wBitCount = DIBBitCount(hDib);
-	if (wBitCount != 24)
-		hNewDib = ConvertDIBFormat(hDib, 24, NULL);
-	else
-		hNewDib = (HDIB)CopyHandle(hDib);
+    HDIB hNewDib = NULL;
+    // we only convolute 24bpp DIB, so first convert DIB to 24bpp
+    WORD wBitCount = DIBBitCount(hDib);
+    if (wBitCount != 24)
+        hNewDib = ConvertDIBFormat(hDib, 24, NULL);
+    else
+        hNewDib = (HDIB)CopyHandle(hDib);
 
-	if (! hNewDib)
-	{
-		WaitCursorEnd();
-		return FALSE;
-	}
+    if (! hNewDib)
+    {
+        WaitCursorEnd();
+        return FALSE;
+    }
 
-	// new DIB attributes
-	WORD wDIBWidth = (WORD)DIBWidth(hNewDib);
-	WORD wDIBHeight = (WORD)DIBHeight(hNewDib);
-	WORD wBytesPerLine = (WORD)BytesPerLine(hNewDib);
-	DWORD dwImageSize = wBytesPerLine * wDIBHeight;
+    // new DIB attributes
+    WORD wDIBWidth = (WORD)DIBWidth(hNewDib);
+    WORD wDIBHeight = (WORD)DIBHeight(hNewDib);
+    WORD wBytesPerLine = (WORD)BytesPerLine(hNewDib);
+    DWORD dwImageSize = wBytesPerLine * wDIBHeight;
 
-	// Allocate and lock memory for filtered image data
-	HGLOBAL hFilteredBits = GlobalAlloc(GHND, dwImageSize);
-	if (!hFilteredBits) 
-	{
-		WaitCursorEnd();
-		return FALSE;
-	}
-	LPBYTE lpDestImage = (LPBYTE)GlobalLock(hFilteredBits);
+    // Allocate and lock memory for filtered image data
+    HGLOBAL hFilteredBits = GlobalAlloc(GHND, dwImageSize);
+    if (!hFilteredBits)
+    {
+        WaitCursorEnd();
+        return FALSE;
+    }
+    LPBYTE lpDestImage = (LPBYTE)GlobalLock(hFilteredBits);
 
-	// get bits address in DIB
-	LPBYTE lpDIB = (LPBYTE)GlobalLock(hNewDib);
-	LPBYTE lpDIBits = (LPBYTE)FindDIBBits((LPSTR)lpDIB);
+    // get bits address in DIB
+    LPBYTE lpDIB = (LPBYTE)GlobalLock(hNewDib);
+    LPBYTE lpDIBits = (LPBYTE)FindDIBBits((LPSTR)lpDIB);
 
-	// convolute...
-	for (int i=1; i<wDIBHeight-1; i++) 
-		for (int j=1; j<wDIBWidth-1; j++) 
-		{
-			int  red=0, green=0, blue=0; 
+    // convolute...
+    for (int i=1; i<wDIBHeight-1; i++)
+        for (int j=1; j<wDIBWidth-1; j++)
+        {
+            int  red=0, green=0, blue=0;
 
-			for (int k=0; k<nKernelNum; ++k)
-			{
-				int r=0, g=0, b=0; 
-				DoConvoluteDIB(&r, &g, &b, i, j, 
-					wBytesPerLine, lpDIBits, lpKernel+k);
-				if (r > red)
-					red = r;
-				if (g > green)
-					green = g;
-				if (b > blue)
-					blue = b;
-				//red += r; green += g; blue += b;
-			}
+            for (int k=0; k<nKernelNum; ++k)
+            {
+                int r=0, g=0, b=0;
+                DoConvoluteDIB(&r, &g, &b, i, j,
+                    wBytesPerLine, lpDIBits, lpKernel+k);
+                if (r > red)
+                    red = r;
+                if (g > green)
+                    green = g;
+                if (b > blue)
+                    blue = b;
+                //red += r; green += g; blue += b;
+            }
 
-			// original RGB value in center pixel  (j, i)
-			LONG lOffset= PIXEL_OFFSET(i,j, wBytesPerLine);
-			BYTE OldB = *(lpDIBits + lOffset++);
-			BYTE OldG = *(lpDIBits + lOffset++);
-			BYTE OldR = *(lpDIBits + lOffset);
-			// When we get here, red, green and blue have the new RGB value.
-			if (Strength != 10) 
-			{
-				// Interpolate pixel data
-				red   = OldR + (((red - OldR) * Strength) / 10);
-				green = OldG + (((green - OldG) * Strength) / 10);
-				blue  = OldB + (((blue - OldB) * Strength) / 10);
-			}
+            // original RGB value in center pixel  (j, i)
+            LONG lOffset= PIXEL_OFFSET(i,j, wBytesPerLine);
+            BYTE OldB = *(lpDIBits + lOffset++);
+            BYTE OldG = *(lpDIBits + lOffset++);
+            BYTE OldR = *(lpDIBits + lOffset);
+            // When we get here, red, green and blue have the new RGB value.
+            if (Strength != 10)
+            {
+                // Interpolate pixel data
+                red   = OldR + (((red - OldR) * Strength) / 10);
+                green = OldG + (((green - OldG) * Strength) / 10);
+                blue  = OldB + (((blue - OldB) * Strength) / 10);
+            }
 
-			lOffset= PIXEL_OFFSET(i,j, wBytesPerLine);
-			*(lpDestImage + lOffset++) = BOUND(blue, 0, 255);
-			*(lpDestImage + lOffset++) = BOUND(green, 0, 255);
-			*(lpDestImage + lOffset)   = BOUND(red, 0, 255);
-		}
+            lOffset= PIXEL_OFFSET(i,j, wBytesPerLine);
+            *(lpDestImage + lOffset++) = BOUND(blue, 0, 255);
+            *(lpDestImage + lOffset++) = BOUND(green, 0, 255);
+            *(lpDestImage + lOffset)   = BOUND(red, 0, 255);
+        }
 
-	// a filtered image is available in lpDestImage
-	// copy it to DIB bits
-	memcpy(lpDIBits, lpDestImage, dwImageSize);
+    // a filtered image is available in lpDestImage
+    // copy it to DIB bits
+    memcpy(lpDIBits, lpDestImage, dwImageSize);
 
-	// cleanup temp buffers
-	GlobalUnlock(hFilteredBits);
-	GlobalFree(hFilteredBits);
-	GlobalUnlock(hNewDib);
+    // cleanup temp buffers
+    GlobalUnlock(hFilteredBits);
+    GlobalFree(hFilteredBits);
+    GlobalUnlock(hNewDib);
 
-	// rebuild hDib
-	HDIB hTmp = NULL;
-	if (wBitCount != 24)
-		hTmp = ConvertDIBFormat(hNewDib, wBitCount, NULL);
-	else
-		hTmp = (HDIB)CopyHandle(hNewDib);
-	GlobalFree(hNewDib);
-	DWORD dwSize = GlobalSize(hTmp);
-	memcpy((LPBYTE)GlobalLock(hDib), (LPBYTE)GlobalLock(hTmp), dwSize);
-	GlobalUnlock(hTmp);
-	GlobalFree(hTmp);
-	GlobalUnlock(hDib);
-	WaitCursorEnd();
+    // rebuild hDib
+    HDIB hTmp = NULL;
+    if (wBitCount != 24)
+        hTmp = ConvertDIBFormat(hNewDib, wBitCount, NULL);
+    else
+        hTmp = (HDIB)CopyHandle(hNewDib);
+    GlobalFree(hNewDib);
+    DWORD dwSize = GlobalSize(hTmp);
+    memcpy((LPBYTE)GlobalLock(hDib), (LPBYTE)GlobalLock(hTmp), dwSize);
+    GlobalUnlock(hTmp);
+    GlobalFree(hTmp);
+    GlobalUnlock(hDib);
+    WaitCursorEnd();
 
-	return TRUE;
+    return TRUE;
 }
 
 // local function: perform convolution to DIB with a kernel
-void DoConvoluteDIB(int *red, int *green, int *blue, int i, int j, 
-			WORD wBytesPerLine, LPBYTE lpDIBits, KERNEL *lpKernel)
+void DoConvoluteDIB(int *red, int *green, int *blue, int i, int j,
+            WORD wBytesPerLine, LPBYTE lpDIBits, KERNEL *lpKernel)
 {
-	BYTE b[9], g[9], r[9];
-	LONG lOffset;
-	
-	lOffset= PIXEL_OFFSET(i-1,j-1, wBytesPerLine);
-	b[0] = *(lpDIBits + lOffset++);
-	g[0] = *(lpDIBits + lOffset++);
-	r[0] = *(lpDIBits + lOffset);
+    BYTE b[9], g[9], r[9];
+    LONG lOffset;
 
-	lOffset= PIXEL_OFFSET(i-1,j, wBytesPerLine);
-	b[1] = *(lpDIBits + lOffset++);
-	g[1] = *(lpDIBits + lOffset++);
-	r[1] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i-1,j-1, wBytesPerLine);
+    b[0] = *(lpDIBits + lOffset++);
+    g[0] = *(lpDIBits + lOffset++);
+    r[0] = *(lpDIBits + lOffset);
 
-	lOffset= PIXEL_OFFSET(i-1,j+1, wBytesPerLine);
-	b[2] = *(lpDIBits + lOffset++);
-	g[2] = *(lpDIBits + lOffset++);
-	r[2] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i-1,j, wBytesPerLine);
+    b[1] = *(lpDIBits + lOffset++);
+    g[1] = *(lpDIBits + lOffset++);
+    r[1] = *(lpDIBits + lOffset);
 
-	lOffset= PIXEL_OFFSET(i,j-1, wBytesPerLine);
-	b[3] = *(lpDIBits + lOffset++);
-	g[3] = *(lpDIBits + lOffset++);
-	r[3] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i-1,j+1, wBytesPerLine);
+    b[2] = *(lpDIBits + lOffset++);
+    g[2] = *(lpDIBits + lOffset++);
+    r[2] = *(lpDIBits + lOffset);
 
-	lOffset= PIXEL_OFFSET(i,j, wBytesPerLine);
-	b[4] = *(lpDIBits + lOffset++);
-	g[4] = *(lpDIBits + lOffset++);
-	r[4] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i,j-1, wBytesPerLine);
+    b[3] = *(lpDIBits + lOffset++);
+    g[3] = *(lpDIBits + lOffset++);
+    r[3] = *(lpDIBits + lOffset);
 
-	lOffset= PIXEL_OFFSET(i,j+1, wBytesPerLine);
-	b[5] = *(lpDIBits + lOffset++);
-	g[5] = *(lpDIBits + lOffset++);
-	r[5] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i,j, wBytesPerLine);
+    b[4] = *(lpDIBits + lOffset++);
+    g[4] = *(lpDIBits + lOffset++);
+    r[4] = *(lpDIBits + lOffset);
 
-	lOffset= PIXEL_OFFSET(i+1,j-1, wBytesPerLine);
-	b[6] = *(lpDIBits + lOffset++);
-	g[6] = *(lpDIBits + lOffset++);
-	r[6] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i,j+1, wBytesPerLine);
+    b[5] = *(lpDIBits + lOffset++);
+    g[5] = *(lpDIBits + lOffset++);
+    r[5] = *(lpDIBits + lOffset);
 
-	lOffset= PIXEL_OFFSET(i+1,j, wBytesPerLine);
-	b[7] = *(lpDIBits + lOffset++);
-	g[7] = *(lpDIBits + lOffset++);
-	r[7] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i+1,j-1, wBytesPerLine);
+    b[6] = *(lpDIBits + lOffset++);
+    g[6] = *(lpDIBits + lOffset++);
+    r[6] = *(lpDIBits + lOffset);
 
-	lOffset= PIXEL_OFFSET(i+1,j+1, wBytesPerLine);
-	b[8] = *(lpDIBits + lOffset++);
-	g[8] = *(lpDIBits + lOffset++);
-	r[8] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i+1,j, wBytesPerLine);
+    b[7] = *(lpDIBits + lOffset++);
+    g[7] = *(lpDIBits + lOffset++);
+    r[7] = *(lpDIBits + lOffset);
 
-	*red = *green = *blue = 0;
-	for (int k=0; k<=8; ++k)
-	{
-		*red   += lpKernel->Element[k]*r[k];
-		*green += lpKernel->Element[k]*g[k];
-		*blue  += lpKernel->Element[k]*b[k];
-	}
+    lOffset= PIXEL_OFFSET(i+1,j+1, wBytesPerLine);
+    b[8] = *(lpDIBits + lOffset++);
+    g[8] = *(lpDIBits + lOffset++);
+    r[8] = *(lpDIBits + lOffset);
 
-	if (lpKernel->Divisor != 1) 
-	{
-		*red   /= lpKernel->Divisor;
-		*green /= lpKernel->Divisor;
-		*blue  /= lpKernel->Divisor;
-	}
+    *red = *green = *blue = 0;
+    for (int k=0; k<=8; ++k)
+    {
+        *red   += lpKernel->Element[k]*r[k];
+        *green += lpKernel->Element[k]*g[k];
+        *blue  += lpKernel->Element[k]*b[k];
+    }
 
-	// getoff opposite
-	*red   = abs(*red);
-	*green = abs(*green);
-	*blue  = abs(*blue);
+    if (lpKernel->Divisor != 1)
+    {
+        *red   /= lpKernel->Divisor;
+        *green /= lpKernel->Divisor;
+        *blue  /= lpKernel->Divisor;
+    }
+
+    // getoff opposite
+    *red   = abs(*red);
+    *green = abs(*green);
+    *blue  = abs(*blue);
 }
 
 // local function: perform median filter to DIB
-void DoMedianFilterDIB(int *red, int *green, int *blue, int i, int j, 
-			WORD wBytesPerLine, LPBYTE lpDIBits)
+void DoMedianFilterDIB(int *red, int *green, int *blue, int i, int j,
+            WORD wBytesPerLine, LPBYTE lpDIBits)
 {
-	BYTE b[9], g[9], r[9];
-	LONG lOffset;
-	
-	lOffset= PIXEL_OFFSET(i-1,j-1, wBytesPerLine);
-	b[0] = *(lpDIBits + lOffset++);
-	g[0] = *(lpDIBits + lOffset++);
-	r[0] = *(lpDIBits + lOffset);
+    BYTE b[9], g[9], r[9];
+    LONG lOffset;
 
-	lOffset= PIXEL_OFFSET(i-1,j, wBytesPerLine);
-	b[1] = *(lpDIBits + lOffset++);
-	g[1] = *(lpDIBits + lOffset++);
-	r[1] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i-1,j-1, wBytesPerLine);
+    b[0] = *(lpDIBits + lOffset++);
+    g[0] = *(lpDIBits + lOffset++);
+    r[0] = *(lpDIBits + lOffset);
 
-	lOffset= PIXEL_OFFSET(i-1,j+1, wBytesPerLine);
-	b[2] = *(lpDIBits + lOffset++);
-	g[2] = *(lpDIBits + lOffset++);
-	r[2] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i-1,j, wBytesPerLine);
+    b[1] = *(lpDIBits + lOffset++);
+    g[1] = *(lpDIBits + lOffset++);
+    r[1] = *(lpDIBits + lOffset);
 
-	lOffset= PIXEL_OFFSET(i,j-1, wBytesPerLine);
-	b[3] = *(lpDIBits + lOffset++);
-	g[3] = *(lpDIBits + lOffset++);
-	r[3] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i-1,j+1, wBytesPerLine);
+    b[2] = *(lpDIBits + lOffset++);
+    g[2] = *(lpDIBits + lOffset++);
+    r[2] = *(lpDIBits + lOffset);
 
-	lOffset= PIXEL_OFFSET(i,j, wBytesPerLine);
-	b[4] = *(lpDIBits + lOffset++);
-	g[4] = *(lpDIBits + lOffset++);
-	r[4] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i,j-1, wBytesPerLine);
+    b[3] = *(lpDIBits + lOffset++);
+    g[3] = *(lpDIBits + lOffset++);
+    r[3] = *(lpDIBits + lOffset);
 
-	lOffset= PIXEL_OFFSET(i,j+1, wBytesPerLine);
-	b[5] = *(lpDIBits + lOffset++);
-	g[5] = *(lpDIBits + lOffset++);
-	r[5] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i,j, wBytesPerLine);
+    b[4] = *(lpDIBits + lOffset++);
+    g[4] = *(lpDIBits + lOffset++);
+    r[4] = *(lpDIBits + lOffset);
 
-	lOffset= PIXEL_OFFSET(i+1,j-1, wBytesPerLine);
-	b[6] = *(lpDIBits + lOffset++);
-	g[6] = *(lpDIBits + lOffset++);
-	r[6] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i,j+1, wBytesPerLine);
+    b[5] = *(lpDIBits + lOffset++);
+    g[5] = *(lpDIBits + lOffset++);
+    r[5] = *(lpDIBits + lOffset);
 
-	lOffset= PIXEL_OFFSET(i+1,j, wBytesPerLine);
-	b[7] = *(lpDIBits + lOffset++);
-	g[7] = *(lpDIBits + lOffset++);
-	r[7] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i+1,j-1, wBytesPerLine);
+    b[6] = *(lpDIBits + lOffset++);
+    g[6] = *(lpDIBits + lOffset++);
+    r[6] = *(lpDIBits + lOffset);
 
-	lOffset= PIXEL_OFFSET(i+1,j+1, wBytesPerLine);
-	b[8] = *(lpDIBits + lOffset++);
-	g[8] = *(lpDIBits + lOffset++);
-	r[8] = *(lpDIBits + lOffset);
+    lOffset= PIXEL_OFFSET(i+1,j, wBytesPerLine);
+    b[7] = *(lpDIBits + lOffset++);
+    g[7] = *(lpDIBits + lOffset++);
+    r[7] = *(lpDIBits + lOffset);
+
+    lOffset= PIXEL_OFFSET(i+1,j+1, wBytesPerLine);
+    b[8] = *(lpDIBits + lOffset++);
+    g[8] = *(lpDIBits + lOffset++);
+    r[8] = *(lpDIBits + lOffset);
 
     qsort(r, 9, 1, compare);
     qsort(g, 9, 1, compare);
     qsort(b, 9, 1, compare);
 
-	*red   = r[0];
-	*green = g[0];
-	*blue  = b[0];
+    *red   = r[0];
+    *green = g[0];
+    *blue  = b[0];
 }
 
 // function used to sort in the call of qsort
 int compare(const void *e1, const void *e2)
 {
-	if (*(BYTE *)e1 < *(BYTE *)e2)
-		return -1;
-	if (*(BYTE *)e1 > *(BYTE *)e2)
-		return 1;
+    if (*(BYTE *)e1 < *(BYTE *)e2)
+        return -1;
+    if (*(BYTE *)e1 > *(BYTE *)e2)
+        return 1;
 
-	return 0;
+    return 0;
 }
 
 

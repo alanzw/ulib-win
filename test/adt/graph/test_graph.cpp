@@ -1,12 +1,12 @@
 /*
 DIJKSTRA(G, s, w)
   for each vertex u in V             ;initialize vertex u
-    d[u] := infinity 
-    p[u] := u 
+    d[u] := infinity
+    p[u] := u
     color[u] := WHITE
   end for
-  color[s] := GRAY 
-  d[s] := 0 
+  color[s] := GRAY
+  d[s] := 0
   INSERT(Q, s)                       ;discover vertex s
   while (Q != ?)
     u := EXTRACT-MIN(Q)              ;examine vertex u
@@ -14,8 +14,8 @@ DIJKSTRA(G, s, w)
     for each vertex v in Adj[u]      ;examine edge (u,v)
       if (w(u,v) + d[u] < d[v])
         d[v] := w(u,v) + d[u]        ;edge (u,v) relaxed
-        p[v] := u 
-        if (color[v] = WHITE) 
+        p[v] := u
+        if (color[v] = WHITE)
           color[v] := GRAY
           INSERT(Q, v)               ;discover vertex v
         else if (color[v] = GRAY)
@@ -42,7 +42,7 @@ DIJKSTRA(G, s, w)
 10              break                         // all remaining vertices are inaccessible from source
 11          remove u from Q
 12          for each neighbor v of u:         // where v has not yet been removed from Q.
-13              alt := dist[u] + dist_between(u, v) 
+13              alt := dist[u] + dist_between(u, v)
 14              if alt < dist[v]:             // Relax (u,v,a)
 15                  dist[v] := alt
 16                  previous[v] := u
@@ -55,7 +55,7 @@ DIJKSTRA(G, s, w)
 using namespace std;
 
 #include "adt/uvector.h"
- 
+
 const int SIZE = 5; //number of nodes
 int graph[SIZE][SIZE];//the graph itself
 int d[SIZE]; //distances from the source to each node
