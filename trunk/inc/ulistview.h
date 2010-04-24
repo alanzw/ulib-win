@@ -29,8 +29,8 @@ public:
     ~UListView();
     //
     virtual BOOL create();
-	//
-	BOOL setExStylesListView(DWORD dwStyle);
+    //
+    BOOL setExStylesListView(DWORD dwStyle);
 
     //
     virtual BOOL addColumn(int iCol, LPLVCOLUMN lplvc);
@@ -51,7 +51,7 @@ public:
     //
     virtual BOOL setItem(int nIndex, LVITEM *lplvi);
     virtual BOOL setItemText(int nIndex, int nSubIndex, LPCTSTR lpText);
-    
+
     int getItemCount();
 
     BOOL setBKColor(huys::Color clr);

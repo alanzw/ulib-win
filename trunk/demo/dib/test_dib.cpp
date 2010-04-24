@@ -13,24 +13,24 @@
 class UMyWindow : public UBaseWindow
 {
 public:
-   UMyWindow()
-   : UBaseWindow(NULL, ::GetModuleHandle(NULL))
-   {
+    UMyWindow()
+        : UBaseWindow(NULL, ::GetModuleHandle(NULL))
+    {
         this->setTitle(_T("UDIB Test 0.0.1"));
         this->setPos(0, 0, 600, 600);
-   }
+    }
 
-   BOOL onCreate()
-   {
-       this->setIconBig(IDI_PEN);
+    BOOL onCreate()
+    {
+        this->setIconBig(IDI_PEN);
 
-       //UFile file;
-       //file.open(_T("bk.bmp"));
-       //_dib = huys::ReadDIBFile(file);
-       UBitmap bmp(IDB_BACKGROUND, getInstance());
-       _dib = huys::BitmapToDIB(bmp, NULL);
-       return UBaseWindow::onCreate();
-   }
+        //UFile file;
+        //file.open(_T("bk.bmp"));
+        //_dib = huys::ReadDIBFile(file);
+        UBitmap bmp(IDB_BACKGROUND, getInstance());
+        _dib = huys::BitmapToDIB(bmp, NULL);
+        return UBaseWindow::onCreate();
+    }
 
     //
     virtual void onDraw(HDC hdc)
@@ -45,9 +45,23 @@ public:
         huys::HDIB hNewDIB = huys::RotateDIB(_dib);
         _dib = hNewDIB;
         invalidate(TRUE);
-        
+
         return FALSE;
     }
+
+    virtual BOOL onChar(WPARAM wParam, LPARAM lParam)
+    {
+        switch (wParam)
+        {
+        case VK_ESCAPE:
+            return
+                UBaseWindow::onClose();
+        default:
+            return UBaseWindow::onChar(wParam, lParam);
+        }
+    }
+
+
 private:
     huys::HDIB _dib;
 };

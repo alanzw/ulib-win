@@ -19,14 +19,14 @@ class UMyWindow : public UBaseWindow
         IDC_BN_XP     = 11111
     };
 public:
-   UMyWindow()
-   : UBaseWindow()
-   {
+    UMyWindow()
+        : UBaseWindow()
+    {
         this->setTitle(_T("Test VisualStyles"));
         this->setMenu(MAKEINTRESOURCE(IDR_MAINMENU));
         this->setStyles(WS_OVERLAPPEDWINDOW|WS_CLIPCHILDREN);
         //this->setExStyles(WS_EX_CLIENTEDGE);
-   }
+    }
 
     BOOL onCreate()
     {
@@ -46,16 +46,16 @@ public:
         return UBaseWindow::onCreate();
     }
 
-   virtual BOOL onPreRegisterWindowClass(huys::UWindowClass &uwc)
-   {
+    virtual BOOL onPreRegisterWindowClass(huys::UWindowClass &uwc)
+    {
         uwc.setBKBrush((HBRUSH)::GetStockObject(GRAY_BRUSH));
         return FALSE;
-   }
+    }
 
-   virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
-   {
-       switch (LOWORD (wParam))
-       {
+    virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
+    {
+        switch (LOWORD (wParam))
+        {
         case IDM_NEW:
             return onMenuNew();
         case IDM_ABOUT:
@@ -64,30 +64,30 @@ public:
             return onBnXP();
         default:
             return UBaseWindow::onCommand(wParam, lParam);
-       }
-   }
+        }
+    }
 
-   BOOL onMenuNew()
-   {
+    BOOL onMenuNew()
+    {
         return FALSE;
-   }
+    }
 
-   BOOL onMenuAbout()
-   {
+    BOOL onMenuAbout()
+    {
         return FALSE;
-   }
+    }
 
-   BOOL onSize(WPARAM wParam, LPARAM lParam)
-       {
-           RECT rc = {0};
+    BOOL onSize(WPARAM wParam, LPARAM lParam)
+    {
+        RECT rc = {0};
         int width  = LOWORD(lParam);
         int height = HIWORD(lParam);
         ::SetRect(&rc, 0, 0, width, height);
 
-         m_pStatusBar->resize();
+        m_pStatusBar->resize();
 
         return FALSE;
-   }
+    }
 
     BOOL onChar(WPARAM wParam, LPARAM lParam)
     {

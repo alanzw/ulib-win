@@ -127,7 +127,7 @@ public:
     {
         _lastChild = node;
     }
-    
+
 protected:
     XMLNodeType _type;
 private:
@@ -145,14 +145,14 @@ public:
     UXMLAttribute(const char *name, const char *value)
     : _name(name), _value(value)
     {}
-    
-    explicit UXMLAttribute(const UXMLAttribute &attr)
+
+    UXMLAttribute(const UXMLAttribute &attr)
     : _name(attr._name), _value(attr._value)
     {}
 
     ~UXMLAttribute()
     {}
-    
+
     UXMLAttribute & operator=(const UXMLAttribute &attr)
     {
          _name = attr._name;
@@ -178,12 +178,12 @@ public:
     {
         _value = value;
     }
-    
+
     bool operator==(const UXMLAttribute &attr) const
     {
         return _name == attr._name;
     }
-    
+
     bool operator==(const char * name) const
     {
         return _name == name;
@@ -201,11 +201,11 @@ public:
     UXMLText(const char *sText)
     : _text(sText)
     {
-    
+
     }
     ~UXMLText()
     {
-    
+
     }
 protected:
 private:
@@ -220,7 +220,7 @@ public:
     {
         _type = XML_NT_ELEMENT;
     }
-    
+
     ~UXMLElement()
     {
         if (_text)
@@ -236,7 +236,7 @@ public:
             _attributes.push_back(UXMLAttribute(name, value));
             return true;
         }
-        
+
         UXMLAttributes::iterator it = _attributes.begin();
         for (; it != _attributes.end(); ++it)
         {
@@ -246,12 +246,12 @@ public:
                 return true;
             }
         }
-        
+
         _attributes.push_back(UXMLAttribute(name, value));
-        
+
         return false;
     }
-    
+
     void setText(const char *sText)
     {
         if (_text)
@@ -260,12 +260,12 @@ public:
         }
         _text = new UXMLText(sText);
     }
-    
+
     bool hasAttribute() const
     {
         return 0 != _attributes.size();
     }
-    
+
     bool hasText() const
     {
         return 0 != _text;
@@ -284,7 +284,7 @@ public:
     {
         _type = XML_NT_COMMNET;
     }
-    
+
     ~UXMLComment() {}
 private:
     UXMLString _text;
@@ -468,12 +468,12 @@ public:
     {
         return m_sFilename.c_str();
     }
-    
+
     bool loadfile()
     {
         return loadfile(m_sFilename);
     }
-    
+
     bool loadfile(const char * fname)
     {
         FILE *pfile = fopen(fname, "rb");
@@ -481,29 +481,29 @@ public:
         {
             return false;
         }
-        
+
         size_t s = 0;
         fseek(pfile, 0, SEEK_END);
         s = ftell(pfile);
         //rewind(pfile);
         fseek(pfile, 0, SEEK_SET);
         _buffer.reserve(s+1);
-        
+
         fread((char *)_buffer, s, 1, pfile);
 
         fclose(pfile);
-        
-        _buffer.setLength(s);        
-        
+
+        _buffer.setLength(s);
+
         printf(_buffer.c_str());
         return true;
     }
-    
+
     bool savefile(const char *fname)
     {
         return true;
     }
-    
+
 private:
     UXMLParser _parser;
     UXMLString _buffer;
@@ -528,8 +528,8 @@ private:
     {
         return true;
     }
-    
-    
+
+
 private:
     UXMLString m_sFilename;
 };

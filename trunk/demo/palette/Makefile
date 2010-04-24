@@ -24,9 +24,9 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB)
+	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
-    
+
 #
 .PHONY : test
 test :
