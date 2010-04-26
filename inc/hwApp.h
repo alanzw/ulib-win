@@ -24,10 +24,12 @@ private:
     hwCharPtrPtr _argv;
 };
 
-class HW_API hwAppGUI
+class HW_API hwAppGUI : public hwAppConsole
 {
 public:
+    hwAppGUI();
 
+    virtual ~hwAppGUI();
 };
 
 

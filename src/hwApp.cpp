@@ -28,3 +28,14 @@ bool hwAppConsole::onCleanup()
 {
     return true;
 }
+
+hwAppGUI::hwAppGUI()
+{
+
+}
+
+hwAppGUI::~hwAppGUI()
+{
+
+}
+
