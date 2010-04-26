@@ -103,7 +103,7 @@
 	<File name="..\res\u.rc" open="0" top="0" tabpos="0">
 		<Cursor position="119" topLine="0" />
 	</File>
-	<File name="..\src\ubasewindow.cpp" open="1" top="0" tabpos="4">
+	<File name="..\src\ubasewindow.cpp" open="1" top="1" tabpos="4">
 		<Cursor position="4412" topLine="162" />
 	</File>
 	<File name="..\src\ubitmap.cpp" open="0" top="0" tabpos="0">
@@ -157,8 +157,8 @@
 	<File name="..\src\umenu.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="1503" topLine="75" />
 	</File>
-	<File name="..\src\umsg.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="4990" topLine="255" />
+	<File name="..\src\umsg.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="6810" topLine="204" />
 	</File>
 	<File name="..\src\upanel.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="2246" topLine="98" />

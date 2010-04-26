@@ -25,10 +25,10 @@
 		<Project filename="explorer.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="filesplit.cbp">
+		<Project filename="filesplit.cbp" active="1">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="floatwnd.cbp" active="1">
+		<Project filename="floatwnd.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="life.cbp" />
