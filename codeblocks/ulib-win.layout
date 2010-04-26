@@ -49,8 +49,8 @@
 	<File name="..\inc\umenu.h" open="0" top="0" tabpos="5">
 		<Cursor position="49" topLine="0" />
 	</File>
-	<File name="..\inc\umsg.h" open="0" top="0" tabpos="0">
-		<Cursor position="593" topLine="12" />
+	<File name="..\inc\umsg.h" open="1" top="0" tabpos="3">
+		<Cursor position="265" topLine="45" />
 	</File>
 	<File name="..\inc\uobject.h" open="0" top="0" tabpos="1">
 		<Cursor position="1188" topLine="63" />
@@ -61,7 +61,7 @@
 	<File name="..\inc\uprocessman.h" open="0" top="0" tabpos="1">
 		<Cursor position="387" topLine="0" />
 	</File>
-	<File name="..\inc\uprogressbar.h" open="1" top="0" tabpos="1">
+	<File name="..\inc\uprogressbar.h" open="0" top="0" tabpos="1">
 		<Cursor position="487" topLine="9" />
 	</File>
 	<File name="..\inc\upropsheet.h" open="0" top="0" tabpos="1">
@@ -103,8 +103,8 @@
 	<File name="..\res\u.rc" open="0" top="0" tabpos="0">
 		<Cursor position="119" topLine="0" />
 	</File>
-	<File name="..\src\ubasewindow.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="7392" topLine="284" />
+	<File name="..\src\ubasewindow.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="4412" topLine="162" />
 	</File>
 	<File name="..\src\ubitmap.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2570" topLine="94" />
@@ -157,8 +157,8 @@
 	<File name="..\src\umenu.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="1503" topLine="75" />
 	</File>
-	<File name="..\src\umsg.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="6278" topLine="224" />
+	<File name="..\src\umsg.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="4990" topLine="255" />
 	</File>
 	<File name="..\src\upanel.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="2246" topLine="98" />
@@ -198,6 +198,9 @@
 	</File>
 	<File name="..\src\utreeview.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="1724" topLine="23" />
+	</File>
+	<File name="..\src\uwinapp.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="918" topLine="34" />
 	</File>
 	<File name="..\src\uwindowx.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="390" topLine="14" />

@@ -28,7 +28,7 @@
 		<Project filename="filesplit.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="floatwnd.cbp">
+		<Project filename="floatwnd.cbp" active="1">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="life.cbp" />
@@ -44,7 +44,7 @@
 		<Project filename="menu.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="msg.cbp" active="1">
+		<Project filename="msg.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="mytree.cbp">

@@ -48,6 +48,7 @@ bool UWinApp::init( HINSTANCE hInst /*= NULL*/ )
     return true;
 }
 
+
 DWORD UWinApp::run()
 {
     m_pMainWindow->show();
