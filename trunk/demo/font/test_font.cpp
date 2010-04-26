@@ -31,6 +31,8 @@ public:
 
         RECT rc = { 200, 100, 380, 150};
         m_pBnGo->setPosition(&rc);
+
+        return TRUE;
     }
 
     virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
