@@ -11,6 +11,8 @@
 
 #include "adt/uautoptr.h"
 
+extern BOOL ULIB_API  g_bTimedOut;
+
 class UMyWindow : public UBaseWindow
 {
     enum {
@@ -150,6 +152,7 @@ public:
             return UBaseWindow::onCommand(wParam, lParam);
         }
     }
+
 private:
     huys::ADT::UAutoPtr<UButton> m_pBnCBT;
     huys::ADT::UAutoPtr<UButton> m_pBnMsg;

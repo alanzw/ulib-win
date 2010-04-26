@@ -196,7 +196,7 @@ void showCustomInfoMsg(const TCHAR *szMsg, HWND hOwner)
 *
 ***********************************************************************/
 static HWND g_hwndTimedOwner;
-static BOOL g_bTimedOut;
+BOOL  ULIB_API g_bTimedOut;
 static HWND g_hwndMsgBox = NULL;
 static LPCTSTR g_msgboxTitle = NULL;
 
@@ -267,6 +267,8 @@ int TimedMessageBox(HWND hwndOwner,
       MSG msg;
       PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE);
       iResult = -1;
+
+      g_bTimedOut = FALSE;
    }
 
    return iResult;
