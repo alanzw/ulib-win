@@ -3,6 +3,12 @@
 
 class HW_API hwString
 {
+public:
+    hwString();
+
+    ~hwString();
+
+private:
 
 };
 
