@@ -22,8 +22,3 @@ public:
 
 IMPLEMENT_HWAPP(MyApp)
 
-extern "C" int _tmain(int argc, TCHAR **argv)
-{
-    return 0;
-}
-

@@ -1,5 +1,6 @@
 #include "hwApp.h"
 
+
 #ifdef BUILD_DLL
 
 extern "C"
@@ -26,35 +27,6 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 }
 
 #elif defined(HW_CONSOLE)
-
-extern hwAppConsole * hwCreateApp();
-
-int hwMain(int argc, hwCharPtrPtr argv)
-{
-    hwAppConsole *app = hwCreateApp();
-
-    if (!app->init(argc, argv))
-    {
-        return -1;
-    }
-
-    if (!app->onRun())
-    {
-        return -2;
-    }
-
-    if (!app->onCleanup())
-    {
-        return -3;
-    }
-
-    if (!app->onExit())
-    {
-        return -4;
-    }
-
-    return 0;
-}
 
 extern "C" int _tmain(int argc, TCHAR **argv)
 {
