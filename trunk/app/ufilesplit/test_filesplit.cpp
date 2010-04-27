@@ -27,14 +27,14 @@ class UMyWindow : public UBaseWindow
     enum {
         ID_RADIOBTN_SPLIT = 10110,
         ID_RADIOBTN_MERGE = 10111,
-        ID_BUTTON_ADD   = 11001,
-        ID_BUTTON_GO    = 11002,
-        ID_TIMER_CLOCK = 11003,
+        ID_BUTTON_ADD     = 11001,
+        ID_BUTTON_GO      = 11002,
+        ID_TIMER_CLOCK    = 11003,
         ID_LISTVIEW_FILES = 11004,
-        ID_FILE_OUTPUT   = 11005,
-        ID_FILE_SIZE    = 11006,
-        ID_FILE_UNIT    = 11009,
-        ID_BUTTON_SELECT = 11007
+        ID_FILE_OUTPUT    = 11005,
+        ID_FILE_SIZE      = 11006,
+        ID_FILE_UNIT      = 11009,
+        ID_BUTTON_SELECT  = 11007
     };
 public:
    UMyWindow()
@@ -53,12 +53,12 @@ public:
        m_rbSplit = new URadioButton(this, ID_RADIOBTN_SPLIT);
        m_rbSplit->setPos(120, 20, 100, 20);
        m_rbSplit->create();
-       m_rbSplit->setWindowText(_T("split"));
+       m_rbSplit->setWindowText(_T("Split"));
 
        m_rbMerge = new URadioButton(this, ID_RADIOBTN_MERGE);
        m_rbMerge->setPos(240, 20, 100, 20);
        m_rbMerge->create();
-       m_rbMerge->setWindowText(_T("merge"));
+       m_rbMerge->setWindowText(_T("Merge"));
 
        m_lv = new UListView(this, ID_LISTVIEW_FILES);
        m_lv->setStyles(LVS_REPORT | LVS_EDITLABELS);
@@ -67,9 +67,9 @@ public:
 
        m_lv->setExStylesListView(LVS_EX_GRIDLINES);
 
-       m_lv->addColTextWidth(0, "index", 50);
-       m_lv->addColTextWidth(1, "filename", 300);
-       m_lv->addColTextWidth(2, "other", 100);
+       m_lv->addColTextWidth(0, "Index", 50);
+       m_lv->addColTextWidth(1, "Filename", 300);
+       m_lv->addColTextWidth(2, "Other", 100);
 
        m_add = new UButton(this, ID_BUTTON_ADD);
        m_add->setPos(580, 60, 100, 50);
