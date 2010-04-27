@@ -1,6 +1,8 @@
 #ifndef HW_DEFS_H
 #define HW_DEFS_H
 
+#include <stdarg.h>
+
 #ifdef USE_UNICODE
     typedef wchar_t hwChar;
     typedef wchar_t hwUChar;
