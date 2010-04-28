@@ -43,28 +43,28 @@ ULIBS :
 
 #
 UBINS :
-	cd $(BINDIR) && $(MAKE) all
+	$(MAKE) -C $(BINDIR) all
 
 #
 UDEMO :
-	cd $(DEMODIR) && $(MAKE) all
+	$(MAKE) -C $(DEMODIR) all
 
 #
 UDOC :
-	cd $(DOCDIR) && $(MAKE) all
+	$(MAKE) -C $(DOCDIR) all
 
 dist :
-	$(MAKE) clean && \
-    cd .. && \
-    $(TARCMD)
+	$(MAKE) clean
+	cd ..
+	$(TARCMD)
 
 install :
 
 .PHONY: clean
 clean:
-	cd $(DEMODIR) && $(MAKE) clean
-	cd $(OBJDIR) && $(MAKE) clean
-	cd $(RESDIR) && $(MAKE) clean
-	cd $(LIBDIR) && $(MAKE) clean
-	cd $(BINDIR) && $(MAKE) clean
+	$(MAKE) -C $(DEMODIR) clean
+	$(MAKE) -C $(OBJDIR) clean
+	$(MAKE) -C $(RESDIR) clean
+	$(MAKE) -C $(LIBDIR) clean
+	$(MAKE) -C $(BINDIR) clean
 	$(CLEANUP)

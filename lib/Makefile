@@ -35,7 +35,7 @@ libuwin.dll : ${OBJECTS_SHARED_E}
 	cp -v $@ $(BINDIR)/$@
 
 $(OBJECTS_E) $(OBJECTS_SHARED_E) :
-	(cd $(OBJDIR) && $(MAKE))
+	$(MAKE) -C $(OBJDIR)
 
 .PHONY : clean
 clean :
@@ -48,5 +48,5 @@ uhook.dll : $(OBJDIR)/uhook_d.o
 	cp -v $@ $(BINDIR)/$@
 
 $(OBJDIR)/uhook_d.o :
-	(cd $(OBJDIR) && $(MAKE) hook)
+	$(MAKE) -C $(OBJDIR) hook
 
