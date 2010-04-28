@@ -11,12 +11,23 @@ public:
     bool onInit()
     {
         cout << "----Init MyApp" << endl;
+        
+        int nArgc = getArgc();
+        hwCharPtrPtr pArgv = getArgv(); 
+        
+        cout << "argc : " << nArgc << endl;
+        
+        for (int i=0; i< nArgc; ++i)
+        {
+            cout << "argv  " << i << " : " << pArgv[i] << endl;
+        }        
         return hwAppConsole::onInit();
     }
 
     bool onRun()
     {
         cout << "----Run  MyApp" << endl;
+
         return true;
     }
 

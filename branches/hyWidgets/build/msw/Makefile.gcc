@@ -1,0 +1,10 @@
+#
+TOPDIR = ../..
+
+#
+include $(TOPDIR)/make.inc
+
+#
+include ./config.gcc
+
+

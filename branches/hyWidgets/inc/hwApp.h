@@ -10,7 +10,7 @@ public:
 
     virtual ~hwAppConsole();
 
-    virtual bool init(int argc, hwCharPtrPtr argv);
+    bool init(int argc, hwCharPtrPtr argv);
 
     virtual bool onInit();
 
@@ -19,15 +19,18 @@ public:
     virtual bool onExit();
 
     virtual bool onCleanup();
-
+    
+public:
+    int getArgc() const;
+    hwCharPtrPtr getArgv() const;
 public:
     //static hwAppConsole *GetInstance() { return ms_appInstance; }
     //static void SetInstance(hwAppConsole *p) { ms_appInstance = p;}
 
     static hwAppConsole *ms_appInstance;
 private:
-    int _argc;
-    hwCharPtrPtr _argv;
+    int m_argc;
+    hwCharPtrPtr m_argv;
 };
 
 HW_API int hwMain(int argc, hwCharPtrPtr argv);
@@ -55,7 +58,7 @@ public:
     static PtrFunc _p;
 };
 
-#define IMPLEMENT_HWAPP_NOMAIN(appname)                         \
+#define IMPLEMENT_HWAPP_NOMAIN(appname)                  \
     hwAppConsole * hwCreateApp()                         \
     {                                                    \
         return new appname;                              \
@@ -63,25 +66,27 @@ public:
     hwAppInitializer g_hwAppInit(&hwCreateApp);
 
 #ifdef HW_CONSOLE
-#define IMPLEMENT_HWAPP_WINMAIN \
-    extern "C" int _tmain(int argc, TCHAR **argv) \
-{ \
-   return hwMain(argc, argv); \
+#define IMPLEMENT_HWAPP_WINMAIN                      \
+    extern "C" int _tmain(int argc, TCHAR **argv)    \
+{                                                    \
+   return hwMain(argc, argv);                        \
 }
 #else
-#define IMPLEMENT_HWAPP_WINMAIN \
-extern "C" int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE, LPTSTR lpCmdLine, int nCmdShow)
-{
-    return hwWinMain(hInstance, lpCmdLine, nCmdShow);
+#define IMPLEMENT_HWAPP_WINMAIN                      \
+extern "C"                                           \
+int WINAPI _tWinMain(HINSTANCE hInstance,            \
+    HINSTANCE, LPTSTR lpCmdLine, int nCmdShow)       \
+{                                                    \
+    return hwWinMain(hInstance, lpCmdLine, nCmdShow);\
 }
 #endif
 
 #if  defined(USE_DLL)
-  #define IMPLEMENT_HWAPP(appname) \
-     IMPLEMENT_HWAPP_NOMAIN(appname) \
+  #define IMPLEMENT_HWAPP(appname)                   \
+     IMPLEMENT_HWAPP_NOMAIN(appname)                 \
      IMPLEMENT_HWAPP_WINMAIN
 #else
-  #define IMPLEMENT_HWAPP(appname) \
+  #define IMPLEMENT_HWAPP(appname)                   \
      IMPLEMENT_HWAPP_NOMAIN(appname)
 #endif
 

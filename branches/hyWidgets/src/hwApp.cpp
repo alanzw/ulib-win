@@ -46,12 +46,22 @@ hwAppConsole::hwAppConsole()
 hwAppConsole::~hwAppConsole()
 {}
 
-bool hwAppConsole::init(int argc, hwChar **argv)
+bool hwAppConsole::init(int argc, hwCharPtrPtr argv)
 {
-    _argc = argc;
-    _argv = argv;
+    m_argc = argc;
+    m_argv = argv;
 
     return onInit();
+}
+
+int hwAppConsole::getArgc() const
+{
+    return m_argc;
+}
+
+hwCharPtrPtr hwAppConsole::getArgv() const
+{
+    return m_argv;
 }
 
 bool hwAppConsole::onInit()
