@@ -18,6 +18,23 @@ else
   PLATFORM = win32
 endif
 
+#
+ifeq ($(PLATFORM), win32)
+    SHELL = cmd.exe
+    WINE =
+    CLEANUP = wbin\find . \( -name Thumbs.db -o -name *.aps \) -type f -print0 -delete
+    P7ZIP = "./ulib-win/wbin/7z.exe"
+    MAKEALL_SUBDIRS = for /d %%X in ($(SUBDIRS)) do $(MAKE) -C %%X
+    MAKECLEAN_SUBDIRS = for /d %%X in ($(SUBDIRS)) do $(MAKE) clean -C %%X
+else
+    SHELL = /bin/bash
+    WINE = LC_CTYPE="zh_CN.UTF-8" /opt/build/wine/bin/wine
+    CLEANUP = find . \( -name Thumbs.db -o -name *.aps \) -type f -print0 | xargs -0 /bin/rm -vf
+    P7ZIP = 7z
+    MAKEALL_SUBDIRS = for X in $(SUBDIRS);do (cd $$X && $(MAKE) all); done
+    MAKECLEAN_SUBDIRS = for X in $(SUBDIRS);do (cd $$X && $(MAKE) clean); done
+endif
+
 ####################################
 # Under Linux, MinGW programs are
 # named with the prifix:
@@ -91,22 +108,7 @@ endif
     
 RCFLAGS  = -DMINGW_RC  -O coff -I"$(RESDIR)" -I"$(ICODIR)"
 
-#
-ifeq ($(PLATFORM), win32)
-    SHELL = cmd.exe
-    WINE =
-    CLEANUP = wbin\find . \( -name Thumbs.db -o -name *.aps \) -type f -print0 -delete
-    P7ZIP = "./ulib-win/wbin/7z.exe"
-    MAKEALL_SUBDIRS = for /d %%X in ($(SUBDIRS)) do $(MAKE) -C %%X
-    MAKECLEAN_SUBDIRS = for /d %%X in ($(SUBDIRS)) do $(MAKE) clean -C %%X
-else
-    SHELL = /bin/bash
-    WINE = LC_CTYPE="zh_CN.UTF-8" /opt/build/wine/bin/wine
-    CLEANUP = find . \( -name Thumbs.db -o -name *.aps \) -type f -print0 | xargs -0 /bin/rm -vf
-    P7ZIP = 7z
-    MAKEALL_SUBDIRS = for X in $(SUBDIRS);do (cd $$X && $(MAKE) all); done
-    MAKECLEAN_SUBDIRS = for X in $(SUBDIRS);do (cd $$X && $(MAKE) clean); done
-endif
+
 
 #
 %.res : %.rc

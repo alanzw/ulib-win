@@ -63,7 +63,7 @@ DWORD playMIDIFile(HWND hWndNotify, LPSTR lpszMIDIFileName)
     // MCI will attempt to choose the MIDI mapper as the output port.
     mciOpenParms.lpstrDeviceType = "sequencer";
     mciOpenParms.lpstrElementName = lpszMIDIFileName;
-    if (dwReturn = mciSendCommand(NULL, MCI_OPEN,
+    if (dwReturn = mciSendCommand(0, MCI_OPEN,
         MCI_OPEN_TYPE | MCI_OPEN_ELEMENT,
         (DWORD)(LPVOID) &mciOpenParms))
     {
