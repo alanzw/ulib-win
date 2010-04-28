@@ -20,12 +20,12 @@ echo ==========================
 set INCDIR=../../inc
 set SRCDIR=../../src
 
-g++ -fPIC -c %SRCDIR%/msw/hwApp.cpp -o hy_console_d.o -I"%INCDIR%" -DHW_MSW -DBUILD_DLL
-g++ -fPIC -c %SRCDIR%/hwApp.cpp -o hy_hwApp_d.o -I"%INCDIR%" -DHW_MSW -DBUILD_DLL
+g++ -fPIC -g -c %SRCDIR%/msw/hwApp.cpp -o hy_console_d.o -I"%INCDIR%" -DHW_MSW -DBUILD_DLL
+g++ -fPIC -g -c %SRCDIR%/hwApp.cpp -o hy_hwApp_d.o -I"%INCDIR%" -DHW_MSW -DBUILD_DLL
 
 g++ -shared -o hw.dll *_d.o -Wl,--output-def,libhw.def,--out-implib,libhw.dll.a
 
-g++ -c console.cpp -I"%INCDIR%" -DHW_MSW -DUSE_DLL
+g++ -g -c console.cpp -I"%INCDIR%" -DHW_MSW -DUSE_DLL -DHW_CONSOLE
 
 g++ -o console.exe console.o -L. -lhw
 

@@ -1,5 +1,17 @@
 #include "hwApp.h"
 
+int hwWinMain(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow)
+{
+    int nArgc = 0;
+    LPTSTR * lpArgv = hwCommandLineToArgv(lpCmdLine, &nArgc);
+    return hwMain(nArgc, lpArgv);
+}
+
+LPTSTR * hwCommandLineToArgv(LPCTSTR lpCmdLine, int *lpArgc)
+{
+    return NULL;
+}
+
 
 #ifdef BUILD_DLL
 
