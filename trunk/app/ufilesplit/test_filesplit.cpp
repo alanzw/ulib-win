@@ -20,6 +20,9 @@
 #include "ucommondialog.h"
 #include "umsg.h"
 
+#include "aui/aui_label.h"
+#include "aui/aui_button.h"
+
 #include "ufilesplit.h"
 
 class UMyWindow : public UBaseWindow
@@ -50,12 +53,12 @@ public:
        this->setIconBig(IDI_HELP);
        this->setTimer(ID_TIMER_CLOCK, 1000);
 
-       m_rbSplit = new URadioButton(this, ID_RADIOBTN_SPLIT);
+       m_rbSplit = new AUI::UTransRadioButton(this, ID_RADIOBTN_SPLIT);
        m_rbSplit->setPos(120, 20, 100, 20);
        m_rbSplit->create();
        m_rbSplit->setWindowText(_T("Split"));
 
-       m_rbMerge = new URadioButton(this, ID_RADIOBTN_MERGE);
+       m_rbMerge = new AUI::UTransRadioButton(this, ID_RADIOBTN_MERGE);
        m_rbMerge->setPos(240, 20, 100, 20);
        m_rbMerge->create();
        m_rbMerge->setWindowText(_T("Merge"));

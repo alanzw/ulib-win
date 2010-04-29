@@ -142,7 +142,12 @@ BOOL UDialogBox::modifyExStyles(DWORD dwStyle)
 BOOL UDialogBox::DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
     BOOL bRet;
-    if (message == WM_CTLCOLORSTATIC || message == WM_CTLCOLOREDIT || message == WM_CTLCOLORLISTBOX)
+    if ( message == WM_CTLCOLORSTATIC  || 
+         message == WM_CTLCOLOREDIT    || 
+         message == WM_CTLCOLORLISTBOX ||
+         message == WM_CTLCOLORBTN     ||
+         message == WM_CTLCOLORSCROLLBAR
+       )
     {
         if ((bRet=UDialogBox::onCtrlColor(wParam, lParam)) != FALSE)
         {
@@ -193,6 +198,8 @@ BOOL UDialogBox::DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
         return this->onTimer(wParam, lParam);
     case WM_ERASEBKGND:
         return this->onEraseBkgnd((HDC)wParam);
+    case WM_CTLCOLORDLG:
+        return this->onCtrlColorDlg((HDC)wParam);
     case WM_DROPFILES:
         return this->onDropFiles(wParam, lParam);
     }
@@ -232,14 +239,15 @@ BOOL UDialogBox::onNotify(WPARAM wParam, LPARAM lParam)
     return FALSE;
 }
 
+/**
+ *  wParam : Handle to the device context for the control.
+ *  lParam : Handle to the control.
+ */
+
 BOOL UDialogBox::onCtrlColor(WPARAM wParam, LPARAM lParam)
 {
     BOOL bRet = ::SendMessage((HWND)lParam, WM_NOTIFY + WM_REFLECT_CTLCOLOR, wParam, lParam);
-    //if(bRet)
-    //{
-        return bRet;
-    //};
-    //return FALSE;
+    return bRet;
 }
 
 // Message Reflection

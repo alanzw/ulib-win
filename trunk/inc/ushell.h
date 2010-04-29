@@ -48,8 +48,6 @@ ULIB_API BOOL getDesktopPath(LPTSTR sPath);
 
 }; // namespace Path
 
-
-
 }; // namespace UShell
 
 
