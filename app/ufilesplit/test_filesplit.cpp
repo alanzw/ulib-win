@@ -55,11 +55,13 @@ public:
 
        m_rbSplit = new AUI::UTransRadioButton(this, ID_RADIOBTN_SPLIT);
        m_rbSplit->setPos(120, 20, 100, 20);
+       m_rbSplit->setTextColor(huys::white);
        m_rbSplit->create();
        m_rbSplit->setWindowText(_T("Split"));
 
        m_rbMerge = new AUI::UTransRadioButton(this, ID_RADIOBTN_MERGE);
        m_rbMerge->setPos(240, 20, 100, 20);
+       m_rbMerge->setTextColor(huys::white);
        m_rbMerge->create();
        m_rbMerge->setWindowText(_T("Merge"));
 
@@ -133,7 +135,7 @@ public:
        RECT rc = {0};
        ::GetClientRect(*this, &rc);
        huys::URectangle urc(rc);
-       urc.setFilledColor(huys::gray);
+       urc.setFilledColor(huys::skyblue);
        urc.setFilledStyle(BS_SOLID);
        urc.Draw(hdc);
        return TRUE;
@@ -188,8 +190,8 @@ private:
     huys::ADT::UAutoPtr<UComboBox> m_size;
     huys::ADT::UAutoPtr<UComboBox> m_unit;
     huys::ADT::UStringAnsi m_sOutputFile;
-    huys::ADT::UAutoPtr<URadioButton> m_rbSplit;
-    huys::ADT::UAutoPtr<URadioButton> m_rbMerge;
+    huys::ADT::UAutoPtr<AUI::UTransRadioButton> m_rbSplit;
+    huys::ADT::UAutoPtr<AUI::UTransRadioButton> m_rbMerge;
 private:
     //
     void go_update()

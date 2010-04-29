@@ -103,8 +103,8 @@
 	<File name="..\res\u.rc" open="0" top="0" tabpos="0">
 		<Cursor position="119" topLine="0" />
 	</File>
-	<File name="..\src\ubasewindow.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="4412" topLine="162" />
+	<File name="..\src\ubasewindow.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="5445" topLine="202" />
 	</File>
 	<File name="..\src\ubitmap.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2570" topLine="94" />

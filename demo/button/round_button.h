@@ -18,9 +18,11 @@ class URoundButton : public UOwnerDrawnButton
 public:
     URoundButton(HWND hParent, UINT nResource, HINSTANCE hInst)
     : UOwnerDrawnButton(hParent, nResource, hInst),
-      m_clrFocusCircle(huys::black),
-      m_clrBackground(::GetSysColor(COLOR_BTNFACE))
+      m_clrFocusCircle(huys::black)
     {
+        m_clrText = huys::black;
+        
+        m_clrBackground = ::GetSysColor(COLOR_BTNFACE);
     }
 
     virtual ~URoundButton()
@@ -115,6 +117,7 @@ public:
             URegion rgn;
             rgn.createElliptic(m_ptCenter.x-nRadius, m_ptCenter.y-nRadius,
                               m_ptCenter.x+nRadius, m_ptCenter.y+nRadius);
+            
             ::SelectClipRgn(hdc, rgn);
 
             SIZE Extent = {0};
@@ -126,6 +129,7 @@ public:
                 pt.x += 1;
                 pt.y += 1;
             }
+            ::SetTextColor(hdc, m_clrText);
             ::SetBkMode(hdc, TRANSPARENT);
 
             if (state & ODS_DISABLED)
@@ -151,6 +155,24 @@ public:
     {
         m_clrFocusCircle = clr;
     }
+
+    //
+    void setColorText(huys::Color clr)
+    {
+        m_clrText = clr;
+    }
+
+    void setColorBackground(huys::Color clr)
+    {
+        m_clrBackground = clr;
+    }
+
+    BOOL onCtrlColor(WPARAM wParam, LPARAM lParam)
+    {
+        HDC hdc = (HDC)wParam;
+        ::SetBkMode(hdc, TRANSPARENT);
+        return (BOOL)(HBRUSH)::GetStockObject(NULL_BRUSH);
+    }
 private:
     URegion m_rgn;
     POINT m_ptCenter;
@@ -159,6 +181,7 @@ private:
 
     huys::Color m_clrFocusCircle;
     huys::Color m_clrBackground;
+    huys::Color m_clrText;
 private:
 
 
