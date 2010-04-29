@@ -206,6 +206,8 @@ BOOL UBaseWindow::onMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
     case WM_CTLCOLORSTATIC:
     case WM_CTLCOLOREDIT:
     case WM_CTLCOLORBTN:
+    case WM_CTLCOLORSCROLLBAR:
+    case WM_LISTBOX:
         {
         HBRUSH hbr = 0;
         if (0 != (hbr = (HBRUSH)this->onCtrlColor(wParam, lParam))) return (BOOL)hbr;

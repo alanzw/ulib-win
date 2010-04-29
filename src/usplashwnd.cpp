@@ -84,7 +84,7 @@ bool USplashWindow::create()
 
     //::GetWindowRect(HWND_DESKTOP, &rcScreen);
 
-    ::SystemParametersInfo(SPI_GETWORKAREA, NULL, &rcScreen, NULL);
+    ::SystemParametersInfo(SPI_GETWORKAREA, 0, &rcScreen, 0);
 
     LONG dx = (rcScreen.right-rcScreen.left)/2 - (rc.right-rc.left)/2;
     LONG dy = (rcScreen.bottom-rcScreen.top)/2 - (rc.bottom-rc.top)/2;

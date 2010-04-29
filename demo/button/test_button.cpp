@@ -32,6 +32,7 @@ public:
         m_dwStyles &= ~SS_SIMPLE;
         m_dwStyles |= SS_NOTIFY;
         _ubm.loadFromResource(nBitmap, m_hInstance);
+        setText(NULL);
     }
 
     virtual BOOL create()
@@ -204,6 +205,32 @@ private:
     }
 };
 
+
+class UTransRadioButton : public URadioButton
+{
+public:
+    UTransRadioButton(HWND hParent, UINT nResource, HINSTANCE hInst)
+    : URadioButton(hParent, nResource, hInst)
+    {}
+    
+    UTransRadioButton(UBaseWindow *pWndParent, UINT nID)
+    : URadioButton(pWndParent, nID)
+    {}
+
+    /* virtual */ BOOL create()
+    {
+        return (URadioButton::create() && this->subclassProc());
+    }
+    
+    /* virtual */ BOOL onCtrlColor(WPARAM wParam, LPARAM lParam)
+    {
+        HDC hdc = (HDC)wParam;
+        ::SetBkMode(hdc, TRANSPARENT);
+        return (BOOL)(HBRUSH)GetStockObject(NULL_BRUSH);;
+    }
+    
+};
+
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
@@ -261,7 +288,7 @@ public:
         m_pRadioBtn1->setWindowText(_T("Radio me"));
         m_pRadioBtn1->setPosition(&rcRa);
 
-        m_pRadioBtn2 = new URadioButton(m_hDlg, IDC_BUTTON_RA2, m_hInst);
+        m_pRadioBtn2 = new UTransRadioButton(m_hDlg, IDC_BUTTON_RA2, m_hInst);
         m_pRadioBtn2->create();
         m_pRadioBtn2->setWindowText(_T("Radio you"));
         m_pRadioBtn2->setPosition(&rcRa2);
@@ -404,6 +431,12 @@ public:
 
         return UDialogBox::DialogProc(nMessage, wParam, lParam);
     }
+    
+    BOOL onCtrlColorDlg(HDC hdc)
+    {
+        return  (BOOL)(HBRUSH)GetStockObject(GRAY_BRUSH);
+    }
+    
 private:
     huys::ADT::UAutoPtr<UButton> m_pBtn;
     huys::ADT::UAutoPtr<UCheckButton> m_pCheckBtn;

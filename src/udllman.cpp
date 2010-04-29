@@ -87,7 +87,7 @@ BOOL injectDll(DWORD dwPid, char *dllname, char *injected_dllname)
     if(!Proc)
     {
         sprintf(buf, "OpenProcess() failed: %d", GetLastError());
-        ::MessageBox(NULL, buf, "Loader", NULL);
+        ::MessageBox(NULL, buf, "Loader", MB_OK);
         return false;
     }
 
@@ -95,7 +95,7 @@ BOOL injectDll(DWORD dwPid, char *dllname, char *injected_dllname)
 
     RemoteString = (LPVOID)VirtualAllocEx(Proc, NULL, strlen(injected_dllname), MEM_RESERVE|MEM_COMMIT, PAGE_READWRITE);
     WriteProcessMemory(Proc, (LPVOID)RemoteString, dllname, strlen(dllname), NULL);
-    CreateRemoteThread(Proc, NULL, NULL, (LPTHREAD_START_ROUTINE)LoadLibAddy, (LPVOID)RemoteString, NULL, NULL);
+    CreateRemoteThread(Proc, NULL, 0, (LPTHREAD_START_ROUTINE)LoadLibAddy, (LPVOID)RemoteString, 0, NULL);
 
     CloseHandle(Proc);
 
@@ -112,7 +112,7 @@ unsigned long GetTargetProcessIdFromProcname(char *procName)
 
    if(thSnapshot == INVALID_HANDLE_VALUE)
    {
-      MessageBox(NULL, "Error: unable to create toolhelp snapshot", "Loader", NULL);
+      MessageBox(NULL, "Error: unable to create toolhelp snapshot", "Loader", MB_OK);
       return false;
    }
 

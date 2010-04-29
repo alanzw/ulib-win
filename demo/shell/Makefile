@@ -5,7 +5,7 @@ include $(TOPDIR)/make.inc
 
 #
 INCS = -I"$(TOPDIR)/inc"
-LIBS = -L"$(TOPDIR)/lib" -luwin
+LIBS = -L"$(TOPDIR)/lib" -luwin -mwindows
 CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 #
@@ -20,16 +20,8 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB)
+	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -vf $(BIN) $(BINDIR)/$(BIN)
-
-#
-test_shell.o : test_shell.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
     
 #
 .PHONY : test
@@ -37,4 +29,4 @@ test :
 	$(WINE) $(BINDIR)/$(BIN)
 #
 clean :
-#	$(RM) ${OBJ} ${RES} ${BIN}
+	$(RM) ${OBJ} ${RES} ${BIN}

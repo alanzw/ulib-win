@@ -15,7 +15,10 @@
 
 #include "adt/uautoptr.h"
 
+#include "aui/aui_label.h"
+
 #include "u3dcreator.h"
+
 
 class UTraceWindow : public UBaseWindow
 {
@@ -95,7 +98,7 @@ public:
 
     BOOL onCreate()
     {
-        _label = new UStatic(this, _T("Properties"));
+        _label = new AUI::UTransLabel(this, _T("Properties"));
         _label->setPos(40, 40, 100, 100);
         _label->create();
 
@@ -148,7 +151,7 @@ public:
 
     }
 private:
-    huys::ADT::UAutoPtr<UStatic> _label;
+    AUI::UTransLabelP _label;
 };
 
 

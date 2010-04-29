@@ -45,10 +45,10 @@ public:
 
     static BOOL CALLBACK DefaultDlgProc(HWND hDlg, UINT message,
         WPARAM wParam, LPARAM lParam);
-        
+
     //
-    virtual BOOL onPreTranslateMessage(LPMSG msg); 
-    
+    virtual BOOL onPreTranslateMessage(LPMSG msg);
+
     //
     virtual BOOL onInit() {return TRUE;}
     virtual BOOL onCancel();
@@ -79,6 +79,8 @@ public:
     //!!! An application should return nonzero if it erases the background;
     //!!! otherwise, it should return zero.
     virtual BOOL onEraseBkgnd(HDC hdc) {return FALSE;}
+
+    virtual BOOL onCtrlColorDlg(HDC hdc) {return FALSE;}
 
     //!!!
     virtual BOOL onSysCommand(WPARAM wParam, LPARAM lParam) { return FALSE;}
