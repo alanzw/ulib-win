@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
-		<Project filename="button.cbp" active="1">
+		<Project filename="button.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="calc.cbp">
@@ -25,7 +25,7 @@
 		<Project filename="explorer.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="filesplit.cbp">
+		<Project filename="filesplit.cbp" active="1">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="floatwnd.cbp">

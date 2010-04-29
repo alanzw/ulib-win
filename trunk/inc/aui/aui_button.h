@@ -3,6 +3,7 @@
 
 #include "ubutton.h"
 #include "adt/uautoptr.h"
+#include "colors.h"
 
 namespace AUI
 {
@@ -12,11 +13,13 @@ class UTransRadioButton : public URadioButton
 public:
     UTransRadioButton(HWND hParent, UINT nResource, HINSTANCE hInst)
     : URadioButton(hParent, nResource, hInst)
-    {}
+    {
+    }
 
     UTransRadioButton(UBaseWindow *pWndParent, UINT nID)
     : URadioButton(pWndParent, nID)
-    {}
+    {
+    }
 
     /* virtual */ BOOL create()
     {
@@ -27,7 +30,7 @@ public:
     {
         HDC hdc = (HDC)wParam;
         ::SetBkMode(hdc, TRANSPARENT);
-        return (BOOL)(HBRUSH)GetStockObject(NULL_BRUSH);;
+        return (BOOL)(HBRUSH)GetStockObject(NULL_BRUSH);
     }
 
 };

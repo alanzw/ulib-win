@@ -1,0 +1,65 @@
+#include "resource.h"
+#include "windows.h"
+
+
+#include "../../res/u.rc"
+
+//
+// Icon resources
+//
+//IDI_VIEWER            ICON          "viewer.ico"
+
+//
+// Menu resources
+//
+IDR_MENU_MAIN MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New", IDM_NEW
+        MENUITEM "&Exit", IDM_EXIT
+    END
+    POPUP "&Options"
+    BEGIN
+        MENUITEM "&Toolbar", IDM_TOOLBAR
+        MENUITEM "&Status Bar", IDM_STATUSBAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Start Simulation", IDM_START
+        MENUITEM "&Stop Simulation", IDM_STOP
+        MENUITEM "&Set number", IDM_NUMBER
+    END
+    POPUP "&Help" HELP
+    BEGIN
+        MENUITEM "&About UTerminal", IDM_ABOUT
+    END
+END
+
+
+//
+// Bitmap resources
+//
+//IDB_BACKGROUND       BITMAP         "back.bmp"
+
+//
+// Dialog resources
+//
+// IDD_CONTOUR DIALOGEX 0,0,500,300
+// STYLE DS_CENTER | DS_MODALFRAME | DS_SETFONT | WS_CAPTION | WS_POPUP | WS_SYSMENU
+// CAPTION "contour 0.1"
+// FONT 8,"Ms Shell Dlg",400,0,0
+// BEGIN
+// END
+
+
+//
+// Version Information resources
+//
+1 VERSIONINFO
+    FILEVERSION     0,0,0,1
+    PRODUCTVERSION  0,0,0,1
+    FILEOS          VOS__WINDOWS32
+    FILETYPE        VFT_UNKNOWN
+BEGIN
+END
+
+

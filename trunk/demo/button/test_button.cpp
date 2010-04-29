@@ -283,7 +283,7 @@ public:
         m_pCheckBtn->setWindowText(_T("Check me"));
         m_pCheckBtn->setPosition(&rcCH);
 
-        m_pRadioBtn1 = new URadioButton(m_hDlg, IDC_BUTTON_RA, m_hInst);
+        m_pRadioBtn1 = new UTransRadioButton(m_hDlg, IDC_BUTTON_RA, m_hInst);
         m_pRadioBtn1->create();
         m_pRadioBtn1->setWindowText(_T("Radio me"));
         m_pRadioBtn1->setPosition(&rcRa);
@@ -328,6 +328,8 @@ public:
         m_pRoundBtn = new URoundButton(m_hDlg, IDC_BN_ROUND, m_hInst);
         m_pRoundBtn->setPos(680, 250, 50, 50);
         m_pRoundBtn->setColorFocusCircle(huys::blue);
+        m_pRoundBtn->setColorText(huys::aqua);
+        m_pRoundBtn->setColorBackground(huys::gray);
         m_pRoundBtn->create();
         m_pRoundBtn->resize();
         m_pRoundBtn->setWindowText(_T("P"));
