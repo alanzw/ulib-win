@@ -10,9 +10,15 @@
 #include "uedit.h"
 #include "uthread.h"
 #include "uicon.h"
+#include "umsg.h"
 
 #include "ufluentman.h"
 #include "ugambitman.h"
+
+#include "adt/uautoptr.h"
+#include "adt/ustring.h"
+
+typedef huys::ADT::UStringAnsi TString;
 
 using huys::UDialogBox;
 
@@ -24,11 +30,7 @@ class UDialogFluent : public UDialogBox
 public:
     UDialogFluent(HINSTANCE hInst, UINT nID)
     : UDialogBox(hInst, nID) {}
-
-    ~UDialogFluent()
-    {
-        CHECK_PTR(m_pEdit);
-    }
+    
 
     BOOL onInit()
     {
@@ -45,10 +47,9 @@ public:
         rc.bottom -= 200;
 
         m_pEdit = new UEdit(m_hDlg, IDC_EDIT_VIEW, m_hInst);
+        m_pEdit->setRect(&rc);
         m_pEdit->setStyles(WS_VSCROLL | ES_AUTOVSCROLL | ES_MULTILINE | ES_WANTRETURN);
         m_pEdit->create();
-
-        m_pEdit->setPosition(&rc);
 
         this->addLines("Hello Fluent Guys!\r\n");
 
@@ -68,9 +69,14 @@ public:
             return onGambitExit();
         }
 
+        if (message == UFM_UPDATE)
+        {
+            return onFluentUpdate((char *)lParam);
+        }
+        
         if (message == 51111)
         {
-            addLines("-->51111.\r\n");
+            //addLines("-->51111.\r\n");
         }
 
         BOOL result = UDialogBox::DialogProc(message, wParam, lParam);
@@ -96,20 +102,20 @@ public:
     }
 private:
 //    UBitmap *m_pBack;
-    UEdit *m_pEdit;
+    huys::ADT::UAutoPtr<UEdit> m_pEdit;
 
     UIcon m_ico;
     //
-    std::string m_strBuf;
-
+    //std::string m_strBuf;
+    TString m_strBuf;
     //
     UFluentMan m_ufm;
     UGambitMan m_ugm;
 private:
     void addLines(const char *sLines)
     {
-        m_strBuf = m_strBuf + sLines;
-        m_pEdit->setText(m_strBuf.c_str());
+        m_strBuf += sLines;
+        m_pEdit->setText(m_strBuf);
         m_pEdit->scrollLineDown();
     }
 
@@ -143,6 +149,14 @@ private:
         return FALSE;
     }
 
+    BOOL onFluentUpdate(char * result)
+    {
+        addLines("======================================================\r\n");
+        addLines(result);
+        addLines("======================================================\r\n");
+        return FALSE;
+    }
+    
     BOOL onBnSendCmd()
     {
        m_ufm.breakCalc();
@@ -150,9 +164,12 @@ private:
        //Sleep(1000);
        //m_ufm.getResult();
        m_ufm.subclassWnd(m_hDlg);
-       m_ufm.addMenu();
+       //m_ufm.addMenu();
        SetWindowPos(m_hDlg, HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE);
        m_ufm.focusWnd();
+       Sleep(500);
+       m_ufm.fetchNewResult();
+       
     }
 };
 

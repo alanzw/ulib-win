@@ -30,6 +30,10 @@
 
 #include "uhook.h"
 
+#include "adt/ustring.h"
+
+typedef huys::ADT::UStringAnsi TString;
+
 //
 #define DEFAULT_STARTUP_FILE "G:\\huys\\ulib-win\\app\\ufluent\\fluent.scm"
 
@@ -48,6 +52,7 @@ LPCSTR FluentWindowClasses[] =
 {
     "AfxFrameOrView70s", // fluent6.3.26 ntx86
     "AfxFrameOrView80s", // fluent6.3.26 amd64
+                      // fluent12.1.1
     0
 };
 
@@ -103,7 +108,9 @@ UFluentMan::UFluentMan()
   m_hFluentEditCtrl(NULL),
   m_nLineCount(0),
   m_nLineCountPrev(0)
-{}
+{
+    ZeroMemory(m_buf, sizeof(m_buf));
+}
 
 UFluentMan::~UFluentMan()
 {
@@ -156,10 +163,15 @@ static DWORD WINAPI check_fluent_session(LPVOID lpParam)
     return 0;
 }
 
-bool UFluentMan::startExe()
+bool UFluentMan::startExe( LPCTSTR lpFluentDir /*= "D:\\GS\\Fluent.Inc"*/,
+                           LPCTSTR lpStartup /*= "fluent.scm"*/)
 {
     //return startProgram("D:\\GS\\Fluent.Inc\\ntbin\\ntx86\\fluent.exe 2d", NULL, FALSE);
-    m_utParam.sCmdline = _T("D:\\GS\\Fluent.Inc\\ntbin\\ntx86\\fluent.exe 2d -i G:\\huys\\ulib-win\\app\\ufluent\\fluent.scm");
+    static TString cmdline;
+    cmdline.format("%s\\%s %s %s %s", lpFluentDir, "ntbin\\ntx86\\fluent.exe", "2d", "-i", lpStartup);
+
+    //m_utParam.sCmdline = _T("D:\\GS\\Fluent.Inc\\ntbin\\ntx86\\fluent.exe 2d -i G:\\huys\\ulib-win\\app\\ufluent\\fluent.scm");
+    m_utParam.sCmdline = cmdline;
     m_utParam.nMessage = UFM_FINISHED;
     m_utParam.sWDir = _T("D:\\");
     m_utParam.lpExitFunc = &check_fluent_session;
@@ -279,6 +291,8 @@ bool UFluentMan::getResult()
 
 int UFluentMan::getLine( int nLineIndex )
 {
+    WORD *p = (WORD *)m_buf;;
+    *p = sizeof(m_buf);
     return ::SendMessage(m_hFluentEditCtrl, EM_GETLINE, (WPARAM)nLineIndex, (LPARAM)m_buf);
 }
 
@@ -289,12 +303,29 @@ int UFluentMan::getNewLines()
 
 int UFluentMan::fetchNewResult()
 {
-    std::string sTmp;
+    static TString sTmp;
+    sTmp = "";
+
+    int n;
+    m_nLineCountPrev = m_nLineCount;
+    m_nLineCount = getLineCount();
     for (int i = m_nLineCountPrev; i<m_nLineCount; ++i)
     {
-        this->getLine(i);
-        sTmp = sTmp + m_buf;
+        n = this->getLine(i);
+        m_buf[n] = '\0';
+        sTmp += (m_buf);
+        sTmp += "\r\n";
     }
+
+    n = this->getLine(m_nLineCount-1);
+    m_buf[n] = '\0';
+    if (lstrcmp(m_buf, "> ") == 0)
+    {
+        --m_nLineCount;
+    }
+
+    ::PostMessage(m_utParam.hWnd, UFM_UPDATE, (WPARAM)m_nLineCount, (LPARAM)(char *)sTmp);
+
     return 0;
 }
 
@@ -331,11 +362,11 @@ void UFluentMan::removeMenu()
 
     MENUINFO mi = {0};
     mi.cbSize = sizeof(MENUINFO);
-    
+
     ::GetMenuInfo(hMenu, &mi);
-    
-    
-    
+
+
+
     ::RemoveMenu(m_hPopupMenu, 0, MF_BYPOSITION);
 }
 

@@ -38,7 +38,7 @@ public:
     ~UFluentMan();
 
     //
-    bool startExe();
+    bool startExe(LPCTSTR lpFluentDir = "D:\\GS\\Fluent.Inc", LPCTSTR lpStartup = "fluent.scm");
     bool exitExe();
 
     //
@@ -76,8 +76,10 @@ public:
     void removeMenu();
     void subclassWnd(HWND hMsgWnd);
     void focusWnd();
-    
+
     void clearup();
+    
+    int fetchNewResult();
 private:
     char m_sFluentDir[MAX_PATH];
     char m_sFluentArch[10];
@@ -88,7 +90,7 @@ private:
     HWND m_hFluentWnd;
     HWND m_hFluentEditCtrl;
 
-    char *m_buf;
+    char m_buf[1024];
 
     static WNDPROC m_OriginProc;
     static LRESULT newWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -100,17 +102,16 @@ private:
 
     int getNewLines();
 
-    int fetchNewResult();
-
     int m_nLineCount;
     int m_nLineCountPrev;
 private:
     UThreadParam m_utParam;
-    
+
     HMENU m_hPopupMenu;
 };
 
 #define UFM_FINISHED_MSG _T("UFM_FINISHED_C1B96D9E-B9DC-4e04-8158-7B6776B099E9")
+#define UFM_UPDATE_MSG _T("UFM_UPDATE_FA3EADB0-3E98-4011-AB31-BFB9005C7A77")
 //
 #ifndef IMPLEMENT_MSG
 #define IMPLEMENT_MSG(x) static UINT x = ::RegisterWindowMessage(x##_MSG)
@@ -118,7 +119,7 @@ private:
 
 //
 IMPLEMENT_MSG(UFM_FINISHED);
-
+IMPLEMENT_MSG(UFM_UPDATE);
 
 #endif // U_FLUENT_MAN_H
 
