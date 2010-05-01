@@ -10,11 +10,14 @@
 #include "colors.h"
 #include "uregion.h"
 #include "uclock.h"
+#include "ufont.h"
+
+#include "adt/ustring.h"
+#include "upicture.h"
 
 class UMyWindow : public UBaseWindow
 {
     enum {
-        ID_TERMINAL    = 11002,
         ID_TIMER_CLOCK = 11003
     };
 public:
@@ -23,14 +26,14 @@ public:
    {
         this->setTitle(_T("UClock 0.0.1"));
         //this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
-        this->setPos(0, 0, 150, 180);
+        this->setPos(0, 0, 512, 384);
         this->setStyles(WS_POPUP);
    }
 
    BOOL onCreate()
    {
        this->setIconBig(IDI_APP);
-       this->setTimer(ID_TIMER_CLOCK, 1000);
+       this->setTimer(ID_TIMER_CLOCK, 2000);
 
          RECT rc;
         ::GetWindowRect(*this, &rc);
@@ -40,9 +43,18 @@ public:
         rc.top = 0;
 
 
-        m_rgn.createRoundRect(rc.left,rc.top,rc.right,rc.bottom,150,150);
+        m_rgn.createRoundRect(rc.left,rc.top,rc.right,rc.bottom,50,50);
 
         this->setWindowRgn(m_rgn);
+        
+        for (int i=0; i<7; ++i)
+        {
+            pic[i].load(getInstance(), MAKEINTRESOURCE(IDI_IMAGE1+i), (LPCTSTR)2211);
+        }
+        
+        _font.setFontHeight(20);
+        _font.setFontFaceName(_T("Arial"));
+        _font.create();
 
        return UBaseWindow::onCreate();
    }
@@ -56,19 +68,25 @@ public:
     //
     virtual void onDraw(HDC hdc)
     {
+        RECT rc = {0};
+        ::GetClientRect(*this, &rc);
+        //huys::URectangle urc(rc);
+        //urc.setFilledColor(huys::black);
+        //urc.setFilledStyle(BS_SOLID);
+        //urc.Draw(hdc);
+        static int index = 0;
+        UPicture *p = 0;
+        
+        index = (index < 6 ? (++index) : 1);
+        
+        p = &pic[index];
+        
+        p->show(hdc, &rc);
+    
         drawCurrentTime(hdc);
     }
     //
-    virtual BOOL onEraseBkgnd(HDC hdc)
-    {
-        RECT rc = {0};
-        ::GetClientRect(*this, &rc);
-        huys::URectangle urc(rc);
-        urc.setFilledColor(huys::black);
-        urc.setFilledStyle(BS_SOLID);
-        urc.Draw(hdc);
-        return TRUE;
-    }
+
 
     BOOL onTimer(WPARAM wParam, LPARAM lParam)
     {
@@ -100,63 +118,38 @@ public:
 
 private:
     URegion m_rgn;
+    UPicture pic[7];
+    UFont _font;
 private:
-#define London 0
-#define Beijing 8
-    struct time_HHMMSS
-    {
-       char HH[4];
-       char MM[4];
-       char SS[4];
-    };
-
     //
     int drawCurrentTime(HDC hdc)
     {
         SYSTEMTIME st;
-        GetSystemTime(&st);
-        struct time_HHMMSS time1;
-        char MyTime[256] = "";
 
-        int iTimeZone = Beijing;
+        huys::ADT::UStringAnsi tmp;
 
-        GetSystemTime(&st);
-
-        itoa(st.wHour+iTimeZone, time1.HH,10);
-        itoa(st.wMinute, time1.MM, 10);
-        itoa(st.wSecond, time1.SS, 10);
-
-        //char MyTime[14]="";
-        strcpy(MyTime,"");
-
-        if ((st.wHour+iTimeZone)<10)
-        strcat(MyTime,"0");
-        strcat(MyTime,time1.HH);
-
-        strcat(MyTime,":");
-
-        if (st.wMinute<10)
-        strcat(MyTime,"0");
-        strcat(MyTime,time1.MM);
-
-        strcat(MyTime,":");
-
-        if (st.wSecond<10)
-        strcat(MyTime,"0");
-        strcat(MyTime,time1.SS);
+        GetLocalTime(&st);
+             
+        tmp.format("%02d:%02d:%02d", st.wHour, st.wMinute, st.wSecond);
 
         RECT rect;
         GetClientRect (*this, &rect) ;
-        ::SetBkColor(hdc, huys::black);
-        ::SetTextColor(hdc, huys::green);
-        ::DrawText(hdc, TEXT (MyTime), -1, &rect,
-            DT_SINGLELINE | DT_CENTER | DT_VCENTER) ;
+        
+        rect.right -= 250;
+        rect.bottom -= 50;
+        //::SetBkColor(hdc, huys::black);
+        ::SetBkMode(hdc, TRANSPARENT);
+        ::SetTextColor(hdc, huys::violet);
+        
+        HFONT hOldFont = (HFONT)SelectObject(hdc, _font);
+        ::DrawTextA(hdc, tmp, tmp.length(), &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
+        SelectObject(hdc, hOldFont);
         return 0;
     }
 
     void go_update()
     {
-        this->invalidate();
+        this->invalidate(TRUE);
     }
 
 };

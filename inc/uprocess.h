@@ -9,7 +9,12 @@ public:
     UProcess();
     ~UProcess();
 
-    BOOL create(LPTSTR sCmdLine);
+    BOOL create( LPCTSTR sCmdLine,
+                 DWORD dwCreateFlags = CREATE_SUSPENDED);
+    
+    BOOL resume();
+    BOOL resumeAndWait();
+    DWORD getExitCode();
 private:
     STARTUPINFO m_si;
     PROCESS_INFORMATION m_pi;

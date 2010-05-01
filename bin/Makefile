@@ -14,4 +14,5 @@ clean :
 	-$(RM) *.sys
 	-$(RM) *.cfg *.ini
 	-$(RM) *.cpl
+	-$(RM) *.RPT
 

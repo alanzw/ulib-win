@@ -13,25 +13,49 @@ UProcess::UProcess()
     m_si.dwFlags = STARTF_USESHOWWINDOW;
     m_si.wShowWindow = SW_MAXIMIZE;
 
-	::ZeroMemory( &m_pi, sizeof(PROCESS_INFORMATION) );
+    ::ZeroMemory( &m_pi, sizeof(PROCESS_INFORMATION) );
 }
 
 UProcess::~UProcess()
 {}
 
-BOOL UProcess::create(LPTSTR sCmdLine)
+BOOL UProcess::create(LPCTSTR sCmdLine, DWORD dwCreateFlags)
 {
     return ::CreateProcess(
         NULL,
-        sCmdLine,
+        (LPTSTR)sCmdLine,
         NULL,
         NULL,
         TRUE,
-        CREATE_NEW_CONSOLE| NORMAL_PRIORITY_CLASS,
+        dwCreateFlags,
         NULL,
         NULL,
         &m_si,
         &m_pi);
+}
+
+BOOL UProcess::resume()
+{
+    return (-1 != ::ResumeThread(m_pi.hThread));
+}
+
+BOOL UProcess::resumeAndWait()
+{
+    return this->resume() && ::WaitForSingleObject(m_pi.hProcess, INFINITE);
+}
+
+DWORD UProcess::getExitCode()
+{
+    DWORD dwExitCode;
+    if (0 != ::GetExitCodeProcess(m_pi.hProcess, &dwExitCode))
+    {
+        return dwExitCode;
+    }
+    else
+    {
+        showError("Process::");
+        return -1;
+    }
 }
 
 /*
@@ -63,14 +87,14 @@ BOOL UProcess::runProgram(char *programName /* = "notepad.exe" */, DWORD dwTimeo
     PROCESS_INFORMATION pi;
     BOOL bResult;
 
-	::ZeroMemory( &si, sizeof(STARTUPINFO) );
+    ::ZeroMemory( &si, sizeof(STARTUPINFO) );
     si.cb = sizeof(si);
     si.dwFlags=STARTF_USESHOWWINDOW;
     si.wShowWindow=SW_MAXIMIZE;
 
-	::ZeroMemory( &pi, sizeof(pi) );
+    ::ZeroMemory( &pi, sizeof(pi) );
 
-	bResult = ::CreateProcess(NULL,
+    bResult = ::CreateProcess(NULL,
         programName,
         NULL,
         NULL,
@@ -83,10 +107,10 @@ BOOL UProcess::runProgram(char *programName /* = "notepad.exe" */, DWORD dwTimeo
 
     if (!bResult) return FALSE;
 
-	::WaitForSingleObject(pi.hProcess, dwTimeout);
+    ::WaitForSingleObject(pi.hProcess, dwTimeout);
 
-	::CloseHandle(pi.hThread);
-	::CloseHandle(pi.hProcess);
+    ::CloseHandle(pi.hThread);
+    ::CloseHandle(pi.hProcess);
 
     return TRUE;
 }
