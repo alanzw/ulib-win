@@ -13,6 +13,14 @@
 
 #include "adt/uautoptr.h"
 
+#if !defined(_MSC_VER) || _MSC_VER <= 1200
+// ToolTip Icons possible wParam values for TTM_SETTITLE message
+#define TTI_NONE                0
+#define TTI_INFO                1
+#define TTI_WARNING             2
+#define TTI_ERROR               3
+#endif
+
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
@@ -54,6 +62,13 @@ public:
         }
     }
 
+    BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
+    {
+        m_pEditEx->showBalloonTip(L"hello", L"boooooo!", TTI_INFO);
+    
+    
+        return FALSE;
+    }
 private:
     huys::ADT::UAutoPtr<UEditEx> m_pEditEx;
 };

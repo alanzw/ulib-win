@@ -41,7 +41,7 @@ BOOL play(LPTSTR lpstrAlias, DWORD dwFrom, DWORD dwTo)
     }
 
     // Send the command string.
-    err = mciSendString(achCommandBuff, NULL, 0, NULL);
+    err = mciSendString(achCommandBuff, 0, 0, 0);
     if (err != 0)
     {
         return FALSE;
@@ -79,7 +79,7 @@ DWORD playMIDIFile(HWND hWndNotify, LPSTR lpszMIDIFileName)
     if (dwReturn = mciSendCommand(wDeviceID, MCI_STATUS,
         MCI_STATUS_ITEM, (DWORD)(LPVOID) &mciStatusParms))
     {
-        mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
+        mciSendCommand(wDeviceID, MCI_CLOSE, 0, 0);
         return (dwReturn);
     }
 
@@ -93,7 +93,7 @@ DWORD playMIDIFile(HWND hWndNotify, LPSTR lpszMIDIFileName)
         {
             // User does not want to continue. Not an error;
             // just close the device and return.
-            mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
+            mciSendCommand(wDeviceID, MCI_CLOSE, 0, 0);
             return (0L);
         }
     }
@@ -106,7 +106,7 @@ DWORD playMIDIFile(HWND hWndNotify, LPSTR lpszMIDIFileName)
     if (dwReturn = mciSendCommand(wDeviceID, MCI_PLAY, MCI_NOTIFY,
         (DWORD)(LPVOID) &mciPlayParms))
     {
-        mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
+        mciSendCommand(wDeviceID, MCI_CLOSE, 0, 0);
         return (dwReturn);
     }
 
@@ -145,7 +145,7 @@ DWORD playWAVEFile(HWND hWndNotify, LPSTR lpszWAVEFileName)
     if (dwReturn = mciSendCommand(wDeviceID, MCI_PLAY, MCI_NOTIFY,
         (DWORD)(LPVOID) &mciPlayParms))
     {
-        mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
+        mciSendCommand(wDeviceID, MCI_CLOSE, 0, 0);
         return (dwReturn);
     }
 
@@ -161,7 +161,7 @@ BOOL openCDDriver(BOOL bOpen)
 
     // Open the device by specifying the device name.
     mciOpenParms.lpstrDeviceType = "cdaudio";
-    if  (dwReturn = mciSendCommand(NULL, MCI_OPEN, MCI_OPEN_TYPE, (DWORD)(LPVOID)&mciOpenParms))
+    if  (dwReturn = mciSendCommand(0, MCI_OPEN, MCI_OPEN_TYPE, (DWORD)(LPVOID)&mciOpenParms))
     {
         // Failed to open device.
         // Don't close device; just return error.
@@ -188,14 +188,14 @@ BOOL openCDDriver(BOOL bOpen)
             bSucc   =   FALSE;
         }
     }
-    mciSendCommand(wDeviceID, MCI_CLOSE, 0, NULL);
+    mciSendCommand(wDeviceID, MCI_CLOSE, 0, 0);
     return   bSucc;
 }
 
 
 DWORD MP3Player::muteAll()
 {
-    return mciSendString("setaudio MediaFile off", NULL, 0, 0);
+    return mciSendString("setaudio MediaFile off", 0, 0, 0);
 }
 
 
