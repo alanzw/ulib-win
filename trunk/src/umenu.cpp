@@ -67,7 +67,7 @@ BOOL UMenu::getMenu(HWND hWnd)
 
 BOOL UMenu::trackPopup(UINT uFlag, int x, int y)
 {
-    return ::TrackPopupMenu(*this, uFlag, x, y, NULL, m_hParent, NULL);
+    return ::TrackPopupMenu(*this, uFlag, x, y, 0, m_hParent, NULL);
 }
 
 BOOL UMenu::attach(HWND hParent)
@@ -154,7 +154,7 @@ HMENU UMenu::getSubMenu( int nPos )
 BOOL UMenu::trackSubPopup( int nPos, UINT uFlag, int x, int y )
 {
     HMENU hSubMenu = this->getSubMenu(nPos);
-    return ::TrackPopupMenu(hSubMenu, uFlag, x, y, NULL, m_hParent, NULL);
+    return ::TrackPopupMenu(hSubMenu, uFlag, x, y, 0, m_hParent, NULL);
 }
 
 UINT UMenu::getMenuStateByID(UINT uId)

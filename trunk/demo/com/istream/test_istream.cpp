@@ -12,6 +12,8 @@
 //#include "ufile.h"
 #include "udllman.h"
 
+#include "ustream.h"
+
 class UIStreamWindow : public UBaseWindow
 {
     enum {
@@ -87,6 +89,28 @@ public:
         default:
             return UBaseWindow::onChar(wParam, lParam);
         }
+    }
+    
+    BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
+    {
+        UStream strm;
+
+        strm << L"This is ";
+        strm << L"an example ";
+        strm << L"of a Unicode ";
+        strm << L"string builder ";
+        strm << L"using CStream";
+        // NULL terminate
+        strm << WCHAR(0);
+
+        // now get the pointer to the stream buffer, casting it to the correct type
+
+        PWSTR pszString = (PWSTR) strm.GetBuf();
+    
+        MessageBoxW(*this, pszString, L"Info", 0 );
+    
+    
+        return FALSE;
     }
 private:
     IStream *m_pIStream;

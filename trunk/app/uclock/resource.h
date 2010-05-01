@@ -4,6 +4,14 @@
 
 #define IDI_APP                         1
 
+#define IDI_IMAGE1                      111
+#define IDI_IMAGE2                      112
+#define IDI_IMAGE3                      113
+#define IDI_IMAGE4                      114
+#define IDI_IMAGE5                      115
+#define IDI_IMAGE6                      116
+#define IDI_IMAGE7                      117
+
 #define IDR_MENU_MAIN                   200
 #define IDM_NEW                         201
 #define IDM_EXIT                        202

@@ -23,6 +23,7 @@ BOOL UPicture::load(HINSTANCE hInstance, LPCTSTR lpszResourceName, LPCSTR Resour
     LPVOID lpVoid  = NULL;
     int nSize   = 0;
     BOOL bResult=FALSE;
+
     if(m_pIPicture != NULL)
     {
         freePictureData(); // Important - Avoid Leaks...
@@ -169,7 +170,7 @@ BOOL UPicture::show(HDC hDC, LPRECT pDrawRect, LPRECT pSrcRect)
     RECT DrawRect = *pDrawRect;
     //DrawRect.NormalizeRect();
     //SrcRect.NormalizeRect();
-    HRESULT hrP = NULL;
+    HRESULT hrP = 0;
 
     hrP = m_pIPicture->Render(hDC,
     DrawRect.left,                  // Left

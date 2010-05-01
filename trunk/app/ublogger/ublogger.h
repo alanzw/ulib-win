@@ -7,6 +7,7 @@
 #include "uedit.h"
 
 #include "adt/uvector.h"
+#include "adt/uautoptr.h"
 
 class UBloggerWindow : public UBaseWindow
 {
@@ -22,28 +23,21 @@ public:
         this->setTitle(_T("Blog Code Translator 0.01"));
     }
 
-    ~UBloggerWindow()
-    {
-        CHECK_PTR(m_pEdtOrigin);
-        CHECK_PTR(m_pEdtConvert);
-        CHECK_PTR(m_pBtnConvert);
-    }
-
     BOOL onCreate()
     {
         this->setIconBig(IDI_APP);
 
-        m_pEdtOrigin = new UEdit(*this, IDC_ED_ORIGIN, getInstance());
+        m_pEdtOrigin = new UEdit(this, IDC_ED_ORIGIN);
         m_pEdtOrigin->setStyles(WS_BORDER | ES_MULTILINE);
         m_pEdtOrigin->setPos(50, 50, 300, 400);
         m_pEdtOrigin->create();
 
-        m_pEdtConvert = new UEdit(*this, IDC_ED_CONVERT, getInstance());
+        m_pEdtConvert = new UEdit(this, IDC_ED_CONVERT);
         m_pEdtConvert->setStyles(WS_BORDER | ES_MULTILINE);
         m_pEdtConvert->setPos(500, 50, 300, 400);
         m_pEdtConvert->create();
 
-        m_pBtnConvert = new UButton(*this, IDC_BN_CONVERT, getInstance());
+        m_pBtnConvert = new UButton(this, IDC_BN_CONVERT);
         m_pBtnConvert->setPos(370, 220, 100, 100);
         m_pBtnConvert->create();
         m_pBtnConvert->setWindowText(_T(">>>"));
@@ -73,9 +67,9 @@ public:
         }
     }
 private:
-    UEdit *m_pEdtOrigin;
-    UEdit *m_pEdtConvert;
-    UButton *m_pBtnConvert;
+    huys::ADT::UAutoPtr<UEdit> m_pEdtOrigin;
+    huys::ADT::UAutoPtr<UEdit> m_pEdtConvert;
+    huys::ADT::UAutoPtr<UButton> m_pBtnConvert;
 private:
     BOOL onBnConvert()
     {

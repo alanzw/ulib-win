@@ -121,6 +121,7 @@ void list_modules()
     delete[] lpBuffer;
 }
 
+HMODULE hmod = ::LoadLibrary(_T("exchndl.dll"));
 
 int main(int argc, char *argv[])
 {
@@ -181,6 +182,12 @@ int main(int argc, char *argv[])
     }
 
     list_modules();
+
+
+    /* exchndl.dll Test */
+    char * p= (char *)0x00000000;
+
+    strcat(p, "111");
 
    cin.ignore();
    return 0;
