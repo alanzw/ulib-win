@@ -37,7 +37,7 @@ public:
     UFileDialog(HWND hWnd);
     ~UFileDialog();
     BOOL open();
-    LPCTSTR getName() const {return sFilename.c_str();}
+    LPCTSTR getName() const {return m_ofn.lpstrFile;}
     void setFilter(LPCTSTR lpFilter);
     void setFlags(DWORD dwFlags);
     WORD getFileOffset() const;

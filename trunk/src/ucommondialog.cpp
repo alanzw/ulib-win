@@ -26,10 +26,100 @@ BOOL UColorDialog::choose()
     return ::ChooseColor(&m_cc);
 }
 
+#ifdef UNICODE
+
+extern "C"
+{
+	unsigned int CALLBACK FileDialogHook(HWND hwnd, UINT uMsg, WPARAM wParam,
+		LPARAM lParam)
+	{
+		static HWND hwndParentDialog;
+		LPOFNOTIFY lpofn;
+		int cbLength;
+		static LPTSTR lpsz;
+		static int LastLen;
+
+		switch (uMsg)
+		{
+		case WM_INITDIALOG:
+			// You need to use a copy of the OPENFILENAME struct used to
+			// create this dialog. You can store a pointer to the
+			// OPENFILENAME struct in the ofn.lCustData so you can
+			// retrieve it here in the lParam. Once you have it, you
+			// need to hang on to it. Using window properties provides a
+			// good thread safe solution to using a global variable.
+
+			if(!SetProp(GetParent(hwnd), "OFN", (void *) lParam))
+				MessageBox(NULL, "SET PRop Failed", "ERROR", MB_OK);
+			return (0);
+
+		case WM_COMMAND:
+			{
+				OutputDebugString("command\n");
+			}
+			break;
+		case WM_NOTIFY:
+			// The OFNOTIFY struct is passed in the lParam of this
+			// message.
+
+			lpofn = (LPOFNOTIFY) lParam;
+
+			switch (lpofn->hdr.code)
+			{
+			case CDN_SELCHANGE:
+
+				LPOPENFILENAME lpofn;
+				cbLength = CommDlg_OpenSave_GetSpec(GetParent(hwnd), NULL, 0);
+
+				cbLength += _MAX_PATH;
+
+				// The OFN struct is stored in a property of dialog window
+
+				lpofn = (LPOPENFILENAME) GetProp(GetParent(hwnd),
+					"OFN");
+
+				if (lpofn->nMaxFile < cbLength)  
+
+				{
+					// Free the previously allocated buffer.
+					if(lpsz)
+						HeapFree(GetProcessHeap(),
+						0,
+						lpsz);
+					// Allocate a new buffer
+					lpsz = (LPTSTR) HeapAlloc(GetProcessHeap(),
+						HEAP_ZERO_MEMORY,
+						cbLength);
+					if (lpsz)
+			  {
+
+				  lpofn->lpstrFile = lpsz;
+				  lpofn->nMaxFile  = cbLength;
+			  }
+				}
+				break;
+
+			}
+			return (0);
+
+		case WM_DESTROY:
+
+			// Also need to free the property with the OPENFILENAME
+			// struct.
+			RemoveProp(GetParent(hwnd), "OFN");
+			return (0);
+		}
+		return (0);
+	} 
+
+	//WNDPROC* g_lpfnDialogProc = ;
+}
+#endif
 
 UFileDialog::UFileDialog( HWND hWnd )
 : sFilename(MAX_PATH)
 {
+	sFilename.reserve(20000);
     // Initialize OPENFILENAME
     ZeroMemory(&m_ofn, sizeof(m_ofn));
     m_ofn.lStructSize = sizeof(m_ofn);
@@ -44,7 +134,12 @@ UFileDialog::UFileDialog( HWND hWnd )
     m_ofn.lpstrFileTitle = NULL;
     m_ofn.nMaxFileTitle = 0;
     m_ofn.lpstrInitialDir = NULL;
-    m_ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+	m_ofn.Flags = OFN_EXPLORER | OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+#ifdef UNICODE
+    m_ofn.Flags = OFN_EXPLORER | OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST|OFN_ENABLEHOOK;
+	m_ofn.lCustData = (LPARAM)&m_ofn;
+	m_ofn.lpfnHook = &FileDialogHook;
+#endif
 }
 
 UFileDialog::~UFileDialog()
@@ -56,18 +151,17 @@ BOOL UFileDialog::open()
 {
     BOOL bRet = ::GetOpenFileName(&m_ofn);
 
+   if (!bRet && FNERR_BUFFERTOOSMALL == CommDlgExtendedError())
+   {
+       WORD size = *((WORD *)m_ofn.lpstrFile);
+  //      sFilename.reserve(size+20);
+		//m_ofn.lpstrFile = sFilename;
+		//m_ofn.lpstrFile[0] = '\0';
+		//m_ofn.nMaxFile = sFilename.buffer_size();
+  //     bRet = ::GetOpenFileName(&m_ofn);
+  }
 
-
-    if (!bRet)
-    {
-        BYTE size = *((BYTE *)m_ofn.lpstrFile);
-        sFilename.reserve(size+2);
-        return ::GetOpenFileName(&m_ofn);
-    }
-    else
-    {
-        return bRet;
-    }
+    return bRet;
 }
 
 void UFileDialog::setFilter(LPCTSTR lpFilter)

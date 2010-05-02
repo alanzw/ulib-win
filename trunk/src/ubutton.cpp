@@ -102,6 +102,12 @@ BOOL URadioButton::uncheck()
     return this->sendMsg(BM_SETCHECK, (WPARAM)BST_UNCHECKED);
 }
 
+
+BOOL URadioButton::isChecked()
+{
+    return (BST_CHECKED == this->sendMsg(BM_GETCHECK));
+}
+
 /*
  *  GroupBox
  */

@@ -140,7 +140,7 @@ int main(int argc, char *argv[])
         //pfn(_T("D:\\ulib-win\\bin"));
 
        //UDllMan::DllFunc<BOOL, const TCHAR *>::callEx(udm, _T("SetDllDirectoryA"), _T("D:\\ulib-win\\bin"));
-       udm.callFunc<BOOL, const TCHAR *>(_T("SetDllDirectoryA"), _T("D:\\ulib-win\\bin"));
+       udm.callFunc<BOOL, LPCTSTR>(_T("SetDllDirectoryA"), _T("D:\\ulib-win\\bin"));
         //GetDllDirectory foo = (GetDllDirectory)udm.find(_T("GetDllDirectoryA"));
 
         TCHAR buffer[5024];
@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
         //int n = foo(5024, buffer);
 
        //int n = UDllMan::DllFunc2<DWORD, DWORD, TCHAR*>::callEx(udm, _T("GetDllDirectoryA"), 5024, buffer);
-        int n = udm.callFunc<DWORD, DWORD, TCHAR*>(_T("GetDllDirectoryA"), 5024, buffer);
+        int n = udm.callFunc<DWORD, DWORD, LPCTSTR>(_T("GetDllDirectoryA"), 5024, buffer);
         cout << n <<endl;
         //cout << GetLastError() << endl;
         //showErrorByNum(GetLastError());
@@ -163,8 +163,8 @@ int main(int argc, char *argv[])
     }
 
     try {
-        UDllMan udm;
-        udm.load("libuwin.dll");
+        UDllMan udm;     
+		udm.load("libuwin.dll");
 
         //typedef void (*GetVolSerialNum)(char *, char *);
         DEF_DLLFUNC(GetVolSerialNum, void, char *, char *);

@@ -34,7 +34,7 @@ BEGIN
     END
     POPUP "&Help" HELP
     BEGIN
-        MENUITEM "&About UTerminal", IDM_ABOUT
+        MENUITEM "&About UFileSplit 0.0.1", IDM_ABOUT
     END
 END
 

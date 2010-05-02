@@ -61,6 +61,7 @@ bool UKernelObject::open()
 bool UKernelObject::close()
 {
     ::CloseHandle(m_hObj);
+	m_hObj = NULL;
     return true;
 }
 

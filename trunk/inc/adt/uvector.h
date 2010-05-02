@@ -10,6 +10,8 @@
 #include <iostream>
 #include <cassert>
 
+#include "adt/uautoptr.h"
+
 namespace huys
 {
 
@@ -154,6 +156,30 @@ public:
         create(start, end);
     }
 
+    operator iterator ()
+    {
+        return data;
+    }
+
+    template <typename X>
+    operator X*()
+    {
+        static UAutoPtr<X> p;
+        if (p != 0)
+        {
+            p.release();
+        }
+        p = new X[size()];
+
+        X * pp = p;
+        for (unsigned int i=0; i<size(); ++i)
+        {
+            pp[i] = (X)(data[i]);
+        }
+        return pp;
+    }
+
+
     void cutTo(size_type n)
     {
         if (this->size() < n)
@@ -210,7 +236,7 @@ public:
 
     iterator erase(iterator f, iterator l)
     {
-        iterator s = copy(l, end(), f);
+        iterator s = std::copy(l, end(), f);
         destroy(s, end());
         avail = s;
         return f;
@@ -219,6 +245,21 @@ public:
     void clear()
     {
         erase(begin(), end());
+    }
+
+    bool is_already_exist(const_ref_type val)
+    {
+        const_iterator it = begin();
+
+        for(; it != end(); ++it)
+        {
+            if (*it == val)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 private:
     iterator data;

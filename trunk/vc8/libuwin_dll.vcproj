@@ -440,6 +440,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\src\ucommondialog.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\uconf.cpp"
 				>
 				<FileConfiguration
@@ -542,6 +546,10 @@
 			</File>
 			<File
 				RelativePath="..\src\udibapi.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\udllman.cpp"
 				>
 			</File>
 			<File
@@ -929,6 +937,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\inc\ucommondialog.h"
+				>
+			</File>
+			<File
 				RelativePath="..\inc\uconf.h"
 				>
 			</File>
@@ -950,6 +962,10 @@
 			</File>
 			<File
 				RelativePath="..\inc\udibapi.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\udllman.h"
 				>
 			</File>
 			<File

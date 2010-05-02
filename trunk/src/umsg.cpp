@@ -197,7 +197,7 @@ void showCustomInfoMsg(const TCHAR *szMsg, HWND hOwner)
 ***********************************************************************/
 static HWND g_hwndTimedOwner;
 BOOL  ULIB_API g_bTimedOut;
-static HWND g_hwndMsgBox = NULL;
+//static HWND g_hwndMsgBox = NULL;
 static LPCTSTR g_msgboxTitle = NULL;
 
 /***********************************************************************

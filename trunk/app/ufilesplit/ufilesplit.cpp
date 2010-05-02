@@ -39,7 +39,7 @@ BOOL UFileSplit::split(LPCTSTR sFilename, DWORD dwEachSize, DWORD dwBufferSize, 
 
     int num = dwFileSize / dwEachSize;
 
-    if (dwFileSize%dwEachSize)
+    if (dwFileSize%dwEachSize != 0)
     {
         ++num;
     }
@@ -52,19 +52,20 @@ BOOL UFileSplit::split(LPCTSTR sFilename, DWORD dwEachSize, DWORD dwBufferSize, 
     LPBYTE pbuf = new BYTE[dwBufferSize];
 
     DWORD dwRead;
-    while( fin.read(pbuf, dwBufferSize, &dwRead)  && nIndex <= num)
+    while( fin.read(pbuf, dwBufferSize, &dwRead)  && dwRead > 0 && nIndex <= num)
     {
         dwCount += dwRead;
         fout.write(pbuf, dwRead);
 
-        if (dwEachSize <= dwCount+dwBufferSize || dwFileSize <= (nIndex-1) * dwEachSize + dwCount+dwBufferSize)
+        //
+        if (dwEachSize <= dwCount+dwBufferSize)
         {
-            fin.read(pbuf, dwCount+dwBufferSize-dwEachSize, &dwRead);
+            fin.read(pbuf, dwEachSize-dwCount, &dwRead);
             dwCount += dwRead;
             fout.write(pbuf, dwRead);
-            ++nIndex;
             fout.close();
 
+            ++nIndex;
             if (nIndex <= num)
             {
                 if (!fout.create(outfilename.format("%s.%02d", sOutFile, nIndex)))
@@ -75,15 +76,59 @@ BOOL UFileSplit::split(LPCTSTR sFilename, DWORD dwEachSize, DWORD dwBufferSize, 
             }
         }
 
+        //
+        if (dwFileSize <= (nIndex-1) * dwEachSize + dwCount+dwBufferSize)
+        {
+            fin.read(pbuf, dwFileSize - dwCount - (nIndex-1) *dwEachSize, &dwRead);
+            dwCount += dwRead;
+            fout.write(pbuf, dwRead);
+            fout.close();
+            break;
+        }
+
     }
 
-    delete pbuf;
+    fin.close();
+
+    delete [] pbuf;
 
     return TRUE;
 }
 
 BOOL UFileSplit::merge(LPCTSTR *sFilenames, int nNum, DWORD dwBufferSize, LPCTSTR sOutFile)
 {
+    UFile fin;
+    UFile fout;
+    DWORD dwCount = 0;
+
+    if (!fout.create(sOutFile))
+    {
+        return FALSE;
+    }
+
+    LPBYTE pbuf = new BYTE[dwBufferSize];
+
+    DWORD dwRead;
+
+    int i = 0;
+    for (i=0; i<nNum; ++i)
+    {
+        if (!fin.open(sFilenames[i]))
+        {
+            break;
+        }
+
+        while (fin.read(pbuf, dwBufferSize, &dwRead) && dwRead > 0)
+        {
+            dwCount += dwRead;
+            fout.write(pbuf, dwRead);
+        }
+        fin.close();
+    }
+
+    fout.close();
+
+    delete [] pbuf;
+
     return TRUE;
 }
-

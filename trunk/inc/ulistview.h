@@ -51,8 +51,13 @@ public:
     //
     virtual BOOL setItem(int nIndex, LVITEM *lplvi);
     virtual BOOL setItemText(int nIndex, int nSubIndex, LPCTSTR lpText);
+    
+    BOOL getItem(LVITEM *lplvi);
+    int getItemText(int nItem, int nSubItem, LPTSTR lpBuffer, int cchTextMax);
 
     int getItemCount();
+    
+    BOOL deleteAllItems();
 
     BOOL setBKColor(huys::Color clr);
     BOOL setTextColor(huys::Color clr);

@@ -1,6 +1,10 @@
 #ifndef U_FILESPLIT_H
 #define U_FILESPLIT_H
 
+#include "adt/ustring.h"
+
+typedef huys::ADT::UStringAnsi TString;
+
 class UFileSplit
 {
 public:
@@ -12,6 +16,7 @@ public:
 
     static BOOL merge(LPCTSTR *sFilenames, int nNum, DWORD dwBufferSize,
                LPCTSTR sOutFile);
+
 private:
 
 };
