@@ -127,6 +127,27 @@ int UListView::getItemCount()
     return (int)this->sendMsg(LVM_GETITEMCOUNT);
 }
 
+BOOL UListView::getItem(LVITEM *lplvi)
+{
+    return this->sendMsg(LVM_GETITEM, 0, (LPARAM)lplvi);
+}
+
+int UListView::getItemText(int nItem, int nSubItem, LPTSTR lpBuffer, int cchTextMax)
+{
+    LVITEM lvi = {0};
+    lvi.iItem = nItem;
+    lvi.iSubItem = nSubItem;
+    lvi.pszText = lpBuffer;
+    lvi.cchTextMax = cchTextMax;
+    
+    return this->sendMsg(LVM_GETITEMTEXT, (WPARAM)nItem, (LPARAM)&lvi);
+}
+
+BOOL UListView::deleteAllItems()
+{
+    return this->sendMsg(LVM_DELETEALLITEMS);
+}
+
 BOOL UListView::setBKColor( huys::Color clr )
 {
     return this->sendMsg(LVM_SETBKCOLOR, 0, (LPARAM)clr);

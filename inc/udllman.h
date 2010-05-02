@@ -5,9 +5,14 @@
 
 #include <stdio.h>
 #include <exception>
- 
+
+#if defined(_MSC_VER) && _MSC_VER <= 1200
+#define  DEF_DLLFUNC(PROC_NAME, RET_T, VAR1_T, VAR2_T) \
+    typedef RET_T (*PROC_NAME)(VAR1_T, VAR2_T);
+#else
 #define DEF_DLLFUNC(PROCNAME, RET_T, ...) \
     typedef RET_T (*PROCNAME)( __VA_ARGS__ );
+#endif
 
 class ULIB_API UDllMan
 {

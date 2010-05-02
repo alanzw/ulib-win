@@ -4,6 +4,7 @@
 
 #include <windows.h>
 #include <tchar.h>
+#include <commctrl.h>
 
 #include "uedit.h"
 
@@ -126,11 +127,11 @@ BOOL UEdit::addLine(LPCTSTR sLine)
 
 BOOL UEdit::showBalloonTip(LPCWSTR pszTitle, LPCWSTR pszText, INT nIcon)
 {
-    EDITBALLOONTIP ebt;
+	EDITBALLOONTIP ebt;
     ebt.cbStruct = sizeof(EDITBALLOONTIP);
     ebt.pszTitle = pszTitle;
     ebt.pszText = pszText;
     ebt.ttiIcon = nIcon;
-    
-    this->sendMsg(EM_SHOWBALLOONTIP, 0, (LPARAM)&ebt);
+   
+    return this->sendMsg(EM_SHOWBALLOONTIP, 0, (LPARAM)&ebt);
 }

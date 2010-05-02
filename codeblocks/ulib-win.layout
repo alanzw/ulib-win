@@ -16,14 +16,14 @@
 	<File name="..\inc\ucommondialog.h" open="0" top="0" tabpos="1">
 		<Cursor position="921" topLine="39" />
 	</File>
-	<File name="..\inc\ucontrol.h" open="0" top="0" tabpos="2">
-		<Cursor position="3413" topLine="97" />
+	<File name="..\inc\ucontrol.h" open="1" top="0" tabpos="6">
+		<Cursor position="1588" topLine="51" />
 	</File>
 	<File name="..\inc\udialogx.h" open="0" top="0" tabpos="7">
 		<Cursor position="2521" topLine="74" />
 	</File>
 	<File name="..\inc\uedit.h" open="0" top="0" tabpos="6">
-		<Cursor position="445" topLine="12" />
+		<Cursor position="445" topLine="27" />
 	</File>
 	<File name="..\inc\ufile.h" open="0" top="0" tabpos="6">
 		<Cursor position="641" topLine="35" />
@@ -37,14 +37,14 @@
 	<File name="..\inc\uicon.h" open="0" top="0" tabpos="0">
 		<Cursor position="356" topLine="4" />
 	</File>
-	<File name="..\inc\uimagelist.h" open="0" top="0" tabpos="9">
-		<Cursor position="64" topLine="16" />
+	<File name="..\inc\uimagelist.h" open="1" top="0" tabpos="2">
+		<Cursor position="390" topLine="7" />
 	</File>
 	<File name="..\inc\ulib.h" open="0" top="0" tabpos="1">
 		<Cursor position="5567" topLine="237" />
 	</File>
-	<File name="..\inc\ulistview.h" open="0" top="0" tabpos="4">
-		<Cursor position="1337" topLine="39" />
+	<File name="..\inc\ulistview.h" open="1" top="1" tabpos="1">
+		<Cursor position="1196" topLine="37" />
 	</File>
 	<File name="..\inc\umenu.h" open="0" top="0" tabpos="5">
 		<Cursor position="49" topLine="0" />
@@ -76,8 +76,8 @@
 	<File name="..\inc\ushell.h" open="0" top="0" tabpos="1">
 		<Cursor position="699" topLine="7" />
 	</File>
-	<File name="..\inc\ustatic.h" open="0" top="0" tabpos="1">
-		<Cursor position="429" topLine="0" />
+	<File name="..\inc\ustatic.h" open="1" top="0" tabpos="5">
+		<Cursor position="98" topLine="0" />
 	</File>
 	<File name="..\inc\ustatusbar.h" open="0" top="0" tabpos="18">
 		<Cursor position="130" topLine="0" />
@@ -121,8 +121,8 @@
 	<File name="..\src\ucommondialog.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="1191" topLine="31" />
 	</File>
-	<File name="..\src\ucontrol.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="4222" topLine="157" />
+	<File name="..\src\ucontrol.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="3465" topLine="206" />
 	</File>
 	<File name="..\src\udc.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="2007" topLine="87" />
@@ -158,7 +158,7 @@
 		<Cursor position="1503" topLine="75" />
 	</File>
 	<File name="..\src\umsg.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="6810" topLine="204" />
+		<Cursor position="4914" topLine="189" />
 	</File>
 	<File name="..\src\upanel.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="2246" topLine="98" />

@@ -14,17 +14,17 @@ public:
     : UStatic(hParent, nResource, hInst)
     {
         m_dwStyles &= ~SS_SIMPLE;
-        m_dwStyles |= SS_CENTER | SS_CENTERIMAGE;
+        //m_dwStyles |= SS_CENTER | SS_CENTERIMAGE;
     }
 
     UTransLabel(UBaseWindow *pWndParent, LPCTSTR lpText)
     : UStatic(pWndParent, lpText)
     {
         m_dwStyles &= ~SS_SIMPLE;
-        m_dwStyles |= SS_CENTER | SS_CENTERIMAGE;
+        //m_dwStyles |= SS_CENTER | SS_CENTERIMAGE;
     }
-    
-    
+
+
     /* virtual */ BOOL create()
     {
         BOOL bRet = UStatic::create();
@@ -63,7 +63,7 @@ private:
 };
 
 
-typedef huys::ADT::UAutoPtr<UTransLabel> UTransLabelP; 
+typedef huys::ADT::UAutoPtr<UTransLabel> UTransLabelP;
 
 }; // namespace AUI
 

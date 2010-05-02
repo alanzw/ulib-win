@@ -53,7 +53,7 @@ public:
     }
 
     UString(const UString &s)
-    : m_pBuf(0), m_nBufSize(s.m_nBufSize), m_nStrLength(s.m_nStrLength)
+    :m_pBuf(0), m_nBufSize(s.m_nBufSize), m_nStrLength(s.m_nStrLength)
     {
         m_pBuf = new T[m_nBufSize+1];
         memset((void *)m_pBuf, 0, sizeof(T)*(m_nBufSize+1));
@@ -103,11 +103,8 @@ public:
             return *this;
         }
 
-        m_nStrLength = s.m_nStrLength;
-        m_nBufSize = s.m_nBufSize;
-        m_pBuf = new T[m_nBufSize+1];
-        memcpy((void *)m_pBuf, (const void *)s.m_pBuf, sizeof(T)*(m_nStrLength));
-        m_pBuf[m_nStrLength] = 0;
+        *this = s.c_str();
+        
         return *this;
     }
 
@@ -352,6 +349,11 @@ public:
         return ( this->length() == (unsigned int)lstrlen(str) )       // optimization on some platforms
             && ( lstrcmp(this->c_str(), str) == 0 );    // actual compare
     }
+
+	void update()
+	{
+		m_nStrLength = lstrlen(m_pBuf);
+	}
 private:
     T *m_pBuf;
     size_type m_nBufSize;

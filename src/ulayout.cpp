@@ -35,7 +35,7 @@ BOOL UHBoxLayout::go()
     int w = m_rc.right - m_rc.left;
     int h = m_rc.bottom - m_rc.top;
 
-    int n = m_ctrls.size();
+    UControlVec::size_type n = m_ctrls.size();
 
     if (0 == n)
     {
@@ -51,7 +51,7 @@ BOOL UHBoxLayout::go()
     rc.top = m_rc.top;
     rc.bottom = rc.top + h;
 
-    for (int i=0; i<n; ++i)
+    for (UControlVec::size_type i=0; i<n; ++i)
     {
         m_ctrls[i]->setPosition(&rc);
         rc.left += dx;
@@ -74,7 +74,7 @@ BOOL UVBoxLayout::go()
     int w = m_rc.right - m_rc.left;
     int h = m_rc.bottom - m_rc.top;
 
-    int n = m_ctrls.size();
+    UControlVec::size_type n = m_ctrls.size();
 
     if (0 == n)
     {
@@ -90,7 +90,7 @@ BOOL UVBoxLayout::go()
     rc.top = m_rc.top;
     rc.bottom = rc.top + dy;
 
-    for (int i=0; i<n; ++i)
+    for (UControlVec::size_type i=0; i<n; ++i)
     {
         m_ctrls[i]->setPosition(&rc);
         rc.top += dy;
