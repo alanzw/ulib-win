@@ -12,14 +12,14 @@ UThread::UThread(LPTHREAD_START_ROUTINE start_routine, LPVOID lpData)
 UThread::~UThread()
 {}
 
-bool UThread::create()
+bool UThread::create(DWORD dwCreationFlags /* = 0 */)
 {
     m_hObj = ::CreateThread(
                    NULL,            // default security attributes
                    0,               // use default stack size
                    m_lpStartAddr,   // thread function name
                    m_lpData,        // argument to thread function
-                   0,               // use default creation flags
+                   dwCreationFlags,               // use default creation flags
                    &m_dwThreadId);  // returns the thread identifier
     if(!m_hObj)
     {

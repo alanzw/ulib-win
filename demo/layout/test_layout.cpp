@@ -10,6 +10,8 @@
 #include "ubutton.h"
 #include "umsg.h"
 
+#include "adt/uautoptr.h"
+
 using huys::UDialogBox;
 
 using huys::layout::UHBoxLayout;
@@ -19,21 +21,14 @@ class UDialogExt : public UDialogBox
     enum {
         IDC_PANNEL_GO = 1021,
         IDC_BN_FIRST  = 1022,
-        IDC_BN_SECOND  = 1023
+        IDC_BN_SECOND  = 1023,
+        IDC_BN_SEARCH  = 1024
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-          m_pBtnFirst(0),
-          m_pBtnSecond(0)
+        : UDialogBox(hInst, nID)
     {}
-
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_pBtnFirst);
-        CHECK_PTR(m_pBtnSecond);
-    }
-
+    
     virtual BOOL onInit()
     {
         m_pBtnFirst = new UButton(m_hDlg, IDC_BN_FIRST, m_hInst);
@@ -49,6 +44,12 @@ public:
         layout.addControl(m_pBtnFirst);
         layout.addControl(m_pBtnSecond);
         layout.go();
+        
+        
+        m_pBtnSearch = new UButton(m_hDlg, IDC_BN_SEARCH, m_hInst);
+        m_pBtnSearch->setPos(300, 200, 100, 100);
+        m_pBtnSearch->create();
+        m_pBtnSearch->setWindowText(_T("search"));
 
         return TRUE;
     }
@@ -61,14 +62,18 @@ public:
             return onBnFirst();
         case IDC_BN_SECOND:
             return onBnSecond();
+        case IDC_BN_SEARCH:
+            return onBnSearch();
         default:
             return UDialogBox::onCommand(wParam, lParam);
         }
     }
 
 private:
-    UButton *m_pBtnFirst;
-    UButton *m_pBtnSecond;
+    huys::ADT::UAutoPtr<UButton> m_pBtnFirst;
+    huys::ADT::UAutoPtr<UButton> m_pBtnSecond;
+    
+    huys::ADT::UAutoPtr<UButton> m_pBtnSearch;
 private:
     BOOL onBnFirst()
     {
@@ -79,6 +84,29 @@ private:
     BOOL onBnSecond()
     {
         showMsg(_T("second chance"),_T("command"), m_hDlg);
+        return FALSE;
+    }
+    
+    BOOL onBnSearch()
+    {
+        DWORD pid = ::GetCurrentProcessId();
+        
+        HWND hwnd = NULL;
+    
+        while (NULL != (hwnd = ::FindWindowEx(NULL, hwnd, NULL,  _T("Test_layout"))))
+        {
+            DWORD pidWnd;
+            ::GetWindowThreadProcessId(hwnd, &pidWnd);
+            if (pid == pidWnd)
+            {
+                showMsg("It is myself!!!!!");
+            }
+            else
+            {
+                showMsg("Another one!!!!!");
+            }
+        }
+    
         return FALSE;
     }
 };

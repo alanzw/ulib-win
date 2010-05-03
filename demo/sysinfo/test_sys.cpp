@@ -2,13 +2,42 @@
 
 #include <windows.h>
 #include <iostream>
-
+#include <stdio.h>
+#include <tchar.h>
 using namespace std;
 
 #include "usys.h"
+#include "umsg.h"
 
 int main(int argc, char *argv[])
 {
+    
+    HGLOBAL h= ::GlobalAlloc(GMEM_FIXED|GMEM_ZEROINIT, 100);
+    
+    int *p = (int *)h;
+    
+	cout << p << " : " << GlobalSize(h) << endl;
+    
+    h = ::GlobalReAlloc(h, 120, 0);
+    
+    p = (int *)h;
+    
+    cout << p << " : " << GlobalSize(h) << endl;
+    
+    h = ::GlobalReAlloc(h, 140, 0);
+    
+	if (!h)
+	{
+		showError("Error");
+	}
+	
+    p = (int *)h;
+    
+    cout << p << " : " << GlobalSize(h) << endl;    
+    
+    ::GlobalFree(h);
+    
+    
     USystem usys;
 
     cout << "Screen Width: " << usys.getScreenWidth()  << " pixels"  << endl;

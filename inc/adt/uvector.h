@@ -161,6 +161,24 @@ public:
         return data;
     }
 
+#if defined(_MSC_VER) && (_MSC_VER<=1200)
+    operator LPCTSTR * ()
+    {
+        static UAutoPtr<LPCTSTR> p;
+        if (p != 0)
+        {
+            p.reset();
+        }
+        p = new LPCTSTR[size()];
+        
+        LPCTSTR * pp = p;
+        for (unsigned int i=0; i<size(); ++i)
+        {
+            pp[i] = (LPCTSTR)(data[i]);
+        }
+        return pp;
+    }
+#else
     template <typename X>
     operator X*()
     {
@@ -178,7 +196,7 @@ public:
         }
         return pp;
     }
-
+#endif
 
     void cutTo(size_type n)
     {

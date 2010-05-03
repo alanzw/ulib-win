@@ -8,7 +8,7 @@ class ULIB_API UThread : public UKernelObject
 public:
     UThread(LPTHREAD_START_ROUTINE start_routine, LPVOID lpData);
     ~UThread();
-    bool create();
+    bool create(DWORD dwCreationFlags = 0);
     bool wait();
     bool suspend();
     bool resume();

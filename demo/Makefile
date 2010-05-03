@@ -5,6 +5,7 @@ include $(TOPDIR)/make.inc
 
 #
 SUBDIRS = \
+          atom        \
           animation   \
           bitmap      \
           button      \
