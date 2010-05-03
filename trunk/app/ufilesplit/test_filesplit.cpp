@@ -22,6 +22,8 @@
 #include "adt/uvector.h"
 #include "uimagelist.h"
 
+#include "uthread.h"
+
 #include "aui/aui_label.h"
 #include "aui/aui_button.h"
 
@@ -42,7 +44,8 @@ class UMyWindow : public UBaseWindow
         ID_FILE_SIZE      = 11006,
         ID_FILE_UNIT      = 11009,
         ID_BUTTON_SELECT  = 11007,
-        ID_BUTTON_CLEAR   = 11008
+        ID_BUTTON_CLEAR   = 11008,
+        ID_COMBO_BUFFER   = 11010
     };
 
     enum USMode {
@@ -84,9 +87,10 @@ public:
 
         m_lv->setExStylesListView(LVS_EX_GRIDLINES|LVS_EX_FULLROWSELECT);
 
-            UImageList ml;
-            ml.create(1,24,TRUE|ILC_COLOR32,1,0);
-            m_lv->setImageListSmall(ml);
+        // Change ListView Item Height
+        UImageList ml;
+        ml.create(1,24,TRUE|ILC_COLOR32,1,0);
+        m_lv->setImageListSmall(ml);
 
         m_lv->addColTextWidth(0, "Index", 50);
         m_lv->addColTextWidth(1, "Filename", 300);
@@ -106,11 +110,22 @@ public:
         m_clear->create();
         m_clear->setWindowText(_T("Clear All"));
 
-        m_lbBufferSize = new AUI::UTransLabel(this, _T("Buffer Size:"));
+        m_lbBufferSize = new AUI::UTransLabel(this, _T("Buffer Size (Bytes):"));
         m_lbBufferSize->setStyles(ES_LEFT);
-        m_lbBufferSize->setPos(580, 220, 100, 20);
+        m_lbBufferSize->setPos(580, 220, 140, 20);
         m_lbBufferSize->create();
-        
+
+        m_cbBuffer = new UComboBox(this, ID_COMBO_BUFFER);
+        m_cbBuffer->setPos(580, 250, 100, 30);
+        m_cbBuffer->create();
+        m_cbBuffer->addText(_T("1000"));
+        m_cbBuffer->setItemData(0, 1000);
+        m_cbBuffer->addText(_T("10000"));
+        m_cbBuffer->setItemData(1, 10000);
+        m_cbBuffer->addText(_T("100000"));
+        m_cbBuffer->setItemData(2, 100000);
+        m_cbBuffer->setCurSel();
+
         m_lbSize = new AUI::UTransLabel(this, _T("Size:"));
         m_lbSize->setStyles(ES_LEFT);
         m_lbSize->setPos(580, 290, 100, 20);
@@ -226,7 +241,60 @@ public:
         }
     }
 
+    void run()
+    {
 
+    DWORD dwBufSize = m_cbBuffer->getItemData(m_cbBuffer->getCurSel());
+    
+    if (MODE_SPLIT == mode)
+    {
+        DWORD dwEachSize;
+        
+        huys::ADT::UStringAnsi strSize;
+        
+        m_size->getWindowText(strSize, 10);
+        
+        dwEachSize = atoi(strSize) * m_unit->getItemData(m_unit->getCurSel());
+        
+        huys::ADT::UStringAnsi fin_name(MAX_PATH);
+        huys::ADT::UStringAnsi fout_name(MAX_PATH);
+        
+        m_output->getWindowText(fin_name, MAX_PATH);
+        
+        fout_name = fin_name;
+        
+        UFileSplit::split(fin_name, dwEachSize, dwBufSize, fout_name);
+        
+    }
+    else
+    {
+        
+        huys::ADT::UString<char, MAX_PATH> fin_name(MAX_PATH);
+        huys::ADT::UString<char, MAX_PATH> fout_name(MAX_PATH);
+        
+        m_output->getWindowText(fout_name, MAX_PATH);
+        
+        //huys::ADT::UVector<huys::ADT::UString<char, MAX_PATH> > fin_names;
+        
+        int n = m_lv->getItemCount();
+        
+        //for (int i=0; i<n; ++i)
+        //{
+        //    m_lv->getItemText(i, 1, fin_name, MAX_PATH);
+        //    fin_name.update();
+        //    fin_names.push_back(fin_name);
+        //}
+        UFileSplit::merge(fin_names, n, dwBufSize, fout_name);
+        }
+
+    }
+
+    static DWORD WINAPI thread_routine(LPVOID lpThreadParameter)
+    {
+        UMyWindow *p = (UMyWindow *)lpThreadParameter;
+        p->run();
+        return 0;
+    }
 private:
     huys::ADT::UAutoPtr<UButton> m_add;
     huys::ADT::UAutoPtr<UButton> m_clear;
@@ -241,10 +309,11 @@ private:
     AUI::UTransRadioButtonP m_rbMerge;
     AUI::UTransLabelP m_lbSize;
     AUI::UTransLabelP m_lbBufferSize;
-    
+    huys::ADT::UAutoPtr<UComboBox> m_cbBuffer;
+
     USMode mode;
 
-        huys::ADT::UVector<huys::ADT::UString<char, MAX_PATH> > fin_names;
+    huys::ADT::UVector<huys::ADT::UString<char, MAX_PATH> > fin_names;
 private:
     //
     void go_update()
@@ -306,48 +375,8 @@ private:
 
     BOOL onBnGo()
     {
-        DWORD dwBufSize = 100;
-
-        if (MODE_SPLIT == mode)
-        {
-            DWORD dwEachSize;
-
-            huys::ADT::UStringAnsi strSize;
-
-            m_size->getWindowText(strSize, 10);
-
-            dwEachSize = atoi(strSize) * m_unit->getItemData(m_unit->getCurSel());
-
-            huys::ADT::UStringAnsi fin_name(MAX_PATH);
-            huys::ADT::UStringAnsi fout_name(MAX_PATH);
-
-            m_output->getWindowText(fin_name, MAX_PATH);
-
-            fout_name = fin_name;
-
-            UFileSplit::split(fin_name, dwEachSize, dwBufSize, fout_name);
-
-        }
-        else
-        {
-
-            huys::ADT::UString<char, MAX_PATH> fin_name(MAX_PATH);
-            huys::ADT::UString<char, MAX_PATH> fout_name(MAX_PATH);
-
-            m_output->getWindowText(fout_name, MAX_PATH);
-
-            //huys::ADT::UVector<huys::ADT::UString<char, MAX_PATH> > fin_names;
-
-            int n = m_lv->getItemCount();
-
-            //for (int i=0; i<n; ++i)
-            //{
-            //    m_lv->getItemText(i, 1, fin_name, MAX_PATH);
-            //    fin_name.update();
-            //    fin_names.push_back(fin_name);
-            //}
-            UFileSplit::merge(fin_names, n, dwBufSize, fout_name);
-        }
+        UThread t(&thread_routine, this);
+        t.create();
 
         return FALSE;
     }

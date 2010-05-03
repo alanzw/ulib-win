@@ -254,6 +254,10 @@ SOURCE=..\src\utabctrl.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\uthread.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\utoolbar.cpp
 # End Source File
 # Begin Source File
@@ -438,6 +442,10 @@ SOURCE=..\inc\utabctrl.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\inc\uthread.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\inc\utoolbar.h
 # End Source File
 # Begin Source File
@@ -476,9 +484,9 @@ SOURCE=..\res\u.rc
 
 !ELSEIF  "$(CFG)" == "libuwin_dll - Win32 Debug"
 
-# ADD BASE RSC /l 0x804 /i "\ulib-win\res" /i "\DEV\ulib-win\res"
+# ADD BASE RSC /l 0x804 /i "\wx\ulib-win\res" /i "\ulib-win\res" /i "\DEV\ulib-win\res"
 # SUBTRACT BASE RSC /i "../ico" /i "../res"
-# ADD RSC /l 0x804 /i "\ulib-win\res" /i "..\res" /i "..\ico"
+# ADD RSC /l 0x804 /i "\wx\ulib-win\res" /i "\ulib-win\res" /i "..\res" /i "..\ico"
 # SUBTRACT RSC /i "../ico" /i "../res"
 
 !ENDIF 
