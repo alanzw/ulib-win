@@ -1,10 +1,10 @@
-// Sample:
-// *******
-//   include "global.inc"
-//   [SectionName]
-//   key=value ; comment here
-//
-//
+/***************************************************************
+ * Name:     uini.h
+ * Purpose:  INI file manipulation class.
+ * Author:   Hu <huys03@gmail.com>
+ * Created:  2008
+ * License:  Apache
+ **************************************************************/
 
 #ifndef U_INI_H
 #define U_INI_H
@@ -18,6 +18,23 @@
     #define UINI_LOG
 #endif // HU_DEBUG
 
+
+
+/*! \class UIni
+ *  \brief Ini file manipulation tool class.
+ *
+ *  Ini file Format:
+ *
+ *  ******************************************
+ *
+ *    include "global.inc"
+ *
+ *    [SectionName]
+ *
+ *    key=value ; comment here
+ *
+ *  ******************************************
+ */
 class ULIB_API UIni
 {
 public:

@@ -1,3 +1,10 @@
+/*! \file uwarnings.h
+    \brief Disable MSC warnings.
+    
+    Use pragma to disable MSC compiling warning messages.
+*/
+
+
 #ifndef U_WARNINGS_H
 #define U_WARNINGS_H
 
@@ -37,10 +44,10 @@
 
 /// Force all EXEs/DLLs to use STRICT type checking.
 #ifndef STRICT
-#define STRICT
+  #define STRICT  1
 #endif
 
-/// Show Error Messages for Debugging
+/// Show Error Messages for Debugging.
 #ifndef HU_CONSOLE
   #define  U_ERROR(text) \
     ::MessageBox(NULL, text, _T("Error"), MB_ERROR)
@@ -49,8 +56,9 @@
     printf(text)
 #endif
 
+/// Disable unused local variables warning.
 #ifndef UNREFERENCED_LOCAL_VARIABLE
-  #define UNREFERENCED_LOCAL_VARIABLE
+  #define UNREFERENCED_LOCAL_VARIABLE(x) x;
 #endif // UNREFERENCED_LOCAL_VARIABLE
 
 #endif // U_WARNINGS_H

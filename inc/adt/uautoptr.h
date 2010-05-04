@@ -50,6 +50,12 @@ public:
     {
         return (HDC)(*_p);
     }
+
+    typedef class UControl * UControlP;
+    operator UControlP*()
+    {
+        return (UControlP*)(&_p);
+    }
 #else
     template <typename TP>
         operator TP() const

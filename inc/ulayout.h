@@ -17,22 +17,24 @@ class ULIB_API ULayout
 {
 public:
     ULayout();
-    virtual ~ULayout() = 0; /// Implement must be supplied, or link error.
+    
+    virtual ~ULayout()= 0 {}; /// Implement must be supplied, or link error.
+    
     BOOL addControl(UControl *pCtrl);
+    BOOL addControls(UControl **p, int n);
     virtual BOOL go() = 0;
+
     void setRect(const LPRECT lpRect)
     {
-        m_rc = *lpRect;
+        m_rect = lpRect;
     }
+
     void setRect(int x, int y, int w, int h)
     {
-        m_rc.left = x;
-        m_rc.top = y;
-        m_rc.right = x + w;
-        m_rc.bottom = y + h;
+        m_rect.set(x, y, w, h);
     }
 protected:
-    RECT m_rc;
+    huys::URectL m_rect;
     UControlVec m_ctrls;
 };
 
