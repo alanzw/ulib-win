@@ -45,9 +45,14 @@ private:
 
         Bucket *next;
 
-        Bucket( const K &key, const D &data, Bucket *next = NULL );
+        Bucket( const K &key, const D &data, Bucket *next = NULL )
+        : key( key ), data( data ), next( next )
+        {}
+    };
 
-    } **buckets;
+    typedef Bucket * BucketPtr;
+    typedef BucketPtr * BucketPtrPtr;
+    BucketPtrPtr buckets;
 
     int number_buckets;
 
@@ -82,7 +87,7 @@ public:
     UTable<K,D,H> & clear();
 
 #if defined(_MSC_VER) && (_MSC_VER <= 1200)
-    friend std::ostream & operator<< ( std::ostream &output, const UTable<K,D,H> &table );	
+    friend std::ostream & operator<< ( std::ostream &output, const UTable<K,D,H> &table );
 #else
     friend std::ostream & operator<< <>( std::ostream &output, const UTable<K,D,H> &table );
 #endif // (_MSC_VER <= 1200)
@@ -141,8 +146,13 @@ void UTable<K,D,H>::grow()
         built in Java hash table.  C++ style memory management is
         insufficient, here.
     */
+    //buckets = (Bucket **)realloc( buckets, (sizeof( Bucket *) * number_buckets) );
+    Bucket ** new_buckets = new Bucket *[2*number_buckets + 1];
+    ZeroMemory(buckets, sizeof(Bucket *)*(2*number_buckets + 1));
+    memcpy((void *)new_buckets, buckets, sizeof(Bucket*) * number_buckets);
+    delete buckets;
+    buckets = new_buckets;
     number_buckets = 2*number_buckets + 1;
-    buckets = (Bucket **)realloc( buckets, (sizeof( Bucket *) * number_buckets) );
 }
 
 template <typename K, typename D, typename H>
@@ -158,12 +168,14 @@ UTable<K,D,H>::~UTable()
         while ( current_bucket != NULL )
         {
             next_bucket = current_bucket->next;
-            free( current_bucket );
+            //free( current_bucket );
+            delete current_bucket;
             current_bucket = next_bucket;
         }
     }
 
-    free( buckets );
+    //free( buckets );
+    delete buckets;
 }
 
 template <typename K, typename D, typename H>
@@ -174,7 +186,9 @@ UTable<K,D,H>::UTable( int starting_buckets )
         Set up the list of Bucket pointers.  The use of calloc ensures
         that each Bucket pointer will be initially set to NULL.
     */
-    buckets = (Bucket **)calloc( sizeof( Bucket * ), number_buckets );
+    //buckets = (typename Bucket **)calloc( typename Bucket * ), number_buckets );
+    buckets = new Bucket*[number_buckets];
+    ZeroMemory(buckets, sizeof(Bucket *)*number_buckets);
 }
 
 template <typename K, typename D, typename H>
@@ -190,10 +204,10 @@ UTable<K,D,H> &UTable<K,D,H>::add( const K &key, const D &data )
 
     number_entries++;
 
-    Bucket *new_bucket = (Bucket *)malloc(sizeof(Bucket) );
-    ::ZeroMemory(new_bucket, sizeof(Bucket));
-    new_bucket->key = key;
-    new_bucket->data = data;
+    //Bucket *new_bucket = (Bucket *)malloc(sizeof(Bucket) );
+    Bucket *new_bucket = new Bucket(key, data);
+    //new_bucket->key = key;
+    //new_bucket->data = data;
 
     /*
         If there are already buckets in the bucket list for the given hash
@@ -259,11 +273,13 @@ UTable<K,D,H> &UTable<K,D,H>::clear()
         while ( current_bucket != NULL )
         {
             Bucket *next_bucket = current_bucket->next;
-            free(current_bucket);
+            //free(current_bucket);
+            delete current_bucket;
             current_bucket = next_bucket;
         }
         buckets[bucket_index] = NULL;
     }
+    delete buckets;
 
     /*
       Reset the table to the default size.  This is not necessary, but
@@ -271,8 +287,9 @@ UTable<K,D,H> &UTable<K,D,H>::clear()
     */
     number_entries = 0;
     number_buckets = DEFAULT_BUCKETS;
-    buckets = (Bucket **)realloc( buckets, (sizeof( Bucket *) * number_buckets) );
-
+    //buckets = (Bucket **)realloc( buckets, (sizeof( Bucket *) * number_buckets) );
+    buckets = new Bucket*[number_buckets];
+    ZeroMemory(buckets, sizeof(Bucket *)*number_buckets);
     return *this;
 }
 
@@ -310,11 +327,6 @@ D & UTable<K,D,H>::operator[]( const K &key )
 
     return found_bucket->data;
 }
-
-template <typename K, typename D, typename H>
-UTable<K,D,H>::Bucket::Bucket( const K &key, const D &data, typename UTable<K,D,H>::Bucket *next )
-: key( key ), data( data ), next( next )
-{}
 
 }; // namespace ADT
 
