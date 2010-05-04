@@ -191,6 +191,7 @@ UTable<K,D,H> &UTable<K,D,H>::add( const K &key, const D &data )
     number_entries++;
 
     Bucket *new_bucket = (Bucket *)malloc(sizeof(Bucket) );
+    ::ZeroMemory(new_bucket, sizeof(Bucket));
     new_bucket->key = key;
     new_bucket->data = data;
 
