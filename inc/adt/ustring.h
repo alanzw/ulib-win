@@ -80,8 +80,8 @@ public:
         }
         else if (len < m_nBufSize)
         {
+            memcpy((void *)m_pBuf, sText, sizeof(T)*len);
             m_nStrLength = len;
-            memcpy((void *)m_pBuf, sText, sizeof(T)*(m_nStrLength));
         }
         else
         {
@@ -104,7 +104,7 @@ public:
         }
 
         *this = s.c_str();
-        
+
         return *this;
     }
 

@@ -78,7 +78,7 @@ extern "C"
 				lpofn = (LPOPENFILENAME) GetProp(GetParent(hwnd),
 					"OFN");
 
-				if (lpofn->nMaxFile < cbLength)  
+				if (lpofn->nMaxFile < cbLength)
 
 				{
 					// Free the previously allocated buffer.
@@ -110,7 +110,7 @@ extern "C"
 			return (0);
 		}
 		return (0);
-	} 
+	}
 
 	//WNDPROC* g_lpfnDialogProc = ;
 }
@@ -153,7 +153,7 @@ BOOL UFileDialog::open()
 
    if (!bRet && FNERR_BUFFERTOOSMALL == CommDlgExtendedError())
    {
-       WORD size = *((WORD *)m_ofn.lpstrFile);
+   //    WORD size = *((WORD *)m_ofn.lpstrFile);
   //      sFilename.reserve(size+20);
 		//m_ofn.lpstrFile = sFilename;
 		//m_ofn.lpstrFile[0] = '\0';

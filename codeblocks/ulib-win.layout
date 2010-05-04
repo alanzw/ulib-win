@@ -16,7 +16,7 @@
 	<File name="..\inc\ucommondialog.h" open="0" top="0" tabpos="1">
 		<Cursor position="921" topLine="39" />
 	</File>
-	<File name="..\inc\ucontrol.h" open="1" top="0" tabpos="6">
+	<File name="..\inc\ucontrol.h" open="1" top="0" tabpos="4">
 		<Cursor position="1588" topLine="51" />
 	</File>
 	<File name="..\inc\udialogx.h" open="0" top="0" tabpos="7">
@@ -43,7 +43,7 @@
 	<File name="..\inc\ulib.h" open="0" top="0" tabpos="1">
 		<Cursor position="5567" topLine="237" />
 	</File>
-	<File name="..\inc\ulistview.h" open="1" top="1" tabpos="1">
+	<File name="..\inc\ulistview.h" open="1" top="0" tabpos="1">
 		<Cursor position="1196" topLine="37" />
 	</File>
 	<File name="..\inc\umenu.h" open="0" top="0" tabpos="5">
@@ -76,7 +76,7 @@
 	<File name="..\inc\ushell.h" open="0" top="0" tabpos="1">
 		<Cursor position="699" topLine="7" />
 	</File>
-	<File name="..\inc\ustatic.h" open="1" top="0" tabpos="5">
+	<File name="..\inc\ustatic.h" open="1" top="0" tabpos="3">
 		<Cursor position="98" topLine="0" />
 	</File>
 	<File name="..\inc\ustatusbar.h" open="0" top="0" tabpos="18">
@@ -118,10 +118,10 @@
 	<File name="..\src\ucomboboxex.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="669" topLine="26" />
 	</File>
-	<File name="..\src\ucommondialog.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="1191" topLine="31" />
+	<File name="..\src\ucommondialog.cpp" open="1" top="1" tabpos="6">
+		<Cursor position="3853" topLine="145" />
 	</File>
-	<File name="..\src\ucontrol.cpp" open="1" top="0" tabpos="7">
+	<File name="..\src\ucontrol.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="3465" topLine="206" />
 	</File>
 	<File name="..\src\udc.cpp" open="0" top="0" tabpos="2">

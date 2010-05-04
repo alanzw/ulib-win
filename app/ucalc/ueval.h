@@ -33,7 +33,7 @@ struct hash<TString>
         resident memory.  Then get the hash index for the array by taking
         the modulo of the size of that array (<number_buckets>).
         */
-        memcpy( &hash_value, key.c_str(), sizeof(unsigned char) * key.length() % sizeof(unsigned int) );
+        memcpy( (void *)&hash_value, key.c_str(), key.length() % sizeof(unsigned int) );
         return hash_value;
     }
 };

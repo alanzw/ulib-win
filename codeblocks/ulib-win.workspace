@@ -4,7 +4,7 @@
 		<Project filename="button.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="calc.cbp">
+		<Project filename="calc.cbp" active="1">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="chart.cbp" />
@@ -25,7 +25,7 @@
 		<Project filename="explorer.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="filesplit.cbp" active="1">
+		<Project filename="filesplit.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="floatwnd.cbp">
