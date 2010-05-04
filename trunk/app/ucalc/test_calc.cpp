@@ -30,6 +30,7 @@ class UMyWindow : public UBaseWindow
     enum {
         ID_EDT_FORMULA = 11002,
         ID_BN_EVALUATE = 1100,
+        ID_BN_CLEAR    = 1101,
         ID_BN_NUM_BEGIN = 1234,
         ID_BN_NUM_END   = 1234 + 15
     };
@@ -70,6 +71,11 @@ public:
            m_pBnNum[i]->setWindowText(g_cap[i]);
        }
 
+       m_pBnClear = new UButton(this, ID_BN_CLEAR);
+       m_pBnClear->setPos(420, 200, 50, 50);
+       m_pBnClear->create();
+       m_pBnClear->setWindowText(_T("Clear"));
+
        return UBaseWindow::onCreate();
    }
 
@@ -106,6 +112,8 @@ public:
             return UBaseWindow::onClose();
         case ID_BN_EVALUATE:
             return onBnEval();
+        case ID_BN_CLEAR:
+            return onBnClear();
         default:
             return UBaseWindow::onCommand(wParam, lParam);
         }
@@ -163,10 +171,17 @@ private:
 
         return TRUE;
     }
+
+    BOOL onBnClear()
+    {
+        m_sFormula.clear();
+        m_pEdtFormula->setText(_T(""));
+        return FALSE;
+    }
 private:
 	huys::ADT::UAutoPtr<UEdit> m_pEdtFormula;
     huys::ADT::UAutoPtr<UButton> m_pBnEval;
-
+    huys::ADT::UAutoPtr<UButton> m_pBnClear;
     huys::ADT::UAutoPtr<UButton> m_pBnNum[16];
 
     TString m_sFormula;
