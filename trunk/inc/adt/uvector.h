@@ -132,6 +132,15 @@ public:
         }
     }
 
+    void append(iterator start, iterator end)
+    {
+        iterator it = start;
+        for (; it!=end; ++it)
+        {
+            push_back(*start);
+        }
+    }
+
     reference_type at(size_type n)
     {
         assert(n>=0 && n<size());

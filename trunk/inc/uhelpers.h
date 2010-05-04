@@ -28,7 +28,7 @@ template <typename T>
 class UPoint
 {
 public:
-    UPoint(T x = T(0), T y = T(0))
+    UPoint(T x = 0, T y = 0)
     : _x(x), _y(y)
     {}
 
@@ -43,22 +43,25 @@ public:
     ~UPoint()
     {}
 
-    void operator = (const UPoint<T> &aPoint)
+    UPoint& operator = (const UPoint<T> &aPoint)
     {
         this->_x = aPoint._x;
         this->_y = aPoint._y;
+        return *this;
     }
 
-    void operator= (const LPPOINT lpPoint)
+    UPoint& operator= (const LPPOINT lpPoint)
     {
         this->_x = lpPoint->x;
         this->_y = lpPoint->y;
+        return *this;
     }
 
-    operator POINT()
+    operator LPPOINT()
     {
-        POINT pt = {_x, _y};
-        return pt;
+        //POINT pt = {_x, _y};
+        //return pt;
+        return (LPPOINT)(this);
     }
 
     void moveTo(T x, T y)
@@ -86,7 +89,7 @@ template <typename T>
 class URect
 {
 public:
-    URect(T left, T top, T right, T bottom)
+    URect(T left = 0, T top = 0, T right = 0, T bottom = 0)
     : _left(left), _top(top), _right(right), _bottom(bottom)
     {}
 
@@ -100,11 +103,35 @@ public:
     ~URect()
     {}
 
-
-    operator RECT()
+    URect& operator= (const LPRECT lpRect)
     {
-        RECT rc = {_left, _top, _right, _bottom};
-        return rc;
+        _left = lpRect->left;
+        _top = lpRect->top;
+        _right = lpRect->right;
+        _bottom = lpRect->bottom;
+
+        return *this;
+    }
+
+    void set(T left = 0, T top = 0, T w = 0, T h = 0)
+    {
+        _left = left;
+        _top = top;
+        _right = left + w;
+        _bottom = top + h;
+    }
+
+    void resize(T cx, T cy)
+    {
+        _right = _left + cx;
+        _bottom = _top + cy;
+    }
+
+    operator LPRECT()
+    {
+        //RECT rc = {_left, _top, _right, _bottom};
+        //return rc;
+        return (LPRECT)(this);
     }
 
     bool PtrInRect(const UPoint<T> &aPoint)
@@ -117,10 +144,38 @@ public:
 
         return true;
     }
+
+	void inflate(T x, T y)
+	{
+		_left -= x;
+		_top -= y;
+		_right += x;
+		_bottom += y;
+	}
+
+	void deflate(T x, T y)
+	{
+		inflate(-x, -y);
+	}
+    
+    void offset(T x, T y)
+    {
+        _left += x;
+        _top += y;
+        _right += x;
+        _bottom += y;
+    }
+
+	T left() const { return _left; }
+	T top() const { return _top; }
+	T right() const { return _right; }
+	T bottom() const { return _bottom; }
+    T width() const { return _right - _left; }
+    T height() const { return _bottom - _top; }
 private:
     T _left;
-    T _right;
     T _top;
+    T _right;
     T _bottom;
 };
 
@@ -129,11 +184,23 @@ template <typename T>
 class USize
 {
 public:
-    operator SIZE()
+	USize(T cx = 0, T cy = 0)
+	:  _cx(cx), _cy(cy)
+	{}
+
+	USize(LPSIZE lpSize)
+	: _cx(lpSize->cx), _cy(lpSize->cy)
+	{}
+
+    operator LPSIZE()
     {
-        SIZE s = {_cx, _cy};
-        return s;
+        //SIZE s = {_cx, _cy};
+        //return s;
+		return (LPSIZE)(this);
     }
+    
+    T width() const { return _cx; }
+    T height() const { return _cy; }
 private:
     T _cx;
     T _cy;

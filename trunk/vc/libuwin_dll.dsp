@@ -186,6 +186,10 @@ SOURCE=..\src\uini.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\ulayout.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\ulib.cpp
 # End Source File
 # Begin Source File
@@ -371,6 +375,10 @@ SOURCE=..\inc\uimagelist.h
 # Begin Source File
 
 SOURCE=..\inc\uini.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\ulayout.h
 # End Source File
 # Begin Source File
 

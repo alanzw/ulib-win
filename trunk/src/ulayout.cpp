@@ -13,14 +13,19 @@ ULayout::ULayout()
 {
 }
 
-ULayout::~ULayout()
-{
-}
-
 BOOL ULayout::addControl(UControl *pCtrl)
 {
     m_ctrls.push_back(pCtrl);
     return TRUE;
+}
+
+BOOL ULayout::addControls( UControl **p, int n )
+{
+    for (int i=0; i<n; ++i)
+    {
+        addControl(p[i]);
+    }
+    return TRUE;    
 }
 
 UHBoxLayout::UHBoxLayout()
@@ -32,9 +37,6 @@ UHBoxLayout::~UHBoxLayout()
 
 BOOL UHBoxLayout::go()
 {
-    int w = m_rc.right - m_rc.left;
-    int h = m_rc.bottom - m_rc.top;
-
     UControlVec::size_type n = m_ctrls.size();
 
     if (0 == n)
@@ -42,20 +44,16 @@ BOOL UHBoxLayout::go()
         return FALSE;
     }
 
-    int dx = w/n;
+    int dx = m_rect.width()/n;
+    int h = m_rect.height();
 
-    RECT rc;
-    rc.left = m_rc.left;
-    rc.right = rc.left + dx;
-
-    rc.top = m_rc.top;
-    rc.bottom = rc.top + h;
+    huys::URectL rect;
+    rect.set(m_rect.left(), m_rect.top(), dx, h);
 
     for (UControlVec::size_type i=0; i<n; ++i)
     {
-        m_ctrls[i]->setPosition(&rc);
-        rc.left += dx;
-        rc.right = rc.left + dx;
+        m_ctrls[i]->setPosition(rect);
+        rect.offset(dx, 0);
     }
 
     return TRUE;
@@ -71,8 +69,8 @@ UVBoxLayout::~UVBoxLayout()
 
 BOOL UVBoxLayout::go()
 {
-    int w = m_rc.right - m_rc.left;
-    int h = m_rc.bottom - m_rc.top;
+    int w = m_rect.width();
+    int h = m_rect.height();
 
     UControlVec::size_type n = m_ctrls.size();
 
@@ -83,18 +81,13 @@ BOOL UVBoxLayout::go()
 
     int dy = h/n;
 
-    RECT rc;
-    rc.left = m_rc.left;
-    rc.right = m_rc.right;
-
-    rc.top = m_rc.top;
-    rc.bottom = rc.top + dy;
+    huys::URectL rect;
+    rect.set(m_rect.left(), m_rect.top(), w, dy);
 
     for (UControlVec::size_type i=0; i<n; ++i)
     {
-        m_ctrls[i]->setPosition(&rc);
-        rc.top += dy;
-        rc.bottom = rc.top + dy;
+        m_ctrls[i]->setPosition(rect);
+        rect.offset(0, dy);
     }
 
     return TRUE;
@@ -111,6 +104,35 @@ UGridLayout::~UGridLayout()
 
 BOOL UGridLayout::go()
 {
+    int w = m_rect.width();
+    int h = m_rect.height();
+    
+    UControlVec::size_type n = m_ctrls.size();
+    
+    if (0 == n)
+    {
+        return FALSE;
+    }
+    
+    int dx = w/nXNum;
+    int dy = h/nYNum;
+    
+    huys::URectL rect;
+    rect.set(m_rect.left(), m_rect.top(), dx, dy);
+    
+    for (UControlVec::size_type i=0; i<n; ++i)
+    {
+        m_ctrls[i]->setPosition(rect);
+        if ((i+1)%nXNum == 0)
+        {
+            rect.offset(dx-w, dy);
+        }
+        else
+        {
+            rect.offset(dx, 0);
+        }
+    }
+
     return TRUE;
 }
 

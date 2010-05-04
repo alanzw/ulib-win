@@ -1,8 +1,10 @@
-/**
- * @file
- * @author  huys <huys03@gmail.com>
- * @version 1.0.0
- */
+/***************************************************************
+ * Name:     ulib.h
+ * Purpose:  Global Macros and Settings
+ * Author:   Hu <huys03@gmail.com>
+ * Created:  2008
+ * License:  Apache
+ **************************************************************/
 
 
 /*! \mainpage ulib-win
@@ -48,7 +50,7 @@
 
 #if defined(BUILD_STATIC) || defined(WITHOUT_DLL)
   #ifdef ULIB_API
-  #undef ULIB_API
+    #undef ULIB_API
   #endif // ULIB_API
   #define ULIB_API
 #endif
@@ -81,6 +83,7 @@
 namespace Ulib
 {
 
+/*! struct for static_assert */
 template<bool> struct compile_time_check;
 
 template<> struct compile_time_check<false>

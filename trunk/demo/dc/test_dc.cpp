@@ -51,49 +51,47 @@ public:
     virtual void onDraw(HDC hdc)
     {
         HBRUSH hBrush = (HBRUSH)::GetStockObject(BLACK_BRUSH);
-        UDC udc;
-        udc.attach(hdc);
-
-        RECT rc = {10, 10, 60, 110};
-        udc.fillRect(&rc, hBrush);
+        USmartDC udc(hdc);
+        
+        huys::URectL rect(10, 10, 60, 110);
+        udc.fillRect(rect, hBrush);
 
         udc.setBKColor(::GetSysColor(COLOR_BTNFACE));
-        udc.textOut(rc.left + 15, rc.bottom+10, "1", 1);
+        udc.setBKMode(TRANSPARENT);
+        udc.textOut(rect.left() + 15, rect.bottom()+10, "1", 1);
 
         HBRUSH hBrushWhite = (HBRUSH)::GetStockObject(WHITE_BRUSH);
 
-        rc.left += 100;
-        rc.right += 100;
-        udc.frameRect(&rc, hBrush);
-        //udc.invertRect(&rc);
-        udc.textOut(rc.left + 15, rc.bottom+10, "2", 1);
+        rect.offset(100, 0);
+        udc.frameRect(rect, hBrush);
+        udc.textOut(rect.left() + 15, rect.bottom()+10, "2", 1);
 
-        RECT rcClient;
-        ::GetClientRect(m_hDlg, &rcClient);
+        huys::URectL rcClient;
+        ::GetClientRect(m_hDlg, rcClient);
 
-        udc.setViewportOrg(rcClient.left, rcClient.bottom);
-
+        udc.setViewportOrg(rcClient.left(), rcClient.bottom());
         udc.setMapMode(MM_HIENGLISH);
 
         //SetViewportOrgEx(hdc, 100, 100, NULL);
         udc.setPenColor(huys::red);
         udc.setBrushColor(huys::aliceblue);
 
-        RECT rc2 = {2500, 2100, 3000, 3100};
-        //udc.fillRect(&rc2, hBrush);
-        udc.rectangle(&rc2);
-        udc.textOut(rc2.left + 150, rc2.top - 100, "3", 1);
+        huys::URectL rect2(2500, 2100, 3000, 3100);
+        udc.rectangle(rect2);
+        udc.textOut(rect2.left() + 150, rect2.top()-100, "3", 1);
 
         udc.setPenColor(huys::aqua);
         udc.setBrushColor(huys::xpblue);
 
-        rc2.left += 1000;
-        rc2.right += 1000;
-        udc.rectangle(&rc2);
+        rect2.offset(1000, 0);
+        udc.rectangle(rect2);
         //udc.invertRect(&rc2);
-        udc.textOut(rc2.left + 150, rc2.top - 100, "4", 1);
+        udc.textOut(rect2.left() + 150, rect2.top() - 100, "4", 1);
+    }
 
-        udc.dettach();
+    BOOL onCtrlColorDlg(HDC hdc)
+    {
+        return  (BOOL)(HBRUSH)GetStockObject(LTGRAY_BRUSH);
     }
 private:
     huys::ADT::UAutoPtr<UButton> m_pBtn;

@@ -35,7 +35,7 @@ class UMyWindow : public UBaseWindow
     };
 public:
    UMyWindow()
-       : UBaseWindow(NULL, ::GetModuleHandle(NULL))
+   : UBaseWindow(NULL, ::GetModuleHandle(NULL))
    {
         this->setTitle(_T("UCalc Test 0.0.1"));
         this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
@@ -140,10 +140,11 @@ private:
     BOOL onBnEval()
     {
         //m_sFormula.reserve(m_pEdtFormula->getLineLength()+1);
-        TCHAR buf[128];
+        //TCHAR buf[128];
+        TString buf(128);
         m_pEdtFormula->getText(buf);
-
-        if (0 == buf[0])
+        buf.update();
+        if (buf.empty())
         {
             return FALSE;
         }

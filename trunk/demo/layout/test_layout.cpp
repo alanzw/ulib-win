@@ -8,6 +8,7 @@
 #include "udlgapp.h"
 #include "ulayout.h"
 #include "ubutton.h"
+#include "ustatic.h"
 #include "umsg.h"
 
 #include "adt/uautoptr.h"
@@ -15,6 +16,7 @@
 using huys::UDialogBox;
 
 using huys::layout::UHBoxLayout;
+using huys::layout::UGridLayout;
 
 class UDialogExt : public UDialogBox
 {
@@ -45,7 +47,26 @@ public:
         layout.addControl(m_pBtnSecond);
         layout.go();
         
-        
+        m_label[0] = new UStatic(m_hDlg, -1, m_hInst);
+        m_label[0]->create();
+        m_label[0]->setWindowText(_T("1"));
+
+        m_label[1] = new UStatic(m_hDlg, -1, m_hInst);
+        m_label[1]->create();
+        m_label[1]->setWindowText(_T("2"));
+
+        m_label[2] = new UStatic(m_hDlg, -1, m_hInst);
+        m_label[2]->create();
+        m_label[2]->setWindowText(_T("3"));
+
+        UGridLayout layout2;
+        layout2.setRect(300, 100, 100, 100);
+        layout2.addControls(m_label[0], 3);
+        //layout2.addControl(m_label[1]);
+        //layout2.addControl(m_label[2]);
+
+        layout2.go();
+
         m_pBtnSearch = new UButton(m_hDlg, IDC_BN_SEARCH, m_hInst);
         m_pBtnSearch->setPos(300, 200, 100, 100);
         m_pBtnSearch->create();
@@ -72,8 +93,9 @@ public:
 private:
     huys::ADT::UAutoPtr<UButton> m_pBtnFirst;
     huys::ADT::UAutoPtr<UButton> m_pBtnSecond;
-    
+  
     huys::ADT::UAutoPtr<UButton> m_pBtnSearch;
+    huys::ADT::UAutoPtr<UStatic> m_label[3];
 private:
     BOOL onBnFirst()
     {
