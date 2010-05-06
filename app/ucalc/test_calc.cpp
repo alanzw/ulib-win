@@ -19,10 +19,10 @@
 #include "adt/uautoptr.h"
 
 const char * g_cap[] = {
-    "7",  "8",   "9",  "/",
-    "4",  "5",   "6",  "*",
-    "1",  "2",   "3",  "-",
-    "0",  "+/-", ".",  "+"
+    "7",  "8",   "9",  "/", "sqrt",
+    "4",  "5",   "6",  "*", "%",
+    "1",  "2",   "3",  "-", "1/x",
+    "0",  "+/-", ".",  "+", "="
 };
 
 class UMyWindow : public UBaseWindow
@@ -32,7 +32,7 @@ class UMyWindow : public UBaseWindow
         ID_BN_EVALUATE = 1100,
         ID_BN_CLEAR    = 1101,
         ID_BN_NUM_BEGIN = 1234,
-        ID_BN_NUM_END   = 1234 + 15
+        ID_BN_NUM_END   = 1234 + 19
     };
 public:
    UMyWindow()
@@ -63,16 +63,16 @@ public:
        m_pBnEval->create();
        m_pBnEval->setWindowText(_T("Eval"));
 
-       for(int i=0; i<16; i++)
+       for(int i=0; i<20; i++)
        {
            m_pBnNum[i] =  new UButton(this, ID_BN_NUM_BEGIN + i);
-           m_pBnNum[i]->setPos(120 + i%4 * 60, 200 + i/4 * 60, 50, 50);
+           m_pBnNum[i]->setPos(120 + i%5 * 60, 200 + i/5 * 60, 50, 50);
            m_pBnNum[i]->create();
            m_pBnNum[i]->setWindowText(g_cap[i]);
        }
 
        m_pBnClear = new UButton(this, ID_BN_CLEAR);
-       m_pBnClear->setPos(420, 200, 50, 50);
+       m_pBnClear->setPos(420, 160, 50, 50);
        m_pBnClear->create();
        m_pBnClear->setWindowText(_T("Clear"));
 
@@ -190,10 +190,10 @@ private:
         return FALSE;
     }
 private:
-	huys::ADT::UAutoPtr<UEdit> m_pEdtFormula;
+    huys::ADT::UAutoPtr<UEdit> m_pEdtFormula;
     huys::ADT::UAutoPtr<UButton> m_pBnEval;
     huys::ADT::UAutoPtr<UButton> m_pBnClear;
-    huys::ADT::UAutoPtr<UButton> m_pBnNum[16];
+    huys::ADT::UAutoPtr<UButton> m_pBnNum[20];
     huys::ADT::UAutoPtr<UStatic> m_lblFormulaInfix;
     huys::ADT::UAutoPtr<UStatic> m_lblFormulaPostfix;
 
