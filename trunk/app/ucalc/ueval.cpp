@@ -72,18 +72,19 @@ void PostfixEval::setPostfixExp(const TString &exp)
 
 int PostfixEval::evaluate()
 {
-    unsigned int i;
+    //unsigned int i;
     int left, right, expValue;
     //char ch;
     TString tmp;
     TString::size_type pos = 0;
     TString::size_type newPos = 0;
-    for(i=0; i<m_sPostfixExp.length(); i++)
+    //for(i=0; i<m_sPostfixExp.length(); i++)
+    while (pos < m_sPostfixExp.length())
     {
         //ch = m_sPostfixExp.at(i);
         newPos = m_sPostfixExp.find(' ', pos);
         tmp = m_sPostfixExp.substr(pos, newPos-1);
-        pos = newPos;
+        pos =  newPos < m_sPostfixExp.length() ? newPos+1 : m_sPostfixExp.length()-1;
         if(isdigit(tmp.at(0)))
         {
             //m_operandStack.push(ch-'0');
@@ -153,8 +154,9 @@ TString Infix2Postfix::postfixExp()
         }
 
         input = infix.substr(pos, posEnd-1);
+        
 
-        if(!oper_prio[input])
+        if (!oper_prio[input])
         {
             postfix += input;
             postfix += " ";
@@ -184,10 +186,10 @@ TString Infix2Postfix::postfixExp()
             {
                  if(!input.compare("("))
                 {
-                    postfix+=topstk;
+                    postfix +=topstk;
                     postfix += " ";
                     stk.pop();
-                    continue;
+                    //continue;
                 }
                 stk.push(input);
             }
