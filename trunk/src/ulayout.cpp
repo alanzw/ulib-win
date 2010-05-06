@@ -13,6 +13,9 @@ ULayout::ULayout()
 {
 }
 
+ULayout::~ULayout() /// Implement must be supplied, or link error.
+{}
+
 BOOL ULayout::addControl(UControl *pCtrl)
 {
     m_ctrls.push_back(pCtrl);

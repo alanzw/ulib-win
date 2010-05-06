@@ -93,10 +93,15 @@ public:
 
     ~Infix2Postfix(){};
 
+    TString infixExp()
+    {
+        return infix;
+    }
 private:
     TString infix;
     TString postfix;
     UStackStr stk;//stack used to store operator
+    TString opers;
     UTableSI oper_prio;//Used to store the priority of operator
     void set_priority();//set operator's priority
 };

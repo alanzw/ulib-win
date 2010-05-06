@@ -76,6 +76,14 @@ public:
        m_pBnClear->create();
        m_pBnClear->setWindowText(_T("Clear"));
 
+       m_lblFormulaInfix = new UStatic(this, _T(""));
+       m_lblFormulaInfix->setPos(500, 100, 200, 100);
+       m_lblFormulaInfix->create();
+
+       m_lblFormulaPostfix = new UStatic(this, _T(""));
+       m_lblFormulaPostfix->setPos(500, 250, 200, 100);
+       m_lblFormulaPostfix->create();
+
        return UBaseWindow::onCreate();
    }
 
@@ -161,6 +169,9 @@ private:
         //showMsg(m_sFormula);
         Infix2Postfix i2p(buf);
 
+        m_lblFormulaInfix->setWindowText(i2p.infixExp());
+        m_lblFormulaPostfix->setWindowText(i2p.postfixExp());
+
         m_eval.setPostfixExp(i2p.postfixExp());
 
         //showMsgFormat("eval", "%s  : %d", buf, m_eval.evaluate());
@@ -183,6 +194,8 @@ private:
     huys::ADT::UAutoPtr<UButton> m_pBnEval;
     huys::ADT::UAutoPtr<UButton> m_pBnClear;
     huys::ADT::UAutoPtr<UButton> m_pBnNum[16];
+    huys::ADT::UAutoPtr<UStatic> m_lblFormulaInfix;
+    huys::ADT::UAutoPtr<UStatic> m_lblFormulaPostfix;
 
     TString m_sFormula;
 

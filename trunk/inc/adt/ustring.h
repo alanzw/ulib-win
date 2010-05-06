@@ -17,7 +17,6 @@ class UString
 {
 public:
     typedef size_t size_type;
-
 public:
     UString()
     : m_pBuf(0), m_nBufSize(DEFAULT_BUFSIZE), m_nStrLength(0)
@@ -250,7 +249,7 @@ public:
     //
     size_type find(const T s, size_type start = 0, size_type end = -1)
     {
-        for (size_type pos = start; pos < m_nBufSize && pos < end; ++pos)
+        for (size_type pos = start; pos < m_nStrLength && pos < end; ++pos)
         {
             if (s == m_pBuf[pos])
                 return pos;
@@ -267,6 +266,24 @@ public:
                 return pos;
         }
         return -1;
+    }
+
+    size_type findCharSet(const T * chars, size_type n, size_type start = 0)
+    {
+        size_type pos = -1;
+        size_type posNew = -1;
+        for (size_type i=0; i<n; ++i)
+        {
+            if ((posNew = find(chars[i], start)) != -1)
+            {
+                if (pos == -1 || posNew < pos)
+                {
+                    pos = posNew;
+                }
+            }
+        }
+
+        return pos;
     }
 
     UString substr(size_type start, size_type end)

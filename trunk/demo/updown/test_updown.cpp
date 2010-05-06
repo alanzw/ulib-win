@@ -8,6 +8,8 @@
 #include "uupdownctrl.h"
 #include "udlgapp.h"
 #include "uedit.h"
+#include "umsg.h"
+#include "adt/uautoptr.h"
 
 using huys::UDialogBox;
 
@@ -20,61 +22,41 @@ class MyDialog : public UDialogBox
     };
 public:
     MyDialog(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-          m_puud(0),
-          m_pEdit(0)
+        : UDialogBox(hInst, nID)
     {}
-
-    ~MyDialog()
-    {
-        CHECK_PTR(m_puud);
-        CHECK_PTR(m_pEdit);
-    }
 
     BOOL onInit()
     {
         m_puud = new UUpDownCtrl(m_hDlg, ID_UUPDOWNCTRL, m_hInst);
-        //RECT rc = {200, 200, 230, 250};
         m_puud->setStyles(UDS_ALIGNRIGHT|UDS_SETBUDDYINT);
         m_puud->create();
-        //m_puud->setPosition(&rc);
         m_puud->setRange(100, 1);
-        
+
         m_pEdit = new UEdit(m_hDlg, ID_ET_BUDDY, m_hInst);
+        m_pEdit->setPos(50, 50, 200, 40);
         m_pEdit->create();
-        RECT rcEdit = {50, 50, 250, 100};
-        m_pEdit->setPosition(&rcEdit);
-        
+
         m_puud->setBuddy(*m_pEdit);
-        
+
         return TRUE;
     }
 
-    virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
+    /* virtual */ BOOL onNotify(WPARAM wParam, LPARAM lParam)
     {
-        BOOL result = UDialogBox::DialogProc(message, wParam, lParam);
-
-        if (message == WM_NOTIFY)
+        if (UDN_DELTAPOS == (((LPNMHDR)lParam)->code))
         {
-            switch (((LPNMHDR)lParam)->code)
-            {
-            case UDN_DELTAPOS:
-                return onDeltaPos();
-            default:
-                break;
-            }
+            return onDeltaPos();
         }
 
-
-        return result;
+        return UDialogBox::onNotify(wParam, lParam);
     }
+
 private:
-    UUpDownCtrl *m_puud;
-    UEdit *m_pEdit;
+    huys::ADT::UAutoPtr<UUpDownCtrl> m_puud;
+    huys::ADT::UAutoPtr<UEdit> m_pEdit;
 private:
     BOOL onDeltaPos()
     {
-        
         return FALSE;
     }
 };

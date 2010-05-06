@@ -16,7 +16,7 @@
 	<File name="..\inc\ucommondialog.h" open="0" top="0" tabpos="1">
 		<Cursor position="921" topLine="39" />
 	</File>
-	<File name="..\inc\ucontrol.h" open="1" top="0" tabpos="4">
+	<File name="..\inc\ucontrol.h" open="0" top="0" tabpos="4">
 		<Cursor position="1588" topLine="51" />
 	</File>
 	<File name="..\inc\udialogx.h" open="0" top="0" tabpos="7">
@@ -37,7 +37,7 @@
 	<File name="..\inc\uicon.h" open="0" top="0" tabpos="0">
 		<Cursor position="356" topLine="4" />
 	</File>
-	<File name="..\inc\uimagelist.h" open="1" top="0" tabpos="2">
+	<File name="..\inc\uimagelist.h" open="0" top="0" tabpos="2">
 		<Cursor position="390" topLine="7" />
 	</File>
 	<File name="..\inc\ulib.h" open="0" top="0" tabpos="1">
@@ -76,7 +76,7 @@
 	<File name="..\inc\ushell.h" open="0" top="0" tabpos="1">
 		<Cursor position="699" topLine="7" />
 	</File>
-	<File name="..\inc\ustatic.h" open="1" top="0" tabpos="3">
+	<File name="..\inc\ustatic.h" open="0" top="0" tabpos="3">
 		<Cursor position="98" topLine="0" />
 	</File>
 	<File name="..\inc\ustatusbar.h" open="0" top="0" tabpos="18">
@@ -118,10 +118,10 @@
 	<File name="..\src\ucomboboxex.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="669" topLine="26" />
 	</File>
-	<File name="..\src\ucommondialog.cpp" open="1" top="1" tabpos="6">
-		<Cursor position="3853" topLine="145" />
+	<File name="..\src\ucommondialog.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="2561" topLine="102" />
 	</File>
-	<File name="..\src\ucontrol.cpp" open="1" top="0" tabpos="5">
+	<File name="..\src\ucontrol.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="3465" topLine="206" />
 	</File>
 	<File name="..\src\udc.cpp" open="0" top="0" tabpos="2">
@@ -185,7 +185,7 @@
 		<Cursor position="88" topLine="0" />
 	</File>
 	<File name="..\src\usys.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="3889" topLine="170" />
+		<Cursor position="3740" topLine="163" />
 	</File>
 	<File name="..\src\utabctrl.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="659" topLine="20" />

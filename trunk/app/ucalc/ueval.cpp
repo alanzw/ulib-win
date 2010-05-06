@@ -74,19 +74,25 @@ int PostfixEval::evaluate()
 {
     unsigned int i;
     int left, right, expValue;
-    char ch;
+    //char ch;
+    TString tmp;
+    TString::size_type pos = 0;
+    TString::size_type newPos = 0;
     for(i=0; i<m_sPostfixExp.length(); i++)
     {
-        ch = m_sPostfixExp.at(i);
-
-        if(isdigit(ch))
+        //ch = m_sPostfixExp.at(i);
+        newPos = m_sPostfixExp.find(' ', pos);
+        tmp = m_sPostfixExp.substr(pos, newPos-1);
+        pos = newPos;
+        if(isdigit(tmp.at(0)))
         {
-            m_operandStack.push(ch-'0');
+            //m_operandStack.push(ch-'0');
+            m_operandStack.push(atoi(tmp));
         }
-        else if(isOperator(ch))
+        else if(isOperator(tmp.at(0)))
         {
             getOperands(left, right);
-            m_operandStack.push(compute(left,right,ch));
+            m_operandStack.push(compute(left,right,tmp.at(0)));
         }
     }
     expValue=m_operandStack.top();
@@ -110,6 +116,7 @@ void Infix2Postfix::set_priority()
     oper_prio["%"] = 4;
     oper_prio["^"] = 5;
     oper_prio[")"] = 6;
+    opers = "#(+-*/%^)";
 }
 
 TString Infix2Postfix::postfixExp()
@@ -120,16 +127,37 @@ TString Infix2Postfix::postfixExp()
 
     stk.push("#");
 
-    TString input, topstk;
+    TString input;
+    TString topstk;
 
-    for(unsigned int i=0; i<infix.size(); ++i)
+    TString::size_type pos = 0;
+    TString::size_type posEnd = 0;
+
+    //for(unsigned int i=0; i<infix.size(); ++i)
+    while (posEnd < infix.size())
     {
-        topstk=stk.top();
-        input=infix.substr(i, i);
+        topstk = stk.top();
+
+        pos = posEnd; // Update pos value
+
+        posEnd = infix.findCharSet(opers, opers.size(), pos);
+
+        if (posEnd == -1)
+        {
+            posEnd = infix.size();
+        }
+
+        if (posEnd == pos)
+        {
+            ++posEnd;
+        }
+
+        input = infix.substr(pos, posEnd-1);
 
         if(!oper_prio[input])
         {
             postfix += input;
+            postfix += " ";
             //stk.push(input);
         }
         else
@@ -141,6 +169,7 @@ TString Infix2Postfix::postfixExp()
                     while(!topstk.compare("("))
                     {
                         postfix += topstk;
+                        postfix += " ";
                         stk.pop();
                         topstk=stk.top();
                     }
@@ -156,6 +185,7 @@ TString Infix2Postfix::postfixExp()
                  if(!input.compare("("))
                 {
                     postfix+=topstk;
+                    postfix += " ";
                     stk.pop();
                     continue;
                 }
@@ -167,6 +197,7 @@ TString Infix2Postfix::postfixExp()
     while(!topstk.compare("#"))
     {
         postfix+=topstk;
+        postfix+=" ";
         stk.pop();
         topstk=stk.top();
     }
