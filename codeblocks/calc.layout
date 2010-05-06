@@ -8,18 +8,18 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="..\app\ucalc\test_calc.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="3683" topLine="0" />
+		<Cursor position="4148" topLine="151" />
 	</File>
-	<File name="..\app\ucalc\ucalc.cpp" open="1" top="0" tabpos="3">
+	<File name="..\app\ucalc\ucalc.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="..\app\ucalc\ucalc.h" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="..\app\ucalc\ueval.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="2467" topLine="0" />
+	<File name="..\app\ucalc\ueval.cpp" open="1" top="1" tabpos="4">
+		<Cursor position="3831" topLine="158" />
 	</File>
-	<File name="..\app\ucalc\ueval.h" open="1" top="0" tabpos="4">
-		<Cursor position="211" topLine="1" />
+	<File name="..\app\ucalc\ueval.h" open="1" top="0" tabpos="5">
+		<Cursor position="1754" topLine="74" />
 	</File>
 </CodeBlocks_layout_file>

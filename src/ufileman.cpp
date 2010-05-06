@@ -88,3 +88,4 @@ BOOL UFileMan::setFileAttributes( LPCTSTR sFilename, DWORD dwFlags )
 {
     return ::SetFileAttributes(sFilename, dwFlags);   
 }
+
