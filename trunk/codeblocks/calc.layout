@@ -16,10 +16,10 @@
 	<File name="..\app\ucalc\ucalc.h" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="..\app\ucalc\ueval.cpp" open="1" top="1" tabpos="4">
+	<File name="..\app\ucalc\ueval.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="3831" topLine="158" />
 	</File>
-	<File name="..\app\ucalc\ueval.h" open="1" top="0" tabpos="5">
+	<File name="..\app\ucalc\ueval.h" open="1" top="0" tabpos="3">
 		<Cursor position="1754" topLine="74" />
 	</File>
 </CodeBlocks_layout_file>

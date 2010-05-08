@@ -163,6 +163,9 @@ public:
     //
     virtual BOOL onSize(WPARAM wParam, LPARAM lParam) {return FALSE;}
 
+    //!!!
+    virtual BOOL onDropFiles(WPARAM, LPARAM) { return FALSE;}
+    
     //
     BOOL onCtrlColor(WPARAM wParam, LPARAM lParam);
 
@@ -201,11 +204,24 @@ public:
     BOOL addStyles(DWORD dwStyles)
     {
         DWORD dwNewStyle = m_dwStyles | dwStyles;
-        if (dwStyles == dwNewStyle)
+        if (m_dwStyles == dwNewStyle)
         {
             return FALSE;
         } else {
             m_dwStyles = dwNewStyle;
+            return TRUE;
+        }
+    }
+    
+    //
+    BOOL addExStyles(DWORD dwExStyles)
+    {
+        DWORD dwNewExStyle = m_dwExStyles | dwExStyles;
+        if (m_dwExStyles == dwNewExStyle)
+        {
+            return FALSE;
+        } else {
+            m_dwExStyles = dwNewExStyle;
             return TRUE;
         }
     }

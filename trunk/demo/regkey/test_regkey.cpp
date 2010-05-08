@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     {
         cout << "Failed!" << endl;
     }
-    
+
     char buf[256];
     long size;
     if (urk.queryValue(buf, size) == ERROR_SUCCESS)
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
             showError("RegSaveKey");
         }
     }
-    
+
     cin.ignore();
     return 0;
 }

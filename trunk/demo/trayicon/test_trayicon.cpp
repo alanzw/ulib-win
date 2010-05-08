@@ -11,14 +11,9 @@
 #include "uedit.h"
 #include "colors.h"
 
-#define  WM_SHELLNOTIFY  WM_USER+5
+#include "adt/uautoptr.h"
 
-//HINSTANCE g_hInst = 0;
-const UINT ID_BTN_OK = 5555;
-const UINT ID_BTN_CANCEL = 5556;
-const UINT ID_BTN_MIN = 5557;
-const UINT IDM_RESTORE = 5558;
-const UINT IDM_EXIT = 5559;
+#define  WM_SHELLNOTIFY  WM_USER+5
 
 NOTIFYICONDATA ntd;
 
@@ -71,24 +66,16 @@ public:
 
 class UDialogExt : public UDialogBox
 {
+    enum {
+        ID_BTN_OK     = 5555,
+        ID_BTN_CANCEL = 5556,
+        ID_BTN_MIN    = 5557,
+        IDM_RESTORE   = 5558,
+        IDM_EXIT      = 5559
+    };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
     : UDialogBox(hInst, nID) {}
-
-    ~UDialogExt()
-    {
-        if (m_pUBtnOK)
-        {
-            delete m_pUBtnOK;
-            m_pUBtnOK = NULL;
-        }
-
-        if (m_pUBtnCancel)
-        {
-            delete m_pUBtnCancel;
-            m_pUBtnCancel = NULL;
-        }
-    }
 
     virtual BOOL onInit()
     {
@@ -106,30 +93,24 @@ public:
 
 
         UEditSuper ueEdit(m_hDlg, 2222, m_hInst);
+        ueEdit.setPos(20, 20, 500, 200);
         ueEdit.create();
-        RECT rcEdit = {20, 20, 500, 200};
-        ueEdit.setPosition(&rcEdit);
 
         m_pUBtnOK = new UPushButton(m_hDlg, ID_BTN_OK, m_hInst);
+        m_pUBtnOK->setPos(250, 260, 70, 40);
         m_pUBtnOK->create();
-        RECT rcBtn = {250, 260, 320, 300};
-        m_pUBtnOK->setPosition(&rcBtn);
         m_pUBtnOK->setWindowText(_T("OK"));
 
         m_pUBtnCancel = new UPushButton(m_hDlg, ID_BTN_CANCEL, m_hInst);
+        m_pUBtnCancel->setPos(330, 260, 70, 40);        
         m_pUBtnCancel->create();
-        rcBtn.left += 90;
-        rcBtn.right += 90;
-        m_pUBtnCancel->setPosition(&rcBtn);
         m_pUBtnCancel->setWindowText(_T("Cancel"));
 
         //
         UPushButton ubn_min(m_hDlg, ID_BTN_MIN, m_hInst);
-        rcBtn.left += 90;
-        rcBtn.right += 110;
+        ubn_min.setPos(410, 260, 80, 40);
         ubn_min.create();
         ubn_min.setWindowText(_T("&Minimize"));
-        ubn_min.setPosition(&rcBtn);
 
         ntd.cbSize = sizeof(NOTIFYICONDATA);
         ntd.hWnd = m_hDlg;
@@ -198,7 +179,7 @@ public:
                     POINT pt;
                     ::GetCursorPos(&pt);
                     ::SetForegroundWindow(m_hDlg);
-                    ::TrackPopupMenu(hPopupMenu, TPM_RIGHTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y, NULL, m_hDlg, NULL);
+                    ::TrackPopupMenu(hPopupMenu, TPM_RIGHTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y, 0, m_hDlg, NULL);
                     ::PostMessage(m_hDlg, WM_NULL, 0, 0);
                 }
                 else if (lParam==WM_LBUTTONDBLCLK)
@@ -230,8 +211,8 @@ public:
         return UDialogBox::onDestroy();
     }
 private:
-    UPushButton *m_pUBtnOK;
-    UPushButton *m_pUBtnCancel;
+    huys::ADT::UAutoPtr<UPushButton> m_pUBtnOK;
+    huys::ADT::UAutoPtr<UPushButton> m_pUBtnCancel;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

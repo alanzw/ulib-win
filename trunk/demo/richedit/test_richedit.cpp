@@ -9,22 +9,19 @@
 #include "urichedit.h"
 #include "udlgapp.h"
 
-const UINT IDC_RICHEDIT = 10001;
+#include "adt/uautoptr.h"
 
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
 {
+    enum {
+        IDC_RICHEDIT  = 10001
+    };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-          m_pRichEdit(0)
+        : UDialogBox(hInst, nID)
     {}
-
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_pRichEdit);
-    }
 
     virtual BOOL onInit()
     {
@@ -47,7 +44,8 @@ public:
         return TRUE;
     }
 private:
-    URichEdit *m_pRichEdit;
+    huys::ADT::UAutoPtr<URichEdit> m_pRichEdit;
 };
 
 UDLGAPP_T(UDialogExt, IDD_DIALOG1);
+

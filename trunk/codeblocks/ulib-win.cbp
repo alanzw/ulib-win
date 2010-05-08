@@ -91,6 +91,7 @@
 		<Unit filename="..\inc\ustatusbar.h" />
 		<Unit filename="..\inc\usys.h" />
 		<Unit filename="..\inc\utabctrl.h" />
+		<Unit filename="..\inc\uthread.h" />
 		<Unit filename="..\inc\utime.h" />
 		<Unit filename="..\inc\utimer.h" />
 		<Unit filename="..\inc\utoolbar.h" />
@@ -138,6 +139,7 @@
 		<Unit filename="..\src\ustatusbar.cpp" />
 		<Unit filename="..\src\usys.cpp" />
 		<Unit filename="..\src\utabctrl.cpp" />
+		<Unit filename="..\src\uthread.cpp" />
 		<Unit filename="..\src\utime.cpp" />
 		<Unit filename="..\src\utimer.cpp" />
 		<Unit filename="..\src\utoolbar.cpp" />

@@ -32,7 +32,8 @@ Revision History:
 
 #include "precomp.h"
 #include "safe.h"
-#include <ntstrsafe.h>
+//#include <ntstrsafe.h>
+
 WIN_VER_DETAIL g_WinVer;
 
 KEVENT g_RunEvent;
@@ -133,7 +134,7 @@ ULONG Quote_HookDrive                    =0;
 #endif // ALLOC_PRAGMA
 
 NTSTATUS
-DriverEntry(IN PDRIVER_OBJECT DriverObject,IN PUNICODE_STRING RegistryPath)
+DDKAPI DriverEntry(IN PDRIVER_OBJECT DriverObject,IN PUNICODE_STRING RegistryPath)
 {
     NTSTATUS            status;    
     UNICODE_STRING        ntDeviceName;
@@ -267,7 +268,7 @@ failed:
 }
 
 NTSTATUS
-SafemodelDispatchCreate(
+DDKAPI SafemodelDispatchCreate(
     IN PDEVICE_OBJECT        DeviceObject,
     IN PIRP                    Irp
     )
@@ -286,7 +287,7 @@ SafemodelDispatchCreate(
 }
 
 NTSTATUS
-SafemodelDispatchClose(
+DDKAPI SafemodelDispatchClose(
     IN PDEVICE_OBJECT        DeviceObject,
     IN PIRP                    Irp
     )
@@ -304,7 +305,7 @@ SafemodelDispatchClose(
 }
 
 NTSTATUS
-SafemodelDispatchDeviceControl(
+DDKAPI SafemodelDispatchDeviceControl(
     IN PDEVICE_OBJECT        DeviceObject,
     IN PIRP                    Irp
     )
@@ -530,7 +531,7 @@ SafemodelDispatchDeviceControl(
     return status;
 }
 
-VOID SafemodelUnload(IN PDRIVER_OBJECT DriverObject)
+VOID DDKAPI SafemodelUnload(IN PDRIVER_OBJECT DriverObject)
 {
     UNICODE_STRING dosDeviceName;
     NTSTATUS status;
@@ -676,6 +677,7 @@ HANDLE GetProcPidByObjName(PWCHAR pwObjName,int iSize)
     ExFreePool(Handles);
     return CsrId;
 }
+/*
 VOID ZeroMemory(VOID* pobj,int len)
 {
     _asm
@@ -687,6 +689,8 @@ VOID ZeroMemory(VOID* pobj,int len)
         rep stosb
     }
 }
+
+
 BOOLEAN Sleep(ULONG MillionSecond)
 {
     NTSTATUS ntStatus;
@@ -698,6 +702,8 @@ BOOLEAN Sleep(ULONG MillionSecond)
     else
         return FALSE;
 }
+*/
+
 WIN_VER_DETAIL GetWindowsVersion()
 {
     RTL_OSVERSIONINFOEXW osverinfo = { sizeof(osverinfo) }; 
@@ -769,7 +775,7 @@ NTSTATUS   GetFilePathVista(HANDLE  KeyHandle,char   *fullname)  //È¡×Ó½ø³ÌÎÄ¼þÃ
     __try
     {
         if (KeyHandle==0) return STATUS_ACCESS_DENIED;
-        if (NT_SUCCESS(ObReferenceObjectByHandle(KeyHandle,0,*IoFileObjectType,KernelMode,&pKey,NULL)))
+        if (NT_SUCCESS(ObReferenceObjectByHandle(KeyHandle,0,IoFileObjectType,KernelMode,&pKey,NULL)))
         {
             if (NT_SUCCESS(RtlVolumeDeviceToDosName(pKey->DeviceObject,&dosName)))
             {
@@ -782,11 +788,11 @@ NTSTATUS   GetFilePathVista(HANDLE  KeyHandle,char   *fullname)  //È¡×Ó½ø³ÌÎÄ¼þÃ
         }
         return STATUS_ACCESS_DENIED;
     }
-    __except(EXCEPTION_EXECUTE_HANDLER)
-    {
-        ZeroMemory(fullname,MAX_PATH);
-        return STATUS_SEVERITY_WARNING;
-    }
+    //__except(EXCEPTION_EXECUTE_HANDLER)
+    //{
+    //    ZeroMemory(fullname,MAX_PATH);
+    //    return STATUS_SEVERITY_WARNING;
+    //}
     
 }
 
@@ -840,12 +846,12 @@ NTSTATUS   GetFilePath2000_2003(HANDLE     KeyHandle,char   *fullname)  //È¡ÎÄ¼þ
         ExFreePool(fullUniName.Buffer);  
         return   STATUS_SUCCESS;
     }
-    __except(1)   
-    {   
-        if(fullUniName.Buffer) ExFreePool(fullUniName.Buffer);   
-        if(pKey)   ObDereferenceObject(pKey   );   
-        return   STATUS_SUCCESS;
-    }
+    //__except(1)   
+    //{   
+    //    if(fullUniName.Buffer) ExFreePool(fullUniName.Buffer);   
+    //    if(pKey)   ObDereferenceObject(pKey   );   
+    //    return   STATUS_SUCCESS;
+    //}
 }
 
 NTSTATUS   GetFilePath(HANDLE     KeyHandle,char   *fullname)
@@ -915,29 +921,29 @@ BOOL GetProcessName(PEPROCESS pProcess,PCHAR pProcessName)     //È¡½ø³ÌÃû
         switch(g_WinVer)
         {
         case WINDOWS_VERSION_2K:
-            (ULONG)pProcess=((ULONG)pProcess)+0x1fc;
+            pProcess=((ULONG)pProcess)+0x1fc;
             break;
         case WINDOWS_VERSION_XP:
-            (ULONG)pProcess=((ULONG)pProcess)+0x174;
+            pProcess=((ULONG)pProcess)+0x174;
             break;
         case WINDOWS_VERSION_2K3:
-            (ULONG)pProcess=((ULONG)pProcess)+0x154;
+            pProcess=((ULONG)pProcess)+0x154;
             break;
         case WINDOWS_VERSION_2K3_SP1_SP2:
-            (ULONG)pProcess=((ULONG)pProcess)+0x164;
+           pProcess=((ULONG)pProcess)+0x164;
             break;
         case WINDOWS_VERSION_VISTA:
-            (ULONG)pProcess=((ULONG)pProcess)+0x14c;
+            pProcess=((ULONG)pProcess)+0x14c;
             break;
         }
         memcpy((PVOID)pProcessName,(char*)pProcess,16);
         return TRUE;
     }
-    __except(EXCEPTION_EXECUTE_HANDLER)
-    {
-        memcpy(pProcessName,"Get Process Name Fall",strlen("Get Process Name Fall"));
-        return FALSE;
-    }
+    //__except(EXCEPTION_EXECUTE_HANDLER)
+    //{
+    //    memcpy(pProcessName,"Get Process Name Fall",strlen("Get Process Name Fall"));
+    //    return FALSE;
+    //}
 }
 BOOL GetProcessPath(HANDLE hProcess,PCHAR pPathName)     //È¡½ø³ÌÂ·¾¶
 {
@@ -955,18 +961,19 @@ BOOL GetProcessPath(HANDLE hProcess,PCHAR pPathName)     //È¡½ø³ÌÂ·¾¶
         }
         else
         {
-            __asm int 3;
+            //__asm int 3;
+			INTERRUPT_3;
         }
     }
     
-    __except(EXCEPTION_EXECUTE_HANDLER)
-    {
-        if(NT_SUCCESS(ObReferenceObjectByHandle(hProcess,0,NULL,KernelMode,&pEprocess,NULL)))
-        {
-            result=GetProcessName(pEprocess,pPathName);
-            ObDereferenceObject (pEprocess);
-        }
-    }
+    //__except(EXCEPTION_EXECUTE_HANDLER)
+    //{
+    //    if(NT_SUCCESS(ObReferenceObjectByHandle(hProcess,0,NULL,KernelMode,&pEprocess,NULL)))
+    //    {
+    //        result=GetProcessName(pEprocess,pPathName);
+    //        ObDereferenceObject (pEprocess);
+    //    }
+    //}
     return result;
 }
 
@@ -1046,10 +1053,10 @@ BOOL GoOrNot(PVOID pSrc,PVOID pObj,ULONG dFun,PVOID pValue1,PVOID pValue2,PVOID 
                 RtlStringCchCopyA(g_pRegData->szRegType,25,"REG_BINARY");
                 RtlStringCchPrintfA(g_pRegData->szRegData,MAX_PATH,"%d",*((DWORD*)pValue2));
             }
-            __except(EXCEPTION_EXECUTE_HANDLER)
-            {
-                ZeroMemory(g_pRegData->szRegData,MAX_PATH);
-            }
+            //__except(EXCEPTION_EXECUTE_HANDLER)
+            //{
+            //    ZeroMemory(g_pRegData->szRegData,MAX_PATH);
+            //}
             break;
         case REG_DWORD:
             __try
@@ -1057,10 +1064,10 @@ BOOL GoOrNot(PVOID pSrc,PVOID pObj,ULONG dFun,PVOID pValue1,PVOID pValue2,PVOID 
                 RtlStringCchCopyA(g_pRegData->szRegType,25,"REG_DWORD");
                 RtlStringCchPrintfA(g_pRegData->szRegData,MAX_PATH,"%d",*((DWORD*)pValue2));
             }
-            __except(EXCEPTION_EXECUTE_HANDLER)
-            {
-                ZeroMemory(g_pRegData->szRegData,MAX_PATH);
-            }
+            //__except(EXCEPTION_EXECUTE_HANDLER)
+            //{
+            //    ZeroMemory(g_pRegData->szRegData,MAX_PATH);
+            //}
             break;
         case REG_DWORD_BIG_ENDIAN:
             __try
@@ -1068,10 +1075,10 @@ BOOL GoOrNot(PVOID pSrc,PVOID pObj,ULONG dFun,PVOID pValue1,PVOID pValue2,PVOID 
                 RtlStringCchCopyA(g_pRegData->szRegType,25,"REG_DWORD_BIG_ENDIAN");
                 RtlStringCchPrintfA(g_pRegData->szRegData,MAX_PATH,"%d",*((DWORD*)pValue2));
             }
-            __except(EXCEPTION_EXECUTE_HANDLER)
-            {
-                ZeroMemory(g_pRegData->szRegData,MAX_PATH);
-            }
+            //__except(EXCEPTION_EXECUTE_HANDLER)
+            //{
+            //    ZeroMemory(g_pRegData->szRegData,MAX_PATH);
+            //}
             break;
         case REG_QWORD:
             __try
@@ -1079,10 +1086,10 @@ BOOL GoOrNot(PVOID pSrc,PVOID pObj,ULONG dFun,PVOID pValue1,PVOID pValue2,PVOID 
                 RtlStringCchCopyA(g_pRegData->szRegType,25,"REG_QWORD");
                 RtlStringCchPrintfA(g_pRegData->szRegData,MAX_PATH,"%d",*((DWORD*)pValue2));
             }
-            __except(EXCEPTION_EXECUTE_HANDLER)
-            {
-                ZeroMemory(g_pRegData->szRegData,MAX_PATH);
-            }
+            //__except(EXCEPTION_EXECUTE_HANDLER)
+            //{
+            //    ZeroMemory(g_pRegData->szRegData,MAX_PATH);
+            //}
             break;
         case REG_EXPAND_SZ:
             RtlStringCchCopyA(g_pRegData->szRegType,25,"REG_EXPAND_SZ");
@@ -1257,15 +1264,18 @@ BOOL FakeAnyPro(IN PULONG FakeFunPos,IN ULONG NewFunValue,OUT PULONG POldFunValu
 {
     if (!*fakestate)
     {
-        _asm
+#ifdef _MSC_VER
+		_asm
         {
             CLI                    //disable interrupt
             MOV    EAX, CR0        //move CR0 register into EAX
             AND EAX, NOT 10000H //disable WP bit
             MOV    CR0, EAX        //write register back
         }
+#endif
         memmove(POldFunValue,FakeFunPos,4);
         memmove(FakeFunPos,&NewFunValue,4);
+#ifdef _MSC_VER
         _asm
         {
             MOV    EAX, CR0        //move CR0 register into EAX
@@ -1273,6 +1283,7 @@ BOOL FakeAnyPro(IN PULONG FakeFunPos,IN ULONG NewFunValue,OUT PULONG POldFunValu
             MOV    CR0, EAX        //write register back
             STI                    //enable interrupt
         }
+#endif
         *fakestate = TRUE;
         return TRUE;
     }
@@ -1286,6 +1297,7 @@ BOOL UnFakeAnyPro(IN PULONG FakeFunPos,IN  ULONG OldFunValue,OUT PBOOL fakestate
 {
     if (*fakestate)
     {
+#ifdef _MSC_VER
         _asm
         {
             CLI                    //disable interrupt
@@ -1293,7 +1305,9 @@ BOOL UnFakeAnyPro(IN PULONG FakeFunPos,IN  ULONG OldFunValue,OUT PBOOL fakestate
             AND EAX, NOT 10000H //disable WP bit
             MOV    CR0, EAX        //write register back
         }
+#endif
         memmove((PULONG)FakeFunPos,&OldFunValue,4);
+#ifdef _MSC_VER
         _asm
         {
             MOV    EAX, CR0        //move CR0 register into EAX
@@ -1301,6 +1315,7 @@ BOOL UnFakeAnyPro(IN PULONG FakeFunPos,IN  ULONG OldFunValue,OUT PBOOL fakestate
             MOV    CR0, EAX        //write register back
             STI                    //enable interrupt
         }
+#endif
         *fakestate = FALSE;
         return TRUE;
     }
@@ -1442,7 +1457,7 @@ unsigned int GetAddressOfShadowTable()
     unsigned int i;
     unsigned char *p;
     unsigned int dwordatbyte;
-    __declspec(dllimport) _stdcall KeAddSystemServiceTable(PVOID, PVOID, PVOID, PVOID, PVOID);
+    //__declspec(dllimport) _stdcall KeAddSystemServiceTable(PVOID, PVOID, PVOID, PVOID, PVOID);
     p = (unsigned char*) KeAddSystemServiceTable;
 
     for(i = 0; i < 4096; i++, p++)
@@ -1451,10 +1466,10 @@ unsigned int GetAddressOfShadowTable()
         {
             dwordatbyte = *(unsigned int*)p;
         }
-        __except(EXCEPTION_EXECUTE_HANDLER)
-        {
-            return 0;
-        }
+        //__except(EXCEPTION_EXECUTE_HANDLER)
+        //{
+        //    return 0;
+        //}
         if(MmIsAddressValid((PVOID)dwordatbyte))
         {
             if(memcmp((PVOID)dwordatbyte,KeServiceDescriptorTable, 16) == 0)
@@ -1892,7 +1907,8 @@ NTSTATUS FakedNtSetSystemInformation(IN SYSTEM_INFORMATION_CLASS SystemInformati
         return STATUS_INVALID_INFO_CLASS;
     }
 }
-NTSTATUS FakedNtSystemDebugControl(IN enum DEBUG_CONTROL_CODE ControlCode,IN PVOID InputBuffer OPTIONAL,IN ULONG InputBufferLength,OUT PVOID OutputBuffer OPTIONAL,IN ULONG OutputBufferLength,OUT PULONG ReturnLength OPTIONAL)
+
+NTSTATUS FakedNtSystemDebugControl(IN DEBUG_CONTROL_CODE ControlCode,IN PVOID InputBuffer OPTIONAL,IN ULONG InputBufferLength,OUT PVOID OutputBuffer OPTIONAL,IN ULONG OutputBufferLength,OUT PULONG ReturnLength OPTIONAL)
 {
     PEPROCESS TempCurrentProcess;
     char aProcessName[MAX_PATH];
@@ -2030,6 +2046,8 @@ NTSTATUS FakedNtSystemDebugControl(IN enum DEBUG_CONTROL_CODE ControlCode,IN PVO
         return RETURN_ERRO_NOBOX;
     }
 }
+
+
 NTSTATUS FakedNtWriteFile(
                           IN HANDLE FileHandle,
                           IN HANDLE Event OPTIONAL,
