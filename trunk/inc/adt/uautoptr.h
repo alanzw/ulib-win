@@ -46,6 +46,7 @@ public:
     }
 
 #if defined(_MSC_VER) && (_MSC_VER <= 1200)
+
     operator HDC() const
     {
         return (HDC)(*_p);

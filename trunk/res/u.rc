@@ -18,9 +18,23 @@
 #define IDI_PEN 4
 #endif
 
+#ifndef IDI_GOOGLE
+#define IDI_GOOGLE 11
+#endif
+
 #ifdef MINGW_RC
 
 IDI_APP ICON DISCARDABLE "u.ico"
+
+IDI_BICYCLE ICON DISCARDABLE "bicycle.ico"
+
+IDI_TREE ICON DISCARDABLE "tree.ico"
+
+IDI_FAN  ICON DISCARDABLE "fan.ico"
+
+IDI_SWITCH ICON DISCARDABLE "switch.ico"
+
+IDI_WHEEL ICON DISCARDABLE "wheel.ico"
 
 #endif
 
@@ -29,6 +43,8 @@ IDI_ULIB ICON DISCARDABLE "ulib.ico"
 IDI_HELP ICON DISCARDABLE "help.ico"
 
 IDI_PEN  ICON DISCARDABLE "pen.ico"
+
+IDI_GOOGLE ICON DISCARDABLE "google.ico"
 
 //
 // Manifest resources

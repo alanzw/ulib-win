@@ -26,6 +26,7 @@
 
 #include "aui/aui_label.h"
 #include "aui/aui_button.h"
+#include "aui/aui_aboutdlg.h"
 
 #include "ufilesplit.h"
 
@@ -160,11 +161,15 @@ public:
 
         m_output = new UEdit(this, ID_FILE_OUTPUT);
         m_output->setStyles(ES_MULTILINE);
-        m_output->setPos(50, 470, 350, 50);
+        m_output->setPos(120, 470, 350, 50);
         m_output->create();
 
+        m_lbOutput = new AUI::UTransLabel(this, _T("Input Name"));
+        m_lbOutput->setPos(50, 470, 50, 50);
+        m_lbOutput->create();
+
         m_select = new UButton(this, ID_BUTTON_SELECT);
-        m_select->setPos(420, 470, 60, 50);
+        m_select->setPos(480, 470, 60, 50);
         m_select->create();
         m_select->setWindowText(_T("Select"));
 
@@ -332,11 +337,14 @@ private:
     AUI::UTransRadioButtonP m_rbMerge;
     AUI::UTransLabelP m_lbSize;
     AUI::UTransLabelP m_lbBufferSize;
+    AUI::UTransLabelP m_lbOutput;
     huys::ADT::UAutoPtr<UComboBox> m_cbBuffer;
 
     USMode mode;
 
     huys::ADT::UVector<huys::ADT::UString<char, MAX_PATH> > fin_names;
+
+    AUI::UAboutDialogP aboutDlg;
 private:
     //
     void go_update()
@@ -428,6 +436,10 @@ private:
 
         mode = MODE_SPLIT;
 
+        m_lbOutput->hide();
+        m_lbOutput->setWindowText(_T("Input Name"));
+        m_lbOutput->show();
+
         return FALSE;
     }
 
@@ -441,13 +453,31 @@ private:
         m_unit->disable();
 
         mode = MODE_MERGE;
+        
+        m_lbOutput->hide();
+        m_lbOutput->setWindowText(_T("Output Name"));
+        m_lbOutput->show();
 
         return FALSE;
     }
 
     BOOL onMenuAbout()
     {
-        showMsg(_T("About UFileSplit 0.0.1"));
+        //showMsg(_T("About UFileSplit 0.0.1"));
+        
+        if (aboutDlg == 0)
+        {
+            aboutDlg = new AUI::UAboutDialog(this);
+            aboutDlg->setHeader("UFileSplit 0.0.1");
+            aboutDlg->setDescription("UFileSplit is written by huys03@gmail.com");
+            aboutDlg->addStyles(WS_SYSMENU);
+            aboutDlg->create();
+        }
+        else
+        {
+            aboutDlg->show();
+        }
+        
         return FALSE;
     }
 };

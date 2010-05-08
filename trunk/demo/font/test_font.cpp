@@ -10,6 +10,7 @@
 #include "ufont.h"
 #include "ucommondialog.h"
 #include "adt/uautoptr.h"
+#include "udc.h"
 
 using huys::UDialogBox;
 
@@ -25,12 +26,21 @@ public:
 
     virtual BOOL onInit()
     {
+        //setDlgIconBig(IDI_GOOGLE);
+        setDlgIconSmall(IDI_GOOGLE);
+        
         m_pBnGo = new UButton(m_hDlg, IDC_BN_GO, m_hInst);
         m_pBnGo->create();
         m_pBnGo->setWindowText(_T("GO"));
 
+        
+
         RECT rc = { 200, 100, 380, 150};
         m_pBnGo->setPosition(&rc);
+
+        m_font.setFontFaceName(_T("Times New Roman"));
+        m_font.setFontHeight(15);
+        m_font.create();
 
         return TRUE;
     }
@@ -44,6 +54,19 @@ public:
         default:
             return UDialogBox::onCommand(wParam, lParam);
         }
+    }
+
+    void onDraw(HDC hdc)
+    {
+        USmartDC dc(hdc);
+
+        m_font.select(dc);
+
+        dc.setBKMode(TRANSPARENT);
+        dc.textOut(200, 200, "Cross River", 11);
+
+        dc.setTextColor(huys::burlywood);
+        dc.textOut(200, 250, "Cross River", 11);
     }
 
     BOOL onBnGo()

@@ -15,21 +15,21 @@ USmartObject::USmartObject (CLSID const & classId, bool running)
 :_iUnk (0)
 {
     HRESULT hr = S_OK;
-        if (running)
-        {
-            ::GetActiveObject (classId, 0, & _iUnk);
-        }
-        if (_iUnk == 0)
-        {
-            hr = ::CoCreateInstance (
-                       classId,
-                       0,
-                       CLSCTX_SERVER,
-                       IID_IUnknown,
-                       (void**)& _iUnk);
-        }
-        if (FAILED (hr))
-            throw HEx (hr, "Couldn't create instance");
+    if (running)
+    {
+        ::GetActiveObject (classId, 0, & _iUnk);
+    }
+    if (_iUnk == 0)
+    {
+        hr = ::CoCreateInstance (
+            classId,
+            0,
+            CLSCTX_SERVER,
+            IID_IUnknown,
+            (void**)& _iUnk);
+    }
+    if (FAILED (hr))
+        throw HEx (hr, "Couldn't create instance");
 
 }
 
