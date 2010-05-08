@@ -233,6 +233,8 @@ void linequ_driver()
 /* Fills solution into x. Warning: will modify c and d! */
 bool TridiagonalSolve (const double *a, const double *b, double *c, double *d, double *x, unsigned int n)
 {
+    unsigned int i = 0; 
+
     if (b[0] < 1.e-8)
     {
         return false;
@@ -242,7 +244,7 @@ bool TridiagonalSolve (const double *a, const double *b, double *c, double *d, d
     c[0] /= b[0];   /* Division by zero risk. */
     d[0] /= b[0];   /* Division by zero would imply a singular matrix.
                      */
-    for (unsigned int i = 1; i < n; i++)
+    for (i = 1; i < n; i++)
     {
         double id = 1 / (b[i] - c[i-1] * a[i]);  /* Division by zero risk. */
         if (id < 1.e-8)
@@ -256,7 +258,7 @@ bool TridiagonalSolve (const double *a, const double *b, double *c, double *d, d
 
     /* Now back substitute. */
     x[n - 1] = d[n - 1];
-    for (int i = n - 2; i >= 0; i--)
+    for (i = n - 2; i >= 0; i--)
     {
         x[i] = d[i] - c[i] * x[i + 1];
     }

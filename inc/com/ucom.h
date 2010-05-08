@@ -118,7 +118,8 @@ class UCoObject
 {
 public:
     virtual void * acquireInterface (IID const & iid) = 0;
-    virtual ~UCoObject(){}
+    UCoObject() { CoInitialize(); }
+    virtual ~UCoObject(){ CoUninitialize(); }
 };
 
 class HEx
@@ -217,6 +218,7 @@ public:
     {}
 };
 
+template <typename T = IDispatch>
 class UDispObject: public UCoObject
 {
 public:
@@ -292,11 +294,12 @@ public:
         return p;
     }
 
+    T * operator-> () { return _iDisp; }
 protected:
-    UDispObject (IDispatch * iDisp) : _iDisp (iDisp) {}
+    UDispObject (T * iDisp) : _iDisp (iDisp) {}
     UDispObject () : _iDisp (0) {}
 protected:
-    IDispatch * _iDisp;
+    T * _iDisp;
 };
 
 //

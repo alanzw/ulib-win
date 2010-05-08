@@ -4,6 +4,8 @@
 
 #define IDI_APP   1
 #define IDI_ULIB  2
+#define IDI_SYSADM 6
+#define IDI_GOOGLE 11
 #define IDD_TEST  10001
 
 #define IDB_HELP_FOCUS                  129

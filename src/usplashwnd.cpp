@@ -215,6 +215,11 @@ bool USplashWindow::setTransparentColor(huys::Color clr)
 #ifndef LWA_COLORKEY
 #define LWA_COLORKEY 1
 #endif
+
+#ifndef WS_EX_LAYERED
+#define WS_EX_LAYERED 0x00080000
+#endif
+
         this->modifyExStyles(WS_EX_LAYERED);
         UDllMan dlm(_T("user32.dll"));
         dlm.callFunc<BOOL, HWND, COLORREF, BYTE, DWORD>(_T("SetLayeredWindowAttributes"),
