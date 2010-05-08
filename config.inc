@@ -68,6 +68,8 @@ CONFIG_OBJS  =    \
 CRYPTO_OBJS =     \
     md5.o         \
     crc32.o       \
+    base64.o      \
+
 
 ifeq ($(PLATFORM), win32)
     DB_OBJS =         \

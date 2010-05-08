@@ -137,6 +137,7 @@ SUBDIRS = \
           wnet        \
           printer     \
           palette     \
+          base64      \
 
 #
 all:

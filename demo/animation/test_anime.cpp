@@ -9,33 +9,26 @@
 #include "udlgapp.h"
 #include "uanimation.h"
 
-const UINT IDC_ANIME = 10001;
+#include "adt/uautoptr.h"
 
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
 {
+    enum {
+        IDC_ANIME = 10001
+    };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-    : UDialogBox(hInst, nID),
-      m_pAnime(0)
+    : UDialogBox(hInst, nID)
     {}
-
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_pAnime);
-    }
 
     virtual BOOL onInit()
     {
         m_pAnime = new UAnimation(m_hDlg, IDC_ANIME, m_hInst);
-
+        m_pAnime->setPos(100, 100, 100, 100);
         m_pAnime->setTransparent();
-
-        RECT rc = {100, 100, 200, 200};
-
         m_pAnime->create();
-        m_pAnime->setPosition(&rc);
         m_pAnime->show();
         //m_pAnime->open(IDR_AVI_FILECOPY);
         m_pAnime->open(_T("1.avi"));
@@ -76,7 +69,7 @@ public:
         }
     }
 private:
-    UAnimation *m_pAnime;
+    huys::ADT::UAutoPtr<UAnimation> m_pAnime;
 };
 
 UDLGAPP_T(UDialogExt, IDD_DIALOG1);

@@ -24,7 +24,13 @@ Revision History:
 #ifndef _PRECOMP_H
 #define _PRECOMP_H 1
 
-#include <ntddk.h>
+#ifdef __GNUC__
+  #include <ddk/ntddk.h>
+#else
+  #include <ntddk.h>
+#endif
+
+#define DBG 1
 
 #define dprintf if (DBG) DbgPrint
 #define nprintf DbgPrint

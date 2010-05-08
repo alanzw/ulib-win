@@ -60,7 +60,7 @@ public:
         this->setTitle(_T("UFileSplit 0.0.1"));
         this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
         this->setPos(0, 0, 800, 600);
-
+        this->addExStyles(WS_EX_ACCEPTFILES);
         mode = MODE_SPLIT;
     }
 
@@ -241,43 +241,66 @@ public:
         }
     }
 
+    BOOL onDropFiles(WPARAM wParam, LPARAM lParam)
+    {
+        HDROP hDropInfo = (HDROP)wParam;
+        WORD wNumFilesDropped = ::DragQueryFile(hDropInfo, -1, NULL, 0);
+        //showMsgFormat(_T("dropfile"), _T("%u"), wNumFilesDropped);
+        huys::ADT::UString<char, MAX_PATH> filename;
+        huys::ADT::UString<char, MAX_PATH> tmp;
+        for (WORD w=0; w<wNumFilesDropped; ++w)
+        {
+            DragQueryFile(hDropInfo, w, filename, MAX_PATH);
+            if (!fin_names.is_already_exist(filename))
+            {
+                fin_names.push_back(filename);
+
+                int nCount = m_lv->getItemCount();
+                m_lv->addItemTextImage(nCount, tmp.format("%d", nCount+1), 0);
+                m_lv->setItemText(nCount, 1, filename);
+            }
+        }
+
+        return FALSE;
+    }
+
     void run()
     {
 
     DWORD dwBufSize = m_cbBuffer->getItemData(m_cbBuffer->getCurSel());
-    
+
     if (MODE_SPLIT == mode)
     {
         DWORD dwEachSize;
-        
+
         huys::ADT::UStringAnsi strSize;
-        
+
         m_size->getWindowText(strSize, 10);
-        
+
         dwEachSize = atoi(strSize) * m_unit->getItemData(m_unit->getCurSel());
-        
+
         huys::ADT::UStringAnsi fin_name(MAX_PATH);
         huys::ADT::UStringAnsi fout_name(MAX_PATH);
-        
+
         m_output->getWindowText(fin_name, MAX_PATH);
-        
+
         fout_name = fin_name;
-        
+
         UFileSplit::split(fin_name, dwEachSize, dwBufSize, fout_name);
-        
+
     }
     else
     {
-        
+
         huys::ADT::UString<char, MAX_PATH> fin_name(MAX_PATH);
         huys::ADT::UString<char, MAX_PATH> fout_name(MAX_PATH);
-        
+
         m_output->getWindowText(fout_name, MAX_PATH);
-        
+
         //huys::ADT::UVector<huys::ADT::UString<char, MAX_PATH> > fin_names;
-        
+
         int n = m_lv->getItemCount();
-        
+
         //for (int i=0; i<n; ++i)
         //{
         //    m_lv->getItemText(i, 1, fin_name, MAX_PATH);
@@ -337,7 +360,7 @@ private:
                 {
                     fin_names.push_back(filename);
 
-                        int nCount = m_lv->getItemCount();
+                    int nCount = m_lv->getItemCount();
                     m_lv->addItemTextImage(nCount, tmp.format("%d", nCount+1), 0);
                     m_lv->setItemText(nCount, 1, filename);
                 }

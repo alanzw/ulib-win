@@ -26,17 +26,13 @@ public:
           m_splash(hInst)
     {}
 
-    ~UDialogExt()
-    {
-    }
-
     virtual BOOL onInit()
     {
         //m_splash.setBmp(_T("bk.bmp"));
 
         m_splash.setBmp(IDB_BACKGROUND, m_hInst);
         m_splash.showSplash(3000);
-        
+
         _btn = new UButton(m_hDlg, ID_BN_SHOWSPLASH, m_hInst);
         _btn->setPos(100, 100, 100, 50);
         _btn->create();
@@ -68,7 +64,7 @@ public:
 private:
 
     USplashWindow m_splash;
-    
+
     huys::ADT::UAutoPtr<UButton> _btn;
 };
 

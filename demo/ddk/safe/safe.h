@@ -24,6 +24,21 @@ Revision History:
 
 #ifndef _SAFEMODEL_H
 #define _SAFEMODEL_H 1
+
+#ifndef _MSC_VER
+#define __in
+#define __out
+#define __inout
+#define __in_opt
+#define __out_opt
+#define __deref_out
+#define __out_bcount_opt(x)
+#define IN
+#define OUT
+#define OPTIONAL
+#define __try
+#endif // _MSC_VER
+
 //#define NTDDI_VERSION NTDDI_VISTA
 //
 // Define the various device type values.  Note that values used by Microsoft
@@ -95,16 +110,36 @@ Revision History:
 #endif
 
 #include <windef.h>
-#include <ntimage.h>
-#include <ntddk.h>
-//#include <ntifs.h>
+
+#ifdef __GNUC__
+  //#include <ddk/ntimage.h>
+  #include <ddk/ntddk.h>
+  #include <ddk/ntifs.h>
+
+  DECLARE_HANDLE(HHOOK);
+
+  #define SECTION_MAP_EXECUTE_EXPLICIT 0x0020 
+#define  INTERRUPT_3 \
+	  __asm__ ("int $3")
+#else
+  #include <ntimage.h>
+  #include <ntddk.h>
+  #include <ntifs.h>
+#define  INTERRUPT_3 \
+	__asm int 3
+#endif
+
 //#include <winnt.h>
+
+#ifndef OBJ_KERNEL_HANDLE
+  #define OBJ_KERNEL_HANDLE 0x00000200L
+#endif
 
 //
 // A structure representing the instance information associated with
 // a particular device
 //
-#define SEC_IMAGE 0x1000000   
+//#define SEC_IMAGE 0x1000000   
 #define SYSTEM_INFORMATION_CLASS  ULONG
 //#define DEBUG_CONTROL_CODE  ULONG
 #define ObjectNameInformation  1
@@ -146,15 +181,17 @@ typedef enum _SYSDBG_COMMAND {
     SysDbgGetKdBlockEnable,
     SysDbgSetKdBlockEnable,
 } SYSDBG_COMMAND, *PSYSDBG_COMMAND;
+
 typedef struct _DEVICE_EXTENSION
 {
     ULONG  StateVariable;
-
 } DEVICE_EXTENSION, *PDEVICE_EXTENSION;
-typedef struct _SYSTEM_LOAD_AND_CALL_IMAGE
-{
-    UNICODE_STRING ModuleName;
-} SYSTEM_LOAD_AND_CALL_IMAGE, *PSYSTEM_LOAD_AND_CALL_IMAGE;
+
+//typedef struct _SYSTEM_LOAD_AND_CALL_IMAGE
+//{
+//    UNICODE_STRING ModuleName;
+//} SYSTEM_LOAD_AND_CALL_IMAGE, *PSYSTEM_LOAD_AND_CALL_IMAGE;
+
 typedef enum WIN_VER_DETAIL {
     WINDOWS_VERSION_NONE,       // 0
     WINDOWS_VERSION_2K,
@@ -174,51 +211,60 @@ struct MESSAGE
     char source[MAX_PATH];
     char object[MAX_PATH];
 };
+
 struct REGDATA
 {
     char szRegType[25];
     char szRegData[MAX_PATH];
 };
+
 struct ADDRDATA
 {
     ULONG uAddr;
     char szAddr[16];
 };
+
 struct HOOKDATA
 {
     ULONG uHookType;
     char szHookType[20];
 };
+
 struct SECTIONDATA
 {
     ULONG access_mask;
     char szAccess[MAX_PATH];
 };
+
 typedef struct _ServiceDescriptorTableEntry {
     unsigned int  *ServiceTableBase;        //array of entry points
     unsigned int  *ServiceCounterTableBase; //array of usage counters
     unsigned int  NumberOfServices;         //number of table entries
     unsigned char *ParamTableBase;          //array of byte counts
 } ServiceDescriptorTableEntry, *PServiceDescriptorTableEntry;
-typedef struct _SECTION_IMAGE_INFORMATION {
-    PVOID EntryPoint; 
-    ULONG StackZeroBits; 
-    ULONG StackReserved; 
-    ULONG StackCommit; 
-    ULONG ImageSubsystem; 
-    WORD  SubsystemVersionLow; 
-    WORD  SubsystemVersionHigh; 
-    ULONG Unknown1; 
-    ULONG ImageCharacteristics; 
-    ULONG ImageMachineType; 
-    ULONG Unknown2[3];
-} SECTION_IMAGE_INFORMATION, *PSECTION_IMAGE_INFORMATION;
+
+//typedef struct _SECTION_IMAGE_INFORMATION {
+//    PVOID EntryPoint; 
+//    ULONG StackZeroBits; 
+//    ULONG StackReserved; 
+//    ULONG StackCommit; 
+//    ULONG ImageSubsystem; 
+//    WORD  SubsystemVersionLow; 
+//    WORD  SubsystemVersionHigh; 
+//    ULONG Unknown1; 
+//    ULONG ImageCharacteristics; 
+//    ULONG ImageMachineType; 
+//    ULONG Unknown2[3];
+//} SECTION_IMAGE_INFORMATION, *PSECTION_IMAGE_INFORMATION;
+
 typedef struct _RTL_DRIVE_LETTER_CURDIR {
     USHORT Flags;
     USHORT Length;
     ULONG TimeStamp;
     UNICODE_STRING DosPath;
 } RTL_DRIVE_LETTER_CURDIR, *PRTL_DRIVE_LETTER_CURDIR;
+
+/*
 typedef struct _RTL_USER_PROCESS_PARAMETERS {
     ULONG MaximumLength;
     ULONG Length;
@@ -250,6 +296,8 @@ typedef struct _RTL_USER_PROCESS_PARAMETERS {
     UNICODE_STRING RuntimeData;
     RTL_DRIVE_LETTER_CURDIR DLCurrentDirectory[0x20];
 } RTL_USER_PROCESS_PARAMETERS, *PRTL_USER_PROCESS_PARAMETERS;
+
+
 typedef struct _SYSTEM_HANDLE_INFORMATION {
     ULONG ProcessId;
     UCHAR ObjectTypeNumber;
@@ -258,6 +306,10 @@ typedef struct _SYSTEM_HANDLE_INFORMATION {
     PVOID Object;
     ACCESS_MASK GrantedAccess;
 } _SYSTEM_HANDLE_INFORMATION, *P_SYSTEM_HANDLE_INFORMATION;
+*/
+
+typedef struct _SYSTEM_HANDLE_INFORMATION _SYSTEM_HANDLE_INFORMATION;
+
 typedef struct _SYSTEM_HANDLE_INformATION_EX {
     ULONG NumberOfHandles;
     _SYSTEM_HANDLE_INFORMATION Information[1];
@@ -265,6 +317,7 @@ typedef struct _SYSTEM_HANDLE_INformATION_EX {
 
 typedef struct _KPROCESS *PKPROCESS ,*PRKPROCESS;//, *PEPROCESS;
 
+/*
 typedef struct _KAPC_STATE {
     LIST_ENTRY ApcListHead[MaximumMode];
     struct _KPROCESS *Process;
@@ -272,11 +325,16 @@ typedef struct _KAPC_STATE {
     BOOLEAN KernelApcPending;
     BOOLEAN UserApcPending;
 } KAPC_STATE, *PKAPC_STATE, *PRKAPC_STATE;
+*/
+
+typedef struct _KAPC_STATE KAPC_STATE, *PKAPC_STATE, *PRKAPC_STATE;
+
 typedef struct _PEB_LDR_DATA {
     BYTE Reserved1[8];
     PVOID Reserved2[3];
     LIST_ENTRY InMemoryOrderModuleList;
 } PEB_LDR_DATA,  *PPEB_LDR_DATA;
+
 //typedef struct PPS_POST_PROCESS_INIT_ROUTINE PVOID ;
 typedef struct _PEB {
     BYTE Reserved1[2];
@@ -291,20 +349,18 @@ typedef struct _PEB {
     BYTE Reserved6[128];
     PVOID Reserved7[1];
     ULONG SessionId;
-} PEB, 
-* PPEB;
+} PEB, * PPEB;
 
 typedef PPEB (__stdcall *PPSGETPROCESSPEB) (IN PEPROCESS  Process);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-typedef enum _OBJECT_INFORMATION_CLASS {
-    ObjectBasicInformation = 0,
-    ObjectTypeInformation = 2
-} OBJECT_INFORMATION_CLASS;
+//typedef enum _OBJECT_INFORMATION_CLASS {
+//    ObjectBasicInformation = 0,
+//    ObjectTypeInformation = 2
+//} OBJECT_INFORMATION_CLASS;
 
 
-extern
-NTSYSAPI
+extern NTSYSAPI
 NTSTATUS
 NTAPI
 ZwQueryInformationProcess(
@@ -314,21 +370,25 @@ ZwQueryInformationProcess(
                           IN ULONG ProcessInformationLength,
                           OUT PULONG ReturnLength OPTIONAL
                           );
-extern NTSTATUS ZwQuerySystemInformation( 
-                                  IN ULONG SystemInformationClass, 
-                                  IN PVOID SystemInformation, 
-                                  IN ULONG SystemInformationLength, 
-                                  OUT PULONG ReturnLength);
+//extern NTSTATUS ZwQuerySystemInformation( 
+//                                  IN ULONG SystemInformationClass, 
+//                                  IN PVOID SystemInformation, 
+//                                  IN ULONG SystemInformationLength, 
+//                                  OUT PULONG ReturnLength);
+
+/*
 extern KPROCESSOR_MODE
 KeGetPreviousMode(
 VOID
 );
-extern NTKERNELAPI
-NTSTATUS
-PsLookupProcessByProcessId(
-                           __in HANDLE ProcessId,
-                           __deref_out PEPROCESS *Process
-                           );
+*/
+
+//extern NTKERNELAPI
+//NTSTATUS
+//PsLookupProcessByProcessId(
+//                           __in HANDLE ProcessId,
+//                           __deref_out PEPROCESS *Process
+//                           );
 extern NTSYSAPI
 NTSTATUS
 NTAPI
@@ -359,12 +419,14 @@ ObQueryNameString(
                   __in ULONG Length,
                   __out PULONG ReturnLength
                   );
+                  /*
 extern NTKERNELAPI
 VOID
 KeStackAttachProcess (
                       __inout PEPROCESS PROCESS,
                       __out PRKAPC_STATE ApcState
                       );
+*/
 extern NTKERNELAPI
 VOID
 KeUnstackDetachProcess (
@@ -431,7 +493,7 @@ typedef NTSTATUS (*NTSETSYSTEMINFORMATION)(
     IN ULONG SystemInformationLength
     );
 typedef NTSTATUS (*NTSYSTEMDEBUGCONTROL)(
-    IN enum DEBUG_CONTROL_CODE ControlCode,
+    IN DEBUG_CONTROL_CODE ControlCode,
     IN PVOID InputBuffer OPTIONAL,
     IN ULONG InputBufferLength,
     OUT PVOID OutputBuffer OPTIONAL,
@@ -484,21 +546,21 @@ typedef HHOOK (*NTUSERSETWINDOWSHOOKEX)(
 // Device driver routine declarations.
 //
 
-NTSTATUS DriverEntry(IN PDRIVER_OBJECT DriverObject,IN PUNICODE_STRING RegistryPath);
+NTSTATUS DDKAPI DriverEntry(IN PDRIVER_OBJECT DriverObject,IN PUNICODE_STRING RegistryPath);
 
-NTSTATUS SafemodelDispatchCreate(IN PDEVICE_OBJECT DeviceObject,IN PIRP Irp);
+NTSTATUS DDKAPI SafemodelDispatchCreate(IN PDEVICE_OBJECT DeviceObject,IN PIRP Irp);
 
-NTSTATUS SafemodelDispatchClose(IN PDEVICE_OBJECT DeviceObject,IN PIRP Irp);
+NTSTATUS DDKAPI SafemodelDispatchClose(IN PDEVICE_OBJECT DeviceObject,IN PIRP Irp);
 
-NTSTATUS SafemodelDispatchDeviceControl(IN PDEVICE_OBJECT DeviceObject,IN PIRP Irp);
+NTSTATUS DDKAPI SafemodelDispatchDeviceControl(IN PDEVICE_OBJECT DeviceObject,IN PIRP Irp);
 
-VOID SafemodelUnload(IN PDRIVER_OBJECT DriverObject);
+VOID DDKAPI SafemodelUnload(IN PDRIVER_OBJECT DriverObject);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 PVOID GetInfoTable(ULONG ATableType);
 HANDLE GetProcPidByObjName(PWCHAR pwObjName,int iSize);
-VOID ZeroMemory(VOID* pobj,int len);
-BOOLEAN Sleep(ULONG MillionSecond);
+//VOID ZeroMemory(VOID* pobj,int len);
+//BOOLEAN Sleep(ULONG MillionSecond);
 WIN_VER_DETAIL GetWindowsVersion();
 int ConvertFileNameWCHARToCHAR(PWCHAR pWChar, PCHAR pChar);
 int ConvertFileNameUNISTRToCHAR(PUNICODE_STRING usFileName, PCHAR pChar);
@@ -581,7 +643,7 @@ NTSTATUS FakedNtSetSystemInformation(
                                      IN ULONG SystemInformationLength
                                      );
 NTSTATUS FakedNtSystemDebugControl(
-                                   IN enum DEBUG_CONTROL_CODE ControlCode,
+                                   IN DEBUG_CONTROL_CODE ControlCode,
                                    IN PVOID InputBuffer OPTIONAL,
                                    IN ULONG InputBufferLength,
                                    OUT PVOID OutputBuffer OPTIONAL,
@@ -618,6 +680,7 @@ NTSTATUS FakedZwOpenSection(
               __in ACCESS_MASK DesiredAccess,
               __in POBJECT_ATTRIBUTES ObjectAttributes
               );
+
 VOID ProcMoniterOn();
 VOID ProcMoniterOff();
 VOID RegMoniterOn();
