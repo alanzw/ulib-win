@@ -4,15 +4,13 @@
 
 #include "resource.h"
 
+#include <windows.h>
+#include <tchar.h>
 #include <winsock2.h>
 #include <iphlpapi.h>
 
-#include <windows.h>
-#include <tchar.h>
-#include <stdio.h>
-
 #include "uiphlp.h"
-
+#include "uconsole.h"
 
 int main(int argc, char *argv[])
 {
@@ -20,12 +18,12 @@ int main(int argc, char *argv[])
 
     uih.getNetworkInfo();
 
-    printf( "Host Name: %s\n", uih.hostname() );
-    printf( "Domain Name: %s\n", uih.domainName() );
+    UConsole::PrintStdoutFormat( "Host Name: %s\n", uih.hostname() );
+    UConsole::PrintStdoutFormat( "Domain Name: %s\n", uih.domainName() );
 
-    printf( "DNS Servers:\n" );
-    printf( "\t%s\n", uih.dnsServer());
-    printf( "\t%s\n", uih.dnsServerExtra());
+    UConsole::PrintStdoutFormat( "DNS Servers:\n" );
+    UConsole::PrintStdoutFormat( "\t%s\n", uih.dnsServer());
+    UConsole::PrintStdoutFormat( "\t%s\n", uih.dnsServerExtra());
 
     return 0;
 }

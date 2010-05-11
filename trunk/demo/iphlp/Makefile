@@ -9,7 +9,6 @@ LIBS = -L"$(TOPDIR)/lib" -luwin
 CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 
-BINDIR = ../../bin
 #
 OBJ = test_iphlp.o
 
@@ -23,12 +22,8 @@ all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB)
+	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $(BIN) $(BINDIR)/$(BIN)
-
-#
-test_iphlp.o : test_iphlp.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
 
 #
 .PHONY : test
