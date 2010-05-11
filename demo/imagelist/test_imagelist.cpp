@@ -17,7 +17,9 @@ public:
     MyDialog(HINSTANCE hInst, UINT nID)
     : UDialogBox(hInst, nID) {}
 
-    virtual BOOL onInit() {
+    virtual BOOL onInit()
+    {
+        setDlgIconBig(IDI_APP);
         return TRUE;
     }
 
@@ -26,6 +28,7 @@ public:
         UImageList uiml(1, 32, 32);
         uiml.addIcon(IDI_APP, m_hInst);
         uiml.drawIcon(0, m_hDlg, 20, 20);
+
         UImageList uiml2(IDB_TOOLBAR1, m_hInst);
         for (int i=0; i<uiml2.getIconNum(); i++)
         {

@@ -71,7 +71,7 @@ public:
         rc.left = rc.right - 200;
         rc.top = rc.bottom - 200;
         this->moveWindow(&rc);
-		return FALSE;
+        return FALSE;
     }
 private:
     huys::ADT::UAutoPtr<UListBox> _pListBox;
@@ -117,7 +117,7 @@ public:
         ::GetClientRect(getParent(), &rc);
         rc.left = rc.right - 200;
         this->moveWindow(&rc);
-		return FALSE;
+        return FALSE;
     }
 
     void onDraw(HDC hdc)
