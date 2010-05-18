@@ -25,6 +25,7 @@ SUBDIRS = \
           istream   \
           memstream \
           rpc       \
+          iimgctx   \
           
 
 #
