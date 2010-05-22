@@ -30,7 +30,7 @@ private:
     void byte_swap(uchar &a, uchar &b)
     {
         a ^= b;
-        b ^= a; 
+        b ^= a;
         a ^= b;
     }
     void byte_reverse(uchar *buf, unsigned longs)

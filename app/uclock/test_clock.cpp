@@ -46,12 +46,12 @@ public:
         m_rgn.createRoundRect(rc.left,rc.top,rc.right,rc.bottom,50,50);
 
         this->setWindowRgn(m_rgn);
-        
+
         for (int i=0; i<7; ++i)
         {
             pic[i].load(getInstance(), MAKEINTRESOURCE(IDI_IMAGE1+i), (LPCTSTR)2211);
         }
-        
+
         _font.setFontHeight(20);
         _font.setFontFaceName(_T("Arial"));
         _font.create();
@@ -76,13 +76,13 @@ public:
         //urc.Draw(hdc);
         static int index = 0;
         UPicture *p = 0;
-        
+
         index = (index < 6 ? (++index) : 1);
-        
+
         p = &pic[index];
-        
+
         p->show(hdc, &rc);
-    
+
         drawCurrentTime(hdc);
     }
     //
@@ -129,18 +129,18 @@ private:
         huys::ADT::UStringAnsi tmp;
 
         GetLocalTime(&st);
-             
+
         tmp.format("%02d:%02d:%02d", st.wHour, st.wMinute, st.wSecond);
 
         RECT rect;
         GetClientRect (*this, &rect) ;
-        
+
         rect.right -= 250;
         rect.bottom -= 50;
         //::SetBkColor(hdc, huys::black);
         ::SetBkMode(hdc, TRANSPARENT);
         ::SetTextColor(hdc, huys::violet);
-        
+
         HFONT hOldFont = (HFONT)SelectObject(hdc, _font);
         ::DrawTextA(hdc, tmp, tmp.length(), &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
         SelectObject(hdc, hOldFont);
