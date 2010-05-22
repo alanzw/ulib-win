@@ -12,12 +12,15 @@
 
 #include "ubasewindow.h"
 #include "uwinapp.h"
-
-#include "ufile.h"
+#include "ubutton.h"
+#include "adt/uautoptr.h"
 
 
 class UIImgCtxWindow : public UBaseWindow
 {
+    enum {
+        ID_BN_TEST = 10001
+    };
 public:
     UIImgCtxWindow()
     : UBaseWindow(NULL, ::GetModuleHandle(NULL))
@@ -47,6 +50,11 @@ public:
             //return FALSE;
         }
 
+        m_bnTest = new UButton(this, ID_BN_TEST);
+        m_bnTest->setPos(100, 100, 100, 100);
+        m_bnTest->create();
+        m_bnTest->setWindowText(_T("test"));
+
         return UBaseWindow::onCreate();
     }
 
@@ -55,15 +63,6 @@ public:
     {
         RECT rc = {0};
         this->getClientRect(&rc);
-        RECT imgrect;
-        ::SelectPalette(hdc, m_hPal, TRUE);
-        ::RealizePalette(hdc);
-
-        imgrect.left = imgrect.top = 0;
-        imgrect.bottom = sizeImage.cy;
-        imgrect.right = sizeImage.cx;
-        m_pImgCtx->Draw(hdc, &rc);
-
     }
 
     /* virtual */ BOOL onChar(WPARAM wParam, LPARAM lParam)
@@ -76,10 +75,38 @@ public:
             return UBaseWindow::onChar(wParam, lParam);
         }
     }
+
+    /* virtual */ BOOL onEraseBkgnd(HDC hdc)
+    {
+        RECT rc;
+        this->getClientRect(&rc);
+        RECT imgrect;
+        ::SelectPalette(hdc, m_hPal, TRUE);
+        ::RealizePalette(hdc);
+
+        imgrect.left = imgrect.top = 0;
+        imgrect.bottom = sizeImage.cy;
+        imgrect.right = sizeImage.cx;
+        m_pImgCtx->Draw(hdc, &rc);
+        return TRUE;
+    }
+
+    BOOL onCommand(WPARAM wParam, LPARAM lParam)
+    {
+        switch (LOWORD(wParam))
+        {
+        case ID_BN_TEST:
+            return onBnTest();
+        default:
+            return UBaseWindow::onCommand(wParam, lParam);
+        }
+    }
 private:
     IImgCtx *m_pImgCtx;
     HPALETTE  m_hPal;
     SIZE  sizeImage;
+
+    huys::ADT::UAutoPtr<UButton> m_bnTest;
 private:
     BOOL loadFile(const char *sFilename)
     {
@@ -110,6 +137,11 @@ private:
         m_pImgCtx->GetPalette(&m_hPal);
 
         return FALSE;
+    }
+
+    BOOL onBnTest()
+    {
+        showMsg(_T("hello!"));
     }
 };
 

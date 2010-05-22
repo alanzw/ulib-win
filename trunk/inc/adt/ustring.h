@@ -12,14 +12,14 @@ namespace huys
 namespace ADT
 {
 
-template <typename T, size_t DEFAULT_BUFSIZE=10>
+template <typename T, size_t default_bufsize=10>
 class UString
 {
 public:
     typedef size_t size_type;
 public:
     UString()
-    : m_pBuf(0), m_nBufSize(DEFAULT_BUFSIZE), m_nStrLength(0)
+    : m_pBuf(0), m_nBufSize(default_bufsize), m_nStrLength(0)
     {
         m_pBuf = new T[m_nBufSize+1];
         clear();
@@ -33,7 +33,7 @@ public:
     }
 
     UString(const T *sText)
-    : m_pBuf(0), m_nBufSize(DEFAULT_BUFSIZE), m_nStrLength(0)
+    : m_pBuf(0), m_nBufSize(default_bufsize), m_nStrLength(0)
     {
         if (0 == sText)
         {
@@ -377,63 +377,63 @@ private:
     size_type m_nStrLength;
 };
 
-template  <typename T, size_t DEFAULT_BUFSIZE>
-inline bool operator == (const UString<T, DEFAULT_BUFSIZE> & a, const UString<T, DEFAULT_BUFSIZE> & b)
+template  <typename T, size_t default_bufsize>
+inline bool operator == (const UString<T, default_bufsize> & a, const UString<T, default_bufsize> & b)
 {
     return    ( a.length() == b.length() )            // optimization on some platforms
         && ( lstrcmp(a.c_str(), b.c_str()) == 0 );    // actual compare
 }
 
-template  <typename T, size_t DEFAULT_BUFSIZE>
-inline bool operator < (const UString<T, DEFAULT_BUFSIZE>  & a, const UString<T, DEFAULT_BUFSIZE>  & b)
+template  <typename T, size_t default_bufsize>
+inline bool operator < (const UString<T, default_bufsize>  & a, const UString<T, default_bufsize>  & b)
 {
     return lstrcmp(a.c_str(), b.c_str()) < 0;
 }
 
-template  <typename T, size_t DEFAULT_BUFSIZE>
-inline bool operator != (const UString<T, DEFAULT_BUFSIZE> & a, const UString<T, DEFAULT_BUFSIZE>& b) { return !(a == b); }
+template  <typename T, size_t default_bufsize>
+inline bool operator != (const UString<T, default_bufsize> & a, const UString<T, default_bufsize>& b) { return !(a == b); }
 
-template  <typename T, size_t DEFAULT_BUFSIZE>
-inline bool operator >  (const UString<T, DEFAULT_BUFSIZE> & a, const UString<T, DEFAULT_BUFSIZE> & b) { return b < a; }
+template  <typename T, size_t default_bufsize>
+inline bool operator >  (const UString<T, default_bufsize> & a, const UString<T, default_bufsize> & b) { return b < a; }
 
-template  <typename T, size_t DEFAULT_BUFSIZE>
-inline bool operator <= (const UString<T, DEFAULT_BUFSIZE> & a, const UString<T, DEFAULT_BUFSIZE> & b) { return !(b < a); }
+template  <typename T, size_t default_bufsize>
+inline bool operator <= (const UString<T, default_bufsize> & a, const UString<T, default_bufsize> & b) { return !(b < a); }
 
-template  <typename T, size_t DEFAULT_BUFSIZE>
-inline bool operator >= (const UString<T, DEFAULT_BUFSIZE> & a, const UString<T, DEFAULT_BUFSIZE> & b) { return !(a < b); }
+template  <typename T, size_t default_bufsize>
+inline bool operator >= (const UString<T, default_bufsize> & a, const UString<T, default_bufsize> & b) { return !(a < b); }
 
-template  <typename T, size_t DEFAULT_BUFSIZE>
-inline bool operator == (const UString<T, DEFAULT_BUFSIZE> & a, const char* b) { return strcmp(a.c_str(), b) == 0; }
+template  <typename T, size_t default_bufsize>
+inline bool operator == (const UString<T, default_bufsize> & a, const char* b) { return strcmp(a.c_str(), b) == 0; }
 
-template  <typename T, size_t DEFAULT_BUFSIZE>
-inline bool operator == (const char* a, const UString<T, DEFAULT_BUFSIZE> & b) { return b == a; }
+template  <typename T, size_t default_bufsize>
+inline bool operator == (const char* a, const UString<T, default_bufsize> & b) { return b == a; }
 
-template  <typename T, size_t DEFAULT_BUFSIZE>
-inline bool operator != (const UString<T, DEFAULT_BUFSIZE> & a, const char* b) { return !(a == b); }
+template  <typename T, size_t default_bufsize>
+inline bool operator != (const UString<T, default_bufsize> & a, const char* b) { return !(a == b); }
 
-template  <typename T, size_t DEFAULT_BUFSIZE>
-inline bool operator != (const char* a, const UString<T, DEFAULT_BUFSIZE> & b) { return !(b == a); }
+template  <typename T, size_t default_bufsize>
+inline bool operator != (const char* a, const UString<T, default_bufsize> & b) { return !(b == a); }
 
-template  <typename T, size_t DEFAULT_BUFSIZE>
-inline UString<T, DEFAULT_BUFSIZE> operator + (const UString<T, DEFAULT_BUFSIZE> & a, const UString<T, DEFAULT_BUFSIZE> & b)
+template  <typename T, size_t default_bufsize>
+inline UString<T, default_bufsize> operator + (const UString<T, default_bufsize> & a, const UString<T, default_bufsize> & b)
 {
-    UString<T, DEFAULT_BUFSIZE> tmp = a;
+    UString<T, default_bufsize> tmp = a;
     tmp += b;
     return tmp;
 }
 
-template  <typename T, size_t DEFAULT_BUFSIZE>
-inline UString<T, DEFAULT_BUFSIZE> operator + (const UString<T, DEFAULT_BUFSIZE> & a, const char* b)
+template  <typename T, size_t default_bufsize>
+inline UString<T, default_bufsize> operator + (const UString<T, default_bufsize> & a, const char* b)
 {
-    UString<T, DEFAULT_BUFSIZE> tmp = a;
+    UString<T, default_bufsize> tmp = a;
     tmp += b;
     return tmp;
 }
 
-template  <typename T, size_t DEFAULT_BUFSIZE>
-inline UString<T, DEFAULT_BUFSIZE> operator + (const char* a, const UString<T, DEFAULT_BUFSIZE> & b)
+template  <typename T, size_t default_bufsize>
+inline UString<T, default_bufsize> operator + (const char* a, const UString<T, default_bufsize> & b)
 {
-    UString<T, DEFAULT_BUFSIZE> tmp = a;
+    UString<T, default_bufsize> tmp = a;
     tmp += b;
     return tmp;
 }
