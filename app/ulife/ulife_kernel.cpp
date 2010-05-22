@@ -119,7 +119,7 @@ int ULifeBoard::getState(int row, int col) const
     {
         throw 1111;
     }
-    
+
     return grid[row][col];
 }
 
@@ -129,9 +129,9 @@ int ULifeBoard::invertState(int row, int col)
     {
         throw 1111;
     }
-    
+
     grid[row][col] = !grid[row][col];
-    
+
     return grid[row][col];
 }
 

@@ -155,6 +155,8 @@ int main()
         dialogs[i]->draw();
 
     FlyweightFactory::reportTheIcons();
+    
+    return 0;
 }
 
 

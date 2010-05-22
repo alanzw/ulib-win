@@ -87,7 +87,7 @@ int main()
 
     cout << test_unicode(NULL).c_str() << endl;
 
-    cout << "BIGIN calling createCB!" << std::endl;
+    cout << "BEGIN calling createCB!" << std::endl;
 
     createCB();
 

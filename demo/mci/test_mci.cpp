@@ -32,7 +32,7 @@ public:
         ubn.setPosition(&rc);
 
         ubn.setWindowText(_T("PlayMidi"));
-        
+
         UButton ubnMute(this, IDC_BN_MUTE);
         ubnMute.setPos(400, 100, 200, 200);
         ubnMute.create();
@@ -85,11 +85,11 @@ private:
         this->showMsg(_T("Over!"));
         return TRUE;
     }
-    
+
     BOOL onBnMute()
     {
         //UMCI::openCDDriver(TRUE);
-        mciSendString("Set cdaudio door open wait", NULL, 0, 0); 
+        mciSendString("Set cdaudio door open wait", NULL, 0, 0);
         return TRUE;
     }
 };

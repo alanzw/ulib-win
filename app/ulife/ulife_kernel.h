@@ -3,7 +3,7 @@
  *
  *       Filename:  ulife_kernel.h
  *
- *    Description:  
+ *    Description:
  *
  *        Version:  1.0
  *        Created:  03/20/2010 03:01:10 PM
@@ -32,7 +32,7 @@ public:
     void initialize();
     void print();
     void update();
-    
+
     int getState(int row, int col) const;
     int invertState(int row, int col);
 private:
