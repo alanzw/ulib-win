@@ -52,7 +52,7 @@ public:
     {
         HBRUSH hBrush = (HBRUSH)::GetStockObject(BLACK_BRUSH);
         USmartDC udc(hdc);
-        
+
         huys::URectL rect(10, 10, 60, 110);
         udc.fillRect(rect, hBrush);
 

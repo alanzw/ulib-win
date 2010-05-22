@@ -43,13 +43,13 @@ void ULIB_API switchToSolid();
 //////////////////////////////////////
 //The UGLVector3 Struct
 //////////////////////////////////////
-struct UGLVector3					// expanded 3D vector struct
-{			
-	UGLVector3()
+struct UGLVector3                    // expanded 3D vector struct
+{
+    UGLVector3()
     {}
-	
-    UGLVector3 (float new_x, float new_y, float new_z)	 
-	{
+
+    UGLVector3 (float new_x, float new_y, float new_z)
+    {
         x = new_x;
         y = new_y;
         z = new_z;
@@ -75,28 +75,28 @@ struct UGLVector3					// expanded 3D vector struct
         return (x!=other.x || y!=other.y || z!=other.z);
     }
 
-	//
-	UGLVector3 operator+(UGLVector3 vVector)
+    //
+    UGLVector3 operator+(UGLVector3 vVector)
     {
         return UGLVector3(vVector.x+x, vVector.y+y, vVector.z+z);
     }
-	//
-	UGLVector3 operator-(UGLVector3 vVector)
+    //
+    UGLVector3 operator-(UGLVector3 vVector)
     {
         return UGLVector3(x-vVector.x, y-vVector.y, z-vVector.z);
     }
-	//
-	UGLVector3 operator*(float number)
+    //
+    UGLVector3 operator*(float number)
     {
         return UGLVector3(x*number, y*number, z*number);
     }
-	//
-	UGLVector3 operator/(float number)
+    //
+    UGLVector3 operator/(float number)
     {
         return UGLVector3(x/number, y/number, z/number);
     }
-	
-	float x, y, z;
+
+    float x, y, z;
 };
 
 #define UGL_MIN(x,y) ((x)<(y)?(x):(y))
@@ -119,7 +119,7 @@ struct ULIB_API UGLColor
 
         return *this;
     }
-    
+
     void set(float _r,float _g,float _b)
     {
         r = _r;
@@ -129,47 +129,47 @@ struct ULIB_API UGLColor
 
     inline UGLColor add(const UGLColor& c)const
     { return UGLColor(r + c.r, g + c.g, b + c.b); }
-    
-    inline UGLColor multiply(float s) const 
+
+    inline UGLColor multiply(float s) const
     { return UGLColor(r * s, g * s, b * s); }
-    
+
     inline UGLColor modulate(const UGLColor& c) const
     { return UGLColor(r * c.r, g * c.g, b * c.b); }
-    
+
     inline void saturate()
     {
         r = UGL_MIN(r, (float)1);
         g = UGL_MIN(g, (float)1);
-        b = UGL_MIN(b, (float)1); 
+        b = UGL_MIN(b, (float)1);
     }
-    
+
     static inline UGLColor black(){ return UGLColor(0,0,0); }
     static inline UGLColor white(){ return UGLColor(1,1,1); }
     static inline UGLColor red()  { return UGLColor(1,0,0); }
     static inline UGLColor green(){ return UGLColor(0,1,0); }
-	static inline UGLColor blue() { return UGLColor(0,0,1); }
+    static inline UGLColor blue() { return UGLColor(0,0,1); }
 };
 
-class ULIB_API UGLCamera 
+class ULIB_API UGLCamera
 {
 public:
-    UGLVector3 mPos;	
-	UGLVector3 mView;		
-	UGLVector3 mUp;			
+    UGLVector3 mPos;
+    UGLVector3 mView;
+    UGLVector3 mUp;
 
 
-	int mWindowWidth;
-	int mWindowHeight;
+    int mWindowWidth;
+    int mWindowHeight;
 
 
-	// This function let you control the camera with the mouse
-	void Mouse_Move();
+    // This function let you control the camera with the mouse
+    void Mouse_Move();
 
-	void Rotate_View(float x, float y, float z);
-	void Move_Camera(float cameraspeed);
-	void Position_Camera(float pos_x, float pos_y,float pos_z,
-			 		     float view_x, float view_y, float view_z,
-						 float up_x,   float up_y,   float up_z);
+    void Rotate_View(float x, float y, float z);
+    void Move_Camera(float cameraspeed);
+    void Position_Camera(float pos_x, float pos_y,float pos_z,
+                          float view_x, float view_y, float view_z,
+                         float up_x,   float up_y,   float up_z);
 };
 
 
@@ -178,13 +178,13 @@ class ULIB_API UGLCube
 public:
     UGLCube()
     {}
-    
+
     UGLCube(const UGLCube &other)
     {
         *this = other;
     }
-    
-    
+
+
     ~UGLCube()
     {}
 
@@ -228,7 +228,7 @@ public:
     {
         color.set(_r, _g, _b);
     }
-    
+
     void render()
     {
         glPushMatrix();
@@ -270,7 +270,7 @@ public:
           glVertex3f(vertex[3].x, vertex[3].y, vertex[3].z);
           glVertex3f(vertex[2].x, vertex[2].y, vertex[2].z);
           glVertex3f(vertex[1].x, vertex[1].y, vertex[1].z);
-        glEnd(); 
+        glEnd();
         glPopMatrix();
     }
 private:
@@ -282,18 +282,18 @@ private:
 class UGLTexture
 {
 public:
-	UGLTexture()
-		{}
-	~UGLTexture()
-		{}
+    UGLTexture()
+        {}
+    ~UGLTexture()
+        {}
 private:
-	unsigned char *m_pData;    // datas
-	unsigned int   m_nWidth;    // width (pixels)
-	unsigned int   m_nHeight;   // height (pixels)
-	unsigned int   m_nDepth;    // bits per pixel 
+    unsigned char *m_pData;    // datas
+    unsigned int   m_nWidth;    // width (pixels)
+    unsigned int   m_nHeight;   // height (pixels)
+    unsigned int   m_nDepth;    // bits per pixel
 
-	BITMAPINFOHEADER m_biHeader;      // image header (display on device context)
-	unsigned int     m_nWidthByte32; // width (in bytes, and 32 bits aligned)
+    BITMAPINFOHEADER m_biHeader;      // image header (display on device context)
+    unsigned int     m_nWidthByte32; // width (in bytes, and 32 bits aligned)
 
 };
 

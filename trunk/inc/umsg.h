@@ -47,9 +47,9 @@ int ULIB_API TimedMessageBox(HWND hwndOwner,
 *  ColorMessageBox
 *
 *      The same as the standard MessageBox, except that ColorMessageBox
-*      also has customized colors of bacground and text. 
+*      also has customized colors of bacground and text.
 *
-***********************************************************************/                    
+***********************************************************************/
 int ULIB_API ColorMessageBox(HWND hwndOwner,
                     LPCTSTR pszMessage,
                     LPCTSTR pszTitle,
@@ -62,13 +62,13 @@ int ULIB_API ColorMessageBox(HWND hwndOwner,
 *  CBTMessageBox
 *
 *      The same as the standard MessageBox, except that CBTMessageBox
-*      replaces the text of OK and Cancel button. 
+*      replaces the text of OK and Cancel button.
 *
-***********************************************************************/ 
+***********************************************************************/
 int ULIB_API CBTMessageBox(HWND hwnd,
                     LPCTSTR lpText,
                     LPCTSTR lpCaption,
-                    UINT uType);                    
+                    UINT uType);
 
 
 #endif // U_MSG_H

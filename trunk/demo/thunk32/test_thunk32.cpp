@@ -16,7 +16,7 @@ public:
     {
         simpleCallbackThunk.initializeThunk(this, &MyClass::simpleCallback); // May throw std::exception
     }
-    
+
     virtual int simpleCallback(int i1, int i2)
     {
         cout << "MyClass::simpleCallback hit" << endl;
@@ -61,7 +61,7 @@ int main()
     someCallbackMechanism(myClassReference.simpleCallbackThunk.getCallback());
     cout << endl;
 
-    cout << "Press enter to exit" << endl;	
+    cout << "Press enter to exit" << endl;
     cin.get();
 
     return 0;

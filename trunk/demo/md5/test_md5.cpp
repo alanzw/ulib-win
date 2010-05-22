@@ -19,7 +19,8 @@ int main()
     huys::crypto::MD5 md5;
     typedef unsigned char uchar;
 
-    for (i = 0; i < 7; ++i) {
+    for (i = 0; i < 7; ++i)
+    {
         uchar digest[16];
         int di;
 

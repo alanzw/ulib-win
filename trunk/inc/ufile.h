@@ -42,9 +42,23 @@ public:
 
     //
     DWORD type() const;
+    
+    
+    //
+    LPCTSTR name() const
+    { return m_sFilename; }
 protected:
 private:
     TCHAR m_sFilename[MAX_PATH];
+};
+
+
+class ULIB_API UTempFile : public UFile
+{
+public:
+    bool open();
+    
+    bool move(LPCTSTR lpNewFilename);
 };
 
 #include <stdio.h>
@@ -97,15 +111,23 @@ public:
     long tell();
 
     void rewind();
+    
+    FILE * assign(FILE * pfile)
+    { 
+        m_pFile = pfile;
+        return m_pFile;
+    }
 private:
     char m_sFilename[MAX_PATH];
     FILE *m_pFile;
 };
 
-class ULIB_API UCTempFile
+class ULIB_API UCTempFile : public UCFile
 {
 public:
     UCTempFile();
+    
+    bool open();
 };
 
 
