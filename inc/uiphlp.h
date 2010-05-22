@@ -22,10 +22,10 @@ public:
     bool getInterfaceInfo();
 
     bool getIPAddressTable();
-    
+
     bool releaseIPAddress();
     bool renewIPAddress();
-    
+
     bool addIPAddress();
     bool deleteIPAddress();
 protected:

@@ -33,8 +33,6 @@ public:
         m_dwStyles |= LBS_OWNERDRAWVARIABLE | WS_VSCROLL | LBS_NOTIFY | LBS_HASSTRINGS;
     }
 
-    ~UIconListBox() {};
-
     virtual BOOL create()
     {
         BOOL ret = UListBox::createEx(WS_EX_ACCEPTFILES, _T("LISTBOX"));

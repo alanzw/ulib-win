@@ -65,8 +65,8 @@ public:
     BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
     {
         m_pEditEx->showBalloonTip(L"hello", L"boooooo!", TTI_INFO);
-    
-    
+
+
         return FALSE;
     }
 private:

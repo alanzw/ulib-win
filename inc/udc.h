@@ -74,7 +74,7 @@ public:
         int nXOriginSrc,
         int nYOriginSrc,
         DWORD dwRop);
-    
+
     BOOL patBlt(
         int nLeft,
         int nTop,
@@ -126,10 +126,10 @@ public:
 
     //
     BOOL polygon(const POINT *lpPoints, int nCount);
-    
+
     BOOL moveTo(int x, int y);
     BOOL lineTo(int x, int y);
-    
+
     //
     BOOL textOut(int nX, int nY, LPCTSTR lpString, int cbString);
 

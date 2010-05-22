@@ -20,10 +20,6 @@ public:
         : UDialogBox(hInst, nID)
     {}
 
-    ~UDialogExt()
-    {
-    }
-
     virtual BOOL onInit()
     {
         RECT rc;

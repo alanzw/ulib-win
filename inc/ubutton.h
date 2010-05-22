@@ -46,7 +46,7 @@ public:
     //
     BOOL check();
     BOOL uncheck();
-    
+
 
 };
 
@@ -61,7 +61,7 @@ public:
     //
     BOOL check();
     BOOL uncheck();
-    
+
     //
     BOOL isChecked();
 };

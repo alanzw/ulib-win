@@ -145,19 +145,19 @@ public:
         return true;
     }
 
-	void inflate(T x, T y)
-	{
-		_left -= x;
-		_top -= y;
-		_right += x;
-		_bottom += y;
-	}
+    void inflate(T x, T y)
+    {
+        _left -= x;
+        _top -= y;
+        _right += x;
+        _bottom += y;
+    }
 
-	void deflate(T x, T y)
-	{
-		inflate(-x, -y);
-	}
-    
+    void deflate(T x, T y)
+    {
+        inflate(-x, -y);
+    }
+
     void offset(T x, T y)
     {
         _left += x;
@@ -166,10 +166,10 @@ public:
         _bottom += y;
     }
 
-	T left() const { return _left; }
-	T top() const { return _top; }
-	T right() const { return _right; }
-	T bottom() const { return _bottom; }
+    T left() const { return _left; }
+    T top() const { return _top; }
+    T right() const { return _right; }
+    T bottom() const { return _bottom; }
     T width() const { return _right - _left; }
     T height() const { return _bottom - _top; }
 private:
@@ -184,21 +184,21 @@ template <typename T>
 class USize
 {
 public:
-	USize(T cx = 0, T cy = 0)
-	:  _cx(cx), _cy(cy)
-	{}
+    USize(T cx = 0, T cy = 0)
+    :  _cx(cx), _cy(cy)
+    {}
 
-	USize(LPSIZE lpSize)
-	: _cx(lpSize->cx), _cy(lpSize->cy)
-	{}
+    USize(LPSIZE lpSize)
+    : _cx(lpSize->cx), _cy(lpSize->cy)
+    {}
 
     operator LPSIZE()
     {
         //SIZE s = {_cx, _cy};
         //return s;
-		return (LPSIZE)(this);
+        return (LPSIZE)(this);
     }
-    
+
     T width() const { return _cx; }
     T height() const { return _cy; }
 private:

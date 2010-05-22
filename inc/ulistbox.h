@@ -28,7 +28,7 @@ public:
 
     //
     int setColumnWidth(DWORD pixels);
-    
+
     //
     int getItemHeight();
     BOOL setItemHeight(int nHeight);

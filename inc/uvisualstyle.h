@@ -56,7 +56,7 @@ public:
                    UINT uFlags = BF_RECT, 
                    int iPartID = BP_PUSHBUTTON, 
                    int iStateID = PBS_HOT, 
-			       LPRECT lpClipRect = NULL);
+                   LPRECT lpClipRect = NULL);
 
      BOOL drawText( HDC hdc,
                    int iPartId,

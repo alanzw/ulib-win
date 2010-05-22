@@ -152,10 +152,57 @@ DWORD UFile::type() const
     return ::GetFileType(m_hObj);
 }
 
+
+bool UTempFile::open()
+{
+    TCHAR szTempFileName[MAX_PATH];  
+    TCHAR lpTempPathBuffer[MAX_PATH];
+    
+    DWORD dwRetVal = 0;
+    UINT uRetVal   = 0;
+    
+    dwRetVal = GetTempPath(MAX_PATH, lpTempPathBuffer);
+    
+    if (dwRetVal > MAX_PATH || (dwRetVal == 0))
+    {
+        return false;
+    }
+    
+    //  Generates a temporary file name. 
+    uRetVal = GetTempFileName(lpTempPathBuffer, // directory for tmp files
+                              TEXT("ULIB_DEMO"),  // temp file name prefix 
+                              0,                // create unique name 
+                              szTempFileName);  // buffer for name 
+    if (uRetVal == 0)
+    {
+        return false;
+    }
+
+    return UFile::create(szTempFileName);
+}
+
+
+bool UTempFile::move(LPCTSTR lpNewFileName)
+{
+    //
+    close();
+    
+    //  Moves the temporary file to the new text file, allowing for differnt
+    //  drive letters or volume names.
+    BOOL fSuccess = ::MoveFileEx(UFile::name(), lpNewFileName, 
+                          MOVEFILE_REPLACE_EXISTING | MOVEFILE_COPY_ALLOWED);
+    return TRUE == fSuccess;
+
+}
+
+
 UCFile::UCFile(const char *sFilename)
 : m_pFile(NULL)
 {
-    strcpy(m_sFilename, sFilename);
+    if (NULL != sFilename)
+    {
+        strcpy(m_sFilename, sFilename);
+    }
 }
 
 UCFile::~UCFile()
@@ -257,4 +304,14 @@ long UCFile::tell()
 void UCFile::rewind()
 {
     ::rewind(m_pFile);
+}
+
+
+UCTempFile::UCTempFile()
+: UCFile(NULL)
+{}
+
+bool UCTempFile::open()
+{
+    return (0 != assign(tmpfile()));
 }
