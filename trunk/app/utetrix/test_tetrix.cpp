@@ -71,7 +71,7 @@ public:
             return UBaseWindow::onCommand(wParam, lParam);
         }
     }
-    
+
     BOOL onChar(WPARAM wParam, LPARAM lParam)
     {
         switch (wParam)

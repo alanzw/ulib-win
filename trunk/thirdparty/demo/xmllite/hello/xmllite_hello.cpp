@@ -7,7 +7,7 @@
 
 #include "com/ucom.h"
 
-#ifndef _MSC_VER 
+#ifndef _MSC_VER
 #define __out
 #define __in
 #define __out_opt
@@ -51,49 +51,49 @@ int _tmain(int argc, _TCHAR* argv[])
         return -1;
     }
 
-    while (S_OK == (hr = pReader->Read(&nodeType))) 
+    while (S_OK == (hr = pReader->Read(&nodeType)))
     {
         switch (nodeType)
         {
         case XmlNodeType_Element:
-            if (FAILED(hr = pReader->GetQualifiedName(&pName, NULL)))                      
+            if (FAILED(hr = pReader->GetQualifiedName(&pName, NULL)))
             {
                 printf("Error reading element name, error %08.8lx", hr);
                 return -1;
             }
             if (lstrcmpW(pName, L"key") == 0)
             {
-                if (SUCCEEDED(hr = 
-                            pReader->MoveToAttributeByName(L"name", NULL)))                      
+                if (SUCCEEDED(hr =
+                            pReader->MoveToAttributeByName(L"name", NULL)))
                 {
-                    if (FAILED(hr = pReader->GetValue(&pValue, NULL)))                      
+                    if (FAILED(hr = pReader->GetValue(&pValue, NULL)))
                     {
                         printf("Error reading attribute value, error %08.8lx", hr);
                         return -1;
                     }
-                    if (lstrcmpW(pValue, L"foo") == 0) 
+                    if (lstrcmpW(pValue, L"foo") == 0)
                     {
                         //That's an element we are looking for
-                        if (FAILED(hr = 
-                                    pReader->MoveToAttributeByName(L"value", NULL)))                      
+                        if (FAILED(hr =
+                                    pReader->MoveToAttributeByName(L"value", NULL)))
                         {
                             printf("Error reading attribute \"value\", error %08.8lx", hr);
                             return -1;
                         }
-                        if (FAILED(hr = pReader->GetValue(&pValue, NULL)))                      
+                        if (FAILED(hr = pReader->GetValue(&pValue, NULL)))
                         {
                             printf("Error reading attribute value, error %08.8lx", hr);
                             return -1;
                         }
                         printf("Key \"foo\"'s value is \"%s\"", pValue);
                     }
-                }    
+                }
             }
             break;
         }
     }
-    
+
     getchar();
-    
+
     return 0;
 }
