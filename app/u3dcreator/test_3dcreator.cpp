@@ -22,6 +22,72 @@
 #include "u3dcreator.h"
 
 
+void getColor(float v, GLfloat vdColor[3])
+{
+    GLfloat v_min = 0.f;
+    GLfloat v_max = 8.f;
+
+    GLfloat r1 = 0.0f;
+    GLfloat r2 = 255.0f;
+    GLfloat g1 = 0.0f;
+    GLfloat g2 = 255.0f;
+    GLfloat b1 = 0.0f;
+    GLfloat b2 = 255.0f;
+
+    vdColor[0] = (GLfloat)((r1+(r2-r1)*(v-v_min)/(v_max-v_min))/255.0);
+    vdColor[1] = (GLfloat)((g1+(g2-g1)*(v-v_min)/(v_max-v_min))/255.0);
+    vdColor[2] = (GLfloat)((b1+(b2-b1)*(v-v_min)/(v_max-v_min))/255.0);
+}
+
+void my_render()
+{
+    GLfloat vdColor[3];
+    GLfloat top = 1.0f;
+    GLfloat bottom = -1.f;
+    GLfloat left = -1.f;
+    GLfloat right = 1.f;
+    GLfloat m = 2;
+    GLfloat n = 2;
+    GLfloat dy = (bottom - top) / m;
+    GLfloat dx = (right - left) / n;
+
+    GLfloat w[][3] = { 1.0f, 2.0f, 3.f, 4.f, 1.0f, 2.0f, 3.f, 4.f, 2.f };
+
+    GLfloat value;
+
+    int i, j;
+
+    for (i=0; i<m; ++i)
+    {
+        top = (GLfloat)(bottom - (i+1)*dy);
+        bottom = (GLfloat)(bottom - i*dy);
+        for (j=0; j<n; ++j)
+        {
+            left = (GLfloat)(left + j*dx);
+            right = (GLfloat)(left + (j+1)*dx);
+            glBegin(GL_POLYGON);
+            value = w[i][j];
+            getColor(value, vdColor);
+            glColor3fv(vdColor);
+            glVertex2f(left, bottom);
+            value = w[i][j];
+            getColor(value, vdColor);
+            glColor3fv(vdColor);
+            glVertex2f(right, bottom);
+            value = w[i+1][j+1];
+            getColor(value, vdColor);
+            glColor3fv(vdColor);
+            glVertex2f(right, top);
+            value = w[i+1][j];
+            getColor(value, vdColor);
+            glColor3fv(vdColor);
+            glVertex2f(left, top);
+            glEnd();
+        }
+    }
+
+}
+
 class UDockWindow : public UBaseWindow
 {
 public:
@@ -124,8 +190,9 @@ public:
         win->create();
 
         glctl = new AUI::UGLCtrl(this);
-        glctl->setPos(100, 200, 600, 400);
+        glctl->setPos(50, 50, 600, 600);
         glctl->setInterval(10);
+        glctl->addRender(&my_render);
         glctl->create();
 
         dockWin = new UDockWindow(this);

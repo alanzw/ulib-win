@@ -8,6 +8,7 @@
 #include "uglut.h"
 
 #include "adt/uautoptr.h"
+#include "adt/uvector.h"
 
 #define  UAUIGLCTRL_CLASSNAME "UAUI_UGLCTRL_{7BD1020E-02CB-4a7c-BADD-C1FFBD33299A}"
 
@@ -20,6 +21,12 @@ class UGLCtrl :  public UBaseWindow
     enum {
         ID_TIMER_INTERNAL = 22
     };
+public:
+	typedef void (*GL_RenderFunction)();
+	typedef huys::ADT::UVector<GL_RenderFunction> render_callbacks;
+
+private:
+	render_callbacks m_render_cbs;
 public:
     UGLCtrl(UBaseWindow *pWndParent)
     : UBaseWindow(pWndParent)
@@ -91,7 +98,8 @@ public:
         switch (wParam)
         {
         case ID_TIMER_INTERNAL:
-            {
+           {
+
                 render();
                 // Swap buffers
                 SwapBuffers(m_hdc);
@@ -102,6 +110,16 @@ public:
             return FALSE;
         }
     }
+public:
+	void addRender(GL_RenderFunction func)
+	{
+		m_render_cbs.push_back(func);
+	}
+
+	void resetRenders()
+	{
+		m_render_cbs.clear();
+	}
 private:
     HDC m_hdc;
     HGLRC m_hrc;
@@ -130,10 +148,22 @@ private:
     {
         //glViewport(0, 0, 640.0, 480.0);
 
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(0.0f, 1.0f, 0.0f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         //glScalef(0.5,0.5,0.5);
         glRotatef(2.0,0,0,1);
+
+        if (0 < m_render_cbs.size())
+        {
+            render_callbacks::const_iterator it = m_render_cbs.begin();
+            for (; it!=m_render_cbs.end(); ++it)
+            {
+                (*it)(); // call it
+            }
+        }
+        else
+        {
+
         //
         glBegin(GL_LINES);
 
@@ -175,6 +205,7 @@ private:
         glEnd();
 
         //cnt1+=(cnt1>10?.0f:0.05f);
+        }
     }
 };
 
