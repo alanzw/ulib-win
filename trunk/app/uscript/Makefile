@@ -12,10 +12,10 @@ PERL_LIB = -LD:/Progs/Perl/lib/CORE -lperl510
 TCL_DIR =
 THIRDPARTY_DIR = $(TOPDIR)/thirdparty
 THIRDPARTY_INC = $(THIRDPARTY_DIR)/include/lua
-THIRDPARTY_LIB = $(THIRDPARTY_DIR)/lib/liblua.a
+THIRDPARTY_LIB = -L$(THIRDPARTY_DIR)/lib -llua
 #
-INC = -I"../../inc" -I$(PYTHON_DIR)/include -I$(PERL_INC) -I$(THIRDPARTY_INC)
-LIBS = -L"../../lib" -mwindows -luwin -ltcl84  $(THIRDPARTY_LIB)
+INCS = -I"$(TOPDIR)/inc" -I$(PYTHON_DIR)/include -I$(PERL_INC) -I$(THIRDPARTY_INC)
+LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin -ltcl84  $(THIRDPARTY_LIB)
 CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 

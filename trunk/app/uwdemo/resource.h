@@ -3,7 +3,6 @@
 #endif
 
 #define IDI_APP                         1
-#define IDI_GOOGLE                      11
 
 #define IDR_MENU_MAIN                   200
 #define IDM_NEW                         201
@@ -14,4 +13,3 @@
 #define IDM_STOP                        206
 #define IDM_NUMBER                      207
 #define IDM_ABOUT                       208
-#define IDM_SOLVE                       209

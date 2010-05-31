@@ -43,7 +43,7 @@
 	<File name="..\inc\ulib.h" open="0" top="0" tabpos="1">
 		<Cursor position="5567" topLine="237" />
 	</File>
-	<File name="..\inc\ulistview.h" open="1" top="0" tabpos="1">
+	<File name="..\inc\ulistview.h" open="0" top="0" tabpos="1">
 		<Cursor position="1196" topLine="37" />
 	</File>
 	<File name="..\inc\umenu.h" open="0" top="0" tabpos="5">
@@ -118,8 +118,8 @@
 	<File name="..\src\ucomboboxex.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="669" topLine="26" />
 	</File>
-	<File name="..\src\ucommondialog.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="2561" topLine="108" />
+	<File name="..\src\ucommondialog.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="2749" topLine="84" />
 	</File>
 	<File name="..\src\ucontrol.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="3465" topLine="206" />
@@ -189,6 +189,9 @@
 	</File>
 	<File name="..\src\utabctrl.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="659" topLine="20" />
+	</File>
+	<File name="..\src\uthread.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1108" topLine="0" />
 	</File>
 	<File name="..\src\utime.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="137" topLine="0" />

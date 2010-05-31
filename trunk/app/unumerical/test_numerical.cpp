@@ -41,7 +41,7 @@ public:
 
    BOOL onCreate()
    {
-       this->setIconBig(IDI_APP);
+       this->setIconBig(IDI_GOOGLE);
 
         _font.setFontHeight(20);
         _font.setFontFaceName(_T("Arial"));

@@ -80,34 +80,41 @@ inline HRESULT HuCoCreateInstance(
 {
       HRESULT hr = REGDB_E_KEYMISSING;
 
-      static UDllMan udm(szDllName);
+	  IClassFactory *pIFactory;
 
-      //HMODULE hDll = ::LoadLibrary(szDllName);
-      //if (hDll == 0)
-      //    return hr;
+#if  defined(_MSC_VER) && _MSC_VER <= 1200
+      
+	  HMODULE hDll = ::LoadLibrary(szDllName);
+      if (hDll == 0)
+          return hr;
 
-      //typedef HRESULT (__stdcall *pDllGetClassObject)(
-      //        REFCLSID rclsid,
-      //            REFIID riid,
-      //        LPVOID FAR* ppv);
+      typedef HRESULT (__stdcall *pDllGetClassObject)(
+              REFCLSID rclsid,
+                  REFIID riid,
+              LPVOID FAR* ppv);
 
-      //pDllGetClassObject GetClassObject =
-      //     (pDllGetClassObject)::GetProcAddress(hDll, "DllGetClassObject");
-      //if (GetClassObject == 0)
-      //{
-      //    ::FreeLibrary(hDll);
-      //    return hr;
-      //}
+      pDllGetClassObject GetClassObject =
+           (pDllGetClassObject)::GetProcAddress(hDll, "DllGetClassObject");
+      if (GetClassObject == 0)
+      {
+          ::FreeLibrary(hDll);
+          return hr;
+      }
 
-      IClassFactory *pIFactory;
+
+
+#else
+	  static UDllMan udm(szDllName);
 
       hr = udm.callFunc<HRESULT, REFCLSID, REFIID, LPVOID FAR*>("DllGetClassObject", rclsid, IID_IClassFactory, (LPVOID *)&pIFactory);
 
       if (!SUCCEEDED(hr))
         return hr;
+#endif
 
       hr = pIFactory->CreateInstance(pUnkOuter, riid, ppv);
       pIFactory->Release();
+
 
       return hr;
 

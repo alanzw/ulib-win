@@ -5,21 +5,21 @@ include $(TOPDIR)/make.inc
 
 #
 INCS = -I"$(TOPDIR)/inc"
-LIBS = -L"$(TOPDIR)/lib" -lopengl32 -lglu32 -mwindows -luwin
+LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin
 CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
 
 #
-OBJ = test_3dcreator.o \
-      u3dcreator.o
+OBJ = test_uwdemo.o \
+      uwdemo.o
 
-BIN = test_3dcreator.exe
-RC  = 3dcreator.rc
+BIN = test_uwdemo.exe
+RC  = uwdemo.rc
 RES = ${RC:.rc=.res}
 #
 HEADER = $(INCDIR)/ubasewindow.h \
          $(INCDIR)/uwinapp.h     \
-         u3dcreator.h
+
 #
 all: $(BIN)
 

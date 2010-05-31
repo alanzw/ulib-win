@@ -20,6 +20,8 @@
 
 #include <windows.h>
 #include <tchar.h>
+#include <shlobj.h>
+#include "exdisp.h"
 
 #include "udlgapp.h"
 
@@ -27,3 +29,10 @@
 
 UDLGAPP_T(UDialogSysAdm, IDD_SYSADM);
 
+
+#ifndef _MSC_VER
+#define   INITGUID
+#include <initguid.h>
+//13709620-C279-11CE-A49E-444553540000 
+DEFINE_GUID(CLSID_Shell,0x13709620,0xc279,0x11ce,0xa4,0x9e,0x44,0x45,0x53,0x54,0x00,0x00);
+#endif

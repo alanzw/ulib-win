@@ -163,9 +163,9 @@ public:
         //m_pVTbar->invalidate();
 
         //::SetWindowPos(*m_pVTbar, NULL, 0, 0, 0, 0,
-		//	SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER|SWP_HIDEWINDOW);
+        //    SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER|SWP_HIDEWINDOW);
         //::SetWindowPos(*m_pVTbar, NULL, 0, 0, 0, 0,
-		//	SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER|SWP_SHOWWINDOW);
+        //    SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER|SWP_SHOWWINDOW);
         return TRUE;
     }
 

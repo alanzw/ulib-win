@@ -14,68 +14,11 @@
 #include "adt/uautoptr.h"
 #include "adt/ustring.h"
 
+#include "aui/aui_tracewin.h"
+
 typedef huys::ADT::UStringAnsi TString;
 
 #include "uads.h"
-
-class UTraceWindow : public UBaseWindow
-{
-    enum {
-        ID_LB_TRACE = 1111
-    };
-public:
-    UTraceWindow(UBaseWindow *pWndParent)
-    : UBaseWindow(pWndParent)
-    {
-        RECT rc;
-        ::GetWindowRect(getParent(), &rc);
-        rc.left = rc.right+5;
-        rc.right += 200;
-        rc.top = rc.bottom - 200;
-        setRect(&rc);
-        setMenu(0);
-        setWndClassName(_T("HUYS_TRACE_WINDOW_CLASS"));
-        setTitle(_T("Trace"));
-
-        setExStyles(WS_EX_TOOLWINDOW | WS_EX_TOPMOST | WS_EX_APPWINDOW);
-    }
-
-    BOOL onCreate()
-    {
-        _pListBox = new UListBox(this, ID_LB_TRACE);
-        RECT rc;
-        this->getClientRect(&rc);
-        _pListBox->setRect(&rc);
-        _pListBox->setStyles(WS_VSCROLL);
-        _pListBox->create();
-
-        return UBaseWindow::onCreate();
-    }
-
-    void addLine(LPCTSTR sLine)
-    {
-        _pListBox->addString(sLine);
-    }
-
-    BOOL onClose()
-    {
-        this->hide();
-        return FALSE;
-    }
-
-    BOOL onSize(WPARAM wParam, LPARAM lParam)
-    {
-        RECT rc;
-        ::GetWindowRect(getParent(), &rc);
-        rc.left = rc.right+5;
-        rc.right += 200;
-        rc.top = rc.bottom - 200;
-        this->moveWindow(&rc);
-        return FALSE;
-    }
-private:
-    huys::ADT::UAutoPtr<UListBox> _pListBox;
-};
 
 class UMyWindow : public UBaseWindow
 {
@@ -150,10 +93,14 @@ public:
         m_stop->setWindowText(_T("ֹͣ"));
 
 
-        win = new UTraceWindow(this);
-        //win->setPos(100, 100, 200, 200);
+        huys::URectI rect;
+        this->getWindowRect(rect);
+        
+        win = new AUI::UTraceWindow(this);
+        //
         win->create();
-
+        win->moveWindow(rect.right()+10, rect.bottom()-200, 200, 200);
+        
         return UBaseWindow::onCreate();
     }
 
@@ -218,7 +165,7 @@ private:
 
     int m_val;
 
-    huys::ADT::UAutoPtr<UTraceWindow> win;
+    AUI::UTraceWindowP win;
 private:
     BOOL onMenuAbout()
     {

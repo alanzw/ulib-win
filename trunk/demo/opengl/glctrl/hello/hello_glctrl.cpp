@@ -18,7 +18,7 @@ class UOpenGLCtrl : public UStatic
     };
 public:
     UOpenGLCtrl(HWND hParent, UINT nResource, HINSTANCE hInst)
-        : UStatic(hParent, nResource, hInst)
+        : UStatic(hParent, nResource, hInst), cnt1(0.0)
     {
         m_dwStyles &= ~SS_SIMPLE;
     }
@@ -36,7 +36,7 @@ public:
 
         initGL();
 
-        this->setTimer(ID_TIMER_INTERNAL, 100);
+        this->setTimer(ID_TIMER_INTERNAL, 10);
 
         return  bRet;
     }
@@ -83,7 +83,8 @@ public:
     }
 
 private:
-
+    GLfloat    cnt1;
+private:
     BOOL initGL()
     {
         UGlut::EnableOpenGL(m_hSelf, m_hdc, m_hrc);
@@ -102,7 +103,7 @@ private:
 
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT);
-
+        glRotatef(cnt1,0,0,1);
         //
         glBegin(GL_LINES);
 
@@ -142,7 +143,8 @@ private:
           glVertex2f(1.0f, 0.5f);
           glVertex2f(1.0f, 1.0f);
         glEnd();
-
+        
+        cnt1+=(cnt1>10?.0f:0.05f); 
     }
 private:
     HDC m_hdc;
