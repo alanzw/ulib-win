@@ -198,5 +198,13 @@ void UGLCamera::Mouse_Move()
 }
 
 
+UGLCanvas::UGLCanvas()
+{}
+
+bool UGLCanvas::switch_to_fullscreen()
+{
+    return false;
+}
+
 }; // namespace UGlut
 

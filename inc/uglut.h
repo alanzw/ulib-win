@@ -297,6 +297,16 @@ private:
 
 };
 
+class ULIB_API UGLCanvas
+{
+public:
+    UGLCanvas();
+
+    bool switch_to_fullscreen();
+private:
+
+};
+
 }; // namespace UGlut
 
 #endif // U_GLUT_H

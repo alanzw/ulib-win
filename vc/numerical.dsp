@@ -107,10 +107,6 @@ SOURCE=..\app\unumerical\unumerical.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\demo\dialog\resource.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\app\unumerical\udx_object.h
 # End Source File
 # Begin Source File

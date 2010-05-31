@@ -32,8 +32,8 @@ public:
        ugrid.setPos(20, 20, 320, 320);
        ugrid.create();
 
-	   ugrid.addColTextWidth(0, _T("col1"), 100);
-	   ugrid.addItemTextImage(0, _T("item0"), 0);
+       ugrid.addColTextWidth(0, _T("col1"), 100);
+       ugrid.addItemTextImage(0, _T("item0"), 0);
 
        return UBaseWindow::onCreate();
    }

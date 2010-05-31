@@ -10,10 +10,10 @@ public:
     USortCtrl(UBaseWindow *pWndParent, UINT nID);
     USortCtrl();
     ~USortCtrl();
-    
+
     //
     BOOL create();
-    
+
     //
     BOOL onPaint();
 private:

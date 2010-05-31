@@ -869,6 +869,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\uthread.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\utoolbar.cpp"
 				>
 				<FileConfiguration
@@ -1066,6 +1070,10 @@
 			</File>
 			<File
 				RelativePath="..\inc\utabctrl.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\uthread.h"
 				>
 			</File>
 			<File

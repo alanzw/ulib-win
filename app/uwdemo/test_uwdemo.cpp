@@ -16,11 +16,10 @@
 #include "adt/uautoptr.h"
 
 #include "aui/aui_label.h"
+
 #include "aui/aui_tracewin.h"
-#include "aui/aui_glctrl.h"
 
-#include "u3dcreator.h"
-
+#include "uwdemo.h"
 
 class UDockWindow : public UBaseWindow
 {
@@ -108,7 +107,7 @@ public:
     UMyWindow()
         : UBaseWindow(NULL, ::GetModuleHandle(NULL))
     {
-        this->setTitle(_T("U3DCreator 0.0.1"));
+        this->setTitle(_T("UWDemo 0.0.1"));
         this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
     }
 
@@ -122,11 +121,6 @@ public:
         win = new AUI::UTraceWindow(this);
         //win->setPos(100, 100, 200, 200);
         win->create();
-
-        glctl = new AUI::UGLCtrl(this);
-        glctl->setPos(100, 200, 600, 400);
-        glctl->setInterval(10);
-        glctl->create();
 
         dockWin = new UDockWindow(this);
         dockWin->create();
@@ -187,7 +181,7 @@ public:
 private:
     BOOL onMenuAbout()
     {
-        this->showMsg(_T("U3DCreator v0.0.1"), _T("About"));
+        this->showMsg(_T("UWDemo v0.0.1"), _T("About"));
         return FALSE;
     }
 
@@ -203,7 +197,6 @@ private:
     }
 
     AUI::UTraceWindowP win;
-    AUI::UGLCtrlP glctl;
     huys::ADT::UAutoPtr<UDockWindow> dockWin;
 };
 

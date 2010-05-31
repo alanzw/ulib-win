@@ -30,7 +30,7 @@ class UDialogFluent : public UDialogBox
 public:
     UDialogFluent(HINSTANCE hInst, UINT nID)
     : UDialogBox(hInst, nID) {}
-    
+
 
     BOOL onInit()
     {
@@ -73,7 +73,7 @@ public:
         {
             return onFluentUpdate((char *)lParam);
         }
-        
+
         if (message == 51111)
         {
             //addLines("-->51111.\r\n");
@@ -156,7 +156,7 @@ private:
         addLines("======================================================\r\n");
         return FALSE;
     }
-    
+
     BOOL onBnSendCmd()
     {
        m_ufm.breakCalc();
@@ -169,7 +169,7 @@ private:
        m_ufm.focusWnd();
        Sleep(500);
        m_ufm.fetchNewResult();
-       
+
     }
 };
 

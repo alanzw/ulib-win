@@ -13,6 +13,9 @@
 #include "ubutton.h"
 #include "ucombobox.h"
 
+#include "adt/uautoptr.h"
+#include "aui/aui_label.h"
+
 //#include "upython.h"
 
 const char * g_InterpList[] = {
@@ -22,69 +25,6 @@ const char * g_InterpList[] = {
     "ruby",
     "lua",
     NULL
-};
-
-class UTransparentStatic : public UStatic
-{
-public:
-    UTransparentStatic(HWND hParent, UINT nID = IDC_STATIC, HINSTANCE hInst = (HINSTANCE)::GetModuleHandle(NULL))
-    : UStatic(hParent, nID, hInst)
-    {
-        m_dwStyles &= ~SS_SIMPLE;
-        m_dwStyles |= SS_CENTER;
-
-        m_hbrush = ::CreateSolidBrush(huys::red);
-    }
-
-    virtual ~UTransparentStatic(){};
-
-    //
-    virtual BOOL create()
-    {
-        BOOL bRet = UStatic::create();
-        this->subclassProc();
-        return  bRet;
-    }
-
-    //
-    BOOL setBrush(huys::Color color)
-    {
-        m_hbrush = ::CreateSolidBrush(color);
-        return TRUE;
-    }
-
-    virtual BOOL onCtrlColor(WPARAM wParam, LPARAM lParam)
-    {
-        HDC hdc = (HDC)wParam;
-        HWND hwnd = (HWND)lParam;
-
-        ::SetBkMode(hdc, TRANSPARENT);
-
-        return (BOOL) (HBRUSH)GetStockObject(NULL_BRUSH);
-    }
-
-    //
-    virtual BOOL onMessage(UINT message, WPARAM wParam, LPARAM lParam)
-    {
-        switch(message)
-        {
-        case WM_SETTEXT:
-            return this->onSetText(wParam, lParam);
-        default:
-            return UStatic::onMessage(message, wParam, lParam);
-        };
-    }
-
-    BOOL onSetText(WPARAM wParam, LPARAM lParam)
-    {
-        RECT Rect;
-        ::GetWindowRect(m_hParent, &Rect);
-        ::ScreenToClient(m_hParent, (LPPOINT)&Rect);
-        ::InvalidateRect(m_hParent, &Rect, TRUE);
-        return FALSE;
-    }
-private:
-    HBRUSH m_hbrush;
 };
 
 using huys::UDialogBox;
@@ -98,17 +38,16 @@ class UDialogScript : public UDialogBox
     };
 public:
     UDialogScript(HINSTANCE hInst, UINT nID)
-    : UDialogBox(hInst, nID),
-      m_pEditCmd(NULL)
+    : UDialogBox(hInst, nID)
     {}
 
-    ~UDialogScript()
-    {
-        CHECK_PTR(m_pEditCmd);
-    }
 
     virtual BOOL onInit()
     {
+        huys::URectI rect;
+        
+        ::GetClientRect(m_hDlg, rect);
+    
         m_pCbInterp = new UComboBox(m_hDlg, IDC_COMBO_INTERP, m_hInst);
         m_pCbInterp->setPos(50, 10, 100, 65);
         m_pCbInterp->create();
@@ -118,34 +57,19 @@ public:
             m_pCbInterp->addText(g_InterpList[i]);
         }
 
-        RECT rcTitle = {150, 10, 250, 35};
-        m_pStaticTitle = new UTransparentStatic(m_hDlg);
+        m_pStaticTitle = new AUI::UTransLabel(m_hDlg, IDC_STATIC, m_hInst);
+        m_pStaticTitle->setPos(180, 10, 100, 20);
         m_pStaticTitle->setText(_T("Command"));
         m_pStaticTitle->create();
-        //us.modifyStyles(WS_EX_TRANSPARENT);
-        m_pStaticTitle->setPosition(&rcTitle);
-        //us.hide();
-        //us.show();
 
         m_pEditCmd = new UEdit(m_hDlg, IDC_EDIT_CMD, m_hInst);
+        m_pEditCmd->setPos(rect.left()+40, rect.top()+50, rect.width()-80, 150);
         m_pEditCmd->create();
 
-        RECT rc;
-        ::GetClientRect(m_hDlg, &rc);
-        rc.left += 40;
-        rc.right -= 40;
-        rc.top += 50;
-        rc.bottom = rc.top + 200;
-        m_pEditCmd->setPosition(&rc);
-
         m_pButtonCheck = new UPushButton(m_hDlg, IDC_BUTTON_CHECK, m_hInst);
+        m_pButtonCheck->setPos(450, rect.top()+260, 100, 60);
         m_pButtonCheck->create();
         m_pButtonCheck->setWindowText(_T("check"));
-        rc.left = 450;
-        rc.right = rc.left + 100;
-        rc.top += 260;
-        rc.bottom = rc.top + 60;
-        m_pButtonCheck->setPosition(&rc);
 
         return TRUE;
     }
@@ -193,10 +117,10 @@ public:
         return result;
     }
 private:
-    UEdit *m_pEditCmd;
-    UTransparentStatic *m_pStaticTitle;
-    UPushButton *m_pButtonCheck;
-    UComboBox *m_pCbInterp;
+    huys::ADT::UAutoPtr<UEdit> m_pEditCmd;
+    AUI::UTransLabelP m_pStaticTitle;
+    huys::ADT::UAutoPtr<UPushButton> m_pButtonCheck;
+    huys::ADT::UAutoPtr<UComboBox> m_pCbInterp;
 
 };
 

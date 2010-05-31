@@ -283,7 +283,7 @@ public:
     BOOL onCreate()
     {
         //
-        this->setIconBig(IDI_APP);
+        this->setIconBig(IDI_GOOGLE);
 
         // Create a client window
         m_pClientWindow = new UClientWindow(getHandle(), getInstance());

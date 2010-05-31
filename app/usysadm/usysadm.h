@@ -20,16 +20,12 @@
 #ifndef U_MYDIALOG_SYSADM_H
 #define U_MYDIALOG_SYSADM_H
 
-#include <shlobj.h>
-
 #include "udialogx.h"
 
 #include "umsg.h"
 #include "ubutton.h"
 #include "adt/uautoptr.h"
 #include "com/ucom.h"
-
-
 
 using huys::UDialogBox;
 
@@ -53,7 +49,7 @@ public:
         m_pBnWallpaper = new UPushButton(m_hDlg, IDC_BN_CHANGE_WALLPAPER, m_hInst);
         m_pBnWallpaper->setPos(20, 20, 200, 50);
         m_pBnWallpaper->create();
-        m_pBnWallpaper->setWindowText(_T("Change Wallpaper"));
+        m_pBnWallpaper->setWindowText(_T("Run"));
 
         m_pBnShutdown = new UPushButton(m_hDlg, IDC_BN_SHUTDOWN, m_hInst);
         m_pBnShutdown->setPos(300, 20, 200, 50);
@@ -68,7 +64,7 @@ public:
         m_pBnControlPannel = new UPushButton(m_hDlg, IDC_BN_CONTROLPANNEL, m_hInst);
         m_pBnControlPannel->setPos(300, 100, 200, 50);
         m_pBnControlPannel->create();
-        m_pBnControlPannel->setWindowText(_T("Control Pannel"));
+        m_pBnControlPannel->setWindowText(_T("Control Pannel: Internet"));
 
         return TRUE;
     }
@@ -78,7 +74,7 @@ public:
         switch ( LOWORD(wParam) )
         {
         case IDC_BN_CHANGE_WALLPAPER:
-            return onBnChangeWallpaper();
+            return onBnRunFile();
         case IDC_BN_SHUTDOWN:
             return onBnShutdown();
         case IDC_BN_SHOWDESKTOP:
@@ -97,7 +93,7 @@ private:
 
     huys::UCOM::UDispObject<IShellDispatch> _shellobj;
 private:
-    BOOL onBnChangeWallpaper()
+    BOOL onBnRunFile()
     {
         //showMsg(_T("Wallpaper"), _T("info"), m_hDlg);
         _shellobj->FileRun();
@@ -148,4 +144,3 @@ private:
 };
 
 #endif // U_MYDIALOG_SYSADM_H
-
