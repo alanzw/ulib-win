@@ -22,11 +22,11 @@ class UGLCtrl :  public UBaseWindow
         ID_TIMER_INTERNAL = 22
     };
 public:
-	typedef void (*GL_RenderFunction)();
-	typedef huys::ADT::UVector<GL_RenderFunction> render_callbacks;
+    typedef void (*GL_RenderFunction)();
+    typedef huys::ADT::UVector<GL_RenderFunction> render_callbacks;
 
 private:
-	render_callbacks m_render_cbs;
+    render_callbacks m_render_cbs;
 public:
     UGLCtrl(UBaseWindow *pWndParent)
     : UBaseWindow(pWndParent)
@@ -111,15 +111,15 @@ public:
         }
     }
 public:
-	void addRender(GL_RenderFunction func)
-	{
-		m_render_cbs.push_back(func);
-	}
+    void addRender(GL_RenderFunction func)
+    {
+        m_render_cbs.push_back(func);
+    }
 
-	void resetRenders()
-	{
-		m_render_cbs.clear();
-	}
+    void resetRenders()
+    {
+        m_render_cbs.clear();
+    }
 private:
     HDC m_hdc;
     HGLRC m_hrc;
@@ -148,7 +148,7 @@ private:
     {
         //glViewport(0, 0, 640.0, 480.0);
 
-        glClearColor(0.0f, 1.0f, 0.0f, 0.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         //glScalef(0.5,0.5,0.5);
         glRotatef(2.0,0,0,1);

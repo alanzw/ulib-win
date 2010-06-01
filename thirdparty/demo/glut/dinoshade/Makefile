@@ -6,16 +6,16 @@ include $(TOPDIR)/make.inc
 
 THIRDPARTY_DIR = $(TOPDIR)/thirdparty
 FREEGLUT_INC = $(THIRDPARTY_DIR)/include/freeglut
-FREEGLUT_LIB = -L$(THIRDPARTY_DIR)/lib -lfreeglut -lopengl32 -lglu32
+FREEGLUT_LIB = -L$(THIRDPARTY_DIR)/lib -lopengl32 -lglu32 -lfreeglut 
 #
-INCS = -I"$(FREEGLUT_INC)" -I"$(INCDIR)" -I"."
+INCS = -I"$(INCDIR)" -I"$(FREEGLUT_INC)" -I"."
 LIBS = -L"$(LIBDIR)" $(FREEGLUT_LIB)
 CFLAGS += 
 CXXFLAGS += $(INC)
 LDFLAGS += $(LIBS)
 #
-OBJ = glut_camera.o camera.o
-BIN = glut_camera.exe
+OBJ = glut_dinoshade.o
+BIN = glut_dinoshade.exe
 RC  =
 RES = ${RC:.rc=.res}
 #

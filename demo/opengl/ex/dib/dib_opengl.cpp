@@ -30,11 +30,11 @@ BOOL renderToDIB = TRUE;
 
 /* Struct used to manage color ramps */
 struct colorIndexState {
-    GLfloat amb[3];	/* ambient color / bottom of ramp */
-    GLfloat diff[3];	/* diffuse color / middle of ramp */
-    GLfloat spec[3];	/* specular color / top of ramp */
-    GLfloat ratio;	/* ratio of diffuse to specular in ramp */
-    GLint indexes[3];	/* where ramp was placed in palette */
+    GLfloat amb[3];    /* ambient color / bottom of ramp */
+    GLfloat diff[3];    /* diffuse color / middle of ramp */
+    GLfloat spec[3];    /* specular color / top of ramp */
+    GLfloat ratio;    /* ratio of diffuse to specular in ramp */
+    GLint indexes[3];    /* where ramp was placed in palette */
 };
 
 /*
@@ -76,35 +76,35 @@ drawTorus(void)
     int i, j;
 
     for (i=0; i<numMajor; ++i) {
-	double a0 = i * majorStep;
-	double a1 = a0 + majorStep;
-	GLfloat x0 = (GLfloat) cos(a0);
-	GLfloat y0 = (GLfloat) sin(a0);
-	GLfloat x1 = (GLfloat) cos(a1);
-	GLfloat y1 = (GLfloat) sin(a1);
+    double a0 = i * majorStep;
+    double a1 = a0 + majorStep;
+    GLfloat x0 = (GLfloat) cos(a0);
+    GLfloat y0 = (GLfloat) sin(a0);
+    GLfloat x1 = (GLfloat) cos(a1);
+    GLfloat y1 = (GLfloat) sin(a1);
 
-	if (i & 1) {
-	    glColor3fv(colors[0].diff);
-	    glMaterialiv(GL_FRONT, GL_COLOR_INDEXES, colors[0].indexes);
-	} else {
-	    glColor3fv(colors[1].diff);
-	    glMaterialiv(GL_FRONT, GL_COLOR_INDEXES, colors[1].indexes);
-	}
+    if (i & 1) {
+        glColor3fv(colors[0].diff);
+        glMaterialiv(GL_FRONT, GL_COLOR_INDEXES, colors[0].indexes);
+    } else {
+        glColor3fv(colors[1].diff);
+        glMaterialiv(GL_FRONT, GL_COLOR_INDEXES, colors[1].indexes);
+    }
 
-	glBegin(GL_TRIANGLE_STRIP);
-	for (j=0; j<=numMinor; ++j) {
-	    double b = j * minorStep;
-	    GLfloat c = (GLfloat) cos(b);
-	    GLfloat r = minorRadius * c + majorRadius;
-	    GLfloat z = minorRadius * (GLfloat) sin(b);
+    glBegin(GL_TRIANGLE_STRIP);
+    for (j=0; j<=numMinor; ++j) {
+        double b = j * minorStep;
+        GLfloat c = (GLfloat) cos(b);
+        GLfloat r = minorRadius * c + majorRadius;
+        GLfloat z = minorRadius * (GLfloat) sin(b);
 
-	    glNormal3f(x0*c, y0*c, z/minorRadius);
-	    glVertex3f(x0*r, y0*r, z);
+        glNormal3f(x0*c, y0*c, z/minorRadius);
+        glVertex3f(x0*r, y0*r, z);
 
-	    glNormal3f(x1*c, y1*c, z/minorRadius);
-	    glVertex3f(x1*r, y1*r, z);
-	}
-	glEnd();
+        glNormal3f(x1*c, y1*c, z/minorRadius);
+        glVertex3f(x1*r, y1*r, z);
+    }
+    glEnd();
     }
 }
 
@@ -119,11 +119,11 @@ setProjection(void)
     ** Preserve the aspect ratio of objects in the scene.
     */
     if (winWidth > winHeight) {
-	GLfloat aspect = (GLfloat) winWidth / (GLfloat) winHeight;
-	glFrustum(-0.5F*aspect, 0.5F*aspect, -0.5F, 0.5F, 1.0F, 3.0F);
+    GLfloat aspect = (GLfloat) winWidth / (GLfloat) winHeight;
+    glFrustum(-0.5F*aspect, 0.5F*aspect, -0.5F, 0.5F, 1.0F, 3.0F);
     } else {
-	GLfloat aspect = (GLfloat) winHeight / (GLfloat) winWidth;
-	glFrustum(-0.5F, 0.5F, -0.5F*aspect, 0.5F*aspect, 1.0F, 3.0F);
+    GLfloat aspect = (GLfloat) winHeight / (GLfloat) winWidth;
+    glFrustum(-0.5F, 0.5F, -0.5F*aspect, 0.5F*aspect, 1.0F, 3.0F);
     }
     glMatrixMode(GL_MODELVIEW);
 }
@@ -148,7 +148,7 @@ init(void)
     glEnable(GL_DEPTH_TEST);
 
     if (!colorIndexMode) {
-	glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_COLOR_MATERIAL);
     }
 }
 
@@ -169,11 +169,11 @@ doRedraw(void)
     glPopMatrix();
 
     if (renderToDIB) {
-	glFinish();
-	BitBlt(hDCFrontBuffer, 0, 0, winWidth, winHeight, hDC, 0, 0, SRCCOPY);
-	GdiFlush();
+    glFinish();
+    BitBlt(hDCFrontBuffer, 0, 0, winWidth, winHeight, hDC, 0, 0, SRCCOPY);
+    GdiFlush();
     } else {
-	SwapBuffers(hDC);
+    SwapBuffers(hDC);
     }
 
     x += 5.0F;
@@ -214,18 +214,18 @@ setupDIB(HDC hDC)
 
     switch (bitsPerPixel) {
     case 8:
-	/* bmiColors is 256 WORD palette indices */
-	bmiSize += (256 * sizeof(WORD)) - sizeof(RGBQUAD);
-	break;
+    /* bmiColors is 256 WORD palette indices */
+    bmiSize += (256 * sizeof(WORD)) - sizeof(RGBQUAD);
+    break;
     case 16:
-	/* bmiColors is 3 WORD component masks */
-	bmiSize += (3 * sizeof(DWORD)) - sizeof(RGBQUAD);
-	break;
+    /* bmiColors is 3 WORD component masks */
+    bmiSize += (3 * sizeof(DWORD)) - sizeof(RGBQUAD);
+    break;
     case 24:
     case 32:
     default:
-	/* bmiColors not used */
-	break;
+    /* bmiColors not used */
+    break;
     }
 
     bmInfo = (BITMAPINFO *) calloc(1, bmiSize);
@@ -234,58 +234,58 @@ setupDIB(HDC hDC)
     bmHeader->biSize = sizeof(*bmHeader);
     bmHeader->biWidth = winWidth;
     bmHeader->biHeight = winHeight;
-    bmHeader->biPlanes = 1;			/* must be 1 */
+    bmHeader->biPlanes = 1;            /* must be 1 */
     bmHeader->biBitCount = bitsPerPixel;
     bmHeader->biXPelsPerMeter = 0;
     bmHeader->biYPelsPerMeter = 0;
-    bmHeader->biClrUsed = 0;			/* all are used */
-    bmHeader->biClrImportant = 0;		/* all are important */
+    bmHeader->biClrUsed = 0;            /* all are used */
+    bmHeader->biClrImportant = 0;        /* all are important */
 
     switch (bitsPerPixel) {
     case 8:
-	bmHeader->biCompression = BI_RGB;
-	bmHeader->biSizeImage = 0;
-	usage = DIB_PAL_COLORS;
-	/* bmiColors is 256 WORD palette indices */
-	{
-	    WORD *palIndex = (WORD *) &bmInfo->bmiColors[0];
-	    int i;
+    bmHeader->biCompression = BI_RGB;
+    bmHeader->biSizeImage = 0;
+    usage = DIB_PAL_COLORS;
+    /* bmiColors is 256 WORD palette indices */
+    {
+        WORD *palIndex = (WORD *) &bmInfo->bmiColors[0];
+        int i;
 
-	    for (i=0; i<256; i++) {
-		palIndex[i] = i;
-	    }
-	}
-	break;
+        for (i=0; i<256; i++) {
+        palIndex[i] = i;
+        }
+    }
+    break;
     case 16:
-	bmHeader->biCompression = BI_RGB;
-	bmHeader->biSizeImage = 0;
-	usage = DIB_RGB_COLORS;
-	/* bmiColors is 3 WORD component masks */
-	{
-	    DWORD *compMask = (DWORD *) &bmInfo->bmiColors[0];
+    bmHeader->biCompression = BI_RGB;
+    bmHeader->biSizeImage = 0;
+    usage = DIB_RGB_COLORS;
+    /* bmiColors is 3 WORD component masks */
+    {
+        DWORD *compMask = (DWORD *) &bmInfo->bmiColors[0];
 
-	    compMask[0] = 0xF800;
-	    compMask[1] = 0x07E0;
-	    compMask[2] = 0x001F;
-	}
-	break;
+        compMask[0] = 0xF800;
+        compMask[1] = 0x07E0;
+        compMask[2] = 0x001F;
+    }
+    break;
     case 24:
     case 32:
     default:
-	bmHeader->biCompression = BI_RGB;
-	bmHeader->biSizeImage = 0;
-	usage = DIB_RGB_COLORS;
-	/* bmiColors not used */
-	break;
+    bmHeader->biCompression = BI_RGB;
+    bmHeader->biSizeImage = 0;
+    usage = DIB_RGB_COLORS;
+    /* bmiColors not used */
+    break;
     }
 
     hBitmap = CreateDIBSection(hDC, bmInfo, usage, &base, NULL, 0);
     if (hBitmap == NULL) {
-	(void) MessageBox(WindowFromDC(hDC),
-		"Failed to create DIBSection.",
-		"OpenGL application error",
-		MB_ICONERROR | MB_OK);
-	exit(1);
+    (void) MessageBox(WindowFromDC(hDC),
+        "Failed to create DIBSection.",
+        "OpenGL application error",
+        MB_ICONERROR | MB_OK);
+    exit(1);
     }
 
     hOldBitmap = (HBITMAP)SelectObject(hDC, hBitmap);
@@ -315,116 +315,116 @@ setupPalette(HDC hDC)
     ** Determine if a palette is needed and if so what size.
     */
     if (pfd.dwFlags & PFD_NEED_PALETTE) {
-	paletteSize = 1 << pfd.cColorBits;
+    paletteSize = 1 << pfd.cColorBits;
     } else if (pfd.iPixelType == PFD_TYPE_COLORINDEX) {
-	paletteSize = 4096;
+    paletteSize = 4096;
     } else {
-	return;
+    return;
     }
 
     pPal = (LOGPALETTE*)
-	malloc(sizeof(LOGPALETTE) + paletteSize * sizeof(PALETTEENTRY));
+    malloc(sizeof(LOGPALETTE) + paletteSize * sizeof(PALETTEENTRY));
     pPal->palVersion = 0x300;
     pPal->palNumEntries = paletteSize;
 
     if (pfd.iPixelType == PFD_TYPE_RGBA) {
-	/*
-	** Fill the logical paletee with RGB color ramps
-	*/
-	int redMask = (1 << pfd.cRedBits) - 1;
-	int greenMask = (1 << pfd.cGreenBits) - 1;
-	int blueMask = (1 << pfd.cBlueBits) - 1;
-	int i;
+    /*
+    ** Fill the logical paletee with RGB color ramps
+    */
+    int redMask = (1 << pfd.cRedBits) - 1;
+    int greenMask = (1 << pfd.cGreenBits) - 1;
+    int blueMask = (1 << pfd.cBlueBits) - 1;
+    int i;
 
-	for (i=0; i<paletteSize; ++i) {
-	    pPal->palPalEntry[i].peRed =
-		    (((i >> pfd.cRedShift) & redMask) * 255) / redMask;
-	    pPal->palPalEntry[i].peGreen =
-		    (((i >> pfd.cGreenShift) & greenMask) * 255) / greenMask;
-	    pPal->palPalEntry[i].peBlue =
-		    (((i >> pfd.cBlueShift) & blueMask) * 255) / blueMask;
-	    pPal->palPalEntry[i].peFlags = 0;
-	}
+    for (i=0; i<paletteSize; ++i) {
+        pPal->palPalEntry[i].peRed =
+            (((i >> pfd.cRedShift) & redMask) * 255) / redMask;
+        pPal->palPalEntry[i].peGreen =
+            (((i >> pfd.cGreenShift) & greenMask) * 255) / greenMask;
+        pPal->palPalEntry[i].peBlue =
+            (((i >> pfd.cBlueShift) & blueMask) * 255) / blueMask;
+        pPal->palPalEntry[i].peFlags = 0;
+    }
     } else {
-	/*
-	** Fill the logical palette with color ramps.
-	**
-	** Set up the logical palette so that it can be realized
-	** into the system palette as an identity palette.
-	**
-	** 1) The default static entries should be present and at the right
-	**    location.  The easiest way to do this is to grab them from
-	**    the current system palette.
-	**
-	** 2) All non-static entries should be initialized to unique values.
-	**    The easiest way to do this is to ensure that all of the non-static
-	**    entries have the PC_NOCOLLAPSE flag bit set.
-	*/
-	int numRamps = NUM_COLORS;
-	int rampSize = (paletteSize - 20) / numRamps;
-	int extra = (paletteSize - 20) - (numRamps * rampSize);
-	int i, r;
+    /*
+    ** Fill the logical palette with color ramps.
+    **
+    ** Set up the logical palette so that it can be realized
+    ** into the system palette as an identity palette.
+    **
+    ** 1) The default static entries should be present and at the right
+    **    location.  The easiest way to do this is to grab them from
+    **    the current system palette.
+    **
+    ** 2) All non-static entries should be initialized to unique values.
+    **    The easiest way to do this is to ensure that all of the non-static
+    **    entries have the PC_NOCOLLAPSE flag bit set.
+    */
+    int numRamps = NUM_COLORS;
+    int rampSize = (paletteSize - 20) / numRamps;
+    int extra = (paletteSize - 20) - (numRamps * rampSize);
+    int i, r;
 
-	/*
-	** Initialize static entries by copying them from the
-	** current system palette.
-	*/
-	GetSystemPaletteEntries(hDC, 0, paletteSize, &pPal->palPalEntry[0]);
+    /*
+    ** Initialize static entries by copying them from the
+    ** current system palette.
+    */
+    GetSystemPaletteEntries(hDC, 0, paletteSize, &pPal->palPalEntry[0]);
 
-	/*
-	** Fill in non-static entries with desired colors.
-	*/
-	for (r=0; r<numRamps; ++r) {
-	    int rampBase = r * rampSize + 10;
-	    PALETTEENTRY *pe = &pPal->palPalEntry[rampBase];
-	    int diffSize = (int) (rampSize * colors[r].ratio);
-	    int specSize = rampSize - diffSize;
+    /*
+    ** Fill in non-static entries with desired colors.
+    */
+    for (r=0; r<numRamps; ++r) {
+        int rampBase = r * rampSize + 10;
+        PALETTEENTRY *pe = &pPal->palPalEntry[rampBase];
+        int diffSize = (int) (rampSize * colors[r].ratio);
+        int specSize = rampSize - diffSize;
 
-	    for (i=0; i<rampSize; ++i) {
-		GLfloat *c0, *c1;
-		GLint a;
+        for (i=0; i<rampSize; ++i) {
+        GLfloat *c0, *c1;
+        GLint a;
 
-		if (i < diffSize) {
-		    c0 = colors[r].amb;
-		    c1 = colors[r].diff;
-		    a = (i * 255) / (diffSize - 1);
-		} else {
-		    c0 = colors[r].diff;
-		    c1 = colors[r].spec;
-		    a = ((i - diffSize) * 255) / (specSize - 1);
-		}
+        if (i < diffSize) {
+            c0 = colors[r].amb;
+            c1 = colors[r].diff;
+            a = (i * 255) / (diffSize - 1);
+        } else {
+            c0 = colors[r].diff;
+            c1 = colors[r].spec;
+            a = ((i - diffSize) * 255) / (specSize - 1);
+        }
 
-		pe[i].peRed = (BYTE) (a * (c1[0] - c0[0]) + 255 * c0[0]);
-		pe[i].peGreen = (BYTE) (a * (c1[1] - c0[1]) + 255 * c0[1]);
-		pe[i].peBlue = (BYTE) (a * (c1[2] - c0[2]) + 255 * c0[2]);
-		pe[i].peFlags = PC_NOCOLLAPSE;
-	    }
+        pe[i].peRed = (BYTE) (a * (c1[0] - c0[0]) + 255 * c0[0]);
+        pe[i].peGreen = (BYTE) (a * (c1[1] - c0[1]) + 255 * c0[1]);
+        pe[i].peBlue = (BYTE) (a * (c1[2] - c0[2]) + 255 * c0[2]);
+        pe[i].peFlags = PC_NOCOLLAPSE;
+        }
 
-	    colors[r].indexes[0] = rampBase;
-	    colors[r].indexes[1] = rampBase + (diffSize-1);
-	    colors[r].indexes[2] = rampBase + (rampSize-1);
-	}
+        colors[r].indexes[0] = rampBase;
+        colors[r].indexes[1] = rampBase + (diffSize-1);
+        colors[r].indexes[2] = rampBase + (rampSize-1);
+    }
 
-	/*
-	** Initialize any remaining non-static entries.
-	*/
-	for (i=0; i<extra; ++i) {
-	    int index = numRamps*rampSize+10+i;
-	    PALETTEENTRY *pe = &pPal->palPalEntry[index];
+    /*
+    ** Initialize any remaining non-static entries.
+    */
+    for (i=0; i<extra; ++i) {
+        int index = numRamps*rampSize+10+i;
+        PALETTEENTRY *pe = &pPal->palPalEntry[index];
 
-	    pe->peRed = (BYTE) 0;
-	    pe->peGreen = (BYTE) 0;
-	    pe->peBlue = (BYTE) 0;
-	    pe->peFlags = PC_NOCOLLAPSE;
-	}
+        pe->peRed = (BYTE) 0;
+        pe->peGreen = (BYTE) 0;
+        pe->peBlue = (BYTE) 0;
+        pe->peFlags = PC_NOCOLLAPSE;
+    }
     }
 
     hPalette = CreatePalette(pPal);
     free(pPal);
 
     if (hPalette) {
-	SelectPalette(hDC, hPalette, FALSE);
-	RealizePalette(hDC);
+    SelectPalette(hDC, hPalette, FALSE);
+    RealizePalette(hDC);
     }
 }
 
@@ -432,22 +432,22 @@ void
 setupPixelFormat(HDC hDC)
 {
     PIXELFORMATDESCRIPTOR pfd = {
-	sizeof(PIXELFORMATDESCRIPTOR),	/* size of this pfd */
-	1,				/* version num */
-	PFD_SUPPORT_OPENGL,		/* support OpenGL */
-	0,				/* pixel type */
-	0,				/* 8-bit color depth */
-	0, 0, 0, 0, 0, 0,		/* color bits (ignored) */
-	0,				/* no alpha buffer */
-	0,				/* alpha bits (ignored) */
-	0,				/* no accumulation buffer */
-	0, 0, 0, 0,			/* accum bits (ignored) */
-	16,				/* depth buffer */
-	0,				/* no stencil buffer */
-	0,				/* no auxiliary buffers */
-	PFD_MAIN_PLANE,			/* main layer */
-	0,				/* reserved */
-	0, 0, 0,			/* no layer, visible, damage masks */
+    sizeof(PIXELFORMATDESCRIPTOR),    /* size of this pfd */
+    1,                /* version num */
+    PFD_SUPPORT_OPENGL,        /* support OpenGL */
+    0,                /* pixel type */
+    0,                /* 8-bit color depth */
+    0, 0, 0, 0, 0, 0,        /* color bits (ignored) */
+    0,                /* no alpha buffer */
+    0,                /* alpha bits (ignored) */
+    0,                /* no accumulation buffer */
+    0, 0, 0, 0,            /* accum bits (ignored) */
+    16,                /* depth buffer */
+    0,                /* no stencil buffer */
+    0,                /* no auxiliary buffers */
+    PFD_MAIN_PLANE,            /* main layer */
+    0,                /* reserved */
+    0, 0, 0,            /* no layer, visible, damage masks */
     };
     int SelectedPixelFormat;
     BOOL retVal;
@@ -455,9 +455,9 @@ setupPixelFormat(HDC hDC)
     pfd.cColorBits = GetDeviceCaps(hDC, BITSPIXEL);
 
     if (colorIndexMode) {
-	pfd.iPixelType = PFD_TYPE_COLORINDEX;
+    pfd.iPixelType = PFD_TYPE_COLORINDEX;
     } else {
-	pfd.iPixelType = PFD_TYPE_RGBA;
+    pfd.iPixelType = PFD_TYPE_RGBA;
     }
 
     if (doubleBuffered) {
@@ -465,27 +465,27 @@ setupPixelFormat(HDC hDC)
     }
 
     if (renderToDIB) {
-	pfd.dwFlags |= PFD_DRAW_TO_BITMAP;
+    pfd.dwFlags |= PFD_DRAW_TO_BITMAP;
     } else {
-	pfd.dwFlags |= PFD_DRAW_TO_WINDOW;
+    pfd.dwFlags |= PFD_DRAW_TO_WINDOW;
     }
 
     SelectedPixelFormat = ChoosePixelFormat(hDC, &pfd);
     if (SelectedPixelFormat == 0) {
-	(void) MessageBox(WindowFromDC(hDC),
-		"Failed to find acceptable pixel format.",
-		"OpenGL application error",
-		MB_ICONERROR | MB_OK);
-	exit(1);
+    (void) MessageBox(WindowFromDC(hDC),
+        "Failed to find acceptable pixel format.",
+        "OpenGL application error",
+        MB_ICONERROR | MB_OK);
+    exit(1);
     }
 
     retVal = SetPixelFormat(hDC, SelectedPixelFormat, &pfd);
     if (retVal != TRUE) {
-	(void) MessageBox(WindowFromDC(hDC),
-		"Failed to set pixel format.",
-		"OpenGL application error",
-		MB_ICONERROR | MB_OK);
-	exit(1);
+    (void) MessageBox(WindowFromDC(hDC),
+        "Failed to set pixel format.",
+        "OpenGL application error",
+        MB_ICONERROR | MB_OK);
+    exit(1);
     }
 }
 
@@ -498,77 +498,77 @@ WndProc(
 {
     switch (message) {
     case WM_CREATE:
-	return 0;
+    return 0;
     case WM_DESTROY:
-	PostQuitMessage(0);
-	return 0;
+    PostQuitMessage(0);
+    return 0;
     case WM_SIZE:
-	if (hGLRC) {
-	    winWidth = (int) LOWORD(lParam);
-	    winHeight = (int) HIWORD(lParam);
-	    /*
-	    if (renderToDIB) {
-		resizeDIB(hDC);
-	    }
-	    */
-	    resize();
-	    return 0;
-	}
+    if (hGLRC) {
+        winWidth = (int) LOWORD(lParam);
+        winHeight = (int) HIWORD(lParam);
+        /*
+        if (renderToDIB) {
+        resizeDIB(hDC);
+        }
+        */
+        resize();
+        return 0;
+    }
     case WM_PALETTECHANGED:
-	/*
-	** Update palette mapping if this *is not* the active window.
-	*/
-	if (hGLRC && hPalette && (HWND) wParam != hWnd) {
-	    UnrealizeObject(hPalette);
-	    SelectPalette(hDC, hPalette, FALSE);
-	    RealizePalette(hDC);
-	    redraw();
-	    return 0;
-	}
-	break;
+    /*
+    ** Update palette mapping if this *is not* the active window.
+    */
+    if (hGLRC && hPalette && (HWND) wParam != hWnd) {
+        UnrealizeObject(hPalette);
+        SelectPalette(hDC, hPalette, FALSE);
+        RealizePalette(hDC);
+        redraw();
+        return 0;
+    }
+    break;
     case WM_QUERYNEWPALETTE:
-	/*
-	** Update palette mapping if this *is* the active window.
-	*/
-	if (hGLRC && hPalette) {
-	    UnrealizeObject(hPalette);
-	    SelectPalette(hDC, hPalette, FALSE);
-	    RealizePalette(hDC);
-	    redraw();
-	    return TRUE;
-	}
-	break;
+    /*
+    ** Update palette mapping if this *is* the active window.
+    */
+    if (hGLRC && hPalette) {
+        UnrealizeObject(hPalette);
+        SelectPalette(hDC, hPalette, FALSE);
+        RealizePalette(hDC);
+        redraw();
+        return TRUE;
+    }
+    break;
     case WM_PAINT:
-	/*
-	** Update the window.  Don't use the device context returned by
-	** BeginPaint as it won't have the right palette selected into it.
-	*/
-	if (hGLRC) {
-	    PAINTSTRUCT ps;
+    /*
+    ** Update the window.  Don't use the device context returned by
+    ** BeginPaint as it won't have the right palette selected into it.
+    */
+    if (hGLRC) {
+        PAINTSTRUCT ps;
 
-	    BeginPaint(hWnd, &ps);
-	    redraw();
-	    EndPaint(hWnd, &ps);
-	    return 0;
-	}
-	break;
+        BeginPaint(hWnd, &ps);
+        redraw();
+        EndPaint(hWnd, &ps);
+        return 0;
+    }
+    break;
     case WM_CHAR:
-	switch ((int)wParam) {
-	case VK_ESCAPE:
-	    DestroyWindow(hWnd);
-	    return 0;
-	case VK_SPACE:
-	    if (idleFunc) {
-		idleFunc = NULL;
-	    } else {
-		idleFunc = doRedraw;
-	    }
-	default:
-	    break;
-	}
-	break;
+    switch ((int)wParam) {
+    case VK_ESCAPE:
+        DestroyWindow(hWnd);
+        return 0;
+    case VK_SPACE:
+        if (idleFunc) {
+        idleFunc = NULL;
+        } else {
+        idleFunc = doRedraw;
+        }
     default:
-	break;
+        break;
+    }
+    break;
+    default:
+    break;
     }
 
     /* Deal with any unprocessed messages */
@@ -601,17 +601,17 @@ WinMain(
 
     /* Create a window of the previously defined class */
     hWnd = CreateWindow(
-	className,		/* Window class's name */
-	windowName,		/* Title bar text */
-	WS_OVERLAPPEDWINDOW |	/* The window's style */
-	WS_CLIPCHILDREN |
-	WS_CLIPSIBLINGS,
-	winX, winY,		/* Position */
-	winWidth, winHeight,	/* Size */
-	NULL,			/* Parent window's handle */
-	NULL,			/* Menu handle */
-	hCurrentInst,		/* Instance handle */
-	NULL);			/* No additional data */
+    className,        /* Window class's name */
+    windowName,        /* Title bar text */
+    WS_OVERLAPPEDWINDOW |    /* The window's style */
+    WS_CLIPCHILDREN |
+    WS_CLIPSIBLINGS,
+    winX, winY,        /* Position */
+    winWidth, winHeight,    /* Size */
+    NULL,            /* Parent window's handle */
+    NULL,            /* Menu handle */
+    hCurrentInst,        /* Instance handle */
+    NULL);            /* No additional data */
 
     /* Map the window to the screen */
     ShowWindow(hWnd, nCmdShow);
@@ -626,8 +626,8 @@ WinMain(
     hDC = GetDC(hWnd);
     hDCFrontBuffer = hDC;
     if (renderToDIB) {
-	hDC = CreateCompatibleDC(hDCFrontBuffer);
-	setupDIB(hDC);
+    hDC = CreateCompatibleDC(hDCFrontBuffer);
+    setupDIB(hDC);
     }
     setupPixelFormat(hDC);
     setupPalette(hDC);
@@ -638,17 +638,17 @@ WinMain(
 
     /* Process Messages */
     while (1) {
-	/* execute the idle function while there are no messages to process */
-	while (idleFunc &&
-	       PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) == FALSE)
-	{
-	    (*idleFunc)();
-	}
-	if (GetMessage(&msg, NULL, 0, 0) != TRUE) {
-	    break;
-	}
-	TranslateMessage(&msg);
-	DispatchMessage(&msg);
+    /* execute the idle function while there are no messages to process */
+    while (idleFunc &&
+           PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) == FALSE)
+    {
+        (*idleFunc)();
+    }
+    if (GetMessage(&msg, NULL, 0, 0) != TRUE) {
+        break;
+    }
+    TranslateMessage(&msg);
+    DispatchMessage(&msg);
     }
 
     /*
@@ -656,8 +656,8 @@ WinMain(
     */
     idleFunc = NULL;
     if (hGLRC) {
-	wglMakeCurrent(NULL, NULL);
-	wglDeleteContext(hGLRC);
+    wglMakeCurrent(NULL, NULL);
+    wglDeleteContext(hGLRC);
     }
     ReleaseDC(hWnd, hDC);
 
@@ -686,11 +686,11 @@ WinMain(
 
 /* Struct used to manage color ramps */
 struct colorIndexState {
-    GLfloat amb[3];	/* ambient color / bottom of ramp */
-    GLfloat diff[3];	/* diffuse color / middle of ramp */
-    GLfloat spec[3];	/* specular color / top of ramp */
-    GLfloat ratio;	/* ratio of diffuse to specular in ramp */
-    GLint indexes[3];	/* where ramp was placed in palette */
+    GLfloat amb[3];    /* ambient color / bottom of ramp */
+    GLfloat diff[3];    /* diffuse color / middle of ramp */
+    GLfloat spec[3];    /* specular color / top of ramp */
+    GLfloat ratio;    /* ratio of diffuse to specular in ramp */
+    GLint indexes[3];    /* where ramp was placed in palette */
 };
 
 /*
@@ -819,12 +819,12 @@ setupDIB(HDC hDC)
     bmHeader->biSize = sizeof(*bmHeader);
     bmHeader->biWidth = winWidth;
     bmHeader->biHeight = winHeight;
-    bmHeader->biPlanes = 1;			/* must be 1 */
+    bmHeader->biPlanes = 1;            /* must be 1 */
     bmHeader->biBitCount = bitsPerPixel;
     bmHeader->biXPelsPerMeter = 0;
     bmHeader->biYPelsPerMeter = 0;
-    bmHeader->biClrUsed = 0;			/* all are used */
-    bmHeader->biClrImportant = 0;		/* all are important */
+    bmHeader->biClrUsed = 0;            /* all are used */
+    bmHeader->biClrImportant = 0;        /* all are important */
 
     switch (bitsPerPixel) {
     case 8:
@@ -1017,22 +1017,22 @@ void
 setupPixelFormat(HDC hDC)
 {
     PIXELFORMATDESCRIPTOR pfd = {
-        sizeof(PIXELFORMATDESCRIPTOR),	/* size of this pfd */
-        1,				/* version num */
-        PFD_SUPPORT_OPENGL,		/* support OpenGL */
-        0,				/* pixel type */
-        0,				/* 8-bit color depth */
-        0, 0, 0, 0, 0, 0,		/* color bits (ignored) */
-        0,				/* no alpha buffer */
-        0,				/* alpha bits (ignored) */
-        0,				/* no accumulation buffer */
-        0, 0, 0, 0,			/* accum bits (ignored) */
-        16,				/* depth buffer */
-        0,				/* no stencil buffer */
-        0,				/* no auxiliary buffers */
-        PFD_MAIN_PLANE,			/* main layer */
-        0,				/* reserved */
-        0, 0, 0,			/* no layer, visible, damage masks */
+        sizeof(PIXELFORMATDESCRIPTOR),    /* size of this pfd */
+        1,                /* version num */
+        PFD_SUPPORT_OPENGL,        /* support OpenGL */
+        0,                /* pixel type */
+        0,                /* 8-bit color depth */
+        0, 0, 0, 0, 0, 0,        /* color bits (ignored) */
+        0,                /* no alpha buffer */
+        0,                /* alpha bits (ignored) */
+        0,                /* no accumulation buffer */
+        0, 0, 0, 0,            /* accum bits (ignored) */
+        16,                /* depth buffer */
+        0,                /* no stencil buffer */
+        0,                /* no auxiliary buffers */
+        PFD_MAIN_PLANE,            /* main layer */
+        0,                /* reserved */
+        0, 0, 0,            /* no layer, visible, damage masks */
     };
     int SelectedPixelFormat;
     BOOL retVal;

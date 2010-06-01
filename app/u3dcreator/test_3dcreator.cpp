@@ -18,6 +18,7 @@
 #include "aui/aui_label.h"
 #include "aui/aui_tracewin.h"
 #include "aui/aui_glctrl.h"
+#include "aui/aui_dockwin.h"
 
 #include "u3dcreator.h"
 
@@ -25,29 +26,38 @@
 void getColor(float v, GLfloat vdColor[3])
 {
     GLfloat v_min = 0.f;
-    GLfloat v_max = 8.f;
+    GLfloat v_max = 4.f;
 
     GLfloat r1 = 0.0f;
-    GLfloat r2 = 255.0f;
+    GLfloat r2 = 128.0f;
     GLfloat g1 = 0.0f;
     GLfloat g2 = 255.0f;
     GLfloat b1 = 0.0f;
-    GLfloat b2 = 255.0f;
+    GLfloat b2 = 0.0f;
 
     vdColor[0] = (GLfloat)((r1+(r2-r1)*(v-v_min)/(v_max-v_min))/255.0);
     vdColor[1] = (GLfloat)((g1+(g2-g1)*(v-v_min)/(v_max-v_min))/255.0);
     vdColor[2] = (GLfloat)((b1+(b2-b1)*(v-v_min)/(v_max-v_min))/255.0);
 }
 
+/*
+
+    (i, j)   ------- (i, j+1)
+       |                |
+       |                |
+       |                |
+    (i+1, j) ------- (i+1, j+1)
+ */
+
 void my_render()
 {
     GLfloat vdColor[3];
-    GLfloat top = 1.0f;
-    GLfloat bottom = -1.f;
-    GLfloat left = -1.f;
-    GLfloat right = 1.f;
+    GLfloat top = .5f;
+    GLfloat bottom = -0.5f;
+    GLfloat left = -.5f;
+    GLfloat right = .5f;
     GLfloat m = 2;
-    GLfloat n = 2;
+    GLfloat n = 1;
     GLfloat dy = (bottom - top) / m;
     GLfloat dx = (right - left) / n;
 
@@ -70,7 +80,7 @@ void my_render()
             getColor(value, vdColor);
             glColor3fv(vdColor);
             glVertex2f(left, bottom);
-            value = w[i][j];
+            value = w[i][j+1];
             getColor(value, vdColor);
             glColor3fv(vdColor);
             glVertex2f(right, bottom);
@@ -87,83 +97,6 @@ void my_render()
     }
 
 }
-
-class UDockWindow : public UBaseWindow
-{
-public:
-    UDockWindow(UBaseWindow *pWndParent)
-    : UBaseWindow(pWndParent)
-    {
-        RECT rc;
-        ::GetClientRect(getParent(), &rc);
-        rc.left = rc.right - 200;
-        setRect(&rc);
-        setMenu(0);
-        setWndClassName(_T("HUYS_DOCK_WINDOW_CLASS"));
-        setTitle(_T("DOCK"));
-
-        addStyles(WS_CHILD);
-        setExStyles(WS_EX_TOOLWINDOW | WS_EX_TOPMOST | WS_EX_APPWINDOW);
-    }
-
-    BOOL onCreate()
-    {
-        _label = new AUI::UTransLabel(this, _T("Properties"));
-        _label->setPos(40, 40, 100, 100);
-        _label->create();
-
-        return UBaseWindow::onCreate();
-    }
-
-    BOOL onClose()
-    {
-        this->hide();
-        return FALSE;
-    }
-
-    BOOL onSize(WPARAM wParam, LPARAM lParam)
-    {
-        RECT rc;
-        ::GetClientRect(getParent(), &rc);
-        rc.left = rc.right - 200;
-        this->moveWindow(&rc);
-        return FALSE;
-    }
-
-    void onDraw(HDC hdc)
-    {
-        HBRUSH hbTitle = ::CreateSolidBrush(huys::xpblue);
-        RECT rcWindow = {0};
-        this->getClientRect(&rcWindow);
-
-        RECT rcTitle = {
-            rcWindow.left,
-            rcWindow.top,
-            rcWindow.right,
-            rcWindow.top + 20
-        };
-
-        ::FillRect( hdc, &rcTitle, hbTitle);
-        ::SetTextColor( hdc, huys::white );
-        ::SetBkColor( hdc, huys::xpblue );
-        LPCTSTR m_sTitle = _T("dock");
-        ::TextOut( hdc,
-                   rcWindow.left+5,
-                   rcWindow.top+2,
-                   m_sTitle,
-                   lstrlen(m_sTitle));
-
-        ::TextOut( hdc,
-                   rcWindow.right-20,
-                   rcWindow.top+2,
-                   "X",
-                   1);
-
-    }
-private:
-    AUI::UTransLabelP _label;
-};
-
 
 class UMyWindow : public UBaseWindow
 {
@@ -195,7 +128,7 @@ public:
         glctl->addRender(&my_render);
         glctl->create();
 
-        dockWin = new UDockWindow(this);
+        dockWin = new AUI::UDockWindow(this);
         dockWin->create();
 
         return UBaseWindow::onCreate();
@@ -240,6 +173,8 @@ public:
         {
         case VK_ESCAPE:
             return UBaseWindow::onClose();
+        case VK_SPACE:
+            return onKeySpace();
         default:
             return UBaseWindow::onChar(wParam, lParam);
         }
@@ -269,9 +204,28 @@ private:
         return FALSE;
     }
 
+    BOOL onKeySpace()
+    {
+        static bool bFlag = false;
+
+        bFlag = (bFlag == true ? false : true);
+
+        if (bFlag)
+        {
+            glctl->resetRenders();
+        }
+        else
+        {
+            glctl->addRender(&my_render);
+        }
+
+        return FALSE;
+    }
+
+private:
     AUI::UTraceWindowP win;
     AUI::UGLCtrlP glctl;
-    huys::ADT::UAutoPtr<UDockWindow> dockWin;
+    AUI::UDockWindowP dockWin;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
