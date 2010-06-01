@@ -12,6 +12,8 @@
 #include "colors.h"
 #include "ulistview.h"
 
+#include "adt/uautoptr.h"
+
 #include <sql.h>
 #include <sqltypes.h>
 #include <sqlext.h>
@@ -29,11 +31,6 @@ class UDialogExt : public UDialogBox
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
     : UDialogBox(hInst, nID) {}
-
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_pUBtnOK);
-    }
 
     virtual BOOL onInit()
     {
@@ -63,7 +60,7 @@ public:
         }
     }
 private:
-    UPushButton *m_pUBtnOK;
+    huys::ADT::UAutoPtr<UPushButton> m_pUBtnOK;
     UListView *m_pListCtrl;
 
     BOOL onBnOK()

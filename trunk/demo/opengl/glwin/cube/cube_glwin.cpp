@@ -201,7 +201,7 @@ private:
 
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT);
-        
+
         glRotatef(cnt1, 0.f, 0.5f, 0.5f);
 
         cube.render();
@@ -217,15 +217,15 @@ public:
     UGLWinApp()
         : m_bQuit(FALSE)
     {}
-    
+
     BOOL run()
     {
         m_pMainWindow->show();
         m_pMainWindow->update();
-        
+
         //BOOL bQuit = FALSE;
         MSG msg;
-        
+
         while (!m_bQuit)
         {
             // check for messages

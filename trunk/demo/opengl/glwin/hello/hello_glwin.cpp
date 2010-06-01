@@ -28,20 +28,20 @@ public:
         uwc.setStyles(CS_OWNDC);
         return FALSE;
     }
-    
+
     BOOL onPreCreateWindow()
     {
         if (IDYES == showYesNoMsgbox(_T("Fullscreen?"), _T("Start Fullscreen?")))
         {
             m_bFullscreen = TRUE;
         }
-        
+
         int width= 640;
         int height = 480;
         int bits=16;
-        
+
         setPos(0, 0, width, height);
-        
+
         if (m_bFullscreen)
         {
             DEVMODE dmScreenSettings;                                // Device Mode
@@ -68,9 +68,9 @@ public:
                     return FALSE;                                    // Return FALSE
                 }
             }
-        
+
         }
-    
+
         if (m_bFullscreen)
         {
             setStyles(WS_POPUP);
@@ -82,9 +82,9 @@ public:
             //setStyles(WS_OVERLAPPEDWINDOW);
             setExStyles(WS_EX_APPWINDOW | WS_EX_WINDOWEDGE);
         }
-        
+
         adjustWindowRectEx();
-    
+
         return TRUE;
     }
 
@@ -102,7 +102,7 @@ public:
             //ReSizeGLScene(640, 480); // Set Up Our Perspective GL Screen
         }
         setTopMost();
-        
+
         return UBaseWindow::onCreate();
     }
 
@@ -139,9 +139,9 @@ private:
     HDC m_hdc;
     HGLRC m_hrc;
     UIcon m_uico;
-    
+
     BOOL m_bFullscreen;
-    
+
     GLfloat    cnt1;
 private:
     BOOL initGL()
@@ -150,8 +150,8 @@ private:
 
         return TRUE;
     }
-    
-    
+
+
     void ReSizeGLScene(GLsizei width, GLsizei height)        // Resize And Initialize The GL Window
     {
         if (height==0)                                        // Prevent A Divide By Zero By
@@ -218,8 +218,8 @@ private:
         glVertex2f(1.0f, 0.5f);
         glVertex2f(1.0f, 1.0f);
         glEnd();
-        
-        cnt1+=(cnt1>10?.0f:0.05f); 
+
+        cnt1+=(cnt1>10?.0f:0.05f);
     }
 };
 

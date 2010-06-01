@@ -215,10 +215,10 @@ private:
 
         // Exception agnostic wrapper for new
         //
-        void* operator new(size_t sz);          
+        void* operator new(size_t sz);
 
     private:
-        BSTR	        m_wstr;
+        BSTR            m_wstr;
         mutable char*   m_str;
         unsigned long   m_RefCount;
 
@@ -273,7 +273,7 @@ inline _bstr_t::_bstr_t(const _bstr_t& s) throw()
 
 // Construct a _bstr_t from a const char*
 //
-inline _bstr_t::_bstr_t(const char* s) 
+inline _bstr_t::_bstr_t(const char* s)
     : m_Data(new Data_t(s))
 {
     if (m_Data == NULL) {
@@ -283,7 +283,7 @@ inline _bstr_t::_bstr_t(const char* s)
 
 // Construct a _bstr_t from a const whar_t*
 //
-inline _bstr_t::_bstr_t(const wchar_t* s) 
+inline _bstr_t::_bstr_t(const wchar_t* s)
     : m_Data(new Data_t(s))
 {
     if (m_Data == NULL) {
@@ -294,7 +294,7 @@ inline _bstr_t::_bstr_t(const wchar_t* s)
 // Construct a _bstr_t from a BSTR.  If fCopy is FALSE, give control of
 // data to the _bstr_t without making a new copy.
 //
-inline _bstr_t::_bstr_t(BSTR bstr, bool fCopy) 
+inline _bstr_t::_bstr_t(BSTR bstr, bool fCopy)
     : m_Data(new Data_t(bstr, fCopy))
 {
     if (m_Data == NULL) {
@@ -331,7 +331,7 @@ inline _bstr_t& _bstr_t::operator=(const _bstr_t& s) throw()
 
 // Assign a const char* to a _bstr_t
 //
-inline _bstr_t& _bstr_t::operator=(const char* s) 
+inline _bstr_t& _bstr_t::operator=(const char* s)
 {
     _COM_ASSERT(s == NULL || static_cast<const char*>(*this) != s);
 
@@ -350,7 +350,7 @@ inline _bstr_t& _bstr_t::operator=(const char* s)
 
 // Assign a const wchar_t* to a _bstr_t
 //
-inline _bstr_t& _bstr_t::operator=(const wchar_t* s) 
+inline _bstr_t& _bstr_t::operator=(const wchar_t* s)
 {
     _COM_ASSERT(s == NULL || static_cast<const wchar_t*>(*this) != s);
 
@@ -375,7 +375,7 @@ inline _bstr_t& _bstr_t::operator=(const wchar_t* s)
 
 // Concatenate a _bstr_t onto this _bstr_t
 //
-inline _bstr_t& _bstr_t::operator+=(const _bstr_t& s) 
+inline _bstr_t& _bstr_t::operator+=(const _bstr_t& s)
 {
     Data_t* newData = new Data_t(*this, s);
     if (newData == NULL) {
@@ -391,7 +391,7 @@ inline _bstr_t& _bstr_t::operator+=(const _bstr_t& s)
 
 // Return the concatenation of this _bstr_t with another _bstr_t
 //
-inline _bstr_t _bstr_t::operator+(const _bstr_t& s) const 
+inline _bstr_t _bstr_t::operator+(const _bstr_t& s) const
 {
     _bstr_t b = *this;
     b += s;
@@ -407,9 +407,9 @@ inline _bstr_t _bstr_t::operator+(const _bstr_t& s) const
 
 // Return the concatenation of a const char* with a _bstr_t
 //
-inline _bstr_t operator+(const char* s1, const _bstr_t& s2) 
+inline _bstr_t operator+(const char* s1, const _bstr_t& s2)
 {
-    _bstr_t b = s1; 
+    _bstr_t b = s1;
     b += s2;
 
     return b;
@@ -417,9 +417,9 @@ inline _bstr_t operator+(const char* s1, const _bstr_t& s2)
 
 // Return the concatenation of a const char* with a _bstr_t
 //
-inline _bstr_t operator+(const wchar_t* s1, const _bstr_t& s2) 
+inline _bstr_t operator+(const wchar_t* s1, const _bstr_t& s2)
 {
-    _bstr_t b = s1; 
+    _bstr_t b = s1;
     b += s2;
 
     return b;
@@ -447,14 +447,14 @@ inline _bstr_t::operator wchar_t*() const throw()
 
 // Extract a const char_t*
 //
-inline _bstr_t::operator const char*() const 
+inline _bstr_t::operator const char*() const
 {
     return (m_Data != NULL) ? m_Data->GetString() : NULL;
 }
 
 // Extract a char_t*
 //
-inline _bstr_t::operator char*() const 
+inline _bstr_t::operator char*() const
 {
     return const_cast<char*>((m_Data != NULL) ? m_Data->GetString() : NULL);
 }
@@ -508,7 +508,7 @@ inline bool _bstr_t::operator>=(const _bstr_t& str) const throw()
 
 // Extract a copy of the wrapped BSTR
 //
-inline BSTR _bstr_t::copy(bool fCopy) const 
+inline BSTR _bstr_t::copy(bool fCopy) const
 {
     return (m_Data != NULL) ? (fCopy ? m_Data->Copy() : m_Data->GetWString()) : NULL;
 }
@@ -522,10 +522,10 @@ inline unsigned int _bstr_t::length() const throw()
 
 // Binary string assign
 //
-inline void _bstr_t::Assign(BSTR s) 
+inline void _bstr_t::Assign(BSTR s)
 {
     _COM_ASSERT(s == NULL || m_Data == NULL || m_Data->GetWString() != s);
-    
+
     if (s == NULL || m_Data == NULL || m_Data->GetWString() != s)
     {
         _Free();
@@ -539,7 +539,7 @@ inline void _bstr_t::Assign(BSTR s)
 
 // Get the physical BSTR
 //
-inline BSTR& _bstr_t::GetBSTR()  
+inline BSTR& _bstr_t::GetBSTR()
 {
     if (m_Data == NULL) {
         m_Data = new Data_t(0, FALSE);
@@ -552,7 +552,7 @@ inline BSTR& _bstr_t::GetBSTR()
 
 // Get the address of the physical BSTR to pass as an 'out'-parameter
 //
-inline BSTR* _bstr_t::GetAddress()  
+inline BSTR* _bstr_t::GetAddress()
 {
     Attach(0);
     return &m_Data->GetWString();
@@ -560,7 +560,7 @@ inline BSTR* _bstr_t::GetAddress()
 
 // Attach to the internal BSTR w/o copying
 //
-inline void _bstr_t::Attach(BSTR s) 
+inline void _bstr_t::Attach(BSTR s)
 {
     _Free();
 
@@ -581,11 +581,11 @@ inline BSTR _bstr_t::Detach()
         m_Data->GetWString() = NULL;
         _Free();
         return b;
-    } 
+    }
     else {
         _com_issue_error(E_POINTER);
 
-		return NULL;
+        return NULL;
     }
 }
 
@@ -635,7 +635,7 @@ inline int _bstr_t::_Compare(const _bstr_t& str) const throw()
 
 // Construct a Data_t from a const char*
 //
-inline _bstr_t::Data_t::Data_t(const char* s) 
+inline _bstr_t::Data_t::Data_t(const char* s)
     : m_str(NULL), m_RefCount(1)
 {
     m_wstr = _com_util::ConvertStringToBSTR(s);
@@ -643,7 +643,7 @@ inline _bstr_t::Data_t::Data_t(const char* s)
 
 // Construct a Data_t from a const wchar_t*
 //
-inline _bstr_t::Data_t::Data_t(const wchar_t* s) 
+inline _bstr_t::Data_t::Data_t(const wchar_t* s)
     : m_str(NULL), m_RefCount(1)
 {
     m_wstr = ::SysAllocString(s);
@@ -656,7 +656,7 @@ inline _bstr_t::Data_t::Data_t(const wchar_t* s)
 // Construct a Data_t from a BSTR.  If fCopy is FALSE, give control of
 // data to the Data_t without doing a SysAllocStringByteLen.
 //
-inline _bstr_t::Data_t::Data_t(BSTR bstr, bool fCopy) 
+inline _bstr_t::Data_t::Data_t(BSTR bstr, bool fCopy)
     : m_str(NULL), m_RefCount(1)
 {
     if (fCopy && bstr != NULL) {
@@ -674,7 +674,7 @@ inline _bstr_t::Data_t::Data_t(BSTR bstr, bool fCopy)
 
 // Construct a Data_t from the concatenation of two _bstr_t objects
 //
-inline _bstr_t::Data_t::Data_t(const _bstr_t& s1, const _bstr_t& s2) 
+inline _bstr_t::Data_t::Data_t(const _bstr_t& s1, const _bstr_t& s2)
     : m_str(NULL), m_RefCount(1)
 {
     const unsigned int l1 = s1.length();
@@ -741,7 +741,7 @@ inline _bstr_t::Data_t::operator const wchar_t*() const throw()
 
 // Extract a const char_t*
 //
-inline _bstr_t::Data_t::operator const char*() const 
+inline _bstr_t::Data_t::operator const char*() const
 {
     return GetString();
 }
@@ -762,7 +762,7 @@ inline wchar_t*& _bstr_t::Data_t::GetWString() throw()
     return m_wstr;
 }
 
-inline const char* _bstr_t::Data_t::GetString() const 
+inline const char* _bstr_t::Data_t::GetString() const
 {
     if (m_str == NULL) {
         m_str = _com_util::ConvertBSTRToString(m_wstr);
@@ -773,7 +773,7 @@ inline const char* _bstr_t::Data_t::GetString() const
 
 // Return a copy of the wrapped BSTR
 //
-inline BSTR _bstr_t::Data_t::Copy() const 
+inline BSTR _bstr_t::Data_t::Copy() const
 {
     if (m_wstr != NULL) {
         BSTR bstr = ::SysAllocStringByteLen(reinterpret_cast<char*>(m_wstr), ::SysStringByteLen(m_wstr));
@@ -788,7 +788,7 @@ inline BSTR _bstr_t::Data_t::Copy() const
     return NULL;
 }
 
-inline void _bstr_t::Data_t::Assign(BSTR s) 
+inline void _bstr_t::Data_t::Assign(BSTR s)
 {
     _Free();
 
@@ -849,7 +849,7 @@ inline int _bstr_t::Data_t::Compare(const _bstr_t::Data_t& str) const throw()
 // Exception agnostic wrapper for new
 //
 #ifdef _COM_OPERATOR_NEW_THROWS
-inline void* _bstr_t::Data_t::operator new(size_t sz) 
+inline void* _bstr_t::Data_t::operator new(size_t sz)
 {
     try {
         return ::operator new(sz);
@@ -859,7 +859,7 @@ inline void* _bstr_t::Data_t::operator new(size_t sz)
     }
 }
 #else // _COM_OPERATOR_NEW_THROWS
-inline void* _bstr_t::Data_t::operator new(size_t sz) 
+inline void* _bstr_t::Data_t::operator new(size_t sz)
 {
     return ::operator new(sz);
 }
@@ -1079,7 +1079,7 @@ inline _variant_t::_variant_t() throw()
 
 // Construct a _variant_t from a const VARIANT&
 //
-inline _variant_t::_variant_t(const VARIANT& varSrc) 
+inline _variant_t::_variant_t(const VARIANT& varSrc)
 {
     ::VariantInit(this);
     _com_util::CheckError(::VariantCopy(this, const_cast<VARIANT*>(&varSrc)));
@@ -1087,7 +1087,7 @@ inline _variant_t::_variant_t(const VARIANT& varSrc)
 
 // Construct a _variant_t from a const VARIANT*
 //
-inline _variant_t::_variant_t(const VARIANT* pSrc) 
+inline _variant_t::_variant_t(const VARIANT* pSrc)
 {
     if (pSrc == NULL) {
         _com_issue_error(E_POINTER);
@@ -1100,7 +1100,7 @@ inline _variant_t::_variant_t(const VARIANT* pSrc)
 
 // Construct a _variant_t from a const _variant_t&
 //
-inline _variant_t::_variant_t(const _variant_t& varSrc) 
+inline _variant_t::_variant_t(const _variant_t& varSrc)
 {
     ::VariantInit(this);
     _com_util::CheckError(::VariantCopy(this, const_cast<VARIANT*>(static_cast<const VARIANT*>(&varSrc))));
@@ -1109,12 +1109,12 @@ inline _variant_t::_variant_t(const _variant_t& varSrc)
 // Construct a _variant_t from a VARIANT&.  If fCopy is FALSE, give control of
 // data to the _variant_t without doing a VariantCopy.
 //
-inline _variant_t::_variant_t(VARIANT& varSrc, bool fCopy) 
+inline _variant_t::_variant_t(VARIANT& varSrc, bool fCopy)
 {
     if (fCopy) {
         ::VariantInit(this);
         _com_util::CheckError(::VariantCopy(this, &varSrc));
-    } 
+    }
     else {
         _COM_MEMCPY_S(this, sizeof(varSrc), &varSrc, sizeof(varSrc));
         V_VT(&varSrc) = VT_EMPTY;
@@ -1124,7 +1124,7 @@ inline _variant_t::_variant_t(VARIANT& varSrc, bool fCopy)
 // Construct either a VT_I2 VARIANT or a VT_BOOL VARIANT from
 // a short (the default is VT_I2)
 //
-inline _variant_t::_variant_t(short sSrc, VARTYPE vtSrc) 
+inline _variant_t::_variant_t(short sSrc, VARTYPE vtSrc)
 {
     if ((vtSrc != VT_I2) && (vtSrc != VT_BOOL)) {
         _com_issue_error(E_INVALIDARG);
@@ -1144,7 +1144,7 @@ inline _variant_t::_variant_t(short sSrc, VARTYPE vtSrc)
 // Construct either a VT_I4 VARIANT, a VT_BOOL VARIANT, or a
 // VT_ERROR VARIANT from a long (the default is VT_I4)
 //
-inline _variant_t::_variant_t(long lSrc, VARTYPE vtSrc) 
+inline _variant_t::_variant_t(long lSrc, VARTYPE vtSrc)
 {
     if ((vtSrc != VT_I4) && (vtSrc != VT_ERROR) && (vtSrc != VT_BOOL)) {
         _com_issue_error(E_INVALIDARG);
@@ -1176,7 +1176,7 @@ inline _variant_t::_variant_t(float fltSrc) throw()
 // Construct either a VT_R8 VARIANT, or a VT_DATE VARIANT from
 // a double (the default is VT_R8)
 //
-inline _variant_t::_variant_t(double dblSrc, VARTYPE vtSrc) 
+inline _variant_t::_variant_t(double dblSrc, VARTYPE vtSrc)
 {
     if ((vtSrc != VT_R8) && (vtSrc != VT_DATE)) {
         _com_issue_error(E_INVALIDARG);
@@ -1203,7 +1203,7 @@ inline _variant_t::_variant_t(const CY& cySrc) throw()
 
 // Construct a VT_BSTR VARIANT from a const _bstr_t&
 //
-inline _variant_t::_variant_t(const _bstr_t& bstrSrc) 
+inline _variant_t::_variant_t(const _bstr_t& bstrSrc)
 {
     V_VT(this) = VT_BSTR;
 
@@ -1222,7 +1222,7 @@ inline _variant_t::_variant_t(const _bstr_t& bstrSrc)
 
 // Construct a VT_BSTR VARIANT from a const wchar_t*
 //
-inline _variant_t::_variant_t(const wchar_t* pSrc) 
+inline _variant_t::_variant_t(const wchar_t* pSrc)
 {
     V_VT(this) = VT_BSTR;
 
@@ -1235,7 +1235,7 @@ inline _variant_t::_variant_t(const wchar_t* pSrc)
 
 // Construct a VT_BSTR VARIANT from a const char*
 //
-inline _variant_t::_variant_t(const char* pSrc) 
+inline _variant_t::_variant_t(const char* pSrc)
 {
     V_VT(this) = VT_BSTR;
     V_BSTR(this) = _com_util::ConvertStringToBSTR(pSrc);
@@ -1301,15 +1301,15 @@ inline _variant_t::_variant_t(BYTE bSrc) throw()
     V_UI1(this) = bSrc;
 }
 
-// Construct a VT_I1 VARIANT from a char 
+// Construct a VT_I1 VARIANT from a char
 //
-inline _variant_t::_variant_t(char cSrc) throw() 
+inline _variant_t::_variant_t(char cSrc) throw()
 {
     V_VT(this) = VT_I1;
     V_I1(this) = cSrc;
 }
 
-// Construct a VT_UI2 VARIANT from a unsigned short 
+// Construct a VT_UI2 VARIANT from a unsigned short
 //
 inline _variant_t::_variant_t(unsigned short usSrc) throw()
 {
@@ -1317,7 +1317,7 @@ inline _variant_t::_variant_t(unsigned short usSrc) throw()
     V_UI2(this) = usSrc;
 }
 
-// Construct a VT_UI4 VARIANT from a unsigned long 
+// Construct a VT_UI4 VARIANT from a unsigned long
 //
 inline _variant_t::_variant_t(unsigned long ulSrc) throw()
 {
@@ -1325,7 +1325,7 @@ inline _variant_t::_variant_t(unsigned long ulSrc) throw()
     V_UI4(this) = ulSrc;
 }
 
-// Construct a VT_INT VARIANT from a int 
+// Construct a VT_INT VARIANT from a int
 //
 inline _variant_t::_variant_t(int iSrc) throw()
 {
@@ -1333,7 +1333,7 @@ inline _variant_t::_variant_t(int iSrc) throw()
     V_INT(this) = iSrc;
 }
 
-// Construct a VT_UINT VARIANT from a unsigned int 
+// Construct a VT_UINT VARIANT from a unsigned int
 //
 inline _variant_t::_variant_t(unsigned int uiSrc) throw()
 {
@@ -1342,7 +1342,7 @@ inline _variant_t::_variant_t(unsigned int uiSrc) throw()
 }
 
 #if (_WIN32_WINNT >= 0x0501)
-// Construct a VT_I8 VARIANT from a __int64 
+// Construct a VT_I8 VARIANT from a __int64
 //
 inline _variant_t::_variant_t(__int64 i8Src) throw()
 {
@@ -1350,7 +1350,7 @@ inline _variant_t::_variant_t(__int64 i8Src) throw()
     V_I8(this) = i8Src;
 }
 
-// Construct a VT_UI8 VARIANT from a unsigned __int64 
+// Construct a VT_UI8 VARIANT from a unsigned __int64
 //
 inline _variant_t::_variant_t(unsigned __int64 ui8Src) throw()
 {
@@ -1367,10 +1367,10 @@ inline _variant_t::_variant_t(unsigned __int64 ui8Src) throw()
 
 // Extracts a VT_I2 into a short
 //
-inline _variant_t::operator short() const 
+inline _variant_t::operator short() const
 {
     if (V_VT(this) == VT_I2) {
-        return V_I2(this); 
+        return V_I2(this);
     }
 
     _variant_t varDest;
@@ -1381,10 +1381,10 @@ inline _variant_t::operator short() const
 
 // Extracts a VT_I4 into a long
 //
-inline _variant_t::operator long() const 
+inline _variant_t::operator long() const
 {
     if (V_VT(this) == VT_I4) {
-        return V_I4(this); 
+        return V_I4(this);
     }
 
     _variant_t varDest;
@@ -1395,10 +1395,10 @@ inline _variant_t::operator long() const
 
 // Extracts a VT_R4 into a float
 //
-inline _variant_t::operator float() const 
+inline _variant_t::operator float() const
 {
     if (V_VT(this) == VT_R4) {
-        return V_R4(this); 
+        return V_R4(this);
     }
 
     _variant_t varDest;
@@ -1409,10 +1409,10 @@ inline _variant_t::operator float() const
 
 // Extracts a VT_R8 into a double
 //
-inline _variant_t::operator double() const 
+inline _variant_t::operator double() const
 {
     if (V_VT(this) == VT_R8) {
-        return V_R8(this); 
+        return V_R8(this);
     }
 
     _variant_t varDest;
@@ -1423,10 +1423,10 @@ inline _variant_t::operator double() const
 
 // Extracts a VT_CY into a CY
 //
-inline _variant_t::operator CY() const 
+inline _variant_t::operator CY() const
 {
     if (V_VT(this) == VT_CY) {
-        return V_CY(this); 
+        return V_CY(this);
     }
 
     _variant_t varDest;
@@ -1437,7 +1437,7 @@ inline _variant_t::operator CY() const
 
 // Extracts a VT_BSTR into a _bstr_t
 //
-inline _variant_t::operator _bstr_t() const 
+inline _variant_t::operator _bstr_t() const
 {
     if (V_VT(this) == VT_BSTR) {
         return V_BSTR(this);
@@ -1451,7 +1451,7 @@ inline _variant_t::operator _bstr_t() const
 
 // Extracts a VT_DISPATCH into an IDispatch*
 //
-inline _variant_t::operator IDispatch*() const 
+inline _variant_t::operator IDispatch*() const
 {
     if (V_VT(this) == VT_DISPATCH) {
         if (V_DISPATCH(this) != NULL) {
@@ -1462,7 +1462,7 @@ inline _variant_t::operator IDispatch*() const
 
     _variant_t varDest;
     varDest.ChangeType(VT_DISPATCH, this);
-    
+
     if (V_DISPATCH(&varDest) != NULL) {
         V_DISPATCH(&varDest)->AddRef();
     }
@@ -1472,7 +1472,7 @@ inline _variant_t::operator IDispatch*() const
 
 // Extract a VT_BOOL into a bool
 //
-inline _variant_t::operator bool() const 
+inline _variant_t::operator bool() const
 {
     if (V_VT(this) == VT_BOOL) {
         return V_BOOL(this) ? true : false;
@@ -1486,7 +1486,7 @@ inline _variant_t::operator bool() const
 
 // Extracts a VT_UNKNOWN into an IUnknown*
 //
-inline _variant_t::operator IUnknown*() const 
+inline _variant_t::operator IUnknown*() const
 {
     if (V_VT(this) == VT_UNKNOWN) {
         if (V_UNKNOWN(this) != NULL) {
@@ -1507,7 +1507,7 @@ inline _variant_t::operator IUnknown*() const
 
 // Extracts a VT_DECIMAL into a DECIMAL
 //
-inline _variant_t::operator DECIMAL() const 
+inline _variant_t::operator DECIMAL() const
 {
     if (V_VT(this) == VT_DECIMAL) {
         return V_DECIMAL(this);
@@ -1521,7 +1521,7 @@ inline _variant_t::operator DECIMAL() const
 
 // Extracts a VT_UI1 into a BYTE (unsigned char)
 //
-inline _variant_t::operator BYTE() const 
+inline _variant_t::operator BYTE() const
 {
     if (V_VT(this) == VT_UI1) {
         return V_UI1(this);
@@ -1542,7 +1542,7 @@ inline _variant_t::operator VARIANT() const throw()
 
 // Extracts a VT_I1 into a char
 //
-inline _variant_t::operator char() const  
+inline _variant_t::operator char() const
 {
     if (V_VT(this) == VT_I1) {
         return V_I1(this);
@@ -1556,7 +1556,7 @@ inline _variant_t::operator char() const
 
 // Extracts a VT_UI2 into a unsigned short
 //
-inline _variant_t::operator unsigned short() const  
+inline _variant_t::operator unsigned short() const
 {
     if (V_VT(this) == VT_UI2) {
         return V_UI2(this);
@@ -1570,7 +1570,7 @@ inline _variant_t::operator unsigned short() const
 
 // Extracts a VT_UI4 into a unsigned long
 //
-inline _variant_t::operator unsigned long() const  
+inline _variant_t::operator unsigned long() const
 {
     if (V_VT(this) == VT_UI4) {
         return V_UI4(this);
@@ -1584,7 +1584,7 @@ inline _variant_t::operator unsigned long() const
 
 // Extracts a VT_INT into a int
 //
-inline _variant_t::operator int() const  
+inline _variant_t::operator int() const
 {
     if (V_VT(this) == VT_INT) {
         return V_INT(this);
@@ -1598,7 +1598,7 @@ inline _variant_t::operator int() const
 
 // Extracts a VT_UINT into a unsigned int
 //
-inline _variant_t::operator unsigned int() const  
+inline _variant_t::operator unsigned int() const
 {
     if (V_VT(this) == VT_UINT) {
         return V_UINT(this);
@@ -1613,7 +1613,7 @@ inline _variant_t::operator unsigned int() const
 #if (_WIN32_WINNT >= 0x0501)
 // Extracts a VT_I8 into a __int64
 //
-inline _variant_t::operator __int64() const  
+inline _variant_t::operator __int64() const
 {
     if (V_VT(this) == VT_I8) {
         return V_I8(this);
@@ -1627,7 +1627,7 @@ inline _variant_t::operator __int64() const
 
 // Extracts a VT_UI8 into a unsigned __int64
 //
-inline _variant_t::operator unsigned __int64() const  
+inline _variant_t::operator unsigned __int64() const
 {
     if (V_VT(this) == VT_UI8) {
         return V_UI8(this);
@@ -1648,7 +1648,7 @@ inline _variant_t::operator unsigned __int64() const
 
 // Assign a const VARIANT& (::VariantCopy handles everything)
 //
-inline _variant_t& _variant_t::operator=(const VARIANT& varSrc) 
+inline _variant_t& _variant_t::operator=(const VARIANT& varSrc)
 {
     _com_util::CheckError(::VariantCopy(this, const_cast<VARIANT*>(&varSrc)));
 
@@ -1657,7 +1657,7 @@ inline _variant_t& _variant_t::operator=(const VARIANT& varSrc)
 
 // Assign a const VARIANT* (::VariantCopy handles everything)
 //
-inline _variant_t& _variant_t::operator=(const VARIANT* pSrc) 
+inline _variant_t& _variant_t::operator=(const VARIANT* pSrc)
 {
     if (pSrc == NULL) {
         _com_issue_error(E_POINTER);
@@ -1671,17 +1671,17 @@ inline _variant_t& _variant_t::operator=(const VARIANT* pSrc)
 
 // Assign a const _variant_t& (::VariantCopy handles everything)
 //
-inline _variant_t& _variant_t::operator=(const _variant_t& varSrc) 
+inline _variant_t& _variant_t::operator=(const _variant_t& varSrc)
 {
     _com_util::CheckError(::VariantCopy(this, const_cast<VARIANT*>(static_cast<const VARIANT*>(&varSrc))));
 
     return *this;
 }
 
-// Assign a short creating either VT_I2 VARIANT or a 
+// Assign a short creating either VT_I2 VARIANT or a
 // VT_BOOL VARIANT (VT_I2 is the default)
 //
-inline _variant_t& _variant_t::operator=(short sSrc) 
+inline _variant_t& _variant_t::operator=(short sSrc)
 {
     if (V_VT(this) == VT_I2) {
         V_I2(this) = sSrc;
@@ -1704,7 +1704,7 @@ inline _variant_t& _variant_t::operator=(short sSrc)
 // Assign a long creating either VT_I4 VARIANT, a VT_ERROR VARIANT
 // or a VT_BOOL VARIANT (VT_I4 is the default)
 //
-inline _variant_t& _variant_t::operator=(long lSrc) 
+inline _variant_t& _variant_t::operator=(long lSrc)
 {
     if (V_VT(this) == VT_I4) {
         V_I4(this) = lSrc;
@@ -1727,9 +1727,9 @@ inline _variant_t& _variant_t::operator=(long lSrc)
     return *this;
 }
 
-// Assign a float creating a VT_R4 VARIANT 
+// Assign a float creating a VT_R4 VARIANT
 //
-inline _variant_t& _variant_t::operator=(float fltSrc) 
+inline _variant_t& _variant_t::operator=(float fltSrc)
 {
     if (V_VT(this) != VT_R4) {
         // Clear the VARIANT and create a VT_R4
@@ -1747,7 +1747,7 @@ inline _variant_t& _variant_t::operator=(float fltSrc)
 // Assign a double creating either a VT_R8 VARIANT, or a VT_DATE
 // VARIANT (VT_R8 is the default)
 //
-inline _variant_t& _variant_t::operator=(double dblSrc) 
+inline _variant_t& _variant_t::operator=(double dblSrc)
 {
     if (V_VT(this) == VT_R8) {
         V_R8(this) = dblSrc;
@@ -1767,9 +1767,9 @@ inline _variant_t& _variant_t::operator=(double dblSrc)
     return *this;
 }
 
-// Assign a CY creating a VT_CY VARIANT 
+// Assign a CY creating a VT_CY VARIANT
 //
-inline _variant_t& _variant_t::operator=(const CY& cySrc) 
+inline _variant_t& _variant_t::operator=(const CY& cySrc)
 {
     if (V_VT(this) != VT_CY) {
         // Clear the VARIANT and create a VT_CY
@@ -1786,9 +1786,9 @@ inline _variant_t& _variant_t::operator=(const CY& cySrc)
 
 // Assign a const _bstr_t& creating a VT_BSTR VARIANT
 //
-inline _variant_t& _variant_t::operator=(const _bstr_t& bstrSrc) 
+inline _variant_t& _variant_t::operator=(const _bstr_t& bstrSrc)
 {
-	_COM_ASSERT(V_VT(this) != VT_BSTR || (BSTR) bstrSrc == NULL || V_BSTR(this) != (BSTR) bstrSrc);
+    _COM_ASSERT(V_VT(this) != VT_BSTR || (BSTR) bstrSrc == NULL || V_BSTR(this) != (BSTR) bstrSrc);
 
     // Clear the VARIANT (This will SysFreeString() any previous occupant)
     //
@@ -1814,9 +1814,9 @@ inline _variant_t& _variant_t::operator=(const _bstr_t& bstrSrc)
 
 // Assign a const wchar_t* creating a VT_BSTR VARIANT
 //
-inline _variant_t& _variant_t::operator=(const wchar_t* pSrc) 
+inline _variant_t& _variant_t::operator=(const wchar_t* pSrc)
 {
-	_COM_ASSERT(V_VT(this) != VT_BSTR || pSrc == NULL || V_BSTR(this) != pSrc);
+    _COM_ASSERT(V_VT(this) != VT_BSTR || pSrc == NULL || V_BSTR(this) != pSrc);
 
     // Clear the VARIANT (This will SysFreeString() any previous occupant)
     //
@@ -1840,9 +1840,9 @@ inline _variant_t& _variant_t::operator=(const wchar_t* pSrc)
 
 // Assign a const char* creating a VT_BSTR VARIANT
 //
-inline _variant_t& _variant_t::operator=(const char* pSrc) 
+inline _variant_t& _variant_t::operator=(const char* pSrc)
 {
-	_COM_ASSERT(V_VT(this) != (VT_I1 | VT_BYREF) || pSrc == NULL || V_I1REF(this) != pSrc);
+    _COM_ASSERT(V_VT(this) != (VT_I1 | VT_BYREF) || pSrc == NULL || V_I1REF(this) != pSrc);
 
     // Clear the VARIANT (This will SysFreeString() any previous occupant)
     //
@@ -1854,11 +1854,11 @@ inline _variant_t& _variant_t::operator=(const char* pSrc)
     return *this;
 }
 
-// Assign an IDispatch* creating a VT_DISPATCH VARIANT 
+// Assign an IDispatch* creating a VT_DISPATCH VARIANT
 //
-inline _variant_t& _variant_t::operator=(IDispatch* pSrc) 
+inline _variant_t& _variant_t::operator=(IDispatch* pSrc)
 {
-	_COM_ASSERT(V_VT(this) != VT_DISPATCH || pSrc == 0 || V_DISPATCH(this) != pSrc);
+    _COM_ASSERT(V_VT(this) != VT_DISPATCH || pSrc == 0 || V_DISPATCH(this) != pSrc);
 
     // Clear the VARIANT (This will Release() any previous occupant)
     //
@@ -1876,9 +1876,9 @@ inline _variant_t& _variant_t::operator=(IDispatch* pSrc)
     return *this;
 }
 
-// Assign a bool creating a VT_BOOL VARIANT 
+// Assign a bool creating a VT_BOOL VARIANT
 //
-inline _variant_t& _variant_t::operator=(bool boolSrc) 
+inline _variant_t& _variant_t::operator=(bool boolSrc)
 {
     if (V_VT(this) != VT_BOOL) {
         // Clear the VARIANT and create a VT_BOOL
@@ -1893,11 +1893,11 @@ inline _variant_t& _variant_t::operator=(bool boolSrc)
     return *this;
 }
 
-// Assign an IUnknown* creating a VT_UNKNOWN VARIANT 
+// Assign an IUnknown* creating a VT_UNKNOWN VARIANT
 //
-inline _variant_t& _variant_t::operator=(IUnknown* pSrc) 
+inline _variant_t& _variant_t::operator=(IUnknown* pSrc)
 {
-	_COM_ASSERT(V_VT(this) != VT_UNKNOWN || pSrc == NULL || V_UNKNOWN(this) != pSrc);
+    _COM_ASSERT(V_VT(this) != VT_UNKNOWN || pSrc == NULL || V_UNKNOWN(this) != pSrc);
 
     // Clear VARIANT (This will Release() any previous occupant)
     //
@@ -1917,7 +1917,7 @@ inline _variant_t& _variant_t::operator=(IUnknown* pSrc)
 
 // Assign a DECIMAL creating a VT_DECIMAL VARIANT
 //
-inline _variant_t& _variant_t::operator=(const DECIMAL& decSrc) 
+inline _variant_t& _variant_t::operator=(const DECIMAL& decSrc)
 {
     if (V_VT(this) != VT_DECIMAL) {
         // Clear the VARIANT
@@ -1934,7 +1934,7 @@ inline _variant_t& _variant_t::operator=(const DECIMAL& decSrc)
 
 // Assign a BTYE (unsigned char) creating a VT_UI1 VARIANT
 //
-inline _variant_t& _variant_t::operator=(BYTE bSrc) 
+inline _variant_t& _variant_t::operator=(BYTE bSrc)
 {
     if (V_VT(this) != VT_UI1) {
         // Clear the VARIANT and create a VT_UI1
@@ -1951,7 +1951,7 @@ inline _variant_t& _variant_t::operator=(BYTE bSrc)
 
 // Assign a char creating a VT_I1 VARIANT
 //
-inline _variant_t& _variant_t::operator=(char cSrc) 
+inline _variant_t& _variant_t::operator=(char cSrc)
 {
     if (V_VT(this) != VT_I1) {
         // Clear the VARIANT and create a VT_I1
@@ -1968,7 +1968,7 @@ inline _variant_t& _variant_t::operator=(char cSrc)
 
 // Assign a char creating a VT_UI2 VARIANT
 //
-inline _variant_t& _variant_t::operator=(unsigned short usSrc) 
+inline _variant_t& _variant_t::operator=(unsigned short usSrc)
 {
     if (V_VT(this) != VT_UI2) {
         // Clear the VARIANT and create a VT_UI2
@@ -1985,7 +1985,7 @@ inline _variant_t& _variant_t::operator=(unsigned short usSrc)
 
 // Assign a char creating a VT_UI4 VARIANT
 //
-inline _variant_t& _variant_t::operator=(unsigned long ulSrc) 
+inline _variant_t& _variant_t::operator=(unsigned long ulSrc)
 {
     if (V_VT(this) != VT_UI4) {
         // Clear the VARIANT and create a VT_UI4
@@ -2002,7 +2002,7 @@ inline _variant_t& _variant_t::operator=(unsigned long ulSrc)
 
 // Assign a char creating a VT_INT VARIANT
 //
-inline _variant_t& _variant_t::operator=(int iSrc) 
+inline _variant_t& _variant_t::operator=(int iSrc)
 {
     if (V_VT(this) != VT_INT) {
         // Clear the VARIANT and create a VT_INT
@@ -2019,7 +2019,7 @@ inline _variant_t& _variant_t::operator=(int iSrc)
 
 // Assign a char creating a VT_UINT VARIANT
 //
-inline _variant_t& _variant_t::operator=(unsigned int uiSrc) 
+inline _variant_t& _variant_t::operator=(unsigned int uiSrc)
 {
     if (V_VT(this) != VT_UINT) {
         // Clear the VARIANT and create a VT_UINT
@@ -2037,7 +2037,7 @@ inline _variant_t& _variant_t::operator=(unsigned int uiSrc)
 #if (_WIN32_WINNT >= 0x0501)
 // Assign a char creating a VT_I8 VARIANT
 //
-inline _variant_t& _variant_t::operator=(__int64 i8Src) 
+inline _variant_t& _variant_t::operator=(__int64 i8Src)
 {
     if (V_VT(this) != VT_I8) {
         // Clear the VARIANT and create a VT_I8
@@ -2054,7 +2054,7 @@ inline _variant_t& _variant_t::operator=(__int64 i8Src)
 
 // Assign a char creating a VT_UI8 VARIANT
 //
-inline _variant_t& _variant_t::operator=(unsigned __int64 ui8Src) 
+inline _variant_t& _variant_t::operator=(unsigned __int64 ui8Src)
 {
     if (V_VT(this) != VT_UI8) {
         // Clear the VARIANT and create a VT_UI8
@@ -2203,12 +2203,12 @@ inline bool _variant_t::operator!=(const VARIANT* pSrc) const throw()
 
 // Clear the _variant_t
 //
-inline void _variant_t::Clear() 
+inline void _variant_t::Clear()
 {
     _com_util::CheckError(::VariantClear(this));
 }
 
-inline void _variant_t::Attach(VARIANT& varSrc) 
+inline void _variant_t::Attach(VARIANT& varSrc)
 {
     //
     // Free up previous VARIANT
@@ -2222,7 +2222,7 @@ inline void _variant_t::Attach(VARIANT& varSrc)
     V_VT(&varSrc) = VT_EMPTY;
 }
 
-inline VARIANT _variant_t::Detach() 
+inline VARIANT _variant_t::Detach()
 {
     VARIANT varResult = *this;
     V_VT(this) = VT_EMPTY;
@@ -2230,12 +2230,12 @@ inline VARIANT _variant_t::Detach()
     return varResult;
 }
 
-inline VARIANT& _variant_t::GetVARIANT() throw() 
+inline VARIANT& _variant_t::GetVARIANT() throw()
 {
     return *(VARIANT*) this;
 }
 
-inline VARIANT* _variant_t::GetAddress() 
+inline VARIANT* _variant_t::GetAddress()
 {
     Clear();
     return (VARIANT*) this;
@@ -2244,7 +2244,7 @@ inline VARIANT* _variant_t::GetAddress()
 // Change the type and contents of this _variant_t to the type vartype and
 // contents of pSrc
 //
-inline void _variant_t::ChangeType(VARTYPE vartype, const _variant_t* pSrc) 
+inline void _variant_t::ChangeType(VARTYPE vartype, const _variant_t* pSrc)
 {
     //
     // If pDest is NULL, convert type in place
@@ -2260,7 +2260,7 @@ inline void _variant_t::ChangeType(VARTYPE vartype, const _variant_t* pSrc)
     }
 }
 
-inline void _variant_t::SetString(const char* pSrc) 
+inline void _variant_t::SetString(const char* pSrc)
 {
     operator=(pSrc);
 }
@@ -2284,7 +2284,7 @@ inline _variant_t::~_variant_t() throw()
 
 // Construct a _bstr_t from a const _variant_t&
 //
-inline _bstr_t::_bstr_t(const _variant_t &var) 
+inline _bstr_t::_bstr_t(const _variant_t &var)
     : m_Data(NULL)
 {
     if (V_VT(&var) == VT_BSTR) {
@@ -2300,7 +2300,7 @@ inline _bstr_t::_bstr_t(const _variant_t &var)
 
 // Assign a const _variant_t& to a _bstr_t
 //
-inline _bstr_t& _bstr_t::operator=(const _variant_t &var) 
+inline _bstr_t& _bstr_t::operator=(const _variant_t &var)
 {
     if (V_VT(&var) == VT_BSTR) {
         *this = V_BSTR(&var);
