@@ -15,4 +15,5 @@ clean :
 	-$(RM) *.cfg *.ini
 	-$(RM) *.cpl
 	-$(RM) *.RPT
+    -$(RM) *.idb
 

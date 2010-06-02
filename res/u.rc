@@ -22,6 +22,26 @@
 #define IDI_GOOGLE 11
 #endif
 
+#ifndef IDI_BICYCLE
+#define IDI_BICYCLE 21
+#endif
+
+#ifndef IDI_TREE
+#define IDI_TREE 22
+#endif
+
+#ifndef IDI_FAN
+#define IDI_FAN 23
+#endif
+
+#ifndef IDI_SWITCH
+#define IDI_SWITCH 24
+#endif
+
+#ifndef IDI_WHEEL
+#define IDI_WHEEL 25
+#endif
+
 #ifdef MINGW_RC
 
 IDI_APP ICON DISCARDABLE "u.ico"

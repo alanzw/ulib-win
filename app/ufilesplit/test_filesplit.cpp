@@ -132,7 +132,7 @@ public:
         m_lbSize->setPos(580, 290, 100, 20);
         m_lbSize->create();
 
-            m_size = new UComboBox(this, ID_FILE_SIZE);
+        m_size = new UComboBox(this, ID_FILE_SIZE);
         m_size->setStyles(CBS_DROPDOWN);
         m_size->setPos(580, 320, 60, 200);
         m_size->create();
