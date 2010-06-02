@@ -95,12 +95,12 @@ public:
 
         huys::URectI rect;
         this->getWindowRect(rect);
-        
+
         win = new AUI::UTraceWindow(this);
         //
         win->create();
         win->moveWindow(rect.right()+10, rect.bottom()-200, 200, 200);
-        
+
         return UBaseWindow::onCreate();
     }
 

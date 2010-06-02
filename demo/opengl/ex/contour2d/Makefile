@@ -7,7 +7,7 @@ include $(TOPDIR)/make.inc
 INCS = -I"$(INCDIR)"
 LIBS = -L"$(LIBDIR)" -mwindows -luwin -lopengl32 -lglu32
 CFLAGS += $(INCS)
-CXXFLAGS += $(INCS)
+CXXFLAGS += $(INCS) -DBUILD_EXE
 LDFLAGS = $(LIBS)
 #
 OBJ = contour2d_opengl.o
@@ -26,13 +26,6 @@ $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
 
-#
-contour2d_opengl.o : contour2d_opengl.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
 #
 .PHONY : test
 test :
