@@ -27,6 +27,8 @@ public:
     BOOL drawEx(HDC hdc, int x, int y, int cx, int cy);
 
     HICON getHICON();
+
+    HICON copyIcon(HICON hIcon);
 protected:
 
 private:

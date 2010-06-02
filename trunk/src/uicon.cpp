@@ -89,3 +89,8 @@ bool UIcon::destroy()
     return TRUE == ret;
 }
 
+HICON UIcon::copyIcon(HICON hIcon)
+{
+    return ::CopyIcon(hIcon);
+}
+
