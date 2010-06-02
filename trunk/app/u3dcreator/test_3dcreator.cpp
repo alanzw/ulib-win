@@ -22,6 +22,13 @@
 
 #include "u3dcreator.h"
 
+#ifdef _MSC_VER
+
+#pragma comment(lib, "opengl32.lib")
+#pragma comment(lib, "glu32.lib")
+
+#endif // _MSC_VER
+
 
 void getColor(float v, GLfloat vdColor[3])
 {
@@ -111,9 +118,6 @@ public:
         this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
     }
 
-    ~UMyWindow()
-    {}
-
     BOOL onCreate()
     {
         this->setIconBig(IDI_APP);
@@ -135,12 +139,12 @@ public:
     }
 
     //
-    virtual void onDraw(HDC hdc)
+    /* virtual */ void onDraw(HDC hdc)
     {
 
     }
     //
-    virtual BOOL onEraseBkgnd(HDC hdc)
+    /* virtual */ BOOL onEraseBkgnd(HDC hdc)
     {
         RECT rc = {0};
         ::GetClientRect(*this, &rc);
@@ -152,7 +156,7 @@ public:
     }
 
     //
-    virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
+    /* virtual */ BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
         switch (LOWORD(wParam))
         {
@@ -167,7 +171,7 @@ public:
         }
     }
 
-    virtual BOOL onChar(WPARAM wParam, LPARAM lParam)
+    /* virtual */ BOOL onChar(WPARAM wParam, LPARAM lParam)
     {
         switch (wParam)
         {

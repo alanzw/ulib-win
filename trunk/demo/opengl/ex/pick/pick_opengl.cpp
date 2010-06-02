@@ -38,12 +38,12 @@ public:
     void drawSquares(GLenum mode)
     {
         GLuint i = 0;
-		GLuint j = 0;
+        GLuint j = 0;
         for (i = 0; i < 3; i++)
-		{
+        {
             if (mode == GL_SELECT) glLoadName (i);
             for (j = 0; j < 3; j ++)
-			{
+            {
                 if (mode == GL_SELECT) glPushName (j);
                 glColor3f((GLfloat) i/3.0, (GLfloat) j/3.0, (GLfloat) board[i][j]/3.0);
                 glRecti (i, j, i+1, j+1);
@@ -69,7 +69,7 @@ public:
             printf(" z2 is %g\n", (float) *ptr/0x7fffffff); ptr++;
             printf("   names are ");
             for (j = 0; j < names; j++)
-			{ /*  for each name */
+            { /*  for each name */
                 printf ("%d ", *ptr);
                 if (j == 0)  /*  set row and column  */
                     ii = *ptr;
@@ -167,17 +167,17 @@ public:
             return UGLDialog::onChar(wParam, lParam);
         }
     }
-    
+
     BOOL onLButtonDown( WPARAM wParam, LPARAM lParam )
     {
-        int xPos = GET_X_LPARAM(lParam); 
+        int xPos = GET_X_LPARAM(lParam);
         int yPos = GET_Y_LPARAM(lParam);
-        
+
         RECT rc;
         ::GetClientRect(m_hDlg, &rc);
         int w = rc.right-rc.left;
         int h = rc.bottom-rc.top;
-        
+
         //pickSquares(0, 0, (xPos - w/2)*10.0/w, (h/2 - yPos)*10.0/h);
         pickSquares(0, 0, xPos, yPos);
         return FALSE;

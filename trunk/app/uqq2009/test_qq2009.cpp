@@ -72,28 +72,6 @@ public:
         };
         _picUser.show(hdc, &rcUser);
 
-#if 0
-
-//用户名及签名
-m_dibUserBanner.DrawTo(&m_dibBanner,54,25,0,0,m_dibUserBanner.Width(),m_dibUserBanner.Height());
-//系统按钮
-//最小化
-m_dibBtnRc.DrawTo(&m_dibBanner,rc.right - NCB_ENTIREWIDTH - NCB_SPACE,yPos,gRcBtn[0].x,gRcBtn[0].y, NCB_MINWIDTH,NCB_HEIGHT);
-//关闭
-m_dibBtnRc.DrawTo(&m_dibBanner,rc.right - NCB_CLOSEWIDTH - NCB_SPACE,yPos,                      gRcBtn[NCB_CLOSENORMAL].x,gRcBtn[NCB_CLOSENORMAL].y,NCB_CLOSEWIDTH,NCB_HEIGHT);
-//最大化/还原
-if(IsZoomed())
-{
-    m_dibBtnRc.DrawTo(&m_dibBanner,rc.right - NCB_ENTIREWIDTH - NCB_SPACE + NCB_MINWIDTH,yPos,
-    gRcBtn[NCB_RESTORENORMAL].x,gRcBtn[NCB_RESTORENORMAL].y,NCB_MAXWIDTH,NCB_HEIGHT);
-}
-else
-{
-    m_dibBtnRc.DrawTo(&m_dibBanner,rc.right - NCB_ENTIREWIDTH - NCB_SPACE + NCB_MINWIDTH,yPos,
-        gRcBtn[NCB_MAXNORMAL].x,gRcBtn[NCB_MAXNORMAL].y,NCB_MAXWIDTH,NCB_HEIGHT);
-}
-
- #endif
     }
     //
     virtual BOOL onEraseBkgnd(HDC hdc)

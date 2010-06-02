@@ -14,13 +14,20 @@
 
 #include "adt/uautoptr.h"
 
-const UINT ID_BTN_OK = 5555;
-const UINT ID_BTN_CANCEL = 5556;
+#ifdef _MSC_VER
+
+#pragma comment(lib, "comctl32.lib")
+
+#endif // _MSC_VER
 
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
 {
+    enum {
+        ID_BTN_OK = 5555,
+        ID_BTN_CANCEL = 5556
+    };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
     : UDialogBox(hInst, nID) {}
@@ -50,7 +57,7 @@ public:
         {
             switch (wParam) {
                 case ID_BTN_OK:
-                    return onBnOK();
+                    return this->onBnOK();
                 case ID_BTN_CANCEL:
                     this->onCancel();
                     break;
