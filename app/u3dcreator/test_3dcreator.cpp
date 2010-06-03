@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <tchar.h>
 #include <commctrl.h>
+#include <math.h>
 
 #include "uwinapp.h"
 #include "ubasewindow.h"
@@ -105,6 +106,22 @@ void my_render()
 
 }
 
+void my_render_round()
+{
+    float i = 0.f;
+
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(0.f, 0.f);
+
+    for (i=0; i<=2*3.1416+.1f; i+=.1f)
+    {
+        glColor3f(cos(i), sin(i), 0.f);
+        glVertex3f(cos(i), sin(i), 0.f);
+    }
+
+    glEnd();
+}
+
 class UMyWindow : public UBaseWindow
 {
     enum {
@@ -127,10 +144,22 @@ public:
         win->create();
 
         glctl = new AUI::UGLCtrl(this);
-        glctl->setPos(50, 50, 600, 600);
+        glctl->setPos(0, 0, 300, 300);
         glctl->setInterval(10);
         glctl->addRender(&my_render);
         glctl->create();
+
+        glctl2 = new AUI::UGLCtrl(this);
+        glctl2->setPos(350, 0, 300, 300);
+        glctl2->setInterval(20);
+        //glctl2->addRender(&my_render);
+        glctl2->create();
+
+        glctl3 = new AUI::UGLCtrl(this);
+        glctl3->setPos(20, 350, 100, 100);
+        glctl3->setInterval(20);
+        glctl3->addRender(&my_render_round);
+        glctl3->create();
 
         dockWin = new AUI::UDockWindow(this);
         dockWin->create();
@@ -229,6 +258,8 @@ private:
 private:
     AUI::UTraceWindowP win;
     AUI::UGLCtrlP glctl;
+    AUI::UGLCtrlP glctl2;
+    AUI::UGLCtrlP glctl3;
     AUI::UDockWindowP dockWin;
 };
 

@@ -50,6 +50,117 @@ void BMP_Texture(UINT textureArray[], LPCTSTR sFileName, int ID)
     ::DeleteObject(hBMP);                                                    // Delete The Object
 }
 
+
+#if defined(_BASETSD_H)
+ #define _BASETSD_H_
+#endif // defined(_BASETSD_H_)
+
+#if defined(__GNUC__) && !defined(HAVE_BOOLEAN)
+ #define HAVE_BOOLEAN
+#endif
+
+#include "jpeglib.h"
+
+// This stores the important jpeg data
+struct tImageJPG
+{
+    int rowSpan;
+    int sizeX;
+    int sizeY;
+    unsigned char *data;
+};
+
+tImageJPG *Load_JPEG(const char *strfilename);
+void Decompress_JPEG(jpeg_decompress_struct* cInfo, tImageJPG *pImgData);
+
+void JPEG_Texture(UINT textureArray[], LPSTR strFileName, int ID);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//                                        JPEG TEXTURE LOADER
+/////////////////////////////////////////////////////////////////////////////////////////////////
+void JPEG_Texture(UINT textureArray[], LPSTR strFileName, int ID)
+{
+    if(!strFileName)    return;
+
+    tImageJPG *pBitMap = Load_JPEG(strFileName);
+
+    if(pBitMap == NULL)    exit(0);
+
+    glGenTextures(1, &textureArray[ID]);
+    glBindTexture(GL_TEXTURE_2D, textureArray[ID]);
+    gluBuild2DMipmaps(GL_TEXTURE_2D, 3, pBitMap->sizeX, pBitMap->sizeY, GL_RGB, GL_UNSIGNED_BYTE, pBitMap->data);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+
+    if (pBitMap)
+    {
+        if (pBitMap->data)
+        {
+            free(pBitMap->data);
+        }
+        free(pBitMap);
+    }
+}
+
+tImageJPG *Load_JPEG(const char *strfilename)
+{
+    struct jpeg_decompress_struct cInfo;
+    tImageJPG *pImgData = NULL;
+    FILE *pFile;
+
+    if((pFile = fopen(strfilename, "rb")) == NULL)
+    {
+        MessageBox(NULL, "Error loading jpg file.", "ERROR", MB_OK);
+        return NULL;
+    }
+
+    jpeg_error_mgr jerr;
+
+    cInfo.err = jpeg_std_error(&jerr);
+
+    jpeg_create_decompress(&cInfo);
+
+    jpeg_stdio_src(&cInfo, pFile);
+
+    pImgData = (tImageJPG*)malloc(sizeof(tImageJPG));
+
+    Decompress_JPEG(&cInfo, pImgData);
+
+    jpeg_destroy_decompress(&cInfo);
+
+    fclose(pFile);
+
+    return pImgData;
+}
+
+
+void Decompress_JPEG(jpeg_decompress_struct* cInfo, tImageJPG *pImgData)
+{
+    jpeg_read_header(cInfo, TRUE);
+
+    jpeg_start_decompress(cInfo);
+
+    pImgData->rowSpan = cInfo->image_width * cInfo->num_components;
+    pImgData->sizeX   = cInfo->image_width;
+    pImgData->sizeY   = cInfo->image_height;
+
+    pImgData->data = new unsigned char[pImgData->rowSpan * pImgData->sizeY];
+
+    unsigned char** rowPtr = new unsigned char*[pImgData->sizeY];
+    for (int i = 0; i < pImgData->sizeY; i++)
+        rowPtr[i] = &(pImgData->data[i*pImgData->rowSpan]);
+
+    int rowsRead = cInfo->output_height-1;
+    while (cInfo->output_scanline < cInfo->output_height)
+    {
+        rowsRead -= jpeg_read_scanlines(cInfo, &rowPtr[rowsRead], cInfo->output_height - rowsRead);
+    }
+    delete [] rowPtr;
+
+    jpeg_finish_decompress(cInfo);
+}
+
+
 #define CAMERASPEED    0.03f                // The Camera Speed
 
 #define SKYFRONT 0                        // Give Front ID = 0
@@ -178,13 +289,20 @@ private:
     objCamera.Position_Camera(0, 2.5f, 5,    0, 2.5f, 0,   0, 1, 0);
 
     // Load the Skybox textures
-    BMP_Texture(SkyboxTexture,"texture/front.bmp",  SKYFRONT);
-    BMP_Texture(SkyboxTexture,"texture/back.bmp",   SKYBACK);
-    BMP_Texture(SkyboxTexture,"texture/left.bmp",   SKYLEFT);
-    BMP_Texture(SkyboxTexture,"texture/right.bmp",  SKYRIGHT);
-    BMP_Texture(SkyboxTexture,"texture/up.bmp",     SKYUP);
-    BMP_Texture(SkyboxTexture,"texture/down.bmp",   SKYDOWN);
+    //BMP_Texture(SkyboxTexture,"texture/front.bmp",  SKYFRONT);
+    //BMP_Texture(SkyboxTexture,"texture/back.bmp",   SKYBACK);
+    //BMP_Texture(SkyboxTexture,"texture/left.bmp",   SKYLEFT);
+    //BMP_Texture(SkyboxTexture,"texture/right.bmp",  SKYRIGHT);
+    //BMP_Texture(SkyboxTexture,"texture/up.bmp",     SKYUP);
+    //BMP_Texture(SkyboxTexture,"texture/down.bmp",   SKYDOWN);
 
+    JPEG_Texture(SkyboxTexture,"texture/front.jpg",  SKYFRONT);
+    JPEG_Texture(SkyboxTexture,"texture/back.jpg",   SKYBACK);
+    JPEG_Texture(SkyboxTexture,"texture/left.jpg",   SKYLEFT);
+    JPEG_Texture(SkyboxTexture,"texture/right.jpg",  SKYRIGHT);
+    JPEG_Texture(SkyboxTexture,"texture/up.jpg",     SKYUP);
+    JPEG_Texture(SkyboxTexture,"texture/down.jpg",   SKYDOWN);
+    
         return TRUE;
     }
 

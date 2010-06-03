@@ -168,7 +168,7 @@ void glutSolidTeapot( GLdouble size )
 
 
 /*
-* Move object into position.  Use 3rd through 12th 
+* Move object into position.  Use 3rd through 12th
 * parameters to specify the material property.  Draw a teapot.
 */
 void renderTeapot(GLfloat x, GLfloat y,
@@ -216,7 +216,7 @@ public:
         glOrtho(0.0, 16.0*(GLfloat)w/(GLfloat)h, 0.0, 16.0,
         -10.0, 10.0);
         glMatrixMode(GL_MODELVIEW);
-        
+
         GLfloat ambient[] = {0.0, 0.0, 0.0, 1.0};
         GLfloat diffuse[] = {1.0, 1.0, 1.0, 1.0};
         GLfloat specular[] = {1.0, 1.0, 1.0, 1.0};
@@ -236,7 +236,7 @@ public:
         glEnable(GL_LIGHT0);
         glEnable(GL_AUTO_NORMAL);
         glEnable(GL_NORMALIZE);
-        glEnable(GL_DEPTH_TEST); 
+        glEnable(GL_DEPTH_TEST);
         /*  be efficient--make teapot display list  */
         teapotList = glGenLists(1);
         glNewList (teapotList, GL_COMPILE);

@@ -27,8 +27,12 @@ public:
 
 private:
     render_callbacks m_render_cbs;
+    
+    static int timer_id_offset;
+    
+    int timer_id;
 public:
-    UGLCtrl(UBaseWindow *pWndParent)
+    UGLCtrl(UBaseWindow *pWndParent, UINT id = -1)
     : UBaseWindow(pWndParent)
     {
         setMenu(0);
@@ -36,14 +40,20 @@ public:
         setTitle(_T("DOCK"));
 
         addStyles(WS_CHILD);
-        setExStyles(WS_EX_TOOLWINDOW | WS_EX_TOPMOST | WS_EX_APPWINDOW);
+        setExStyles(WS_EX_TOOLWINDOW | WS_EX_APPWINDOW);
 
         m_uInterval = 100;
+        
+        timer_id = ID_TIMER_INTERNAL + timer_id_offset;
+        
+        ++timer_id_offset;
+       
+        setID(id);
     }
 
     ~UGLCtrl()
     {
-        this->killTimer(ID_TIMER_INTERNAL);
+        this->killTimer(timer_id);
     }
 
     BOOL onPreRegisterWindowClass(huys::UWindowClass &uwc)
@@ -56,7 +66,7 @@ public:
     {
         UGlut::EnableOpenGL(*this, m_hdc, m_hrc);
 
-        this->setTimer(ID_TIMER_INTERNAL, m_uInterval);
+        this->setTimer(timer_id, m_uInterval);
 
         return UBaseWindow::onCreate();
     }
@@ -69,6 +79,7 @@ public:
 
     void onDraw(HDC hdc)
     {
+		wglMakeCurrent(m_hdc, m_hrc );
         render();
         SwapBuffers(m_hdc);
     }
@@ -95,18 +106,18 @@ public:
 
     BOOL onTimer(WPARAM wParam, LPARAM lParam)
     {
-        switch (wParam)
+    
+        if (wParam == timer_id)
         {
-        case ID_TIMER_INTERNAL:
-           {
-
+				wglMakeCurrent(m_hdc, m_hrc );
                 render();
                 // Swap buffers
                 SwapBuffers(m_hdc);
 
                 return TRUE;
-            }
-        default:
+        }
+        else
+        {
             return FALSE;
         }
     }
@@ -148,7 +159,7 @@ private:
     {
         //glViewport(0, 0, 640.0, 480.0);
 
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(.0f, 0.0f, 0.0f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         //glScalef(0.5,0.5,0.5);
         glRotatef(2.0,0,0,1);
@@ -208,6 +219,8 @@ private:
         }
     }
 };
+
+int UGLCtrl::timer_id_offset  = 0;
 
 typedef huys::ADT::UAutoPtr<UGLCtrl> UGLCtrlP;
 

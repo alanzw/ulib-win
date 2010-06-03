@@ -64,6 +64,9 @@ public:
 
     UINT getID() const
     { return m_nID; }
+    
+    void setID(UINT id)
+    { m_nID = id; }
 
     //
     void setTitle(LPCTSTR lpTitle)
