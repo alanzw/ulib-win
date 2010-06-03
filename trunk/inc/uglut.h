@@ -307,6 +307,22 @@ private:
 
 };
 
+#define TGA_RGB        2
+#define TGA_A          3
+#define TGA_RLE        10
+
+struct tImageTGA
+{
+    int channels;
+    int size_x;
+    int size_y;
+    unsigned char *data;
+};
+
+tImageTGA * ULIB_API Load_TGA(const char *strfilename);
+
+void  ULIB_API TGA_Texture(UINT textureArray[], LPSTR strFileName, int ID);
+
 }; // namespace UGlut
 
 #endif // U_GLUT_H

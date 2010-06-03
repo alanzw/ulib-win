@@ -29,6 +29,7 @@ GUI_OBJS =        \
     ubasewindow.o \
     utoolbar.o    \
     usplashwnd.o  \
+    uglwindow.o   \
 
 
 SYSTEM_OBJS =     \

@@ -39,6 +39,7 @@ SUBDIRS = hello      \
           speedmeter \
           stencil    \
           alpha      \
+          perspective\
 
 
 #

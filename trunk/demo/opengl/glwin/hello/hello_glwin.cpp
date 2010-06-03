@@ -8,277 +8,75 @@
 
 #include "uwinapp.h"
 #include "ubasewindow.h"
-#include "uicon.h"
-#include "umsg.h"
+#include "uglwindow.h"
 
-#include "uglut.h"
+GLfloat cnt1 = 0.0f;
 
-class UGLWindow : public UBaseWindow
+void my_disp()
 {
-public:
-    UGLWindow(HINSTANCE hInst = GetModuleHandle(NULL))
-    : UBaseWindow(NULL, hInst),
-      m_hdc(0), m_hrc(0), m_bFullscreen(FALSE), cnt1(0.0)
-    {
-        setTitle(_T("OpenGL Window"));
-    }
+    //glViewport(0, 0, 640.0, 480.0);
 
-    BOOL onPreRegisterWindowClass(huys::UWindowClass &uwc)
-    {
-        uwc.setStyles(CS_OWNDC);
-        return FALSE;
-    }
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+    //glScalef(0.5,0.5,0.5);
+    glTranslatef(0, 0,-5.0f);
+    glRotatef(cnt1,0,0,1);
+    //
+    glBegin(GL_LINES);
 
-    BOOL onPreCreateWindow()
-    {
-        if (IDYES == showYesNoMsgbox(_T("Fullscreen?"), _T("Start Fullscreen?")))
-        {
-            m_bFullscreen = TRUE;
-        }
+    //
+    glColor3f(1.f, 0.f, 0.f);
+    glVertex3f(0.0f, 0.0f, 0.0f);
+    glVertex3f(1.0f, 0.0f, 0.0f);
+    glVertex3f(1.0f, 0.0f, 0.0f);
+    glVertex3f(0.9f, 0.1f, 0.0f);
+    glVertex3f(1.0f, 0.0f, 0.0f);
+    glVertex3f(0.9f, -0.1f, 0.0f);
 
-        int width= 640;
-        int height = 480;
-        int bits=16;
+    //
+    glColor3f(0.f, 1.f, 0.f);
+    glVertex3f(0.0f, 0.0f, 0.0f);
+    glVertex3f(0.0f, 1.0f, 0.0f);
+    glVertex3f(0.0f, 1.0f, 0.0f);
+    glVertex3f(0.1f, 0.9f, 0.0f);
+    glVertex3f(0.0f, 1.0f, 0.0f);
+    glVertex3f(-0.1f, 0.9f, 0.0f);
 
-        setPos(0, 0, width, height);
+    //
+    glColor3f(0.f, 0.f, 1.f);
+    glVertex3f(0.0f, 0.0f, 0.0f);
+    glVertex3f(0.0f, 0.0f, 1.0f);
+    glVertex3f(0.0f, 0.0f, 1.0f);
+    glVertex3f(0.0f, 0.1f, 0.9f);
+    glVertex3f(0.0f, 0.0f, 1.0f);
+    glVertex3f(0.0f, -0.1f, 0.9f);
 
-        if (m_bFullscreen)
-        {
-            DEVMODE dmScreenSettings;                                // Device Mode
-            memset(&dmScreenSettings,0,sizeof(dmScreenSettings));    // Makes Sure Memory's Cleared
-            dmScreenSettings.dmSize=sizeof(dmScreenSettings);        // Size Of The Devmode Structure
-            dmScreenSettings.dmPelsWidth    = width;                // Selected Screen Width
-            dmScreenSettings.dmPelsHeight    = height;                // Selected Screen Height
-            dmScreenSettings.dmBitsPerPel    = bits;                    // Selected Bits Per Pixel
-            dmScreenSettings.dmFields=DM_BITSPERPEL|DM_PELSWIDTH|DM_PELSHEIGHT;
+    //
+    glEnd();
 
-            // Try To Set Selected Mode And Get Results.  NOTE: CDS_FULLSCREEN Gets Rid Of Start Bar.
-            if (ChangeDisplaySettings(&dmScreenSettings,CDS_FULLSCREEN)!=DISP_CHANGE_SUCCESSFUL)
-            {
-                // If The Mode Fails, Offer Two Options.  Quit Or Use Windowed Mode.
-                if (showYesNoMsgbox(_T("The Requested Fullscreen Mode Is Not Supported By\nYour Video Card.")
-                    _T("Use Windowed Mode Instead?"),_T("OpenGL"))==IDYES)
-                {
-                    m_bFullscreen=FALSE;        // Windowed Mode Selected.  Fullscreen = FALSE
-                }
-                else
-                {
-                    // Pop Up A Message Box Letting User Know The Program Is Closing.
-                    showMsg(_T("Program Will Now Close."),_T("ERROR"));
-                    return FALSE;                                    // Return FALSE
-                }
-            }
+    //
+    glBegin(GL_POLYGON);
+    glVertex2f(0.0f, 0.2f);
+    glVertex2f(1.0f, 0.5f);
+    glVertex2f(1.0f, 1.0f);
+    glEnd();
 
-        }
+    cnt1+=(cnt1>10?.0f:0.05f);
+}
 
-        if (m_bFullscreen)
-        {
-            setStyles(WS_POPUP);
-            setExStyles(WS_EX_APPWINDOW);
-            ::ShowCursor(FALSE);
-        }
-        else
-        {
-            //setStyles(WS_OVERLAPPEDWINDOW);
-            setExStyles(WS_EX_APPWINDOW | WS_EX_WINDOWEDGE);
-        }
-
-        adjustWindowRectEx();
-
-        return TRUE;
-    }
-
-    BOOL onCreate()
-    {
-        initGL();
-
-        if (!m_bFullscreen)
-        {
-            m_uico.loadIconEx(::GetModuleHandle(NULL), IDI_ULIB);
-            this->setIconBig(m_uico);
-        }
-        else
-        {
-            //ReSizeGLScene(640, 480); // Set Up Our Perspective GL Screen
-        }
-        setTopMost();
-
-        return UBaseWindow::onCreate();
-    }
-
-    BOOL onDestroy()
-    {
-        UGlut::DisableOpenGL(getHandle(), m_hdc, m_hrc);
-
-        return UBaseWindow::onDestroy();
-    }
-
-    void onDraw(HDC hdc)
-    {
-        render();
-        SwapBuffers(m_hdc);
-    }
-
-    BOOL onChar(WPARAM wParam, LPARAM lParam)
-    {
-        switch (wParam)
-        {
-        case VK_ESCAPE:
-            return UBaseWindow::onClose();
-        default:
-            return UBaseWindow::onChar(wParam, lParam);
-        }
-    }
-
-    BOOL onSize(WPARAM wParam, LPARAM lParam)
-    {
-        ReSizeGLScene(LOWORD(lParam),HIWORD(lParam));
-        return FALSE;
-    }
-private:
-    HDC m_hdc;
-    HGLRC m_hrc;
-    UIcon m_uico;
-
-    BOOL m_bFullscreen;
-
-    GLfloat    cnt1;
-private:
-    BOOL initGL()
-    {
-        UGlut::EnableOpenGL(*this, m_hdc, m_hrc);
-
-        return TRUE;
-    }
-
-
-    void ReSizeGLScene(GLsizei width, GLsizei height)        // Resize And Initialize The GL Window
-    {
-        if (height==0)                                        // Prevent A Divide By Zero By
-        {
-            height=1;                                        // Making Height Equal One
-        }
-
-        glViewport(0,0,width,height);                        // Reset The Current Viewport
-
-        glMatrixMode(GL_PROJECTION);                        // Select The Projection Matrix
-        glLoadIdentity();                                    // Reset The Projection Matrix
-
-        // Calculate The Aspect Ratio Of The Window
-        gluPerspective(.0f,(GLfloat)width/(GLfloat)height,0.5f,10.0f);
-
-        glMatrixMode(GL_MODELVIEW);                            // Select The Modelview Matrix
-        glLoadIdentity();                                    // Reset The Modelview Matrix
-    }
-
-    void render()
-    {
-        //glViewport(0, 0, 640.0, 480.0);
-
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
-        //glScalef(0.5,0.5,0.5);
-        glRotatef(cnt1,0,0,1);
-        //
-        glBegin(GL_LINES);
-
-        //
-        glColor3f(1.f, 0.f, 0.f);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(1.0f, 0.0f, 0.0f);
-        glVertex3f(1.0f, 0.0f, 0.0f);
-        glVertex3f(0.9f, 0.1f, 0.0f);
-        glVertex3f(1.0f, 0.0f, 0.0f);
-        glVertex3f(0.9f, -0.1f, 0.0f);
-
-        //
-        glColor3f(0.f, 1.f, 0.f);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(0.0f, 1.0f, 0.0f);
-        glVertex3f(0.0f, 1.0f, 0.0f);
-        glVertex3f(0.1f, 0.9f, 0.0f);
-        glVertex3f(0.0f, 1.0f, 0.0f);
-        glVertex3f(-0.1f, 0.9f, 0.0f);
-
-        //
-        glColor3f(0.f, 0.f, 1.f);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(0.0f, 0.0f, 1.0f);
-        glVertex3f(0.0f, 0.0f, 1.0f);
-        glVertex3f(0.0f, 0.1f, 0.9f);
-        glVertex3f(0.0f, 0.0f, 1.0f);
-        glVertex3f(0.0f, -0.1f, 0.9f);
-
-        //
-        glEnd();
-
-        //
-        glBegin(GL_POLYGON);
-        glVertex2f(0.0f, 0.2f);
-        glVertex2f(1.0f, 0.5f);
-        glVertex2f(1.0f, 1.0f);
-        glEnd();
-
-        cnt1+=(cnt1>10?.0f:0.05f);
-    }
-};
-
-class UGLWinApp : public UWinApp
-{
-    BOOL m_bQuit;
-public:
-    UGLWinApp()
-        : m_bQuit(FALSE)
-    {}
-    
-    BOOL run()
-    {
-        m_pMainWindow->show();
-        m_pMainWindow->update();
-        
-        //BOOL bQuit = FALSE;
-        MSG msg;
-        
-        while (!m_bQuit)
-        {
-            // check for messages
-            if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-            {
-                // handle or dispatch messages
-                if ( msg.message == WM_QUIT)
-                {
-                    m_bQuit = TRUE;
-                }
-                else
-                {
-                    TranslateMessage(&msg);
-                    DispatchMessage(&msg);
-                }
-            }
-            else
-            {
-                // OpenGL animation code goes here
-                static_cast<UGLWindow *>(m_pMainWindow)->invalidate();
-                //m_pMainWindow->invalidate();
-                //SwapBuffers(m_hdc);
-            }
-        }
-        // shutdown OpenGL
-        //UGlut::DisableOpenGL( m_hDlg, m_hdc, m_hrc );
-        // destroy the window explicitly
-        m_pMainWindow->onDestroy();
-        return (msg.wParam);
-    }
-};
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
 {
-    UGLWinApp app;
+    UWinApp app;
 
-    app.setMainWindow(new UGLWindow);
+    UGLWindow * p = new UGLWindow;
+
+    p->setInterval(1000);
+    p->setDisplay(&my_disp);
+
+    app.setMainWindow(p);
 
     app.init(hInstance);
 
     return app.run();
 }
-

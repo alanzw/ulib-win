@@ -43,7 +43,7 @@ void init_surface(void)
             else
             ctlpoints[u][v][2] = -3.0;
         }
-    }				
+    }
 }
 
 void CALLBACK nurbsError(GLenum errorCode)
@@ -71,13 +71,13 @@ public:
         ::GetClientRect(m_hDlg, &rc);
         int w = rc.right-rc.left;
         int h = rc.bottom-rc.top;
-		glViewport (0, 0, (GLsizei) w, (GLsizei) h);
-		glMatrixMode(GL_PROJECTION); 
-		glLoadIdentity();
-		gluPerspective (45.0, (GLdouble)w/(GLdouble)h, 3.0, 8.0);
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
-		glTranslatef (0.0, 0.0, -5.0);
+        glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        gluPerspective (45.0, (GLdouble)w/(GLdouble)h, 3.0, 8.0);
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glTranslatef (0.0, 0.0, -5.0);
 
         GLfloat mat_diffuse[] = { 0.7, 0.7, 0.7, 1.0 };
         GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
@@ -116,9 +116,9 @@ public:
         glScalef (0.5, 0.5, 0.5);
 
         gluBeginSurface(theNurb);
-        gluNurbsSurface(theNurb, 
+        gluNurbsSurface(theNurb,
         8, knots, 8, knots,
-        4 * 3, 3, &ctlpoints[0][0][0], 
+        4 * 3, 3, &ctlpoints[0][0][0],
         4, 4, GL_MAP2_VERTEX_3);
         gluEndSurface(theNurb);
 
@@ -129,7 +129,7 @@ public:
             glBegin(GL_POINTS);
             for (i = 0; i < 4; i++) {
                 for (j = 0; j < 4; j++) {
-                    glVertex3f(ctlpoints[i][j][0], 
+                    glVertex3f(ctlpoints[i][j][0],
                     ctlpoints[i][j][1], ctlpoints[i][j][2]);
                 }
             }
