@@ -13,12 +13,12 @@ static char THIS_FILE[]=__FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CWaveFile construction/destruction
 
-CWaveFile::CWaveFile () 
+CWaveFile::CWaveFile ()
 {
    Loaded = false;
 }
 
-CWaveFile::~CWaveFile () 
+CWaveFile::~CWaveFile ()
 {
    CleanUp ();
 }
@@ -27,7 +27,7 @@ CWaveFile::~CWaveFile ()
 /////////////////////////////////////////////////////////////////////////////
 // CWaveFile CleanUp
 
-bool CWaveFile::CleanUp () 
+bool CWaveFile::CleanUp ()
 {
    // If the RIFF file has been opened, close it and set the Loaded
    // flag to false:
@@ -43,21 +43,21 @@ bool CWaveFile::CleanUp ()
 /////////////////////////////////////////////////////////////////////////////
 // CWaveFile Load
 
-bool CWaveFile::Load ( TCHAR *FileName ) 
+bool CWaveFile::Load ( TCHAR *FileName )
 {
    MMCKINFO InputChunk;
 
    const DWORD WaveFCC = mmioFOURCC ( 'W', 'A', 'V', 'E' ),
-               MinSize = sizeof WaveFormat - 
+               MinSize = sizeof WaveFormat -
                          sizeof WaveFormat.cbSize;
 
-   // Close the RIFF file if one was previously opened using this 
+   // Close the RIFF file if one was previously opened using this
    // object:
    if ( !CleanUp () )
       return false;
 
    // Attempt to open the specified RIFF file:
-   InputHandle = mmioOpen ( FileName, NULL, 
+   InputHandle = mmioOpen ( FileName, NULL,
                             MMIO_ALLOCBUF | MMIO_READ );
 
    if ( InputHandle == NULL ) {
@@ -75,18 +75,18 @@ bool CWaveFile::Load ( TCHAR *FileName )
 
    // Make sure the parent chunk is actually a RIFF chunk and that
    // it contains wave data:
-   if ( ( ParentChunk.ckid != FOURCC_RIFF ) 
+   if ( ( ParentChunk.ckid != FOURCC_RIFF )
         || ( ParentChunk.fccType != WaveFCC ) ) {
       mmioClose ( InputHandle, 0 );
       return false;
    }
-   
+
    ZeroMemory ( &InputChunk, sizeof InputChunk );
    InputChunk.ckid = mmioFOURCC ( 'f', 'm', 't', ' ' );
 
    // Descend into the 'fmt ' chunk, where the attributes of the
    // wave data are stored:
-   if ( mmioDescend ( InputHandle, &InputChunk, &ParentChunk, 
+   if ( mmioDescend ( InputHandle, &InputChunk, &ParentChunk,
                       MMIO_FINDCHUNK ) != 0 ) {
       mmioClose ( InputHandle, 0 );
       return false;
@@ -97,16 +97,16 @@ bool CWaveFile::Load ( TCHAR *FileName )
       mmioClose ( InputHandle, 0 );
       return false;
    }
-   
+
    // Read the format chunk's data:
-   if ( mmioRead ( InputHandle, ( char * ) &WaveFormat, 
+   if ( mmioRead ( InputHandle, ( char * ) &WaveFormat,
                    sizeof WaveFormat ) < MinSize ) {
       mmioClose ( InputHandle, 0 );
       return false;
    }
 
    // Seek to the beginning of the parent chunk to begin a search:
-   if ( mmioSeek ( InputHandle, ParentChunk.dwDataOffset + 
+   if ( mmioSeek ( InputHandle, ParentChunk.dwDataOffset +
                 sizeof ( FOURCC ), SEEK_SET ) == -1 ) {
       mmioClose ( InputHandle, 0 );
       return false;
@@ -116,7 +116,7 @@ bool CWaveFile::Load ( TCHAR *FileName )
    InputChunk.ckid = mmioFOURCC ( 'd', 'a', 't', 'a' );
 
    // Descend into the 'data' chunk:
-   if ( mmioDescend ( InputHandle, &InputChunk, &ParentChunk, 
+   if ( mmioDescend ( InputHandle, &InputChunk, &ParentChunk,
                       MMIO_FINDCHUNK ) != 0 ) {
       mmioClose ( InputHandle, 0 );
       return false;
@@ -125,7 +125,7 @@ bool CWaveFile::Load ( TCHAR *FileName )
 
    // Save the 'data' chunk information for later use:
    DataChunk = InputChunk;
-   
+
    // Record that the wave file was successfully loaded:
    Loaded = true;
 
@@ -136,7 +136,7 @@ bool CWaveFile::Load ( TCHAR *FileName )
 /////////////////////////////////////////////////////////////////////////////
 // CWaveFile GetFormat
 
-WORD CWaveFile::GetFormat () 
+WORD CWaveFile::GetFormat ()
 {
    // The format for PCM wave files is WAVE_FORMAT_PCM
 
@@ -150,7 +150,7 @@ WORD CWaveFile::GetFormat ()
 /////////////////////////////////////////////////////////////////////////////
 // CWaveFile GetBlockAlign
 
-WORD CWaveFile::GetBlockAlign () 
+WORD CWaveFile::GetBlockAlign ()
 {
    if ( !Loaded )
       return 0;
@@ -162,7 +162,7 @@ WORD CWaveFile::GetBlockAlign ()
 /////////////////////////////////////////////////////////////////////////////
 // CWaveFile GetChannelCount
 
-WORD CWaveFile::GetChannelCount () 
+WORD CWaveFile::GetChannelCount ()
 {
    if ( !Loaded )
       return 0;
@@ -174,7 +174,7 @@ WORD CWaveFile::GetChannelCount ()
 /////////////////////////////////////////////////////////////////////////////
 // CWaveFile GetBitsPerSample
 
-WORD CWaveFile::GetBitsPerSample () 
+WORD CWaveFile::GetBitsPerSample ()
 {
    if ( !Loaded )
       return 0;
@@ -186,7 +186,7 @@ WORD CWaveFile::GetBitsPerSample ()
 /////////////////////////////////////////////////////////////////////////////
 // CWaveFile GetSamplesPerSecond
 
-DWORD CWaveFile::GetSamplesPerSecond () 
+DWORD CWaveFile::GetSamplesPerSecond ()
 {
    if ( !Loaded )
       return 0;
@@ -198,7 +198,7 @@ DWORD CWaveFile::GetSamplesPerSecond ()
 /////////////////////////////////////////////////////////////////////////////
 // CWaveFile GetAverageBytesPerSecond
 
-DWORD CWaveFile::GetAverageBytesPerSecond () 
+DWORD CWaveFile::GetAverageBytesPerSecond ()
 {
    if ( !Loaded )
       return 0;
@@ -222,7 +222,7 @@ DWORD CWaveFile::GetDataSize ()
 /////////////////////////////////////////////////////////////////////////////
 // CWaveFile GetData
 
-bool CWaveFile::GetData ( void *Buffer, LONG Bytes ) 
+bool CWaveFile::GetData ( void *Buffer, LONG Bytes )
 {
    if ( !Loaded )
       return false;
@@ -241,7 +241,7 @@ bool CWaveFile::GetData ( void *Buffer, LONG Bytes )
 /////////////////////////////////////////////////////////////////////////////
 // CWaveFile GetWaveFormat
 
-bool CWaveFile::GetWaveFormat ( WAVEFORMATEX &Format ) 
+bool CWaveFile::GetWaveFormat ( WAVEFORMATEX &Format )
 {
    if ( !Loaded )
       return false;
@@ -255,7 +255,7 @@ bool CWaveFile::GetWaveFormat ( WAVEFORMATEX &Format )
 /////////////////////////////////////////////////////////////////////////////
 // CWaveFile Close
 
-bool CWaveFile::Close () 
+bool CWaveFile::Close ()
 {
    return CleanUp ();
 }
@@ -263,12 +263,12 @@ bool CWaveFile::Close ()
 /////////////////////////////////////////////////////////////////////////////
 // CWaveFile operators
 
-CWaveFile::operator WAVEFORMATEX () 
+CWaveFile::operator WAVEFORMATEX ()
 {
    return WaveFormat;
 }
 
-CWaveFile::operator HMMIO () 
+CWaveFile::operator HMMIO ()
 {
    return InputHandle;
 }

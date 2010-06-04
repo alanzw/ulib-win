@@ -1,5 +1,5 @@
 #
-TOPDIR = ../..
+TOPDIR = ../../..
 
 include $(TOPDIR)/make.inc
 

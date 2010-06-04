@@ -32,6 +32,17 @@ int main(int argc, char *argv[])
 
     luaL_dostring(L, "print 'Hello World!'");
 
+    luaL_loadstring(L, "print 'Hello World!'");
+
+
+    int index = lua_gettop(L);
+
+    printf("%d\n", index);
+
+    int type = lua_type(L, index);
+
+    printf("%d : %s\n", type, lua_typename(L, index));
+
     lua_close(L);
 
     return 0;
