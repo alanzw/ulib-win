@@ -9,17 +9,17 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include <windows.h>	// Standard Windows header
-#include <mmsystem.h>	// Multimedia functions and structures
-#include <direct.h>		// DirectX defines (many of dsound structures)
-#include "dsound.h"		// Direct sound Header
-#include <stdio.h>		// File I/O routines
-#include "wave.h"		// Wave format
+#include <windows.h>    // Standard Windows header
+#include <mmsystem.h>    // Multimedia functions and structures
+#include <direct.h>        // DirectX defines (many of dsound structures)
+#include "dsound.h"        // Direct sound Header
+#include <stdio.h>        // File I/O routines
+#include "wave.h"        // Wave format
 
 
 class DirectSoundBuffer;
 
-class DirectSoundManager 
+class DirectSoundManager
 {
    protected:
       LPDIRECTSOUND           DirectSound;
@@ -32,18 +32,18 @@ class DirectSoundManager
 
       BOOL CreateSound ( TCHAR *FileName,
                          DirectSoundBuffer &Buffer );
-     
+
 
       BOOL Initialize(HWND hWnd);
       BOOL Uninitialize ();
 
 };
 
-class DirectSoundBuffer 
+class DirectSoundBuffer
 {
    protected:
       LPDIRECTSOUNDBUFFER Buffer;
-  
+
       TCHAR FileName [ MAX_PATH ];
       LONG DataSize;
       WAVEFORMATEX WaveFormat;
@@ -57,7 +57,7 @@ class DirectSoundBuffer
       DirectSoundBuffer  ();
       ~DirectSoundBuffer ();
 
-	  void ReleaseBuffer();
+      void ReleaseBuffer();
       BOOL GetPan ( float &Pan );
       BOOL GetFrequency ( DWORD &Frequency );
       BOOL GetVolume ( float &Volume );
@@ -72,7 +72,7 @@ class DirectSoundBuffer
       BOOL Stop ();
       BOOL IsPlaying ();
       BOOL Play ( bool Loop = false );
-      
+
 };
 
 // Are one and only function prototype

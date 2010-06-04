@@ -19,13 +19,13 @@ static char THIS_FILE[]=__FILE__;
 
 DirectSoundManager::DirectSoundManager() 
 {  
-	DirectSound = NULL;
-	PrimaryBuffer = NULL;
+    DirectSound = NULL;
+    PrimaryBuffer = NULL;
 
-   	// If Direct sound fails, just return - no sound effects will be heard
+       // If Direct sound fails, just return - no sound effects will be heard
 
-	DirectSoundCreate(NULL,&DirectSound,NULL);
-	
+    DirectSoundCreate(NULL,&DirectSound,NULL);
+    
 }
 
 DirectSoundManager::~DirectSoundManager () 
@@ -38,7 +38,7 @@ DirectSoundManager::~DirectSoundManager ()
 
 BOOL DirectSoundManager::Initialize(HWND hWnd)
 {
-	DSBUFFERDESC BufferDesc;
+    DSBUFFERDESC BufferDesc;
 
    if ( DirectSound == NULL )
       return FALSE;
@@ -62,19 +62,19 @@ BOOL DirectSoundManager::Initialize(HWND hWnd)
       return FALSE;
 
    //If SetFormat fails, the return value may be one of the following error values:
-	//DSERR_BADFORMAT 
-	//DSERR_INVALIDCALL 
-	//DSERR_INVALIDPARAM 
-	//DSERR_OUTOFMEMORY 
-	//DSERR_PRIOLEVELNEEDED 
-	//DSERR_UNSUPPORTED 
+    //DSERR_BADFORMAT 
+    //DSERR_INVALIDCALL 
+    //DSERR_INVALIDPARAM 
+    //DSERR_OUTOFMEMORY 
+    //DSERR_PRIOLEVELNEEDED 
+    //DSERR_UNSUPPORTED 
 
-	OutputFormat.wFormatTag = WAVE_FORMAT_PCM;
-	OutputFormat.nChannels = 2;
-	OutputFormat.nSamplesPerSec = 44100;
-	OutputFormat.wBitsPerSample = 8;
-	OutputFormat.nBlockAlign = OutputFormat.nChannels * OutputFormat.wBitsPerSample / 8;
-	OutputFormat.nAvgBytesPerSec = OutputFormat.nBlockAlign * OutputFormat.nSamplesPerSec;
+    OutputFormat.wFormatTag = WAVE_FORMAT_PCM;
+    OutputFormat.nChannels = 2;
+    OutputFormat.nSamplesPerSec = 44100;
+    OutputFormat.wBitsPerSample = 8;
+    OutputFormat.nBlockAlign = OutputFormat.nChannels * OutputFormat.wBitsPerSample / 8;
+    OutputFormat.nAvgBytesPerSec = OutputFormat.nBlockAlign * OutputFormat.nSamplesPerSec;
 
    // Set the output format:
 
@@ -91,7 +91,7 @@ BOOL DirectSoundManager::Initialize(HWND hWnd)
 BOOL DirectSoundManager::Uninitialize()
 {
 
-	// Release all obtained interfaces:
+    // Release all obtained interfaces:
 
    if ( PrimaryBuffer != NULL ) {
       PrimaryBuffer->Release ();
@@ -110,15 +110,15 @@ BOOL DirectSoundManager::Uninitialize()
 // DirectSoundManager CreateSound
 
 BOOL DirectSoundManager::CreateSound(TCHAR *FileName,DirectSoundBuffer &Buffer)
-{	
-	DSBUFFERDESC BufferDesc;
-	WAVEFORMATEX WaveFormat;
-	CWaveFile     InputWave;
+{    
+    DSBUFFERDESC BufferDesc;
+    WAVEFORMATEX WaveFormat;
+    CWaveFile     InputWave;
 
-	if(DirectSound == NULL)
-		return FALSE;
+    if(DirectSound == NULL)
+        return FALSE;
 
-	// Load the specified wave file:
+    // Load the specified wave file:
 
    if ( !InputWave.Load ( FileName ) )
       return FALSE;
@@ -188,11 +188,11 @@ DirectSoundBuffer::~DirectSoundBuffer()
 
 void DirectSoundBuffer::ReleaseBuffer()
 {
-	if ( Buffer != NULL ) 
-		{
-		 Buffer->Release();
-		 Buffer = NULL;
-		}
+    if ( Buffer != NULL ) 
+        {
+         Buffer->Release();
+         Buffer = NULL;
+        }
 }
 
 
@@ -464,16 +464,16 @@ BOOL DirectSoundBuffer::Play(bool Loop)
 
 void playSoundArray(DirectSoundBuffer sound[], int num)
 {
-	BOOL bFoundEmptySound = FALSE;
-	for(int index = 0; index < num; index++)
-	{
-		if(sound[index].IsPlaying ()  == false)
-		{
-			sound[index].Play(0);
-			bFoundEmptySound = TRUE;
-		}
-		if(bFoundEmptySound)
-			break;
-	}
+    BOOL bFoundEmptySound = FALSE;
+    for(int index = 0; index < num; index++)
+    {
+        if(sound[index].IsPlaying ()  == false)
+        {
+            sound[index].Play(0);
+            bFoundEmptySound = TRUE;
+        }
+        if(bFoundEmptySound)
+            break;
+    }
 }
 

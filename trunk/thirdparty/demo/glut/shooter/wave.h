@@ -13,7 +13,7 @@ class CWaveFile {
    protected:
       HMMIO            InputHandle;
       WAVEFORMATEX     WaveFormat;
-      MMCKINFO         DataChunk, ParentChunk;      
+      MMCKINFO         DataChunk, ParentChunk;
       bool             Loaded;
 
       bool CleanUp ();
@@ -27,7 +27,7 @@ class CWaveFile {
       WORD GetBlockAlign ();
       WORD GetChannelCount ();
       WORD GetBitsPerSample ();
-      
+
       DWORD GetSamplesPerSecond ();
       DWORD GetAverageBytesPerSecond ();
 
