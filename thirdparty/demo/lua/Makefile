@@ -4,7 +4,7 @@ TOPDIR = ../../..
 include $(TOPDIR)/make.inc
 
 #
-SUBDIRS = hello     \
+SUBDIRS = hello  cxlib   \
 
 #
 all:
