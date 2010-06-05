@@ -24,7 +24,7 @@ public:
         setRect(&rc);
         setTitle(_T("About"));
         setWndClassName(UABOUTDIALOG_CLASSNAME);
-        
+
         _hModule = NULL;
     }
 
@@ -37,7 +37,7 @@ public:
         setRect(&rc);
         setTitle(_T("About"));
         setWndClassName(UABOUTDIALOG_CLASSNAME);
-        
+
         _hModule = NULL;
     }
 
@@ -59,12 +59,12 @@ public:
     void onDraw(HDC hdc)
     {
         UIcon icon;
-        
+
         if (NULL == _hModule)
         {
             _hModule = ::GetModuleHandle(NULL);
         }
-        
+
         icon.loadImage(_hModule, IDI_HELP, 128, 128);
         icon.drawEx(hdc, 20, 20, 128, 128);
         ::SetBkMode(hdc, TRANSPARENT);
@@ -98,7 +98,7 @@ public:
     {
         _description = desc;
     }
-    
+
     void setModule(HINSTANCE hModule)
     {
         _hModule = hModule;
@@ -106,7 +106,7 @@ public:
 private:
     huys::ADT::UStringAnsi _header;
     huys::ADT::UStringAnsi _description;
-    
+
     HINSTANCE _hModule;
 };
 

@@ -33,5 +33,5 @@ test :
 #
 .PHONY : clean
 clean :
-	$(RM) ${OBJ} ${RES} ${BIN}  
+	$(RM) ${OBJ} ${RES} ${BIN}
 

@@ -7,7 +7,7 @@
 #include <GL/glu.h>
 
 #include "uwinapp.h"
-#include "ubasewindow.h"
+#include "uglut.h"
 #include "uglwindow.h"
 
 bool bTranslate = false;
