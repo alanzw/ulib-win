@@ -319,9 +319,9 @@ struct tImageTGA
     unsigned char *data;
 };
 
-tImageTGA * ULIB_API Load_TGA(const char *strfilename);
+ULIB_API tImageTGA * Load_TGA(const char *strfilename);
 
-void  ULIB_API TGA_Texture(UINT textureArray[], LPSTR strFileName, int ID);
+ULIB_API void TGA_Texture(UINT textureArray[], LPSTR strFileName, int ID);
 
 }; // namespace UGlut
 
