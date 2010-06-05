@@ -6,6 +6,7 @@
 #include <tchar.h>
 #include <windowsx.h>
 #include <commctrl.h>
+#include <cassert>
 
 #include "udialogx.h"
 #include "ubutton.h"
@@ -15,6 +16,7 @@
 #include "ubitmap.h"
 #include "uicon.h"
 #include "ustatic.h"
+#include "udc.h"
 
 #include "cool_button.h"
 #include "imagebutton.h"
@@ -41,18 +43,19 @@ public:
         this->subclassProc();
         return  bRet;
     }
+    
+    void size2content()
+    {
+        assert(!_ubm.isNull());
+        ::SetWindowPos(m_hSelf, NULL, -1, -1, _ubm.getWidth(), _ubm.getHeight(),
+            SWP_NOMOVE|SWP_NOZORDER|SWP_NOREDRAW|SWP_NOACTIVATE);
+    }
 
     BOOL onPaint()
     {
     //!! BeginPaint will eat previous control text drawing or other actions
-        PAINTSTRUCT ps;
-        HDC hdc;
-        hdc = BeginPaint(m_hSelf, &ps);
-    ////hdc = ::GetDC(m_hSelf);
-        onDraw(hdc);
-
-    ////::ReleaseDC(m_hSelf, hdc);
-        EndPaint(m_hSelf, &ps);
+        UPaintDC dc(m_hSelf);
+        onDraw(dc);
         return FALSE;
     }
 //private:

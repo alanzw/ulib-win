@@ -13,60 +13,7 @@
 #include "ucombobox.h"
 #include "ubutton.h"
 #include "adt/uautoptr.h"
-
-class UTransStatic : public UStatic
-{
-public:
-    UTransStatic(HWND hParent, UINT nResource, HINSTANCE hInst)
-        : UStatic(hParent, nResource, hInst)
-    {
-        m_dwStyles &= ~SS_SIMPLE;
-        m_dwStyles |= SS_CENTER | SS_CENTERIMAGE;
-    }
-
-    UTransStatic(UBaseWindow *pWndParent, UINT nID)
-    : UStatic(pWndParent, nID)
-    {
-        m_dwStyles &= ~SS_SIMPLE;
-        m_dwStyles |= SS_CENTER | SS_CENTERIMAGE;
-    }
-
-    virtual BOOL create()
-    {
-        BOOL bRet = UStatic::createEx(WS_EX_TRANSPARENT, _T("STATIC"), m_pText);
-        this->subclassProc();
-        return  bRet;
-    }
-
-    BOOL onMessage( UINT message, WPARAM wParam, LPARAM lParam )
-    {
-        BOOL bRet = UStatic::onMessage(message, wParam, lParam);
-
-        if (WM_SETTEXT == message)
-        {
-            onSetText();
-        }
-
-        return bRet;
-    }
-
-    virtual BOOL onCtrlColor(WPARAM wParam, LPARAM lParam)
-    {
-        HDC hdc = (HDC)wParam;
-        ::SetBkMode(hdc, TRANSPARENT);
-        return (BOOL)(HBRUSH)::GetStockObject(HOLLOW_BRUSH);
-    }
-private:
-    void onSetText()
-    {
-        RECT rc;
-        ::GetWindowRect(m_hSelf, &rc);
-        ::ScreenToClient(m_hParent,(LPPOINT) &rc);
-        //::ScreenToClient(m_hParent,(LPPOINT) (&rc+1));
-        ::InvalidateRect(m_hParent, &rc, TRUE);
-        ::UpdateWindow(m_hParent);
-    }
-};
+#include "aui/aui_label.h"
 
 class UMyWindow : public UBaseWindow
 {
@@ -86,7 +33,7 @@ public:
 
    BOOL onCreate()
    {
-        us[0] = new UTransStatic(this, 1333);
+        us[0] = new AUI::UTransLabel(this, 1333);
         us[0]->setPos(20, 20, 50, 20);
         us[0]->create();
         us[0]->setWindowText("Name:");
@@ -95,7 +42,7 @@ public:
        m_pEdtName->setPos(80, 20, 100, 20);
        m_pEdtName->create();
 
-       us[1] = new UTransStatic(this, 2333);
+       us[1] = new AUI::UTransLabel(this, 2333);
        us[1]->setPos(200, 20, 30, 25);
        us[1]->create();
        us[1]->setWindowText("Sex:");
@@ -107,7 +54,7 @@ public:
        m_pCboSex->addText(_T("F"));
        m_pCboSex->addText(_T("M"));
 
-       us[2] = new UTransStatic(this, 3333);
+       us[2] = new AUI::UTransLabel(this, 3333);
        us[2]->setPos(360, 20, 60, 25);
        us[2]->create();
        us[2]->setWindowText("Address:");
@@ -165,7 +112,7 @@ private:
     huys::ADT::UAutoPtr<UComboBox> m_pCboSex;
     huys::ADT::UAutoPtr<UEdit> m_pEdtAddr;
     //
-    huys::ADT::UAutoPtr<UTransStatic> us[3];
+    AUI::UTransLabelP us[3];
     //
     huys::ADT::UAutoPtr<UButton> m_bnAdd;
 

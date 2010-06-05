@@ -42,6 +42,7 @@ class ULIB_API UCheckButton: public UButton
 {
 public:
     UCheckButton(HWND hParent, UINT nResource, HINSTANCE hInst);
+    UCheckButton(UBaseWindow *pWndParent, UINT nID);
     virtual ~UCheckButton();
     //
     BOOL check();
