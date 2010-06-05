@@ -89,9 +89,9 @@ BOOL UChartControl::onPaint()
     }
 
     //
-	dc.drawLine(rc.left, rc.top, rc.right, rc.bottom);
+    dc.drawLine(rc.left, rc.top, rc.right, rc.bottom);
 
-	//
+    //
     dc.setTextColor(huys::white);
     dc.textOut(300, 18, _T("Chart Demo"), 10);
     dc.textOut(380, 380, _T("x"), 1);
