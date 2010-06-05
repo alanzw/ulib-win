@@ -223,6 +223,11 @@ BOOL UDevContext::extTextOut(int x, int y, UINT fuOptions, LPRECT lpRect, LPCTST
     return ::ExtTextOut((HDC)m_hObj, x, y, fuOptions, lpRect, lpchText, nCount, lpDx);
 }
 
+BOOL UDevContext::getTextExtentPoint32(LPCTSTR lpString, int c, LPSIZE lpSize)
+{
+    return ::GetTextExtentPoint32((HDC)m_hObj, lpString, c, lpSize);
+}
+
 huys::Color UDevContext::setBKColor( huys::Color clr )
 {
     return ::SetBkColor((HDC)m_hObj, clr);

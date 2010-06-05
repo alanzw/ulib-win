@@ -258,8 +258,8 @@ BOOL UControl::onMessage(UINT message, WPARAM wParam, LPARAM lParam)
         return onMove(wParam, lParam);
     case WM_TIMER:
         return onTimer(wParam, lParam);
-	case WM_ERASEBKGND:
-		this->onEraseBkgnd((HDC)wParam);
+    case WM_ERASEBKGND:
+        this->onEraseBkgnd((HDC)wParam);
     case WM_NOTIFY:
         return onNotify(wParam, lParam);
     case WM_NOTIFY + WM_REFLECT_BASE:

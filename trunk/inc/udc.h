@@ -156,6 +156,9 @@ public:
 
     //
     BOOL extTextOut(int x, int y, UINT fuOptions, LPRECT lpRect, LPCTSTR lpchText, int nCount, const INT *lpDx);
+    
+    //
+    BOOL getTextExtentPoint32(LPCTSTR lpString, int c, LPSIZE lpSize);
 private:
     HBRUSH m_hOldBrush;
     HPEN m_hOldPen;

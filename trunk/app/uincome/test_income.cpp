@@ -8,8 +8,13 @@
 #include "ubasewindow.h"
 #include "ugdi.h"
 #include "colors.h"
+#include "ufont.h"
 
 #include "adt/uautoptr.h"
+
+#include "aui/aui_label.h"
+#include "aui/aui_entry.h"
+#include "aui/aui_button.h"
 
 #include "uincome.h"
 
@@ -29,7 +34,30 @@ public:
    BOOL onCreate()
    {
        this->setIconBig(IDI_APP);
-
+       
+       huys::URectI rect;
+       
+       this->getClientRect(rect);
+       
+       UPrivateDC dc(*this);
+       
+       huys::USizeI size;
+       
+       LPCTSTR lpText = _T("工资计算程序");
+       
+       dc.getTextExtentPoint32(lpText, lstrlen(lpText), size);
+       
+       title = new AUI::UTransLabel(this, lpText);
+       title->setPos(rect.width()/2-size.width()/2, 20, 200, 200);
+       title->setTextColor(huys::red);
+       title->create();
+       
+       font.setFontHeight(30);
+       font.setFontFaceName(_T("黑体"));
+       font.create();
+       
+       title->setFont(font);
+       
        return UBaseWindow::onCreate();
    }
 
@@ -44,7 +72,7 @@ public:
         RECT rc = {0};
         ::GetClientRect(*this, &rc);
         huys::URectangle urc(rc);
-        urc.setFilledColor(huys::black);
+        urc.setFilledColor(huys::gray);
         urc.setFilledStyle(BS_SOLID);
         urc.Draw(hdc);
         return TRUE;
@@ -63,6 +91,9 @@ public:
             return UBaseWindow::onCommand(wParam, lParam);
         }
     }
+private:
+    AUI::UTransLabelP title;
+    UFont font;
 private:
     BOOL onMenuAbout()
     {

@@ -35,7 +35,35 @@ public:
 
 };
 
+class UTransCheckButton : public UCheckButton
+{
+public:
+    UTransCheckButton(HWND hParent, UINT nResource, HINSTANCE hInst)
+    : UCheckButton(hParent, nResource, hInst)
+    {
+    }
+
+    UTransCheckButton(UBaseWindow *pWndParent, UINT nID)
+    : UCheckButton(pWndParent, nID)
+    {
+    }
+
+    /* virtual */ BOOL create()
+    {
+        return (UCheckButton::create() && this->subclassProc());
+    }
+
+    /* virtual */ BOOL onCtrlColor(WPARAM wParam, LPARAM lParam)
+    {
+        HDC hdc = (HDC)wParam;
+        ::SetBkMode(hdc, TRANSPARENT);
+        return (BOOL)(HBRUSH)GetStockObject(NULL_BRUSH);
+    }
+
+};
+
 typedef huys::ADT::UAutoPtr<UTransRadioButton> UTransRadioButtonP;
+typedef huys::ADT::UAutoPtr<UTransCheckButton> UTransCheckButtonP;
 
 }; // namespace AUI
 
