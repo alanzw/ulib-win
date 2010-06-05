@@ -24,6 +24,8 @@ public:
         setRect(&rc);
         setTitle(_T("About"));
         setWndClassName(UABOUTDIALOG_CLASSNAME);
+        
+        _hModule = NULL;
     }
 
     UAboutDialog(UBaseWindow *pWnd)
@@ -35,6 +37,8 @@ public:
         setRect(&rc);
         setTitle(_T("About"));
         setWndClassName(UABOUTDIALOG_CLASSNAME);
+        
+        _hModule = NULL;
     }
 
     BOOL onCreate()
@@ -55,7 +59,13 @@ public:
     void onDraw(HDC hdc)
     {
         UIcon icon;
-        icon.loadImage(::GetModuleHandle(NULL), IDI_HELP, 128, 128);
+        
+        if (NULL == _hModule)
+        {
+            _hModule = ::GetModuleHandle(NULL);
+        }
+        
+        icon.loadImage(_hModule, IDI_HELP, 128, 128);
         icon.drawEx(hdc, 20, 20, 128, 128);
         ::SetBkMode(hdc, TRANSPARENT);
         ::TextOut(hdc, 200, 100, _header, _header.length());
@@ -88,9 +98,16 @@ public:
     {
         _description = desc;
     }
+    
+    void setModule(HINSTANCE hModule)
+    {
+        _hModule = hModule;
+    }
 private:
     huys::ADT::UStringAnsi _header;
     huys::ADT::UStringAnsi _description;
+    
+    HINSTANCE _hModule;
 };
 
 typedef huys::ADT::UAutoPtr<UAboutDialog> UAboutDialogP;

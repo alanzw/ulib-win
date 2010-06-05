@@ -12,11 +12,11 @@ INC = -I"$(INCDIR)" -I"$(LUA_INC)"
 LIBS = -L"$(LIBDIR)" $(LUA_LIB)
 CFLAGS += 
 CXXFLAGS += $(INC) -DBUILD_EXE
-LDFLAGS += $(LIBS) -O2 -mno-cygwin -shared -Wl,-e,_DllMain@12 -Wl,--dll  -luser32 -lkernel32  -luwin
+LDFLAGS += $(LIBS) -O2 -mno-cygwin -shared -Wl,-e,_DllMain@12 -Wl,--dll  -luser32 -lkernel32 -lgdi32 -luwin
 #
 OBJ = lua_cxlib.o
 BIN = lua_cxlib.dll
-RC  =
+RC  =  cxlib.rc
 RES = ${RC:.rc=.res}
 #
 HEADER =
@@ -30,7 +30,7 @@ $(BIN) : $(OBJ) $(RES)
 
 .PHONY : test
 test :
-	$(WINE) $(BINDIR)/$(BIN)
+	$(WINE) $(BINDIR)/lua hello.lua
     
 #
 .PHONY : clean
