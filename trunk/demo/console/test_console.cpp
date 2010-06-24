@@ -20,9 +20,9 @@ int main(int argc, char *argv[])
     {
         gotoxy(x, y);
         setrgb((ColorOnColor)i);
-        fprintf(stdout, "HELP!\n");
+        PrintStdout("HELP!\n");
         gotoxy(x, y+2);
-        fprintf(stdout, "%d\n", i);
+        PrintStdoutFormat("%d\n", i);
         x = x + 8;
     }
     x = 4;
@@ -31,17 +31,17 @@ int main(int argc, char *argv[])
     {
         gotoxy(x, y);
         setrgb((ColorOnColor)i);
-        fprintf(stdout, "ME!\n");
+        PrintStdout("ME!\n");
         gotoxy(x, y+2);
-        fprintf(stdout, "%d\n", i);
+        PrintStdoutFormat("%d\n", i);
         x = x + 8;
     }
     setrgb(BLUE_ON_BLACK);
     gotoxy(4, 16);
-    fprintf(stdout, "Press any key.");
+    PrintStdout("Press any key.");
     getch();
     setrgb(WHITE_ON_BlACK);
-    fprintf(stdout, "\n");
+    PrintStdout("\n");
     gotoxy(4, 18);
 
 //    UPAUSE;
@@ -76,12 +76,12 @@ int main(int argc, char *argv[])
     ut.beginQuery();
     Ascii2Unicode(_T("test.xx"), _T("test_uni.xx"), FALSE);
     ut.stopQuery();
-    fprintf(stdout, "Time lasts: %lf s\n", ut.getSecondsQuery());
+    PrintStdoutFormat("Time lasts: %lf s\n", ut.getSecondsQuery());
 
     ut.beginQuery();
     Ascii2UnicodeOpt(_T("test.xx"), _T("test_uni.xx"), FALSE);
     ut.stopQuery();
-    fprintf(stdout, "Time lasts: %lf s\n", ut.getSecondsQuery());
+    PrintStdoutFormat("Time lasts: %lf s\n", ut.getSecondsQuery());
 
     getchar();
 
