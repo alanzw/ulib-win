@@ -14,4 +14,4 @@
 #define IDM_NUMBER                      207
 #define IDM_ABOUT                       208
 
-#define IDB_BACKGROUND                    501
+#define IDB_BACKGROUND                  501

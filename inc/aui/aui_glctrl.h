@@ -28,9 +28,9 @@ public:
 private:
     render_callbacks m_render_cbs;
     
-    static int timer_id_offset;
+    static unsigned int timer_id_offset;
     
-    int timer_id;
+    unsigned int timer_id;
 public:
     UGLCtrl(UBaseWindow *pWndParent, UINT id = -1)
     : UBaseWindow(pWndParent)
@@ -220,7 +220,7 @@ private:
     }
 };
 
-int UGLCtrl::timer_id_offset  = 0;
+unsigned int UGLCtrl::timer_id_offset  = 0;
 
 typedef huys::ADT::UAutoPtr<UGLCtrl> UGLCtrlP;
 

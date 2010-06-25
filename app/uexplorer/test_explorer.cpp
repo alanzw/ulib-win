@@ -8,7 +8,7 @@
 #include "ubasewindow.h"
 #include "ugdi.h"
 #include "colors.h"
-
+#include "adt/uautoptr.h"
 #include "uexplorer.h"
 
 class UMyWindow : public UBaseWindow
@@ -18,16 +18,10 @@ class UMyWindow : public UBaseWindow
     };
 public:
    UMyWindow()
-   : UBaseWindow(NULL, ::GetModuleHandle(NULL)),
-     m_explorer(0)
+   : UBaseWindow(NULL, ::GetModuleHandle(NULL))
    {
         this->setTitle(_T("UExplorer 0.0.1"));
         this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
-   }
-
-   ~UMyWindow()
-   {
-        CHECK_PTR(m_explorer);
    }
 
    BOOL onCreate()
@@ -82,7 +76,7 @@ private:
         return FALSE;
     }
 
-    UExplorer *m_explorer;
+    huys::ADT::UAutoPtr<UExplorer> m_explorer;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)

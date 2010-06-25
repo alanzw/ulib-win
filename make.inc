@@ -87,8 +87,8 @@ BINEXT = .exe
 
 #
 ifeq ($(USE_DEBUG), yes)
-    CFLAGS   = -g
-    CXXFLAGS = -g
+    CFLAGS   = -g -Wall -Werror
+    CXXFLAGS = -g -Wall -Werror
 else
     CFLAGS   =
     CXXFLAGS =

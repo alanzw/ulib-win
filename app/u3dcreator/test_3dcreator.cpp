@@ -69,7 +69,11 @@ void my_render()
     GLfloat dy = (bottom - top) / m;
     GLfloat dx = (right - left) / n;
 
-    GLfloat w[][3] = { 1.0f, 2.0f, 3.f, 4.f, 1.0f, 2.0f, 3.f, 4.f, 2.f };
+    GLfloat w[][3] = { 
+        {1.0f, 2.0f, 3.f}, 
+        {4.f, 1.0f, 2.0f}, 
+        {3.f, 4.f, 2.f} 
+    };
 
     GLfloat value;
 
