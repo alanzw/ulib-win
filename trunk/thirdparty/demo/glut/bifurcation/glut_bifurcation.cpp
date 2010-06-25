@@ -48,7 +48,8 @@ void bitmap_output(int x, int y, int z, char *string, void *font)
 
 void plot_parabola(float k)
 {
-    float x, y, step;
+    float x, y;
+    //float step;
     int i;
     glBegin(GL_LINE_STRIP);
     for (i=0; i<600; i++)

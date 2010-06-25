@@ -16,7 +16,7 @@ int main()
     //char test[] = "1";
     char dest[1024] = {0};
     char str[1024] = {0};
-    int i;
+    //int i;
 
     typedef huys::crypto::BASE64 base64;
     typedef unsigned char uchar;
