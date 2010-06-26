@@ -36,7 +36,7 @@ BOOL UProcess::create(LPCTSTR sCmdLine, DWORD dwCreateFlags)
 
 BOOL UProcess::resume()
 {
-    return (-1 != ::ResumeThread(m_pi.hThread));
+    return ((unsigned int)-1 != ::ResumeThread(m_pi.hThread));
 }
 
 BOOL UProcess::resumeAndWait()

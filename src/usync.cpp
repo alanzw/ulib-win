@@ -32,7 +32,7 @@ DWORD waitMultiple(UKernelObject *obj, DWORD dwCount, DWORD dwMilliseconds)
 {
     //return ::WaitForMultipleObjects(dwCount, &((HANDLE)*obj), TRUE, dwMilliseconds);
     HObjVector hobjs;
-    for (int i = 0; i < dwCount; ++i)
+    for (unsigned int i = 0; i < dwCount; ++i)
     {
         hobjs.push_back((HANDLE)*obj);
     }
@@ -43,7 +43,7 @@ DWORD msgWaitMultiple(UObject *obj, DWORD dwCount, DWORD dwMilliseconds, DWORD d
 {
     //return ::MsgWaitForMultipleObjects(dwCount, &((HANDLE)*obj), TRUE, dwMilliseconds, dwWaitMask);
     HObjVector hobjs;
-    for (int i = 0; i < dwCount; ++i)
+    for (unsigned int i = 0; i < dwCount; ++i)
     {
         hobjs.push_back(obj->m_hObj);
     }

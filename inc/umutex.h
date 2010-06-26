@@ -48,8 +48,8 @@ public:
     class scoped_lock
     {
     private:
-        bool _isLocked;
         UMutex & _mutex;
+        bool _isLocked;
     public:
         explicit scoped_lock(UMutex &mutex)
         : _mutex(mutex), _isLocked(false)

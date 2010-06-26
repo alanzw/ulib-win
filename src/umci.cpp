@@ -33,7 +33,7 @@ BOOL play(LPTSTR lpstrAlias, DWORD dwFrom, DWORD dwTo)
 
     // Form the command string.
     result = _stprintf( achCommandBuff, TEXT("play %s from %u to %u"),
-                        lpstrAlias, dwFrom, dwTo );
+                        lpstrAlias, (unsigned int)dwFrom, (unsigned int)dwTo );
 
     if (result == -1)
     {
@@ -57,15 +57,15 @@ DWORD playMIDIFile(HWND hWndNotify, LPSTR lpszMIDIFileName)
     MCI_OPEN_PARMS mciOpenParms;
     MCI_PLAY_PARMS mciPlayParms;
     MCI_STATUS_PARMS mciStatusParms;
-    MCI_SEQ_SET_PARMS mciSeqSetParms;
+    //MCI_SEQ_SET_PARMS mciSeqSetParms;
 
     // Open the device by specifying the device and filename.
     // MCI will attempt to choose the MIDI mapper as the output port.
     mciOpenParms.lpstrDeviceType = "sequencer";
     mciOpenParms.lpstrElementName = lpszMIDIFileName;
-    if (dwReturn = mciSendCommand(0, MCI_OPEN,
+    if ((dwReturn = mciSendCommand(0, MCI_OPEN,
         MCI_OPEN_TYPE | MCI_OPEN_ELEMENT,
-        (DWORD)(LPVOID) &mciOpenParms))
+        (DWORD)(LPVOID) &mciOpenParms)))
     {
         // Failed to open device. Don't close it; just return error.
         return (dwReturn);
@@ -76,8 +76,8 @@ DWORD playMIDIFile(HWND hWndNotify, LPSTR lpszMIDIFileName)
 
     // Check if the output port is the MIDI mapper.
     mciStatusParms.dwItem = MCI_SEQ_STATUS_PORT;
-    if (dwReturn = mciSendCommand(wDeviceID, MCI_STATUS,
-        MCI_STATUS_ITEM, (DWORD)(LPVOID) &mciStatusParms))
+    if ((dwReturn = mciSendCommand(wDeviceID, MCI_STATUS,
+        MCI_STATUS_ITEM, (DWORD)(LPVOID) &mciStatusParms)))
     {
         mciSendCommand(wDeviceID, MCI_CLOSE, 0, 0);
         return (dwReturn);
@@ -103,8 +103,8 @@ DWORD playMIDIFile(HWND hWndNotify, LPSTR lpszMIDIFileName)
     // playback is complete. At this time, the window procedure closes
     // the device.
     mciPlayParms.dwCallback = (DWORD) hWndNotify;
-    if (dwReturn = mciSendCommand(wDeviceID, MCI_PLAY, MCI_NOTIFY,
-        (DWORD)(LPVOID) &mciPlayParms))
+    if ((dwReturn = mciSendCommand(wDeviceID, MCI_PLAY, MCI_NOTIFY,
+        (DWORD)(LPVOID) &mciPlayParms)))
     {
         mciSendCommand(wDeviceID, MCI_CLOSE, 0, 0);
         return (dwReturn);
@@ -125,9 +125,9 @@ DWORD playWAVEFile(HWND hWndNotify, LPSTR lpszWAVEFileName)
 
     mciOpenParms.lpstrDeviceType = "waveaudio";
     mciOpenParms.lpstrElementName = lpszWAVEFileName;
-    if (dwReturn = mciSendCommand(0, MCI_OPEN,
+    if ((dwReturn = mciSendCommand(0, MCI_OPEN,
        MCI_OPEN_TYPE | MCI_OPEN_ELEMENT,
-       (DWORD)(LPVOID) &mciOpenParms))
+       (DWORD)(LPVOID) &mciOpenParms)))
     {
         // Failed to open device. Don't close it; just return error.
         return (dwReturn);
@@ -142,8 +142,8 @@ DWORD playWAVEFile(HWND hWndNotify, LPSTR lpszWAVEFileName)
     // the device.
 
     mciPlayParms.dwCallback = (DWORD) hWndNotify;
-    if (dwReturn = mciSendCommand(wDeviceID, MCI_PLAY, MCI_NOTIFY,
-        (DWORD)(LPVOID) &mciPlayParms))
+    if ((dwReturn = mciSendCommand(wDeviceID, MCI_PLAY, MCI_NOTIFY,
+        (DWORD)(LPVOID) &mciPlayParms)))
     {
         mciSendCommand(wDeviceID, MCI_CLOSE, 0, 0);
         return (dwReturn);
@@ -161,7 +161,7 @@ BOOL openCDDriver(BOOL bOpen)
 
     // Open the device by specifying the device name.
     mciOpenParms.lpstrDeviceType = "cdaudio";
-    if  (dwReturn = mciSendCommand(0, MCI_OPEN, MCI_OPEN_TYPE, (DWORD)(LPVOID)&mciOpenParms))
+    if  ((dwReturn = mciSendCommand(0, MCI_OPEN, MCI_OPEN_TYPE, (DWORD)(LPVOID)&mciOpenParms)))
     {
         // Failed to open device.
         // Don't close device; just return error.
@@ -174,7 +174,7 @@ BOOL openCDDriver(BOOL bOpen)
     MCI_SET_PARMS mciSetParms;
     if (bOpen)
     {
-       if(dwReturn = mciSendCommand(wDeviceID, MCI_SET, MCI_SET_DOOR_OPEN, (DWORD)(LPSTR)&mciSetParms))
+       if((dwReturn = mciSendCommand(wDeviceID, MCI_SET, MCI_SET_DOOR_OPEN, (DWORD)(LPSTR)&mciSetParms)))
        {
             //ErrorProc(dwReturn);
             bSucc   =   FALSE;
@@ -182,7 +182,7 @@ BOOL openCDDriver(BOOL bOpen)
     }
     else
     {
-        if(dwReturn = mciSendCommand(wDeviceID, MCI_SET, MCI_SET_DOOR_CLOSED, (DWORD)(LPSTR)&mciSetParms))
+        if((dwReturn = mciSendCommand(wDeviceID, MCI_SET, MCI_SET_DOOR_CLOSED, (DWORD)(LPSTR)&mciSetParms)))
         {
             //ErrorProc(dwReturn);
             bSucc   =   FALSE;

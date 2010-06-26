@@ -17,7 +17,7 @@ int USocket::init()
     int nRet;
     if ( (nRet = ::WSAStartup(MAKEWORD(2, 2), &wsadata)) != 0 )
     {
-        printf("WSAStartup failed: %d ", GetLastError());
+        printf("WSAStartup failed: %d ", (unsigned int)GetLastError());
         return nRet;
     }
 
@@ -52,7 +52,7 @@ int USocket::send(SOCKET sock, const char *pack, int size)
 {
     if (SOCKET_ERROR == ::send(sock, pack, size, 0))
     {
-        printf("send failed: %d ", GetLastError());
+        printf("send failed: %d ", (unsigned int)GetLastError());
         return SOCKET_ERROR;
     }
 
@@ -63,7 +63,7 @@ int USocket::send( const char *pack, int size )
 {
     if (SOCKET_ERROR == ::send(m_socket, pack, size, 0))
     {
-        printf("send failed: %d ", GetLastError());
+        printf("send failed: %d ", (unsigned int)GetLastError());
         return SOCKET_ERROR;
     }
 
@@ -120,7 +120,7 @@ int USocket::listen( int nBacklog )
 {
     if (SOCKET_ERROR == ::listen(m_socket, nBacklog))
     {
-        printf("listen failed: %d ", GetLastError());
+        printf("listen failed: %d ", (unsigned int)GetLastError());
         return SOCKET_ERROR;
     }
     return 0;
@@ -131,7 +131,7 @@ int USocket::recv(SOCKET sock, char *buf, int nLen )
     int nRet = 0;
     if (SOCKET_ERROR == (nRet = ::recv(sock, buf, nLen, 0)))
     {
-        printf("recv failed: %d ", GetLastError());
+        printf("recv failed: %d ", (unsigned int)GetLastError());
         return SOCKET_ERROR;
     }
     return nRet;
@@ -146,7 +146,7 @@ int USocket::shutdown( int how )
 {
     if (SOCKET_ERROR == ::shutdown(m_socket, how))
     {
-        printf("shutdown failed: %d ", GetLastError());
+        printf("shutdown failed: %d ", (unsigned int)GetLastError());
         return SOCKET_ERROR;
     }
     return 0;
@@ -156,7 +156,7 @@ int USocket::gethostname( char *buf, int len )
 {
     if (SOCKET_ERROR == ::gethostname(buf, len))
     {
-        printf("gethostname failed: %d ", GetLastError());
+        printf("gethostname failed: %d ", (unsigned int)GetLastError());
         return SOCKET_ERROR;
     }
     return 0;
@@ -193,7 +193,7 @@ int USocket::connect( const struct sockaddr *s )
 {
     if (SOCKET_ERROR == ::connect(m_socket, s, sizeof(struct sockaddr)))
     {
-        printf("connect failed: %d\n", GetLastError());
+        printf("connect failed: %d\n", (unsigned int)GetLastError());
         return SOCKET_ERROR;
     }
     return 0;
@@ -223,7 +223,7 @@ int USocket::WSAAsyncSelect( HWND hwnd, UINT uMsg, long lEvent )
 {
     if (SOCKET_ERROR == ::WSAAsyncSelect(m_socket, hwnd, uMsg, lEvent))
     {
-        printf("WSAAsyncSelect failed: %d ",  WSAGetLastError());
+        printf("WSAAsyncSelect failed: %d ",  (unsigned int)WSAGetLastError());
         return SOCKET_ERROR;
     }
     return 0;
@@ -233,7 +233,7 @@ int USocket::setsockopt( int level, int optname, const char *optval, int optlen 
 {
     if (SOCKET_ERROR == ::setsockopt(m_socket, level, optname, optval, optlen))
     {
-        printf("WSAAsyncSelect failed: %d ",  WSAGetLastError());
+        printf("WSAAsyncSelect failed: %d ",  (unsigned int)WSAGetLastError());
         return SOCKET_ERROR;
     }
     return 0;

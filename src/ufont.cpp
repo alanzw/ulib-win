@@ -78,6 +78,11 @@ void UFont::setFontFaceName(const TCHAR * lfFaceName)
     lstrcpy(m_lf.lfFaceName, lfFaceName);
 }
 
+void UFont::setFontWeight(int n)
+{
+    m_lf.lfWeight = n;
+}
+
 int UFont::draw(HDC hdc, LPCTSTR lpchText, int nCount, LPRECT lpRect, UINT uFormat)
 {
     return ::DrawText(hdc, lpchText, nCount, lpRect, uFormat);

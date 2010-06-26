@@ -63,7 +63,7 @@ BOOL UPipe::startChild(char *lpszChildName)
     if (bRet == TRUE) //
         printf("Child Process created successfully!\n");
     else
-        printf("CreateProcess Failed: %d\n", GetLastError());
+        printf("CreateProcess Failed: %d\n", (unsigned int)GetLastError());
 
     ::WaitForSingleObject(m_piChild.hProcess, INFINITE);
 
@@ -91,7 +91,7 @@ void UPipe::read(char *sOutFilename /* = "out.dat" */)
 	}
     else
 	{
-		printf("Pipe read error: %d\n", GetLastError());
+		printf("Pipe read error: %d\n", (unsigned int)GetLastError());
 	}
 }
 

@@ -31,6 +31,7 @@ public:
 
     struct Bytecode
     {
+#if defined(_MSV_VER)
     #pragma pack(push, 1)
         unsigned short stub1;      // lea ecx,
         unsigned long  nThisPtr;   // this
@@ -38,6 +39,13 @@ public:
         unsigned long  nJumpProc;  // pointer to destination function
         unsigned short stub3;      // jmp eax
     #pragma pack(pop)
+#else
+        unsigned short stub1;      // lea ecx,
+        unsigned long  nThisPtr;   // this
+        unsigned char  stub2;      // mov eax,
+        unsigned long  nJumpProc;  // pointer to destination function
+        unsigned short stub3;      // jmp eax
+#endif
         Bytecode() :
         stub1      (0x0D8D),
         nThisPtr  (0),
@@ -92,11 +100,13 @@ public:
     {
         // This library is meant for 32 bit architecture only
         //BOOST_STATIC_ASSERT(sizeof(pInstance) == sizeof(ULONG));
+#if defined(_MSV_VER)
 #pragma warning(push)
 #pragma warning(suppress: 4311)
         bytecode->nThisPtr = reinterpret_cast<ULONG>(pInstance);
         bytecode->nJumpProc = *reinterpret_cast<ULONG*>(&memberFunction);
 #pragma warning(pop)
+#endif
 
         // Flush instruction cache. May be required on some architectures which
         // don't feature strong cache coherency guarantees, though not on neither

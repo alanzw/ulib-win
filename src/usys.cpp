@@ -178,8 +178,8 @@ UINT USystem::getCPUUsage()
     double dbIdleTime;
     double dbSystemTime;
     LONG status;
-    LARGE_INTEGER liOldIdleTime = {0,0};
-    LARGE_INTEGER liOldSystemTime = {0,0};
+    LARGE_INTEGER liOldIdleTime;
+    LARGE_INTEGER liOldSystemTime;
     UINT x=0;
 
     NtQuerySystemInformation = (PROCNTQSI)GetProcAddress(GetModuleHandle("ntdll.dll"), "NtQuerySystemInformation" );

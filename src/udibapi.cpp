@@ -1444,7 +1444,7 @@ HANDLE WINAPI DDBToDIB( HBITMAP hBitmap, DWORD dwCompression, HPALETTE hPal )
 
     // Realloc the buffer so that it can hold all the bits
     dwLen += bi.biSizeImage;
-    if (handle = GlobalReAlloc(hDIB, dwLen, GMEM_MOVEABLE))
+    if ((handle = GlobalReAlloc(hDIB, dwLen, GMEM_MOVEABLE)))
         hDIB = handle;
     else{
         GlobalFree(hDIB);
@@ -1600,7 +1600,7 @@ HDIB WINAPI BitmapToDIB(HBITMAP hBitmap, HPALETTE hPal)
 
    /* realloc the buffer big enough to hold all the bits */
    dwLen = bi.biSize + PaletteSize((LPSTR)&bi) + bi.biSizeImage;
-   if (h = GlobalReAlloc(hDIB, dwLen, 0))
+   if ((h = GlobalReAlloc(hDIB, dwLen, 0)))
       hDIB = h;
    else
    {

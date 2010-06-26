@@ -34,6 +34,7 @@ public:
     void setFontHeightRatio(int n);
     void setFontWidthRatio(int n);
     void setFontFaceName(const TCHAR * lfFaceName);
+    void setFontWeight(int n);
 
     bool useLogFont(const LOGFONT &lf);
 

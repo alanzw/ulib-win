@@ -25,7 +25,7 @@ BOOL UNTServiceMan::installSvc(LPCTSTR lpSvcName)
 
     if( !GetModuleFileName( NULL, szPath, MAX_PATH ) )
     {
-        printf("Cannot install service (%d)\n", GetLastError());
+        printf("Cannot install service (%d)\n", (unsigned int)GetLastError());
         return FALSE;
     }
 
@@ -37,7 +37,7 @@ BOOL UNTServiceMan::installSvc(LPCTSTR lpSvcName)
 
     if (NULL == schSCManager)
     {
-        printf("OpenSCManager failed (%d)\n", GetLastError());
+        printf("OpenSCManager failed (%d)\n", (unsigned int)GetLastError());
         return FALSE;
     }
 
@@ -59,7 +59,7 @@ BOOL UNTServiceMan::installSvc(LPCTSTR lpSvcName)
 
     if (schService == NULL)
     {
-        printf("CreateService failed (%d)\n", GetLastError());
+        printf("CreateService failed (%d)\n", (unsigned int)GetLastError());
         CloseServiceHandle(schSCManager);
         return FALSE;
     }
@@ -79,7 +79,7 @@ BOOL UNTServiceMan::deleteSvc(LPCTSTR lpSvcName)
 {
     SC_HANDLE schSCManager;
     SC_HANDLE schService;
-    SERVICE_STATUS ssStatus;
+    //SERVICE_STATUS ssStatus;
 
     // Get a handle to the SCM database.
 
@@ -90,7 +90,7 @@ BOOL UNTServiceMan::deleteSvc(LPCTSTR lpSvcName)
 
     if (NULL == schSCManager)
     {
-        printf("OpenSCManager failed (%d)\n", GetLastError());
+        printf("OpenSCManager failed (%d)\n", (unsigned int)GetLastError());
         return FALSE;
     }
 
@@ -103,7 +103,7 @@ BOOL UNTServiceMan::deleteSvc(LPCTSTR lpSvcName)
 
     if (schService == NULL)
     {
-        printf("OpenService failed (%d)\n", GetLastError());
+        printf("OpenService failed (%d)\n", (unsigned int)GetLastError());
         CloseServiceHandle(schSCManager);
         return FALSE;
     }
@@ -112,7 +112,7 @@ BOOL UNTServiceMan::deleteSvc(LPCTSTR lpSvcName)
 
     if (! DeleteService(schService) )
     {
-        printf("DeleteService failed (%d)\n", GetLastError());
+        printf("DeleteService failed (%d)\n", (unsigned int)GetLastError());
     }
     else
     {
@@ -143,7 +143,7 @@ BOOL UNTServiceMan::startSvc(LPCTSTR lpSvcName)
 
     if (NULL == schSCManager)
     {
-        printf("OpenSCManager failed (%d)\n", GetLastError());
+        printf("OpenSCManager failed (%d)\n", (unsigned int)GetLastError());
         return FALSE;
     }
 
@@ -155,7 +155,7 @@ BOOL UNTServiceMan::startSvc(LPCTSTR lpSvcName)
 
     if (schService == NULL)
     {
-        printf("OpenService failed (%d)\n", GetLastError());
+        printf("OpenService failed (%d)\n", (unsigned int)GetLastError());
         CloseServiceHandle(schSCManager);
         return FALSE;
     }
@@ -168,7 +168,7 @@ BOOL UNTServiceMan::startSvc(LPCTSTR lpSvcName)
             sizeof(SERVICE_STATUS_PROCESS), // size of structure
             &dwBytesNeeded ) )              // size needed if buffer is too small
     {
-        printf("QueryServiceStatusEx failed (%d)\n", GetLastError());
+        printf("QueryServiceStatusEx failed (%d)\n", (unsigned int)GetLastError());
         CloseServiceHandle(schService);
         CloseServiceHandle(schSCManager);
         return FALSE;
@@ -211,7 +211,7 @@ BOOL UNTServiceMan::startSvc(LPCTSTR lpSvcName)
                 sizeof(SERVICE_STATUS_PROCESS), // size of structure
                 &dwBytesNeeded ) )              // size needed if buffer is too small
         {
-            printf("QueryServiceStatusEx failed (%d)\n", GetLastError());
+            printf("QueryServiceStatusEx failed (%d)\n", (unsigned int)GetLastError());
             CloseServiceHandle(schService);
             CloseServiceHandle(schSCManager);
             return FALSE;
@@ -241,7 +241,7 @@ BOOL UNTServiceMan::startSvc(LPCTSTR lpSvcName)
             0,           // number of arguments
             NULL) )      // no arguments
     {
-        printf("StartService failed (%d)\n", GetLastError());
+        printf("StartService failed (%d)\n", (unsigned int)GetLastError());
         CloseServiceHandle(schService);
         CloseServiceHandle(schSCManager);
         return FALSE;
@@ -259,7 +259,7 @@ BOOL UNTServiceMan::startSvc(LPCTSTR lpSvcName)
             sizeof(SERVICE_STATUS_PROCESS), // size of structure
             &dwBytesNeeded ) )              // if buffer too small
     {
-        printf("QueryServiceStatusEx failed (%d)\n", GetLastError());
+        printf("QueryServiceStatusEx failed (%d)\n", (unsigned int)GetLastError());
         CloseServiceHandle(schService);
         CloseServiceHandle(schSCManager);
         return FALSE;
@@ -292,7 +292,7 @@ BOOL UNTServiceMan::startSvc(LPCTSTR lpSvcName)
             sizeof(SERVICE_STATUS_PROCESS), // size of structure
             &dwBytesNeeded ) )              // if buffer too small
         {
-            printf("QueryServiceStatusEx failed (%d)\n", GetLastError());
+            printf("QueryServiceStatusEx failed (%d)\n", (unsigned int)GetLastError());
             break;
         }
 
@@ -321,10 +321,10 @@ BOOL UNTServiceMan::startSvc(LPCTSTR lpSvcName)
     else
     {
         printf("Service not started. \n");
-        printf("  Current State: %d\n", ssStatus.dwCurrentState);
-        printf("  Exit Code: %d\n", ssStatus.dwWin32ExitCode);
-        printf("  Check Point: %d\n", ssStatus.dwCheckPoint);
-        printf("  Wait Hint: %d\n", ssStatus.dwWaitHint);
+        printf("  Current State: %d\n", (unsigned int)ssStatus.dwCurrentState);
+        printf("  Exit Code: %d\n", (unsigned int)ssStatus.dwWin32ExitCode);
+        printf("  Check Point: %d\n", (unsigned int)ssStatus.dwCheckPoint);
+        printf("  Wait Hint: %d\n", (unsigned int)ssStatus.dwWaitHint);
     }
 
     CloseServiceHandle(schService);
@@ -353,7 +353,7 @@ BOOL UNTServiceMan::stopSvc(LPCTSTR lpSvcName)
 
     if (NULL == schSCManager)
     {
-        printf("OpenSCManager failed (%d)\n", GetLastError());
+        printf("OpenSCManager failed (%d)\n", (unsigned int)GetLastError());
         return FALSE;
     }
 
@@ -368,7 +368,7 @@ BOOL UNTServiceMan::stopSvc(LPCTSTR lpSvcName)
 
     if (schService == NULL)
     {
-        printf("OpenService failed (%d)\n", GetLastError());
+        printf("OpenService failed (%d)\n", (unsigned int)GetLastError());
         CloseServiceHandle(schSCManager);
         return FALSE;
     }
@@ -382,7 +382,7 @@ BOOL UNTServiceMan::stopSvc(LPCTSTR lpSvcName)
             sizeof(SERVICE_STATUS_PROCESS),
             &dwBytesNeeded ) )
     {
-        printf("QueryServiceStatusEx failed (%d)\n", GetLastError());
+        printf("QueryServiceStatusEx failed (%d)\n", (unsigned int)GetLastError());
         goto stop_cleanup;
     }
 
@@ -418,7 +418,7 @@ BOOL UNTServiceMan::stopSvc(LPCTSTR lpSvcName)
                  sizeof(SERVICE_STATUS_PROCESS),
                  &dwBytesNeeded ) )
         {
-            printf("QueryServiceStatusEx failed (%d)\n", GetLastError());
+            printf("QueryServiceStatusEx failed (%d)\n", (unsigned int)GetLastError());
             goto stop_cleanup;
         }
 
@@ -445,7 +445,7 @@ BOOL UNTServiceMan::stopSvc(LPCTSTR lpSvcName)
             SERVICE_CONTROL_STOP,
             (LPSERVICE_STATUS) &ssp ) )
     {
-        printf( "ControlService failed (%d)\n", GetLastError() );
+        printf( "ControlService failed (%d)\n", (unsigned int)GetLastError() );
         goto stop_cleanup;
     }
 
@@ -461,7 +461,7 @@ BOOL UNTServiceMan::stopSvc(LPCTSTR lpSvcName)
                 sizeof(SERVICE_STATUS_PROCESS),
                 &dwBytesNeeded ) )
         {
-            printf( "QueryServiceStatusEx failed (%d)\n", GetLastError() );
+            printf( "QueryServiceStatusEx failed (%d)\n", (unsigned int)GetLastError() );
             goto stop_cleanup;
         }
 
@@ -493,7 +493,7 @@ BOOL UNTServiceMan::stopDependentServices(SC_HANDLE schService)
     DWORD dwBytesNeeded;
     DWORD dwCount;
 
-    SC_HANDLE schSCManager;
+    SC_HANDLE schSCManager = NULL;
     //SC_HANDLE schService;
 
     LPENUM_SERVICE_STATUS   lpDependencies = NULL;
