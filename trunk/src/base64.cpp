@@ -54,7 +54,7 @@ char* BASE64::encode(const char* data, int len, char* dest)
     }
     int dv = len/3;
     int md = len%3;
-    int dest_len = (md == 0 ? dv*4 : dv*4+4);
+    //int dest_len = (md == 0 ? dv*4 : dv*4+4);
 
     unsigned char tmp[3];
     unsigned char * pSrc = (unsigned char *)data;

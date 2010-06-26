@@ -31,7 +31,7 @@ void CRC32::init_crc32_table(unsigned long * crc32_table)
 unsigned long CRC32::getCRC(FILE *fp)
 {
     unsigned long crc32_table[256], globalCRC;
-    char lsFileCRC[10];
+    //char lsFileCRC[10];
     int i;
     unsigned char ch;
     int liFileLen;

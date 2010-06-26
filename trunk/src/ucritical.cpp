@@ -15,9 +15,11 @@ UCriticalSection::~UCriticalSection()
 bool UCriticalSection::lock()
 {
     ::EnterCriticalSection(&m_cs);
+    return true;
 }
 
 bool UCriticalSection::unlock()
 {
-    ::LeaveCriticalSection(&m_cs); 
+    ::LeaveCriticalSection(&m_cs);
+    return true;
 }

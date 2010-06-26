@@ -209,7 +209,7 @@ void DataBase::extract_error(char *fn)
         ret = SQLGetDiagRec( SQL_HANDLE_DBC, _hConn, ++i, state, &native, text, sizeof(text), &len );
         if (SQL_SUCCEEDED(ret))
         {
-            fprintf(stderr, "%s : %d : %d : %s\n" , state, i, native, text);
+            fprintf(stderr, "%s : %d : %d : %s\n" , state, (unsigned int)i, (unsigned int)native, text);
         }
     }
     while( ret == SQL_SUCCESS );

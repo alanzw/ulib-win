@@ -86,7 +86,7 @@ BOOL injectDll(DWORD dwPid, char *dllname, char *injected_dllname)
 
     if(!Proc)
     {
-        sprintf(buf, "OpenProcess() failed: %d", GetLastError());
+        sprintf(buf, "OpenProcess() failed: %d", static_cast<int>(GetLastError()));
         ::MessageBox(NULL, buf, "Loader", MB_OK);
         return false;
     }
@@ -282,8 +282,8 @@ BOOL ejectLibW(DWORD dwPid, LPCWSTR sLibFile)
 {
     BOOL fOk = FALSE;
     HANDLE hthSnapshot = NULL;
-    HANDLE hProcess = NULL;
-    HANDLE hThread = NULL;
+    //HANDLE hProcess = NULL;
+    //HANDLE hThread = NULL;
 
     //
     hthSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, dwPid);
@@ -375,7 +375,7 @@ BOOL injectThread(PPROCESS_INFORMATION ppi, PINJCODE pCode, ULONG nCodeLen, PVOI
     ULONG    callenv[3];
     ULONG   stackptr;
 
-    if(-1 == SuspendThread(ppi->hThread))
+    if((unsigned int)-1 == SuspendThread(ppi->hThread))
         return FALSE;
 
     GetThreadContext(ppi->hThread, &context);

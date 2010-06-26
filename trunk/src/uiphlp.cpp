@@ -132,7 +132,7 @@ bool UIPHelp::getAdapterInfo()
 
     if ((dwRetVal = ::GetAdaptersInfo(m_pAdapterInfo, &ulOutBufLen)) != ERROR_SUCCESS)
     {
-        printf("GetAdaptersInfo call failed with %d\n", dwRetVal);
+        printf("GetAdaptersInfo call failed with %d\n", (unsigned int)dwRetVal);
         return false;
     }
     return true;
@@ -153,7 +153,7 @@ bool UIPHelp::getInterfaceInfo()
     }
 
     if ((dwRetVal = GetInterfaceInfo(m_pInterfaceInfo, &ulOutBufLen)) != NO_ERROR ) {
-        printf("GetInterfaceInfo failed with error: %d\n", dwRetVal);
+        printf("GetInterfaceInfo failed with error: %d\n", (unsigned int)dwRetVal);
         return false;
     }
     
@@ -175,7 +175,7 @@ bool UIPHelp::getIPAddressTable()
 
     if ( (dwRetVal = GetIpAddrTable( m_pIPAddrTable, &dwSize, 0 )) != NO_ERROR )
     { 
-        printf("GetIpAddrTable call failed with %d\n", dwRetVal);
+        printf("GetIpAddrTable call failed with %d\n", (unsigned int)dwRetVal);
         return false;
     }
 

@@ -37,12 +37,12 @@ bool UThread::wait()
 
 bool UThread::suspend()
 {
-    return (-1 != ::SuspendThread(m_hObj));
+    return ((unsigned int)-1 != ::SuspendThread(m_hObj));
 }
 
 bool UThread::resume()
 {
-    return (-1 != ::ResumeThread(m_hObj));
+    return ((unsigned int)-1 != ::ResumeThread(m_hObj));
 }
 
 bool UThread::stop()

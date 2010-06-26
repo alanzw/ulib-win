@@ -44,6 +44,7 @@ BOOL UHeaderCtrl::layout()
     SetWindowPos(m_hSelf, wp.hwndInsertAfter, wp.x, wp.y,
         wp.cx, wp.cy, wp.flags | SWP_SHOWWINDOW);
 
+    return TRUE;
 }
 
 // DoInsertItem - inserts an item into a header control.

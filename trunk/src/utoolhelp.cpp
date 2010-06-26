@@ -38,7 +38,7 @@ void printError( const TCHAR* msg )
     ( ( *p == '.' ) || ( *p < 33 ) ) );
 
     // Display the message
-    _tprintf( TEXT("\n  WARNING: %s failed with error %d (%s)"), msg, eNum, sysMsg );
+    _tprintf( TEXT("\n  WARNING: %s failed with error %d (%s)"), msg, static_cast<int>(eNum), sysMsg );
 }
 
 
@@ -74,11 +74,11 @@ bool UToolHelp::listProcessModules( DWORD dwPID )
     {
         _tprintf( TEXT("\n\n     MODULE NAME:     %s"),   me32.szModule );
         _tprintf( TEXT("\n     Executable     = %s"),     me32.szExePath );
-        printf( "\n     Process ID     = 0x%08X",         me32.th32ProcessID );
-        printf( "\n     Ref count (g)  = 0x%04X",     me32.GlblcntUsage );
-        printf( "\n     Ref count (p)  = 0x%04X",     me32.ProccntUsage );
-        printf( "\n     Base address   = 0x%08X", (DWORD) me32.modBaseAddr );
-        printf( "\n     Base size      = %d",             me32.modBaseSize );
+        printf( "\n     Process ID     = 0x%08X",         (unsigned int)me32.th32ProcessID );
+        printf( "\n     Ref count (g)  = 0x%04X",     (unsigned int)me32.GlblcntUsage );
+        printf( "\n     Ref count (p)  = 0x%04X",     (unsigned int)me32.ProccntUsage );
+        printf( "\n     Base address   = 0x%08X", (unsigned int)(DWORD) me32.modBaseAddr );
+        printf( "\n     Base size      = %d",             (unsigned int)me32.modBaseSize );
 
     } while( Module32Next( hModuleSnap, &me32 ) );
 
@@ -116,9 +116,9 @@ bool UToolHelp::listProcessThreads( DWORD dwOwnerPID )
     { 
         if( te32.th32OwnerProcessID == dwOwnerPID )
         {
-            printf( "\n\n     THREAD ID      = 0x%08X", te32.th32ThreadID ); 
-            printf( "\n     Base priority  = %d", te32.tpBasePri ); 
-            printf( "\n     Delta priority = %d", te32.tpDeltaPri ); 
+            printf( "\n\n     THREAD ID      = 0x%08X", (unsigned int)te32.th32ThreadID ); 
+            printf( "\n     Base priority  = %d", (unsigned int)te32.tpBasePri ); 
+            printf( "\n     Delta priority = %d", (unsigned int)te32.tpDeltaPri ); 
         }
     } while( Thread32Next(hThreadSnap, &te32 ) ); 
 
@@ -174,12 +174,12 @@ bool UToolHelp::listProcesses()
             CloseHandle( hProcess );
         }
 
-        printf( "\n  Process ID        = 0x%08X", pe32.th32ProcessID );
-        printf( "\n  Thread count      = %d",   pe32.cntThreads );
-        printf( "\n  Parent process ID = 0x%08X", pe32.th32ParentProcessID );
-        printf( "\n  Priority base     = %d", pe32.pcPriClassBase );
+        printf( "\n  Process ID        = 0x%08X", (unsigned int)pe32.th32ProcessID );
+        printf( "\n  Thread count      = %d",   (unsigned int)pe32.cntThreads );
+        printf( "\n  Parent process ID = 0x%08X", (unsigned int)pe32.th32ParentProcessID );
+        printf( "\n  Priority base     = %d", (unsigned int)pe32.pcPriClassBase );
         if( dwPriorityClass )
-            printf( "\n  Priority class    = %d", dwPriorityClass );
+            printf( "\n  Priority class    = %d", (unsigned int)dwPriorityClass );
 
     } while( Process32Next( hProcessSnap, &pe32 ) );
 
@@ -197,7 +197,7 @@ bool UToolHelp::listHeaps( DWORD dwPID )
 
     if ( hHeapSnap == INVALID_HANDLE_VALUE )
     {
-        printf ("CreateToolhelp32Snapshot failed (%d)\n", GetLastError());
+        printf ("CreateToolhelp32Snapshot failed (%d)\n", (unsigned int)GetLastError());
         return false;
     }
 
@@ -211,10 +211,10 @@ bool UToolHelp::listHeaps( DWORD dwPID )
 
             if( Heap32First( &he, GetCurrentProcessId(), hl.th32HeapID ) )
             {
-                printf( "\nHeap ID: %d\n", hl.th32HeapID );
+                printf( "\nHeap ID: %d\n", (unsigned int)hl.th32HeapID );
                 do
                 {
-                    printf( "Block size: %d\n", he.dwBlockSize );
+                    printf( "Block size: %d\n", (unsigned int)he.dwBlockSize );
 
                     he.dwSize = sizeof(HEAPENTRY32);
                 } while( Heap32Next(&he) );
@@ -222,7 +222,7 @@ bool UToolHelp::listHeaps( DWORD dwPID )
             hl.dwSize = sizeof(HEAPLIST32);
         } while (Heap32ListNext( hHeapSnap, &hl ));
     }
-    else printf ("Cannot list first heap (%d)\n", GetLastError());
+    else printf ("Cannot list first heap (%d)\n", (unsigned int)GetLastError());
 
     CloseHandle(hHeapSnap);
 
