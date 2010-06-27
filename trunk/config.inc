@@ -131,4 +131,5 @@ OBJS = $(KENERL_OBJS)  $(GUI_OBJS) $(SYSTEM_OBJS) $(GRAPHIC_OBJS) $(CONFIG_OBJS)
        ubrush.o      \
        upalette.o    \
        uresource.o   \
+       uregex.o      \
 

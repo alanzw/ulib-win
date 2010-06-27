@@ -61,9 +61,9 @@ public:
 
         UGridLayout layout2;
         layout2.setRect(300, 100, 100, 100);
-        layout2.addControls(m_label[0], 3);
-        //layout2.addControl(m_label[1]);
-        //layout2.addControl(m_label[2]);
+        layout2.addControl(m_label[0]);
+        layout2.addControl(m_label[1]);
+        layout2.addControl(m_label[2]);
 
         layout2.go();
 

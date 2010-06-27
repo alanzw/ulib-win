@@ -14,6 +14,7 @@ BOOL ULIB_API PrintMsg (HANDLE hOut, LPCTSTR pMsg);
 
 /* Output messages to STDOUT */
 BOOL ULIB_API PrintStdout(LPCTSTR pMsg);
+BOOL ULIB_API PrintStderr(LPCTSTR pMsg);
 
 /* Output messages to STDOUT in the specific format. */
 BOOL ULIB_API PrintStdoutFormat(const TCHAR * szFormat, ...);
@@ -80,6 +81,23 @@ typedef enum tagColorOnColor {
 
 void ULIB_API setrgb(ColorOnColor color);
 
+typedef enum tagCaretShape {
+    CARET_NONE   = 0,
+    CARET_SOLID  = 1,
+    CARET_NORMAL = 2
+} CaretShape;
+
+void ULIB_API setCaret(CaretShape cs, HANDLE hOut);
+
+class ULIB_API UConsole
+{
+public:
+    UConsole();
+
+    virtual ~UConsole();
+private:
+
+};
 
 }; // namespace UConsole
 

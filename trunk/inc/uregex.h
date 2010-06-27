@@ -17,8 +17,15 @@
 namespace URegex
 {
 
+class ULIB_API URegExp
+{
+public:
+    
+    URegExp();
 
+private:
 
+};
 
 }; // namespace URegex
 

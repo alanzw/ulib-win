@@ -13,6 +13,8 @@
 #include "umsg.h"
 #include "ubitmap.h"
 
+#include "mymenu.h"
+
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
