@@ -45,6 +45,19 @@ BOOL PrintStdout(LPCTSTR pMsg)
     return bRet;
 }
 
+/*  */
+BOOL PrintStderr(LPCTSTR pMsg)
+{
+    HANDLE hStdErr = ::CreateFile(_T("CONERR$"), GENERIC_WRITE, 0,
+            NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+
+    BOOL bRet = PrintMsg(hStdErr, pMsg);
+
+    ::CloseHandle(hStdErr);
+
+    return bRet;
+}
+
 BOOL ULIB_API PrintStdoutFormat(const TCHAR * szFormat, ...)
 {   
     TCHAR   szBuffer [1024] ;
@@ -344,6 +357,28 @@ void setrgb(ColorOnColor color)
             FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
         break;
     }
+}
+
+void setCaret(CaretShape cs, HANDLE hOut)
+{
+	CONSOLE_CURSOR_INFO info;
+	info.dwSize = 1;
+	info.bVisible = TRUE;
+    
+	switch (cs)
+    {
+    case CARET_NONE:
+		info.bVisible = FALSE;
+		break;
+	case CARET_SOLID:
+		info.dwSize = 100;
+		break;
+	case CARET_NORMAL:
+		break;
+	default:
+		return;
+    }
+	::SetConsoleCursorInfo (hOut, &info);
 }
 
 }; // namespace UConsole

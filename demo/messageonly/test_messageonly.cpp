@@ -5,7 +5,6 @@
 
 #include "umessageonlywindow.h"
 
-
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
 {
     UMessageOnlyWindow umsgwnd;
