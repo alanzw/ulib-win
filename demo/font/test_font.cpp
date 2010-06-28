@@ -83,17 +83,20 @@ public:
 
         //font.createFont();
 
-        HDC hdc = GetDC(m_hDlg);
-
-        font.select(hdc);
+        //HDC hdc = GetDC(m_hDlg);
+        UPrivateDC dc(m_hDlg);
+        
+        
+        font.select(dc);
 
         // Display the text string.
+        dc.setBKMode(TRANSPARENT);
         const TCHAR *text = _T("A Fox Crosses A River!");
-        font.textOut(hdc, 10, 50, text, lstrlen(text));
+        font.textOut(dc, 100, 50, text, lstrlen(text));
 
         font.restore();
 
-        ReleaseDC(m_hDlg, hdc);
+        //ReleaseDC(m_hDlg, hdc);
         return FALSE;
     }
 

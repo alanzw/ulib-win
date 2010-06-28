@@ -13,6 +13,9 @@
 #include "uedit.h"
 #include "ufile.h"
 
+#include "adt/uautoptr.h"
+#include "adt/ustring.h"
+
 using huys::UDialogBox;
 
 const TCHAR *g_Filename = _T("test.file");
@@ -25,23 +28,17 @@ class UDialogExt : public UDialogBox
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-        m_pEditContent(0)
+        : UDialogBox(hInst, nID)
     {}
-
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_pEditContent);
-    }
 
     virtual BOOL onInit()
     {
         m_pEditContent = new UEdit(m_hDlg, IDC_ED_CONTENT, m_hInst);
         m_pEditContent->create();
 
-        RECT rcClient;
-        ::GetClientRect(m_hDlg, &rcClient);
-        RECT rc = { 5, 5, rcClient.right-5, 150 };
+        huys::URectL rcClient;
+        ::GetClientRect(m_hDlg, rcClient);
+        RECT rc = { 5, 5, rcClient.right()-5, 150 };
         m_pEditContent->setPosition(&rc);
 
         return TRUE;
@@ -61,7 +58,7 @@ public:
     }
 
 private:
-    UEdit *m_pEditContent;
+    huys::ADT::UAutoPtr<UEdit> m_pEditContent;
 private:
     BOOL onBnRead()
     {

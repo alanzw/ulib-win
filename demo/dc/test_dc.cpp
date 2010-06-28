@@ -11,6 +11,8 @@
 
 #include "adt/uautoptr.h"
 
+#include "aui/aui_label.h"
+
 int CaptureAnImage(HWND hWnd, LPCTSTR sFilename = _T("C:\\default_cap.bmp"));
 
 using huys::UDialogBox;
@@ -31,6 +33,13 @@ public:
         m_pBtn->setPos(300, 200, 100, 100);
         m_pBtn->create();
         m_pBtn->setWindowText(_T("Capture"));
+
+        m_pLabel = new AUI::UTransLabel(m_hDlg, -1, m_hInst);
+        m_pLabel->setText(_T(""));
+        m_pLabel->setStyles(ES_CENTER);
+        m_pLabel->setPos(50, 220, 140, 20);
+        m_pLabel->create();
+
         return TRUE;
     }
 
@@ -93,8 +102,34 @@ public:
     {
         return  (BOOL)(HBRUSH)GetStockObject(LTGRAY_BRUSH);
     }
+
+    BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
+    {
+
+        huys::URectL rect(10, 10, 60, 110);
+
+        huys::UPointL pt(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+
+        if (rect.PtrInRect(pt))
+        {
+            m_pLabel->setWindowText(_T(""));
+            m_pLabel->setWindowText(_T("1"));
+            return FALSE;
+        }
+
+        rect.offset(100, 0);
+        if (rect.PtrInRect(pt))
+        {
+            m_pLabel->setWindowText(_T(""));
+            m_pLabel->setWindowText(_T("2"));
+            return FALSE;
+        }
+
+        return FALSE;
+    }
 private:
     huys::ADT::UAutoPtr<UButton> m_pBtn;
+    AUI::UTransLabelP m_pLabel;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);
