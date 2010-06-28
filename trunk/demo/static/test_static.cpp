@@ -9,12 +9,9 @@
 #include "ucontrol.h"
 #include "ustatic.h"
 #include "udlgapp.h"
-
 #include "ubitmap.h"
 #include "uicon.h"
-
 #include "colors.h"
-
 #include "adt/uautoptr.h"
 
 //
