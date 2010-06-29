@@ -26,6 +26,7 @@ SUBDIRS = \
           memstream \
           rpc       \
           iimgctx   \
+          webbrowser\
           
 
 #

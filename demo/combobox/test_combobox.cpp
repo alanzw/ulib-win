@@ -21,15 +21,14 @@ class UDialogExt : public UDialogBox
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-    : UDialogBox(hInst, nID)
+        : UDialogBox(hInst, nID)
     {}
 
     BOOL onInit()
     {
         m_pCombo = new UComboBox(m_hDlg, ID_UCOMBOBOX, m_hInst);
-        RECT rc = {20, 20, 160, 160};
+        m_pCombo->setPos(20, 20, 140, 140);
         m_pCombo->create();
-        m_pCombo->setPosition(&rc);
         m_pCombo->addText("hello");
         m_pCombo->addText("hello2");
         m_pCombo->setCurSel(0);
@@ -48,23 +47,17 @@ public:
 
     BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
-        switch ( HIWORD(wParam) )
+        if ( HIWORD(wParam) == CBN_SELCHANGE && LOWORD(wParam) == ID_UCOMBOBOX)
         {
-        case CBN_SELCHANGE:
-            {
-                //if ((HWND)lParam == m_pCombo->getHWND())
-                {
-                    TCHAR buf[256];
-                    int nSel = m_pCombo->getCurSel();
-                    m_pCombo->getLBText(nSel, buf);
-                    //m_pStatic->setWindowText("");
-                    //m_pStatic->invalidate();
-                    m_pStatic->setWindowText(buf);
-                    m_pStatic->hide();
-                    m_pStatic->show();
-                }
-                return TRUE;
-            }
+            TCHAR buf[256];
+            int nSel = m_pCombo->getCurSel();
+            m_pCombo->getLBText(nSel, buf);
+            //m_pStatic->setWindowText("");
+            //m_pStatic->invalidate();
+            m_pStatic->setWindowText(buf);
+            m_pStatic->hide();
+            m_pStatic->show();
+            return TRUE;
         }
         return UDialogBox::onCommand(wParam, lParam);
     }

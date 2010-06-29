@@ -18,9 +18,7 @@ class MyDialog : public UDialogBox
 public:
     MyDialog(HINSTANCE hInst, UINT nID)
         : UDialogBox(hInst, nID)
-    {
-
-    }
+    {}
 
     virtual BOOL onInit()
     {
