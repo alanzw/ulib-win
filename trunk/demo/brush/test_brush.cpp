@@ -38,7 +38,6 @@ public:
         {
         case ID_UBUTTON:
             {
-            //return CaptureAnImage(m_hDlg, _T("window.bmp"));
                 return FALSE;
             }
         default:

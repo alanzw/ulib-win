@@ -26,7 +26,7 @@ typedef enum tagOLERENDER
 unsigned char WindowCount = 0;
 
 // The class name of our Window to host the browser. It can be anything of your choosing.
-static const TCHAR    ClassName[] = "Browser Example";
+static const TCHAR ClassName[] = "Browser Example";
 
 // This is used by DisplayHTMLStr(). It can be global because we never change it.
 static const SAFEARRAYBOUND ArrayBound = {1, 0};

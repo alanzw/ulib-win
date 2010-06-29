@@ -28,13 +28,13 @@ public:
    {
        this->setIconBig(IDI_APP);
 
-       _caret.create(*this, NULL, 2, 100);
-       _caret.setPos(100, 100);
+       caret.create(*this, NULL, 2, 100);
+       caret.setPos(100, 100);
 
-       _font.setFontHeight(100);
-       _font.setFontWidth(50);
-       _font.setFontFaceName(_T("Courier New"));
-       _font.create();
+       font.setFontHeight(100);
+       font.setFontWidth(50);
+       font.setFontFaceName(_T("Courier New"));
+       font.create();
 
        return UBaseWindow::onCreate();
    }
@@ -81,7 +81,7 @@ public:
             buf[1] = '\0';
             dc.setTextColor(huys::white);
             dc.setBKColor(huys::red);
-            HFONT hOldFont = (HFONT)dc.selectObj(_font);
+            HFONT hOldFont = (HFONT)dc.selectObj(font);
 
             dc.textOut(100, 100, buf, 1);
             dc.selectObj(hOldFont);
@@ -100,12 +100,12 @@ public:
     {
         if (WM_SETFOCUS == uMessage)
         {
-            _caret.show(*this);
+            caret.show(*this);
         }
 
         if (WM_KILLFOCUS == uMessage)
         {
-            _caret.hide(*this);
+            caret.hide(*this);
         }
 
         return UBaseWindow::filterMessage(uMessage, wParam, lParam);
@@ -113,13 +113,13 @@ public:
 private:
     BOOL onMenuAbout()
     {
-        this->showMsg(_T("UTerminal v0.0.1"), _T("About"));
+        this->showMsg(_T("UCaret v0.0.1"), _T("About"));
         return FALSE;
     }
 
 private:
-    UCaret _caret;
-    UFont _font;
+    UCaret caret;
+    UFont font;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)

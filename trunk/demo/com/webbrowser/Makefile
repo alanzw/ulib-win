@@ -12,8 +12,8 @@ LIBS = -L"$(TOPDIR)/lib" -luuid -lole32 -loleaut32 -mwindows
 
 
 #
-OBJ = cwebpage.o
-BIN = cwebpage.exe
+OBJ = webbrowser.o
+BIN = webbrowser.exe
 RC  = 
 RES = ${RC:.rc=.res}
 #
@@ -22,7 +22,7 @@ HEADER =
 all: $(BIN)
 
 #
-cwebpage.exe : cwebpage.o
+webbrowser.exe : webbrowser.o
 	$(CXX) -o $@ $< $(LIBS)
 
 
