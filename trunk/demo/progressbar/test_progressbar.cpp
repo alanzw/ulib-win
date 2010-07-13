@@ -16,77 +16,7 @@
 #include "adt/uautoptr.h"
 #include "adt/ustring.h"
 
-class UMacProceesBar : public UProgressBar
-{
-public:
-    UMacProceesBar()
-    {
-
-    }
-private:
-
-private:
-//-------------------------------------------------------------------
-//
-    COLORREF LightenColor(const COLORREF crColor, BYTE byIncreaseVal)
-//
-// Return Value:    None.
-//
-// Parameters    :    crColor - References a COLORREF structure.
-//                        byReduceVal - The amount to reduce the RGB values by.
-//
-// Remarks        :    Lightens a color by increasing the RGB values by the given number.
-//
-    {
-        BYTE byRed = GetRValue(crColor);
-        BYTE byGreen = GetGValue(crColor);
-        BYTE byBlue = GetBValue(crColor);
-
-        if ((byRed + byIncreaseVal) <= 255)
-            byRed = BYTE(byRed + byIncreaseVal);
-        if ((byGreen + byIncreaseVal)    <= 255)
-            byGreen = BYTE(byGreen + byIncreaseVal);
-        if ((byBlue + byIncreaseVal) <= 255)
-            byBlue = BYTE(byBlue + byIncreaseVal);
-
-        return RGB(byRed, byGreen, byBlue);
-    }    // LightenColorref
-
-//-------------------------------------------------------------------
-//
-    COLORREF DarkenColor(const COLORREF crColor, BYTE byReduceVal)
-//
-// Return Value:    None.
-//
-// Parameters    :    crColor - References a COLORREF structure.
-//                        byReduceVal - The amount to reduce the RGB values by.
-//
-// Remarks        :    Darkens a color by reducing the RGB values by the given number.
-//
-    {
-        BYTE byRed = GetRValue(crColor);
-        BYTE byGreen = GetGValue(crColor);
-        BYTE byBlue = GetBValue(crColor);
-
-        if (byRed >= byReduceVal)
-            byRed = BYTE(byRed - byReduceVal);
-        if (byGreen >= byReduceVal)
-            byGreen = BYTE(byGreen - byReduceVal);
-        if (byBlue >= byReduceVal)
-            byBlue = BYTE(byBlue - byReduceVal);
-
-        return RGB(byRed, byGreen, byBlue);
-    }    // DarkenColorref
-
-    void DrawVerticalBar(HDC hdc, LPRECT lpRect)
-    {
-    }
-
-    void DrawHorizontalBar(HDC hdc, LPRECT lpRect)
-    {
-    }
-};
-
+#include "mac_progressbar.h"
 
 using huys::UDialogBox;
 
@@ -113,14 +43,35 @@ public:
 
         m_pUPB->setBKColor(huys::red);
         m_pUPB->setBarColor(huys::white);
+        
+        m_pUPB2 = new UProgressBar(m_hDlg, 3334, m_hInst);
+        m_pUPB2->setStyles(PBS_SMOOTH|PBS_VERTICAL);
+        m_pUPB2->setPos(20,200,50,150);
+        m_pUPB2->create();
 
+        m_pUPB2->setRange(0, 200);
+        m_pUPB2->setStep(10);
+
+        m_pUPB2->setBKColor(huys::red);
+        m_pUPB2->setBarColor(huys::white);
+
+        m_pUPBCustom = new UMacProgressBar(m_hDlg, 3335, m_hInst);
+        //m_pUPBCustom->setStyles(PBS_SMOOTH|PBS_VERTICAL);
+        m_pUPBCustom->setPos(120,260,250,50);
+        m_pUPBCustom->setColors(huys::blue);
+        m_pUPBCustom->create();
+        
+        m_pUPBCustom->setRange(0, 200);
+        m_pUPBCustom->setStep(10);        
+
+        
         m_pUBtnOK = new UPushButton(m_hDlg, ID_BTN_OK, m_hInst);
-        m_pUBtnOK->setPos(250, 260, 70, 40);
+        m_pUBtnOK->setPos(250, 160, 70, 40);
         m_pUBtnOK->create();
         m_pUBtnOK->setWindowText(_T("OK"));
 
         m_pUBtnCancel = new UPushButton(m_hDlg, ID_BTN_CANCEL, m_hInst);
-        m_pUBtnCancel->setPos(350, 260, 70, 40);
+        m_pUBtnCancel->setPos(350, 160, 70, 40);
         m_pUBtnCancel->create();
         m_pUBtnCancel->setWindowText(_T("Cancel"));
         return TRUE;
@@ -129,6 +80,9 @@ public:
     BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
     {
         m_pUPB->stepIt();
+        m_pUPB2->stepIt();
+        m_pUPBCustom->stepIt();
+        m_pUPBCustom->setIndeterminate(!m_pUPBCustom->getIndeterminate());
         RECT rc = {20,20,420,120};
         ::InvalidateRect(m_hDlg, &rc, TRUE);
         return FALSE;
@@ -176,6 +130,8 @@ public:
     }
 private:
     huys::ADT::UAutoPtr<UProgressBar> m_pUPB;
+    huys::ADT::UAutoPtr<UProgressBar> m_pUPB2;
+    huys::ADT::UAutoPtr<UMacProgressBar> m_pUPBCustom;
     huys::ADT::UAutoPtr<UPushButton> m_pUBtnOK;
     huys::ADT::UAutoPtr<UPushButton> m_pUBtnCancel;
 };

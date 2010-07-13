@@ -19,7 +19,8 @@ RES = ${RC:.rc=.res}
 HEADER = $(INCDIR)/udialogx.h \
 		 $(INCDIR)/ucontrol.h \
 		 $(INCDIR)/uprogressbar.h \
-		 $(INCDIR)/ubutton.h
+		 $(INCDIR)/ubutton.h \
+         mac_progressbar.h  \
 #
 all: $(BIN)
 

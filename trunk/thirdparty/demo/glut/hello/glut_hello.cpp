@@ -5,6 +5,7 @@
 #include <GL/glut.h>
 
 typedef float Color[3];
+
 int iPointNum=0;
 int x1=0,x2=0,y3=0,y2=0;
 int winWidth=400,winHeight=400;
@@ -12,8 +13,14 @@ double length;
 
 bool rgbColorEqual(Color c1, Color c2)
 {
-    if (abs(c1[1]-c2[1]) <0.001 && abs(c1[2]-c2[2]) <0.001 && abs(c1[0]-c2[0]) <0.001) return true;
-    else return false;
+    if (abs(c1[1]-c2[1])<0.001 && abs(c1[2]-c2[2])<0.001 && abs(c1[0]-c2[0])<0.001)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 void setPixel(GLint x,  GLint y)
@@ -70,10 +77,14 @@ void drawPixel(GLint xCoord, GLint yCoord)
 
 void CirclePoints(GLint x,GLint y)
 {
-    drawPixel(x, y); drawPixel(y, x);
-    drawPixel(-x, y); drawPixel(y, -x);
-    drawPixel(x, -y); drawPixel(-y, x);
-    drawPixel(-x, -y); drawPixel(-y, -x);
+    drawPixel(x, y);
+    drawPixel(y, x);
+    drawPixel(-x, y);
+    drawPixel(y, -x);
+    drawPixel(x, -y);
+    drawPixel(-y, x);
+    drawPixel(-x, -y);
+    drawPixel(-y, -x);
 }
 
 void BresenhamCircle(GLint r)
@@ -118,13 +129,14 @@ void BresenhamCircle(GLint r)
 }/*end of BresenhamCircle*/
 
 
-//该函数用于设置渲染状态
+//
 void SetupRC(void)
 {
-    glClearColor(1.0f, 1.0f, 1.0f,1.0f);
+    //glClearColor(1.0f, 1.0f, 1.0f,1.0f);
+    glClearColor(.0f, .0f, .0f, .0f);
 }
 
-//当窗口大小改变时由GLUT函数调用
+//
 void ChangeSize(GLsizei width, GLsizei Height)
 {
     GLfloat aspectRatio;
@@ -219,19 +231,23 @@ void PassiveMouseMove(GLint xMouse,GLint yMouse)
 int main(int argc, char *argv[])
 {
     glutInit(&argc, argv);
+    
     glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
     glutInitWindowPosition(100, 100);
     glutInitWindowSize(400, 400);
     glutCreateWindow("窗口名称");
+    
     glutMouseFunc(MousePlot);
 
     glutPassiveMotionFunc(PassiveMouseMove);
 
     init();
+    
     glutDisplayFunc(myDisplay);
     glutReshapeFunc(ChangeSize);
 
     SetupRC();
+    
     glutMainLoop();
 
     return 0;
