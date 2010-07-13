@@ -28,6 +28,7 @@ public:
         this->setTitle(_T("IStream Test 0.0.1"));
         this->setPos(100, 100, 800, 600);
     }
+
     ~UIStreamWindow()
     {
         if ( m_pIStream )
@@ -90,7 +91,7 @@ public:
             return UBaseWindow::onChar(wParam, lParam);
         }
     }
-    
+
     BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
     {
         UStream strm;
@@ -106,10 +107,10 @@ public:
         // now get the pointer to the stream buffer, casting it to the correct type
 
         PWSTR pszString = (PWSTR) strm.GetBuf();
-    
+
         MessageBoxW(*this, pszString, L"Info", 0 );
-    
-    
+
+
         return FALSE;
     }
 private:

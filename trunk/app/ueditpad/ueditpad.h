@@ -9,7 +9,7 @@ public:
     UEditPad();
     UEditPad(UBaseWindow *pWndParent);
     ~UEditPad();
-    
+
     BOOL onClose();
 private:
 

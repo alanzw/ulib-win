@@ -16,144 +16,10 @@
 #include "adt/uautoptr.h"
 
 #include "aui/aui_label.h"
+#include "aui/aui_tracewin.h"
+#include "aui/aui_dockwin.h"
 
 #include "ueditpad.h"
-
-
-class UTraceWindow : public UBaseWindow
-{
-    enum {
-        ID_LB_TRACE = 1111
-    };
-public:
-    UTraceWindow(UBaseWindow *pWndParent)
-    : UBaseWindow(pWndParent)
-    {
-        RECT rc;
-        ::GetWindowRect(getParent(), &rc);
-        rc.left = rc.right - 200;
-        rc.top = rc.bottom - 200;
-        setRect(&rc);
-        setMenu(0);
-        setWndClassName(_T("HUYS_TRACE_WINDOW_CLASS"));
-        setTitle(_T("Trace"));
-
-        setExStyles(WS_EX_TOOLWINDOW | WS_EX_TOPMOST | WS_EX_APPWINDOW);
-    }
-
-    BOOL onCreate()
-    {
-        _pListBox = new UListBox(this, ID_LB_TRACE);
-        RECT rc;
-        this->getClientRect(&rc);
-        _pListBox->setRect(&rc);
-        _pListBox->setStyles(WS_VSCROLL);
-        _pListBox->create();
-
-        return UBaseWindow::onCreate();
-    }
-
-    void addLine(LPCTSTR sLine)
-    {
-        _pListBox->addString(sLine);
-    }
-
-    BOOL onClose()
-    {
-        this->hide();
-        return FALSE;
-    }
-
-    BOOL onSize(WPARAM wParam, LPARAM lParam)
-    {
-        RECT rc;
-        ::GetWindowRect(getParent(), &rc);
-        rc.left = rc.right - 200;
-        rc.top = rc.bottom - 200;
-        this->moveWindow(&rc);
-		return FALSE;
-    }
-private:
-    huys::ADT::UAutoPtr<UListBox> _pListBox;
-};
-
-
-class UDockWindow : public UBaseWindow
-{
-public:
-    UDockWindow(UBaseWindow *pWndParent)
-    : UBaseWindow(pWndParent)
-    {
-        RECT rc;
-        ::GetClientRect(getParent(), &rc);
-        rc.left = rc.right - 200;
-        setRect(&rc);
-        setMenu(0);
-        setWndClassName(_T("HUYS_DOCK_WINDOW_CLASS"));
-        setTitle(_T("DOCK"));
-
-        addStyles(WS_CHILD);
-        setExStyles(WS_EX_TOOLWINDOW | WS_EX_TOPMOST | WS_EX_APPWINDOW);
-    }
-
-    BOOL onCreate()
-    {
-        _label = new AUI::UTransLabel(this, _T("Properties"));
-        _label->setPos(40, 40, 100, 100);
-        _label->create();
-
-        return UBaseWindow::onCreate();
-    }
-
-    BOOL onClose()
-    {
-        this->hide();
-        return FALSE;
-    }
-
-    BOOL onSize(WPARAM wParam, LPARAM lParam)
-    {
-        RECT rc;
-        ::GetClientRect(getParent(), &rc);
-        rc.left = rc.right - 200;
-        this->moveWindow(&rc);
-		return FALSE;
-    }
-
-    void onDraw(HDC hdc)
-    {
-        HBRUSH hbTitle = ::CreateSolidBrush(huys::xpblue);
-        RECT rcWindow = {0};
-        this->getClientRect(&rcWindow);
-
-        RECT rcTitle = {
-            rcWindow.left,
-            rcWindow.top,
-            rcWindow.right,
-            rcWindow.top + 20
-        };
-
-        ::FillRect( hdc, &rcTitle, hbTitle);
-        ::SetTextColor( hdc, huys::white );
-        ::SetBkColor( hdc, huys::xpblue );
-        LPCTSTR m_sTitle = _T("dock");
-        ::TextOut( hdc,
-                   rcWindow.left+5,
-                   rcWindow.top+2,
-                   m_sTitle,
-                   lstrlen(m_sTitle));
-
-        ::TextOut( hdc,
-                   rcWindow.right-20,
-                   rcWindow.top+2,
-                   "X",
-                   1);
-
-    }
-private:
-    AUI::UTransLabelP _label;
-};
-
 
 class UMyWindow : public UBaseWindow
 {
@@ -165,18 +31,15 @@ public:
         this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
     }
 
-    ~UMyWindow()
-    {}
-
     BOOL onCreate()
     {
         this->setIconBig(IDI_APP);
 
-        win = new UTraceWindow(this);
+        win = new AUI::UTraceWindow(this);
         //win->setPos(100, 100, 200, 200);
         win->create();
 
-        dockWin = new UDockWindow(this);
+        dockWin = new AUI::UDockWindow(this);
         dockWin->create();
 
         return UBaseWindow::onCreate();
@@ -250,8 +113,8 @@ private:
         return FALSE;
     }
 
-    huys::ADT::UAutoPtr<UTraceWindow> win;
-    huys::ADT::UAutoPtr<UDockWindow> dockWin;
+    AUI::UTraceWindowP win;
+    AUI::UDockWindowP dockWin;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
