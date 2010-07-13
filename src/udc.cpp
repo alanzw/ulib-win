@@ -269,6 +269,16 @@ BOOL UDevContext::lineTo(int x, int y)
     return ::LineTo((HDC)m_hObj, x, y);
 }
 
+huys::Color UDevContext::setPixel(int x, int y, huys::Color clr)
+{
+    return ::SetPixel((HDC)m_hObj, x, y, clr);
+}
+
+huys::Color UDevContext::getPixel(int x, int y)
+{
+    return ::GetPixel((HDC)m_hObj, x, y);
+}
+
 huys::Color UDevContext::setTextColor( huys::Color clr )
 {
     return ::SetTextColor((HDC)m_hObj, clr);

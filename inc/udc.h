@@ -131,6 +131,10 @@ public:
     BOOL lineTo(int x, int y);
 
     //
+    huys::Color setPixel(int x, int y, huys::Color clr);
+    huys::Color getPixel(int x, int y);
+    
+    //
     BOOL textOut(int nX, int nY, LPCTSTR lpString, int cbString);
 
     // uFormat :

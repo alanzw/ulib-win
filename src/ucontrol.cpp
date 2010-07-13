@@ -276,9 +276,15 @@ BOOL UControl::onMessage(UINT message, WPARAM wParam, LPARAM lParam)
     return 0;
 };
 
-BOOL UControl::getClientRect( RECT *rc )
+BOOL UControl::getClientRect( LPRECT lpRect )
 {
-    ::GetClientRect(m_hSelf, rc);
+    ::GetClientRect(m_hSelf, lpRect);
+    return TRUE;
+}
+
+BOOL UControl::getWindowRect(LPRECT lpRect)
+{
+    ::GetWindowRect(m_hSelf, lpRect);
     return TRUE;
 }
 

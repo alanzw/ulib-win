@@ -37,7 +37,8 @@ public:
     HWND getHParent() const {return m_hParent;}
     HINSTANCE getHInstance() const {return m_hInstance;}
     UINT getResID() const {return m_nResourceID;}
-    BOOL getClientRect(RECT *rc);
+    BOOL getClientRect(LPRECT lpRect);
+    BOOL getWindowRect(LPRECT lpRect);
     void clientToDialog(HWND hDlg, LPRECT lpRect);
 
     //

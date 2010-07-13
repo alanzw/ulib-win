@@ -163,8 +163,8 @@ int main(int argc, char *argv[])
     }
 
     try {
-        UDllMan udm;     
-		udm.load("libuwin.dll");
+        UDllMan udm;
+        udm.load("libuwin.dll");
 
         //typedef void (*GetVolSerialNum)(char *, char *);
         DEF_DLLFUNC(GetVolSerialNum, void, char *, char *);
@@ -183,16 +183,16 @@ int main(int argc, char *argv[])
 
     list_modules();
 
-    
+
     HMODULE h_module = ::GetModuleHandle("libuwin.dll");
-    
+
     if (0 != h_module)
     {
         TCHAR szModulePath[MAX_PATH];
         ::GetModuleFileName(h_module, szModulePath, MAX_PATH);
         cout << szModulePath << endl;
     }
-    
+
     /* exchndl.dll Test */
     //char * p= (char *)0x00000000;
 
