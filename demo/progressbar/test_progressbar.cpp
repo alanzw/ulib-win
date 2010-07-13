@@ -19,7 +19,10 @@
 class UMacProceesBar : public UProgressBar
 {
 public:
+    UMacProceesBar()
+    {
 
+    }
 private:
 
 private:
@@ -27,12 +30,12 @@ private:
 //
     COLORREF LightenColor(const COLORREF crColor, BYTE byIncreaseVal)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	crColor - References a COLORREF structure.
-//						byReduceVal - The amount to reduce the RGB values by.
+// Parameters    :    crColor - References a COLORREF structure.
+//                        byReduceVal - The amount to reduce the RGB values by.
 //
-// Remarks		:	Lightens a color by increasing the RGB values by the given number.
+// Remarks        :    Lightens a color by increasing the RGB values by the given number.
 //
     {
         BYTE byRed = GetRValue(crColor);
@@ -41,24 +44,24 @@ private:
 
         if ((byRed + byIncreaseVal) <= 255)
             byRed = BYTE(byRed + byIncreaseVal);
-        if ((byGreen + byIncreaseVal)	<= 255)
+        if ((byGreen + byIncreaseVal)    <= 255)
             byGreen = BYTE(byGreen + byIncreaseVal);
         if ((byBlue + byIncreaseVal) <= 255)
             byBlue = BYTE(byBlue + byIncreaseVal);
 
         return RGB(byRed, byGreen, byBlue);
-    }	// LightenColorref
+    }    // LightenColorref
 
 //-------------------------------------------------------------------
 //
     COLORREF DarkenColor(const COLORREF crColor, BYTE byReduceVal)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	crColor - References a COLORREF structure.
-//						byReduceVal - The amount to reduce the RGB values by.
+// Parameters    :    crColor - References a COLORREF structure.
+//                        byReduceVal - The amount to reduce the RGB values by.
 //
-// Remarks		:	Darkens a color by reducing the RGB values by the given number.
+// Remarks        :    Darkens a color by reducing the RGB values by the given number.
 //
     {
         BYTE byRed = GetRValue(crColor);
@@ -73,15 +76,15 @@ private:
             byBlue = BYTE(byBlue - byReduceVal);
 
         return RGB(byRed, byGreen, byBlue);
-    }	// DarkenColorref
+    }    // DarkenColorref
 
-	void DrawVerticalBar(HDC hdc, LPRECT lpRect)
-	{
-	}
+    void DrawVerticalBar(HDC hdc, LPRECT lpRect)
+    {
+    }
 
-	void DrawHorizontalBar(HDC hdc, LPRECT lpRect)
-	{
-	}
+    void DrawHorizontalBar(HDC hdc, LPRECT lpRect)
+    {
+    }
 };
 
 

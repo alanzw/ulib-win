@@ -28,6 +28,10 @@ BEGIN
         MENUITEM "&Stop Simulation", IDM_STOP
         MENUITEM "&Set number", IDM_NUMBER
     END
+    POPUP "&Addons"
+    BEGIN
+        MENUITEM "&Configuration", IDM_ADDON_CONFIG
+    END
     POPUP "&Help" HELP
     BEGIN
         MENUITEM "&About UTerminal", IDM_ABOUT

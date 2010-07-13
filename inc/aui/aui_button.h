@@ -62,6 +62,7 @@ public:
 
 };
 
+typedef huys::ADT::UAutoPtr<UButton> UButtonP;
 typedef huys::ADT::UAutoPtr<UTransRadioButton> UTransRadioButtonP;
 typedef huys::ADT::UAutoPtr<UTransCheckButton> UTransCheckButtonP;
 
