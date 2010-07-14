@@ -222,9 +222,14 @@ bool USplashWindow::setTransparentColor(huys::Color clr)
 
         this->modifyExStyles(WS_EX_LAYERED);
         UDllMan dlm(_T("user32.dll"));
+#ifdef _MSC_VER
+		typedef BOOL (WINAPI *PFSetLayeredWindowAttributes)(HWND, COLORREF, BYTE, DWORD);
+		PFSetLayeredWindowAttributes foo = (PFSetLayeredWindowAttributes)dlm.find(_T("SetLayeredWindowAttributes"));
+		foo(*this, _clrTrans, 0, LWA_COLORKEY);
+#else
         dlm.callFunc<BOOL, HWND, COLORREF, BYTE, DWORD>(_T("SetLayeredWindowAttributes"),
             *this, _clrTrans, 0, LWA_COLORKEY);
-
+#endif
 #endif // (_MFC_VER > 1200)
 	return true;
 }

@@ -33,7 +33,7 @@ public:
     : UDialogBox(hInst, nID),
       m_uiml(1, 32, 32)
     {
-        m_uiml.addIcon(IDI_APP, m_hInst);
+        m_uiml.addIcon(IDI_ULIB, m_hInst);
     }
 
     BOOL onInit()

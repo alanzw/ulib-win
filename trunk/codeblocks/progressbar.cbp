@@ -48,6 +48,7 @@
 			<Add library="user32" />
 			<Add library="kernel32" />
 		</Linker>
+		<Unit filename="..\demo\progressbar\mac_progressbar.h" />
 		<Unit filename="..\demo\progressbar\progressbar.rc">
 			<Option compilerVar="WINDRES" />
 			<Option compiler="gcc" use="1" buildCommand="$rescomp -i $file -J rc -o $resource_output -O coff $res_includes -DMINGW_RC" />

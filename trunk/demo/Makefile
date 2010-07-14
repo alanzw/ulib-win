@@ -137,6 +137,7 @@ SUBDIRS = \
           printer     \
           palette     \
           base64      \
+          pen         \
 
 #
 all:

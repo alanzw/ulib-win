@@ -96,10 +96,10 @@ public:
 
         for(int i=0;i<64;i++)
         {
-            plp->palPalEntry [i].peRed =r*sin(PI*i/64);
-            plp->palPalEntry[i].peGreen =g*sin(PI*i/64);
-            plp->palPalEntry [i].peBlue =b*sin(PI*i/64);
-            plp->palPalEntry [i].peFlags =PC_RESERVED;
+            plp->palPalEntry [i].peRed = static_cast<BYTE>(r*sin(PI*i/64));
+            plp->palPalEntry[i].peGreen = static_cast<BYTE>(g*sin(PI*i/64));
+            plp->palPalEntry [i].peBlue = static_cast<BYTE>(b*sin(PI*i/64));
+            plp->palPalEntry [i].peFlags = PC_RESERVED;
         }
         palette.createPalette(plp);
 

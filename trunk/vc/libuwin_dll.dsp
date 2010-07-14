@@ -225,6 +225,10 @@ SOURCE=..\src\uprocessman.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\uprogressbar.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\urebar.cpp
 # End Source File
 # Begin Source File
@@ -234,6 +238,10 @@ SOURCE=..\src\uregion.cpp
 # Begin Source File
 
 SOURCE=..\src\uregkey.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\usplashwnd.cpp
 # End Source File
 # Begin Source File
 
@@ -417,6 +425,10 @@ SOURCE=..\inc\uprocessman.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\inc\uprogressbar.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\inc\urebar.h
 # End Source File
 # Begin Source File
@@ -426,6 +438,10 @@ SOURCE=..\inc\uregion.h
 # Begin Source File
 
 SOURCE=..\inc\uregkey.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\usplashwnd.h
 # End Source File
 # Begin Source File
 
@@ -491,9 +507,9 @@ SOURCE=..\res\u.rc
 
 !ELSEIF  "$(CFG)" == "libuwin_dll - Win32 Debug"
 
-# ADD BASE RSC /l 0x804 /i "\DEV\ulib-win\res" /i "\ulib-win\res" /i "\wx\ulib-win\res"
+# ADD BASE RSC /l 0x804 /i "\ulib-win\res" /i "\DEV\ulib-win\res" /i "\wx\ulib-win\res"
 # SUBTRACT BASE RSC /i "../ico" /i "../res"
-# ADD RSC /l 0x804 /i "\DEV\ulib-win\res" /i "\ulib-win\res" /i "\wx\ulib-win\res" /i "..\res" /i "..\ico"
+# ADD RSC /l 0x804 /i "\ulib-win\res" /i "\DEV\ulib-win\res" /i "\wx\ulib-win\res" /i "..\res" /i "..\ico"
 # SUBTRACT RSC /i "../ico" /i "../res"
 
 !ENDIF 

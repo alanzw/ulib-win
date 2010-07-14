@@ -11,12 +11,12 @@ public:
         : UProgressBar(hParent, nID, hInst)
     {
         m_bIndeterminate = FALSE;
-        m_nIndOffset = 0; 
+        m_nIndOffset = 0;
     }
-    
+
     BOOL getIndeterminate()
     { return m_bIndeterminate;}
-	
+
     void setIndeterminate(BOOL bIndeterminate = TRUE)
     { m_bIndeterminate=bIndeterminate;}
 
@@ -64,7 +64,7 @@ public:
 
         //dc.setBrushColor(::GetSysColor(COLOR_3DFACE));
         //dc.rectangle(rectBar);
-        
+
         dc.setBrushColor(m_crColorLightest);
         if (m_bIndeterminate)
         {
@@ -103,32 +103,32 @@ public:
             byBlue3DLiteShadow + ((byBlue3DDkShadow - byBlue3DLiteShadow) >> 1));
 
     }
-    
+
     virtual BOOL onEraseBkgnd(HDC hdc) {return TRUE;}
 private:
     int m_nIndOffset;
     BOOL m_bIndeterminate;
 
-    COLORREF m_crColor;
-    COLORREF m_crColorLight;
-    COLORREF m_crColorLighter;
-    COLORREF m_crColorLightest;
-    COLORREF m_crColorDark;
-    COLORREF m_crColorDarker;
-    COLORREF m_crDkShadow;
-    COLORREF m_crShadow;
-    COLORREF m_crLiteShadow;
+    huys::Color m_crColor;
+    huys::Color m_crColorLight;
+    huys::Color m_crColorLighter;
+    huys::Color m_crColorLightest;
+    huys::Color m_crColorDark;
+    huys::Color m_crColorDarker;
+    huys::Color m_crDkShadow;
+    huys::Color m_crShadow;
+    huys::Color m_crLiteShadow;
 private:
     //-------------------------------------------------------------------
     //
-    COLORREF LightenColor(const COLORREF crColor, BYTE byIncreaseVal)
+    huys::Color LightenColor(const huys::Color crColor, BYTE byIncreaseVal)
         //
-        // Return Value:    None.
+        // Return Value:    lightened color in RGB.
         //
-        // Parameters    :    crColor - References a COLORREF structure.
-        //                    byReduceVal - The amount to reduce the RGB values by.
+        // Parameters    :  crColor - References a huys::Color structure.
+        //                  byIncreaseVal - The amount to increase the RGB values by.
         //
-        // Remarks        :    Lightens a color by increasing the RGB values by the given number.
+        // Remarks        : Lightens a color by increasing the RGB values by the given number.
         //
     {
         BYTE byRed = GetRValue(crColor);
@@ -143,18 +143,18 @@ private:
             byBlue = BYTE(byBlue + byIncreaseVal);
 
         return RGB(byRed, byGreen, byBlue);
-    }    // LightenColorref
+    }
 
     //-------------------------------------------------------------------
     //
-    COLORREF DarkenColor(const COLORREF crColor, BYTE byReduceVal)
+    huys::Color DarkenColor(const huys::Color crColor, BYTE byReduceVal)
         //
-        // Return Value:    None.
+        // Return Value:    darkened color in RGB.
         //
-        // Parameters    :    crColor - References a COLORREF structure.
-        //                        byReduceVal - The amount to reduce the RGB values by.
+        // Parameters  :    crColor - References a huys::Color structure.
+        //                  byReduceVal - The amount to reduce the RGB values by.
         //
-        // Remarks        :    Darkens a color by reducing the RGB values by the given number.
+        // Remarks     :    Darkens a color by reducing the RGB values by the given number.
         //
     {
         BYTE byRed = GetRValue(crColor);
@@ -169,7 +169,7 @@ private:
             byBlue = BYTE(byBlue - byReduceVal);
 
         return RGB(byRed, byGreen, byBlue);
-    }    // DarkenColorref
+    }
 
     void DrawHorizontalBar(HDC hdc, LPRECT lpRect)
     {
@@ -180,8 +180,8 @@ private:
         huys::URectL rect(lpRect);
 
         USmartDC dc(hdc);
-        
-        dc.setPenColor(m_crColorLight); 
+
+        dc.setPenColor(m_crColorLight);
 
         if (m_bIndeterminate)
         {
@@ -191,8 +191,8 @@ private:
 
             int nAdjust = nLeft - IND_BAND_WIDTH + m_nIndOffset;
             int nXpos = 0;
-            int nYpos1 = nTop + 1;
-            int nYpos2 = nBottom - 2;
+            //int nYpos1 = nTop + 1;
+            //int nYpos2 = nBottom - 2;
 
             for (int i = 0; i < nNumBands; i++)
             {
@@ -286,109 +286,109 @@ private:
         huys::URectL rect(lpRect);
 
         USmartDC dc(hdc);
-        
-    int nHeight = rect.height(); 
-   
-    int nLeft = rect.left();   
-    int nTop = rect.top();   
-    int nRight = rect.right();   
-    int nBottom = rect.bottom();   
-   
-    dc.setPenColor(m_crColor);   
-   
-    if (m_bIndeterminate)   
-    {   
-        int nNumBands = (nHeight / IND_BAND_WIDTH) + 2;   
-        int nHeight = rect.width() + 1;   
-   
-        int nAdjust = nBottom - m_nIndOffset;   
-        int nXpos1 = nLeft;   
-        int nXpos2 = nRight + 1;   
-        int nYpos = nTop + 1;   
-   
-        for (int i = 0; i < nNumBands; i++)   
-        {   
-            nYpos = nAdjust - (i * IND_BAND_WIDTH);   
-   
-            dc.setPenColor(m_crColorDarker);   
-            dc.moveTo(nXpos1, nYpos);   
-            dc.lineTo(nXpos2, nYpos + nHeight);   
-   
-            dc.setPenColor(m_crColorDark);   
-            dc.moveTo(nXpos1, nYpos + 1);   
-            dc.lineTo(nXpos2, nYpos + nHeight + 1);   
-            dc.moveTo(nXpos1, nYpos + 9);   
-            dc.lineTo(nXpos2, nYpos + nHeight + 9);   
-   
-            dc.setPenColor(m_crColor);   
-            dc.moveTo(nXpos1, nYpos + 2);   
-            dc.lineTo(nXpos2, nYpos + nHeight + 2);   
-            dc.moveTo(nXpos1, nYpos + 8);   
-            dc.lineTo(nXpos2, nYpos + nHeight + 8);   
-   
-            dc.setPenColor(m_crColorLight);   
-            dc.moveTo(nXpos1, nYpos + 3);   
-            dc.lineTo(nXpos2, nYpos + nHeight + 3);   
-            dc.moveTo(nXpos1, nYpos + 7);   
-            dc.lineTo(nXpos2, nYpos + nHeight + 7);   
-   
-            dc.setPenColor(m_crColorLighter);   
-            dc.moveTo(nXpos1, nYpos + 4);   
-            dc.lineTo(nXpos2, nYpos + nHeight + 4);   
-            dc.moveTo(nXpos1, nYpos + 6);   
-            dc.lineTo(nXpos2, nYpos + nHeight + 6);   
-        }   // for the number of bands   
-    }   // if indeterminate   
-    else   
-    {   
-        if (nHeight > 3)   
-        {   
-            dc.moveTo(nLeft, nTop + 1);   
-            dc.lineTo(nLeft, nTop);   
-            dc.lineTo(nRight, nTop);   
-            dc.moveTo(nLeft + 1, nBottom - 2);   
-            dc.lineTo(nLeft + 1, nTop + 1);   
-            dc.moveTo(nRight - 3, nBottom - 3);   
-            dc.lineTo(nRight - 3, nTop + 1);   
-            dc.setPixel(nRight - 2, nTop + 1, m_crColor);   
-   
-            dc.setPenColor(m_crColorLight);   
-            dc.moveTo(nLeft + 2, nBottom - 3);   
-            dc.lineTo(nLeft + 2, nTop + 1);   
-            dc.moveTo(nRight - 4, nBottom - 3);   
-            dc.lineTo(nRight - 4, nTop + 1);   
-            dc.setPixel(nLeft + 1, nTop + 1, m_crColorLight);   
-            dc.setPixel(nRight - 3, nTop + 1, m_crColorLight);   
-               
-            dc.setPenColor(m_crColorLighter);   
-            dc.moveTo(nLeft + 3, nBottom - 3);   
-            dc.lineTo(nLeft + 3, nTop + 1);   
-            dc.moveTo(nRight - 5, nBottom - 3);   
-            dc.lineTo(nRight - 5, nTop + 1);   
-            dc.setPixel(nLeft + 2, nTop + 1, m_crColorLighter);   
-            dc.setPixel(nRight - 4, nTop + 1, m_crColorLighter);   
-   
-            dc.setPenColor(m_crColorDark);   
-            dc.moveTo(nLeft, nBottom - 1);   
-            dc.lineTo(nLeft, nTop + 1);   
-            dc.moveTo(nLeft + 2, nBottom - 2);   
-            dc.lineTo(nRight - 2, nBottom - 2);   
-            dc.lineTo(nRight - 2, nTop + 1);   
-            dc.setPixel(nRight - 1, nTop + 1, m_crColorDark);   
-   
-            dc.setPenColor(m_crColorDarker);   
-            dc.moveTo(nLeft + 1, nBottom - 1);   
-            dc.lineTo(nRight - 1, nBottom - 1);   
-            dc.lineTo(nRight - 1, nTop + 1);   
-        }   
-        else   
-        {    
-            dc.setPenColor(m_crColorDark);   
-            dc.rectangle(rect);     
-            dc.rectangle(rect);     
-        }   
-    }   // if not indeterminate   
- 
+
+		int nHeight = rect.height();
+
+		int nLeft = rect.left();
+		int nTop = rect.top();
+		int nRight = rect.right();
+		int nBottom = rect.bottom();
+
+		dc.setPenColor(m_crColor);
+
+		if (m_bIndeterminate)
+		{
+			int nNumBands = (nHeight / IND_BAND_WIDTH) + 2;
+			int nHeight = rect.width() + 1;
+
+			int nAdjust = nBottom - m_nIndOffset;
+			int nXpos1 = nLeft;
+			int nXpos2 = nRight + 1;
+			int nYpos = nTop + 1;
+
+			for (int i = 0; i < nNumBands; i++)
+			{
+				nYpos = nAdjust - (i * IND_BAND_WIDTH);
+
+				dc.setPenColor(m_crColorDarker);
+				dc.moveTo(nXpos1, nYpos);
+				dc.lineTo(nXpos2, nYpos + nHeight);
+
+				dc.setPenColor(m_crColorDark);
+				dc.moveTo(nXpos1, nYpos + 1);
+				dc.lineTo(nXpos2, nYpos + nHeight + 1);
+				dc.moveTo(nXpos1, nYpos + 9);
+				dc.lineTo(nXpos2, nYpos + nHeight + 9);
+
+				dc.setPenColor(m_crColor);
+				dc.moveTo(nXpos1, nYpos + 2);
+				dc.lineTo(nXpos2, nYpos + nHeight + 2);
+				dc.moveTo(nXpos1, nYpos + 8);
+				dc.lineTo(nXpos2, nYpos + nHeight + 8);
+
+				dc.setPenColor(m_crColorLight);
+				dc.moveTo(nXpos1, nYpos + 3);
+				dc.lineTo(nXpos2, nYpos + nHeight + 3);
+				dc.moveTo(nXpos1, nYpos + 7);
+				dc.lineTo(nXpos2, nYpos + nHeight + 7);
+
+				dc.setPenColor(m_crColorLighter);
+				dc.moveTo(nXpos1, nYpos + 4);
+				dc.lineTo(nXpos2, nYpos + nHeight + 4);
+				dc.moveTo(nXpos1, nYpos + 6);
+				dc.lineTo(nXpos2, nYpos + nHeight + 6);
+			}   // for the number of bands
+		}   // if indeterminate
+		else
+		{
+			if (nHeight > 3)
+			{
+				dc.moveTo(nLeft, nTop + 1);
+				dc.lineTo(nLeft, nTop);
+				dc.lineTo(nRight, nTop);
+				dc.moveTo(nLeft + 1, nBottom - 2);
+				dc.lineTo(nLeft + 1, nTop + 1);
+				dc.moveTo(nRight - 3, nBottom - 3);
+				dc.lineTo(nRight - 3, nTop + 1);
+				dc.setPixel(nRight - 2, nTop + 1, m_crColor);
+
+				dc.setPenColor(m_crColorLight);
+				dc.moveTo(nLeft + 2, nBottom - 3);
+				dc.lineTo(nLeft + 2, nTop + 1);
+				dc.moveTo(nRight - 4, nBottom - 3);
+				dc.lineTo(nRight - 4, nTop + 1);
+				dc.setPixel(nLeft + 1, nTop + 1, m_crColorLight);
+				dc.setPixel(nRight - 3, nTop + 1, m_crColorLight);
+
+				dc.setPenColor(m_crColorLighter);
+				dc.moveTo(nLeft + 3, nBottom - 3);
+				dc.lineTo(nLeft + 3, nTop + 1);
+				dc.moveTo(nRight - 5, nBottom - 3);
+				dc.lineTo(nRight - 5, nTop + 1);
+				dc.setPixel(nLeft + 2, nTop + 1, m_crColorLighter);
+				dc.setPixel(nRight - 4, nTop + 1, m_crColorLighter);
+
+				dc.setPenColor(m_crColorDark);
+				dc.moveTo(nLeft, nBottom - 1);
+				dc.lineTo(nLeft, nTop + 1);
+				dc.moveTo(nLeft + 2, nBottom - 2);
+				dc.lineTo(nRight - 2, nBottom - 2);
+				dc.lineTo(nRight - 2, nTop + 1);
+				dc.setPixel(nRight - 1, nTop + 1, m_crColorDark);
+
+				dc.setPenColor(m_crColorDarker);
+				dc.moveTo(nLeft + 1, nBottom - 1);
+				dc.lineTo(nRight - 1, nBottom - 1);
+				dc.lineTo(nRight - 1, nTop + 1);
+			}
+			else
+			{
+				dc.setPenColor(m_crColorDark);
+				dc.rectangle(rect);
+				dc.rectangle(rect);
+			}
+		}   // if not indeterminate
+
     }
 };
 
