@@ -10,11 +10,18 @@ public:
     UChartData()
     {}
 
+	~UChartData()
+	{}
 
     void add(long *pdata, int n)
     {
         _data.append(pdata, pdata+n);
     }
+
+	void reset()
+	{
+		_data.clear();
+	}
 private:
     huys::ADT::UVector<T> _data;
 };

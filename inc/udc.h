@@ -136,7 +136,6 @@ public:
     
     //
     BOOL textOut(int nX, int nY, LPCTSTR lpString, int cbString);
-
     // uFormat :
     //   DT_BOTTOM
     //   DT_CALCRECT

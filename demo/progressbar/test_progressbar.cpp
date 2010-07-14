@@ -63,7 +63,7 @@ public:
         
         m_pUPBCustom->setRange(0, 200);
         m_pUPBCustom->setStep(10);        
-
+        m_pUPBCustom->setPBPos(0);
         
         m_pUBtnOK = new UPushButton(m_hDlg, ID_BTN_OK, m_hInst);
         m_pUBtnOK->setPos(250, 160, 70, 40);
