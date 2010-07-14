@@ -44,9 +44,7 @@ public:
 
     virtual BOOL create()
     {
-        BOOL bRet = UStatic::create();
-        this->subclassProc();
-        return  bRet;
+        return UStatic::create() && this->subclassProc();
     }
 
     virtual BOOL onPaint()
@@ -106,7 +104,7 @@ public:
         switch(num)
         {
         case 0: m_bSeg[0] = m_bSeg[1] = m_bSeg[3] = m_bSeg[4] = m_bSeg[5] = m_bSeg[6] = true;    break;
-        case 1:    m_bSeg[5]= m_bSeg[6] = true; break;
+        case 1: m_bSeg[5]= m_bSeg[6] = true; break;
         case 2: m_bSeg[0] = m_bSeg[5] = m_bSeg[2] = m_bSeg[4] = m_bSeg[1] = true; break;
         case 3: m_bSeg[0] = m_bSeg[5] = m_bSeg[2] = m_bSeg[6] = m_bSeg[1] = true; break;
         case 4: m_bSeg[3]  = m_bSeg[2] = m_bSeg[5] = m_bSeg[6] = true;    break;
