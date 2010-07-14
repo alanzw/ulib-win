@@ -16,7 +16,8 @@ public:
         return (HPEN)m_hObj;
     }
 
-    HBRUSH createSolidPen(huys::Color clr);
+    HPEN createSolidPen(huys::Color clr);
+    HPEN createPen(int nStyle, int nWidth, huys::Color clr);
 /************************************************************************
 BLACK_PEN
     Black pen.
@@ -32,7 +33,7 @@ NULL_PEN
 WHITE_PEN
     White pen.
 ************************************************************************/
-    HBRUSH getStockPen(int fnObject);
+    HPEN getStockPen(int fnObject);
 private:
 
 };

@@ -105,6 +105,10 @@ SOURCE=..\demo\edit\edit.rc
 
 SOURCE=..\demo\edit\resource.h
 # End Source File
+# Begin Source File
+
+SOURCE=..\demo\edit\ueditex.h
+# End Source File
 # End Group
 # End Target
 # End Project

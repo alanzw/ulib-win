@@ -132,4 +132,4 @@ OBJS = $(KENERL_OBJS)  $(GUI_OBJS) $(SYSTEM_OBJS) $(GRAPHIC_OBJS) $(CONFIG_OBJS)
        upalette.o    \
        uresource.o   \
        uregex.o      \
-
+       upen.o        \

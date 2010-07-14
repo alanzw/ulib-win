@@ -2,9 +2,12 @@
 #define U_AUI_DOCKWIN_H
 
 #include "ubasewindow.h"
+#include "ulayout.h"
+
 #include "adt/uautoptr.h"
 
 #include "aui/aui_label.h"
+#include "aui/aui_entry.h"
 
 namespace AUI
 {
@@ -33,6 +36,12 @@ public:
         _label->setPos(40, 40, 100, 100);
         _label->create();
 
+        _entry1 = new AUI::UIntEntry(this, 1234);
+        _entry1->create();
+
+        _entry2 = new AUI::UEntry(this, 1235);
+        _entry2->create();
+
         return UBaseWindow::onCreate();
     }
 
@@ -48,6 +57,18 @@ public:
         ::GetClientRect(getParent(), &rc);
         rc.left = rc.right - 200;
         this->moveWindow(&rc);
+
+        this->getClientRect(&rc);
+
+        rc.top += 50;
+
+        huys::layout::UVBoxLayout layout;
+        layout.setRect(&rc);
+        layout.addControl(_label);
+        layout.addControl(_entry1);
+        layout.addControl(_entry2);
+        layout.go();
+
         return FALSE;
     }
 
@@ -83,6 +104,8 @@ public:
     }
 private:
     AUI::UTransLabelP _label;
+    AUI::UIntEntryP _entry1;
+    AUI::UEntryP _entry2;
 };
 
 typedef huys::ADT::UAutoPtr<UDockWindow> UDockWindowP;

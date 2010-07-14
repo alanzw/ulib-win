@@ -13,6 +13,7 @@
 #include "uicon.h"
 #include "colors.h"
 #include "adt/uautoptr.h"
+#include "udc.h"
 
 //
 #include "ulcd.h"

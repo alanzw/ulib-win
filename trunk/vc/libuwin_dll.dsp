@@ -101,6 +101,10 @@ SOURCE=..\src\ubitmap.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\ubrush.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\ubutton.cpp
 # End Source File
 # Begin Source File
@@ -213,6 +217,10 @@ SOURCE=..\src\uobject.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\upen.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\upicture.cpp
 # End Source File
 # Begin Source File
@@ -298,6 +306,10 @@ SOURCE=..\inc\ubasewindow.h
 # Begin Source File
 
 SOURCE=..\inc\ubitmap.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\ubrush.h
 # End Source File
 # Begin Source File
 
@@ -410,6 +422,10 @@ SOURCE=..\inc\umsg.h
 # Begin Source File
 
 SOURCE=..\inc\uobject.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\upen.h
 # End Source File
 # Begin Source File
 
