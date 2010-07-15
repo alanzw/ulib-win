@@ -3,6 +3,7 @@
 
 #include "ubasewindow.h"
 #include "ulayout.h"
+#include "udc.h"
 
 #include "adt/uautoptr.h"
 
@@ -18,10 +19,11 @@ public:
     UDockWindow(UBaseWindow *pWndParent)
     : UBaseWindow(pWndParent)
     {
-        RECT rc;
-        ::GetClientRect(getParent(), &rc);
-        rc.left = rc.right - 200;
-        setRect(&rc);
+        huys::URectL rect;
+        ::GetClientRect(getParent(), rect);
+        rect.setLeft(rect.right()-200);
+        setRect(rect);
+
         setMenu(0);
         setWndClassName(_T("HUYS_DOCK_WINDOW_CLASS"));
         setTitle(_T("DOCK"));
@@ -33,6 +35,8 @@ public:
     BOOL onCreate()
     {
         _label = new AUI::UTransLabel(this, _T("Properties"));
+		_label->setStyles(SS_CENTER|SS_CENTERIMAGE);
+		_label->setTextColor(huys::blueviolet);
         _label->setPos(40, 40, 100, 100);
         _label->create();
 
@@ -53,17 +57,18 @@ public:
 
     BOOL onSize(WPARAM wParam, LPARAM lParam)
     {
-        RECT rc;
-        ::GetClientRect(getParent(), &rc);
-        rc.left = rc.right - 200;
-        this->moveWindow(&rc);
+        huys::URectL rect;
 
-        this->getClientRect(&rc);
+        ::GetClientRect(getParent(), rect);
+        rect.setLeft(rect.right()-200);
+        this->moveWindow(rect);
 
-        rc.top += 50;
+        this->getClientRect(rect);
+
+        rect.offsetY(50, 0);
 
         huys::layout::UVBoxLayout layout;
-        layout.setRect(&rc);
+        layout.setRect(rect);
         layout.addControl(_label);
         layout.addControl(_entry1);
         layout.addControl(_entry2);
@@ -74,32 +79,22 @@ public:
 
     void onDraw(HDC hdc)
     {
-        HBRUSH hbTitle = ::CreateSolidBrush(huys::xpblue);
-        RECT rcWindow = {0};
-        this->getClientRect(&rcWindow);
+        USmartDC dc(hdc);
 
-        RECT rcTitle = {
-            rcWindow.left,
-            rcWindow.top,
-            rcWindow.right,
-            rcWindow.top + 20
-        };
+		HBRUSH hbTitle = ::CreateSolidBrush(huys::xpblue);
+        
+		huys::URectL rcWindow;
+        this->getClientRect(rcWindow);
 
-        ::FillRect( hdc, &rcTitle, hbTitle);
-        ::SetTextColor( hdc, huys::white );
-        ::SetBkColor( hdc, huys::xpblue );
-        LPCTSTR m_sTitle = _T("dock");
-        ::TextOut( hdc,
-                   rcWindow.left+5,
-                   rcWindow.top+2,
-                   m_sTitle,
-                   lstrlen(m_sTitle));
+        huys::URectL rcTitle = rcWindow;
+		rcTitle.setHeight(20);
 
-        ::TextOut( hdc,
-                   rcWindow.right-20,
-                   rcWindow.top+2,
-                   "X",
-                   1);
+		dc.fillRect(rcTitle, hbTitle);
+		dc.setTextColor(huys::white);
+		dc.setBKColor(huys::xpblue);
+
+        dc.textOutEx(rcWindow.left()+5, rcWindow.top()+2, _T("dock"));
+        dc.textOutEx(rcWindow.right()-20, rcWindow.top()+2, _T("X"));
 
     }
 private:

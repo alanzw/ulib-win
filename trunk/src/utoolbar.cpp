@@ -140,7 +140,7 @@ int UToolBar::getButtonCount()
 BOOL UToolBar::getString( int nIndex, LPTSTR lpText, BYTE cchMax )
 {
 //    return this->sendMsg(TB_GETSTRING, MAKEWPARAM(cchMax, nIndex), (LPARAM)lpText);
-	return FALSE;
+    return FALSE;
 }
 
 BOOL UToolBar::getButton( int nIndex, LPTBBUTTON lpTbBtn )

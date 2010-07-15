@@ -23,9 +23,6 @@ IDB_ICON   BITMAP  "icon.bmp"
 //
 IDR_MENU1 MENU
 BEGIN
-    POPUP ""
-    BEGIN
-    END
     POPUP "RBMenu"
     BEGIN
         MENUITEM "Close(&C)", IDM_CLOSE

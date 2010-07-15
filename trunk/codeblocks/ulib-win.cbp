@@ -59,6 +59,7 @@
 		</Build>
 		<Unit filename="..\inc\ubasewindow.h" />
 		<Unit filename="..\inc\ubitmap.h" />
+		<Unit filename="..\inc\ubrush.h" />
 		<Unit filename="..\inc\ubutton.h" />
 		<Unit filename="..\inc\ucombobox.h" />
 		<Unit filename="..\inc\ucomboboxex.h" />
@@ -76,6 +77,7 @@
 		<Unit filename="..\inc\uglut.h" />
 		<Unit filename="..\inc\uicon.h" />
 		<Unit filename="..\inc\uimagelist.h" />
+		<Unit filename="..\inc\ulayout.h" />
 		<Unit filename="..\inc\ulib.h" />
 		<Unit filename="..\inc\ulistbox.h" />
 		<Unit filename="..\inc\ulistview.h" />
@@ -108,6 +110,7 @@
 		</Unit>
 		<Unit filename="..\src\ubasewindow.cpp" />
 		<Unit filename="..\src\ubitmap.cpp" />
+		<Unit filename="..\src\ubrush.cpp" />
 		<Unit filename="..\src\ubutton.cpp" />
 		<Unit filename="..\src\ucombobox.cpp" />
 		<Unit filename="..\src\ucomboboxex.cpp" />
@@ -125,6 +128,7 @@
 		<Unit filename="..\src\uglut.cpp" />
 		<Unit filename="..\src\uicon.cpp" />
 		<Unit filename="..\src\uimagelist.cpp" />
+		<Unit filename="..\src\ulayout.cpp" />
 		<Unit filename="..\src\ulib.cpp" />
 		<Unit filename="..\src\ulistbox.cpp" />
 		<Unit filename="..\src\ulistview.cpp" />

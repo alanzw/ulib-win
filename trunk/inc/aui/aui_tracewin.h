@@ -27,7 +27,22 @@ public:
         setWndClassName(_T("HUYS_TRACE_WINDOW_CLASS"));
         setTitle(_T("Trace"));
 
-        setExStyles(WS_EX_TOOLWINDOW | WS_EX_TOPMOST | WS_EX_APPWINDOW);
+        setExStyles(WS_EX_TOOLWINDOW | WS_EX_TOPMOST);
+    }
+
+    UTraceWindow(HWND hParent)
+    : UBaseWindow(hParent)
+    {
+        RECT rc;
+        ::GetWindowRect(getParent(), &rc);
+        rc.left = rc.right - 200;
+        rc.top = rc.bottom - 200;
+        setRect(&rc);
+        setMenu(0);
+        setWndClassName(_T("HUYS_TRACE_WINDOW_CLASS"));
+        setTitle(_T("Trace"));
+
+        setExStyles(WS_EX_TOOLWINDOW | WS_EX_TOPMOST);
     }
 
     BOOL onCreate()

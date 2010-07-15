@@ -208,6 +208,11 @@ BOOL UDevContext::textOut( int nX, int nY, LPCTSTR lpString, int cbString )
     return ::TextOut((HDC)m_hObj, nX, nY, lpString, cbString);
 }
 
+BOOL UDevContext::textOutEx( int nX, int nY, LPCTSTR lpText )
+{
+	return this->textOut(nX, nY, lpText, lstrlen(lpText));	
+}
+
 int UDevContext::drawText( LPCTSTR lpchText, int nCount, LPRECT lpRect, UINT uFormat )
 {
     return ::DrawText((HDC)m_hObj, lpchText, nCount, lpRect, uFormat);
@@ -283,6 +288,7 @@ huys::Color UDevContext::setTextColor( huys::Color clr )
 {
     return ::SetTextColor((HDC)m_hObj, clr);
 }
+
 
 UPaintDC::UPaintDC(HWND hWnd)
 {

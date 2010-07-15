@@ -701,6 +701,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\ulayout.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\ulib.cpp"
 				>
 				<FileConfiguration
@@ -1018,6 +1022,10 @@
 			</File>
 			<File
 				RelativePath="..\inc\ukeybd.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\ulayout.h"
 				>
 			</File>
 			<File
