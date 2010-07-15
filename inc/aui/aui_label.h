@@ -8,6 +8,7 @@
 #include "udc.h"
 #include "adt/uautoptr.h"
 #include "colors.h"
+#include "adt/ustring.h"
 
 namespace AUI
 {
@@ -41,9 +42,7 @@ public:
 
     /* virtual */ BOOL create()
     {
-        BOOL bRet = UStatic::create();
-        this->subclassProc();
-        return  bRet;
+        return UStatic::create() && this->subclassProc();
     }
 
     BOOL onMessage( UINT message, WPARAM wParam, LPARAM lParam )
@@ -128,8 +127,129 @@ private:
     UBitmap m_ubm;
 };
 
+class ULinkLabel : public UStatic
+{
+	enum ULL_State {
+		ULLS_HOVER = 0,
+		ULLS_VISITED,
+		ULLS_NORMAL
+	};
+public:
+	ULinkLabel(HWND hParent, UINT nResource, HINSTANCE hInst)
+		: UStatic(hParent, nResource, hInst)
+	{
+		m_dwStyles |= SS_NOTIFY;
+
+		_initialize();
+	}
+
+	ULinkLabel(UBaseWindow *pWndParent, LPCTSTR lpText)
+		: UStatic(pWndParent, lpText)
+	{
+		m_dwStyles |= SS_NOTIFY;
+
+		_initialize();
+	}
+
+	/* virtual */ BOOL create()
+	{
+		return UStatic::create() && this->subclassProc();
+	}
+
+	virtual BOOL onCtrlColor(WPARAM wParam, LPARAM lParam)
+	{
+		USmartDC dc((HDC)wParam);
+
+		switch (_state)
+		{
+		case ULLS_HOVER:
+			dc.setTextColor(_clrHover);
+			break;
+		case ULLS_VISITED:
+			dc.setTextColor(_clrVisited);
+			break;
+		default:
+			dc.setTextColor(_clrLink);
+		}
+		
+		dc.setBKMode(TRANSPARENT);
+
+		return (BOOL)(HBRUSH)GetStockObject(NULL_BRUSH);
+	}
+
+	virtual BOOL onLButtonDown(WPARAM,LPARAM)
+	{
+		gotoUrl();
+		return FALSE;
+	}
+
+	virtual BOOL onLButtonUp(WPARAM,LPARAM)
+	{
+		
+		return TRUE;
+	}
+
+	virtual BOOL onMouseMove(WPARAM wParam, LPARAM lParam)
+	{
+		LONG x = LOWORD(lParam);
+		LONG y = HIWORD(lParam);
+
+		if (_state == ULLS_HOVER)
+		{
+			huys::URectL rect;
+			this->getClientRect(rect);
+
+			if (!rect.PtrInRectEx(x, y))
+			{
+				_state = ULLS_NORMAL;
+				::ReleaseCapture();
+				this->invalidate();
+				return FALSE;
+			}
+			_state = ULLS_NORMAL;
+		}
+		
+		if (_state == ULLS_NORMAL)
+		{
+			_state = ULLS_HOVER;
+			this->invalidate();
+			::SetCapture(m_hSelf);
+		}
+		
+		return TRUE;
+	}
+public:
+	void setUrl(const char * url)
+	{
+		_url = url;
+	}
+private:
+	huys::Color _clrLink;
+	huys::Color _clrVisited;
+	huys::Color _clrHover;
+
+	ULL_State _state;
+
+	huys::ADT::UStringAnsi _url;
+private:
+	void _initialize()
+	{
+		_clrLink = huys::blue;
+		_clrHover = huys::xpblue;
+		_clrVisited = huys::darkmagenta;
+
+		_state = ULLS_NORMAL;
+	}
+
+	void gotoUrl()
+	{
+		::ShellExecute(NULL, _T("open"), _url, NULL, NULL, SW_SHOWNORMAL);
+	}
+};
+
 typedef huys::ADT::UAutoPtr<UTransLabel> UTransLabelP;
 typedef huys::ADT::UAutoPtr<UBitmapLabel> UBitmapLabelP;
+typedef huys::ADT::UAutoPtr<ULinkLabel> ULinkLabelP;
 
 }; // namespace AUI
 

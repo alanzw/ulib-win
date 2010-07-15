@@ -24,6 +24,10 @@
 #include "udialogx.h"
 #include "udlgapp.h"
 
+#include "adt/uautoptr.h"
+
+#include "aui/aui_label.h"
+
 using huys::UDialogBox;
 
 TCHAR szText[] =  _T("For more information, ")
@@ -35,47 +39,44 @@ class UDialogExt : public UDialogBox
 {
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-    : UDialogBox(hInst, nID),
-      m_pLink(0)
+    : UDialogBox(hInst, nID)
     {}
-
-    virtual ~UDialogExt()
-    {
-        CHECK_PTR(m_pLink);
-    }
 
     virtual BOOL onInit()
     {
-           m_pLink = new ULink(m_hDlg, 0, m_hInst);
-           m_pLink->create(szText);
-           return TRUE;
+        m_pLink = new ULink(m_hDlg, 0, m_hInst);
+        m_pLink->create(szText);
+
+        _pLinkLabel = new AUI::ULinkLabel(m_hDlg, -1, m_hInst);
+        _pLinkLabel->setText(_T("Contact Me"));
+        _pLinkLabel->setPos(200, 200, 100, 50);
+        _pLinkLabel->setUrl("http://blog.csdn.net/fox000002");
+        _pLinkLabel->create();
+
+        return TRUE;
     }
 
-    virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
+    virtual BOOL onNotify(WPARAM wParam, LPARAM lParam)
     {
-        BOOL result = UDialogBox::DialogProc(message, wParam, lParam);
-
         RECT rc = {200, 200, 300, 240};
-        if (message == WM_NOTIFY)
+        if (((LPNMHDR)lParam)->hwndFrom == m_pLink->getHWND())
         {
-            if (((LPNMHDR)lParam)->hwndFrom == m_pLink->getHWND())
+            switch (((LPNMHDR)lParam)->code)
             {
-                switch (((LPNMHDR)lParam)->code)
-                {
-                case NM_CLICK:
-                 ::MessageBoxW(m_hDlg, ((PNMLINK)lParam)->item.szUrl, ((PNMLINK)lParam)->item.szID, MB_OK);
-                 m_pLink->setPosition(&rc);
-                 break;
-                }
+            case NM_CLICK:
+                ::MessageBoxW(m_hDlg, ((PNMLINK)lParam)->item.szUrl, ((PNMLINK)lParam)->item.szID, MB_OK);
+                m_pLink->setPosition(&rc);
+                break;
             }
         }
 
-        return result;
+        return UDialogBox::onNotify(wParam, lParam);
     }
-
 private:
-    ULink *m_pLink;
+    huys::ADT::UAutoPtr<ULink> m_pLink;
     //ULink xx;
+
+    AUI::ULinkLabelP _pLinkLabel;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

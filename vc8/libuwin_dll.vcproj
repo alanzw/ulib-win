@@ -736,6 +736,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\src\ulink.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\ulistbox.cpp"
 				>
 			</File>
@@ -1030,6 +1034,10 @@
 			</File>
 			<File
 				RelativePath="..\inc\ulib.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\ulink.h"
 				>
 			</File>
 			<File

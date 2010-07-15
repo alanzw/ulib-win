@@ -20,6 +20,7 @@
 #include "aui/aui_tracewin.h"
 #include "aui/aui_glctrl.h"
 #include "aui/aui_dockwin.h"
+#include "aui/aui_aboutdlg.h"
 
 #include "u3dcreator.h"
 

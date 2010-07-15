@@ -470,6 +470,7 @@ private:
             aboutDlg = new AUI::UAboutDialog(this);
             aboutDlg->setHeader("UFileSplit 0.0.1");
             aboutDlg->setDescription("UFileSplit is written by huys03@gmail.com");
+            aboutDlg->setCopyright("Copyright (C) 2010 huys");
             aboutDlg->addStyles(WS_SYSMENU);
             aboutDlg->create();
         }

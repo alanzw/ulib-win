@@ -3,9 +3,13 @@
 
 #include "ubasewindow.h"
 #include "ubutton.h"
+
 #include "uicon.h"
+
 #include "adt/uautoptr.h"
 #include "adt/ustring.h"
+
+#include "aui/aui_button.h"
 
 #define  UABOUTDIALOG_CLASSNAME "UABOUTDLG_{8E613694-04D1-4813-80A6-51EE5DBA3D6F}"
 
@@ -15,26 +19,28 @@ namespace AUI
 class UAboutDialog : public UBaseWindow
 {
 public:
-    UAboutDialog(HWND hWnd)
-    : UBaseWindow(hWnd)
+    UAboutDialog(HWND hParent)
+    : UBaseWindow(hParent)
     {
-        RECT rc;
-        ::GetWindowRect(hWnd, &rc);
-        ::InflateRect(&rc, -200, -50);
-        setRect(&rc);
+        huys::URectL rect;
+        ::GetWindowRect(hParent, rect);
+        rect.inflate(-200, -50);
+        setRect(rect);
+
         setTitle(_T("About"));
         setWndClassName(UABOUTDIALOG_CLASSNAME);
 
         _hModule = NULL;
     }
 
-    UAboutDialog(UBaseWindow *pWnd)
-        : UBaseWindow(pWnd)
+    UAboutDialog(UBaseWindow *pWndParent)
+        : UBaseWindow(pWndParent)
     {
-        RECT rc;
-        ::GetWindowRect(*pWnd, &rc);
-        ::InflateRect(&rc, -200, -50);
-        setRect(&rc);
+        huys::URectL rect;
+        pWndParent->getWindowRect(rect);
+        rect.inflate(-200, -50);
+        setRect(rect);
+
         setTitle(_T("About"));
         setWndClassName(UABOUTDIALOG_CLASSNAME);
 
@@ -44,9 +50,18 @@ public:
     BOOL onCreate()
     {
         setIconBig(IDI_HELP);
+
+        huys::URectL rect;
+        this->getClientRect(rect);
+
         UGroupBox groupbox(this, -1);
         groupbox.setPos(30, 150, 330, 100);
         groupbox.create();
+
+        _buttonOK = new UButton(this, IDOK);
+        _buttonOK->setPos(rect.right()-100, rect.bottom()-100, 50, 50);
+        _buttonOK->create();
+        _buttonOK->setWindowText(_T("OK"));
 
         return TRUE;
     }
@@ -58,6 +73,8 @@ public:
 
     void onDraw(HDC hdc)
     {
+        USmartDC dc(hdc);
+        
         UIcon icon;
 
         if (NULL == _hModule)
@@ -66,10 +83,14 @@ public:
         }
 
         icon.loadImage(_hModule, IDI_HELP, 128, 128);
-        icon.drawEx(hdc, 20, 20, 128, 128);
-        ::SetBkMode(hdc, TRANSPARENT);
-        ::TextOut(hdc, 200, 100, _header, _header.length());
-        ::TextOut(hdc, 60, 200, _description, _description.length());
+        
+        icon.drawEx(dc, 20, 20, 128, 128);
+
+        
+        dc.setBKMode(TRANSPARENT);
+        dc.textOutEx(200, 100, _header);
+        dc.textOutEx(60, 200, _description);
+        dc.textOutEx(100, 300, _copyright);
     }
 
     virtual BOOL onChar(WPARAM wParam, LPARAM lParam)
@@ -80,6 +101,17 @@ public:
             return onClose();
         default:
             return UBaseWindow::onChar(wParam, lParam);
+        }
+    }
+
+    virtual BOOL onCommand(WPARAM wParam, LPARAM lParam)
+    {
+        switch(LOWORD(wParam))
+        {
+        case IDOK:
+            return onClose();
+        default:
+            return UBaseWindow::onCommand(wParam, lParam);
         }
     }
 
@@ -99,6 +131,11 @@ public:
         _description = desc;
     }
 
+    void setCopyright(const char *copy)
+    {
+        _copyright = copy;
+    }
+
     void setModule(HINSTANCE hModule)
     {
         _hModule = hModule;
@@ -106,8 +143,11 @@ public:
 private:
     huys::ADT::UStringAnsi _header;
     huys::ADT::UStringAnsi _description;
+    huys::ADT::UStringAnsi _copyright;
 
     HINSTANCE _hModule;
+
+    AUI::UButtonP _buttonOK;
 };
 
 typedef huys::ADT::UAutoPtr<UAboutDialog> UAboutDialogP;
