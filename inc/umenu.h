@@ -19,7 +19,7 @@ public:
     BOOL addSubMenu(HMENU hSubMenu, LPCTSTR lpText);
     BOOL addSeparator();
     //
-    BOOL load(HINSTANCE hInst, LPCSTR lpMenuName);
+    BOOL load(HINSTANCE hInst, LPCTSTR lpMenuName);
     //
     BOOL getMenu(HWND hWnd);
 

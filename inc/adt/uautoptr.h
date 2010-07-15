@@ -69,7 +69,7 @@ public:
         return static_cast<TP>(*static_cast<T*>(_p));
     }
 
-	operator UControl *()
+	operator class UControl *()
 	{
 		return (UControl *)(_p);
 	}

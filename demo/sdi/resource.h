@@ -6,6 +6,7 @@
 
 #define IDR_MAINMENU           300 
 #define IDM_NEW                334
+#define IDM_GO                 335
 #define IDM_OPEN           4002
 #define IDM_SAVE           4003
 #define IDM_UNDO           4004

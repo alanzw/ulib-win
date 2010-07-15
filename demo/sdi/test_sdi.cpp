@@ -15,9 +15,7 @@
 
 class UMyDockWindow : public UBaseWindow
 {
-    enum {
-        ID_TOOLBAR = 13333
-    };
+    enum { ID_TOOLBAR = 13333 };
 public:
     UMyDockWindow(HWND hParent)
     : UBaseWindow(hParent)
@@ -31,33 +29,25 @@ public:
 
     BOOL onCreate()
     {
+
         m_putl = new  UToolBar(*this, ID_TOOLBAR, getInstance());
-        m_putl->setStyles(TBSTYLE_FLAT );
+        m_putl->setStyles(TBSTYLE_FLAT);
         m_putl->create();
 
         static UImageList uil(IDR_TOOLBAR1, ::GetModuleHandle(NULL));
-        HIMAGELIST himl = uil.getHandle();
-        m_putl->setImageList(himl);
+        m_putl->setImageList(uil);
 
         static UImageList uilhot(IDR_TOOLBAR1_HOT, ::GetModuleHandle(NULL));
-        m_putl->setHotImageList(uilhot.getHandle());
-
+        m_putl->setHotImageList(uilhot);
 
         m_putl->setExtendStyle(TBSTYLE_EX_DRAWDDARROWS);
 
-        // Initialize button info.
-        // IDM_NEW, IDM_OPEN, and IDM_SAVE are application-defined command constants.
-        TBBUTTON tbButtons[4] =
-        {
-            { MAKELONG(0, 0), IDM_NEW, TBSTATE_ENABLED,
-            TBSTYLE_AUTOSIZE | TBSTYLE_DROPDOWN, {0}, 0, (INT_PTR)"New" },
-            { MAKELONG(1, 0), IDM_OPEN, TBSTATE_ENABLED,
-            TBSTYLE_AUTOSIZE, {0}, 0, (INT_PTR)"Open"},
-            { MAKELONG(2, 0), IDM_SAVE, 0,
-            TBSTYLE_AUTOSIZE, {0}, 0, (INT_PTR)"Save"},
-            { 100, 0, TBSTATE_ENABLED, TBSTYLE_SEP, {0}, 0, -1}
-        };
-        m_putl->addButtons(4, tbButtons);
+        m_putl->addButton(MAKELONG(0, 0), IDM_NEW, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE | TBSTYLE_DROPDOWN, (INT_PTR)"New");
+        m_putl->addButton(MAKELONG(1, 0), IDM_OPEN, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, (INT_PTR)"Open");
+        m_putl->addButton(MAKELONG(2, 0), IDM_SAVE, 0, TBSTYLE_AUTOSIZE, (INT_PTR)"Save");
+  
+        m_putl->addSeparator(20);
+        m_putl->addButton(MAKELONG(1, 0), IDM_GO, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, (INT_PTR)"GO"); 
         m_putl->autosize();
         m_putl->show();
         m_putl->enableButton(IDM_SAVE);
@@ -73,27 +63,19 @@ public:
         return 0;
     }
 
-    BOOL onMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
+    BOOL onCommand(WPARAM wParam, LPARAM lParam)
     {
-        //if (WM_NCACTIVATE == uMessage)
-        //{
-        //    this->sendMsg(WM_NCACTIVATE, TRUE, (LONG)-1);
-        //}
-
-        if (WM_COMMAND == uMessage)
-        {
             switch (LOWORD (wParam))
             {
             case IDM_NEW:
             case IDM_ABOUT:
+            case IDM_GO:
                 ::SendMessage(getParent(), WM_COMMAND, wParam, lParam);
                 return FALSE;
             default:
                 break;
             }
-        }
-
-        return UBaseWindow::onMessage(uMessage, wParam, lParam);
+        return UBaseWindow::onCommand(wParam, lParam);
     }
 
 #define POPUP_STYLES   (WS_POPUP | WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_SYSMENU | WS_CAPTION | WS_THICKFRAME)
@@ -105,7 +87,7 @@ public:
     {
         //this->hide();
 
-        HWND hwnd = (HWND)*this;
+        HWND hwnd = this->getHandle();
 
         ShowWindow(hwnd, SW_HIDE);
 
@@ -215,6 +197,8 @@ public:
             return onMenuNew();
         case IDM_ABOUT:
             return onMenuAbout();
+        case IDM_GO:
+            return onMenuGo();
         default:
             return UBaseWindow::onCommand(wParam, lParam);
        }
@@ -232,9 +216,17 @@ public:
 
    BOOL onMenuAbout()
    {
-        static_cast<UMyDockWindow *>(m_dwin.at(0))->goDock();
         return FALSE;
    }
+
+    BOOL onMenuGo()
+    {
+        if (m_dwin.size()>0)
+        {
+            static_cast<UMyDockWindow *>(m_dwin.at(0))->goDock();
+        }
+        return FALSE;
+    }
 
    BOOL onSize(WPARAM wParam, LPARAM lParam)
        {
@@ -246,7 +238,7 @@ public:
         if (m_dwin.size() > 0)
         {
             hdwp = ::BeginDeferWindowPos(2);
-            ::DeferWindowPos(hdwp, *m_dwin[0], 0, rc.left, rc.top, width, 1, SWP_NOZORDER);
+            ::DeferWindowPos(hdwp, m_dwin.at(0)->getHandle(), 0, rc.left, rc.top, width, 1, SWP_NOZORDER);
             ::EndDeferWindowPos(hdwp);
         }
          m_pStatusBar->resize();

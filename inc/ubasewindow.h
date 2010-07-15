@@ -142,7 +142,8 @@ public:
      * If an application processes this message, it should return zero.
      */
     virtual BOOL onLButtonDown(WPARAM wParam, LPARAM lParam) {return FALSE;}
-
+    virtual BOOL onLButtonUp(WPARAM wParam, LPARAM lParam) {return FALSE;}
+    virtual BOOL onMouseMove(WPARAM wParam, LPARAM lParam) {return FALSE;}
     /*
      *
      */
