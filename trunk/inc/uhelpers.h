@@ -204,6 +204,18 @@ public:
         _bottom += y2;
     }
 
+    void clientToScreen(HWND hWnd)
+    {
+        ::ClientToScreen(hWnd, (LPPOINT)this);
+        ::ClientToScreen(hWnd, ((LPPOINT)this)+1);
+    }
+
+    void screenToClient(HWND hWnd)
+    {
+        ::ScreenToClient(hWnd, (LPPOINT)this);
+        ::ScreenToClient(hWnd, ((LPPOINT)this)+1);
+    }
+
     T left() const { return _left; }
     T top() const { return _top; }
     T right() const { return _right; }

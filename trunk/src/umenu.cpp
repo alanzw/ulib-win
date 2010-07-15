@@ -51,7 +51,7 @@ BOOL UMenu::append( UINT uMenuItem, HBITMAP hbmp )
     return ::AppendMenu(*this, MF_BITMAP, uMenuItem, (LPTSTR) hbmp);
 }
 
-BOOL UMenu::load(HINSTANCE hInst, LPCSTR lpMenuName)
+BOOL UMenu::load(HINSTANCE hInst, LPCTSTR lpMenuName)
 {
     m_hObj = ::LoadMenu(hInst, lpMenuName);
     return TRUE;

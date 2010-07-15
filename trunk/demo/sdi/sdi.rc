@@ -15,11 +15,12 @@ IDR_MAINMENU MENU
 BEGIN
     POPUP "file(&f)"
     BEGIN
-        MENUITEM "new(&n)", IDM_NEW
+        MENUITEM "New(&N)", IDM_NEW
+        MENUITEM "Go(&G)", IDM_GO
     END
     POPUP "help(&h)"
     BEGIN
-        MENUITEM "about(&a)", IDM_ABOUT
+        MENUITEM "About(&A)", IDM_ABOUT
     END
 END
 

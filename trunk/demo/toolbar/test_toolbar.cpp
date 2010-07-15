@@ -13,7 +13,7 @@
 #include "utoolbar.h"
 #include "umsg.h"
 #include "uedit.h"
-
+#include "udc.h"
 #include "adt/uautoptr.h"
 
 using huys::UDialogBox;
@@ -65,11 +65,6 @@ public:
         : UDialogBox(hInst, nID), m_psub(0)
     {}
 
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_putl);
-    }
-
     virtual BOOL onInit()
     {
         m_putl = new  UToolBar(m_hDlg, ID_TOOLBAR, m_hInst);
@@ -84,22 +79,6 @@ public:
 
 
         m_putl->setExtendStyle(TBSTYLE_EX_DRAWDDARROWS);
-
-        // Initialize button info.
-        // IDM_NEW, IDM_OPEN, and IDM_SAVE are application-defined command constants.
-/*
-        TBBUTTON tbButtons[4] =
-        {
-            { MAKELONG(0, 0), IDM_NEW, TBSTATE_ENABLED,
-            TBSTYLE_AUTOSIZE | TBSTYLE_DROPDOWN, {0}, 0, (INT_PTR)"New" },
-            { MAKELONG(1, 0), IDM_OPEN, TBSTATE_ENABLED,
-            TBSTYLE_AUTOSIZE, {0}, 0, (INT_PTR)"Open"},
-            { MAKELONG(2, 0), IDM_SAVE, 0,
-            TBSTYLE_AUTOSIZE, {0}, 0, (INT_PTR)"Save"},
-            { 100, 0, TBSTATE_ENABLED, TBSTYLE_SEP, {0}, 0, -1}
-        };
-*/
-        //m_putl->addButtons(4, tbButtons);
 
         m_putl->addButton(MAKELONG(0, 0), IDM_NEW, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE| TBSTYLE_DROPDOWN, (INT_PTR)"New");
         m_putl->addButton(MAKELONG(1, 0), IDM_OPEN, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, (INT_PTR)"Open");
@@ -171,17 +150,39 @@ public:
 
     BOOL onNotify(WPARAM wParam, LPARAM lParam)
     {
-            LPNMTBCUSTOMDRAW lpNMCustomDraw = (LPNMTBCUSTOMDRAW) lParam;
-            RECT rect;
-            //::GetClientRect(m_putl->getHWND(), &rect);
-            m_putl->getClientRect(&rect);
-            ::FillRect(lpNMCustomDraw->nmcd.hdc, &rect, (HBRUSH)GetStockObject(GRAY_BRUSH));
+        
+        //RECT rect;
+        //::GetClientRect(m_putl->getHWND(), &rect);
+        //m_putl->getClientRect(&rect);
+        //::FillRect(lpNMCustomDraw->nmcd.hdc, &rect, (HBRUSH)GetStockObject(GRAY_BRUSH));
+        
+        
+        
+        
+
 
 #define lpnm   ((LPNMHDR)lParam)
 #define lpnmTB ((LPNMTOOLBAR)lParam)
 
             switch(lpnm->code)
             {
+            case NM_CUSTOMDRAW:
+                {
+                    if (ID_TOOLBAR == lpnm->idFrom)
+                    {
+                        LPNMTBCUSTOMDRAW lpNMCustomDraw = (LPNMTBCUSTOMDRAW) lParam;
+                        
+                        huys::URectL rect;
+                        m_putl->getWindowRect(rect);
+                        rect.screenToClient(m_putl);
+                        USmartDC dc(lpNMCustomDraw->nmcd.hdc);
+
+                        //dc.fillRect(rect, (HBRUSH)GetStockObject(GRAY_BRUSH));
+
+                        return FALSE;   
+                    }
+                    break;
+                }
             case TBN_DROPDOWN:
                 {
                     // Get the coordinates of the button.
@@ -252,7 +253,7 @@ public:
         DrawText(hdc, "Hello World!", strlen("Hello World!"), &rt, DT_SINGLELINE|DT_CENTER|DT_VCENTER );
     }
 private:
-    UToolBar *m_putl;
+    huys::ADT::UAutoPtr<UToolBar> m_putl;
     UDialogExt *m_psub;
     huys::ADT::UAutoPtr<UToolBar> m_pVTbar;
     //UImageList uil;

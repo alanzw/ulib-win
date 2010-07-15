@@ -190,6 +190,10 @@ BOOL UBaseWindow::onMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
         return this->onCommand(wParam, lParam);
     case WM_LBUTTONDOWN:
         return this->onLButtonDown(wParam, lParam);
+    case WM_LBUTTONUP:
+        return this->onLButtonUp(wParam, lParam);
+    case WM_MOUSEMOVE:
+        return this->onMouseMove(wParam, lParam);
     case WM_CLOSE:
         return onClose();
     case WM_DESTROY:
