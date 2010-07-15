@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="..\demo\progressbar\mac_progressbar.h" open="1" top="0" tabpos="2">
+	<File name="..\demo\progressbar\mac_progressbar.h" open="0" top="0" tabpos="2">
 		<Cursor position="5753" topLine="179" />
 	</File>
-	<File name="..\demo\progressbar\test_progressbar.cpp" open="1" top="1" tabpos="1">
+	<File name="..\demo\progressbar\test_progressbar.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="2570" topLine="48" />
 	</File>
 </CodeBlocks_layout_file>

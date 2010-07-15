@@ -127,6 +127,26 @@ public:
         _bottom = _top + cy;
     }
 
+    void setWidth(T cx)
+    {
+        _right = _left + cx;
+    }
+
+    void setHeight(T cy)
+    {
+        _bottom = _top + cy;
+    }
+
+    void setLeft(T x)
+    {
+        _left = x;
+    }
+
+    void setTop(T y)
+    {
+        _top = y;
+    }
+
     operator LPRECT()
     {
         //RECT rc = {_left, _top, _right, _bottom};
@@ -164,6 +184,18 @@ public:
         _top += y;
         _right += x;
         _bottom += y;
+    }
+
+    void offsetX(T x1, T x2)
+    {
+        _left += x1;
+        _right += x2;
+    }
+
+    void offsetY(T y1, T y2)
+    {
+        _top += y1;
+        _bottom += y2;
     }
 
     T left() const { return _left; }

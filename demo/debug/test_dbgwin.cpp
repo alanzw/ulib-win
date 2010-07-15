@@ -17,57 +17,7 @@
 
 #include "adt/uautoptr.h"
 
-class UTraceWindow : public UBaseWindow
-{
-    enum {
-        ID_LB_TRACE = 1111
-    };
-
-    enum {
-        IDM_SAVE = 2000
-    };
-public:
-    UTraceWindow(HWND hParent)
-    : UBaseWindow(hParent)
-    {
-        RECT rc;
-        ::GetWindowRect(getParent(), &rc);
-        rc.left = rc.right - 200;
-        rc.top = rc.bottom - 200;
-        setRect(&rc);
-        setMenu(0);
-        setWndClassName(_T("HUYS_TRACE_WINDOW_CLASS"));
-        setTitle(_T("Trace"));
-        setStyles(WS_VISIBLE);
-        setExStyles(WS_EX_TOOLWINDOW | WS_EX_TOPMOST);
-    }
-
-    BOOL onCreate()
-    {
-        _pListBox = new UListBox(this, ID_LB_TRACE);
-        RECT rc;
-        this->getClientRect(&rc);
-        _pListBox->setRect(&rc);
-        _pListBox->setStyles(WS_VSCROLL);
-        _pListBox->create();
-        _pListBox->setItemHeight(25);
-
-        return UBaseWindow::onCreate();
-    }
-
-    void addLine(LPCTSTR sLine)
-    {
-        _pListBox->addString(sLine);
-    }
-
-    BOOL onClose()
-    {
-        this->hide();
-        return FALSE;
-    }
-private:
-    huys::ADT::UAutoPtr<UListBox> _pListBox;
-};
+#include "aui/aui_tracewin.h"
 
 using huys::UDialogBox;
 
@@ -86,7 +36,7 @@ public:
 
     virtual BOOL onInit()
     {
-        win = new UTraceWindow(m_hDlg);
+        win = new AUI::UTraceWindow(m_hDlg);
         win->create();
 
         addToolbar();
@@ -177,7 +127,7 @@ private:
         return FALSE;
     }
 private:
-    huys::ADT::UAutoPtr<UTraceWindow> win;
+    AUI::UTraceWindowP win;
     huys::ADT::UAutoPtr<UToolBar> toolbar;
 };
 

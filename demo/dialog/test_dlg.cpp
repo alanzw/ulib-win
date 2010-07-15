@@ -51,6 +51,7 @@ public:
         UDllMan dlm(_T("user32.dll"));
         dlm.callFunc<BOOL, HWND, COLORREF, BYTE, DWORD>(_T("SetLayeredWindowAttributes"),
             m_hDlg, 0, 129, LWA_ALPHA);
+
 #endif // _MSC_VER
         HMENU hMenu = GetSystemMenu (m_hDlg, FALSE) ;
 

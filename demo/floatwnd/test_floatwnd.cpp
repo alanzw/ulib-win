@@ -33,9 +33,7 @@ public:
 
     virtual BOOL create()
     {
-        BOOL bRet = UStatic::create();
-        this->subclassProc();
-        return  bRet;
+        return UStatic::create() && this->subclassProc();
     }
 
     BOOL setIcon(UINT nID)
@@ -100,7 +98,7 @@ public:
           extended style to see if either the WS_EX_APPWINDOW (&H40000)
           or WS_EX_TOOLWINDOW (&H80) style is turned on. If WS_EX_APPWINDOW
           is turned on, the taskbar shows a button for the window, and if
-          WS_EX_ TOOLWINDOW is turned on, the taskbar does not show a button
+          WS_EX_TOOLWINDOW is turned on, the taskbar does not show a button
           for the window. A window should never have both of these extended styles.
           If the window doesn't have either of these styles, the taskbar decides to
           create a button if the window is unowned and does not create a button if

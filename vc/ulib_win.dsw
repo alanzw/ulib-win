@@ -3,6 +3,18 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
+Project: "3dcreator"=".\3dcreator.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
 Project: "ads"=".\ads.dsp" - Package Owner=<4>
 
 Package=<5>
@@ -194,6 +206,18 @@ Package=<4>
     Begin Project Dependency
     Project_Dep_Name libuwin_dll
     End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "floatwnd"=".\floatwnd.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
 }}}
 
 ###############################################################################

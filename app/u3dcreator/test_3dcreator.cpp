@@ -128,9 +128,6 @@ void my_render_round()
 
 class UMyWindow : public UBaseWindow
 {
-    enum {
-        ID_TERMINAL = 11002
-    };
 public:
     UMyWindow()
         : UBaseWindow(NULL, ::GetModuleHandle(NULL))
@@ -141,7 +138,7 @@ public:
 
     BOOL onCreate()
     {
-        this->setIconBig(IDI_APP);
+        this->setIconBig(IDI_GOOGLE);
 
         win = new AUI::UTraceWindow(this);
         //win->setPos(100, 100, 200, 200);

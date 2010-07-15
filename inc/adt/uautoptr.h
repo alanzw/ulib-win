@@ -52,6 +52,11 @@ public:
         return (HDC)(*_p);
     }
 
+	operator HWND() const
+	{
+		return (HWND)(*_p);
+	}
+
     typedef class UControl * UControlP;
     operator UControlP*()
     {
@@ -59,10 +64,15 @@ public:
     }
 #else
     template <typename TP>
-        operator TP() const
+    operator TP() const
     {
         return static_cast<TP>(*static_cast<T*>(_p));
     }
+
+	operator UControl *()
+	{
+		return (UControl *)(_p);
+	}
 #endif
 
     T* operator->() const
