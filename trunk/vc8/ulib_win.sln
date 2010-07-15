@@ -108,6 +108,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dc", "dc.vcproj", "{C82883E
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pen", "pen.vcproj", "{DD74CA70-9746-4BA8-9C26-0D816FFE89F7}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "link", "link.vcproj", "{4FF525B4-27CD-452E-913F-B1FE13D812BB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{30463FCE-93F2-4F31-BFB5-355DFFB5CC66} = {30463FCE-93F2-4F31-BFB5-355DFFB5CC66}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -319,6 +324,12 @@ Global
 		{DD74CA70-9746-4BA8-9C26-0D816FFE89F7}.Debug-static|Win32.Build.0 = Debug-static|Win32
 		{DD74CA70-9746-4BA8-9C26-0D816FFE89F7}.Release|Win32.ActiveCfg = Release|Win32
 		{DD74CA70-9746-4BA8-9C26-0D816FFE89F7}.Release|Win32.Build.0 = Release|Win32
+		{4FF525B4-27CD-452E-913F-B1FE13D812BB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4FF525B4-27CD-452E-913F-B1FE13D812BB}.Debug|Win32.Build.0 = Debug|Win32
+		{4FF525B4-27CD-452E-913F-B1FE13D812BB}.Debug-static|Win32.ActiveCfg = Debug-static|Win32
+		{4FF525B4-27CD-452E-913F-B1FE13D812BB}.Debug-static|Win32.Build.0 = Debug-static|Win32
+		{4FF525B4-27CD-452E-913F-B1FE13D812BB}.Release|Win32.ActiveCfg = Release|Win32
+		{4FF525B4-27CD-452E-913F-B1FE13D812BB}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
