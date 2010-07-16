@@ -25,6 +25,12 @@
 #include "umsg.h"
 #include "udlgapp.h"
 
+#include "ustatic.h"
+
+#include "adt/uautoptr.h"
+
+#include "aui/aui_label.h"
+
 #include "uctrlbar.h"
 
 
@@ -37,13 +43,23 @@ public:
         : UDialogBox(hInst, nID)
     {}
 
-    ~UDialogCtrlBar()
-    {
-
-    }
-
     BOOL onInit()
     {
+        this->setDlgIconBig(IDI_CTRLBAR);
+
+        m_pCtrlBar = new UCtrlBar(m_hDlg);
+
+        m_pCtrlBar->setPos(50, 50, 600, 100);      
+
+        m_pCtrlBar->create();
+
+        //UStatic * _label = new AUI::UTransLabel(m_pCtrlBar,_T("hello"));
+        //_label->setPos(0, 0, 100, 50);
+
+        m_pCtrlBar->addCtrl(new AUI::UTransLabel(m_pCtrlBar,_T("hello")));
+
+        m_pCtrlBar->createControls();
+        
         return TRUE;
     }
 
@@ -82,7 +98,9 @@ public:
         return result;
     }
 private:
-    UCtrlBar *m_pCtrlBar;
+    huys::ADT::UAutoPtr<UCtrlBar> m_pCtrlBar;
+
+    //AUI::UTransLabelP m_label;
 };
 
 

@@ -35,8 +35,8 @@ public:
     BOOL onCreate()
     {
         _label = new AUI::UTransLabel(this, _T("Properties"));
-		_label->setStyles(SS_CENTER|SS_CENTERIMAGE);
-		_label->setTextColor(huys::blueviolet);
+        _label->setStyles(SS_CENTER|SS_CENTERIMAGE);
+        _label->setTextColor(huys::blueviolet);
         _label->setPos(40, 40, 100, 100);
         _label->create();
 
@@ -81,17 +81,17 @@ public:
     {
         USmartDC dc(hdc);
 
-		HBRUSH hbTitle = ::CreateSolidBrush(huys::xpblue);
+        HBRUSH hbTitle = ::CreateSolidBrush(huys::xpblue);
         
-		huys::URectL rcWindow;
+        huys::URectL rcWindow;
         this->getClientRect(rcWindow);
 
         huys::URectL rcTitle = rcWindow;
-		rcTitle.setHeight(20);
+        rcTitle.setHeight(20);
 
-		dc.fillRect(rcTitle, hbTitle);
-		dc.setTextColor(huys::white);
-		dc.setBKColor(huys::xpblue);
+        dc.fillRect(rcTitle, hbTitle);
+        dc.setTextColor(huys::white);
+        dc.setBKColor(huys::xpblue);
 
         dc.textOutEx(rcWindow.left()+5, rcWindow.top()+2, _T("dock"));
         dc.textOutEx(rcWindow.right()-20, rcWindow.top()+2, _T("X"));

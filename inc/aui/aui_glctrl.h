@@ -27,9 +27,9 @@ public:
 
 private:
     render_callbacks m_render_cbs;
-    
+
     static unsigned int timer_id_offset;
-    
+
     unsigned int timer_id;
 public:
     UGLCtrl(UBaseWindow *pWndParent, UINT id = -1)
@@ -43,11 +43,11 @@ public:
         setExStyles(WS_EX_TOOLWINDOW | WS_EX_APPWINDOW);
 
         m_uInterval = 100;
-        
+
         timer_id = ID_TIMER_INTERNAL + timer_id_offset;
-        
+
         ++timer_id_offset;
-       
+
         setID(id);
     }
 
@@ -79,7 +79,7 @@ public:
 
     void onDraw(HDC hdc)
     {
-		wglMakeCurrent(m_hdc, m_hrc );
+        wglMakeCurrent(m_hdc, m_hrc );
         render();
         SwapBuffers(m_hdc);
     }
@@ -106,10 +106,10 @@ public:
 
     BOOL onTimer(WPARAM wParam, LPARAM lParam)
     {
-    
+
         if (wParam == timer_id)
         {
-				wglMakeCurrent(m_hdc, m_hrc );
+                wglMakeCurrent(m_hdc, m_hrc );
                 render();
                 // Swap buffers
                 SwapBuffers(m_hdc);

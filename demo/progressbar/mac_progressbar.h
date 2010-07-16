@@ -35,7 +35,7 @@ public:
         this->getWindowRect(rectCtrl);
         this->getClientRect(rectClient);
 
-        huys::URectL rect(1, 1, rectCtrl.width()+1, rectCtrl.height()+1);
+        huys::URectL rect(0, 0, rectCtrl.width(), rectCtrl.height());
 
         dc.setBrushColor(huys::pink);
         dc.rectangle(rect);

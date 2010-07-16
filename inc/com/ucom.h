@@ -80,11 +80,11 @@ inline HRESULT HuCoCreateInstance(
 {
       HRESULT hr = REGDB_E_KEYMISSING;
 
-	  IClassFactory *pIFactory;
+      IClassFactory *pIFactory;
 
 #if  defined(_MSC_VER) && _MSC_VER <= 1200
       
-	  HMODULE hDll = ::LoadLibrary(szDllName);
+      HMODULE hDll = ::LoadLibrary(szDllName);
       if (hDll == 0)
           return hr;
 
@@ -104,7 +104,7 @@ inline HRESULT HuCoCreateInstance(
 
 
 #else
-	  static UDllMan udm(szDllName);
+      static UDllMan udm(szDllName);
 
       hr = udm.callFunc<HRESULT, REFCLSID, REFIID, LPVOID FAR*>("DllGetClassObject", rclsid, IID_IClassFactory, (LPVOID *)&pIFactory);
 
@@ -458,7 +458,7 @@ public:
     {
         return (T*)_p;
     }
-    
+
     T** operator&()
     {
         return (T**)&_p;

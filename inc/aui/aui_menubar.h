@@ -27,24 +27,24 @@ public:
         _hMenu = 0;
         _nFocusedItem = -1;
     }
-    
+
     UMenuBar(HWND hParent)
     : UBaseWindow(hParent)
     {
         setMenu(0);
         setWndClassName(_T("HUYS_MENUBAR_WINDOW_CLASS"));
         addStyles(WS_CHILD);
-        
+
         _hMenu = 0;
         _nFocusedItem = -1;
     }
 
     BOOL onCreate()
     {
-   
+
         if (0 != _hMenu)
         {
-            char buffer[256];   
+            char buffer[256];
             int idx = 0;
             while (0 != ::GetMenuString(_hMenu, idx, buffer, 256, MF_BYPOSITION))
             {
@@ -53,7 +53,7 @@ public:
                     buffer[0] = ' ';
                 }
                 _texts.push_back(buffer);
-                
+
                 ++idx;
             }
         }
@@ -98,25 +98,25 @@ public:
 
             dc.setBrushColor(huys::red);
             dc.rectangle(rectItem);
-        }       
-        
+        }
+
         for (int i=0; i<_texts.size(); ++i)
         {
             dc.textOutEx(5+i*50, 10, _texts.at(i));
         }
         return TRUE;
     }
-    
+
     BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
     {
-        
+
         LONG x = LOWORD(lParam);
-		LONG y = HIWORD(lParam);
-        
+        LONG y = HIWORD(lParam);
+
         int nPos =  x/50;
 
         _nFocusedItem = nPos;
-        
+
         HMENU hMenu = ::GetSubMenu(_hMenu, nPos);
 
         if (0 != hMenu)
@@ -132,7 +132,7 @@ public:
             rectClient.offset(nPos*50, 0);
 
             this->invalidate(TRUE);
-            
+
             POINT pt;
             ::GetCursorPos(&pt);
             ::TrackPopupMenu(hMenu, TPM_LEFTALIGN | TPM_RIGHTBUTTON, rect.left()+nPos*50, rect.bottom(),
@@ -148,7 +148,7 @@ public:
 //             tme.cbSize = sizeof(TRACKMOUSEEVENT);
 //             tme.dwFlags = TME_LEAVE;
 //             tme.hwndTrack = getHandle();
-//             
+//
 //             TrackMouseEvent(&tme);
 //         }
 
@@ -174,8 +174,8 @@ public:
 //             _nFocusedItem = -1;
 //             this->invalidate(TRUE);
 //         }
-//         
-//         
+//
+//
 //         return UBaseWindow::filterMessage(uMessage, wParam, lParam);
 //     }
 
@@ -189,7 +189,7 @@ public:
 //     {
 //         _nFocusedItem = -1;
 //         this->invalidate(TRUE);
-// 
+//
 //         return TRUE;
 private:
     HMENU _hMenu;
