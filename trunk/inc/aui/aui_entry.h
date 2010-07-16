@@ -28,7 +28,7 @@ public:
     {
         setDefaultColors();
     }
-    
+
     // Redirect the Control Procedure
     BOOL create()
     {
@@ -57,19 +57,19 @@ public:
             m_brush.destroy();
             m_brush.createSolidBrush(m_clrBK);
         }
-        
+
         dc.setBKMode(OPAQUE);
         dc.setBKColor(m_clrBK);
-     
+
         HBRUSH hOldBrush = (HBRUSH)dc.selectObj(m_brush);
         HPEN hOldPen = (HPEN)dc.selectObj(::GetStockObject(NULL_PEN));
         dc.selectObj(this->getFont());
-        
+
         huys::URectL rect;
         this->getClientRect(rect);
-        
+
         dc.rectangle(0, 0, rect.width() + 1, rect.height() + 1);
-        
+
         dc.setTextColor(m_clrText);
         dc.drawText(str, strlen(str), rect, DT_EDITCONTROL);
         dc.selectObj(hOldBrush);
@@ -91,14 +91,14 @@ public:
         this->invalidate();
         return FALSE;
     }
-    
+
 public:
     void setBKColorDefault(huys::Color clr)
     { m_clrBKDef = clr; }
-    
+
     void setBKColorSubstitute(huys::Color clr)
     { m_clrBKSub = clr; }
-    
+
     void setTextColor(huys::Color clr)
     { m_clrText = clr; }
 
@@ -108,9 +108,9 @@ private:
     {
         m_clrBKDef = huys::tomato;
         m_clrBKSub = huys::green;
-        
+
         m_clrBK = m_clrBKDef;
-        
+
         m_clrText = huys::black;
     }
 
@@ -123,16 +123,16 @@ private:
     }
 private:
     UBrush m_brush;
-    
+
     huys::Color m_clrBK;
     huys::Color m_clrText;
-    
+
     huys::Color m_clrBKDef;
     huys::Color m_clrBKSub;
 
 };
 
-typedef huys::ADT::UAutoPtr<UIntEntry> UIntEntryP; 
+typedef huys::ADT::UAutoPtr<UIntEntry> UIntEntryP;
 
 }; // namespace AUI
 

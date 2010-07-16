@@ -24,7 +24,7 @@ public:
         m_clrText = huys::black;
     }
 
-    UTransLabel(UBaseWindow *pWndParent, LPCTSTR lpText)
+    UTransLabel(UBaseWindow *pWndParent, LPCTSTR lpText = _T(""))
     : UStatic(pWndParent, lpText)
     {
         m_dwStyles &= ~SS_SIMPLE;
@@ -64,7 +64,7 @@ public:
         ::SetTextColor(hdc, m_clrText);
         return (BOOL)(HBRUSH)GetStockObject(NULL_BRUSH);
     }
-    
+
     void setTextColor(huys::Color clr)
     { m_clrText = clr; }
 private:
@@ -98,7 +98,7 @@ public:
     {
         return  UStatic::create() && this->subclassProc();
     }
-    
+
     void size2content()
     {
         assert(!m_ubm.isNull());
@@ -129,122 +129,122 @@ private:
 
 class ULinkLabel : public UStatic
 {
-	enum ULL_State {
-		ULLS_HOVER = 0,
-		ULLS_VISITED,
-		ULLS_NORMAL
-	};
+    enum ULL_State {
+        ULLS_HOVER = 0,
+        ULLS_VISITED,
+        ULLS_NORMAL
+    };
 public:
-	ULinkLabel(HWND hParent, UINT nResource, HINSTANCE hInst)
-		: UStatic(hParent, nResource, hInst)
-	{
-		m_dwStyles |= SS_NOTIFY;
+    ULinkLabel(HWND hParent, UINT nResource, HINSTANCE hInst)
+        : UStatic(hParent, nResource, hInst)
+    {
+        m_dwStyles |= SS_NOTIFY;
 
-		_initialize();
-	}
+        _initialize();
+    }
 
-	ULinkLabel(UBaseWindow *pWndParent, LPCTSTR lpText)
-		: UStatic(pWndParent, lpText)
-	{
-		m_dwStyles |= SS_NOTIFY;
+    ULinkLabel(UBaseWindow *pWndParent, LPCTSTR lpText)
+        : UStatic(pWndParent, lpText)
+    {
+        m_dwStyles |= SS_NOTIFY;
 
-		_initialize();
-	}
+        _initialize();
+    }
 
-	/* virtual */ BOOL create()
-	{
-		return UStatic::create() && this->subclassProc();
-	}
+    /* virtual */ BOOL create()
+    {
+        return UStatic::create() && this->subclassProc();
+    }
 
-	virtual BOOL onCtrlColor(WPARAM wParam, LPARAM lParam)
-	{
-		USmartDC dc((HDC)wParam);
+    virtual BOOL onCtrlColor(WPARAM wParam, LPARAM lParam)
+    {
+        USmartDC dc((HDC)wParam);
 
-		switch (_state)
-		{
-		case ULLS_HOVER:
-			dc.setTextColor(_clrHover);
-			break;
-		case ULLS_VISITED:
-			dc.setTextColor(_clrVisited);
-			break;
-		default:
-			dc.setTextColor(_clrLink);
-		}
-		
-		dc.setBKMode(TRANSPARENT);
+        switch (_state)
+        {
+        case ULLS_HOVER:
+            dc.setTextColor(_clrHover);
+            break;
+        case ULLS_VISITED:
+            dc.setTextColor(_clrVisited);
+            break;
+        default:
+            dc.setTextColor(_clrLink);
+        }
 
-		return (BOOL)(HBRUSH)GetStockObject(NULL_BRUSH);
-	}
+        dc.setBKMode(TRANSPARENT);
 
-	virtual BOOL onLButtonDown(WPARAM,LPARAM)
-	{
-		gotoUrl();
-		return FALSE;
-	}
+        return (BOOL)(HBRUSH)GetStockObject(NULL_BRUSH);
+    }
 
-	virtual BOOL onLButtonUp(WPARAM,LPARAM)
-	{
-		
-		return TRUE;
-	}
+    virtual BOOL onLButtonDown(WPARAM,LPARAM)
+    {
+        gotoUrl();
+        return FALSE;
+    }
 
-	virtual BOOL onMouseMove(WPARAM wParam, LPARAM lParam)
-	{
-		LONG x = LOWORD(lParam);
-		LONG y = HIWORD(lParam);
+    virtual BOOL onLButtonUp(WPARAM,LPARAM)
+    {
 
-		if (_state == ULLS_HOVER)
-		{
-			huys::URectL rect;
-			this->getClientRect(rect);
+        return TRUE;
+    }
 
-			if (!rect.PtrInRectEx(x, y))
-			{
-				_state = ULLS_NORMAL;
-				::ReleaseCapture();
-				this->invalidate();
-				return FALSE;
-			}
-			_state = ULLS_NORMAL;
-		}
-		
-		if (_state == ULLS_NORMAL)
-		{
-			_state = ULLS_HOVER;
-			this->invalidate();
-			::SetCapture(m_hSelf);
-		}
-		
-		return TRUE;
-	}
+    virtual BOOL onMouseMove(WPARAM wParam, LPARAM lParam)
+    {
+        LONG x = LOWORD(lParam);
+        LONG y = HIWORD(lParam);
+
+        if (_state == ULLS_HOVER)
+        {
+            huys::URectL rect;
+            this->getClientRect(rect);
+
+            if (!rect.PtrInRectEx(x, y))
+            {
+                _state = ULLS_NORMAL;
+                ::ReleaseCapture();
+                this->invalidate();
+                return FALSE;
+            }
+            _state = ULLS_NORMAL;
+        }
+
+        if (_state == ULLS_NORMAL)
+        {
+            _state = ULLS_HOVER;
+            this->invalidate();
+            ::SetCapture(m_hSelf);
+        }
+
+        return TRUE;
+    }
 public:
-	void setUrl(const char * url)
-	{
-		_url = url;
-	}
+    void setUrl(const char * url)
+    {
+        _url = url;
+    }
 private:
-	huys::Color _clrLink;
-	huys::Color _clrVisited;
-	huys::Color _clrHover;
+    huys::Color _clrLink;
+    huys::Color _clrVisited;
+    huys::Color _clrHover;
 
-	ULL_State _state;
+    ULL_State _state;
 
-	huys::ADT::UStringAnsi _url;
+    huys::ADT::UStringAnsi _url;
 private:
-	void _initialize()
-	{
-		_clrLink = huys::blue;
-		_clrHover = huys::xpblue;
-		_clrVisited = huys::darkmagenta;
+    void _initialize()
+    {
+        _clrLink = huys::blue;
+        _clrHover = huys::xpblue;
+        _clrVisited = huys::darkmagenta;
 
-		_state = ULLS_NORMAL;
-	}
+        _state = ULLS_NORMAL;
+    }
 
-	void gotoUrl()
-	{
-		::ShellExecute(NULL, _T("open"), _url, NULL, NULL, SW_SHOWNORMAL);
-	}
+    void gotoUrl()
+    {
+        ::ShellExecute(NULL, _T("open"), _url, NULL, NULL, SW_SHOWNORMAL);
+    }
 };
 
 typedef huys::ADT::UAutoPtr<UTransLabel> UTransLabelP;

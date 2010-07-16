@@ -57,7 +57,7 @@ public:
 
         m_pUPBCustom = new UMacProgressBar(m_hDlg, 3335, m_hInst);
         //m_pUPBCustom->setStyles(PBS_SMOOTH|PBS_VERTICAL);
-        m_pUPBCustom->setPos(120,260,250,50);
+        m_pUPBCustom->setPos(120,260,250,20);
         m_pUPBCustom->setColors(huys::blue);
         m_pUPBCustom->create();
         
@@ -83,8 +83,8 @@ public:
         m_pUPB2->stepIt();
         m_pUPBCustom->stepIt();
         m_pUPBCustom->setIndeterminate(!m_pUPBCustom->getIndeterminate());
-        RECT rc = {20,20,420,120};
-        ::InvalidateRect(m_hDlg, &rc, TRUE);
+//         RECT rc = {20,20,420,120};
+//         ::InvalidateRect(m_hDlg, &rc, TRUE);
         return FALSE;
     }
 
