@@ -183,6 +183,12 @@ BOOL UDevContext::roundRect(int nLeft, int nTop, int nRight, int nBottom, int nW
     return ::RoundRect((HDC)m_hObj, nLeft, nTop, nRight, nBottom, nWidth, nHeight);
 }
 
+BOOL UDevContext::roundRect(LPCRECT lpRect, const POINT pt)
+{
+    return this->roundRect(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom,
+        pt.x, pt.y);
+}
+
 void UDevContext::setViewportOrg( int x, int y )
 {
     ::SetViewportOrgEx((HDC)m_hObj, x, y, NULL);
@@ -294,6 +300,36 @@ huys::Color UDevContext::setTextColor( huys::Color clr )
     return ::SetTextColor((HDC)m_hObj, clr);
 }
 
+void UDevContext::fillSolidRect( LPCRECT lpRect, huys::Color clr )
+{  
+    this->setBKColor(clr);
+    this->extTextOut(0, 0, ETO_OPAQUE, (LPRECT)lpRect, NULL, 0, NULL);
+}
+
+void UDevContext::fillSolidRect( int x, int y, int cx, int cy, huys::Color clr )
+{
+    huys::URectL rect(x, y, x + cx, y + cy);
+    this->fillSolidRect(rect, clr);
+}
+
+void UDevContext::draw3dRect( int x, int y, int cx, int cy, huys::Color clrTopLeft, huys::Color clrBottomRight ) /* BOOL roundRect(int nLeft, int nTop, int nRight, int nBottom, int nWidth, int nHeight)*/
+{
+    fillSolidRect(x, y, cx - 1, 1, clrTopLeft);
+    fillSolidRect(x, y, 1, cy - 1, clrTopLeft);
+    fillSolidRect(x + cx, y, -1, cy, clrBottomRight);
+	fillSolidRect(x, y + cy, cx, -1, clrBottomRight);
+}
+
+void UDevContext::draw3dRect(LPCRECT lpRect, huys::Color clrTopLeft, huys::Color clrBottomRight )
+{
+    draw3dRect(lpRect->left, lpRect->top, lpRect->right - lpRect->left,
+		lpRect->bottom - lpRect->top, clrTopLeft, clrBottomRight);
+}
+
+void UDevContext::floodFill( int x, int y, huys::Color crColor )
+{
+    ::FloodFill((HDC)m_hObj, x, y, crColor);
+}
 
 UPaintDC::UPaintDC(HWND hWnd)
 {

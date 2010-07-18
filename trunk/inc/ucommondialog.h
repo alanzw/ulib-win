@@ -19,6 +19,7 @@ public:
     UColorDialog(HWND hWnd, huys::Color clr = huys::white);
     ~UColorDialog();
     BOOL choose();
+    huys::Color resultColor();
 private:
     CHOOSECOLOR m_cc;
     HWND m_hWnd;

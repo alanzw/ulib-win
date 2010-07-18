@@ -26,6 +26,11 @@ BOOL UColorDialog::choose()
     return ::ChooseColor(&m_cc);
 }
 
+huys::Color UColorDialog::resultColor()
+{
+    return m_cc.rgbResult;
+}
+
 #ifdef UNICODE
 
 extern "C"

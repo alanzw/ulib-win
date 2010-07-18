@@ -1,3 +1,5 @@
+#define _WIN32_IE 0x0300
+
 #include "resource.h"
 
 #include <windows.h>
@@ -12,8 +14,15 @@
 #include "uimagelist.h"
 #include "udllman.h"
 #include "adt/uautoptr.h"
+#include "ubutton.h"
+#include "udc.h"
+#include "colors.h"
+#include "upen.h"
+#include "ubrush.h"
 
 #define HU_VERIFY assert
+
+#include "mac_sliderctrl.h"
 
 using huys::UDialogBox;
 
@@ -38,6 +47,16 @@ public:
         m_pTrackBar->setRangeSize(20);
         m_pTrackBar->setTicFreq(20);
         m_pTrackBar->setTPos(200);
+        
+        UGroupBox gb(m_hDlg, -1, m_hInst);
+        gb.setPos(250, 20, 200, 250);
+        gb.create();
+        gb.setWindowText(_T("Slider Bar"));
+        
+        m_pMacSlider = new UMacSliderCtrl(m_hDlg, 1234, m_hInst);
+        m_pMacSlider->setPos(260, 40, 150, 30);
+        m_pMacSlider->create();
+        
         return TRUE;
     }
     
@@ -52,6 +71,7 @@ public:
     }
 private:
     huys::ADT::UAutoPtr<UTrackBar> m_pTrackBar;
+    huys::ADT::UAutoPtr<UMacSliderCtrl> m_pMacSlider;
 private:
     BOOL onHScroll()
     {

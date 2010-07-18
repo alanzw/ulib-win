@@ -9,7 +9,8 @@
 #include "udlgapp.h"
 #include "uprogressbar.h"
 #include "ubutton.h"
-
+#include "ucommondialog.h"
+#include "ubrush.h"
 #include "udc.h"
 #include "colors.h"
 
@@ -25,7 +26,11 @@ class UDialogExt : public UDialogBox
     enum
     {
         ID_BTN_OK = 5555,
-        ID_BTN_CANCEL = 5556
+        ID_BTN_CANCEL = 5556,
+        ID_BTN_PBCOLOR = 5557,
+        ID_BTN_PBINDET = 5558,
+        ID_BTN_PBCOLORV = 5559,
+        ID_BTN_PBINDETV = 5560
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
@@ -74,6 +79,49 @@ public:
         m_pUBtnCancel->setPos(350, 160, 70, 40);
         m_pUBtnCancel->create();
         m_pUBtnCancel->setWindowText(_T("Cancel"));
+
+
+        UGroupBox gb(m_hDlg, -1, m_hInst);
+        gb.setPos(100, 300, 400, 150);
+        gb.create();
+        gb.setWindowText(_T("Progress Bar"));
+
+        m_pPBMac = new UMacProgressBar(m_hDlg, 3336, m_hInst);
+        m_pPBMac->setPos(120, 340, 150, 15);
+        m_pPBMac->setStyles(PBS_SMOOTH);
+        m_pPBMac->create();
+        m_pPBMac->setRange(0, 100);
+        m_pPBMac->setPBPos(50);
+
+        m_pBnPBColor = new UButton(m_hDlg, ID_BTN_PBCOLOR, m_hInst);
+        m_pBnPBColor->setPos(130, 370, 120, 30);
+        m_pBnPBColor->create();
+        m_pBnPBColor->setWindowText(_T("Set Fill Color"));
+
+        m_pBnPBIndet = new UCheckButton(m_hDlg, ID_BTN_PBINDET, m_hInst);
+        m_pBnPBIndet->setPos(130, 410, 120, 30);
+        m_pBnPBIndet->create();
+        m_pBnPBIndet->setWindowText(_T("Indeterminate"));
+        m_pBnPBIndet->uncheck();
+
+        m_pPBMacV = new UMacProgressBar(m_hDlg, 3337, m_hInst);
+        m_pPBMacV->setPos(320, 320, 15, 100);
+        m_pPBMacV->setStyles(PBS_SMOOTH|PBS_VERTICAL);
+        m_pPBMacV->create();
+        m_pPBMacV->setRange(0, 100);
+        m_pPBMacV->setPBPos(50);
+
+        m_pBnPBColorV = new UButton(m_hDlg, ID_BTN_PBCOLORV, m_hInst);
+        m_pBnPBColorV->setPos(370, 370, 120, 30);
+        m_pBnPBColorV->create();
+        m_pBnPBColorV->setWindowText(_T("Set Fill Color"));
+        
+        m_pBnPBIndetV = new UCheckButton(m_hDlg, ID_BTN_PBINDETV, m_hInst);
+        m_pBnPBIndetV->setPos(370, 410, 120, 30);
+        m_pBnPBIndetV->create();
+        m_pBnPBIndetV->setWindowText(_T("Indeterminate"));
+        m_pBnPBIndetV->uncheck();
+
         return TRUE;
     }
 
@@ -99,6 +147,14 @@ public:
         case ID_BTN_CANCEL:
             this->onCancel();
             break;
+        case ID_BTN_PBCOLOR:
+            return onBnPBColor();
+        case ID_BTN_PBINDET:
+            return onBnPBIndet();
+        case ID_BTN_PBCOLORV:
+            return onBnPBColorV();
+        case ID_BTN_PBINDETV:
+            return onBnPBIndetV();
         default:
             break;
         }
@@ -134,6 +190,65 @@ private:
     huys::ADT::UAutoPtr<UMacProgressBar> m_pUPBCustom;
     huys::ADT::UAutoPtr<UPushButton> m_pUBtnOK;
     huys::ADT::UAutoPtr<UPushButton> m_pUBtnCancel;
+
+    huys::ADT::UAutoPtr<UMacProgressBar> m_pPBMac;
+    huys::ADT::UAutoPtr<UButton> m_pBnPBColor;
+    huys::ADT::UAutoPtr<UCheckButton> m_pBnPBIndet;
+
+    huys::ADT::UAutoPtr<UMacProgressBar> m_pPBMacV;
+    huys::ADT::UAutoPtr<UButton> m_pBnPBColorV;
+    huys::ADT::UAutoPtr<UCheckButton> m_pBnPBIndetV;
+private:
+    BOOL onBnPBColor()
+    {
+        UCommonDialog::UColorDialog colordlg(m_hDlg);
+        if(colordlg.choose())
+        {
+            m_pPBMac->setColors(colordlg.resultColor());
+            m_pPBMac->invalidate();
+        }
+        return FALSE;
+    }
+
+    BOOL onBnPBIndet()
+    {
+        if (m_pBnPBIndet->isChecked())
+        {
+            m_pPBMac->setIndeterminate(TRUE);
+        }
+        else
+        {
+            m_pPBMac->setIndeterminate(FALSE);
+        }
+        m_pPBMac->invalidate();
+
+        return FALSE;
+    }
+    BOOL onBnPBColorV()
+    {
+        UCommonDialog::UColorDialog colordlg(m_hDlg);
+        if(colordlg.choose())
+        {
+            m_pPBMacV->setColors(colordlg.resultColor());
+            m_pPBMacV->invalidate();
+        }
+        return FALSE;
+    }
+    
+    BOOL onBnPBIndetV()
+    {
+        if (m_pBnPBIndetV->isChecked())
+        {
+            m_pPBMacV->setIndeterminate(TRUE);
+        }
+        else
+        {
+            m_pPBMacV->setIndeterminate(FALSE);
+        }
+        m_pPBMacV->invalidate();
+        
+        return FALSE;
+    }
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

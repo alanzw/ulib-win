@@ -115,8 +115,17 @@ public:
     BOOL invertRect(LPCRECT lpRect);
 
     //
-    BOOL roundRect(int nLeft, int nTop, int nRight, int nBottom, int nWidth, int nHeight);
+    void fillSolidRect(LPCRECT lpRect, huys::Color clr);   
+    void fillSolidRect(int x, int y, int cx, int cy, huys::Color clr);
+    
+    void draw3dRect(LPCRECT lpRect, COLORREF clrTopLeft, COLORREF clrBottomRight);
+    void draw3dRect(int x, int y, int cx, int cy,
+	    huys::Color clrTopLeft, huys::Color clrBottomRight);
 
+    void floodFill(int x, int y, huys::Color crColor);
+    //
+    BOOL roundRect(int nLeft, int nTop, int nRight, int nBottom, int nWidth, int nHeight);
+    BOOL roundRect(LPCRECT lpRect, const POINT pt);
     //
     BOOL DPToLP(LPPOINT lpPoints, int nCount);
     BOOL LPToDP(LPPOINT lpPoints, int nCount);

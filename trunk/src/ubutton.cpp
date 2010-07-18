@@ -82,6 +82,11 @@ BOOL UCheckButton::uncheck()
     return this->sendMsg(BM_SETCHECK, (WPARAM)BST_UNCHECKED);
 }
 
+BOOL UCheckButton::isChecked()
+{
+    return (BST_CHECKED == this->sendMsg(BM_GETCHECK));
+}
+
 URadioButton::URadioButton(HWND hParent, UINT nResource, HINSTANCE hInst)
 : UButton(hParent, nResource, hInst)
 {

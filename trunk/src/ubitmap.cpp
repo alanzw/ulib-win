@@ -440,10 +440,11 @@ HBITMAP UBitmap::copyImage( HBITMAP hbm )
 
 HBITMAP UBitmap::copyIcon(HICON hIcon, huys::Color clrBk)
 {
-    HDC hdcSrc = ::CreateCompatibleDC(NULL);
-    HDC hdcMask = ::CreateCompatibleDC(NULL);
+    //HDC hdcSrc = ::CreateCompatibleDC(NULL);
+    //HDC hdcMask = ::CreateCompatibleDC(NULL);
     HDC hdcDst = ::CreateCompatibleDC(NULL);
-    HBITMAP hbmOld, hbmOld2, hbmNew;
+    //HBITMAP hbmOld;
+    HBITMAP hbmOld2, hbmNew;
     BITMAP bm;
     HBITMAP hbm;
     ICONINFO iif = {0};
@@ -468,7 +469,7 @@ HBITMAP UBitmap::copyIcon(HICON hIcon, huys::Color clrBk)
     
     //::SelectObject(hdcSrc, hbmOld);
     //::SelectObject(hdcMask, hbmOld2);
-    ::DeleteDC(hdcSrc);
+    //::DeleteDC(hdcSrc);
     ::DeleteDC(hdcDst);
     
     return hbmNew;
