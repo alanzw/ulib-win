@@ -15,6 +15,11 @@ public:
     BOOL setRangeSize(int nSize);
     BOOL setTicFreq(int nFreq);
     BOOL setTPos(int nNewPos, BOOL bRedraw = TRUE);
+
+    int getRangeMin();
+    int getRangeMax();
+
+    void getSelection(int &nMin, int &nMax);
 protected:
 private:
 

@@ -48,7 +48,8 @@ public:
     BOOL check();
     BOOL uncheck();
 
-
+    //
+    BOOL isChecked();
 };
 
 

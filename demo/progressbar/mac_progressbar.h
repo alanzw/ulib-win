@@ -37,8 +37,14 @@ public:
 
         huys::URectL rect(0, 0, rectCtrl.width(), rectCtrl.height());
 
-        dc.setBrushColor(huys::pink);
-        dc.rectangle(rect);
+        //dc.setBrushColor(huys::pink);
+        UBrush brush;
+        brush.createSolidBrush(::GetSysColor(COLOR_3DFACE));
+        
+        //dc.rectangle(rect);
+        //dc.fillRect(rect, brush);
+        //dc.frameRect(rect, brush);
+        DrawEdge(dc, rect, EDGE_SUNKEN, BF_RECT);
 
         int rangeLow = this->getLowLimit();
         int rangeHigh = this->getHighLimit();
@@ -55,13 +61,25 @@ public:
         x *= 100;
         x /= (rangeHigh - rangeLow);
 
-        y = rect.width();
-        y *= x;
-        y /= 100;
-        y += rect.left();
+        huys::URectL rectBar;
+        if (m_dwStyles & PBS_VERTICAL)
+        {
+            y = rect.height();
+            y *= x;
+            y /= 100;
+            y += rect.top();
 
-        huys::URectL rectBar(rect.left(), rect.top(), rect.left()+y, rect.bottom());
+            rectBar.set(rect.left(), rect.bottom()-y, rect.width(), y);
+        }
+        else
+        {
+            y = rect.width();
+            y *= x;
+            y /= 100;
+            y += rect.left();
 
+            rectBar.set(rect.left(), rect.top(), y, rect.height());
+        }
         //dc.setBrushColor(::GetSysColor(COLOR_3DFACE));
         //dc.rectangle(rectBar);
 
@@ -74,8 +92,14 @@ public:
         {
             dc.rectangle(rectBar);
         }
-        DrawHorizontalBar(dc, rectBar);
-
+        if (m_dwStyles & PBS_VERTICAL)
+        {
+            DrawVerticalBar(dc, rectBar);
+        }
+        else
+        {
+            DrawHorizontalBar(dc, rectBar);
+        }
         return FALSE;
     }
 
@@ -104,7 +128,8 @@ public:
 
     }
 
-    virtual BOOL onEraseBkgnd(HDC hdc) {return TRUE;}
+    //virtual BOOL onEraseBkgnd(HDC hdc) {return TRUE;}
+
 private:
     int m_nIndOffset;
     BOOL m_bIndeterminate;

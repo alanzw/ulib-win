@@ -39,3 +39,19 @@ BOOL UTrackBar::setTPos(int nNewPos, BOOL bRedraw)
 {
     return this->sendMsg(TBM_SETPOS, (WPARAM)bRedraw, (LPARAM)nNewPos);
 }
+
+int UTrackBar::getRangeMin()
+{
+    return (int)this->sendMsg(TBM_GETRANGEMIN);    
+}
+
+int UTrackBar::getRangeMax()
+{
+    return (int)this->sendMsg(TBM_GETRANGEMAX);    
+}
+
+void UTrackBar::getSelection( int &nMin, int &nMax )
+{
+    nMin = (int)this->sendMsg(TBM_GETSELSTART);
+	nMax = (int)this->sendMsg(TBM_GETSELEND);   
+}

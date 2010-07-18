@@ -64,6 +64,11 @@ public:
         return (LPPOINT)(this);
     }
 
+    operator POINT()
+    {
+        return (POINT)(*this);
+    }
+
     void moveTo(T x, T y)
     {
         _x = x;
@@ -179,9 +184,22 @@ public:
         _bottom += y;
     }
 
+    void inflate(T x1, T y1, T x2, T y2)
+    {
+        _left -= x1;
+        _top -= y1;
+        _right += x2;
+        _bottom += y2;
+    }
+
     void deflate(T x, T y)
     {
         inflate(-x, -y);
+    }
+
+    void deflate(T x1, T y1, T x2, T y2)
+    {
+        inflate(-x1, -y1, -x2, -y2);
     }
 
     void offset(T x, T y)
