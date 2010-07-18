@@ -50,7 +50,7 @@ public:
     huys::Color getBKColor();
     int setBKMode(int iMode);
     int getBKMode();
-
+    huys::Color getTextColor();
     huys::Color setTextColor(huys::Color clr);
     //
     int setStretchBltMode(int iStretchMode);

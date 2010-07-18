@@ -128,15 +128,19 @@ int main(int argc, char *argv[])
         n = us.recv(sd2, buf, sizeof(buf));
         while (n > 0)
         {
-            write(1, buf, n);
+            //write(1, buf, n);
             us.send(sd2, buf, n);
+            buf[n] = '\0';
+            printf("send: %d -- %s\n", n, buf);
             n = us.recv(sd2, buf, sizeof(buf));
+            buf[n] = '\0';
+            printf("recv: %d -- %s\n", n, buf);
+            if (strncmp(buf, "quit", 4) == 0) break;
         }
 
         // closesocket(sd2);
-        us.close();
     }
-
+    us.close();
     us.cleanup();
 
     getchar();

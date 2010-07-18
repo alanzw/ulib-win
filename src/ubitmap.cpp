@@ -419,9 +419,59 @@ BOOL UBitmap::createMappedBitmap(HINSTANCE hInst, UINT uImageID, huys::Color clr
     return TRUE;
 }
 
-BOOL UBitmap::copyImage( HBITMAP hBitmap )
+HBITMAP UBitmap::copyImage( HBITMAP hbm )
 {
-    return TRUE;
+    HDC hdcSrc = ::CreateCompatibleDC(NULL);
+    HDC hdcDst = ::CreateCompatibleDC(NULL);
+    HBITMAP hbmOld, hbmOld2, hbmNew;
+    BITMAP bm;
+    ::GetObject(hbm, sizeof(bm), &bm);
+    hbmOld = (HBITMAP)::SelectObject(hdcSrc, hbm);
+    hbmNew = ::CreateBitmap( bm.bmWidth, bm.bmHeight, 
+        bm.bmPlanes, bm.bmBitsPixel, NULL);
+    hbmOld2 = (HBITMAP)::SelectObject(hdcDst, hbmNew);
+    ::BitBlt(hdcDst, 0, 0, bm.bmWidth, bm.bmHeight, hdcSrc, 0, 0, SRCCOPY);
+    ::SelectObject(hdcSrc, hbmOld);
+    ::DeleteDC(hdcSrc);
+    ::DeleteDC(hdcDst);
+    
+    return hbmNew;
+}
+
+HBITMAP UBitmap::copyIcon(HICON hIcon, huys::Color clrBk)
+{
+    HDC hdcSrc = ::CreateCompatibleDC(NULL);
+    HDC hdcMask = ::CreateCompatibleDC(NULL);
+    HDC hdcDst = ::CreateCompatibleDC(NULL);
+    HBITMAP hbmOld, hbmOld2, hbmNew;
+    BITMAP bm;
+    HBITMAP hbm;
+    ICONINFO iif = {0};
+    ::GetIconInfo(hIcon, &iif);
+    
+    hbm = iif.hbmColor;
+    
+    ::GetObject(hbm, sizeof(bm), &bm);
+    
+    //hbmOld = (HBITMAP)::SelectObject(hdcSrc, hbm);
+    hbmNew = ::CreateBitmap( bm.bmWidth, bm.bmHeight, 
+        bm.bmPlanes, bm.bmBitsPixel, NULL);
+    hbmOld2 = (HBITMAP)::SelectObject(hdcDst, hbmNew);
+    //::BitBlt(hdcDst, 0, 0, bm.bmWidth, bm.bmHeight, hdcSrc, 0, 0, SRCCOPY);
+    
+    //HBITMAP hbmOld3 = (HBITMAP)::SelectObject(hdcMask, iif.hbmMask);
+    //::BitBlt(hdcDst, 0, 0, bm.bmWidth, bm.bmHeight, hdcMask, 0, 0, SRCAND);
+    RECT rect = {0, 0, bm.bmWidth, bm.bmHeight};
+    ::SetBkColor(hdcDst, clrBk);
+    ::ExtTextOut(hdcDst, 0, 0, ETO_OPAQUE, &rect, NULL, 0, NULL);
+    ::DrawIcon(hdcDst, 0, 0, hIcon);
+    
+    //::SelectObject(hdcSrc, hbmOld);
+    //::SelectObject(hdcMask, hbmOld2);
+    ::DeleteDC(hdcSrc);
+    ::DeleteDC(hdcDst);
+    
+    return hbmNew;
 }
 
 BOOL UBitmap::destroyBitmap()
