@@ -99,7 +99,10 @@ int main(int argc, char *argv[])
     //    fprintf(stderr,"Connect failed\n");
     //    exit(1);
     //}
-    us.connect((struct sockaddr *)&sad);
+    if (SOCKET_ERROR == us.connect((struct sockaddr *)&sad))
+    {
+        exit(1);
+    }
 
     /* Repeatedly read data from user and send it to server. */
     text = fgets(buf, sizeof(buf), stdin);
@@ -107,14 +110,19 @@ int main(int argc, char *argv[])
         //send(sd, buf, strlen(buf), 0);
         //n = recv(sd, buf, sizeof(buf), 0);
         us.send(buf, strlen(buf));
+        printf("send: %s", buf);
+        if (strncmp(buf, "quit", 4) == 0) break;
+        
         n = us.recv(buf, sizeof(buf));
-
-        write(1, buf, n);
+        buf[n] = '\0';
+        printf("recv: %s", buf);
+        //write(1, buf, n);
         text = fgets(buf, sizeof(buf), stdin);
     }
 
     us.cleanup();
 
+    printf("Press any key to continue...");
     getchar();
 
     return 0;

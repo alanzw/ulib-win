@@ -284,6 +284,11 @@ huys::Color UDevContext::getPixel(int x, int y)
     return ::GetPixel((HDC)m_hObj, x, y);
 }
 
+huys::Color UDevContext::getTextColor()
+{
+    return ::GetTextColor((HDC)m_hObj);
+}
+
 huys::Color UDevContext::setTextColor( huys::Color clr )
 {
     return ::SetTextColor((HDC)m_hObj, clr);
