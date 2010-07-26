@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
-		<Project filename="3dcreater.cbp" active="1">
+		<Project filename="3dcreater.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="button.cbp">
@@ -30,7 +30,7 @@
 		<Project filename="explorer.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="filesplit.cbp">
+		<Project filename="filesplit.cbp" active="1">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="floatwnd.cbp">

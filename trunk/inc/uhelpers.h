@@ -170,11 +170,11 @@ public:
         return true;
     }
 
-	bool PtrInRectEx(T x, T y)
-	{
-		UPoint<T> a(x, y);
-		return PtrInRect(a);
-	}
+    bool PtrInRectEx(T x, T y)
+    {
+        UPoint<T> a(x, y);
+        return PtrInRect(a);
+    }
 
     void inflate(T x, T y)
     {

@@ -39,7 +39,7 @@ public:
         m_pTreeCtrl->create();
 
         m_uil = new UImageList(IDR_TOOLBAR1, m_hInst);
-        m_pTreeCtrl->setNormalImageList(*m_uil);
+        m_pTreeCtrl->setNormalImageList(m_uil);
 
         char str[] = "0_ÎÒ°®Äã";
 
@@ -137,9 +137,7 @@ protected:
     }
 private:
     huys::ADT::UAutoPtr<UTreeView> m_pTreeCtrl;
-
     huys::ADT::UAutoPtr<UDialogBox> m_pChildDlg;
-
     huys::ADT::UAutoPtr<UImageList> m_uil;
 };
 

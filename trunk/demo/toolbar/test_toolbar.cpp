@@ -150,16 +150,11 @@ public:
 
     BOOL onNotify(WPARAM wParam, LPARAM lParam)
     {
-        
+
         //RECT rect;
         //::GetClientRect(m_putl->getHWND(), &rect);
         //m_putl->getClientRect(&rect);
         //::FillRect(lpNMCustomDraw->nmcd.hdc, &rect, (HBRUSH)GetStockObject(GRAY_BRUSH));
-        
-        
-        
-        
-
 
 #define lpnm   ((LPNMHDR)lParam)
 #define lpnmTB ((LPNMTOOLBAR)lParam)
@@ -171,15 +166,15 @@ public:
                     if (ID_TOOLBAR == lpnm->idFrom)
                     {
                         LPNMTBCUSTOMDRAW lpNMCustomDraw = (LPNMTBCUSTOMDRAW) lParam;
-                        
+
                         huys::URectL rect;
                         m_putl->getWindowRect(rect);
                         rect.screenToClient(m_putl);
                         USmartDC dc(lpNMCustomDraw->nmcd.hdc);
 
-                        //dc.fillRect(rect, (HBRUSH)GetStockObject(GRAY_BRUSH));
+                        dc.fillRect(rect, (HBRUSH)GetStockObject(GRAY_BRUSH));
 
-                        return FALSE;   
+                        return FALSE;
                     }
                     break;
                 }

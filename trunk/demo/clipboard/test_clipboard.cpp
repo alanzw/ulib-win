@@ -9,6 +9,7 @@
 #include "uedit.h"
 #include "ubutton.h"
 #include "umsg.h"
+#include "adt/uautoptr.h"
 
 #include "uclipboard.h"
 
@@ -22,13 +23,6 @@ public:
         : UDialogBox(hInst, nID)
     {}
 
-    ~MyDialog()
-    {
-        CHECK_PTR(m_pEditOrigin);
-        CHECK_PTR(m_pEditClip);
-        CHECK_PTR(m_pButton);
-    }
-
     enum {
         IDC_MBN = 1333,
         IDC_EDIT_ORIGIN = 1444,
@@ -37,28 +31,22 @@ public:
 
     BOOL onInit()
     {
-        RECT rc = { 20, 20, 150, 220 };
+        huys::URectL rect(20, 20, 150, 220);
 
         m_pEditOrigin = new UEdit(m_hDlg, IDC_EDIT_ORIGIN, m_hInst);
         m_pEditOrigin->create();
-        m_pEditOrigin->setPosition(&rc);
+        m_pEditOrigin->setPosition(rect);
 
-        rc.left += 150;
-        rc.right += 150;
-        rc.top += 20;
-        rc.bottom -= 50;
+        rect.deflate(150, 20, -150, 50);
         m_pButton = new UButton(m_hDlg, IDC_MBN, m_hInst);
         m_pButton->create();
-        m_pButton->setPosition(&rc);
+        m_pButton->setPosition(rect);
         m_pButton->setWindowText(_T("Copy&&Paste"));
 
-        rc.left = 320;
-        rc.right = rc.left + 150;
-        rc.top = 20;
-        rc.bottom = 220;
+        rect.set(320, 20, 150, 200);
         m_pEditClip = new UEdit(m_hDlg, IDC_EDIT_CLIP, m_hInst);
         m_pEditClip->create();
-        m_pEditClip->setPosition(&rc);
+        m_pEditClip->setPosition(rect);
 
     }
 
@@ -84,11 +72,10 @@ public:
 
         return FALSE;
     }
-protected:
 private:
-    UEdit *m_pEditOrigin;
-    UEdit *m_pEditClip;
-    UButton *m_pButton;
+    huys::ADT::UAutoPtr<UEdit> m_pEditOrigin;
+    huys::ADT::UAutoPtr<UEdit> m_pEditClip;
+    huys::ADT::UAutoPtr<UButton> m_pButton;
 };
 
 

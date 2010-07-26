@@ -32,10 +32,14 @@ extern "C" {
 class ULua
 {
 public:
+    ULua();
+    ~ULua();
+
     bool initialize();
     bool finalize();
 
     int parse(const char *sText);
+    int doFile(const char * sFilename);
 private:
     lua_State *m_interpreter;
 };

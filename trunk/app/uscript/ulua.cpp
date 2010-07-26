@@ -17,16 +17,29 @@
  */
 #include "ulua.h"
 
+ULua::ULua()
+{
+    initialize();
+}
+
+ULua::~ULua()
+{
+    finalize();
+}
+
 bool ULua::initialize()
 {
     m_interpreter = lua_open();
 
     /* load various Lua libraries */
+/*
     luaopen_base(m_interpreter);
     luaopen_table(m_interpreter);
     luaopen_io(m_interpreter);
     luaopen_string(m_interpreter);
     luaopen_math(m_interpreter);
+*/
+    luaL_openlibs(m_interpreter);
 
     return true;
 }
@@ -39,4 +52,9 @@ bool ULua::finalize()
 int ULua::parse(const char *sText)
 {
     return luaL_dostring(m_interpreter, sText);
+}
+
+int ULua::doFile(const char * sFilename)
+{
+    return luaL_dofile(m_interpreter, sFilename);
 }
