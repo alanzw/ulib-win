@@ -107,7 +107,7 @@ int _tmain(int argc, TCHAR *argv[])
     }
 
     printf("\n<End of message, press ENTER to terminate connection and exit>");
-    _getch();
+    getchar();
 
     CloseHandle(hPipe);
 

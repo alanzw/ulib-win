@@ -35,4 +35,9 @@ PyObject* UPython::parse( const char* lpszText )
     return PyString_FromString(lpszText);
 }
 
+int UPython::doString(const char* sText)
+{
+    return PyRun_SimpleString(sText);
+}
+
 }; // namespace huys

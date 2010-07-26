@@ -19,6 +19,8 @@ public:
     bool isReady();
 
     PyObject *parse(const char* lpszText);
+    
+    int doString(const char *sText);
 };
 
 }; // namespace huys

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="..\inc\ubasewindow.h" open="1" top="1" tabpos="0">
-		<Cursor position="727" topLine="15" />
+	<File name="..\inc\ubasewindow.h" open="0" top="0" tabpos="0">
+		<Cursor position="727" topLine="19" />
 	</File>
 	<File name="..\inc\ubitmap.h" open="0" top="0" tabpos="0">
 		<Cursor position="317" topLine="5" />

@@ -19,7 +19,6 @@ BOOL UPipe::create()
     SECURITY_ATTRIBUTES saAttr;
 
     // Set the bInheritHandle flag so pipe handles are inherited.
-
     saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
     saAttr.bInheritHandle = TRUE;
     saAttr.lpSecurityDescriptor = NULL;
@@ -81,18 +80,18 @@ void UPipe::read(char *sOutFilename /* = "out.dat" */)
     {
         m_szReadBuffer[m_nReadNum] = '\0';
         fprintf(fp, "%s", m_szReadBuffer);
-		printf("%s", m_szReadBuffer);
+        printf("%s", m_szReadBuffer);
     }
     fclose(fp);
 
     if (GetLastError() == ERROR_BROKEN_PIPE) //
-	{
-		printf("Pipe closed by child\n");
-	}
+    {
+        printf("Pipe closed by child\n");
+    }
     else
-	{
-		printf("Pipe read error: %d\n", (unsigned int)GetLastError());
-	}
+    {
+        printf("Pipe read error: %d\n", (unsigned int)GetLastError());
+    }
 }
 
 
@@ -115,54 +114,54 @@ UNamedPipe::~UNamedPipe()
 
 BOOL UNamedPipe::create()
 {
-	m_hObj = ::CreateNamedPipe(
-		m_sName, // The unique pipe name. This string must have the following form: \\.\pipe\pipename
-		PIPE_ACCESS_DUPLEX|FILE_FLAG_OVERLAPPED, // dwOpenMode
-		PIPE_TYPE_MESSAGE |			// Message type pipe 
-		PIPE_READMODE_MESSAGE |		// Message-read mode 
-		PIPE_WAIT,					// Blocking mode is enabled
-		1,    // nMaxInstances
-		4096, // nOutBufferSize
-		4096, // nInBufferSize
-		NMPWAIT_USE_DEFAULT_WAIT, // nDefaultTimeOut
-		NULL); // lpSecurityAttributes
-	return (INVALID_HANDLE_VALUE != m_hObj);
+    m_hObj = ::CreateNamedPipe(
+        m_sName, // The unique pipe name. This string must have the following form: \\.\pipe\pipename
+        PIPE_ACCESS_DUPLEX|FILE_FLAG_OVERLAPPED, // dwOpenMode
+        PIPE_TYPE_MESSAGE |            // Message type pipe
+        PIPE_READMODE_MESSAGE |        // Message-read mode
+        PIPE_WAIT,                    // Blocking mode is enabled
+        1,    // nMaxInstances
+        4096, // nOutBufferSize
+        4096, // nInBufferSize
+        NMPWAIT_USE_DEFAULT_WAIT, // nDefaultTimeOut
+        NULL); // lpSecurityAttributes
+    return (INVALID_HANDLE_VALUE != m_hObj);
 }
 
 BOOL UNamedPipe::connect( LPOVERLAPPED lpOverlapped /*= NULL*/ )
 {
-	assert(INVALID_HANDLE_VALUE != m_hObj);
-	return ::ConnectNamedPipe(m_hObj, lpOverlapped);
+    assert(INVALID_HANDLE_VALUE != m_hObj);
+    return ::ConnectNamedPipe(m_hObj, lpOverlapped);
 }
 
 BOOL UNamedPipe::disconnect()
 {
-	assert(INVALID_HANDLE_VALUE != m_hObj);
-	return ::DisconnectNamedPipe(m_hObj);	
+    assert(INVALID_HANDLE_VALUE != m_hObj);
+    return ::DisconnectNamedPipe(m_hObj);
 }
 
 BOOL UNamedPipe::read( LPTSTR lpBuffer, DWORD dwBufSize )
 {
-	assert(INVALID_HANDLE_VALUE != m_hObj);
-	DWORD cbBytesRead = 0;
-	BOOL bRet = ::ReadFile(m_hObj, lpBuffer, dwBufSize, &cbBytesRead, NULL);
-	if (bRet)
-	{
-		lpBuffer[cbBytesRead] = 0;
-		::FlushFileBuffers(m_hObj); 
-	}
-	return bRet;
+    assert(INVALID_HANDLE_VALUE != m_hObj);
+    DWORD cbBytesRead = 0;
+    BOOL bRet = ::ReadFile(m_hObj, lpBuffer, dwBufSize, &cbBytesRead, NULL);
+    if (bRet)
+    {
+        lpBuffer[cbBytesRead] = 0;
+        ::FlushFileBuffers(m_hObj);
+    }
+    return bRet;
 }
 
 BOOL UNamedPipe::write(LPTSTR lpBuffer, DWORD dwBufSize)
 {
     assert(INVALID_HANDLE_VALUE != m_hObj);
-	DWORD cbBytesWritten = 0;
-	BOOL bRet = ::WriteFile(m_hObj, lpBuffer, dwBufSize, &cbBytesWritten, NULL);
-	if (bRet)
-	{
-		::FlushFileBuffers(m_hObj); 
-	}
+    DWORD cbBytesWritten = 0;
+    BOOL bRet = ::WriteFile(m_hObj, lpBuffer, dwBufSize, &cbBytesWritten, NULL);
+    if (bRet)
+    {
+        ::FlushFileBuffers(m_hObj);
+    }
     return bRet;
 }
 
@@ -170,7 +169,7 @@ BOOL UNamedPipe::getInfo(UNamedPipe::UNamedPipeInfo &info)
 {
     assert(INVALID_HANDLE_VALUE != m_hObj);
     return ::GetNamedPipeInfo(
-        m_hObj, 
+        m_hObj,
         &info.dwFlags,
         &info.dwOutBufferSize,
         &info.dwInBufferSize,
