@@ -2,7 +2,9 @@
 #include <vector>
 
 #include "adt/ustring.h"
+#include "adt/uvector.h"
 
+typedef huys::ADT::UVector<huys::ADT::UStringAnsi> StringVector;
 
 huys::ADT::UStringAnsi test_unicode(const char* buf)
 {
@@ -87,11 +89,18 @@ int main()
 
     cout << test_unicode(NULL).c_str() << endl;
 
-    cout << "BEGIN calling createCB!" << std::endl;
+    cout << "BEGIN calling createCB!" << endl;
 
     createCB();
 
-    cout << "End calling createCB!" << std::endl;
+    cout << "End calling createCB!" << endl;
 
+
+	StringVector v;
+
+	v.push_back("hello");
+
+	cout << "v's size : " << v.size() << endl;
+	
     return 0;
 }
