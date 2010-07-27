@@ -29,16 +29,18 @@ class UIconListBox : public UListBox
 {
 public:
     UIconListBox(HWND hParent, UINT nID, HINSTANCE hInst)
-    : UListBox(hParent, nID, hInst)
+        : UListBox(hParent, nID, hInst)
     {
         m_dwStyles |= LBS_OWNERDRAWVARIABLE | WS_VSCROLL | LBS_NOTIFY | LBS_HASSTRINGS;
 
+		// Default Item Height: 36
         _nItemHeight = 36;
     }
 
     virtual BOOL create()
     {
-        return UListBox::createEx(WS_EX_ACCEPTFILES, _T("LISTBOX")) && this->subclassProc();
+		// Drag-and-Drop is supported
+		return UListBox::createEx(WS_EX_ACCEPTFILES, _T("LISTBOX")) && this->subclassProc();
     }
 
     virtual BOOL onMessage(UINT nMessage, WPARAM wParam, LPARAM lParam)
@@ -66,12 +68,6 @@ public:
         };
     };
 
-    void addItem(LPCTSTR str, HBITMAP hbmp)
-    {
-        int nItem = this->addString(str);
-        this->setItemData(nItem, (LPARAM)hbmp);
-    }
-
     virtual BOOL onMeasureItem(WPARAM wParam, LPARAM lParam)
     {
         LPMEASUREITEMSTRUCT lpmis;
@@ -85,116 +81,113 @@ public:
 
     virtual BOOL onDrawItem(WPARAM wParam, LPARAM lParam)
     {
-            HBITMAP hbmpPicture, hbmpOld;
-    
-            LPDRAWITEMSTRUCT lpdis;
-            lpdis = (LPDRAWITEMSTRUCT) lParam;
+        HBITMAP hbmpPicture, hbmpOld;
 
-            USmartDC dc(lpdis->hDC);
-            UMemDC memDC(dc);
+        LPDRAWITEMSTRUCT lpdis;
+        lpdis = (LPDRAWITEMSTRUCT) lParam;
 
-            TEXTMETRIC tm;
-            TCHAR tchBuffer[BUFFER] = {0};
+        USmartDC dc(lpdis->hDC);
+        UMemDC memDC(dc);
 
-            RECT rcBitmap;
-            int y;
+        TEXTMETRIC tm;
+        TCHAR tchBuffer[BUFFER] = {0};
 
-            // If there are no list box items, skip this message.
-            if (lpdis->itemID == (unsigned int)-1)
-            {
-                return TRUE;
-            }
+        RECT rcBitmap;
+        int y;
 
-            //SetBkMode(lpdis->hDC, TRANSPARENT);
-            dc.setBKMode(TRANSPARENT);
-
-            //_crOldBkColor = ::GetBkColor(lpdis->hDC);
-            //_crOldTextColor = ::GetTextColor(lpdis->hDC);
-            _crOldBkColor = dc.getBKColor();
-            _crOldTextColor = dc.getTextColor();
-
-            // Draw the bitmap and text for the list box item. Draw a
-            // rectangle around the bitmap if it is selected.
-            switch (lpdis->itemAction)
-            {
-            case ODA_SELECT:
-                if (lpdis->itemState & ODS_SELECTED)
-                {
-                    // Fill the item rect with the highlight blue color
-                    dc.setBKColor(::GetSysColor(COLOR_HIGHLIGHT));
-                    dc.extTextOut(0, 0, ETO_OPAQUE, &lpdis->rcItem, NULL, 0, NULL);
-
-                    // Set the color of the background of the text rect
-                    dc.setBKColor(::GetSysColor(COLOR_HIGHLIGHT));
-
-                    // Set the color of the text
-                    dc.setTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
-                }
-                else
-                {
-                    // Fill the item rect with the highlight blue color
-                    dc.setBKColor(::GetSysColor(COLOR_BTNFACE));
-                    dc.extTextOut(0, 0, ETO_OPAQUE, &lpdis->rcItem, NULL, 0, NULL);
-                }
-            case ODA_DRAWENTIRE:
-
-                // Display the bitmap associated with the item.
-
-                hbmpPicture =(HBITMAP)SendMessage(lpdis->hwndItem,
-                    LB_GETITEMDATA, lpdis->itemID, (LPARAM) 0);
-
-                //hdcMem = CreateCompatibleDC(lpdis->hDC);
-                hbmpOld = (HBITMAP)memDC.selectObj(hbmpPicture);
-
-                dc.bitBlt(lpdis->rcItem.left+2, lpdis->rcItem.top + 2,
-                    lpdis->rcItem.right - lpdis->rcItem.left + 2,
-                    lpdis->rcItem.bottom - lpdis->rcItem.top - 2,
-                    memDC, 0, 0, SRCCOPY);
-
-                // Display the text associated with the item.
-                SendMessage(lpdis->hwndItem, LB_GETTEXT,
-                    lpdis->itemID, (LPARAM) tchBuffer);
-
-                GetTextMetrics(dc, &tm);
-
-                y = (lpdis->rcItem.bottom + lpdis->rcItem.top -
-                    tm.tmHeight) / 2;
-
-                SetTextColor(lpdis->hDC, huys::xpblue);
-                TextOut(lpdis->hDC,
-                    XBITMAP + 6,
-                    y,
-                    tchBuffer,
-                    strlen(tchBuffer));
-
-                memDC.selectObj(hbmpOld);
-
-                // Is the item selected?
-                if (lpdis->itemState & ODS_SELECTED)
-                {
-                    // Set RECT coordinates to surround only the
-                    // bitmap.
-                    rcBitmap.left = lpdis->rcItem.left;
-                    rcBitmap.top = lpdis->rcItem.top;
-                    //rcBitmap.right = lpdis->rcItem.left + XBITMAP;
-                    //rcBitmap.bottom = lpdis->rcItem.top + YBITMAP;
-                    rcBitmap.right = lpdis->rcItem.right;
-                    rcBitmap.bottom = lpdis->rcItem.bottom;
-                    // Draw a rectangle around bitmap to indicate
-                    // the selection.
-
-                    DrawFocusRect(lpdis->hDC, &rcBitmap);
-                }
-                break;
-
-            case ODA_FOCUS:
-                // Do not process focus changes. The focus caret
-                // (outline rectangle) indicates the selection.
-                // The IDOK button indicates the final
-                // selection.
-                break;
-            }
+        // If there are no list box items, skip this message.
+        if (lpdis->itemID == (unsigned int)-1)
+        {
             return TRUE;
+        }
+
+        //SetBkMode(lpdis->hDC, TRANSPARENT);
+        dc.setBKMode(TRANSPARENT);
+
+        //_crOldBkColor = ::GetBkColor(lpdis->hDC);
+        //_crOldTextColor = ::GetTextColor(lpdis->hDC);
+        _crOldBkColor = dc.getBKColor();
+        _crOldTextColor = dc.getTextColor();
+
+        // Draw the bitmap and text for the list box item. Draw a
+        // rectangle around the bitmap if it is selected.
+        switch (lpdis->itemAction)
+        {
+        case ODA_SELECT:
+            if (lpdis->itemState & ODS_SELECTED)
+            {
+                // Fill the item rect with the highlight blue color
+                dc.setBKColor(::GetSysColor(COLOR_HIGHLIGHT));
+                dc.extTextOut(0, 0, ETO_OPAQUE, &lpdis->rcItem, NULL, 0, NULL);
+
+                // Set the color of the background of the text rect
+                dc.setBKColor(::GetSysColor(COLOR_HIGHLIGHT));
+
+                // Set the color of the text
+                dc.setTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
+            }
+            else
+            {
+                // Fill the item rect with the highlight blue color
+                dc.setBKColor(::GetSysColor(COLOR_BTNFACE));
+                dc.extTextOut(0, 0, ETO_OPAQUE, &lpdis->rcItem, NULL, 0, NULL);
+            }
+        case ODA_DRAWENTIRE:
+
+            // Display the bitmap associated with the item.
+            hbmpPicture =(HBITMAP)SendMessage(lpdis->hwndItem,
+                LB_GETITEMDATA, lpdis->itemID, (LPARAM) 0);
+
+            //hdcMem = CreateCompatibleDC(lpdis->hDC);
+            hbmpOld = (HBITMAP)memDC.selectObj(hbmpPicture);
+
+            dc.bitBlt(lpdis->rcItem.left+2, lpdis->rcItem.top + 2,
+                lpdis->rcItem.right - lpdis->rcItem.left + 2,
+                lpdis->rcItem.bottom - lpdis->rcItem.top - 2,
+                memDC, 0, 0, SRCCOPY);
+
+            // Display the text associated with the item.
+            SendMessage(lpdis->hwndItem, LB_GETTEXT,
+                lpdis->itemID, (LPARAM) tchBuffer);
+
+            GetTextMetrics(dc, &tm);
+
+            y = (lpdis->rcItem.bottom + lpdis->rcItem.top -
+                tm.tmHeight) / 2;
+
+            SetTextColor(lpdis->hDC, huys::xpblue);
+            dc.textOut(XBITMAP + 6,
+                		y,
+                        tchBuffer,
+                        strlen(tchBuffer));
+
+            memDC.selectObj(hbmpOld);
+
+            // Is the item selected?
+            if (lpdis->itemState & ODS_SELECTED)
+            {
+                // Set RECT coordinates to surround only the
+                // bitmap.
+                rcBitmap.left = lpdis->rcItem.left;
+                rcBitmap.top = lpdis->rcItem.top;
+                //rcBitmap.right = lpdis->rcItem.left + XBITMAP;
+                //rcBitmap.bottom = lpdis->rcItem.top + YBITMAP;
+                rcBitmap.right = lpdis->rcItem.right;
+                rcBitmap.bottom = lpdis->rcItem.bottom;
+                // Draw a rectangle around bitmap to indicate
+                // the selection.
+                DrawFocusRect(lpdis->hDC, &rcBitmap);
+            }
+            break;
+
+        case ODA_FOCUS:
+            // Do not process focus changes. The focus caret
+            // (outline rectangle) indicates the selection.
+            // The IDOK button indicates the final
+            // selection.
+            break;
+        }
+        return TRUE;
     }
 
     virtual BOOL onCtrlColor(WPARAM wParam, LPARAM lParam)
@@ -209,6 +202,12 @@ public:
     {
         _nItemHeight = n;
     }
+
+	void addItem(LPCTSTR str, HBITMAP hbmp)
+	{
+		int nItem = this->addString(str);
+		this->setItemData(nItem, (LPARAM)hbmp);
+	}
 
 private:
     BOOL onDropFiles(HDROP hDropInfo)
@@ -233,12 +232,12 @@ private:
             //UPrivateDC dc(m_hSelf);
             //huys::Color clrBk = dc.getBKColor();
             HBITMAP hbm = bm.copyIcon(h, ::GetSysColor(COLOR_BTNFACE));
-            
+
             addItem(strFileName, hbm);
         }
 
         ::DestroyIcon(h);
-        
+
         ::DragFinish(hDropInfo);
 
         return FALSE;
@@ -248,7 +247,7 @@ private:
 
     COLORREF _crOldTextColor;
     COLORREF _crOldBkColor;
-    
+
 };
 
 class UDialogExt : public UDialogBox
@@ -268,42 +267,42 @@ public:
         GetClientRect(m_hDlg, rect);
 
 
-            m_pListBox = new UListBox(m_hDlg, ID_LISTBOX, m_hInst);
-            //m_pListBox->setStyles(WS_BORDER | LVS_REPORT | LVS_EDITLABELS);
-            m_pListBox->setStyles(WS_HSCROLL|WS_VSCROLL|LBS_DISABLENOSCROLL );
-            m_pListBox->setPos(rect.left()+50, rect.top()+50,
-                150, rect.height()-100);
-            m_pListBox->create();
-            m_pListBox->setColumnWidth(300);
-            //
-            char str[] = "I love you!\tI am here.\tI am here. ";
-            m_pListBox->addString(str);
-            m_pListBox->addString(str);
-            m_pListBox->addString(str);
+        m_pListBox = new UListBox(m_hDlg, ID_LISTBOX, m_hInst);
+        //m_pListBox->setStyles(WS_BORDER | LVS_REPORT | LVS_EDITLABELS);
+        m_pListBox->setStyles(WS_HSCROLL|WS_VSCROLL|LBS_DISABLENOSCROLL );
+        m_pListBox->setPos(rect.left()+50, rect.top()+50,
+            150, rect.height()-100);
+        m_pListBox->create();
+        m_pListBox->setColumnWidth(300);
+        //
+        char str[] = "I love you!\tI am here.\tI am here. ";
+        m_pListBox->addString(str);
+        m_pListBox->addString(str);
+        m_pListBox->addString(str);
 
-            m_pIconListBox = new UIconListBox(m_hDlg, ID_ICON_LISTBOX, m_hInst);
-            m_pIconListBox->setStyles(LBS_OWNERDRAWVARIABLE);
-            m_pIconListBox->setPos(rect.left()+250, rect.top()+50, 200, rect.height()-100);
-            m_pIconListBox->create();
+        m_pIconListBox = new UIconListBox(m_hDlg, ID_ICON_LISTBOX, m_hInst);
+        m_pIconListBox->setStyles(LBS_OWNERDRAWVARIABLE);
+        m_pIconListBox->setPos(rect.left()+250, rect.top()+50, 200, rect.height()-100);
+        m_pIconListBox->create();
 
-            // Load bitmaps.
-            bmpPencil.loadFromResource(IDB_ICON1, m_hInst);
-            bmpCrayon.loadFromResource(IDB_ICON2, m_hInst);
-            bmpMarker.loadFromResource(IDB_ICON3, m_hInst);
-            bmpPen.loadFromResource(IDB_ICON1, m_hInst);
-            bmpFork.loadFromResource(IDB_ICON2, m_hInst);
+        // Load bitmaps.
+        bmpPencil.loadFromResource(IDB_ICON1, m_hInst);
+        bmpCrayon.loadFromResource(IDB_ICON2, m_hInst);
+        bmpMarker.loadFromResource(IDB_ICON3, m_hInst);
+        bmpPen.loadFromResource(IDB_ICON1, m_hInst);
+        bmpFork.loadFromResource(IDB_ICON2, m_hInst);
 
-            m_pIconListBox->addItem("pencil", bmpPencil);
-            m_pIconListBox->addItem("crayon", bmpCrayon);
-            m_pIconListBox->addItem("marker", bmpMarker);
-            m_pIconListBox->addItem("pen",    bmpPen);
-            m_pIconListBox->addItem("fork", bmpFork);
+        m_pIconListBox->addItem("pencil", bmpPencil);
+        m_pIconListBox->addItem("crayon", bmpCrayon);
+        m_pIconListBox->addItem("marker", bmpMarker);
+        m_pIconListBox->addItem("pen",    bmpPen);
+        m_pIconListBox->addItem("fork", bmpFork);
 
-            m_pIconListBox->setCurSel(0);
+        m_pIconListBox->setCurSel(-1);
 
-            TCHAR tchCurDir[MAX_PATH];
-            ::GetCurrentDirectory(MAX_PATH, tchCurDir);
-            ::DlgDirList(m_hDlg, tchCurDir, IDC_LIST_FILE, IDC_SDIR, DDL_DIRECTORY);
+        TCHAR tchCurDir[MAX_PATH];
+        ::GetCurrentDirectory(MAX_PATH, tchCurDir);
+        ::DlgDirList(m_hDlg, tchCurDir, IDC_LIST_FILE, IDC_SDIR, DDL_DIRECTORY);
 
         return TRUE;
     }

@@ -3,7 +3,7 @@
  *
  *       Filename:  test_flyweight.cpp
  *
- *    Description:  
+ *    Description:
  *
  *        Version:  1.0
  *        Created:  09/27/2009 08:30:22 PM
@@ -54,7 +54,7 @@ public:
     }
     void draw(int x, int y)
     {
-        cout << "   drawing " << _name << ": upper left (" << x << "," << y << 
+        cout << "   drawing " << _name << ": upper left (" << x << "," << y <<
             ") - lower right (" << x + _width << "," << y + _height << ")" <<
             endl;
     }
@@ -155,7 +155,7 @@ int main()
         dialogs[i]->draw();
 
     FlyweightFactory::reportTheIcons();
-    
+
     return 0;
 }
 
