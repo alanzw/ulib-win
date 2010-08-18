@@ -9,19 +9,19 @@ public:
     UPalette();
     ~UPalette();
 
-	//
-	BOOL createPalette(const LPLOGPALETTE lpLogPalette);
+    //
+    BOOL createPalette(const LPLOGPALETTE lpLogPalette);
 
-	//
+    //
     UINT realizePalette(HDC hdc);
 
     //
-    HPALETTE selectPalette(HDC hdc, BOOL bForceBackground); 
+    HPALETTE selectPalette(HDC hdc, BOOL bForceBackground);
     HPALETTE restorePalette(HDC hdc, BOOL bForceBackground);
-	//
-	BOOL animatePalette( UINT nStartIndex,
-						 UINT nNumEntries,
-		                 LPPALETTEENTRY lpPaletteColors ); 
+    //
+    BOOL animatePalette( UINT nStartIndex,
+                         UINT nNumEntries,
+                         LPPALETTEENTRY lpPaletteColors );
 };
 
 #endif // U_PALETTE_H

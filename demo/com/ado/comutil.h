@@ -77,7 +77,7 @@ class _variant_t;
 //////////////////////////////////////////////////////////////////////////////
 
 namespace _com_util {
-    inline void CheckError(HRESULT hr) throw(...)
+    inline void CheckError(HRESULT hr) //throw(...)
     {
         if (FAILED(hr)) {
             _com_issue_error(hr);
@@ -176,7 +176,7 @@ public:
 
     // Detach the internal BSTR
     //
-    BSTR Detach() throw();
+    BSTR Detach(); //throw();
 
 private:
     // Referenced counted wrapper
@@ -1330,7 +1330,7 @@ inline _variant_t::_variant_t(unsigned long ulSrc) throw()
 inline _variant_t::_variant_t(int iSrc) throw()
 {
     V_VT(this) = VT_INT;
-    V_INT(this) = iSrc;
+    (this) = iSrc;
 }
 
 // Construct a VT_UINT VARIANT from a unsigned int

@@ -17,11 +17,11 @@ public:
     //
     BOOL addChild(HWND hChild, LPCTSTR lpText, UINT cxMinChild, UINT cyMinChild, UINT cx);
 
-	//
-	huys::Color getBkColor();
-	huys::Color getTextColor();
-	huys::Color setBkColor(huys::Color clr);
-	huys::Color setTextColor(huys::Color clr);
+    //
+    huys::Color getBkColor();
+    huys::Color getTextColor();
+    huys::Color setBkColor(huys::Color clr);
+    huys::Color setTextColor(huys::Color clr);
 protected:
 private:
     REBARBANDINFO m_bandinfo;

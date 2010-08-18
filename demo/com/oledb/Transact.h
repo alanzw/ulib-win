@@ -46,43 +46,43 @@
 #ifndef __ITransaction_FWD_DEFINED__
 #define __ITransaction_FWD_DEFINED__
 typedef interface ITransaction ITransaction;
-#endif 	/* __ITransaction_FWD_DEFINED__ */
+#endif     /* __ITransaction_FWD_DEFINED__ */
 
 
 #ifndef __ITransactionCloner_FWD_DEFINED__
 #define __ITransactionCloner_FWD_DEFINED__
 typedef interface ITransactionCloner ITransactionCloner;
-#endif 	/* __ITransactionCloner_FWD_DEFINED__ */
+#endif     /* __ITransactionCloner_FWD_DEFINED__ */
 
 
 #ifndef __ITransaction2_FWD_DEFINED__
 #define __ITransaction2_FWD_DEFINED__
 typedef interface ITransaction2 ITransaction2;
-#endif 	/* __ITransaction2_FWD_DEFINED__ */
+#endif     /* __ITransaction2_FWD_DEFINED__ */
 
 
 #ifndef __ITransactionDispenser_FWD_DEFINED__
 #define __ITransactionDispenser_FWD_DEFINED__
 typedef interface ITransactionDispenser ITransactionDispenser;
-#endif 	/* __ITransactionDispenser_FWD_DEFINED__ */
+#endif     /* __ITransactionDispenser_FWD_DEFINED__ */
 
 
 #ifndef __ITransactionOptions_FWD_DEFINED__
 #define __ITransactionOptions_FWD_DEFINED__
 typedef interface ITransactionOptions ITransactionOptions;
-#endif 	/* __ITransactionOptions_FWD_DEFINED__ */
+#endif     /* __ITransactionOptions_FWD_DEFINED__ */
 
 
 #ifndef __ITransactionOutcomeEvents_FWD_DEFINED__
 #define __ITransactionOutcomeEvents_FWD_DEFINED__
 typedef interface ITransactionOutcomeEvents ITransactionOutcomeEvents;
-#endif 	/* __ITransactionOutcomeEvents_FWD_DEFINED__ */
+#endif     /* __ITransactionOutcomeEvents_FWD_DEFINED__ */
 
 
 #ifndef __ITmNodeName_FWD_DEFINED__
 #define __ITmNodeName_FWD_DEFINED__
 typedef interface ITmNodeName ITmNodeName;
-#endif 	/* __ITmNodeName_FWD_DEFINED__ */
+#endif     /* __ITmNodeName_FWD_DEFINED__ */
 
 
 /* header files for imported files */
@@ -125,15 +125,15 @@ extern RPC_IF_HANDLE __MIDL_itf_transact_0000_v0_0_s_ifspec;
 typedef struct BOID
     {
     byte rgb[ 16 ];
-    } 	BOID;
+    }     BOID;
 
 #define BOID_NULL (*((BOID*)(&IID_NULL)))
 #ifndef MAX_TRAN_DESC_DEFINED
 #define MAX_TRAN_DESC_DEFINED
 typedef 
 enum TX_MISC_CONSTANTS
-    {	MAX_TRAN_DESC	= 40
-    } 	TX_MISC_CONSTANTS;
+    {    MAX_TRAN_DESC    = 40
+    }     TX_MISC_CONSTANTS;
 
 #endif
 typedef BOID XACTUOW;
@@ -142,16 +142,16 @@ typedef LONG ISOLEVEL;
 
 typedef 
 enum ISOLATIONLEVEL
-    {	ISOLATIONLEVEL_UNSPECIFIED	= 0xffffffff,
-	ISOLATIONLEVEL_CHAOS	= 0x10,
-	ISOLATIONLEVEL_READUNCOMMITTED	= 0x100,
-	ISOLATIONLEVEL_BROWSE	= 0x100,
-	ISOLATIONLEVEL_CURSORSTABILITY	= 0x1000,
-	ISOLATIONLEVEL_READCOMMITTED	= 0x1000,
-	ISOLATIONLEVEL_REPEATABLEREAD	= 0x10000,
-	ISOLATIONLEVEL_SERIALIZABLE	= 0x100000,
-	ISOLATIONLEVEL_ISOLATED	= 0x100000
-    } 	ISOLATIONLEVEL;
+    {    ISOLATIONLEVEL_UNSPECIFIED    = 0xffffffff,
+    ISOLATIONLEVEL_CHAOS    = 0x10,
+    ISOLATIONLEVEL_READUNCOMMITTED    = 0x100,
+    ISOLATIONLEVEL_BROWSE    = 0x100,
+    ISOLATIONLEVEL_CURSORSTABILITY    = 0x1000,
+    ISOLATIONLEVEL_READCOMMITTED    = 0x1000,
+    ISOLATIONLEVEL_REPEATABLEREAD    = 0x10000,
+    ISOLATIONLEVEL_SERIALIZABLE    = 0x100000,
+    ISOLATIONLEVEL_ISOLATED    = 0x100000
+    }     ISOLATIONLEVEL;
 
 typedef struct XACTTRANSINFO
     {
@@ -162,7 +162,7 @@ typedef struct XACTTRANSINFO
     DWORD grfRMSupported;
     DWORD grfTCSupportedRetaining;
     DWORD grfRMSupportedRetaining;
-    } 	XACTTRANSINFO;
+    }     XACTTRANSINFO;
 
 typedef struct XACTSTATS
     {
@@ -174,84 +174,84 @@ typedef struct XACTSTATS
     ULONG cInDoubt;
     ULONG cHeuristicDecision;
     FILETIME timeTransactionsUp;
-    } 	XACTSTATS;
+    }     XACTSTATS;
 
 typedef 
 enum ISOFLAG
-    {	ISOFLAG_RETAIN_COMMIT_DC	= 1,
-	ISOFLAG_RETAIN_COMMIT	= 2,
-	ISOFLAG_RETAIN_COMMIT_NO	= 3,
-	ISOFLAG_RETAIN_ABORT_DC	= 4,
-	ISOFLAG_RETAIN_ABORT	= 8,
-	ISOFLAG_RETAIN_ABORT_NO	= 12,
-	ISOFLAG_RETAIN_DONTCARE	= ISOFLAG_RETAIN_COMMIT_DC | ISOFLAG_RETAIN_ABORT_DC,
-	ISOFLAG_RETAIN_BOTH	= ISOFLAG_RETAIN_COMMIT | ISOFLAG_RETAIN_ABORT,
-	ISOFLAG_RETAIN_NONE	= ISOFLAG_RETAIN_COMMIT_NO | ISOFLAG_RETAIN_ABORT_NO,
-	ISOFLAG_OPTIMISTIC	= 16,
-	ISOFLAG_READONLY	= 32
-    } 	ISOFLAG;
+    {    ISOFLAG_RETAIN_COMMIT_DC    = 1,
+    ISOFLAG_RETAIN_COMMIT    = 2,
+    ISOFLAG_RETAIN_COMMIT_NO    = 3,
+    ISOFLAG_RETAIN_ABORT_DC    = 4,
+    ISOFLAG_RETAIN_ABORT    = 8,
+    ISOFLAG_RETAIN_ABORT_NO    = 12,
+    ISOFLAG_RETAIN_DONTCARE    = ISOFLAG_RETAIN_COMMIT_DC | ISOFLAG_RETAIN_ABORT_DC,
+    ISOFLAG_RETAIN_BOTH    = ISOFLAG_RETAIN_COMMIT | ISOFLAG_RETAIN_ABORT,
+    ISOFLAG_RETAIN_NONE    = ISOFLAG_RETAIN_COMMIT_NO | ISOFLAG_RETAIN_ABORT_NO,
+    ISOFLAG_OPTIMISTIC    = 16,
+    ISOFLAG_READONLY    = 32
+    }     ISOFLAG;
 
 typedef 
 enum XACTTC
-    {	XACTTC_NONE	= 0,
-	XACTTC_SYNC_PHASEONE	= 1,
-	XACTTC_SYNC_PHASETWO	= 2,
-	XACTTC_SYNC	= 2,
-	XACTTC_ASYNC_PHASEONE	= 4,
-	XACTTC_ASYNC	= 4
-    } 	XACTTC;
+    {    XACTTC_NONE    = 0,
+    XACTTC_SYNC_PHASEONE    = 1,
+    XACTTC_SYNC_PHASETWO    = 2,
+    XACTTC_SYNC    = 2,
+    XACTTC_ASYNC_PHASEONE    = 4,
+    XACTTC_ASYNC    = 4
+    }     XACTTC;
 
 typedef 
 enum XACTRM
-    {	XACTRM_OPTIMISTICLASTWINS	= 1,
-	XACTRM_NOREADONLYPREPARES	= 2
-    } 	XACTRM;
+    {    XACTRM_OPTIMISTICLASTWINS    = 1,
+    XACTRM_NOREADONLYPREPARES    = 2
+    }     XACTRM;
 
 typedef 
 enum XACTCONST
-    {	XACTCONST_TIMEOUTINFINITE	= 0
-    } 	XACTCONST;
+    {    XACTCONST_TIMEOUTINFINITE    = 0
+    }     XACTCONST;
 
 typedef 
 enum XACTHEURISTIC
-    {	XACTHEURISTIC_ABORT	= 1,
-	XACTHEURISTIC_COMMIT	= 2,
-	XACTHEURISTIC_DAMAGE	= 3,
-	XACTHEURISTIC_DANGER	= 4
-    } 	XACTHEURISTIC;
+    {    XACTHEURISTIC_ABORT    = 1,
+    XACTHEURISTIC_COMMIT    = 2,
+    XACTHEURISTIC_DAMAGE    = 3,
+    XACTHEURISTIC_DANGER    = 4
+    }     XACTHEURISTIC;
 
 typedef 
 enum XACTSTAT
-    {	XACTSTAT_NONE	= 0,
-	XACTSTAT_OPENNORMAL	= 0x1,
-	XACTSTAT_OPENREFUSED	= 0x2,
-	XACTSTAT_PREPARING	= 0x4,
-	XACTSTAT_PREPARED	= 0x8,
-	XACTSTAT_PREPARERETAINING	= 0x10,
-	XACTSTAT_PREPARERETAINED	= 0x20,
-	XACTSTAT_COMMITTING	= 0x40,
-	XACTSTAT_COMMITRETAINING	= 0x80,
-	XACTSTAT_ABORTING	= 0x100,
-	XACTSTAT_ABORTED	= 0x200,
-	XACTSTAT_COMMITTED	= 0x400,
-	XACTSTAT_HEURISTIC_ABORT	= 0x800,
-	XACTSTAT_HEURISTIC_COMMIT	= 0x1000,
-	XACTSTAT_HEURISTIC_DAMAGE	= 0x2000,
-	XACTSTAT_HEURISTIC_DANGER	= 0x4000,
-	XACTSTAT_FORCED_ABORT	= 0x8000,
-	XACTSTAT_FORCED_COMMIT	= 0x10000,
-	XACTSTAT_INDOUBT	= 0x20000,
-	XACTSTAT_CLOSED	= 0x40000,
-	XACTSTAT_OPEN	= 0x3,
-	XACTSTAT_NOTPREPARED	= 0x7ffc3,
-	XACTSTAT_ALL	= 0x7ffff
-    } 	XACTSTAT;
+    {    XACTSTAT_NONE    = 0,
+    XACTSTAT_OPENNORMAL    = 0x1,
+    XACTSTAT_OPENREFUSED    = 0x2,
+    XACTSTAT_PREPARING    = 0x4,
+    XACTSTAT_PREPARED    = 0x8,
+    XACTSTAT_PREPARERETAINING    = 0x10,
+    XACTSTAT_PREPARERETAINED    = 0x20,
+    XACTSTAT_COMMITTING    = 0x40,
+    XACTSTAT_COMMITRETAINING    = 0x80,
+    XACTSTAT_ABORTING    = 0x100,
+    XACTSTAT_ABORTED    = 0x200,
+    XACTSTAT_COMMITTED    = 0x400,
+    XACTSTAT_HEURISTIC_ABORT    = 0x800,
+    XACTSTAT_HEURISTIC_COMMIT    = 0x1000,
+    XACTSTAT_HEURISTIC_DAMAGE    = 0x2000,
+    XACTSTAT_HEURISTIC_DANGER    = 0x4000,
+    XACTSTAT_FORCED_ABORT    = 0x8000,
+    XACTSTAT_FORCED_COMMIT    = 0x10000,
+    XACTSTAT_INDOUBT    = 0x20000,
+    XACTSTAT_CLOSED    = 0x40000,
+    XACTSTAT_OPEN    = 0x3,
+    XACTSTAT_NOTPREPARED    = 0x7ffc3,
+    XACTSTAT_ALL    = 0x7ffff
+    }     XACTSTAT;
 
 typedef struct XACTOPT
     {
     ULONG ulTimeout;
     char szDescription[ 40 ];
-    } 	XACTOPT;
+    }     XACTOPT;
 
 
 
@@ -289,7 +289,7 @@ EXTERN_C const IID IID_ITransaction;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ITransactionVtbl
     {
@@ -335,29 +335,29 @@ EXTERN_C const IID IID_ITransaction;
 #ifdef COBJMACROS
 
 
-#define ITransaction_QueryInterface(This,riid,ppvObject)	\
+#define ITransaction_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ITransaction_AddRef(This)	\
+#define ITransaction_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ITransaction_Release(This)	\
+#define ITransaction_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ITransaction_Commit(This,fRetaining,grfTC,grfRM)	\
+#define ITransaction_Commit(This,fRetaining,grfTC,grfRM)    \
     (This)->lpVtbl -> Commit(This,fRetaining,grfTC,grfRM)
 
-#define ITransaction_Abort(This,pboidReason,fRetaining,fAsync)	\
+#define ITransaction_Abort(This,pboidReason,fRetaining,fAsync)    \
     (This)->lpVtbl -> Abort(This,pboidReason,fRetaining,fAsync)
 
-#define ITransaction_GetTransactionInfo(This,pinfo)	\
+#define ITransaction_GetTransactionInfo(This,pinfo)    \
     (This)->lpVtbl -> GetTransactionInfo(This,pinfo)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -402,7 +402,7 @@ void __RPC_STUB ITransaction_GetTransactionInfo_Stub(
 
 
 
-#endif 	/* __ITransaction_INTERFACE_DEFINED__ */
+#endif     /* __ITransaction_INTERFACE_DEFINED__ */
 
 
 #ifndef __ITransactionCloner_INTERFACE_DEFINED__
@@ -425,7 +425,7 @@ EXTERN_C const IID IID_ITransactionCloner;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ITransactionClonerVtbl
     {
@@ -475,33 +475,33 @@ EXTERN_C const IID IID_ITransactionCloner;
 #ifdef COBJMACROS
 
 
-#define ITransactionCloner_QueryInterface(This,riid,ppvObject)	\
+#define ITransactionCloner_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ITransactionCloner_AddRef(This)	\
+#define ITransactionCloner_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ITransactionCloner_Release(This)	\
+#define ITransactionCloner_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ITransactionCloner_Commit(This,fRetaining,grfTC,grfRM)	\
+#define ITransactionCloner_Commit(This,fRetaining,grfTC,grfRM)    \
     (This)->lpVtbl -> Commit(This,fRetaining,grfTC,grfRM)
 
-#define ITransactionCloner_Abort(This,pboidReason,fRetaining,fAsync)	\
+#define ITransactionCloner_Abort(This,pboidReason,fRetaining,fAsync)    \
     (This)->lpVtbl -> Abort(This,pboidReason,fRetaining,fAsync)
 
-#define ITransactionCloner_GetTransactionInfo(This,pinfo)	\
+#define ITransactionCloner_GetTransactionInfo(This,pinfo)    \
     (This)->lpVtbl -> GetTransactionInfo(This,pinfo)
 
 
-#define ITransactionCloner_CloneWithCommitDisabled(This,ppITransaction)	\
+#define ITransactionCloner_CloneWithCommitDisabled(This,ppITransaction)    \
     (This)->lpVtbl -> CloneWithCommitDisabled(This,ppITransaction)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -518,7 +518,7 @@ void __RPC_STUB ITransactionCloner_CloneWithCommitDisabled_Stub(
 
 
 
-#endif 	/* __ITransactionCloner_INTERFACE_DEFINED__ */
+#endif     /* __ITransactionCloner_INTERFACE_DEFINED__ */
 
 
 #ifndef __ITransaction2_INTERFACE_DEFINED__
@@ -541,7 +541,7 @@ EXTERN_C const IID IID_ITransaction2;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ITransaction2Vtbl
     {
@@ -595,37 +595,37 @@ EXTERN_C const IID IID_ITransaction2;
 #ifdef COBJMACROS
 
 
-#define ITransaction2_QueryInterface(This,riid,ppvObject)	\
+#define ITransaction2_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ITransaction2_AddRef(This)	\
+#define ITransaction2_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ITransaction2_Release(This)	\
+#define ITransaction2_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ITransaction2_Commit(This,fRetaining,grfTC,grfRM)	\
+#define ITransaction2_Commit(This,fRetaining,grfTC,grfRM)    \
     (This)->lpVtbl -> Commit(This,fRetaining,grfTC,grfRM)
 
-#define ITransaction2_Abort(This,pboidReason,fRetaining,fAsync)	\
+#define ITransaction2_Abort(This,pboidReason,fRetaining,fAsync)    \
     (This)->lpVtbl -> Abort(This,pboidReason,fRetaining,fAsync)
 
-#define ITransaction2_GetTransactionInfo(This,pinfo)	\
+#define ITransaction2_GetTransactionInfo(This,pinfo)    \
     (This)->lpVtbl -> GetTransactionInfo(This,pinfo)
 
 
-#define ITransaction2_CloneWithCommitDisabled(This,ppITransaction)	\
+#define ITransaction2_CloneWithCommitDisabled(This,ppITransaction)    \
     (This)->lpVtbl -> CloneWithCommitDisabled(This,ppITransaction)
 
 
-#define ITransaction2_GetTransactionInfo2(This,pinfo)	\
+#define ITransaction2_GetTransactionInfo2(This,pinfo)    \
     (This)->lpVtbl -> GetTransactionInfo2(This,pinfo)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -642,7 +642,7 @@ void __RPC_STUB ITransaction2_GetTransactionInfo2_Stub(
 
 
 
-#endif 	/* __ITransaction2_INTERFACE_DEFINED__ */
+#endif     /* __ITransaction2_INTERFACE_DEFINED__ */
 
 
 #ifndef __ITransactionDispenser_INTERFACE_DEFINED__
@@ -672,7 +672,7 @@ EXTERN_C const IID IID_ITransactionDispenser;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ITransactionDispenserVtbl
     {
@@ -714,26 +714,26 @@ EXTERN_C const IID IID_ITransactionDispenser;
 #ifdef COBJMACROS
 
 
-#define ITransactionDispenser_QueryInterface(This,riid,ppvObject)	\
+#define ITransactionDispenser_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ITransactionDispenser_AddRef(This)	\
+#define ITransactionDispenser_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ITransactionDispenser_Release(This)	\
+#define ITransactionDispenser_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ITransactionDispenser_GetOptionsObject(This,ppOptions)	\
+#define ITransactionDispenser_GetOptionsObject(This,ppOptions)    \
     (This)->lpVtbl -> GetOptionsObject(This,ppOptions)
 
-#define ITransactionDispenser_BeginTransaction(This,punkOuter,isoLevel,isoFlags,pOptions,ppTransaction)	\
+#define ITransactionDispenser_BeginTransaction(This,punkOuter,isoLevel,isoFlags,pOptions,ppTransaction)    \
     (This)->lpVtbl -> BeginTransaction(This,punkOuter,isoLevel,isoFlags,pOptions,ppTransaction)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -766,7 +766,7 @@ void __RPC_STUB ITransactionDispenser_BeginTransaction_Stub(
 
 
 
-#endif 	/* __ITransactionDispenser_INTERFACE_DEFINED__ */
+#endif     /* __ITransactionDispenser_INTERFACE_DEFINED__ */
 
 
 #ifndef __ITransactionOptions_INTERFACE_DEFINED__
@@ -792,7 +792,7 @@ EXTERN_C const IID IID_ITransactionOptions;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ITransactionOptionsVtbl
     {
@@ -830,26 +830,26 @@ EXTERN_C const IID IID_ITransactionOptions;
 #ifdef COBJMACROS
 
 
-#define ITransactionOptions_QueryInterface(This,riid,ppvObject)	\
+#define ITransactionOptions_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ITransactionOptions_AddRef(This)	\
+#define ITransactionOptions_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ITransactionOptions_Release(This)	\
+#define ITransactionOptions_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ITransactionOptions_SetOptions(This,pOptions)	\
+#define ITransactionOptions_SetOptions(This,pOptions)    \
     (This)->lpVtbl -> SetOptions(This,pOptions)
 
-#define ITransactionOptions_GetOptions(This,pOptions)	\
+#define ITransactionOptions_GetOptions(This,pOptions)    \
     (This)->lpVtbl -> GetOptions(This,pOptions)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -878,7 +878,7 @@ void __RPC_STUB ITransactionOptions_GetOptions_Stub(
 
 
 
-#endif 	/* __ITransactionOptions_INTERFACE_DEFINED__ */
+#endif     /* __ITransactionOptions_INTERFACE_DEFINED__ */
 
 
 #ifndef __ITransactionOutcomeEvents_INTERFACE_DEFINED__
@@ -916,7 +916,7 @@ EXTERN_C const IID IID_ITransactionOutcomeEvents;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ITransactionOutcomeEventsVtbl
     {
@@ -968,32 +968,32 @@ EXTERN_C const IID IID_ITransactionOutcomeEvents;
 #ifdef COBJMACROS
 
 
-#define ITransactionOutcomeEvents_QueryInterface(This,riid,ppvObject)	\
+#define ITransactionOutcomeEvents_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ITransactionOutcomeEvents_AddRef(This)	\
+#define ITransactionOutcomeEvents_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ITransactionOutcomeEvents_Release(This)	\
+#define ITransactionOutcomeEvents_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ITransactionOutcomeEvents_Committed(This,fRetaining,pNewUOW,hr)	\
+#define ITransactionOutcomeEvents_Committed(This,fRetaining,pNewUOW,hr)    \
     (This)->lpVtbl -> Committed(This,fRetaining,pNewUOW,hr)
 
-#define ITransactionOutcomeEvents_Aborted(This,pboidReason,fRetaining,pNewUOW,hr)	\
+#define ITransactionOutcomeEvents_Aborted(This,pboidReason,fRetaining,pNewUOW,hr)    \
     (This)->lpVtbl -> Aborted(This,pboidReason,fRetaining,pNewUOW,hr)
 
-#define ITransactionOutcomeEvents_HeuristicDecision(This,dwDecision,pboidReason,hr)	\
+#define ITransactionOutcomeEvents_HeuristicDecision(This,dwDecision,pboidReason,hr)    \
     (This)->lpVtbl -> HeuristicDecision(This,dwDecision,pboidReason,hr)
 
-#define ITransactionOutcomeEvents_Indoubt(This)	\
+#define ITransactionOutcomeEvents_Indoubt(This)    \
     (This)->lpVtbl -> Indoubt(This)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -1052,7 +1052,7 @@ void __RPC_STUB ITransactionOutcomeEvents_Indoubt_Stub(
 
 
 
-#endif 	/* __ITransactionOutcomeEvents_INTERFACE_DEFINED__ */
+#endif     /* __ITransactionOutcomeEvents_INTERFACE_DEFINED__ */
 
 
 #ifndef __ITmNodeName_INTERFACE_DEFINED__
@@ -1079,7 +1079,7 @@ EXTERN_C const IID IID_ITmNodeName;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ITmNodeNameVtbl
     {
@@ -1118,26 +1118,26 @@ EXTERN_C const IID IID_ITmNodeName;
 #ifdef COBJMACROS
 
 
-#define ITmNodeName_QueryInterface(This,riid,ppvObject)	\
+#define ITmNodeName_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ITmNodeName_AddRef(This)	\
+#define ITmNodeName_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ITmNodeName_Release(This)	\
+#define ITmNodeName_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ITmNodeName_GetNodeNameSize(This,pcbNodeNameSize)	\
+#define ITmNodeName_GetNodeNameSize(This,pcbNodeNameSize)    \
     (This)->lpVtbl -> GetNodeNameSize(This,pcbNodeNameSize)
 
-#define ITmNodeName_GetNodeName(This,cbNodeNameBufferSize,pNodeNameBuffer)	\
+#define ITmNodeName_GetNodeName(This,cbNodeNameBufferSize,pNodeNameBuffer)    \
     (This)->lpVtbl -> GetNodeName(This,cbNodeNameBufferSize,pNodeNameBuffer)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -1167,7 +1167,7 @@ void __RPC_STUB ITmNodeName_GetNodeName_Stub(
 
 
 
-#endif 	/* __ITmNodeName_INTERFACE_DEFINED__ */
+#endif     /* __ITmNodeName_INTERFACE_DEFINED__ */
 
 
 /* interface __MIDL_itf_transact_0016 */

@@ -54,7 +54,7 @@ namespace huys
     ///     int cchDest
     /// );
     using ::FoldString;
- 
+
 }; // namespace huys
 
 #endif // U_WIN_CHAR_H

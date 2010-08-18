@@ -1,9 +1,9 @@
 @echo off
 
 rem VCVARS32 Setup
-call D:\Progs\VS9\VC\VCVARSALL.bat
+REM call D:\Progs\VS9\VC\VCVARSALL.bat
 
-devenv ulib_win.sln /Clean
+REM devenv ulib_win.sln /Clean
 
 rm *.plg *.opt *.ncb *.user *.suo
 

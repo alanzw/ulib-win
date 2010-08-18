@@ -1,6 +1,8 @@
 #include "ucollapse.h"
 #include "upanel.h"
 
+#include "adt/uautoptr.h"
+
 class UCollapsePanel : public UPanel
 {
 public:
@@ -8,11 +10,6 @@ public:
     : UPanel(hParent, nID, hInst)
     {
         setStyles(SWP_NOREPOSITION|WS_CLIPSIBLINGS);
-    }
-
-    ~UCollapsePanel()
-    {
-        CHECK_PTR(pGBox);
     }
 
     virtual BOOL create()
@@ -41,8 +38,8 @@ public:
         return bRet;
     }
 private:
-    UCollapseGroupBox *pGBox;
-    UCollapseGroupBox *pGBoxSec;
+    huys::ADT::UAutoPtr<UCollapseGroupBox> pGBox;
+    huys::ADT::UAutoPtr<UCollapseGroupBox> pGBoxSec;
 
     virtual void updateChild()
     {

@@ -24,7 +24,7 @@ public:
     BOOL startSvc(LPCTSTR lpSvcName);
     BOOL stopSvc(LPCTSTR lpSvcName);
     int queryState(LPCTSTR lpSvcName);
-    
+
     BOOL stopDependentServices(SC_HANDLE schService);
 protected:
 private:

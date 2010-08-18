@@ -10,6 +10,8 @@
 #include "ubutton.h"
 #include "umsg.h"
 
+#include "adt/uautoptr.h"
+
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
@@ -21,18 +23,8 @@ class UDialogExt : public UDialogBox
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID),
-          m_pPanelGo(0),
-          m_pBtnFirst(0),
-          m_pBtnSecond(0)
+        : UDialogBox(hInst, nID)
     {}
-
-    ~UDialogExt()
-    {
-        CHECK_PTR(m_pPanelGo);
-        CHECK_PTR(m_pBtnFirst);
-        CHECK_PTR(m_pBtnSecond);
-    }
 
     virtual BOOL onInit()
     {
@@ -73,10 +65,10 @@ public:
 
 protected:
 private:
-    UPanel *m_pPanelGo;
+    huys::ADT::UAutoPtr<UPanel> m_pPanelGo;
 
-    UButton *m_pBtnFirst;
-    UButton *m_pBtnSecond;
+    huys::ADT::UAutoPtr<UButton> m_pBtnFirst;
+    huys::ADT::UAutoPtr<UButton> m_pBtnSecond;
 private:
     BOOL onBnFirst()
     {

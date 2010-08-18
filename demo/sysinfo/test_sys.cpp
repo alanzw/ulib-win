@@ -78,6 +78,12 @@ int main(int argc, char *argv[])
     siSysInfo.lpMaximumApplicationAddress);
     printf("  Active processor mask: %u\n",
     siSysInfo.dwActiveProcessorMask);
+
+    //
+    char buffer[256];
+    getXPKey(buffer);
+    printf("XP Key: %s\n", buffer);
+
     //
     cout << "Press any key to exit..." << endl;
 

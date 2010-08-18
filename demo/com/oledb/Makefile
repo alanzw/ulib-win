@@ -21,7 +21,7 @@ HEADER =
 all: $(BIN)
 
 #
-oledb.exe : oledb.o
+test_oledb.exe : test_oledb.o
 	$(CXX) -o $@ $< -loleaut32
 
 #

@@ -29,7 +29,7 @@ int main()
         printf("%s\n", csError.c_str());
         //return FALSE;
     }
-    
+
     pDB->Read(0, 0, "");
 
     //pDB->Release();

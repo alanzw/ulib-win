@@ -4,7 +4,7 @@ TOPDIR = ../..
 include $(TOPDIR)/make.inc
 
 #
-INCS = -I"$(TOPDIR)/inc"
+INCS = -I"$(TOPDIR)/inc" -I"."
 LIBS = -L"$(TOPDIR)/lib" -mwindows -luwin
 CFLAGS +=
 CXXFLAGS += -DBUILD_EXE
@@ -31,7 +31,7 @@ $(BIN) : $(OBJ) $(RES)
 #
 .PHONY : test
 test :
-	$(WINE) $(BINDIR)/$(BIN)     
+	$(WINE) $(BINDIR)/$(BIN)
 #
 .PHONY : clean
 clean :

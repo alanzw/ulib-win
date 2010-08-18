@@ -1,10 +1,16 @@
 #include <iostream>
 #include <memory>
 #include <cstring>
+#include <cstdio>
+#include <cstdlib>
+
+#include <windows.h>
 
 using std::cout;
 using std::endl;
 using std::cin;
+
+//typedef int BOOL;
 
 #include "adt/ustack.h"
 
@@ -258,6 +264,125 @@ int floyd()
     return 0;
 }
 
+/*
+ *     1
+ *
+ *     1 - 2
+ *         |
+ *     4 - 3
+ *
+ *     1 - 2 - 3
+ *             |
+ *     8 - 9   4
+ *     |       |
+ *     7 - 6 - 5
+ *
+ *     1 - 2 - 3 - 4
+ *                 |
+ *     12- 13- 14  5
+ *     |       |   |
+ *     11  16- 15  6
+ *     |           |
+ *     10- 9 - 8 - 7
+ *
+ */
+
+void fill_1(int *p, int size)
+{
+    *p = size*size;
+}
+
+void fill_2(int *p, int size)
+{
+    *p = size * size - 3;
+    *(p+1) = (*p) + 1;
+    *(p+size+1) = (*p) + 2;
+    *(p+size) = (*p) + 3;
+}
+
+void fill_border(int *p, int size, int base, int origin_size)
+{
+    int i;
+    int *pp;
+
+    // T
+    for (i=0; i<size; i++)
+    {
+        p[i] = base + i + 1;
+    }
+
+    // R
+    pp = p+size-1;
+    for (i=1; i<size; i++)
+    {
+        *(pp+origin_size*i) = *(pp+origin_size*i - origin_size) + 1;
+    }
+
+    // B
+    pp = p + origin_size*(size-1)+size-1;
+    for (i=1; i<size; i++)
+    {
+        *(pp-i) = *(pp - i+ 1) + 1;
+    }
+
+    // L
+    pp = p + origin_size*(size-1);
+    for (i=1; i<size-1; i++)
+    {
+        *(pp - origin_size * i)  = *(pp - origin_size * (i-1)) +1 ;
+    }
+}
+
+void fill(int size)
+{
+    int *p = (int *)malloc((size*size+1)*sizeof(int));
+
+    int *pp = p;
+
+    int n = size;
+
+    //int count = 0;
+
+    int i, j;
+
+    *pp = 0;
+
+    pp++;
+
+    while(n>0)
+    {
+        if ( 2 == n )
+        {
+            fill_2(pp, size);
+            break;
+        }
+        else if ( 1 == n )
+        {
+            fill_1(pp, size);
+            break;
+        }
+        else
+        {
+            fill_border(pp, n, *(pp-1), size);
+            pp += (size + 1);
+            n -= 2;
+            //count++ ;
+        }
+    }
+
+
+    for (i=0; i<size; i++)
+    {
+        for (j=0; j<size; j++)
+        {
+            printf(" %3d ", *(p+1+i*size+j));
+            Sleep(1000);
+        }
+        printf("\n");
+    }
+
+    free(p);
+}
 
 int main()
 {
@@ -265,7 +390,23 @@ int main()
 
     floyd();
 
+    fill(1);
+    printf("\n");
+    fill(2);
+    printf("\n");
+    fill(3);
+    printf("\n");
+    fill(4);
+    printf("\n");
+    fill(5);
+    printf("\n");
+    fill(6);
+    printf("\n");
+    fill(7);
+    printf("\n");
+
     cin.ignore();
 
     return 0;
 }
+

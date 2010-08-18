@@ -28,7 +28,7 @@ BOOL ULayout::addControls( UControl **p, int n )
     {
         addControl(p[i]);
     }
-    return TRUE;    
+    return TRUE;
 }
 
 UHBoxLayout::UHBoxLayout()
@@ -109,20 +109,20 @@ BOOL UGridLayout::go()
 {
     int w = m_rect.width();
     int h = m_rect.height();
-    
+
     UControlVec::size_type n = m_ctrls.size();
-    
+
     if (0 == n)
     {
         return FALSE;
     }
-    
+
     int dx = w/nXNum;
     int dy = h/nYNum;
-    
+
     huys::URectL rect;
     rect.set(m_rect.left(), m_rect.top(), dx, dy);
-    
+
     for (UControlVec::size_type i=0; i<n; ++i)
     {
         m_ctrls[i]->setPosition(rect);

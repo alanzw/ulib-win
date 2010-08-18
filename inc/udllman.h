@@ -10,7 +10,7 @@
 #define  DEF_DLLFUNC(PROC_NAME, RET_T, VAR1_T, VAR2_T) \
     typedef RET_T (*PROC_NAME)(VAR1_T, VAR2_T);
 #define DEF_DLLFUNC4(PROC_NAME, RET_T, VAR1_T, VAR2_T, VAR3_T, VAR4_T) \
-	typedef RET_T (*PROC_NAME)(VAR1_T, VAR2_T, VAR3_T, VAR4_T );
+    typedef RET_T (*PROC_NAME)(VAR1_T, VAR2_T, VAR3_T, VAR4_T );
 #else
 #define DEF_DLLFUNC(PROCNAME, RET_T, ...) \
     typedef RET_T (*PROCNAME)( __VA_ARGS__ );

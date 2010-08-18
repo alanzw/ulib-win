@@ -3,7 +3,6 @@
 
 #include "ucontrol.h"
 
-
 class ULIB_API ULink : public UControl
 {
 public:

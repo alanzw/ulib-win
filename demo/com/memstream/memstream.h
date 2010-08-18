@@ -2,7 +2,7 @@
 #include <objidl.h>
 #endif
 
-#if !defined(ASSERT) 
+#if !defined(ASSERT)
 #if defined(_ASSERTE)
 #define ASSERT    _ASSERTE
 #else
@@ -27,7 +27,7 @@
 //////////////////////////////////////////////////////////////////////////////
 // IMemStream
 //
-////////////////////////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////////////////////////
 
 class IMemStream : public IStream
 {
@@ -62,7 +62,7 @@ class IMemStream : public IStream
         if( m_ullPos < m_ullEnd )
         {
             BYTE byte = m_pbMem[m_ullPos];
-            if( bAdvance ) 
+            if( bAdvance )
                 m_ullPos++;
             return byte;
         }
@@ -170,60 +170,60 @@ class IMemStream : public IStream
         uli.QuadPart = ullNewSize;
         return SetSize( uli );
     }
-    
+
     // IUnknown Interface
     STDMETHOD_(ULONG,    AddRef)();
     STDMETHOD_(ULONG,    Release)();
     STDMETHOD(QueryInterface)(REFIID iid, void **ppv);
 
     // ISequentialStream Interface
-    STDMETHOD( Read )( 
+    STDMETHOD( Read )(
         void *pv,
         ULONG cb,
         ULONG *pcbRead);
-    
-    STDMETHOD( Write )( 
+
+    STDMETHOD( Write )(
         const void *pv,
         ULONG cb,
         ULONG *pcbWritten);
 
     // IStream methods
-    STDMETHOD( Seek )( 
+    STDMETHOD( Seek )(
         LARGE_INTEGER dlibMove,
         DWORD dwOrigin,
         ULARGE_INTEGER *plibNewPosition);
-    
-    STDMETHOD( SetSize )( 
+
+    STDMETHOD( SetSize )(
         ULARGE_INTEGER libNewSize);
-    
-    STDMETHOD( CopyTo )( 
+
+    STDMETHOD( CopyTo )(
         IStream *pstm,
         ULARGE_INTEGER cb,
         ULARGE_INTEGER *pcbRead,
         ULARGE_INTEGER *pcbWritten);
-    
-    STDMETHOD( Commit )( 
+
+    STDMETHOD( Commit )(
         DWORD grfCommitFlags);
-    
+
     STDMETHOD( Revert )( void);
-    
-    STDMETHOD( LockRegion )( 
+
+    STDMETHOD( LockRegion )(
         ULARGE_INTEGER libOffset,
         ULARGE_INTEGER cb,
         DWORD dwLockType);
-    
-    STDMETHOD( UnlockRegion )( 
+
+    STDMETHOD( UnlockRegion )(
         ULARGE_INTEGER libOffset,
         ULARGE_INTEGER cb,
         DWORD dwLockType);
-    
-    STDMETHOD( Stat )( 
+
+    STDMETHOD( Stat )(
         STATSTG *pstatstg,
         DWORD grfStatFlag);
-    
-    STDMETHOD( Clone )( 
+
+    STDMETHOD( Clone )(
         IStream **ppstm);
-        
+
 };
 
 inline IMemStream& operator<<( IMemStream& strm, PCSTR pstr )
