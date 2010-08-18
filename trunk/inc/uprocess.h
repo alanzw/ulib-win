@@ -11,7 +11,7 @@ public:
 
     BOOL create( LPCTSTR sCmdLine,
                  DWORD dwCreateFlags = CREATE_SUSPENDED);
-    
+
     BOOL resume();
     BOOL resumeAndWait();
     DWORD getExitCode();

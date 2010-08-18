@@ -17,20 +17,20 @@ public:
     //
     BOOL setCurSel(const int nIndex = 0);
     int getCurSel();
-    
+
     //
     BOOL addText(const TCHAR *lpszText);
     int deleteText(const int nIndex = 0);
     int findText(const TCHAR *lpszText, const int nStartIndex = 0);
     BOOL setText(const TCHAR *lpszText);
     int getText(TCHAR *lpszText);
-    
+
     //
     BOOL insertText(int nIndex, const TCHAR *lpszText);
-    
+
     //
     BOOL getLBText(int nIndex, TCHAR *lpszText);
-    
+
     //
     int setItemHeight(const int height = 20);
     int setDroppedWidth(const int width = 200);

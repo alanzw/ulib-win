@@ -10,7 +10,7 @@ public:
     virtual ~UDateTimePick();
 
     virtual BOOL create();
-    
+
     BOOL setFormat(LPCTSTR sFormat);
     BOOL setMax();
     BOOL setMin();

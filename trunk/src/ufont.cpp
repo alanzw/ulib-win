@@ -13,7 +13,7 @@
 UFont::UFont()
 : UGDIObject()
 {
-	::ZeroMemory(&m_lf, sizeof(LOGFONT));
+    ::ZeroMemory(&m_lf, sizeof(LOGFONT));
 
     HFONT hSystemVariableFont = (HFONT ) GetStockObject( ANSI_VAR_FONT );
 
@@ -95,12 +95,12 @@ int UFont::drawEx(HDC hdc, LPTSTR lpchText, int nCount, LPRECT lpRect, UINT uFor
 
 BOOL UFont::textOut(HDC hdc, int x, int y, LPCTSTR lpString, int cbString)
 {
-	return ::TextOut(hdc, x, y, lpString, cbString);
+    return ::TextOut(hdc, x, y, lpString, cbString);
 }
 
 BOOL UFont::extTextOut(HDC hdc, int x, int y, LPCTSTR lpString, int cbString, UINT fuOptions, const LPRECT lpRect, const INT *lpDx)
 {
-	return ::ExtTextOut(hdc, x, y, fuOptions, lpRect, lpString, cbString, lpDx);
+    return ::ExtTextOut(hdc, x, y, fuOptions, lpRect, lpString, cbString, lpDx);
 }
 
 int UFont::addFontResource(LPCTSTR lpszFilename)

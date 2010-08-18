@@ -3,7 +3,7 @@
  *
  *       Filename:  umixer.h
  *
- *    Description:  
+ *    Description:
  *
  *        Version:  1.0
  *        Created:  2009-12-25 1:37:31
@@ -27,7 +27,7 @@ public:
     UMixer();
     ~UMixer();
 
-    
+
 private:
     HMIXER m_hMixer;
 };

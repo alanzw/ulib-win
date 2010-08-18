@@ -1,9 +1,19 @@
 #include <stdio.h>
-//#import "c:\program files\common files\system\ado\msado15.dll" rename ("EOF","adoEOF") no_namespace
-#include <windows.h>
-#include <objbase.h>
-#include <comutil.h>
 
+#include <windows.h>
+#include <ole2.h>
+#include <oleauto.h>
+
+#ifdef _MSC_VER
+#import "c:\program files\common files\system\ado\msado15.dll" rename ("EOF","adoEOF") no_namespace
+#else
+
+#define V_INT(X)         V_UNION(X, intVal)
+#define V_UINT(X)        V_UNION(X, uintVal)
+#include "msado15.tlh"
+#endif
+
+#include <comutil.h>
 
 struct InitOle
 {

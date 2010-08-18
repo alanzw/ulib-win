@@ -64,7 +64,7 @@ public:
 
     UINT getID() const
     { return m_nID; }
-    
+
     void setID(UINT id)
     { m_nID = id; }
 
@@ -169,7 +169,7 @@ public:
 
     //!!!
     virtual BOOL onDropFiles(WPARAM, LPARAM) { return FALSE;}
-    
+
     //
     BOOL onCtrlColor(WPARAM wParam, LPARAM lParam);
 
@@ -216,7 +216,7 @@ public:
             return TRUE;
         }
     }
-    
+
     //
     BOOL addExStyles(DWORD dwExStyles)
     {
@@ -229,14 +229,14 @@ public:
             return TRUE;
         }
     }
-    
+
     //
     virtual BOOL modifyStyles(DWORD dwStyle);
     virtual BOOL modifyExStyles(DWORD dwStyle);
-    
+
     //
     BOOL setWindowRgn(HRGN hRgn, BOOL bRedraw = TRUE);
-    
+
     //
     BOOL adjustWindowRectEx();
 

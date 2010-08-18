@@ -28,13 +28,13 @@ public:
     //
     bool redirectMsg(HWND hWnd);
 
-	//
-	void setMsgWnd(HWND hWnd)
-	{ m_hMsgWnd = hWnd; }
-    
+    //
+    void setMsgWnd(HWND hWnd)
+    { m_hMsgWnd = hWnd; }
+
     void setAlign(Align al)
     { m_align = al; }
-    
+
     void changeAlign(Align al)
     {
         if (al == m_align) return;
@@ -51,7 +51,7 @@ private:
 
     //
     bool relayout();
-    
+
     virtual void updateChild() {}
 
     HWND m_hMsgWnd;

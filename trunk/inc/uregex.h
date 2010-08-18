@@ -4,12 +4,12 @@
 #include "ulib.h"
 
 /*
- * 1. Any character except 
+ * 1. Any character except
  *        [\^$.|?*+()
  *    match a single instance of themselves.
  * 2  A backslash escapes special characters to
  *    suppress their special meaning.
- * 3  \Q...\E 
+ * 3  \Q...\E
  *    Matches the characters between \Q and \E literally,
  *    suppressing the meaning of special characters.
  */
@@ -20,7 +20,7 @@ namespace URegex
 class ULIB_API URegExp
 {
 public:
-    
+
     URegExp();
 
 private:

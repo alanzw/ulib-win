@@ -37,12 +37,12 @@ public:
     void unload();
 
     void getImageSize();
-    
+
     int getHeight()
     {
         return m_nHeight;
     }
-    
+
     int getWidth()
     {
         return m_nWidth;

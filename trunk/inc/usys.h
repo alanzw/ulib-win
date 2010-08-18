@@ -39,7 +39,7 @@ public:
     //
     static DWORD getPhysicMem();
     static DWORD getPhysicMemAvail();
-    
+
     //
     static UINT getCPUUsage();
 protected:

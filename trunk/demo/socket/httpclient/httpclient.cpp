@@ -116,7 +116,7 @@ void UHTTPClient::request(char *host, char *url)
         }
 
     basetime=GetTickCount();
-    RecvThread=CreateThread(NULL,NULL,RecvProc,this,0,&ThreadID);
+    RecvThread=CreateThread(NULL,0,RecvProc,this,0,&ThreadID);
     }
 
 void UHTTPClient::cancel()

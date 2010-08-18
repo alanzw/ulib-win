@@ -8,7 +8,7 @@ class ULIB_API UPrinter
 public:
 
     static void listAll();
-    
+
     static HDC getHDC();
 };
 

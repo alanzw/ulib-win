@@ -25,10 +25,6 @@ httpclient_sock.exe : httpclient_sock.o httpclient.o $(RES)
 	cp -vf $(BIN) $(BINDIR)/$(BIN)
 	
 #
-%.o : %.cpp
-	$(CXX) -c -o $@ $< -DBUILD_EXE $(INCS)
- 
-#
 .PHONY : test
 test :
 	$(WINE) $(BINDIR)/$(BIN)

@@ -115,12 +115,12 @@ public:
     BOOL invertRect(LPCRECT lpRect);
 
     //
-    void fillSolidRect(LPCRECT lpRect, huys::Color clr);   
+    void fillSolidRect(LPCRECT lpRect, huys::Color clr);
     void fillSolidRect(int x, int y, int cx, int cy, huys::Color clr);
-    
+
     void draw3dRect(LPCRECT lpRect, COLORREF clrTopLeft, COLORREF clrBottomRight);
     void draw3dRect(int x, int y, int cx, int cy,
-	    huys::Color clrTopLeft, huys::Color clrBottomRight);
+        huys::Color clrTopLeft, huys::Color clrBottomRight);
 
     void floodFill(int x, int y, huys::Color crColor);
     //
@@ -142,10 +142,10 @@ public:
     //
     huys::Color setPixel(int x, int y, huys::Color clr);
     huys::Color getPixel(int x, int y);
-    
+
     //
     BOOL textOut(int nX, int nY, LPCTSTR lpString, int cbString);
-	BOOL textOutEx(int nX, int nY, LPCTSTR lpText);
+    BOOL textOutEx(int nX, int nY, LPCTSTR lpText);
     // uFormat :
     //   DT_BOTTOM
     //   DT_CALCRECT
@@ -169,7 +169,7 @@ public:
 
     //
     BOOL extTextOut(int x, int y, UINT fuOptions, LPRECT lpRect, LPCTSTR lpchText, int nCount, const INT *lpDx);
-    
+
     //
     BOOL getTextExtentPoint32(LPCTSTR lpString, int c, LPSIZE lpSize);
 private:

@@ -42,8 +42,8 @@ public:
 
     //
     DWORD type() const;
-    
-    
+
+
     //
     LPCTSTR name() const
     { return m_sFilename; }
@@ -57,7 +57,7 @@ class ULIB_API UTempFile : public UFile
 {
 public:
     bool open();
-    
+
     bool move(LPCTSTR lpNewFilename);
 };
 
@@ -111,9 +111,9 @@ public:
     long tell();
 
     void rewind();
-    
+
     FILE * assign(FILE * pfile)
-    { 
+    {
         m_pFile = pfile;
         return m_pFile;
     }
@@ -126,7 +126,7 @@ class ULIB_API UCTempFile : public UCFile
 {
 public:
     UCTempFile();
-    
+
     bool open();
 };
 

@@ -52,7 +52,7 @@ public:
 
         USmartDC udc(hdc);
 
-		huys::URectL rect(10, 10, 60, 110);
+        huys::URectL rect(10, 10, 60, 110);
         udc.fillRect(rect, brush);
 
         udc.setBKColor(::GetSysColor(COLOR_BTNFACE));
@@ -65,7 +65,7 @@ public:
         //udc.invertRect(&rc);
         udc.textOut(rect.left() + 15, rect.bottom()+10, "2", 1);
 
-		huys::URectL rectClient;
+        huys::URectL rectClient;
         ::GetClientRect(m_hDlg, rectClient);
 
         udc.setViewportOrg(rectClient.left(), rectClient.bottom());
@@ -76,7 +76,7 @@ public:
         udc.setPenColor(huys::red);
         udc.setBrushColor(huys::aliceblue);
 
-		huys::URectL  rc2(2500, 2100, 3000, 3100);
+        huys::URectL  rc2(2500, 2100, 3000, 3100);
         //udc.fillRect(&rc2, hBrush);
         udc.rectangle(rc2);
         udc.textOut(rc2.left() + 150, rc2.top() - 100, "3", 1);
@@ -92,7 +92,7 @@ public:
     }
 private:
     huys::ADT::UAutoPtr<UButton> m_pBtn;
-	UBrush brush;
+    UBrush brush;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

@@ -17,9 +17,9 @@ class ULIB_API ULayout
 {
 public:
     ULayout();
-    
+
     virtual ~ULayout()= 0; /// Implement must be supplied, or link error.
-    
+
     BOOL addControl(UControl *pCtrl);
     BOOL addControls(UControl **p, int n);
     virtual BOOL go() = 0;

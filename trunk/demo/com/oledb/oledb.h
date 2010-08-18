@@ -46,487 +46,487 @@
 #ifndef __IAccessor_FWD_DEFINED__
 #define __IAccessor_FWD_DEFINED__
 typedef interface IAccessor IAccessor;
-#endif 	/* __IAccessor_FWD_DEFINED__ */
+#endif     /* __IAccessor_FWD_DEFINED__ */
 
 
 #ifndef __IRowset_FWD_DEFINED__
 #define __IRowset_FWD_DEFINED__
 typedef interface IRowset IRowset;
-#endif 	/* __IRowset_FWD_DEFINED__ */
+#endif     /* __IRowset_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetInfo_FWD_DEFINED__
 #define __IRowsetInfo_FWD_DEFINED__
 typedef interface IRowsetInfo IRowsetInfo;
-#endif 	/* __IRowsetInfo_FWD_DEFINED__ */
+#endif     /* __IRowsetInfo_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetLocate_FWD_DEFINED__
 #define __IRowsetLocate_FWD_DEFINED__
 typedef interface IRowsetLocate IRowsetLocate;
-#endif 	/* __IRowsetLocate_FWD_DEFINED__ */
+#endif     /* __IRowsetLocate_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetResynch_FWD_DEFINED__
 #define __IRowsetResynch_FWD_DEFINED__
 typedef interface IRowsetResynch IRowsetResynch;
-#endif 	/* __IRowsetResynch_FWD_DEFINED__ */
+#endif     /* __IRowsetResynch_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetScroll_FWD_DEFINED__
 #define __IRowsetScroll_FWD_DEFINED__
 typedef interface IRowsetScroll IRowsetScroll;
-#endif 	/* __IRowsetScroll_FWD_DEFINED__ */
+#endif     /* __IRowsetScroll_FWD_DEFINED__ */
 
 
 #ifndef __IChapteredRowset_FWD_DEFINED__
 #define __IChapteredRowset_FWD_DEFINED__
 typedef interface IChapteredRowset IChapteredRowset;
-#endif 	/* __IChapteredRowset_FWD_DEFINED__ */
+#endif     /* __IChapteredRowset_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetFind_FWD_DEFINED__
 #define __IRowsetFind_FWD_DEFINED__
 typedef interface IRowsetFind IRowsetFind;
-#endif 	/* __IRowsetFind_FWD_DEFINED__ */
+#endif     /* __IRowsetFind_FWD_DEFINED__ */
 
 
 #ifndef __IRowPosition_FWD_DEFINED__
 #define __IRowPosition_FWD_DEFINED__
 typedef interface IRowPosition IRowPosition;
-#endif 	/* __IRowPosition_FWD_DEFINED__ */
+#endif     /* __IRowPosition_FWD_DEFINED__ */
 
 
 #ifndef __IRowPositionChange_FWD_DEFINED__
 #define __IRowPositionChange_FWD_DEFINED__
 typedef interface IRowPositionChange IRowPositionChange;
-#endif 	/* __IRowPositionChange_FWD_DEFINED__ */
+#endif     /* __IRowPositionChange_FWD_DEFINED__ */
 
 
 #ifndef __IViewRowset_FWD_DEFINED__
 #define __IViewRowset_FWD_DEFINED__
 typedef interface IViewRowset IViewRowset;
-#endif 	/* __IViewRowset_FWD_DEFINED__ */
+#endif     /* __IViewRowset_FWD_DEFINED__ */
 
 
 #ifndef __IViewChapter_FWD_DEFINED__
 #define __IViewChapter_FWD_DEFINED__
 typedef interface IViewChapter IViewChapter;
-#endif 	/* __IViewChapter_FWD_DEFINED__ */
+#endif     /* __IViewChapter_FWD_DEFINED__ */
 
 
 #ifndef __IViewSort_FWD_DEFINED__
 #define __IViewSort_FWD_DEFINED__
 typedef interface IViewSort IViewSort;
-#endif 	/* __IViewSort_FWD_DEFINED__ */
+#endif     /* __IViewSort_FWD_DEFINED__ */
 
 
 #ifndef __IViewFilter_FWD_DEFINED__
 #define __IViewFilter_FWD_DEFINED__
 typedef interface IViewFilter IViewFilter;
-#endif 	/* __IViewFilter_FWD_DEFINED__ */
+#endif     /* __IViewFilter_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetView_FWD_DEFINED__
 #define __IRowsetView_FWD_DEFINED__
 typedef interface IRowsetView IRowsetView;
-#endif 	/* __IRowsetView_FWD_DEFINED__ */
+#endif     /* __IRowsetView_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetExactScroll_FWD_DEFINED__
 #define __IRowsetExactScroll_FWD_DEFINED__
 typedef interface IRowsetExactScroll IRowsetExactScroll;
-#endif 	/* __IRowsetExactScroll_FWD_DEFINED__ */
+#endif     /* __IRowsetExactScroll_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetChange_FWD_DEFINED__
 #define __IRowsetChange_FWD_DEFINED__
 typedef interface IRowsetChange IRowsetChange;
-#endif 	/* __IRowsetChange_FWD_DEFINED__ */
+#endif     /* __IRowsetChange_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetUpdate_FWD_DEFINED__
 #define __IRowsetUpdate_FWD_DEFINED__
 typedef interface IRowsetUpdate IRowsetUpdate;
-#endif 	/* __IRowsetUpdate_FWD_DEFINED__ */
+#endif     /* __IRowsetUpdate_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetIdentity_FWD_DEFINED__
 #define __IRowsetIdentity_FWD_DEFINED__
 typedef interface IRowsetIdentity IRowsetIdentity;
-#endif 	/* __IRowsetIdentity_FWD_DEFINED__ */
+#endif     /* __IRowsetIdentity_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetNotify_FWD_DEFINED__
 #define __IRowsetNotify_FWD_DEFINED__
 typedef interface IRowsetNotify IRowsetNotify;
-#endif 	/* __IRowsetNotify_FWD_DEFINED__ */
+#endif     /* __IRowsetNotify_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetIndex_FWD_DEFINED__
 #define __IRowsetIndex_FWD_DEFINED__
 typedef interface IRowsetIndex IRowsetIndex;
-#endif 	/* __IRowsetIndex_FWD_DEFINED__ */
+#endif     /* __IRowsetIndex_FWD_DEFINED__ */
 
 
 #ifndef __ICommand_FWD_DEFINED__
 #define __ICommand_FWD_DEFINED__
 typedef interface ICommand ICommand;
-#endif 	/* __ICommand_FWD_DEFINED__ */
+#endif     /* __ICommand_FWD_DEFINED__ */
 
 
 #ifndef __IMultipleResults_FWD_DEFINED__
 #define __IMultipleResults_FWD_DEFINED__
 typedef interface IMultipleResults IMultipleResults;
-#endif 	/* __IMultipleResults_FWD_DEFINED__ */
+#endif     /* __IMultipleResults_FWD_DEFINED__ */
 
 
 #ifndef __IConvertType_FWD_DEFINED__
 #define __IConvertType_FWD_DEFINED__
 typedef interface IConvertType IConvertType;
-#endif 	/* __IConvertType_FWD_DEFINED__ */
+#endif     /* __IConvertType_FWD_DEFINED__ */
 
 
 #ifndef __ICommandPrepare_FWD_DEFINED__
 #define __ICommandPrepare_FWD_DEFINED__
 typedef interface ICommandPrepare ICommandPrepare;
-#endif 	/* __ICommandPrepare_FWD_DEFINED__ */
+#endif     /* __ICommandPrepare_FWD_DEFINED__ */
 
 
 #ifndef __ICommandProperties_FWD_DEFINED__
 #define __ICommandProperties_FWD_DEFINED__
 typedef interface ICommandProperties ICommandProperties;
-#endif 	/* __ICommandProperties_FWD_DEFINED__ */
+#endif     /* __ICommandProperties_FWD_DEFINED__ */
 
 
 #ifndef __ICommandText_FWD_DEFINED__
 #define __ICommandText_FWD_DEFINED__
 typedef interface ICommandText ICommandText;
-#endif 	/* __ICommandText_FWD_DEFINED__ */
+#endif     /* __ICommandText_FWD_DEFINED__ */
 
 
 #ifndef __ICommandWithParameters_FWD_DEFINED__
 #define __ICommandWithParameters_FWD_DEFINED__
 typedef interface ICommandWithParameters ICommandWithParameters;
-#endif 	/* __ICommandWithParameters_FWD_DEFINED__ */
+#endif     /* __ICommandWithParameters_FWD_DEFINED__ */
 
 
 #ifndef __IColumnsRowset_FWD_DEFINED__
 #define __IColumnsRowset_FWD_DEFINED__
 typedef interface IColumnsRowset IColumnsRowset;
-#endif 	/* __IColumnsRowset_FWD_DEFINED__ */
+#endif     /* __IColumnsRowset_FWD_DEFINED__ */
 
 
 #ifndef __IColumnsInfo_FWD_DEFINED__
 #define __IColumnsInfo_FWD_DEFINED__
 typedef interface IColumnsInfo IColumnsInfo;
-#endif 	/* __IColumnsInfo_FWD_DEFINED__ */
+#endif     /* __IColumnsInfo_FWD_DEFINED__ */
 
 
 #ifndef __IDBCreateCommand_FWD_DEFINED__
 #define __IDBCreateCommand_FWD_DEFINED__
 typedef interface IDBCreateCommand IDBCreateCommand;
-#endif 	/* __IDBCreateCommand_FWD_DEFINED__ */
+#endif     /* __IDBCreateCommand_FWD_DEFINED__ */
 
 
 #ifndef __IDBCreateSession_FWD_DEFINED__
 #define __IDBCreateSession_FWD_DEFINED__
 typedef interface IDBCreateSession IDBCreateSession;
-#endif 	/* __IDBCreateSession_FWD_DEFINED__ */
+#endif     /* __IDBCreateSession_FWD_DEFINED__ */
 
 
 #ifndef __ISourcesRowset_FWD_DEFINED__
 #define __ISourcesRowset_FWD_DEFINED__
 typedef interface ISourcesRowset ISourcesRowset;
-#endif 	/* __ISourcesRowset_FWD_DEFINED__ */
+#endif     /* __ISourcesRowset_FWD_DEFINED__ */
 
 
 #ifndef __IDBProperties_FWD_DEFINED__
 #define __IDBProperties_FWD_DEFINED__
 typedef interface IDBProperties IDBProperties;
-#endif 	/* __IDBProperties_FWD_DEFINED__ */
+#endif     /* __IDBProperties_FWD_DEFINED__ */
 
 
 #ifndef __IDBInitialize_FWD_DEFINED__
 #define __IDBInitialize_FWD_DEFINED__
 typedef interface IDBInitialize IDBInitialize;
-#endif 	/* __IDBInitialize_FWD_DEFINED__ */
+#endif     /* __IDBInitialize_FWD_DEFINED__ */
 
 
 #ifndef __IDBInfo_FWD_DEFINED__
 #define __IDBInfo_FWD_DEFINED__
 typedef interface IDBInfo IDBInfo;
-#endif 	/* __IDBInfo_FWD_DEFINED__ */
+#endif     /* __IDBInfo_FWD_DEFINED__ */
 
 
 #ifndef __IDBDataSourceAdmin_FWD_DEFINED__
 #define __IDBDataSourceAdmin_FWD_DEFINED__
 typedef interface IDBDataSourceAdmin IDBDataSourceAdmin;
-#endif 	/* __IDBDataSourceAdmin_FWD_DEFINED__ */
+#endif     /* __IDBDataSourceAdmin_FWD_DEFINED__ */
 
 
 #ifndef __IDBAsynchNotify_FWD_DEFINED__
 #define __IDBAsynchNotify_FWD_DEFINED__
 typedef interface IDBAsynchNotify IDBAsynchNotify;
-#endif 	/* __IDBAsynchNotify_FWD_DEFINED__ */
+#endif     /* __IDBAsynchNotify_FWD_DEFINED__ */
 
 
 #ifndef __IDBAsynchStatus_FWD_DEFINED__
 #define __IDBAsynchStatus_FWD_DEFINED__
 typedef interface IDBAsynchStatus IDBAsynchStatus;
-#endif 	/* __IDBAsynchStatus_FWD_DEFINED__ */
+#endif     /* __IDBAsynchStatus_FWD_DEFINED__ */
 
 
 #ifndef __ISessionProperties_FWD_DEFINED__
 #define __ISessionProperties_FWD_DEFINED__
 typedef interface ISessionProperties ISessionProperties;
-#endif 	/* __ISessionProperties_FWD_DEFINED__ */
+#endif     /* __ISessionProperties_FWD_DEFINED__ */
 
 
 #ifndef __IIndexDefinition_FWD_DEFINED__
 #define __IIndexDefinition_FWD_DEFINED__
 typedef interface IIndexDefinition IIndexDefinition;
-#endif 	/* __IIndexDefinition_FWD_DEFINED__ */
+#endif     /* __IIndexDefinition_FWD_DEFINED__ */
 
 
 #ifndef __ITableDefinition_FWD_DEFINED__
 #define __ITableDefinition_FWD_DEFINED__
 typedef interface ITableDefinition ITableDefinition;
-#endif 	/* __ITableDefinition_FWD_DEFINED__ */
+#endif     /* __ITableDefinition_FWD_DEFINED__ */
 
 
 #ifndef __IOpenRowset_FWD_DEFINED__
 #define __IOpenRowset_FWD_DEFINED__
 typedef interface IOpenRowset IOpenRowset;
-#endif 	/* __IOpenRowset_FWD_DEFINED__ */
+#endif     /* __IOpenRowset_FWD_DEFINED__ */
 
 
 #ifndef __IDBSchemaRowset_FWD_DEFINED__
 #define __IDBSchemaRowset_FWD_DEFINED__
 typedef interface IDBSchemaRowset IDBSchemaRowset;
-#endif 	/* __IDBSchemaRowset_FWD_DEFINED__ */
+#endif     /* __IDBSchemaRowset_FWD_DEFINED__ */
 
 
 #ifndef __IMDDataset_FWD_DEFINED__
 #define __IMDDataset_FWD_DEFINED__
 typedef interface IMDDataset IMDDataset;
-#endif 	/* __IMDDataset_FWD_DEFINED__ */
+#endif     /* __IMDDataset_FWD_DEFINED__ */
 
 
 #ifndef __IMDFind_FWD_DEFINED__
 #define __IMDFind_FWD_DEFINED__
 typedef interface IMDFind IMDFind;
-#endif 	/* __IMDFind_FWD_DEFINED__ */
+#endif     /* __IMDFind_FWD_DEFINED__ */
 
 
 #ifndef __IMDRangeRowset_FWD_DEFINED__
 #define __IMDRangeRowset_FWD_DEFINED__
 typedef interface IMDRangeRowset IMDRangeRowset;
-#endif 	/* __IMDRangeRowset_FWD_DEFINED__ */
+#endif     /* __IMDRangeRowset_FWD_DEFINED__ */
 
 
 #ifndef __IAlterTable_FWD_DEFINED__
 #define __IAlterTable_FWD_DEFINED__
 typedef interface IAlterTable IAlterTable;
-#endif 	/* __IAlterTable_FWD_DEFINED__ */
+#endif     /* __IAlterTable_FWD_DEFINED__ */
 
 
 #ifndef __IAlterIndex_FWD_DEFINED__
 #define __IAlterIndex_FWD_DEFINED__
 typedef interface IAlterIndex IAlterIndex;
-#endif 	/* __IAlterIndex_FWD_DEFINED__ */
+#endif     /* __IAlterIndex_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetChapterMember_FWD_DEFINED__
 #define __IRowsetChapterMember_FWD_DEFINED__
 typedef interface IRowsetChapterMember IRowsetChapterMember;
-#endif 	/* __IRowsetChapterMember_FWD_DEFINED__ */
+#endif     /* __IRowsetChapterMember_FWD_DEFINED__ */
 
 
 #ifndef __ICommandPersist_FWD_DEFINED__
 #define __ICommandPersist_FWD_DEFINED__
 typedef interface ICommandPersist ICommandPersist;
-#endif 	/* __ICommandPersist_FWD_DEFINED__ */
+#endif     /* __ICommandPersist_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetRefresh_FWD_DEFINED__
 #define __IRowsetRefresh_FWD_DEFINED__
 typedef interface IRowsetRefresh IRowsetRefresh;
-#endif 	/* __IRowsetRefresh_FWD_DEFINED__ */
+#endif     /* __IRowsetRefresh_FWD_DEFINED__ */
 
 
 #ifndef __IParentRowset_FWD_DEFINED__
 #define __IParentRowset_FWD_DEFINED__
 typedef interface IParentRowset IParentRowset;
-#endif 	/* __IParentRowset_FWD_DEFINED__ */
+#endif     /* __IParentRowset_FWD_DEFINED__ */
 
 
 #ifndef __IErrorRecords_FWD_DEFINED__
 #define __IErrorRecords_FWD_DEFINED__
 typedef interface IErrorRecords IErrorRecords;
-#endif 	/* __IErrorRecords_FWD_DEFINED__ */
+#endif     /* __IErrorRecords_FWD_DEFINED__ */
 
 
 #ifndef __IErrorLookup_FWD_DEFINED__
 #define __IErrorLookup_FWD_DEFINED__
 typedef interface IErrorLookup IErrorLookup;
-#endif 	/* __IErrorLookup_FWD_DEFINED__ */
+#endif     /* __IErrorLookup_FWD_DEFINED__ */
 
 
 #ifndef __ISQLErrorInfo_FWD_DEFINED__
 #define __ISQLErrorInfo_FWD_DEFINED__
 typedef interface ISQLErrorInfo ISQLErrorInfo;
-#endif 	/* __ISQLErrorInfo_FWD_DEFINED__ */
+#endif     /* __ISQLErrorInfo_FWD_DEFINED__ */
 
 
 #ifndef __IGetDataSource_FWD_DEFINED__
 #define __IGetDataSource_FWD_DEFINED__
 typedef interface IGetDataSource IGetDataSource;
-#endif 	/* __IGetDataSource_FWD_DEFINED__ */
+#endif     /* __IGetDataSource_FWD_DEFINED__ */
 
 
 #ifndef __ITransactionLocal_FWD_DEFINED__
 #define __ITransactionLocal_FWD_DEFINED__
 typedef interface ITransactionLocal ITransactionLocal;
-#endif 	/* __ITransactionLocal_FWD_DEFINED__ */
+#endif     /* __ITransactionLocal_FWD_DEFINED__ */
 
 
 #ifndef __ITransactionJoin_FWD_DEFINED__
 #define __ITransactionJoin_FWD_DEFINED__
 typedef interface ITransactionJoin ITransactionJoin;
-#endif 	/* __ITransactionJoin_FWD_DEFINED__ */
+#endif     /* __ITransactionJoin_FWD_DEFINED__ */
 
 
 #ifndef __ITransactionObject_FWD_DEFINED__
 #define __ITransactionObject_FWD_DEFINED__
 typedef interface ITransactionObject ITransactionObject;
-#endif 	/* __ITransactionObject_FWD_DEFINED__ */
+#endif     /* __ITransactionObject_FWD_DEFINED__ */
 
 
 #ifndef __ITrusteeAdmin_FWD_DEFINED__
 #define __ITrusteeAdmin_FWD_DEFINED__
 typedef interface ITrusteeAdmin ITrusteeAdmin;
-#endif 	/* __ITrusteeAdmin_FWD_DEFINED__ */
+#endif     /* __ITrusteeAdmin_FWD_DEFINED__ */
 
 
 #ifndef __ITrusteeGroupAdmin_FWD_DEFINED__
 #define __ITrusteeGroupAdmin_FWD_DEFINED__
 typedef interface ITrusteeGroupAdmin ITrusteeGroupAdmin;
-#endif 	/* __ITrusteeGroupAdmin_FWD_DEFINED__ */
+#endif     /* __ITrusteeGroupAdmin_FWD_DEFINED__ */
 
 
 #ifndef __IObjectAccessControl_FWD_DEFINED__
 #define __IObjectAccessControl_FWD_DEFINED__
 typedef interface IObjectAccessControl IObjectAccessControl;
-#endif 	/* __IObjectAccessControl_FWD_DEFINED__ */
+#endif     /* __IObjectAccessControl_FWD_DEFINED__ */
 
 
 #ifndef __ISecurityInfo_FWD_DEFINED__
 #define __ISecurityInfo_FWD_DEFINED__
 typedef interface ISecurityInfo ISecurityInfo;
-#endif 	/* __ISecurityInfo_FWD_DEFINED__ */
+#endif     /* __ISecurityInfo_FWD_DEFINED__ */
 
 
 #ifndef __ITableCreation_FWD_DEFINED__
 #define __ITableCreation_FWD_DEFINED__
 typedef interface ITableCreation ITableCreation;
-#endif 	/* __ITableCreation_FWD_DEFINED__ */
+#endif     /* __ITableCreation_FWD_DEFINED__ */
 
 
 #ifndef __ITableDefinitionWithConstraints_FWD_DEFINED__
 #define __ITableDefinitionWithConstraints_FWD_DEFINED__
 typedef interface ITableDefinitionWithConstraints ITableDefinitionWithConstraints;
-#endif 	/* __ITableDefinitionWithConstraints_FWD_DEFINED__ */
+#endif     /* __ITableDefinitionWithConstraints_FWD_DEFINED__ */
 
 
 #ifndef __IRow_FWD_DEFINED__
 #define __IRow_FWD_DEFINED__
 typedef interface IRow IRow;
-#endif 	/* __IRow_FWD_DEFINED__ */
+#endif     /* __IRow_FWD_DEFINED__ */
 
 
 #ifndef __IRowChange_FWD_DEFINED__
 #define __IRowChange_FWD_DEFINED__
 typedef interface IRowChange IRowChange;
-#endif 	/* __IRowChange_FWD_DEFINED__ */
+#endif     /* __IRowChange_FWD_DEFINED__ */
 
 
 #ifndef __IRowSchemaChange_FWD_DEFINED__
 #define __IRowSchemaChange_FWD_DEFINED__
 typedef interface IRowSchemaChange IRowSchemaChange;
-#endif 	/* __IRowSchemaChange_FWD_DEFINED__ */
+#endif     /* __IRowSchemaChange_FWD_DEFINED__ */
 
 
 #ifndef __IGetRow_FWD_DEFINED__
 #define __IGetRow_FWD_DEFINED__
 typedef interface IGetRow IGetRow;
-#endif 	/* __IGetRow_FWD_DEFINED__ */
+#endif     /* __IGetRow_FWD_DEFINED__ */
 
 
 #ifndef __IBindResource_FWD_DEFINED__
 #define __IBindResource_FWD_DEFINED__
 typedef interface IBindResource IBindResource;
-#endif 	/* __IBindResource_FWD_DEFINED__ */
+#endif     /* __IBindResource_FWD_DEFINED__ */
 
 
 #ifndef __IScopedOperations_FWD_DEFINED__
 #define __IScopedOperations_FWD_DEFINED__
 typedef interface IScopedOperations IScopedOperations;
-#endif 	/* __IScopedOperations_FWD_DEFINED__ */
+#endif     /* __IScopedOperations_FWD_DEFINED__ */
 
 
 #ifndef __ICreateRow_FWD_DEFINED__
 #define __ICreateRow_FWD_DEFINED__
 typedef interface ICreateRow ICreateRow;
-#endif 	/* __ICreateRow_FWD_DEFINED__ */
+#endif     /* __ICreateRow_FWD_DEFINED__ */
 
 
 #ifndef __IDBBinderProperties_FWD_DEFINED__
 #define __IDBBinderProperties_FWD_DEFINED__
 typedef interface IDBBinderProperties IDBBinderProperties;
-#endif 	/* __IDBBinderProperties_FWD_DEFINED__ */
+#endif     /* __IDBBinderProperties_FWD_DEFINED__ */
 
 
 #ifndef __IColumnsInfo2_FWD_DEFINED__
 #define __IColumnsInfo2_FWD_DEFINED__
 typedef interface IColumnsInfo2 IColumnsInfo2;
-#endif 	/* __IColumnsInfo2_FWD_DEFINED__ */
+#endif     /* __IColumnsInfo2_FWD_DEFINED__ */
 
 
 #ifndef __IRegisterProvider_FWD_DEFINED__
 #define __IRegisterProvider_FWD_DEFINED__
 typedef interface IRegisterProvider IRegisterProvider;
-#endif 	/* __IRegisterProvider_FWD_DEFINED__ */
+#endif     /* __IRegisterProvider_FWD_DEFINED__ */
 
 
 #ifndef __IGetSession_FWD_DEFINED__
 #define __IGetSession_FWD_DEFINED__
 typedef interface IGetSession IGetSession;
-#endif 	/* __IGetSession_FWD_DEFINED__ */
+#endif     /* __IGetSession_FWD_DEFINED__ */
 
 
 #ifndef __IGetSourceRow_FWD_DEFINED__
 #define __IGetSourceRow_FWD_DEFINED__
 typedef interface IGetSourceRow IGetSourceRow;
-#endif 	/* __IGetSourceRow_FWD_DEFINED__ */
+#endif     /* __IGetSourceRow_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetCurrentIndex_FWD_DEFINED__
 #define __IRowsetCurrentIndex_FWD_DEFINED__
 typedef interface IRowsetCurrentIndex IRowsetCurrentIndex;
-#endif 	/* __IRowsetCurrentIndex_FWD_DEFINED__ */
+#endif     /* __IRowsetCurrentIndex_FWD_DEFINED__ */
 
 
 #ifndef __ICommandStream_FWD_DEFINED__
 #define __ICommandStream_FWD_DEFINED__
 typedef interface ICommandStream ICommandStream;
-#endif 	/* __ICommandStream_FWD_DEFINED__ */
+#endif     /* __ICommandStream_FWD_DEFINED__ */
 
 
 #ifndef __IRowsetBookmark_FWD_DEFINED__
 #define __IRowsetBookmark_FWD_DEFINED__
 typedef interface IRowsetBookmark IRowsetBookmark;
-#endif 	/* __IRowsetBookmark_FWD_DEFINED__ */
+#endif     /* __IRowsetBookmark_FWD_DEFINED__ */
 
 
 /* header files for imported files */
@@ -554,15 +554,15 @@ void __RPC_USER MIDL_user_free( void * );
 //----------------------------------------------------------------------------
 
 #ifdef _WIN64
-#include <pshpack8.h>	// 8-byte structure packing
+#include <pshpack8.h>    // 8-byte structure packing
 #else
-#include <pshpack2.h>	// 2-byte structure packing
+#include <pshpack2.h>    // 2-byte structure packing
 #endif
 
 //
 // OLEDBVER
-//	OLE DB version number is 2.7 (0x0270); to force a particular version,
-//	#define OLEDBVER as required before including this file.
+//    OLE DB version number is 2.7 (0x0270); to force a particular version,
+//    #define OLEDBVER as required before including this file.
 //
 
 // If OLEDBVER is not defined, assume version 2.7
@@ -573,44 +573,44 @@ void __RPC_USER MIDL_user_free( void * );
 #ifdef _WIN64
 
 // Length of a non-character object, size
-typedef ULONGLONG			DBLENGTH;
+typedef ULONGLONG            DBLENGTH;
 
 // Offset within a rowset
-typedef LONGLONG				DBROWOFFSET;
+typedef LONGLONG                DBROWOFFSET;
 
 // Number of rows
-typedef LONGLONG				DBROWCOUNT;
+typedef LONGLONG                DBROWCOUNT;
 
-typedef ULONGLONG			DBCOUNTITEM;
+typedef ULONGLONG            DBCOUNTITEM;
 
 // Ordinal (column number, etc.)
-typedef ULONGLONG			DBORDINAL;
+typedef ULONGLONG            DBORDINAL;
 
-typedef LONGLONG				DB_LORDINAL;
+typedef LONGLONG                DB_LORDINAL;
 
 // Bookmarks
-typedef ULONGLONG			DBBKMARK;
+typedef ULONGLONG            DBBKMARK;
 // Offset in the buffer
 
-typedef ULONGLONG			DBBYTEOFFSET;
+typedef ULONGLONG            DBBYTEOFFSET;
 // Reference count of each row/accessor  handle
 
-typedef ULONG				DBREFCOUNT;
+typedef ULONG                DBREFCOUNT;
 
 // Parameters
-typedef ULONGLONG			DB_UPARAMS;
+typedef ULONGLONG            DB_UPARAMS;
 
-typedef LONGLONG				DB_LPARAMS;
+typedef LONGLONG                DB_LPARAMS;
 
 // hash values corresponding to the elements (bookmarks)
-typedef DWORDLONG			DBHASHVALUE;
+typedef DWORDLONG            DBHASHVALUE;
 
 // For reserve
-typedef DWORDLONG			DB_DWRESERVE;
+typedef DWORDLONG            DB_DWRESERVE;
 
-typedef LONGLONG				DB_LRESERVE;
+typedef LONGLONG                DB_LRESERVE;
 
-typedef ULONGLONG			DB_URESERVE;
+typedef ULONGLONG            DB_URESERVE;
 
 #else //_WIN64
 
@@ -654,7 +654,7 @@ typedef LONG DB_LRESERVE;
 
 typedef ULONG DB_URESERVE;
 
-#endif	// _WIN64
+#endif    // _WIN64
 
 
 extern RPC_IF_HANDLE __MIDL_itf_oledb_0000_v0_0_c_ifspec;
@@ -683,13 +683,13 @@ typedef DWORD DBKIND;
 
 
 enum DBKINDENUM
-    {	DBKIND_GUID_NAME	= 0,
-	DBKIND_GUID_PROPID	= DBKIND_GUID_NAME + 1,
-	DBKIND_NAME	= DBKIND_GUID_PROPID + 1,
-	DBKIND_PGUID_NAME	= DBKIND_NAME + 1,
-	DBKIND_PGUID_PROPID	= DBKIND_PGUID_NAME + 1,
-	DBKIND_PROPID	= DBKIND_PGUID_PROPID + 1,
-	DBKIND_GUID	= DBKIND_PROPID + 1
+    {    DBKIND_GUID_NAME    = 0,
+    DBKIND_GUID_PROPID    = DBKIND_GUID_NAME + 1,
+    DBKIND_NAME    = DBKIND_GUID_PROPID + 1,
+    DBKIND_PGUID_NAME    = DBKIND_NAME + 1,
+    DBKIND_PGUID_PROPID    = DBKIND_PGUID_NAME + 1,
+    DBKIND_PROPID    = DBKIND_PGUID_PROPID + 1,
+    DBKIND_GUID    = DBKIND_PROPID + 1
     } ;
 typedef struct tagDBID
     {
@@ -698,15 +698,15 @@ typedef struct tagDBID
         /* [case()] */ GUID guid;
         /* [case()] */ GUID *pguid;
         /* [default] */  /* Empty union arm */ 
-        } 	uGuid;
+        }     uGuid;
     DBKIND eKind;
     /* [switch_is][switch_type] */ union 
         {
         /* [case()] */ LPOLESTR pwszName;
         /* [case()] */ ULONG ulPropid;
         /* [default] */  /* Empty union arm */ 
-        } 	uName;
-    } 	DBID;
+        }     uName;
+    }     DBID;
 
 typedef struct tagDB_NUMERIC
     {
@@ -714,7 +714,7 @@ typedef struct tagDB_NUMERIC
     BYTE scale;
     BYTE sign;
     BYTE val[ 16 ];
-    } 	DB_NUMERIC;
+    }     DB_NUMERIC;
 
 #ifndef _ULONGLONG_
 typedef hyper LONGLONG;
@@ -759,21 +759,21 @@ typedef struct tagDBVECTOR
     {
     DBLENGTH size;
     /* [size_is] */ void *ptr;
-    } 	DBVECTOR;
+    }     DBVECTOR;
 
 typedef struct tagDBDATE
     {
     SHORT year;
     USHORT month;
     USHORT day;
-    } 	DBDATE;
+    }     DBDATE;
 
 typedef struct tagDBTIME
     {
     USHORT hour;
     USHORT minute;
     USHORT second;
-    } 	DBTIME;
+    }     DBTIME;
 
 typedef struct tagDBTIMESTAMP
     {
@@ -784,16 +784,16 @@ typedef struct tagDBTIMESTAMP
     USHORT minute;
     USHORT second;
     ULONG fraction;
-    } 	DBTIMESTAMP;
+    }     DBTIMESTAMP;
 
 //@@@+ V2.0
 #if( OLEDBVER >= 0x0200 )
 #if !defined(_WINBASE_) && !defined(_FILETIME_)
 #define _FILETIME_
 typedef struct _FILETIME {
-		DWORD dwLowDateTime;
-		DWORD dwHighDateTime;
-     }	FILETIME;
+        DWORD dwLowDateTime;
+        DWORD dwHighDateTime;
+     }    FILETIME;
 #endif // !_FILETIME
 typedef signed char SBYTE;
 
@@ -803,7 +803,7 @@ typedef struct tagDB_VARNUMERIC
     SBYTE scale;
     BYTE sign;
     BYTE val[ 1 ];
-    } 	DB_VARNUMERIC;
+    }     DB_VARNUMERIC;
 
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
@@ -813,20 +813,20 @@ typedef struct _SEC_OBJECT_ELEMENT
     {
     GUID guidObjectType;
     DBID ObjectID;
-    } 	SEC_OBJECT_ELEMENT;
+    }     SEC_OBJECT_ELEMENT;
 
 typedef struct _SEC_OBJECT
     {
     DWORD cObjects;
     /* [size_is] */ SEC_OBJECT_ELEMENT *prgObjects;
-    } 	SEC_OBJECT;
+    }     SEC_OBJECT;
 
 typedef struct tagDBIMPLICITSESSION
     {
     IUnknown *pUnkOuter;
     IID *piid;
     IUnknown *pSession;
-    } 	DBIMPLICITSESSION;
+    }     DBIMPLICITSESSION;
 
 #endif // OLEDBVER >= 0x0210
 //@@@- V2.1
@@ -834,56 +834,56 @@ typedef WORD DBTYPE;
 
 
 enum DBTYPEENUM
-    {	DBTYPE_EMPTY	= 0,
-	DBTYPE_NULL	= 1,
-	DBTYPE_I2	= 2,
-	DBTYPE_I4	= 3,
-	DBTYPE_R4	= 4,
-	DBTYPE_R8	= 5,
-	DBTYPE_CY	= 6,
-	DBTYPE_DATE	= 7,
-	DBTYPE_BSTR	= 8,
-	DBTYPE_IDISPATCH	= 9,
-	DBTYPE_ERROR	= 10,
-	DBTYPE_BOOL	= 11,
-	DBTYPE_VARIANT	= 12,
-	DBTYPE_IUNKNOWN	= 13,
-	DBTYPE_DECIMAL	= 14,
-	DBTYPE_UI1	= 17,
-	DBTYPE_ARRAY	= 0x2000,
-	DBTYPE_BYREF	= 0x4000,
-	DBTYPE_I1	= 16,
-	DBTYPE_UI2	= 18,
-	DBTYPE_UI4	= 19,
-	DBTYPE_I8	= 20,
-	DBTYPE_UI8	= 21,
-	DBTYPE_GUID	= 72,
-	DBTYPE_VECTOR	= 0x1000,
-	DBTYPE_RESERVED	= 0x8000,
-	DBTYPE_BYTES	= 128,
-	DBTYPE_STR	= 129,
-	DBTYPE_WSTR	= 130,
-	DBTYPE_NUMERIC	= 131,
-	DBTYPE_UDT	= 132,
-	DBTYPE_DBDATE	= 133,
-	DBTYPE_DBTIME	= 134,
-	DBTYPE_DBTIMESTAMP	= 135
+    {    DBTYPE_EMPTY    = 0,
+    DBTYPE_NULL    = 1,
+    DBTYPE_I2    = 2,
+    DBTYPE_I4    = 3,
+    DBTYPE_R4    = 4,
+    DBTYPE_R8    = 5,
+    DBTYPE_CY    = 6,
+    DBTYPE_DATE    = 7,
+    DBTYPE_BSTR    = 8,
+    DBTYPE_IDISPATCH    = 9,
+    DBTYPE_ERROR    = 10,
+    DBTYPE_BOOL    = 11,
+    DBTYPE_VARIANT    = 12,
+    DBTYPE_IUNKNOWN    = 13,
+    DBTYPE_DECIMAL    = 14,
+    DBTYPE_UI1    = 17,
+    DBTYPE_ARRAY    = 0x2000,
+    DBTYPE_BYREF    = 0x4000,
+    DBTYPE_I1    = 16,
+    DBTYPE_UI2    = 18,
+    DBTYPE_UI4    = 19,
+    DBTYPE_I8    = 20,
+    DBTYPE_UI8    = 21,
+    DBTYPE_GUID    = 72,
+    DBTYPE_VECTOR    = 0x1000,
+    DBTYPE_RESERVED    = 0x8000,
+    DBTYPE_BYTES    = 128,
+    DBTYPE_STR    = 129,
+    DBTYPE_WSTR    = 130,
+    DBTYPE_NUMERIC    = 131,
+    DBTYPE_UDT    = 132,
+    DBTYPE_DBDATE    = 133,
+    DBTYPE_DBTIME    = 134,
+    DBTYPE_DBTIMESTAMP    = 135
     } ;
 // Introduce some new DBTYPTE value to support 64bits ColumnsRowset
 #ifdef _WIN64
-#define	DBTYPEFOR_DBLENGTH		DBTYPE_UI8
-#define	DBTYPEFOR_DBROWCOUNT	DBTYPE_I8
-#define	DBTYPEFOR_DBORDINAL		DBTYPE_UI8
+#define    DBTYPEFOR_DBLENGTH        DBTYPE_UI8
+#define    DBTYPEFOR_DBROWCOUNT    DBTYPE_I8
+#define    DBTYPEFOR_DBORDINAL        DBTYPE_UI8
 #else
-#define	DBTYPEFOR_DBLENGTH		DBTYPE_UI4
-#define	DBTYPEFOR_DBROWCOUNT	DBTYPE_I4
-#define	DBTYPEFOR_DBORDINAL		DBTYPE_UI4
+#define    DBTYPEFOR_DBLENGTH        DBTYPE_UI4
+#define    DBTYPEFOR_DBROWCOUNT    DBTYPE_I4
+#define    DBTYPEFOR_DBORDINAL        DBTYPE_UI4
 #endif
 //@@@+ V1.5
 #if( OLEDBVER >= 0x0150 )
 
 enum DBTYPEENUM15
-    {	DBTYPE_HCHAPTER	= 136
+    {    DBTYPE_HCHAPTER    = 136
     } ;
 #endif // OLEDBVER >= 0x0150
 //@@@- V1.5
@@ -891,9 +891,9 @@ enum DBTYPEENUM15
 #if( OLEDBVER >= 0x0200 )
 
 enum DBTYPEENUM20
-    {	DBTYPE_FILETIME	= 64,
-	DBTYPE_PROPVARIANT	= 138,
-	DBTYPE_VARNUMERIC	= 139
+    {    DBTYPE_FILETIME    = 64,
+    DBTYPE_PROPVARIANT    = 138,
+    DBTYPE_VARNUMERIC    = 139
     } ;
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
@@ -901,18 +901,18 @@ typedef DWORD DBPART;
 
 
 enum DBPARTENUM
-    {	DBPART_INVALID	= 0,
-	DBPART_VALUE	= 0x1,
-	DBPART_LENGTH	= 0x2,
-	DBPART_STATUS	= 0x4
+    {    DBPART_INVALID    = 0,
+    DBPART_VALUE    = 0x1,
+    DBPART_LENGTH    = 0x2,
+    DBPART_STATUS    = 0x4
     } ;
 typedef DWORD DBPARAMIO;
 
 
 enum DBPARAMIOENUM
-    {	DBPARAMIO_NOTPARAM	= 0,
-	DBPARAMIO_INPUT	= 0x1,
-	DBPARAMIO_OUTPUT	= 0x2
+    {    DBPARAMIO_NOTPARAM    = 0,
+    DBPARAMIO_INPUT    = 0x1,
+    DBPARAMIO_OUTPUT    = 0x2
     } ;
 //@@@+ V1.5
 #if( OLEDBVER >= 0x0150 )
@@ -920,7 +920,7 @@ typedef DWORD DBBINDFLAG;
 
 
 enum DBBINDFLAGENUM
-    {	DBBINDFLAG_HTML	= 0x1
+    {    DBBINDFLAG_HTML    = 0x1
     } ;
 #endif // OLEDBVER >= 0x0150
 //@@@- V1.5
@@ -928,40 +928,40 @@ typedef DWORD DBMEMOWNER;
 
 
 enum DBMEMOWNERENUM
-    {	DBMEMOWNER_CLIENTOWNED	= 0,
-	DBMEMOWNER_PROVIDEROWNED	= 0x1
+    {    DBMEMOWNER_CLIENTOWNED    = 0,
+    DBMEMOWNER_PROVIDEROWNED    = 0x1
     } ;
 typedef struct tagDBOBJECT
     {
     DWORD dwFlags;
     IID iid;
-    } 	DBOBJECT;
+    }     DBOBJECT;
 
 typedef DWORD DBSTATUS;
 
 
 enum DBSTATUSENUM
-    {	DBSTATUS_S_OK	= 0,
-	DBSTATUS_E_BADACCESSOR	= 1,
-	DBSTATUS_E_CANTCONVERTVALUE	= 2,
-	DBSTATUS_S_ISNULL	= 3,
-	DBSTATUS_S_TRUNCATED	= 4,
-	DBSTATUS_E_SIGNMISMATCH	= 5,
-	DBSTATUS_E_DATAOVERFLOW	= 6,
-	DBSTATUS_E_CANTCREATE	= 7,
-	DBSTATUS_E_UNAVAILABLE	= 8,
-	DBSTATUS_E_PERMISSIONDENIED	= 9,
-	DBSTATUS_E_INTEGRITYVIOLATION	= 10,
-	DBSTATUS_E_SCHEMAVIOLATION	= 11,
-	DBSTATUS_E_BADSTATUS	= 12,
-	DBSTATUS_S_DEFAULT	= 13
+    {    DBSTATUS_S_OK    = 0,
+    DBSTATUS_E_BADACCESSOR    = 1,
+    DBSTATUS_E_CANTCONVERTVALUE    = 2,
+    DBSTATUS_S_ISNULL    = 3,
+    DBSTATUS_S_TRUNCATED    = 4,
+    DBSTATUS_E_SIGNMISMATCH    = 5,
+    DBSTATUS_E_DATAOVERFLOW    = 6,
+    DBSTATUS_E_CANTCREATE    = 7,
+    DBSTATUS_E_UNAVAILABLE    = 8,
+    DBSTATUS_E_PERMISSIONDENIED    = 9,
+    DBSTATUS_E_INTEGRITYVIOLATION    = 10,
+    DBSTATUS_E_SCHEMAVIOLATION    = 11,
+    DBSTATUS_E_BADSTATUS    = 12,
+    DBSTATUS_S_DEFAULT    = 13
     } ;
 //@@@+ V2.0
 #if( OLEDBVER >= 0x0200 )
 
 enum DBSTATUSENUM20
-    {	MDSTATUS_S_CELLEMPTY	= 14,
-	DBSTATUS_S_IGNORE	= 15
+    {    MDSTATUS_S_CELLEMPTY    = 14,
+    DBSTATUS_S_IGNORE    = 15
     } ;
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
@@ -969,48 +969,48 @@ enum DBSTATUSENUM20
 #if( OLEDBVER >= 0x0210 )
 
 enum DBSTATUSENUM21
-    {	DBSTATUS_E_DOESNOTEXIST	= 16,
-	DBSTATUS_E_INVALIDURL	= 17,
-	DBSTATUS_E_RESOURCELOCKED	= 18,
-	DBSTATUS_E_RESOURCEEXISTS	= 19,
-	DBSTATUS_E_CANNOTCOMPLETE	= 20,
-	DBSTATUS_E_VOLUMENOTFOUND	= 21,
-	DBSTATUS_E_OUTOFSPACE	= 22,
-	DBSTATUS_S_CANNOTDELETESOURCE	= 23,
-	DBSTATUS_E_READONLY	= 24,
-	DBSTATUS_E_RESOURCEOUTOFSCOPE	= 25,
-	DBSTATUS_S_ALREADYEXISTS	= 26
+    {    DBSTATUS_E_DOESNOTEXIST    = 16,
+    DBSTATUS_E_INVALIDURL    = 17,
+    DBSTATUS_E_RESOURCELOCKED    = 18,
+    DBSTATUS_E_RESOURCEEXISTS    = 19,
+    DBSTATUS_E_CANNOTCOMPLETE    = 20,
+    DBSTATUS_E_VOLUMENOTFOUND    = 21,
+    DBSTATUS_E_OUTOFSPACE    = 22,
+    DBSTATUS_S_CANNOTDELETESOURCE    = 23,
+    DBSTATUS_E_READONLY    = 24,
+    DBSTATUS_E_RESOURCEOUTOFSCOPE    = 25,
+    DBSTATUS_S_ALREADYEXISTS    = 26
     } ;
 typedef DWORD DBBINDURLFLAG;
 
 
 enum DBBINDURLFLAGENUM
-    {	DBBINDURLFLAG_READ	= 0x1L,
-	DBBINDURLFLAG_WRITE	= 0x2L,
-	DBBINDURLFLAG_READWRITE	= 0x3L,
-	DBBINDURLFLAG_SHARE_DENY_READ	= 0x4L,
-	DBBINDURLFLAG_SHARE_DENY_WRITE	= 0x8L,
-	DBBINDURLFLAG_SHARE_EXCLUSIVE	= 0xcL,
-	DBBINDURLFLAG_SHARE_DENY_NONE	= 0x10L,
-	DBBINDURLFLAG_ASYNCHRONOUS	= 0x1000L,
-	DBBINDURLFLAG_COLLECTION	= 0x2000L,
-	DBBINDURLFLAG_DELAYFETCHSTREAM	= 0x4000L,
-	DBBINDURLFLAG_DELAYFETCHCOLUMNS	= 0x8000L,
-	DBBINDURLFLAG_RECURSIVE	= 0x400000L,
-	DBBINDURLFLAG_OUTPUT	= 0x800000L,
-	DBBINDURLFLAG_WAITFORINIT	= 0x1000000L,
-	DBBINDURLFLAG_OPENIFEXISTS	= 0x2000000L,
-	DBBINDURLFLAG_OVERWRITE	= 0x4000000L,
-	DBBINDURLFLAG_ISSTRUCTUREDDOCUMENT	= 0x8000000L
+    {    DBBINDURLFLAG_READ    = 0x1L,
+    DBBINDURLFLAG_WRITE    = 0x2L,
+    DBBINDURLFLAG_READWRITE    = 0x3L,
+    DBBINDURLFLAG_SHARE_DENY_READ    = 0x4L,
+    DBBINDURLFLAG_SHARE_DENY_WRITE    = 0x8L,
+    DBBINDURLFLAG_SHARE_EXCLUSIVE    = 0xcL,
+    DBBINDURLFLAG_SHARE_DENY_NONE    = 0x10L,
+    DBBINDURLFLAG_ASYNCHRONOUS    = 0x1000L,
+    DBBINDURLFLAG_COLLECTION    = 0x2000L,
+    DBBINDURLFLAG_DELAYFETCHSTREAM    = 0x4000L,
+    DBBINDURLFLAG_DELAYFETCHCOLUMNS    = 0x8000L,
+    DBBINDURLFLAG_RECURSIVE    = 0x400000L,
+    DBBINDURLFLAG_OUTPUT    = 0x800000L,
+    DBBINDURLFLAG_WAITFORINIT    = 0x1000000L,
+    DBBINDURLFLAG_OPENIFEXISTS    = 0x2000000L,
+    DBBINDURLFLAG_OVERWRITE    = 0x4000000L,
+    DBBINDURLFLAG_ISSTRUCTUREDDOCUMENT    = 0x8000000L
     } ;
 typedef DWORD DBBINDURLSTATUS;
 
 
 enum DBBINDURLSTATUSENUM
-    {	DBBINDURLSTATUS_S_OK	= 0L,
-	DBBINDURLSTATUS_S_DENYNOTSUPPORTED	= 0x1L,
-	DBBINDURLSTATUS_S_DENYTYPENOTSUPPORTED	= 0x4L,
-	DBBINDURLSTATUS_S_REDIRECTED	= 0x8L
+    {    DBBINDURLSTATUS_S_OK    = 0L,
+    DBBINDURLSTATUS_S_DENYNOTSUPPORTED    = 0x1L,
+    DBBINDURLSTATUS_S_DENYTYPENOTSUPPORTED    = 0x4L,
+    DBBINDURLSTATUS_S_REDIRECTED    = 0x8L
     } ;
 #endif // OLEDBVER >= 0x0210
 //@@@- V2.1
@@ -1018,8 +1018,8 @@ enum DBBINDURLSTATUSENUM
 #if( OLEDBVER >= 0x0250 )
 
 enum DBSTATUSENUM25
-    {	DBSTATUS_E_CANCELED	= 27,
-	DBSTATUS_E_NOTCOLLECTION	= 28
+    {    DBSTATUS_E_CANCELED    = 27,
+    DBSTATUS_E_NOTCOLLECTION    = 28
     } ;
 #endif // OLEDBVER >= 0x0250
 //@@@- V2.5
@@ -1027,7 +1027,7 @@ typedef struct tagDBBINDEXT
     {
     /* [size_is] */ BYTE *pExtension;
     DBCOUNTITEM ulExtension;
-    } 	DBBINDEXT;
+    }     DBBINDEXT;
 
 typedef struct tagDBBINDING
     {
@@ -1046,36 +1046,36 @@ typedef struct tagDBBINDING
     DBTYPE wType;
     BYTE bPrecision;
     BYTE bScale;
-    } 	DBBINDING;
+    }     DBBINDING;
 
 typedef DWORD DBROWSTATUS;
 
 
 enum DBROWSTATUSENUM
-    {	DBROWSTATUS_S_OK	= 0,
-	DBROWSTATUS_S_MULTIPLECHANGES	= 2,
-	DBROWSTATUS_S_PENDINGCHANGES	= 3,
-	DBROWSTATUS_E_CANCELED	= 4,
-	DBROWSTATUS_E_CANTRELEASE	= 6,
-	DBROWSTATUS_E_CONCURRENCYVIOLATION	= 7,
-	DBROWSTATUS_E_DELETED	= 8,
-	DBROWSTATUS_E_PENDINGINSERT	= 9,
-	DBROWSTATUS_E_NEWLYINSERTED	= 10,
-	DBROWSTATUS_E_INTEGRITYVIOLATION	= 11,
-	DBROWSTATUS_E_INVALID	= 12,
-	DBROWSTATUS_E_MAXPENDCHANGESEXCEEDED	= 13,
-	DBROWSTATUS_E_OBJECTOPEN	= 14,
-	DBROWSTATUS_E_OUTOFMEMORY	= 15,
-	DBROWSTATUS_E_PERMISSIONDENIED	= 16,
-	DBROWSTATUS_E_LIMITREACHED	= 17,
-	DBROWSTATUS_E_SCHEMAVIOLATION	= 18,
-	DBROWSTATUS_E_FAIL	= 19
+    {    DBROWSTATUS_S_OK    = 0,
+    DBROWSTATUS_S_MULTIPLECHANGES    = 2,
+    DBROWSTATUS_S_PENDINGCHANGES    = 3,
+    DBROWSTATUS_E_CANCELED    = 4,
+    DBROWSTATUS_E_CANTRELEASE    = 6,
+    DBROWSTATUS_E_CONCURRENCYVIOLATION    = 7,
+    DBROWSTATUS_E_DELETED    = 8,
+    DBROWSTATUS_E_PENDINGINSERT    = 9,
+    DBROWSTATUS_E_NEWLYINSERTED    = 10,
+    DBROWSTATUS_E_INTEGRITYVIOLATION    = 11,
+    DBROWSTATUS_E_INVALID    = 12,
+    DBROWSTATUS_E_MAXPENDCHANGESEXCEEDED    = 13,
+    DBROWSTATUS_E_OBJECTOPEN    = 14,
+    DBROWSTATUS_E_OUTOFMEMORY    = 15,
+    DBROWSTATUS_E_PERMISSIONDENIED    = 16,
+    DBROWSTATUS_E_LIMITREACHED    = 17,
+    DBROWSTATUS_E_SCHEMAVIOLATION    = 18,
+    DBROWSTATUS_E_FAIL    = 19
     } ;
 //@@@+ V2.0
 #if( OLEDBVER >= 0x0200 )
 
 enum DBROWSTATUSENUM20
-    {	DBROWSTATUS_S_NOCHANGE	= 20
+    {    DBROWSTATUS_S_NOCHANGE    = 20
     } ;
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
@@ -1083,7 +1083,7 @@ enum DBROWSTATUSENUM20
 #if( OLEDBVER >= 0x0260 )
 
 enum DBSTATUSENUM26
-    {	DBSTATUS_S_ROWSETCOLUMN	= 29
+    {    DBSTATUS_S_ROWSETCOLUMN    = 29
     } ;
 #endif // OLEDBVER >= 0x0260
 //@@@- V2.6
@@ -1100,36 +1100,36 @@ typedef ULONG_PTR HWATCHREGION;
 typedef ULONG_PTR HCHAPTER;
 
 #define DB_NULL_HCHAPTER 0x00
-#define DB_INVALID_HCHAPTER 0x00	// deprecated; use DB_NULL_HCHAPTER instead
+#define DB_INVALID_HCHAPTER 0x00    // deprecated; use DB_NULL_HCHAPTER instead
 typedef struct tagDBFAILUREINFO
     {
     HROW hRow;
     DBORDINAL iColumn;
     HRESULT failure;
-    } 	DBFAILUREINFO;
+    }     DBFAILUREINFO;
 
 typedef DWORD DBCOLUMNFLAGS;
 
 
 enum DBCOLUMNFLAGSENUM
-    {	DBCOLUMNFLAGS_ISBOOKMARK	= 0x1,
-	DBCOLUMNFLAGS_MAYDEFER	= 0x2,
-	DBCOLUMNFLAGS_WRITE	= 0x4,
-	DBCOLUMNFLAGS_WRITEUNKNOWN	= 0x8,
-	DBCOLUMNFLAGS_ISFIXEDLENGTH	= 0x10,
-	DBCOLUMNFLAGS_ISNULLABLE	= 0x20,
-	DBCOLUMNFLAGS_MAYBENULL	= 0x40,
-	DBCOLUMNFLAGS_ISLONG	= 0x80,
-	DBCOLUMNFLAGS_ISROWID	= 0x100,
-	DBCOLUMNFLAGS_ISROWVER	= 0x200,
-	DBCOLUMNFLAGS_CACHEDEFERRED	= 0x1000
+    {    DBCOLUMNFLAGS_ISBOOKMARK    = 0x1,
+    DBCOLUMNFLAGS_MAYDEFER    = 0x2,
+    DBCOLUMNFLAGS_WRITE    = 0x4,
+    DBCOLUMNFLAGS_WRITEUNKNOWN    = 0x8,
+    DBCOLUMNFLAGS_ISFIXEDLENGTH    = 0x10,
+    DBCOLUMNFLAGS_ISNULLABLE    = 0x20,
+    DBCOLUMNFLAGS_MAYBENULL    = 0x40,
+    DBCOLUMNFLAGS_ISLONG    = 0x80,
+    DBCOLUMNFLAGS_ISROWID    = 0x100,
+    DBCOLUMNFLAGS_ISROWVER    = 0x200,
+    DBCOLUMNFLAGS_CACHEDEFERRED    = 0x1000
     } ;
 //@@@+ V2.0
 #if( OLEDBVER >= 0x0200 )
 
 enum DBCOLUMNFLAGSENUM20
-    {	DBCOLUMNFLAGS_SCALEISNEGATIVE	= 0x4000,
-	DBCOLUMNFLAGS_RESERVED	= 0x8000
+    {    DBCOLUMNFLAGS_SCALEISNEGATIVE    = 0x4000,
+    DBCOLUMNFLAGS_RESERVED    = 0x8000
     } ;
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
@@ -1139,7 +1139,7 @@ enum DBCOLUMNFLAGSENUM20
 #if( OLEDBVER >= 0x0200 )
 
 enum DBCOLUMNFLAGSDEPRECATED
-    {	DBCOLUMNFLAGS_KEYCOLUMN	= 0x8000
+    {    DBCOLUMNFLAGS_KEYCOLUMN    = 0x8000
     } ;
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
@@ -1149,7 +1149,7 @@ enum DBCOLUMNFLAGSDEPRECATED
 #if( OLEDBVER >= 0x0150 )
 
 enum DBCOLUMNFLAGS15ENUM
-    {	DBCOLUMNFLAGS_ISCHAPTER	= 0x2000
+    {    DBCOLUMNFLAGS_ISCHAPTER    = 0x2000
     } ;
 #endif // OLEDBVER >= 0x0150
 //@@@- V1.5
@@ -1157,9 +1157,9 @@ enum DBCOLUMNFLAGS15ENUM
 #if( OLEDBVER >= 0x0210 )
 
 enum DBCOLUMNFLAGSENUM21
-    {	DBCOLUMNFLAGS_ISROWURL	= 0x10000,
-	DBCOLUMNFLAGS_ISDEFAULTSTREAM	= 0x20000,
-	DBCOLUMNFLAGS_ISCOLLECTION	= 0x40000
+    {    DBCOLUMNFLAGS_ISROWURL    = 0x10000,
+    DBCOLUMNFLAGS_ISDEFAULTSTREAM    = 0x20000,
+    DBCOLUMNFLAGS_ISCOLLECTION    = 0x40000
     } ;
 #endif // OLEDBVER >= 0x0210
 //@@@- V2.1
@@ -1167,16 +1167,16 @@ enum DBCOLUMNFLAGSENUM21
 #if( OLEDBVER >= 0x0260 )
 
 enum DBCOLUMNFLAGSENUM26
-    {	DBCOLUMNFLAGS_ISSTREAM	= 0x80000,
-	DBCOLUMNFLAGS_ISROWSET	= 0x100000,
-	DBCOLUMNFLAGS_ISROW	= 0x200000,
-	DBCOLUMNFLAGS_ROWSPECIFICCOLUMN	= 0x400000
+    {    DBCOLUMNFLAGS_ISSTREAM    = 0x80000,
+    DBCOLUMNFLAGS_ISROWSET    = 0x100000,
+    DBCOLUMNFLAGS_ISROW    = 0x200000,
+    DBCOLUMNFLAGS_ROWSPECIFICCOLUMN    = 0x400000
     } ;
 
 enum DBTABLESTATISTICSTYPE26
-    {	DBSTAT_HISTOGRAM	= 0x1,
-	DBSTAT_COLUMN_CARDINALITY	= 0x2,
-	DBSTAT_TUPLE_CARDINALITY	= 0x4
+    {    DBSTAT_HISTOGRAM    = 0x1,
+    DBSTAT_COLUMN_CARDINALITY    = 0x2,
+    DBSTAT_TUPLE_CARDINALITY    = 0x4
     } ;
 #endif // OLEDBVER >= 0x0260
 //@@@- V2.6
@@ -1191,14 +1191,14 @@ typedef struct tagDBCOLUMNINFO
     BYTE bPrecision;
     BYTE bScale;
     DBID columnid;
-    } 	DBCOLUMNINFO;
+    }     DBCOLUMNINFO;
 
 typedef 
 enum tagDBBOOKMARK
-    {	DBBMK_INVALID	= 0,
-	DBBMK_FIRST	= DBBMK_INVALID + 1,
-	DBBMK_LAST	= DBBMK_FIRST + 1
-    } 	DBBOOKMARK;
+    {    DBBMK_INVALID    = 0,
+    DBBMK_FIRST    = DBBMK_INVALID + 1,
+    DBBMK_LAST    = DBBMK_FIRST + 1
+    }     DBBOOKMARK;
 
 #define STD_BOOKMARKLENGTH 1
 #ifdef __cplusplus
@@ -1215,7 +1215,7 @@ inline BOOL IsEqualGUIDBase(const GUID &rguid1, const GUID &rguid2)
 
 #define DB_INVALIDCOLUMN ULONG_MAX
 
-#endif	// _WIN64
+#endif    // _WIN64
 #define DBCIDGUID   {0x0C733A81L,0x2A1C,0x11CE,{0xAD,0xE5,0x00,0xAA,0x00,0x44,0x77,0x3D}}
 #define DB_NULLGUID {0x00000000L,0x0000,0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}
 #ifdef DBINITCONSTANTS
@@ -1299,7 +1299,7 @@ extern const DBID DBCOLUMN_MAYSORT;
 extern const OLEDBDECLSPEC GUID MDSCHEMA_FUNCTIONS                    = {0xa07ccd07,0x8148,0x11d0,{0x87,0xbb,0x00,0xc0,0x4f,0xc3,0x39,0x42}};
 extern const OLEDBDECLSPEC GUID MDSCHEMA_ACTIONS                      = {0xa07ccd08,0x8148,0x11d0,{0x87,0xbb,0x00,0xc0,0x4f,0xc3,0x39,0x42}};
 extern const OLEDBDECLSPEC GUID MDSCHEMA_COMMANDS                     = {0xa07ccd09,0x8148,0x11d0,{0x87,0xbb,0x00,0xc0,0x4f,0xc3,0x39,0x42}};
-extern const OLEDBDECLSPEC GUID MDSCHEMA_SETS						 = {0xa07ccd0b,0x8148,0x11d0,{0x87,0xbb,0x00,0xc0,0x4f,0xc3,0x39,0x42}};
+extern const OLEDBDECLSPEC GUID MDSCHEMA_SETS                         = {0xa07ccd0b,0x8148,0x11d0,{0x87,0xbb,0x00,0xc0,0x4f,0xc3,0x39,0x42}};
 #endif // OLEDBVER >= 0x0260
 //@@@- V2.6
 //@@@+ V2.0
@@ -1314,40 +1314,40 @@ extern const OLEDBDECLSPEC GUID MDSCHEMA_LEVELS                        = {0xc8b5
 extern const OLEDBDECLSPEC GUID MDSCHEMA_MEASURES                      = {0xc8b522dc,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
 extern const OLEDBDECLSPEC GUID MDSCHEMA_PROPERTIES                    = {0xc8b522dd,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
 extern const OLEDBDECLSPEC GUID MDSCHEMA_MEMBERS                       = {0xc8b522de,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC DBID DBCOLUMN_BASETABLEVERSION				= {DBCIDGUID, DBKIND_GUID_PROPID, (LPOLESTR)40};
-extern const OLEDBDECLSPEC DBID DBCOLUMN_KEYCOLUMN						= {DBCIDGUID, DBKIND_GUID_PROPID, (LPOLESTR)41};
+extern const OLEDBDECLSPEC DBID DBCOLUMN_BASETABLEVERSION                = {DBCIDGUID, DBKIND_GUID_PROPID, (LPOLESTR)40};
+extern const OLEDBDECLSPEC DBID DBCOLUMN_KEYCOLUMN                        = {DBCIDGUID, DBKIND_GUID_PROPID, (LPOLESTR)41};
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
 //@@@+ V2.1
 #if( OLEDBVER >= 0x0210 )
 #define DBGUID_ROWURL   {0x0C733AB6L,0x2A1C,0x11CE,{0xAD,0xE5,0x00,0xAA,0x00,0x44,0x77,0x3D}}
 #define DBGUID_ROWDEFAULTSTREAM   {0x0C733AB7L,0x2A1C,0x11CE,{0xAD,0xE5,0x00,0xAA,0x00,0x44,0x77,0x3D}}
-extern const OLEDBDECLSPEC GUID DBPROPSET_TRUSTEE					= {0xc8b522e1,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBOBJECT_TABLE 						= {0xc8b522e2,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBOBJECT_COLUMN 						= {0xc8b522e4,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBOBJECT_DATABASE					= {0xc8b522e5,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBOBJECT_PROCEDURE 					= {0xc8b522e6,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBOBJECT_VIEW	 					= {0xc8b522e7,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBOBJECT_SCHEMA						= {0xc8b522e8,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBOBJECT_DOMAIN	 					= {0xc8b522e9,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBOBJECT_COLLATION 					= {0xc8b522ea,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBOBJECT_TRUSTEE	 					= {0xc8b522eb,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBOBJECT_SCHEMAROWSET				= {0xc8b522ec,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBOBJECT_CHARACTERSET	 			= {0xc8b522ed,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBOBJECT_TRANSLATION 				= {0xc8b522ee,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBSCHEMA_TRUSTEE 					= {0xc8b522ef,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBPROPSET_COLUMNALL 					= {0xc8b522f0,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBPROPSET_INDEXALL 					= {0xc8b522f1,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBPROPSET_TABLEALL 					= {0xc8b522f2,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBPROPSET_TRUSTEEALL					= {0xc8b522f3,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBPROPSET_CONSTRAINTALL				= {0xc8b522fa,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBGUID_DSO							= {0xc8b522f4,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBGUID_SESSION						= {0xc8b522f5,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBGUID_ROWSET						= {0xc8b522f6,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBGUID_ROW							= {0xc8b522f7,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBGUID_COMMAND						= {0xc8b522f8,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBGUID_STREAM						= {0xc8b522f9,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC DBID DBROWCOL_ROWURL		         = {DBGUID_ROWURL, DBKIND_GUID_PROPID, (LPOLESTR)0};
+extern const OLEDBDECLSPEC GUID DBPROPSET_TRUSTEE                    = {0xc8b522e1,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBOBJECT_TABLE                         = {0xc8b522e2,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBOBJECT_COLUMN                         = {0xc8b522e4,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBOBJECT_DATABASE                    = {0xc8b522e5,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBOBJECT_PROCEDURE                     = {0xc8b522e6,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBOBJECT_VIEW                         = {0xc8b522e7,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBOBJECT_SCHEMA                        = {0xc8b522e8,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBOBJECT_DOMAIN                         = {0xc8b522e9,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBOBJECT_COLLATION                     = {0xc8b522ea,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBOBJECT_TRUSTEE                         = {0xc8b522eb,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBOBJECT_SCHEMAROWSET                = {0xc8b522ec,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBOBJECT_CHARACTERSET                 = {0xc8b522ed,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBOBJECT_TRANSLATION                 = {0xc8b522ee,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBSCHEMA_TRUSTEE                     = {0xc8b522ef,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBPROPSET_COLUMNALL                     = {0xc8b522f0,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBPROPSET_INDEXALL                     = {0xc8b522f1,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBPROPSET_TABLEALL                     = {0xc8b522f2,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBPROPSET_TRUSTEEALL                    = {0xc8b522f3,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBPROPSET_CONSTRAINTALL                = {0xc8b522fa,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBGUID_DSO                            = {0xc8b522f4,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBGUID_SESSION                        = {0xc8b522f5,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBGUID_ROWSET                        = {0xc8b522f6,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBGUID_ROW                            = {0xc8b522f7,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBGUID_COMMAND                        = {0xc8b522f8,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBGUID_STREAM                        = {0xc8b522f9,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC DBID DBROWCOL_ROWURL                 = {DBGUID_ROWURL, DBKIND_GUID_PROPID, (LPOLESTR)0};
 extern const OLEDBDECLSPEC DBID DBROWCOL_PARSENAME            = {DBGUID_ROWURL, DBKIND_GUID_PROPID, (LPOLESTR)2};
 extern const OLEDBDECLSPEC DBID DBROWCOL_PARENTNAME           = {DBGUID_ROWURL, DBKIND_GUID_PROPID, (LPOLESTR)3};
 extern const OLEDBDECLSPEC DBID DBROWCOL_ABSOLUTEPARSENAME    = {DBGUID_ROWURL, DBKIND_GUID_PROPID, (LPOLESTR)4};
@@ -1430,9 +1430,9 @@ extern const OLEDBDECLSPEC GUID DBPROPSET_VIEWALL                      = {0xc8b5
 #if( OLEDBVER >= 0x0260 )
 extern const OLEDBDECLSPEC GUID DBPROPSET_STREAM                       = {0xc8b522fd,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
 extern const OLEDBDECLSPEC GUID DBPROPSET_STREAMALL                    = {0xc8b522fe,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBSCHEMA_TABLE_STATISTICS 			  = {0xc8b522ff,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBSCHEMA_CHECK_CONSTRAINTS_BY_TABLE 	  = {0xc8b52301,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
-extern const OLEDBDECLSPEC GUID DBGUID_HISTOGRAM_ROWSET				  = {0xc8b52300,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBSCHEMA_TABLE_STATISTICS               = {0xc8b522ff,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBSCHEMA_CHECK_CONSTRAINTS_BY_TABLE       = {0xc8b52301,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
+extern const OLEDBDECLSPEC GUID DBGUID_HISTOGRAM_ROWSET                  = {0xc8b52300,0x5cf3,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}};
 extern const OLEDBDECLSPEC DBID DBCOLUMN_DERIVEDCOLUMNNAME             = {DBCIDGUID, DBKIND_GUID_PROPID, (LPOLESTR)43};
 #endif // OLEDBVER >= 0x0260
 //@@@- V2.6
@@ -1484,7 +1484,7 @@ extern const GUID DBGUID_ROWSET;
 extern const GUID DBGUID_ROW;    
 extern const GUID DBGUID_COMMAND;
 extern const GUID DBGUID_STREAM; 
-extern const DBID DBROWCOL_ROWURL;		        
+extern const DBID DBROWCOL_ROWURL;                
 extern const DBID DBROWCOL_PARSENAME;            
 extern const DBID DBROWCOL_PARENTNAME;           
 extern const DBID DBROWCOL_ABSOLUTEPARSENAME;    
@@ -1584,187 +1584,187 @@ extern const GUID DBGUID_SQL;
 #endif // DBINITCONSTANTS
 
 enum DBPROPENUM
-    {	DBPROP_ABORTPRESERVE	= 0x2L,
-	DBPROP_ACTIVESESSIONS	= 0x3L,
-	DBPROP_APPENDONLY	= 0xbbL,
-	DBPROP_ASYNCTXNABORT	= 0xa8L,
-	DBPROP_ASYNCTXNCOMMIT	= 0x4L,
-	DBPROP_AUTH_CACHE_AUTHINFO	= 0x5L,
-	DBPROP_AUTH_ENCRYPT_PASSWORD	= 0x6L,
-	DBPROP_AUTH_INTEGRATED	= 0x7L,
-	DBPROP_AUTH_MASK_PASSWORD	= 0x8L,
-	DBPROP_AUTH_PASSWORD	= 0x9L,
-	DBPROP_AUTH_PERSIST_ENCRYPTED	= 0xaL,
-	DBPROP_AUTH_PERSIST_SENSITIVE_AUTHINFO	= 0xbL,
-	DBPROP_AUTH_USERID	= 0xcL,
-	DBPROP_BLOCKINGSTORAGEOBJECTS	= 0xdL,
-	DBPROP_BOOKMARKS	= 0xeL,
-	DBPROP_BOOKMARKSKIPPED	= 0xfL,
-	DBPROP_BOOKMARKTYPE	= 0x10L,
-	DBPROP_BYREFACCESSORS	= 0x78L,
-	DBPROP_CACHEDEFERRED	= 0x11L,
-	DBPROP_CANFETCHBACKWARDS	= 0x12L,
-	DBPROP_CANHOLDROWS	= 0x13L,
-	DBPROP_CANSCROLLBACKWARDS	= 0x15L,
-	DBPROP_CATALOGLOCATION	= 0x16L,
-	DBPROP_CATALOGTERM	= 0x17L,
-	DBPROP_CATALOGUSAGE	= 0x18L,
-	DBPROP_CHANGEINSERTEDROWS	= 0xbcL,
-	DBPROP_COL_AUTOINCREMENT	= 0x1aL,
-	DBPROP_COL_DEFAULT	= 0x1bL,
-	DBPROP_COL_DESCRIPTION	= 0x1cL,
-	DBPROP_COL_FIXEDLENGTH	= 0xa7L,
-	DBPROP_COL_NULLABLE	= 0x1dL,
-	DBPROP_COL_PRIMARYKEY	= 0x1eL,
-	DBPROP_COL_UNIQUE	= 0x1fL,
-	DBPROP_COLUMNDEFINITION	= 0x20L,
-	DBPROP_COLUMNRESTRICT	= 0x21L,
-	DBPROP_COMMANDTIMEOUT	= 0x22L,
-	DBPROP_COMMITPRESERVE	= 0x23L,
-	DBPROP_CONCATNULLBEHAVIOR	= 0x24L,
-	DBPROP_CURRENTCATALOG	= 0x25L,
-	DBPROP_DATASOURCENAME	= 0x26L,
-	DBPROP_DATASOURCEREADONLY	= 0x27L,
-	DBPROP_DBMSNAME	= 0x28L,
-	DBPROP_DBMSVER	= 0x29L,
-	DBPROP_DEFERRED	= 0x2aL,
-	DBPROP_DELAYSTORAGEOBJECTS	= 0x2bL,
-	DBPROP_DSOTHREADMODEL	= 0xa9L,
-	DBPROP_GROUPBY	= 0x2cL,
-	DBPROP_HETEROGENEOUSTABLES	= 0x2dL,
-	DBPROP_IAccessor	= 0x79L,
-	DBPROP_IColumnsInfo	= 0x7aL,
-	DBPROP_IColumnsRowset	= 0x7bL,
-	DBPROP_IConnectionPointContainer	= 0x7cL,
-	DBPROP_IConvertType	= 0xc2L,
-	DBPROP_IRowset	= 0x7eL,
-	DBPROP_IRowsetChange	= 0x7fL,
-	DBPROP_IRowsetIdentity	= 0x80L,
-	DBPROP_IRowsetIndex	= 0x9fL,
-	DBPROP_IRowsetInfo	= 0x81L,
-	DBPROP_IRowsetLocate	= 0x82L,
-	DBPROP_IRowsetResynch	= 0x84L,
-	DBPROP_IRowsetScroll	= 0x85L,
-	DBPROP_IRowsetUpdate	= 0x86L,
-	DBPROP_ISupportErrorInfo	= 0x87L,
-	DBPROP_ILockBytes	= 0x88L,
-	DBPROP_ISequentialStream	= 0x89L,
-	DBPROP_IStorage	= 0x8aL,
-	DBPROP_IStream	= 0x8bL,
-	DBPROP_IDENTIFIERCASE	= 0x2eL,
-	DBPROP_IMMOBILEROWS	= 0x2fL,
-	DBPROP_INDEX_AUTOUPDATE	= 0x30L,
-	DBPROP_INDEX_CLUSTERED	= 0x31L,
-	DBPROP_INDEX_FILLFACTOR	= 0x32L,
-	DBPROP_INDEX_INITIALSIZE	= 0x33L,
-	DBPROP_INDEX_NULLCOLLATION	= 0x34L,
-	DBPROP_INDEX_NULLS	= 0x35L,
-	DBPROP_INDEX_PRIMARYKEY	= 0x36L,
-	DBPROP_INDEX_SORTBOOKMARKS	= 0x37L,
-	DBPROP_INDEX_TEMPINDEX	= 0xa3L,
-	DBPROP_INDEX_TYPE	= 0x38L,
-	DBPROP_INDEX_UNIQUE	= 0x39L,
-	DBPROP_INIT_DATASOURCE	= 0x3bL,
-	DBPROP_INIT_HWND	= 0x3cL,
-	DBPROP_INIT_IMPERSONATION_LEVEL	= 0x3dL,
-	DBPROP_INIT_LCID	= 0xbaL,
-	DBPROP_INIT_LOCATION	= 0x3eL,
-	DBPROP_INIT_MODE	= 0x3fL,
-	DBPROP_INIT_PROMPT	= 0x40L,
-	DBPROP_INIT_PROTECTION_LEVEL	= 0x41L,
-	DBPROP_INIT_PROVIDERSTRING	= 0xa0L,
-	DBPROP_INIT_TIMEOUT	= 0x42L,
-	DBPROP_LITERALBOOKMARKS	= 0x43L,
-	DBPROP_LITERALIDENTITY	= 0x44L,
-	DBPROP_MAXINDEXSIZE	= 0x46L,
-	DBPROP_MAXOPENROWS	= 0x47L,
-	DBPROP_MAXPENDINGROWS	= 0x48L,
-	DBPROP_MAXROWS	= 0x49L,
-	DBPROP_MAXROWSIZE	= 0x4aL,
-	DBPROP_MAXROWSIZEINCLUDESBLOB	= 0x4bL,
-	DBPROP_MAXTABLESINSELECT	= 0x4cL,
-	DBPROP_MAYWRITECOLUMN	= 0x4dL,
-	DBPROP_MEMORYUSAGE	= 0x4eL,
-	DBPROP_MULTIPLEPARAMSETS	= 0xbfL,
-	DBPROP_MULTIPLERESULTS	= 0xc4L,
-	DBPROP_MULTIPLESTORAGEOBJECTS	= 0x50L,
-	DBPROP_MULTITABLEUPDATE	= 0x51L,
-	DBPROP_NOTIFICATIONGRANULARITY	= 0xc6L,
-	DBPROP_NOTIFICATIONPHASES	= 0x52L,
-	DBPROP_NOTIFYCOLUMNSET	= 0xabL,
-	DBPROP_NOTIFYROWDELETE	= 0xadL,
-	DBPROP_NOTIFYROWFIRSTCHANGE	= 0xaeL,
-	DBPROP_NOTIFYROWINSERT	= 0xafL,
-	DBPROP_NOTIFYROWRESYNCH	= 0xb1L,
-	DBPROP_NOTIFYROWSETCHANGED	= 0xd3L,
-	DBPROP_NOTIFYROWSETRELEASE	= 0xb2L,
-	DBPROP_NOTIFYROWSETFETCHPOSITIONCHANGE	= 0xb3L,
-	DBPROP_NOTIFYROWUNDOCHANGE	= 0xb4L,
-	DBPROP_NOTIFYROWUNDODELETE	= 0xb5L,
-	DBPROP_NOTIFYROWUNDOINSERT	= 0xb6L,
-	DBPROP_NOTIFYROWUPDATE	= 0xb7L,
-	DBPROP_NULLCOLLATION	= 0x53L,
-	DBPROP_OLEOBJECTS	= 0x54L,
-	DBPROP_ORDERBYCOLUMNSINSELECT	= 0x55L,
-	DBPROP_ORDEREDBOOKMARKS	= 0x56L,
-	DBPROP_OTHERINSERT	= 0x57L,
-	DBPROP_OTHERUPDATEDELETE	= 0x58L,
-	DBPROP_OUTPUTPARAMETERAVAILABILITY	= 0xb8L,
-	DBPROP_OWNINSERT	= 0x59L,
-	DBPROP_OWNUPDATEDELETE	= 0x5aL,
-	DBPROP_PERSISTENTIDTYPE	= 0xb9L,
-	DBPROP_PREPAREABORTBEHAVIOR	= 0x5bL,
-	DBPROP_PREPARECOMMITBEHAVIOR	= 0x5cL,
-	DBPROP_PROCEDURETERM	= 0x5dL,
-	DBPROP_PROVIDERNAME	= 0x60L,
-	DBPROP_PROVIDEROLEDBVER	= 0x61L,
-	DBPROP_PROVIDERVER	= 0x62L,
-	DBPROP_QUICKRESTART	= 0x63L,
-	DBPROP_QUOTEDIDENTIFIERCASE	= 0x64L,
-	DBPROP_REENTRANTEVENTS	= 0x65L,
-	DBPROP_REMOVEDELETED	= 0x66L,
-	DBPROP_REPORTMULTIPLECHANGES	= 0x67L,
-	DBPROP_RETURNPENDINGINSERTS	= 0xbdL,
-	DBPROP_ROWRESTRICT	= 0x68L,
-	DBPROP_ROWSETCONVERSIONSONCOMMAND	= 0xc0L,
-	DBPROP_ROWTHREADMODEL	= 0x69L,
-	DBPROP_SCHEMATERM	= 0x6aL,
-	DBPROP_SCHEMAUSAGE	= 0x6bL,
-	DBPROP_SERVERCURSOR	= 0x6cL,
-	DBPROP_SESS_AUTOCOMMITISOLEVELS	= 0xbeL,
-	DBPROP_SQLSUPPORT	= 0x6dL,
-	DBPROP_STRONGIDENTITY	= 0x77L,
-	DBPROP_STRUCTUREDSTORAGE	= 0x6fL,
-	DBPROP_SUBQUERIES	= 0x70L,
-	DBPROP_SUPPORTEDTXNDDL	= 0xa1L,
-	DBPROP_SUPPORTEDTXNISOLEVELS	= 0x71L,
-	DBPROP_SUPPORTEDTXNISORETAIN	= 0x72L,
-	DBPROP_TABLETERM	= 0x73L,
-	DBPROP_TBL_TEMPTABLE	= 0x8cL,
-	DBPROP_TRANSACTEDOBJECT	= 0x74L,
-	DBPROP_UPDATABILITY	= 0x75L,
-	DBPROP_USERNAME	= 0x76L
+    {    DBPROP_ABORTPRESERVE    = 0x2L,
+    DBPROP_ACTIVESESSIONS    = 0x3L,
+    DBPROP_APPENDONLY    = 0xbbL,
+    DBPROP_ASYNCTXNABORT    = 0xa8L,
+    DBPROP_ASYNCTXNCOMMIT    = 0x4L,
+    DBPROP_AUTH_CACHE_AUTHINFO    = 0x5L,
+    DBPROP_AUTH_ENCRYPT_PASSWORD    = 0x6L,
+    DBPROP_AUTH_INTEGRATED    = 0x7L,
+    DBPROP_AUTH_MASK_PASSWORD    = 0x8L,
+    DBPROP_AUTH_PASSWORD    = 0x9L,
+    DBPROP_AUTH_PERSIST_ENCRYPTED    = 0xaL,
+    DBPROP_AUTH_PERSIST_SENSITIVE_AUTHINFO    = 0xbL,
+    DBPROP_AUTH_USERID    = 0xcL,
+    DBPROP_BLOCKINGSTORAGEOBJECTS    = 0xdL,
+    DBPROP_BOOKMARKS    = 0xeL,
+    DBPROP_BOOKMARKSKIPPED    = 0xfL,
+    DBPROP_BOOKMARKTYPE    = 0x10L,
+    DBPROP_BYREFACCESSORS    = 0x78L,
+    DBPROP_CACHEDEFERRED    = 0x11L,
+    DBPROP_CANFETCHBACKWARDS    = 0x12L,
+    DBPROP_CANHOLDROWS    = 0x13L,
+    DBPROP_CANSCROLLBACKWARDS    = 0x15L,
+    DBPROP_CATALOGLOCATION    = 0x16L,
+    DBPROP_CATALOGTERM    = 0x17L,
+    DBPROP_CATALOGUSAGE    = 0x18L,
+    DBPROP_CHANGEINSERTEDROWS    = 0xbcL,
+    DBPROP_COL_AUTOINCREMENT    = 0x1aL,
+    DBPROP_COL_DEFAULT    = 0x1bL,
+    DBPROP_COL_DESCRIPTION    = 0x1cL,
+    DBPROP_COL_FIXEDLENGTH    = 0xa7L,
+    DBPROP_COL_NULLABLE    = 0x1dL,
+    DBPROP_COL_PRIMARYKEY    = 0x1eL,
+    DBPROP_COL_UNIQUE    = 0x1fL,
+    DBPROP_COLUMNDEFINITION    = 0x20L,
+    DBPROP_COLUMNRESTRICT    = 0x21L,
+    DBPROP_COMMANDTIMEOUT    = 0x22L,
+    DBPROP_COMMITPRESERVE    = 0x23L,
+    DBPROP_CONCATNULLBEHAVIOR    = 0x24L,
+    DBPROP_CURRENTCATALOG    = 0x25L,
+    DBPROP_DATASOURCENAME    = 0x26L,
+    DBPROP_DATASOURCEREADONLY    = 0x27L,
+    DBPROP_DBMSNAME    = 0x28L,
+    DBPROP_DBMSVER    = 0x29L,
+    DBPROP_DEFERRED    = 0x2aL,
+    DBPROP_DELAYSTORAGEOBJECTS    = 0x2bL,
+    DBPROP_DSOTHREADMODEL    = 0xa9L,
+    DBPROP_GROUPBY    = 0x2cL,
+    DBPROP_HETEROGENEOUSTABLES    = 0x2dL,
+    DBPROP_IAccessor    = 0x79L,
+    DBPROP_IColumnsInfo    = 0x7aL,
+    DBPROP_IColumnsRowset    = 0x7bL,
+    DBPROP_IConnectionPointContainer    = 0x7cL,
+    DBPROP_IConvertType    = 0xc2L,
+    DBPROP_IRowset    = 0x7eL,
+    DBPROP_IRowsetChange    = 0x7fL,
+    DBPROP_IRowsetIdentity    = 0x80L,
+    DBPROP_IRowsetIndex    = 0x9fL,
+    DBPROP_IRowsetInfo    = 0x81L,
+    DBPROP_IRowsetLocate    = 0x82L,
+    DBPROP_IRowsetResynch    = 0x84L,
+    DBPROP_IRowsetScroll    = 0x85L,
+    DBPROP_IRowsetUpdate    = 0x86L,
+    DBPROP_ISupportErrorInfo    = 0x87L,
+    DBPROP_ILockBytes    = 0x88L,
+    DBPROP_ISequentialStream    = 0x89L,
+    DBPROP_IStorage    = 0x8aL,
+    DBPROP_IStream    = 0x8bL,
+    DBPROP_IDENTIFIERCASE    = 0x2eL,
+    DBPROP_IMMOBILEROWS    = 0x2fL,
+    DBPROP_INDEX_AUTOUPDATE    = 0x30L,
+    DBPROP_INDEX_CLUSTERED    = 0x31L,
+    DBPROP_INDEX_FILLFACTOR    = 0x32L,
+    DBPROP_INDEX_INITIALSIZE    = 0x33L,
+    DBPROP_INDEX_NULLCOLLATION    = 0x34L,
+    DBPROP_INDEX_NULLS    = 0x35L,
+    DBPROP_INDEX_PRIMARYKEY    = 0x36L,
+    DBPROP_INDEX_SORTBOOKMARKS    = 0x37L,
+    DBPROP_INDEX_TEMPINDEX    = 0xa3L,
+    DBPROP_INDEX_TYPE    = 0x38L,
+    DBPROP_INDEX_UNIQUE    = 0x39L,
+    DBPROP_INIT_DATASOURCE    = 0x3bL,
+    DBPROP_INIT_HWND    = 0x3cL,
+    DBPROP_INIT_IMPERSONATION_LEVEL    = 0x3dL,
+    DBPROP_INIT_LCID    = 0xbaL,
+    DBPROP_INIT_LOCATION    = 0x3eL,
+    DBPROP_INIT_MODE    = 0x3fL,
+    DBPROP_INIT_PROMPT    = 0x40L,
+    DBPROP_INIT_PROTECTION_LEVEL    = 0x41L,
+    DBPROP_INIT_PROVIDERSTRING    = 0xa0L,
+    DBPROP_INIT_TIMEOUT    = 0x42L,
+    DBPROP_LITERALBOOKMARKS    = 0x43L,
+    DBPROP_LITERALIDENTITY    = 0x44L,
+    DBPROP_MAXINDEXSIZE    = 0x46L,
+    DBPROP_MAXOPENROWS    = 0x47L,
+    DBPROP_MAXPENDINGROWS    = 0x48L,
+    DBPROP_MAXROWS    = 0x49L,
+    DBPROP_MAXROWSIZE    = 0x4aL,
+    DBPROP_MAXROWSIZEINCLUDESBLOB    = 0x4bL,
+    DBPROP_MAXTABLESINSELECT    = 0x4cL,
+    DBPROP_MAYWRITECOLUMN    = 0x4dL,
+    DBPROP_MEMORYUSAGE    = 0x4eL,
+    DBPROP_MULTIPLEPARAMSETS    = 0xbfL,
+    DBPROP_MULTIPLERESULTS    = 0xc4L,
+    DBPROP_MULTIPLESTORAGEOBJECTS    = 0x50L,
+    DBPROP_MULTITABLEUPDATE    = 0x51L,
+    DBPROP_NOTIFICATIONGRANULARITY    = 0xc6L,
+    DBPROP_NOTIFICATIONPHASES    = 0x52L,
+    DBPROP_NOTIFYCOLUMNSET    = 0xabL,
+    DBPROP_NOTIFYROWDELETE    = 0xadL,
+    DBPROP_NOTIFYROWFIRSTCHANGE    = 0xaeL,
+    DBPROP_NOTIFYROWINSERT    = 0xafL,
+    DBPROP_NOTIFYROWRESYNCH    = 0xb1L,
+    DBPROP_NOTIFYROWSETCHANGED    = 0xd3L,
+    DBPROP_NOTIFYROWSETRELEASE    = 0xb2L,
+    DBPROP_NOTIFYROWSETFETCHPOSITIONCHANGE    = 0xb3L,
+    DBPROP_NOTIFYROWUNDOCHANGE    = 0xb4L,
+    DBPROP_NOTIFYROWUNDODELETE    = 0xb5L,
+    DBPROP_NOTIFYROWUNDOINSERT    = 0xb6L,
+    DBPROP_NOTIFYROWUPDATE    = 0xb7L,
+    DBPROP_NULLCOLLATION    = 0x53L,
+    DBPROP_OLEOBJECTS    = 0x54L,
+    DBPROP_ORDERBYCOLUMNSINSELECT    = 0x55L,
+    DBPROP_ORDEREDBOOKMARKS    = 0x56L,
+    DBPROP_OTHERINSERT    = 0x57L,
+    DBPROP_OTHERUPDATEDELETE    = 0x58L,
+    DBPROP_OUTPUTPARAMETERAVAILABILITY    = 0xb8L,
+    DBPROP_OWNINSERT    = 0x59L,
+    DBPROP_OWNUPDATEDELETE    = 0x5aL,
+    DBPROP_PERSISTENTIDTYPE    = 0xb9L,
+    DBPROP_PREPAREABORTBEHAVIOR    = 0x5bL,
+    DBPROP_PREPARECOMMITBEHAVIOR    = 0x5cL,
+    DBPROP_PROCEDURETERM    = 0x5dL,
+    DBPROP_PROVIDERNAME    = 0x60L,
+    DBPROP_PROVIDEROLEDBVER    = 0x61L,
+    DBPROP_PROVIDERVER    = 0x62L,
+    DBPROP_QUICKRESTART    = 0x63L,
+    DBPROP_QUOTEDIDENTIFIERCASE    = 0x64L,
+    DBPROP_REENTRANTEVENTS    = 0x65L,
+    DBPROP_REMOVEDELETED    = 0x66L,
+    DBPROP_REPORTMULTIPLECHANGES    = 0x67L,
+    DBPROP_RETURNPENDINGINSERTS    = 0xbdL,
+    DBPROP_ROWRESTRICT    = 0x68L,
+    DBPROP_ROWSETCONVERSIONSONCOMMAND    = 0xc0L,
+    DBPROP_ROWTHREADMODEL    = 0x69L,
+    DBPROP_SCHEMATERM    = 0x6aL,
+    DBPROP_SCHEMAUSAGE    = 0x6bL,
+    DBPROP_SERVERCURSOR    = 0x6cL,
+    DBPROP_SESS_AUTOCOMMITISOLEVELS    = 0xbeL,
+    DBPROP_SQLSUPPORT    = 0x6dL,
+    DBPROP_STRONGIDENTITY    = 0x77L,
+    DBPROP_STRUCTUREDSTORAGE    = 0x6fL,
+    DBPROP_SUBQUERIES    = 0x70L,
+    DBPROP_SUPPORTEDTXNDDL    = 0xa1L,
+    DBPROP_SUPPORTEDTXNISOLEVELS    = 0x71L,
+    DBPROP_SUPPORTEDTXNISORETAIN    = 0x72L,
+    DBPROP_TABLETERM    = 0x73L,
+    DBPROP_TBL_TEMPTABLE    = 0x8cL,
+    DBPROP_TRANSACTEDOBJECT    = 0x74L,
+    DBPROP_UPDATABILITY    = 0x75L,
+    DBPROP_USERNAME    = 0x76L
     } ;
 //@@@+ V1.5
 #if( OLEDBVER >= 0x0150 )
 
 enum DBPROPENUM15
-    {	DBPROP_FILTERCOMPAREOPS	= 0xd1L,
-	DBPROP_FINDCOMPAREOPS	= 0xd2L,
-	DBPROP_IChapteredRowset	= 0xcaL,
-	DBPROP_IDBAsynchStatus	= 0xcbL,
-	DBPROP_IRowsetFind	= 0xccL,
-	DBPROP_IRowsetView	= 0xd4L,
-	DBPROP_IViewChapter	= 0xd5L,
-	DBPROP_IViewFilter	= 0xd6L,
-	DBPROP_IViewRowset	= 0xd7L,
-	DBPROP_IViewSort	= 0xd8L,
-	DBPROP_INIT_ASYNCH	= 0xc8L,
-	DBPROP_MAXOPENCHAPTERS	= 0xc7L,
-	DBPROP_MAXORSINFILTER	= 0xcdL,
-	DBPROP_MAXSORTCOLUMNS	= 0xceL,
-	DBPROP_ROWSET_ASYNCH	= 0xc9L,
-	DBPROP_SORTONINDEX	= 0xcfL
+    {    DBPROP_FILTERCOMPAREOPS    = 0xd1L,
+    DBPROP_FINDCOMPAREOPS    = 0xd2L,
+    DBPROP_IChapteredRowset    = 0xcaL,
+    DBPROP_IDBAsynchStatus    = 0xcbL,
+    DBPROP_IRowsetFind    = 0xccL,
+    DBPROP_IRowsetView    = 0xd4L,
+    DBPROP_IViewChapter    = 0xd5L,
+    DBPROP_IViewFilter    = 0xd6L,
+    DBPROP_IViewRowset    = 0xd7L,
+    DBPROP_IViewSort    = 0xd8L,
+    DBPROP_INIT_ASYNCH    = 0xc8L,
+    DBPROP_MAXOPENCHAPTERS    = 0xc7L,
+    DBPROP_MAXORSINFILTER    = 0xcdL,
+    DBPROP_MAXSORTCOLUMNS    = 0xceL,
+    DBPROP_ROWSET_ASYNCH    = 0xc9L,
+    DBPROP_SORTONINDEX    = 0xcfL
     } ;
 #endif // OLEDBVER >= 0x0150
 //@@@- V1.5
@@ -1774,49 +1774,49 @@ enum DBPROPENUM15
 #define DBPROP_SERVER_NAME DBPROP_SERVERNAME
 
 enum DBPROPENUM20
-    {	DBPROP_IMultipleResults	= 0xd9L,
-	DBPROP_DATASOURCE_TYPE	= 0xfbL,
-	MDPROP_AXES	= 0xfcL,
-	MDPROP_FLATTENING_SUPPORT	= 0xfdL,
-	MDPROP_MDX_JOINCUBES	= 0xfeL,
-	MDPROP_NAMED_LEVELS	= 0xffL,
-	MDPROP_RANGEROWSET	= 0x100L,
-	MDPROP_MDX_SLICER	= 0xdaL,
-	MDPROP_MDX_CUBEQUALIFICATION	= 0xdbL,
-	MDPROP_MDX_OUTERREFERENCE	= 0xdcL,
-	MDPROP_MDX_QUERYBYPROPERTY	= 0xddL,
-	MDPROP_MDX_CASESUPPORT	= 0xdeL,
-	MDPROP_MDX_STRING_COMPOP	= 0xe0L,
-	MDPROP_MDX_DESCFLAGS	= 0xe1L,
-	MDPROP_MDX_SET_FUNCTIONS	= 0xe2L,
-	MDPROP_MDX_MEMBER_FUNCTIONS	= 0xe3L,
-	MDPROP_MDX_NUMERIC_FUNCTIONS	= 0xe4L,
-	MDPROP_MDX_FORMULAS	= 0xe5L,
-	MDPROP_AGGREGATECELL_UPDATE	= 0xe6L,
-	MDPROP_MDX_AGGREGATECELL_UPDATE	= MDPROP_AGGREGATECELL_UPDATE,
-	MDPROP_MDX_OBJQUALIFICATION	= 0x105L,
-	MDPROP_MDX_NONMEASURE_EXPRESSIONS	= 0x106L,
-	DBPROP_ACCESSORDER	= 0xe7L,
-	DBPROP_BOOKMARKINFO	= 0xe8L,
-	DBPROP_INIT_CATALOG	= 0xe9L,
-	DBPROP_ROW_BULKOPS	= 0xeaL,
-	DBPROP_PROVIDERFRIENDLYNAME	= 0xebL,
-	DBPROP_LOCKMODE	= 0xecL,
-	DBPROP_MULTIPLECONNECTIONS	= 0xedL,
-	DBPROP_UNIQUEROWS	= 0xeeL,
-	DBPROP_SERVERDATAONINSERT	= 0xefL,
-	DBPROP_STORAGEFLAGS	= 0xf0L,
-	DBPROP_CONNECTIONSTATUS	= 0xf4L,
-	DBPROP_ALTERCOLUMN	= 0xf5L,
-	DBPROP_COLUMNLCID	= 0xf6L,
-	DBPROP_RESETDATASOURCE	= 0xf7L,
-	DBPROP_INIT_OLEDBSERVICES	= 0xf8L,
-	DBPROP_IRowsetRefresh	= 0xf9L,
-	DBPROP_SERVERNAME	= 0xfaL,
-	DBPROP_IParentRowset	= 0x101L,
-	DBPROP_HIDDENCOLUMNS	= 0x102L,
-	DBPROP_PROVIDERMEMORY	= 0x103L,
-	DBPROP_CLIENTCURSOR	= 0x104L
+    {    DBPROP_IMultipleResults    = 0xd9L,
+    DBPROP_DATASOURCE_TYPE    = 0xfbL,
+    MDPROP_AXES    = 0xfcL,
+    MDPROP_FLATTENING_SUPPORT    = 0xfdL,
+    MDPROP_MDX_JOINCUBES    = 0xfeL,
+    MDPROP_NAMED_LEVELS    = 0xffL,
+    MDPROP_RANGEROWSET    = 0x100L,
+    MDPROP_MDX_SLICER    = 0xdaL,
+    MDPROP_MDX_CUBEQUALIFICATION    = 0xdbL,
+    MDPROP_MDX_OUTERREFERENCE    = 0xdcL,
+    MDPROP_MDX_QUERYBYPROPERTY    = 0xddL,
+    MDPROP_MDX_CASESUPPORT    = 0xdeL,
+    MDPROP_MDX_STRING_COMPOP    = 0xe0L,
+    MDPROP_MDX_DESCFLAGS    = 0xe1L,
+    MDPROP_MDX_SET_FUNCTIONS    = 0xe2L,
+    MDPROP_MDX_MEMBER_FUNCTIONS    = 0xe3L,
+    MDPROP_MDX_NUMERIC_FUNCTIONS    = 0xe4L,
+    MDPROP_MDX_FORMULAS    = 0xe5L,
+    MDPROP_AGGREGATECELL_UPDATE    = 0xe6L,
+    MDPROP_MDX_AGGREGATECELL_UPDATE    = MDPROP_AGGREGATECELL_UPDATE,
+    MDPROP_MDX_OBJQUALIFICATION    = 0x105L,
+    MDPROP_MDX_NONMEASURE_EXPRESSIONS    = 0x106L,
+    DBPROP_ACCESSORDER    = 0xe7L,
+    DBPROP_BOOKMARKINFO    = 0xe8L,
+    DBPROP_INIT_CATALOG    = 0xe9L,
+    DBPROP_ROW_BULKOPS    = 0xeaL,
+    DBPROP_PROVIDERFRIENDLYNAME    = 0xebL,
+    DBPROP_LOCKMODE    = 0xecL,
+    DBPROP_MULTIPLECONNECTIONS    = 0xedL,
+    DBPROP_UNIQUEROWS    = 0xeeL,
+    DBPROP_SERVERDATAONINSERT    = 0xefL,
+    DBPROP_STORAGEFLAGS    = 0xf0L,
+    DBPROP_CONNECTIONSTATUS    = 0xf4L,
+    DBPROP_ALTERCOLUMN    = 0xf5L,
+    DBPROP_COLUMNLCID    = 0xf6L,
+    DBPROP_RESETDATASOURCE    = 0xf7L,
+    DBPROP_INIT_OLEDBSERVICES    = 0xf8L,
+    DBPROP_IRowsetRefresh    = 0xf9L,
+    DBPROP_SERVERNAME    = 0xfaL,
+    DBPROP_IParentRowset    = 0x101L,
+    DBPROP_HIDDENCOLUMNS    = 0x102L,
+    DBPROP_PROVIDERMEMORY    = 0x103L,
+    DBPROP_CLIENTCURSOR    = 0x104L
     } ;
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
@@ -1824,27 +1824,27 @@ enum DBPROPENUM20
 #if( OLEDBVER >= 0x0210 )
 
 enum DBPROPENUM21
-    {	DBPROP_TRUSTEE_USERNAME	= 0xf1L,
-	DBPROP_TRUSTEE_AUTHENTICATION	= 0xf2L,
-	DBPROP_TRUSTEE_NEWAUTHENTICATION	= 0xf3L,
-	DBPROP_IRow	= 0x107L,
-	DBPROP_IRowChange	= 0x108L,
-	DBPROP_IRowSchemaChange	= 0x109L,
-	DBPROP_IGetRow	= 0x10aL,
-	DBPROP_IScopedOperations	= 0x10bL,
-	DBPROP_IBindResource	= 0x10cL,
-	DBPROP_ICreateRow	= 0x10dL,
-	DBPROP_INIT_BINDFLAGS	= 0x10eL,
-	DBPROP_INIT_LOCKOWNER	= 0x10fL,
-	DBPROP_GENERATEURL	= 0x111L,
-	DBPROP_IDBBinderProperties	= 0x112L,
-	DBPROP_IColumnsInfo2	= 0x113L,
-	DBPROP_IRegisterProvider	= 0x114L,
-	DBPROP_IGetSession	= 0x115L,
-	DBPROP_IGetSourceRow	= 0x116L,
-	DBPROP_IRowsetCurrentIndex	= 0x117L,
-	DBPROP_OPENROWSETSUPPORT	= 0x118L,
-	DBPROP_COL_ISLONG	= 0x119L
+    {    DBPROP_TRUSTEE_USERNAME    = 0xf1L,
+    DBPROP_TRUSTEE_AUTHENTICATION    = 0xf2L,
+    DBPROP_TRUSTEE_NEWAUTHENTICATION    = 0xf3L,
+    DBPROP_IRow    = 0x107L,
+    DBPROP_IRowChange    = 0x108L,
+    DBPROP_IRowSchemaChange    = 0x109L,
+    DBPROP_IGetRow    = 0x10aL,
+    DBPROP_IScopedOperations    = 0x10bL,
+    DBPROP_IBindResource    = 0x10cL,
+    DBPROP_ICreateRow    = 0x10dL,
+    DBPROP_INIT_BINDFLAGS    = 0x10eL,
+    DBPROP_INIT_LOCKOWNER    = 0x10fL,
+    DBPROP_GENERATEURL    = 0x111L,
+    DBPROP_IDBBinderProperties    = 0x112L,
+    DBPROP_IColumnsInfo2    = 0x113L,
+    DBPROP_IRegisterProvider    = 0x114L,
+    DBPROP_IGetSession    = 0x115L,
+    DBPROP_IGetSourceRow    = 0x116L,
+    DBPROP_IRowsetCurrentIndex    = 0x117L,
+    DBPROP_OPENROWSETSUPPORT    = 0x118L,
+    DBPROP_COL_ISLONG    = 0x119L
     } ;
 #endif // OLEDBVER >= 0x0210
 //@@@- V2.1
@@ -1852,10 +1852,10 @@ enum DBPROPENUM21
 #if( OLEDBVER >= 0x0250 )
 
 enum DBPROPENUM25
-    {	DBPROP_COL_SEED	= 0x11aL,
-	DBPROP_COL_INCREMENT	= 0x11bL,
-	DBPROP_INIT_GENERALTIMEOUT	= 0x11cL,
-	DBPROP_COMSERVICES	= 0x11dL
+    {    DBPROP_COL_SEED    = 0x11aL,
+    DBPROP_COL_INCREMENT    = 0x11bL,
+    DBPROP_INIT_GENERALTIMEOUT    = 0x11cL,
+    DBPROP_COMSERVICES    = 0x11dL
     } ;
 #endif // OLEDBVER >= 0x0250
 //@@@- V2.5
@@ -1863,12 +1863,12 @@ enum DBPROPENUM25
 #if( OLEDBVER >= 0x0260 )
 
 enum DBPROPENUM26
-    {	DBPROP_OUTPUTSTREAM	= 0x11eL,
-	DBPROP_OUTPUTENCODING	= 0x11fL,
-	DBPROP_TABLESTATISTICS	= 0x120L,
-	DBPROP_SKIPROWCOUNTRESULTS	= 0x123L,
-	DBPROP_IRowsetBookmark	= 0x124L,
-	MDPROP_VISUALMODE	= 0x125L
+    {    DBPROP_OUTPUTSTREAM    = 0x11eL,
+    DBPROP_OUTPUTENCODING    = 0x11fL,
+    DBPROP_TABLESTATISTICS    = 0x120L,
+    DBPROP_SKIPROWCOUNTRESULTS    = 0x123L,
+    DBPROP_IRowsetBookmark    = 0x124L,
+    MDPROP_VISUALMODE    = 0x125L
     } ;
 #endif // OLEDBVER >= 0x0260
 //@@@- V2.6
@@ -1876,106 +1876,106 @@ enum DBPROPENUM26
 #ifdef deprecated
 
 enum DBPROPENUMDEPRECATED
-    {	DBPROP_IRowsetExactScroll	= 0x9aL,
-	DBPROP_MARSHALLABLE	= 0xc5L,
-	DBPROP_FILTEROPS	= 0xd0L
+    {    DBPROP_IRowsetExactScroll    = 0x9aL,
+    DBPROP_MARSHALLABLE    = 0xc5L,
+    DBPROP_FILTEROPS    = 0xd0L
     } ;
 #endif // deprecated
 //@@@- deprecated
-#define DBPROPVAL_BMK_NUMERIC							 0x00000001L
-#define DBPROPVAL_BMK_KEY								 0x00000002L
+#define DBPROPVAL_BMK_NUMERIC                             0x00000001L
+#define DBPROPVAL_BMK_KEY                                 0x00000002L
 #define DBPROPVAL_CL_START                                0x00000001L
 #define DBPROPVAL_CL_END                                  0x00000002L
-#define DBPROPVAL_CU_DML_STATEMENTS						 0x00000001L
-#define DBPROPVAL_CU_TABLE_DEFINITION					 0x00000002L
-#define DBPROPVAL_CU_INDEX_DEFINITION					 0x00000004L
-#define DBPROPVAL_CU_PRIVILEGE_DEFINITION				 0x00000008L
-#define DBPROPVAL_CD_NOTNULL								 0x00000001L
-#define DBPROPVAL_CB_NULL								 0x00000001L
-#define DBPROPVAL_CB_NON_NULL							 0x00000002L
-#define DBPROPVAL_FU_NOT_SUPPORTED						 0x00000001L
-#define DBPROPVAL_FU_COLUMN								 0x00000002L
-#define DBPROPVAL_FU_TABLE								 0x00000004L
-#define DBPROPVAL_FU_CATALOG								 0x00000008L
-#define DBPROPVAL_GB_NOT_SUPPORTED						 0x00000001L
-#define DBPROPVAL_GB_EQUALS_SELECT						 0x00000002L
-#define DBPROPVAL_GB_CONTAINS_SELECT						 0x00000004L
-#define DBPROPVAL_GB_NO_RELATION							 0x00000008L
-#define DBPROPVAL_HT_DIFFERENT_CATALOGS					 0x00000001L
-#define DBPROPVAL_HT_DIFFERENT_PROVIDERS					 0x00000002L
-#define DBPROPVAL_IC_UPPER								 0x00000001L
-#define DBPROPVAL_IC_LOWER								 0x00000002L
-#define DBPROPVAL_IC_SENSITIVE							 0x00000004L
-#define DBPROPVAL_IC_MIXED								 0x00000008L
+#define DBPROPVAL_CU_DML_STATEMENTS                         0x00000001L
+#define DBPROPVAL_CU_TABLE_DEFINITION                     0x00000002L
+#define DBPROPVAL_CU_INDEX_DEFINITION                     0x00000004L
+#define DBPROPVAL_CU_PRIVILEGE_DEFINITION                 0x00000008L
+#define DBPROPVAL_CD_NOTNULL                                 0x00000001L
+#define DBPROPVAL_CB_NULL                                 0x00000001L
+#define DBPROPVAL_CB_NON_NULL                             0x00000002L
+#define DBPROPVAL_FU_NOT_SUPPORTED                         0x00000001L
+#define DBPROPVAL_FU_COLUMN                                 0x00000002L
+#define DBPROPVAL_FU_TABLE                                 0x00000004L
+#define DBPROPVAL_FU_CATALOG                                 0x00000008L
+#define DBPROPVAL_GB_NOT_SUPPORTED                         0x00000001L
+#define DBPROPVAL_GB_EQUALS_SELECT                         0x00000002L
+#define DBPROPVAL_GB_CONTAINS_SELECT                         0x00000004L
+#define DBPROPVAL_GB_NO_RELATION                             0x00000008L
+#define DBPROPVAL_HT_DIFFERENT_CATALOGS                     0x00000001L
+#define DBPROPVAL_HT_DIFFERENT_PROVIDERS                     0x00000002L
+#define DBPROPVAL_IC_UPPER                                 0x00000001L
+#define DBPROPVAL_IC_LOWER                                 0x00000002L
+#define DBPROPVAL_IC_SENSITIVE                             0x00000004L
+#define DBPROPVAL_IC_MIXED                                 0x00000008L
 //@@@+ deprecated
 #ifdef deprecated
-#define DBPROPVAL_LM_NONE								 0x00000001L
-#define DBPROPVAL_LM_READ								 0x00000002L
-#define DBPROPVAL_LM_INTENT								 0x00000004L
-#define DBPROPVAL_LM_RITE								 0x00000008L
+#define DBPROPVAL_LM_NONE                                 0x00000001L
+#define DBPROPVAL_LM_READ                                 0x00000002L
+#define DBPROPVAL_LM_INTENT                                 0x00000004L
+#define DBPROPVAL_LM_RITE                                 0x00000008L
 #endif // deprecated
 //@@@- deprecated
-#define DBPROPVAL_NP_OKTODO								 0x00000001L
-#define DBPROPVAL_NP_ABOUTTODO							 0x00000002L
-#define DBPROPVAL_NP_SYNCHAFTER							 0x00000004L
-#define DBPROPVAL_NP_FAILEDTODO							 0x00000008L
-#define DBPROPVAL_NP_DIDEVENT							 0x00000010L
-#define DBPROPVAL_NC_END									 0x00000001L
-#define DBPROPVAL_NC_HIGH								 0x00000002L
-#define DBPROPVAL_NC_LOW									 0x00000004L
-#define DBPROPVAL_NC_START								 0x00000008L
-#define DBPROPVAL_OO_BLOB								 0x00000001L
-#define DBPROPVAL_OO_IPERSIST							 0x00000002L
-#define DBPROPVAL_CB_DELETE								 0x00000001L
-#define DBPROPVAL_CB_PRESERVE							 0x00000002L
-#define DBPROPVAL_SU_DML_STATEMENTS						 0x00000001L
-#define DBPROPVAL_SU_TABLE_DEFINITION					 0x00000002L
-#define DBPROPVAL_SU_INDEX_DEFINITION					 0x00000004L
-#define DBPROPVAL_SU_PRIVILEGE_DEFINITION				 0x00000008L
-#define DBPROPVAL_SQ_CORRELATEDSUBQUERIES				 0x00000001L
-#define DBPROPVAL_SQ_COMPARISON							 0x00000002L
-#define DBPROPVAL_SQ_EXISTS								 0x00000004L
-#define DBPROPVAL_SQ_IN									 0x00000008L
-#define DBPROPVAL_SQ_QUANTIFIED							 0x00000010L
-#define DBPROPVAL_SQ_TABLE								 0x00000020L
-#define DBPROPVAL_SS_ISEQUENTIALSTREAM					 0x00000001L
-#define DBPROPVAL_SS_ISTREAM								 0x00000002L
-#define DBPROPVAL_SS_ISTORAGE							 0x00000004L
-#define DBPROPVAL_SS_ILOCKBYTES							 0x00000008L
-#define DBPROPVAL_TI_CHAOS								 0x00000010L
-#define DBPROPVAL_TI_READUNCOMMITTED						 0x00000100L
-#define DBPROPVAL_TI_BROWSE								 0x00000100L
-#define DBPROPVAL_TI_CURSORSTABILITY						 0x00001000L
-#define DBPROPVAL_TI_READCOMMITTED						 0x00001000L
-#define DBPROPVAL_TI_REPEATABLEREAD						 0x00010000L
-#define DBPROPVAL_TI_SERIALIZABLE						 0x00100000L
-#define DBPROPVAL_TI_ISOLATED							 0x00100000L
-#define DBPROPVAL_TR_COMMIT_DC							 0x00000001L
-#define DBPROPVAL_TR_COMMIT								 0x00000002L
-#define DBPROPVAL_TR_COMMIT_NO							 0x00000004L
-#define DBPROPVAL_TR_ABORT_DC							 0x00000008L
-#define DBPROPVAL_TR_ABORT								 0x00000010L
-#define DBPROPVAL_TR_ABORT_NO							 0x00000020L
-#define DBPROPVAL_TR_DONTCARE							 0x00000040L
-#define DBPROPVAL_TR_BOTH								 0x00000080L
-#define DBPROPVAL_TR_NONE								 0x00000100L
-#define DBPROPVAL_TR_OPTIMISTIC							 0x00000200L
-#define DBPROPVAL_RT_FREETHREAD							 0x00000001L
-#define DBPROPVAL_RT_APTMTTHREAD							 0x00000002L
-#define DBPROPVAL_RT_SINGLETHREAD						 0x00000004L
-#define DBPROPVAL_UP_CHANGE								 0x00000001L
-#define DBPROPVAL_UP_DELETE								 0x00000002L
-#define DBPROPVAL_UP_INSERT								 0x00000004L
-#define DBPROPVAL_SQL_NONE								 0x00000000L
-#define DBPROPVAL_SQL_ODBC_MINIMUM						 0x00000001L
-#define DBPROPVAL_SQL_ODBC_CORE							 0x00000002L
-#define DBPROPVAL_SQL_ODBC_EXTENDED						 0x00000004L
-#define DBPROPVAL_SQL_ANSI89_IEF							 0x00000008L
-#define DBPROPVAL_SQL_ANSI92_ENTRY						 0x00000010L
-#define DBPROPVAL_SQL_FIPS_TRANSITIONAL					 0x00000020L
-#define DBPROPVAL_SQL_ANSI92_INTERMEDIATE				 0x00000040L
-#define DBPROPVAL_SQL_ANSI92_FULL						 0x00000080L
-#define DBPROPVAL_SQL_ESCAPECLAUSES						 0x00000100L
+#define DBPROPVAL_NP_OKTODO                                 0x00000001L
+#define DBPROPVAL_NP_ABOUTTODO                             0x00000002L
+#define DBPROPVAL_NP_SYNCHAFTER                             0x00000004L
+#define DBPROPVAL_NP_FAILEDTODO                             0x00000008L
+#define DBPROPVAL_NP_DIDEVENT                             0x00000010L
+#define DBPROPVAL_NC_END                                     0x00000001L
+#define DBPROPVAL_NC_HIGH                                 0x00000002L
+#define DBPROPVAL_NC_LOW                                     0x00000004L
+#define DBPROPVAL_NC_START                                 0x00000008L
+#define DBPROPVAL_OO_BLOB                                 0x00000001L
+#define DBPROPVAL_OO_IPERSIST                             0x00000002L
+#define DBPROPVAL_CB_DELETE                                 0x00000001L
+#define DBPROPVAL_CB_PRESERVE                             0x00000002L
+#define DBPROPVAL_SU_DML_STATEMENTS                         0x00000001L
+#define DBPROPVAL_SU_TABLE_DEFINITION                     0x00000002L
+#define DBPROPVAL_SU_INDEX_DEFINITION                     0x00000004L
+#define DBPROPVAL_SU_PRIVILEGE_DEFINITION                 0x00000008L
+#define DBPROPVAL_SQ_CORRELATEDSUBQUERIES                 0x00000001L
+#define DBPROPVAL_SQ_COMPARISON                             0x00000002L
+#define DBPROPVAL_SQ_EXISTS                                 0x00000004L
+#define DBPROPVAL_SQ_IN                                     0x00000008L
+#define DBPROPVAL_SQ_QUANTIFIED                             0x00000010L
+#define DBPROPVAL_SQ_TABLE                                 0x00000020L
+#define DBPROPVAL_SS_ISEQUENTIALSTREAM                     0x00000001L
+#define DBPROPVAL_SS_ISTREAM                                 0x00000002L
+#define DBPROPVAL_SS_ISTORAGE                             0x00000004L
+#define DBPROPVAL_SS_ILOCKBYTES                             0x00000008L
+#define DBPROPVAL_TI_CHAOS                                 0x00000010L
+#define DBPROPVAL_TI_READUNCOMMITTED                         0x00000100L
+#define DBPROPVAL_TI_BROWSE                                 0x00000100L
+#define DBPROPVAL_TI_CURSORSTABILITY                         0x00001000L
+#define DBPROPVAL_TI_READCOMMITTED                         0x00001000L
+#define DBPROPVAL_TI_REPEATABLEREAD                         0x00010000L
+#define DBPROPVAL_TI_SERIALIZABLE                         0x00100000L
+#define DBPROPVAL_TI_ISOLATED                             0x00100000L
+#define DBPROPVAL_TR_COMMIT_DC                             0x00000001L
+#define DBPROPVAL_TR_COMMIT                                 0x00000002L
+#define DBPROPVAL_TR_COMMIT_NO                             0x00000004L
+#define DBPROPVAL_TR_ABORT_DC                             0x00000008L
+#define DBPROPVAL_TR_ABORT                                 0x00000010L
+#define DBPROPVAL_TR_ABORT_NO                             0x00000020L
+#define DBPROPVAL_TR_DONTCARE                             0x00000040L
+#define DBPROPVAL_TR_BOTH                                 0x00000080L
+#define DBPROPVAL_TR_NONE                                 0x00000100L
+#define DBPROPVAL_TR_OPTIMISTIC                             0x00000200L
+#define DBPROPVAL_RT_FREETHREAD                             0x00000001L
+#define DBPROPVAL_RT_APTMTTHREAD                             0x00000002L
+#define DBPROPVAL_RT_SINGLETHREAD                         0x00000004L
+#define DBPROPVAL_UP_CHANGE                                 0x00000001L
+#define DBPROPVAL_UP_DELETE                                 0x00000002L
+#define DBPROPVAL_UP_INSERT                                 0x00000004L
+#define DBPROPVAL_SQL_NONE                                 0x00000000L
+#define DBPROPVAL_SQL_ODBC_MINIMUM                         0x00000001L
+#define DBPROPVAL_SQL_ODBC_CORE                             0x00000002L
+#define DBPROPVAL_SQL_ODBC_EXTENDED                         0x00000004L
+#define DBPROPVAL_SQL_ANSI89_IEF                             0x00000008L
+#define DBPROPVAL_SQL_ANSI92_ENTRY                         0x00000010L
+#define DBPROPVAL_SQL_FIPS_TRANSITIONAL                     0x00000020L
+#define DBPROPVAL_SQL_ANSI92_INTERMEDIATE                 0x00000040L
+#define DBPROPVAL_SQL_ANSI92_FULL                         0x00000080L
+#define DBPROPVAL_SQL_ESCAPECLAUSES                         0x00000100L
 #define DBPROPVAL_IT_BTREE                                0x00000001L
 #define DBPROPVAL_IT_HASH                                 0x00000002L
 #define DBPROPVAL_IT_CONTENT                              0x00000003L
@@ -2001,9 +2001,9 @@ enum DBPROPENUMDEPRECATED
 #define DBPROPVAL_PT_GUID_PROPID                          0x00000002L
 #define DBPROPVAL_PT_NAME                                 0x00000004L
 #define DBPROPVAL_PT_GUID                                 0x00000008L
-#define DBPROPVAL_PT_PROPID								 0x00000010L
+#define DBPROPVAL_PT_PROPID                                 0x00000010L
 #define DBPROPVAL_PT_PGUID_NAME                           0x00000020L
-#define DBPROPVAL_PT_PGUID_PROPID						 0x00000040L
+#define DBPROPVAL_PT_PGUID_PROPID                         0x00000040L
 #define DBPROPVAL_NT_SINGLEROW                            0x00000001L
 #define DBPROPVAL_NT_MULTIPLEROWS                         0x00000002L
 //@@@+ V1.5
@@ -2022,14 +2022,14 @@ enum DBPROPENUMDEPRECATED
 //@@@- V1.5
 //@@@+ V2.0
 #if( OLEDBVER >= 0x0200 )
-#define DBPROPVAL_CO_CONTAINS		                     0x00000010L
-#define DBPROPVAL_CO_BEGINSWITH		                     0x00000020L
-#define DBPROPVAL_ASYNCH_BACKGROUNDPOPULATION			0x00000008L
-#define DBPROPVAL_ASYNCH_PREPOPULATE						0x00000010L
-#define DBPROPVAL_ASYNCH_POPULATEONDEMAND				0x00000020L
-#define DBPROPVAL_LM_NONE								 0x00000001L
-#define DBPROPVAL_LM_SINGLEROW							 0x00000002L
-#define DBPROPVAL_SQL_SUBMINIMUM 						 0x00000200L
+#define DBPROPVAL_CO_CONTAINS                             0x00000010L
+#define DBPROPVAL_CO_BEGINSWITH                             0x00000020L
+#define DBPROPVAL_ASYNCH_BACKGROUNDPOPULATION            0x00000008L
+#define DBPROPVAL_ASYNCH_PREPOPULATE                        0x00000010L
+#define DBPROPVAL_ASYNCH_POPULATEONDEMAND                0x00000020L
+#define DBPROPVAL_LM_NONE                                 0x00000001L
+#define DBPROPVAL_LM_SINGLEROW                             0x00000002L
+#define DBPROPVAL_SQL_SUBMINIMUM                          0x00000200L
 #define DBPROPVAL_DST_TDP                                 0x00000001L
 #define DBPROPVAL_DST_MDP                                 0x00000002L
 #define DBPROPVAL_DST_TDPANDMDP                           0x00000003L
@@ -2040,104 +2040,104 @@ enum DBPROPENUMDEPRECATED
 #define MDPROPVAL_MF_WITH_NAMEDSETS                       0x00000002L
 #define MDPROPVAL_MF_CREATE_CALCMEMBERS                   0x00000004L
 #define MDPROPVAL_MF_CREATE_NAMEDSETS                     0x00000008L
-#define MDPROPVAL_MF_SCOPE_SESSION						 0x00000010L
+#define MDPROPVAL_MF_SCOPE_SESSION                         0x00000010L
 #define MDPROPVAL_MF_SCOPE_GLOBAL                         0x00000020L
 #define MDPROPVAL_MMF_COUSIN                              0x00000001L
 #define MDPROPVAL_MMF_PARALLELPERIOD                      0x00000002L
 #define MDPROPVAL_MMF_OPENINGPERIOD                       0x00000004L
 #define MDPROPVAL_MMF_CLOSINGPERIOD                       0x00000008L
-#define MDPROPVAL_MNF_MEDIAN								0x00000001L
-#define MDPROPVAL_MNF_VAR								0x00000002L
-#define MDPROPVAL_MNF_STDDEV								0x00000004L
-#define MDPROPVAL_MNF_RANK								0x00000008L
-#define MDPROPVAL_MNF_AGGREGATE							0x00000010L
-#define MDPROPVAL_MNF_COVARIANCE							0x00000020L
-#define MDPROPVAL_MNF_CORRELATION						0x00000040L
-#define MDPROPVAL_MNF_LINREGSLOPE						0x00000080L
-#define MDPROPVAL_MNF_LINREGVARIANCE						0x00000100L
-#define MDPROPVAL_MNF_LINREG2							0x00000200L
-#define MDPROPVAL_MNF_LINREGPOINT						0x00000400L
-#define MDPROPVAL_MNF_DRILLDOWNLEVEL						0x00000800L
-#define MDPROPVAL_MNF_DRILLDOWNMEMBERTOP					0x00001000L
-#define MDPROPVAL_MNF_DRILLDOWNMEMBERBOTTOM				0x00002000L
-#define MDPROPVAL_MNF_DRILLDOWNLEVELTOP					0x00004000L
-#define MDPROPVAL_MNF_DRILLDOWNLEVELBOTTOM				0x00008000L
-#define MDPROPVAL_MNF_DRILLUPMEMBER						0x00010000L
-#define MDPROPVAL_MNF_DRILLUPLEVEL						0x00020000L
-#define MDPROPVAL_MMF_COUSIN								0x00000001L
-#define MDPROPVAL_MMF_PARALLELPERIOD						0x00000002L
-#define MDPROPVAL_MMF_OPENINGPERIOD						0x00000004L
-#define MDPROPVAL_MMF_CLOSINGPERIOD						0x00000008L
-#define MDPROPVAL_MSF_TOPPERCENT							0x00000001L
-#define MDPROPVAL_MSF_BOTTOMPERCENT						0x00000002L
-#define MDPROPVAL_MSF_TOPSUM								0x00000004L
-#define MDPROPVAL_MSF_BOTTOMSUM							0x00000008L
-#define MDPROPVAL_MSF_PERIODSTODATE						0x00000010L
-#define MDPROPVAL_MSF_LASTPERIODS						0x00000020L
-#define MDPROPVAL_MSF_YTD								0x00000040L
-#define MDPROPVAL_MSF_QTD								0x00000080L
-#define MDPROPVAL_MSF_MTD								0x00000100L
-#define MDPROPVAL_MSF_WTD								0x00000200L
-#define MDPROPVAL_MSF_DRILLDOWNMEMBBER					0x00000400L
-#define MDPROPVAL_MSF_DRILLDOWNLEVEL						0x00000800L
-#define MDPROPVAL_MSF_DRILLDOWNMEMBERTOP					0x00001000L
-#define MDPROPVAL_MSF_DRILLDOWNMEMBERBOTTOM				0x00002000L
-#define MDPROPVAL_MSF_DRILLDOWNLEVELTOP					0x00004000L
-#define MDPROPVAL_MSF_DRILLDOWNLEVELBOTTOM				0x00008000L
-#define MDPROPVAL_MSF_DRILLUPMEMBER						0x00010000L
-#define MDPROPVAL_MSF_DRILLUPLEVEL						0x00020000L
-#define MDPROPVAL_MSF_TOGGLEDRILLSTATE					0x00040000L
+#define MDPROPVAL_MNF_MEDIAN                                0x00000001L
+#define MDPROPVAL_MNF_VAR                                0x00000002L
+#define MDPROPVAL_MNF_STDDEV                                0x00000004L
+#define MDPROPVAL_MNF_RANK                                0x00000008L
+#define MDPROPVAL_MNF_AGGREGATE                            0x00000010L
+#define MDPROPVAL_MNF_COVARIANCE                            0x00000020L
+#define MDPROPVAL_MNF_CORRELATION                        0x00000040L
+#define MDPROPVAL_MNF_LINREGSLOPE                        0x00000080L
+#define MDPROPVAL_MNF_LINREGVARIANCE                        0x00000100L
+#define MDPROPVAL_MNF_LINREG2                            0x00000200L
+#define MDPROPVAL_MNF_LINREGPOINT                        0x00000400L
+#define MDPROPVAL_MNF_DRILLDOWNLEVEL                        0x00000800L
+#define MDPROPVAL_MNF_DRILLDOWNMEMBERTOP                    0x00001000L
+#define MDPROPVAL_MNF_DRILLDOWNMEMBERBOTTOM                0x00002000L
+#define MDPROPVAL_MNF_DRILLDOWNLEVELTOP                    0x00004000L
+#define MDPROPVAL_MNF_DRILLDOWNLEVELBOTTOM                0x00008000L
+#define MDPROPVAL_MNF_DRILLUPMEMBER                        0x00010000L
+#define MDPROPVAL_MNF_DRILLUPLEVEL                        0x00020000L
+#define MDPROPVAL_MMF_COUSIN                                0x00000001L
+#define MDPROPVAL_MMF_PARALLELPERIOD                        0x00000002L
+#define MDPROPVAL_MMF_OPENINGPERIOD                        0x00000004L
+#define MDPROPVAL_MMF_CLOSINGPERIOD                        0x00000008L
+#define MDPROPVAL_MSF_TOPPERCENT                            0x00000001L
+#define MDPROPVAL_MSF_BOTTOMPERCENT                        0x00000002L
+#define MDPROPVAL_MSF_TOPSUM                                0x00000004L
+#define MDPROPVAL_MSF_BOTTOMSUM                            0x00000008L
+#define MDPROPVAL_MSF_PERIODSTODATE                        0x00000010L
+#define MDPROPVAL_MSF_LASTPERIODS                        0x00000020L
+#define MDPROPVAL_MSF_YTD                                0x00000040L
+#define MDPROPVAL_MSF_QTD                                0x00000080L
+#define MDPROPVAL_MSF_MTD                                0x00000100L
+#define MDPROPVAL_MSF_WTD                                0x00000200L
+#define MDPROPVAL_MSF_DRILLDOWNMEMBBER                    0x00000400L
+#define MDPROPVAL_MSF_DRILLDOWNLEVEL                        0x00000800L
+#define MDPROPVAL_MSF_DRILLDOWNMEMBERTOP                    0x00001000L
+#define MDPROPVAL_MSF_DRILLDOWNMEMBERBOTTOM                0x00002000L
+#define MDPROPVAL_MSF_DRILLDOWNLEVELTOP                    0x00004000L
+#define MDPROPVAL_MSF_DRILLDOWNLEVELBOTTOM                0x00008000L
+#define MDPROPVAL_MSF_DRILLUPMEMBER                        0x00010000L
+#define MDPROPVAL_MSF_DRILLUPLEVEL                        0x00020000L
+#define MDPROPVAL_MSF_TOGGLEDRILLSTATE                    0x00040000L
 // values for MDPROP_MDX_DESCFLAGS
-#define MDPROPVAL_MD_SELF								0x00000001L
-#define MDPROPVAL_MD_BEFORE								0x00000002L
-#define MDPROPVAL_MD_AFTER								0x00000004L
+#define MDPROPVAL_MD_SELF                                0x00000001L
+#define MDPROPVAL_MD_BEFORE                                0x00000002L
+#define MDPROPVAL_MD_AFTER                                0x00000004L
 // values for MDPROP_MDX_STRING_COMPOP
-#define MDPROPVAL_MSC_LESSTHAN							0x00000001L
-#define MDPROPVAL_MSC_GREATERTHAN						0x00000002L
-#define MDPROPVAL_MSC_LESSTHANEQUAL						0x00000004L
-#define MDPROPVAL_MSC_GREATERTHANEQUAL					0x00000008L
-#define MDPROPVAL_MC_SINGLECASE							0x00000001L
-#define MDPROPVAL_MC_SEARCHEDCASE						0x00000002L
-#define MDPROPVAL_MOQ_OUTERREFERENCE						0x00000001L
-#define MDPROPVAL_MOQ_DATASOURCE_CUBE					0x00000001L
-#define MDPROPVAL_MOQ_CATALOG_CUBE						0x00000002L
-#define MDPROPVAL_MOQ_SCHEMA_CUBE						0x00000004L
-#define MDPROPVAL_MOQ_CUBE_DIM							0x00000008L
-#define MDPROPVAL_MOQ_DIM_HIER							0x00000010L
-#define MDPROPVAL_MOQ_DIMHIER_LEVEL						0x00000020L
-#define MDPROPVAL_MOQ_LEVEL_MEMBER						0x00000040L
-#define MDPROPVAL_MOQ_MEMBER_MEMBER						0x00000080L
-#define MDPROPVAL_MOQ_DIMHIER_MEMBER						0x00000100L
-#define MDPROPVAL_FS_FULL_SUPPORT						0x00000001L
-#define MDPROPVAL_FS_GENERATED_COLUMN					0x00000002L
-#define MDPROPVAL_FS_GENERATED_DIMENSION					0x00000003L
-#define MDPROPVAL_FS_NO_SUPPORT							0x00000004L
-#define MDPROPVAL_NL_NAMEDLEVELS							0x00000001L
-#define MDPROPVAL_NL_NUMBEREDLEVELS						0x00000002L
-#define MDPROPVAL_MJC_SINGLECUBE							0x00000001L
-#define MDPROPVAL_MJC_MULTICUBES							0x00000002L
-#define MDPROPVAL_MJC_IMPLICITCUBE						0x00000004L
-#define MDPROPVAL_RR_NORANGEROWSET						0x00000001L
-#define MDPROPVAL_RR_READONLY							0x00000002L
-#define MDPROPVAL_RR_UPDATE								0x00000004L
-#define MDPROPVAL_MS_MULTIPLETUPLES						0x00000001L
-#define MDPROPVAL_MS_SINGLETUPLE						0x00000002L
-#define MDPROPVAL_NME_ALLDIMENSIONS						0x00000000L
-#define MDPROPVAL_NME_MEASURESONLY						0x00000001L
-#define DBPROPVAL_AO_SEQUENTIAL							0x00000000L
-#define DBPROPVAL_AO_SEQUENTIALSTORAGEOBJECTS			0x00000001L
-#define DBPROPVAL_AO_RANDOM								0x00000002L
-#define DBPROPVAL_BD_ROWSET								0x00000000L
-#define DBPROPVAL_BD_INTRANSACTION						0x00000001L
-#define DBPROPVAL_BD_XTRANSACTION						0x00000002L
-#define DBPROPVAL_BD_REORGANIZATION						0x00000003L
-#define BMK_DURABILITY_ROWSET							DBPROPVAL_BD_ROWSET
-#define BMK_DURABILITY_INTRANSACTION						DBPROPVAL_BD_INTRANSACTION
-#define BMK_DURABILITY_XTRANSACTION						DBPROPVAL_BD_XTRANSACTION
-#define BMK_DURABILITY_REORGANIZATION					DBPROPVAL_BD_REORGANIZATION
-#define DBPROPVAL_BO_NOLOG								0x00000000L
-#define DBPROPVAL_BO_NOINDEXUPDATE						0x00000001L
-#define DBPROPVAL_BO_REFINTEGRITY						0x00000002L
+#define MDPROPVAL_MSC_LESSTHAN                            0x00000001L
+#define MDPROPVAL_MSC_GREATERTHAN                        0x00000002L
+#define MDPROPVAL_MSC_LESSTHANEQUAL                        0x00000004L
+#define MDPROPVAL_MSC_GREATERTHANEQUAL                    0x00000008L
+#define MDPROPVAL_MC_SINGLECASE                            0x00000001L
+#define MDPROPVAL_MC_SEARCHEDCASE                        0x00000002L
+#define MDPROPVAL_MOQ_OUTERREFERENCE                        0x00000001L
+#define MDPROPVAL_MOQ_DATASOURCE_CUBE                    0x00000001L
+#define MDPROPVAL_MOQ_CATALOG_CUBE                        0x00000002L
+#define MDPROPVAL_MOQ_SCHEMA_CUBE                        0x00000004L
+#define MDPROPVAL_MOQ_CUBE_DIM                            0x00000008L
+#define MDPROPVAL_MOQ_DIM_HIER                            0x00000010L
+#define MDPROPVAL_MOQ_DIMHIER_LEVEL                        0x00000020L
+#define MDPROPVAL_MOQ_LEVEL_MEMBER                        0x00000040L
+#define MDPROPVAL_MOQ_MEMBER_MEMBER                        0x00000080L
+#define MDPROPVAL_MOQ_DIMHIER_MEMBER                        0x00000100L
+#define MDPROPVAL_FS_FULL_SUPPORT                        0x00000001L
+#define MDPROPVAL_FS_GENERATED_COLUMN                    0x00000002L
+#define MDPROPVAL_FS_GENERATED_DIMENSION                    0x00000003L
+#define MDPROPVAL_FS_NO_SUPPORT                            0x00000004L
+#define MDPROPVAL_NL_NAMEDLEVELS                            0x00000001L
+#define MDPROPVAL_NL_NUMBEREDLEVELS                        0x00000002L
+#define MDPROPVAL_MJC_SINGLECUBE                            0x00000001L
+#define MDPROPVAL_MJC_MULTICUBES                            0x00000002L
+#define MDPROPVAL_MJC_IMPLICITCUBE                        0x00000004L
+#define MDPROPVAL_RR_NORANGEROWSET                        0x00000001L
+#define MDPROPVAL_RR_READONLY                            0x00000002L
+#define MDPROPVAL_RR_UPDATE                                0x00000004L
+#define MDPROPVAL_MS_MULTIPLETUPLES                        0x00000001L
+#define MDPROPVAL_MS_SINGLETUPLE                        0x00000002L
+#define MDPROPVAL_NME_ALLDIMENSIONS                        0x00000000L
+#define MDPROPVAL_NME_MEASURESONLY                        0x00000001L
+#define DBPROPVAL_AO_SEQUENTIAL                            0x00000000L
+#define DBPROPVAL_AO_SEQUENTIALSTORAGEOBJECTS            0x00000001L
+#define DBPROPVAL_AO_RANDOM                                0x00000002L
+#define DBPROPVAL_BD_ROWSET                                0x00000000L
+#define DBPROPVAL_BD_INTRANSACTION                        0x00000001L
+#define DBPROPVAL_BD_XTRANSACTION                        0x00000002L
+#define DBPROPVAL_BD_REORGANIZATION                        0x00000003L
+#define BMK_DURABILITY_ROWSET                            DBPROPVAL_BD_ROWSET
+#define BMK_DURABILITY_INTRANSACTION                        DBPROPVAL_BD_INTRANSACTION
+#define BMK_DURABILITY_XTRANSACTION                        DBPROPVAL_BD_XTRANSACTION
+#define BMK_DURABILITY_REORGANIZATION                    DBPROPVAL_BD_REORGANIZATION
+#define DBPROPVAL_BO_NOLOG                                0x00000000L
+#define DBPROPVAL_BO_NOINDEXUPDATE                        0x00000001L
+#define DBPROPVAL_BO_REFINTEGRITY                        0x00000002L
 #if !defined(_WINBASE_)
 #define OF_READ             0x00000000
 #define OF_WRITE            0x00000001
@@ -2156,73 +2156,73 @@ enum DBPROPENUMDEPRECATED
 #define OF_EXIST            0x00004000
 #define OF_REOPEN           0x00008000
 #endif // !_WINBASE_
-#define DBPROPVAL_STGM_READ					OF_READ
-#define DBPROPVAL_STGM_WRITE					OF_WRITE
-#define DBPROPVAL_STGM_READWRITE				OF_READWRITE
-#define DBPROPVAL_STGM_SHARE_DENY_NONE		OF_SHARE_DENY_NONE
-#define DBPROPVAL_STGM_SHARE_DENY_READ		OF_SHARE_DENY_READ
-#define DBPROPVAL_STGM_SHARE_DENY_WRITE		OF_SHARE_DENY_WRITE
-#define DBPROPVAL_STGM_SHARE_EXCLUSIVE		OF_SHARE_EXCLUSIVE
-#define DBPROPVAL_STGM_DIRECT				0x00010000
-#define DBPROPVAL_STGM_TRANSACTED			0x00020000
-#define DBPROPVAL_STGM_CREATE				OF_CREATE
-#define DBPROPVAL_STGM_CONVERT				0x00040000
-#define DBPROPVAL_STGM_FAILIFTHERE			0x00080000
-#define DBPROPVAL_STGM_PRIORITY				0x00100000
-#define DBPROPVAL_STGM_DELETEONRELEASE		0x00200000
-#define DBPROPVAL_GB_COLLATE 				0x00000010L
-#define DBPROPVAL_CS_UNINITIALIZED			0x00000000L
-#define DBPROPVAL_CS_INITIALIZED				0x00000001L
-#define DBPROPVAL_CS_COMMUNICATIONFAILURE	0x00000002L
-#define DBPROPVAL_RD_RESETALL		0xffffffffL
-#define DBPROPVAL_OS_RESOURCEPOOLING	0x00000001L
-#define DBPROPVAL_OS_TXNENLISTMENT	0x00000002L
+#define DBPROPVAL_STGM_READ                    OF_READ
+#define DBPROPVAL_STGM_WRITE                    OF_WRITE
+#define DBPROPVAL_STGM_READWRITE                OF_READWRITE
+#define DBPROPVAL_STGM_SHARE_DENY_NONE        OF_SHARE_DENY_NONE
+#define DBPROPVAL_STGM_SHARE_DENY_READ        OF_SHARE_DENY_READ
+#define DBPROPVAL_STGM_SHARE_DENY_WRITE        OF_SHARE_DENY_WRITE
+#define DBPROPVAL_STGM_SHARE_EXCLUSIVE        OF_SHARE_EXCLUSIVE
+#define DBPROPVAL_STGM_DIRECT                0x00010000
+#define DBPROPVAL_STGM_TRANSACTED            0x00020000
+#define DBPROPVAL_STGM_CREATE                OF_CREATE
+#define DBPROPVAL_STGM_CONVERT                0x00040000
+#define DBPROPVAL_STGM_FAILIFTHERE            0x00080000
+#define DBPROPVAL_STGM_PRIORITY                0x00100000
+#define DBPROPVAL_STGM_DELETEONRELEASE        0x00200000
+#define DBPROPVAL_GB_COLLATE                 0x00000010L
+#define DBPROPVAL_CS_UNINITIALIZED            0x00000000L
+#define DBPROPVAL_CS_INITIALIZED                0x00000001L
+#define DBPROPVAL_CS_COMMUNICATIONFAILURE    0x00000002L
+#define DBPROPVAL_RD_RESETALL        0xffffffffL
+#define DBPROPVAL_OS_RESOURCEPOOLING    0x00000001L
+#define DBPROPVAL_OS_TXNENLISTMENT    0x00000002L
 #define DBPROPVAL_OS_CLIENTCURSOR    0x00000004L
-#define DBPROPVAL_OS_ENABLEALL		0xffffffffL
-#define DBPROPVAL_BI_CROSSROWSET		0x00000001L
+#define DBPROPVAL_OS_ENABLEALL        0xffffffffL
+#define DBPROPVAL_BI_CROSSROWSET        0x00000001L
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
 //@@@+ V2.1
 #if( OLEDBVER >= 0x0210 )
 #define MDPROPVAL_NL_SCHEMAONLY                          0x00000004L
-#define DBPROPVAL_OS_DISABLEALL	0x00000000L
-#define DBPROPVAL_OO_ROWOBJECT							0x00000004L
-#define DBPROPVAL_OO_SCOPED								0x00000008L
-#define DBPROPVAL_OO_DIRECTBIND							0x00000010L
+#define DBPROPVAL_OS_DISABLEALL    0x00000000L
+#define DBPROPVAL_OO_ROWOBJECT                            0x00000004L
+#define DBPROPVAL_OO_SCOPED                                0x00000008L
+#define DBPROPVAL_OO_DIRECTBIND                            0x00000010L
 #define DBPROPVAL_DST_DOCSOURCE                          0x00000004L
 #define DBPROPVAL_GU_NOTSUPPORTED                         0x00000001L
-#define DBPROPVAL_GU_SUFFIX		                         0x00000002L
+#define DBPROPVAL_GU_SUFFIX                                 0x00000002L
 #define DB_BINDFLAGS_DELAYFETCHCOLUMNS                    0x00000001L
 #define DB_BINDFLAGS_DELAYFETCHSTREAM                     0x00000002L
-#define DB_BINDFLAGS_RECURSIVE		                     0x00000004L
-#define DB_BINDFLAGS_OUTPUT								 0x00000008L
-#define DB_BINDFLAGS_COLLECTION							 0x00000010L
-#define DB_BINDFLAGS_OPENIFEXISTS						 0x00000020L
-#define DB_BINDFLAGS_OVERWRITE							 0x00000040L
-#define DB_BINDFLAGS_ISSTRUCTUREDDOCUMENT				 0x00000080L
-#define DBPROPVAL_ORS_TABLE								 0x00000000L
+#define DB_BINDFLAGS_RECURSIVE                             0x00000004L
+#define DB_BINDFLAGS_OUTPUT                                 0x00000008L
+#define DB_BINDFLAGS_COLLECTION                             0x00000010L
+#define DB_BINDFLAGS_OPENIFEXISTS                         0x00000020L
+#define DB_BINDFLAGS_OVERWRITE                             0x00000040L
+#define DB_BINDFLAGS_ISSTRUCTUREDDOCUMENT                 0x00000080L
+#define DBPROPVAL_ORS_TABLE                                 0x00000000L
 #define DBPROPVAL_ORS_INDEX                               0x00000001L
-#define DBPROPVAL_ORS_INTEGRATEDINDEX		             0x00000002L
-#define DBPROPVAL_TC_DDL_LOCK							 0x00000010L
-#define DBPROPVAL_ORS_STOREDPROC							 0x00000004L
-#define DBPROPVAL_IN_ALLOWNULL	                         0x00000000L
+#define DBPROPVAL_ORS_INTEGRATEDINDEX                     0x00000002L
+#define DBPROPVAL_TC_DDL_LOCK                             0x00000010L
+#define DBPROPVAL_ORS_STOREDPROC                             0x00000004L
+#define DBPROPVAL_IN_ALLOWNULL                             0x00000000L
 #endif // OLEDBVER >= 0x0210
 //@@@- V2.1
 //@@@+ V2.5
 #if( OLEDBVER >= 0x0250 )
-#define DBPROPVAL_OO_SINGLETON							0x00000020L
-#define DBPROPVAL_OS_AGR_AFTERSESSION					0x00000008L
-#define DBPROPVAL_CM_TRANSACTIONS						0x00000001L
+#define DBPROPVAL_OO_SINGLETON                            0x00000020L
+#define DBPROPVAL_OS_AGR_AFTERSESSION                    0x00000008L
+#define DBPROPVAL_CM_TRANSACTIONS                        0x00000001L
 #endif // OLEDBVER >= 0x0250
 //@@@- V2.5
 //@@@+ V2.6
 #if( OLEDBVER >= 0x0260 )
-#define DBPROPVAL_TS_CARDINALITY							0x00000001L
-#define DBPROPVAL_TS_HISTOGRAM							0x00000002L
-#define DBPROPVAL_ORS_HISTOGRAM							0x00000008L
-#define MDPROPVAL_VISUAL_MODE_DEFAULT					0x00000000L
-#define MDPROPVAL_VISUAL_MODE_VISUAL						0x00000001L
-#define MDPROPVAL_VISUAL_MODE_VISUAL_OFF					0x00000002L
+#define DBPROPVAL_TS_CARDINALITY                            0x00000001L
+#define DBPROPVAL_TS_HISTOGRAM                            0x00000002L
+#define DBPROPVAL_ORS_HISTOGRAM                            0x00000008L
+#define MDPROPVAL_VISUAL_MODE_DEFAULT                    0x00000000L
+#define MDPROPVAL_VISUAL_MODE_VISUAL                        0x00000001L
+#define MDPROPVAL_VISUAL_MODE_VISUAL_OFF                    0x00000002L
 #endif // OLEDBVER >= 0x0260
 //@@@- V2.6
 #define DB_IMP_LEVEL_ANONYMOUS       0x00
@@ -2244,36 +2244,36 @@ enum DBPROPENUMDEPRECATED
 #define DB_MODE_READWRITE            0x03
 #define DB_MODE_SHARE_DENY_READ      0x04
 #define DB_MODE_SHARE_DENY_WRITE     0x08
-#define DB_MODE_SHARE_EXCLUSIVE		0x0c
-#define DB_MODE_SHARE_DENY_NONE		0x10
+#define DB_MODE_SHARE_EXCLUSIVE        0x0c
+#define DB_MODE_SHARE_DENY_NONE        0x10
 #define DBCOMPUTEMODE_COMPUTED       0x01
 #define DBCOMPUTEMODE_DYNAMIC        0x02
 #define DBCOMPUTEMODE_NOTCOMPUTED    0x03
 #define DBPROPVAL_DF_INITIALLY_DEFERRED      0x01
 #define DBPROPVAL_DF_INITIALLY_IMMEDIATE     0x02
-#define DBPROPVAL_DF_NOT_DEFERRABLE		    0x03
+#define DBPROPVAL_DF_NOT_DEFERRABLE            0x03
 typedef struct tagDBPARAMS
     {
     void *pData;
     DB_UPARAMS cParamSets;
     HACCESSOR hAccessor;
-    } 	DBPARAMS;
+    }     DBPARAMS;
 
 typedef DWORD DBPARAMFLAGS;
 
 
 enum DBPARAMFLAGSENUM
-    {	DBPARAMFLAGS_ISINPUT	= 0x1,
-	DBPARAMFLAGS_ISOUTPUT	= 0x2,
-	DBPARAMFLAGS_ISSIGNED	= 0x10,
-	DBPARAMFLAGS_ISNULLABLE	= 0x40,
-	DBPARAMFLAGS_ISLONG	= 0x80
+    {    DBPARAMFLAGS_ISINPUT    = 0x1,
+    DBPARAMFLAGS_ISOUTPUT    = 0x2,
+    DBPARAMFLAGS_ISSIGNED    = 0x10,
+    DBPARAMFLAGS_ISNULLABLE    = 0x40,
+    DBPARAMFLAGS_ISLONG    = 0x80
     } ;
 //@@@+ V2.0
 #if( OLEDBVER >= 0x0200 )
 
 enum DBPARAMFLAGSENUM20
-    {	DBPARAMFLAGS_SCALEISNEGATIVE	= 0x100
+    {    DBPARAMFLAGS_SCALEISNEGATIVE    = 0x100
     } ;
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
@@ -2287,7 +2287,7 @@ typedef struct tagDBPARAMINFO
     DBTYPE wType;
     BYTE bPrecision;
     BYTE bScale;
-    } 	DBPARAMINFO;
+    }     DBPARAMINFO;
 
 typedef DWORD DBPROPID;
 
@@ -2296,32 +2296,32 @@ typedef struct tagDBPROPIDSET
     /* [size_is] */ DBPROPID *rgPropertyIDs;
     ULONG cPropertyIDs;
     GUID guidPropertySet;
-    } 	DBPROPIDSET;
+    }     DBPROPIDSET;
 
 typedef DWORD DBPROPFLAGS;
 
 
 enum DBPROPFLAGSENUM
-    {	DBPROPFLAGS_NOTSUPPORTED	= 0,
-	DBPROPFLAGS_COLUMN	= 0x1,
-	DBPROPFLAGS_DATASOURCE	= 0x2,
-	DBPROPFLAGS_DATASOURCECREATE	= 0x4,
-	DBPROPFLAGS_DATASOURCEINFO	= 0x8,
-	DBPROPFLAGS_DBINIT	= 0x10,
-	DBPROPFLAGS_INDEX	= 0x20,
-	DBPROPFLAGS_ROWSET	= 0x40,
-	DBPROPFLAGS_TABLE	= 0x80,
-	DBPROPFLAGS_COLUMNOK	= 0x100,
-	DBPROPFLAGS_READ	= 0x200,
-	DBPROPFLAGS_WRITE	= 0x400,
-	DBPROPFLAGS_REQUIRED	= 0x800,
-	DBPROPFLAGS_SESSION	= 0x1000
+    {    DBPROPFLAGS_NOTSUPPORTED    = 0,
+    DBPROPFLAGS_COLUMN    = 0x1,
+    DBPROPFLAGS_DATASOURCE    = 0x2,
+    DBPROPFLAGS_DATASOURCECREATE    = 0x4,
+    DBPROPFLAGS_DATASOURCEINFO    = 0x8,
+    DBPROPFLAGS_DBINIT    = 0x10,
+    DBPROPFLAGS_INDEX    = 0x20,
+    DBPROPFLAGS_ROWSET    = 0x40,
+    DBPROPFLAGS_TABLE    = 0x80,
+    DBPROPFLAGS_COLUMNOK    = 0x100,
+    DBPROPFLAGS_READ    = 0x200,
+    DBPROPFLAGS_WRITE    = 0x400,
+    DBPROPFLAGS_REQUIRED    = 0x800,
+    DBPROPFLAGS_SESSION    = 0x1000
     } ;
 //@@@+ V2.1
 #if( OLEDBVER >= 0x0210 )
 
 enum DBPROPFLAGSENUM21
-    {	DBPROPFLAGS_TRUSTEE	= 0x2000
+    {    DBPROPFLAGS_TRUSTEE    = 0x2000
     } ;
 #endif // OLEDBVER >= 0x0210
 //@@@- V2.1
@@ -2329,7 +2329,7 @@ enum DBPROPFLAGSENUM21
 #if( OLEDBVER >= 0x0250 )
 
 enum DBPROPFLAGSENUM25
-    {	DBPROPFLAGS_VIEW	= 0x4000
+    {    DBPROPFLAGS_VIEW    = 0x4000
     } ;
 #endif // OLEDBVER >= 0x0250
 //@@@- V2.5
@@ -2337,7 +2337,7 @@ enum DBPROPFLAGSENUM25
 #if( OLEDBVER >= 0x0260 )
 
 enum DBPROPFLAGSENUM26
-    {	DBPROPFLAGS_STREAM	= 0x8000
+    {    DBPROPFLAGS_STREAM    = 0x8000
     } ;
 #endif // OLEDBVER >= 0x0260
 //@@@- V2.6
@@ -2348,7 +2348,7 @@ typedef struct tagDBPROPINFO
     DBPROPFLAGS dwFlags;
     VARTYPE vtType;
     VARIANT vValues;
-    } 	DBPROPINFO;
+    }     DBPROPINFO;
 
 typedef DBPROPINFO *PDBPROPINFO;
 
@@ -2357,36 +2357,36 @@ typedef struct tagDBPROPINFOSET
     /* [size_is] */ PDBPROPINFO rgPropertyInfos;
     ULONG cPropertyInfos;
     GUID guidPropertySet;
-    } 	DBPROPINFOSET;
+    }     DBPROPINFOSET;
 
 typedef DWORD DBPROPOPTIONS;
 
 // DBPROPOPTIONS_SETIFCHEAP is deprecated; use DBPROPOPTIONS_OPTIONAL instead.
 
 enum DBPROPOPTIONSENUM
-    {	DBPROPOPTIONS_REQUIRED	= 0,
-	DBPROPOPTIONS_SETIFCHEAP	= 0x1,
-	DBPROPOPTIONS_OPTIONAL	= 0x1
+    {    DBPROPOPTIONS_REQUIRED    = 0,
+    DBPROPOPTIONS_SETIFCHEAP    = 0x1,
+    DBPROPOPTIONS_OPTIONAL    = 0x1
     } ;
 typedef DWORD DBPROPSTATUS;
 
 
 enum DBPROPSTATUSENUM
-    {	DBPROPSTATUS_OK	= 0,
-	DBPROPSTATUS_NOTSUPPORTED	= 1,
-	DBPROPSTATUS_BADVALUE	= 2,
-	DBPROPSTATUS_BADOPTION	= 3,
-	DBPROPSTATUS_BADCOLUMN	= 4,
-	DBPROPSTATUS_NOTALLSETTABLE	= 5,
-	DBPROPSTATUS_NOTSETTABLE	= 6,
-	DBPROPSTATUS_NOTSET	= 7,
-	DBPROPSTATUS_CONFLICTING	= 8
+    {    DBPROPSTATUS_OK    = 0,
+    DBPROPSTATUS_NOTSUPPORTED    = 1,
+    DBPROPSTATUS_BADVALUE    = 2,
+    DBPROPSTATUS_BADOPTION    = 3,
+    DBPROPSTATUS_BADCOLUMN    = 4,
+    DBPROPSTATUS_NOTALLSETTABLE    = 5,
+    DBPROPSTATUS_NOTSETTABLE    = 6,
+    DBPROPSTATUS_NOTSET    = 7,
+    DBPROPSTATUS_CONFLICTING    = 8
     } ;
 //@@@+ V2.1
 #if( OLEDBVER >= 0x0210 )
 
 enum DBPROPSTATUSENUM21
-    {	DBPROPSTATUS_NOTAVAILABLE	= 9
+    {    DBPROPSTATUS_NOTAVAILABLE    = 9
     } ;
 #endif // OLEDBVER >= 0x0210
 //@@@- V2.1
@@ -2397,31 +2397,31 @@ typedef struct tagDBPROP
     DBPROPSTATUS dwStatus;
     DBID colid;
     VARIANT vValue;
-    } 	DBPROP;
+    }     DBPROP;
 
 typedef struct tagDBPROPSET
     {
     /* [size_is] */ DBPROP *rgProperties;
     ULONG cProperties;
     GUID guidPropertySet;
-    } 	DBPROPSET;
+    }     DBPROPSET;
 
-#define DBPARAMTYPE_INPUT			0x01
-#define DBPARAMTYPE_INPUTOUTPUT		0x02
-#define DBPARAMTYPE_OUTPUT			0x03
-#define DBPARAMTYPE_RETURNVALUE		0x04
-#define DB_PT_UNKNOWN				0x01
-#define DB_PT_PROCEDURE				0x02
-#define DB_PT_FUNCTION				0x03
-#define DB_REMOTE					0x01
-#define DB_LOCAL_SHARED				0x02
-#define DB_LOCAL_EXCLUSIVE			0x03
-#define DB_COLLATION_ASC				0x01
-#define DB_COLLATION_DESC			0x02
-#define DB_UNSEARCHABLE				0x01
-#define DB_LIKE_ONLY					0x02
-#define DB_ALL_EXCEPT_LIKE			0x03
-#define DB_SEARCHABLE				0x04
+#define DBPARAMTYPE_INPUT            0x01
+#define DBPARAMTYPE_INPUTOUTPUT        0x02
+#define DBPARAMTYPE_OUTPUT            0x03
+#define DBPARAMTYPE_RETURNVALUE        0x04
+#define DB_PT_UNKNOWN                0x01
+#define DB_PT_PROCEDURE                0x02
+#define DB_PT_FUNCTION                0x03
+#define DB_REMOTE                    0x01
+#define DB_LOCAL_SHARED                0x02
+#define DB_LOCAL_EXCLUSIVE            0x03
+#define DB_COLLATION_ASC                0x01
+#define DB_COLLATION_DESC            0x02
+#define DB_UNSEARCHABLE                0x01
+#define DB_LIKE_ONLY                    0x02
+#define DB_ALL_EXCEPT_LIKE            0x03
+#define DB_SEARCHABLE                0x04
 //@@@+ V2.0
 #if( OLEDBVER >= 0x0200 )
 #define MDTREEOP_CHILDREN            0x01
@@ -2429,7 +2429,7 @@ typedef struct tagDBPROPSET
 #define MDTREEOP_PARENT              0x04
 #define MDTREEOP_SELF                0x08
 #define MDTREEOP_DESCENDANTS         0x10
-#define MDTREEOP_ANCESTORS			0x20
+#define MDTREEOP_ANCESTORS            0x20
 #define MD_DIMTYPE_UNKNOWN           0x00
 #define MD_DIMTYPE_TIME              0x01
 #define MD_DIMTYPE_MEASURE           0x02
@@ -2470,22 +2470,22 @@ typedef struct tagDBPROPSET
 #define MDMEMBER_TYPE_RESERVE2       0x06
 #define MDMEMBER_TYPE_RESERVE3       0x07
 #define MDMEMBER_TYPE_RESERVE4       0x08
-#define MDDISPINFO_DRILLED_DOWN				0x00010000
-#define MDDISPINFO_PARENT_SAME_AS_PREV		0x00020000
+#define MDDISPINFO_DRILLED_DOWN                0x00010000
+#define MDDISPINFO_PARENT_SAME_AS_PREV        0x00020000
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
 typedef DWORD DBINDEX_COL_ORDER;
 
 
 enum DBINDEX_COL_ORDERENUM
-    {	DBINDEX_COL_ORDER_ASC	= 0,
-	DBINDEX_COL_ORDER_DESC	= DBINDEX_COL_ORDER_ASC + 1
+    {    DBINDEX_COL_ORDER_ASC    = 0,
+    DBINDEX_COL_ORDER_DESC    = DBINDEX_COL_ORDER_ASC + 1
     } ;
 typedef struct tagDBINDEXCOLUMNDESC
     {
     DBID *pColumnID;
     DBINDEX_COL_ORDER eIndexColOrder;
-    } 	DBINDEXCOLUMNDESC;
+    }     DBINDEXCOLUMNDESC;
 
 typedef struct tagDBCOLUMNDESC
     {
@@ -2499,7 +2499,7 @@ typedef struct tagDBCOLUMNDESC
     DBTYPE wType;
     BYTE bPrecision;
     BYTE bScale;
-    } 	DBCOLUMNDESC;
+    }     DBCOLUMNDESC;
 
 //@@@+ V2.1
 #if( OLEDBVER >= 0x0210 )
@@ -2514,7 +2514,7 @@ typedef struct tagDBCOLUMNACCESS
     DBTYPE wType;
     BYTE bPrecision;
     BYTE bScale;
-    } 	DBCOLUMNACCESS;
+    }     DBCOLUMNACCESS;
 
 #endif // OLEDBVER >= 0x0210
 //@@@- V2.1
@@ -2524,15 +2524,15 @@ typedef DWORD DBCOLUMNDESCFLAGS;
 
 
 enum DBCOLUMNDESCFLAGSENUM
-    {	DBCOLUMNDESCFLAGS_TYPENAME	= 0x1,
-	DBCOLUMNDESCFLAGS_ITYPEINFO	= 0x2,
-	DBCOLUMNDESCFLAGS_PROPERTIES	= 0x4,
-	DBCOLUMNDESCFLAGS_CLSID	= 0x8,
-	DBCOLUMNDESCFLAGS_COLSIZE	= 0x10,
-	DBCOLUMNDESCFLAGS_DBCID	= 0x20,
-	DBCOLUMNDESCFLAGS_WTYPE	= 0x40,
-	DBCOLUMNDESCFLAGS_PRECISION	= 0x80,
-	DBCOLUMNDESCFLAGS_SCALE	= 0x100
+    {    DBCOLUMNDESCFLAGS_TYPENAME    = 0x1,
+    DBCOLUMNDESCFLAGS_ITYPEINFO    = 0x2,
+    DBCOLUMNDESCFLAGS_PROPERTIES    = 0x4,
+    DBCOLUMNDESCFLAGS_CLSID    = 0x8,
+    DBCOLUMNDESCFLAGS_COLSIZE    = 0x10,
+    DBCOLUMNDESCFLAGS_DBCID    = 0x20,
+    DBCOLUMNDESCFLAGS_WTYPE    = 0x40,
+    DBCOLUMNDESCFLAGS_PRECISION    = 0x80,
+    DBCOLUMNDESCFLAGS_SCALE    = 0x100
     } ;
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
@@ -2540,40 +2540,40 @@ typedef DWORD DBEVENTPHASE;
 
 
 enum DBEVENTPHASEENUM
-    {	DBEVENTPHASE_OKTODO	= 0,
-	DBEVENTPHASE_ABOUTTODO	= DBEVENTPHASE_OKTODO + 1,
-	DBEVENTPHASE_SYNCHAFTER	= DBEVENTPHASE_ABOUTTODO + 1,
-	DBEVENTPHASE_FAILEDTODO	= DBEVENTPHASE_SYNCHAFTER + 1,
-	DBEVENTPHASE_DIDEVENT	= DBEVENTPHASE_FAILEDTODO + 1
+    {    DBEVENTPHASE_OKTODO    = 0,
+    DBEVENTPHASE_ABOUTTODO    = DBEVENTPHASE_OKTODO + 1,
+    DBEVENTPHASE_SYNCHAFTER    = DBEVENTPHASE_ABOUTTODO + 1,
+    DBEVENTPHASE_FAILEDTODO    = DBEVENTPHASE_SYNCHAFTER + 1,
+    DBEVENTPHASE_DIDEVENT    = DBEVENTPHASE_FAILEDTODO + 1
     } ;
 typedef DWORD DBREASON;
 
 
 enum DBREASONENUM
-    {	DBREASON_ROWSET_FETCHPOSITIONCHANGE	= 0,
-	DBREASON_ROWSET_RELEASE	= DBREASON_ROWSET_FETCHPOSITIONCHANGE + 1,
-	DBREASON_COLUMN_SET	= DBREASON_ROWSET_RELEASE + 1,
-	DBREASON_COLUMN_RECALCULATED	= DBREASON_COLUMN_SET + 1,
-	DBREASON_ROW_ACTIVATE	= DBREASON_COLUMN_RECALCULATED + 1,
-	DBREASON_ROW_RELEASE	= DBREASON_ROW_ACTIVATE + 1,
-	DBREASON_ROW_DELETE	= DBREASON_ROW_RELEASE + 1,
-	DBREASON_ROW_FIRSTCHANGE	= DBREASON_ROW_DELETE + 1,
-	DBREASON_ROW_INSERT	= DBREASON_ROW_FIRSTCHANGE + 1,
-	DBREASON_ROW_RESYNCH	= DBREASON_ROW_INSERT + 1,
-	DBREASON_ROW_UNDOCHANGE	= DBREASON_ROW_RESYNCH + 1,
-	DBREASON_ROW_UNDOINSERT	= DBREASON_ROW_UNDOCHANGE + 1,
-	DBREASON_ROW_UNDODELETE	= DBREASON_ROW_UNDOINSERT + 1,
-	DBREASON_ROW_UPDATE	= DBREASON_ROW_UNDODELETE + 1,
-	DBREASON_ROWSET_CHANGED	= DBREASON_ROW_UPDATE + 1
+    {    DBREASON_ROWSET_FETCHPOSITIONCHANGE    = 0,
+    DBREASON_ROWSET_RELEASE    = DBREASON_ROWSET_FETCHPOSITIONCHANGE + 1,
+    DBREASON_COLUMN_SET    = DBREASON_ROWSET_RELEASE + 1,
+    DBREASON_COLUMN_RECALCULATED    = DBREASON_COLUMN_SET + 1,
+    DBREASON_ROW_ACTIVATE    = DBREASON_COLUMN_RECALCULATED + 1,
+    DBREASON_ROW_RELEASE    = DBREASON_ROW_ACTIVATE + 1,
+    DBREASON_ROW_DELETE    = DBREASON_ROW_RELEASE + 1,
+    DBREASON_ROW_FIRSTCHANGE    = DBREASON_ROW_DELETE + 1,
+    DBREASON_ROW_INSERT    = DBREASON_ROW_FIRSTCHANGE + 1,
+    DBREASON_ROW_RESYNCH    = DBREASON_ROW_INSERT + 1,
+    DBREASON_ROW_UNDOCHANGE    = DBREASON_ROW_RESYNCH + 1,
+    DBREASON_ROW_UNDOINSERT    = DBREASON_ROW_UNDOCHANGE + 1,
+    DBREASON_ROW_UNDODELETE    = DBREASON_ROW_UNDOINSERT + 1,
+    DBREASON_ROW_UPDATE    = DBREASON_ROW_UNDODELETE + 1,
+    DBREASON_ROWSET_CHANGED    = DBREASON_ROW_UPDATE + 1
     } ;
 //@@@+ V1.5
 #if( OLEDBVER >= 0x0150 )
 
 enum DBREASONENUM15
-    {	DBREASON_ROWPOSITION_CHANGED	= DBREASON_ROWSET_CHANGED + 1,
-	DBREASON_ROWPOSITION_CHAPTERCHANGED	= DBREASON_ROWPOSITION_CHANGED + 1,
-	DBREASON_ROWPOSITION_CLEARED	= DBREASON_ROWPOSITION_CHAPTERCHANGED + 1,
-	DBREASON_ROW_ASYNCHINSERT	= DBREASON_ROWPOSITION_CLEARED + 1
+    {    DBREASON_ROWPOSITION_CHANGED    = DBREASON_ROWSET_CHANGED + 1,
+    DBREASON_ROWPOSITION_CHAPTERCHANGED    = DBREASON_ROWPOSITION_CHANGED + 1,
+    DBREASON_ROWPOSITION_CLEARED    = DBREASON_ROWPOSITION_CHAPTERCHANGED + 1,
+    DBREASON_ROW_ASYNCHINSERT    = DBREASON_ROWPOSITION_CLEARED + 1
     } ;
 #endif // OLEDBVER >= 0x0150
 //@@@- V1.5
@@ -2583,24 +2583,24 @@ typedef DWORD DBCOMPAREOP;
 
 
 enum DBCOMPAREOPSENUM
-    {	DBCOMPAREOPS_LT	= 0,
-	DBCOMPAREOPS_LE	= 1,
-	DBCOMPAREOPS_EQ	= 2,
-	DBCOMPAREOPS_GE	= 3,
-	DBCOMPAREOPS_GT	= 4,
-	DBCOMPAREOPS_BEGINSWITH	= 5,
-	DBCOMPAREOPS_CONTAINS	= 6,
-	DBCOMPAREOPS_NE	= 7,
-	DBCOMPAREOPS_IGNORE	= 8,
-	DBCOMPAREOPS_CASESENSITIVE	= 0x1000,
-	DBCOMPAREOPS_CASEINSENSITIVE	= 0x2000
+    {    DBCOMPAREOPS_LT    = 0,
+    DBCOMPAREOPS_LE    = 1,
+    DBCOMPAREOPS_EQ    = 2,
+    DBCOMPAREOPS_GE    = 3,
+    DBCOMPAREOPS_GT    = 4,
+    DBCOMPAREOPS_BEGINSWITH    = 5,
+    DBCOMPAREOPS_CONTAINS    = 6,
+    DBCOMPAREOPS_NE    = 7,
+    DBCOMPAREOPS_IGNORE    = 8,
+    DBCOMPAREOPS_CASESENSITIVE    = 0x1000,
+    DBCOMPAREOPS_CASEINSENSITIVE    = 0x2000
     } ;
 //@@@+ V2.0
 #if( OLEDBVER >= 0x0200 )
 
 enum DBCOMPAREOPSENUM20
-    {	DBCOMPAREOPS_NOTBEGINSWITH	= 9,
-	DBCOMPAREOPS_NOTCONTAINS	= 10
+    {    DBCOMPAREOPS_NOTBEGINSWITH    = 9,
+    DBCOMPAREOPS_NOTCONTAINS    = 10
     } ;
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
@@ -2608,16 +2608,16 @@ typedef DWORD DBASYNCHOP;
 
 
 enum DBASYNCHOPENUM
-    {	DBASYNCHOP_OPEN	= 0
+    {    DBASYNCHOP_OPEN    = 0
     } ;
 typedef DWORD DBASYNCHPHASE;
 
 
 enum DBASYNCHPHASEENUM
-    {	DBASYNCHPHASE_INITIALIZATION	= 0,
-	DBASYNCHPHASE_POPULATION	= DBASYNCHPHASE_INITIALIZATION + 1,
-	DBASYNCHPHASE_COMPLETE	= DBASYNCHPHASE_POPULATION + 1,
-	DBASYNCHPHASE_CANCELED	= DBASYNCHPHASE_COMPLETE + 1
+    {    DBASYNCHPHASE_INITIALIZATION    = 0,
+    DBASYNCHPHASE_POPULATION    = DBASYNCHPHASE_INITIALIZATION + 1,
+    DBASYNCHPHASE_COMPLETE    = DBASYNCHPHASE_POPULATION + 1,
+    DBASYNCHPHASE_CANCELED    = DBASYNCHPHASE_COMPLETE + 1
     } ;
 #define DB_COUNTUNAVAILABLE -1
 #endif // OLEDBVER >= 0x0150
@@ -2626,57 +2626,57 @@ typedef DWORD DBSORT;
 
 
 enum DBSORTENUM
-    {	DBSORT_ASCENDING	= 0,
-	DBSORT_DESCENDING	= DBSORT_ASCENDING + 1
+    {    DBSORT_ASCENDING    = 0,
+    DBSORT_DESCENDING    = DBSORT_ASCENDING + 1
     } ;
 #if( OLEDBVER >= 0x0200 )
 typedef DWORD DBCOMMANDPERSISTFLAG;
 
 
 enum DBCOMMANDPERSISTFLAGENUM
-    {	DBCOMMANDPERSISTFLAG_NOSAVE	= 0x1
+    {    DBCOMMANDPERSISTFLAG_NOSAVE    = 0x1
     } ;
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
 #if( OLEDBVER >= 0x0210 )
 
 enum DBCOMMANDPERSISTFLAGENUM21
-    {	DBCOMMANDPERSISTFLAG_DEFAULT	= 0,
-	DBCOMMANDPERSISTFLAG_PERSISTVIEW	= 0x2,
-	DBCOMMANDPERSISTFLAG_PERSISTPROCEDURE	= 0x4
+    {    DBCOMMANDPERSISTFLAG_DEFAULT    = 0,
+    DBCOMMANDPERSISTFLAG_PERSISTVIEW    = 0x2,
+    DBCOMMANDPERSISTFLAG_PERSISTPROCEDURE    = 0x4
     } ;
 typedef DWORD DBCONSTRAINTTYPE;
 
 
 enum DBCONSTRAINTTYPEENUM
-    {	DBCONSTRAINTTYPE_UNIQUE	= 0,
-	DBCONSTRAINTTYPE_FOREIGNKEY	= 0x1,
-	DBCONSTRAINTTYPE_PRIMARYKEY	= 0x2,
-	DBCONSTRAINTTYPE_CHECK	= 0x3
+    {    DBCONSTRAINTTYPE_UNIQUE    = 0,
+    DBCONSTRAINTTYPE_FOREIGNKEY    = 0x1,
+    DBCONSTRAINTTYPE_PRIMARYKEY    = 0x2,
+    DBCONSTRAINTTYPE_CHECK    = 0x3
     } ;
 typedef DWORD DBUPDELRULE;
 
 
 enum DBUPDELRULEENUM
-    {	DBUPDELRULE_NOACTION	= 0,
-	DBUPDELRULE_CASCADE	= 0x1,
-	DBUPDELRULE_SETNULL	= 0x2,
-	DBUPDELRULE_SETDEFAULT	= 0x3
+    {    DBUPDELRULE_NOACTION    = 0,
+    DBUPDELRULE_CASCADE    = 0x1,
+    DBUPDELRULE_SETNULL    = 0x2,
+    DBUPDELRULE_SETDEFAULT    = 0x3
     } ;
 typedef DWORD DBMATCHTYPE;
 
 
 enum DBMATCHTYPEENUM
-    {	DBMATCHTYPE_FULL	= 0,
-	DBMATCHTYPE_NONE	= 0x1,
-	DBMATCHTYPE_PARTIAL	= 0x2
+    {    DBMATCHTYPE_FULL    = 0,
+    DBMATCHTYPE_NONE    = 0x1,
+    DBMATCHTYPE_PARTIAL    = 0x2
     } ;
 typedef DWORD DBDEFERRABILITY;
 
 
 enum DBDEFERRABILITYENUM
-    {	DBDEFERRABILITY_DEFERRED	= 0x1,
-	DBDEFERRABILITY_DEFERRABLE	= 0x2
+    {    DBDEFERRABILITY_DEFERRED    = 0x1,
+    DBDEFERRABILITY_DEFERRABLE    = 0x2
     } ;
 typedef struct tagDBCONSTRAINTDESC
     {
@@ -2694,7 +2694,7 @@ typedef struct tagDBCONSTRAINTDESC
     DBDEFERRABILITY Deferrability;
     DB_URESERVE cReserved;
     /* [size_is] */ DBPROPSET *rgReserved;
-    } 	DBCONSTRAINTDESC;
+    }     DBCONSTRAINTDESC;
 
 #endif // OLEDBVER >= 0x0210
 //@@@- V2.1
@@ -2712,7 +2712,7 @@ typedef struct tagMDAXISINFO
     DBCOUNTITEM cCoordinates;
     DBORDINAL *rgcColumns;
     LPOLESTR *rgpwszDimensionNames;
-    } 	MDAXISINFO;
+    }     MDAXISINFO;
 
 #define PMDAXISINFO_GETAT(rgAxisInfo, iAxis) ((MDAXISINFO *)(((BYTE *)(rgAxisInfo)) +((iAxis) * (rgAxisInfo)[0].cbSize)))
 #define MDAXISINFO_GETAT(rgAxisInfo, iAxis) (*PMDAXISINFO_GETAT((rgAxisInfo), (iAxis)))
@@ -2740,7 +2740,7 @@ typedef struct tagRMTPACK
     /* [size_is] */ PROPVARIANT *rgPROPVARIANT;
     ULONG cArray;
     /* [size_is] */ VARIANT *rgArray;
-    } 	RMTPACK;
+    }     RMTPACK;
 
 
 
@@ -2758,24 +2758,24 @@ typedef DWORD DBACCESSORFLAGS;
 
 
 enum DBACCESSORFLAGSENUM
-    {	DBACCESSOR_INVALID	= 0,
-	DBACCESSOR_PASSBYREF	= 0x1,
-	DBACCESSOR_ROWDATA	= 0x2,
-	DBACCESSOR_PARAMETERDATA	= 0x4,
-	DBACCESSOR_OPTIMIZED	= 0x8,
-	DBACCESSOR_INHERITED	= 0x10
+    {    DBACCESSOR_INVALID    = 0,
+    DBACCESSOR_PASSBYREF    = 0x1,
+    DBACCESSOR_ROWDATA    = 0x2,
+    DBACCESSOR_PARAMETERDATA    = 0x4,
+    DBACCESSOR_OPTIMIZED    = 0x8,
+    DBACCESSOR_INHERITED    = 0x10
     } ;
 typedef DWORD DBBINDSTATUS;
 
 
 enum DBBINDSTATUSENUM
-    {	DBBINDSTATUS_OK	= 0,
-	DBBINDSTATUS_BADORDINAL	= 1,
-	DBBINDSTATUS_UNSUPPORTEDCONVERSION	= 2,
-	DBBINDSTATUS_BADBINDINFO	= 3,
-	DBBINDSTATUS_BADSTORAGEFLAGS	= 4,
-	DBBINDSTATUS_NOINTERFACE	= 5,
-	DBBINDSTATUS_MULTIPLESTORAGE	= 6
+    {    DBBINDSTATUS_OK    = 0,
+    DBBINDSTATUS_BADORDINAL    = 1,
+    DBBINDSTATUS_UNSUPPORTEDCONVERSION    = 2,
+    DBBINDSTATUS_BADBINDINFO    = 3,
+    DBBINDSTATUS_BADSTORAGEFLAGS    = 4,
+    DBBINDSTATUS_NOINTERFACE    = 5,
+    DBBINDSTATUS_MULTIPLESTORAGE    = 6
     } ;
 
 EXTERN_C const IID IID_IAccessor;
@@ -2810,7 +2810,7 @@ EXTERN_C const IID IID_IAccessor;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IAccessorVtbl
     {
@@ -2866,32 +2866,32 @@ EXTERN_C const IID IID_IAccessor;
 #ifdef COBJMACROS
 
 
-#define IAccessor_QueryInterface(This,riid,ppvObject)	\
+#define IAccessor_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IAccessor_AddRef(This)	\
+#define IAccessor_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IAccessor_Release(This)	\
+#define IAccessor_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IAccessor_AddRefAccessor(This,hAccessor,pcRefCount)	\
+#define IAccessor_AddRefAccessor(This,hAccessor,pcRefCount)    \
     (This)->lpVtbl -> AddRefAccessor(This,hAccessor,pcRefCount)
 
-#define IAccessor_CreateAccessor(This,dwAccessorFlags,cBindings,rgBindings,cbRowSize,phAccessor,rgStatus)	\
+#define IAccessor_CreateAccessor(This,dwAccessorFlags,cBindings,rgBindings,cbRowSize,phAccessor,rgStatus)    \
     (This)->lpVtbl -> CreateAccessor(This,dwAccessorFlags,cBindings,rgBindings,cbRowSize,phAccessor,rgStatus)
 
-#define IAccessor_GetBindings(This,hAccessor,pdwAccessorFlags,pcBindings,prgBindings)	\
+#define IAccessor_GetBindings(This,hAccessor,pdwAccessorFlags,pcBindings,prgBindings)    \
     (This)->lpVtbl -> GetBindings(This,hAccessor,pdwAccessorFlags,pcBindings,prgBindings)
 
-#define IAccessor_ReleaseAccessor(This,hAccessor,pcRefCount)	\
+#define IAccessor_ReleaseAccessor(This,hAccessor,pcRefCount)    \
     (This)->lpVtbl -> ReleaseAccessor(This,hAccessor,pcRefCount)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -2958,7 +2958,7 @@ void __RPC_STUB IAccessor_RemoteReleaseAccessor_Stub(
 
 
 
-#endif 	/* __IAccessor_INTERFACE_DEFINED__ */
+#endif     /* __IAccessor_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowset_INTERFACE_DEFINED__
@@ -3008,7 +3008,7 @@ EXTERN_C const IID IID_IRowset;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetVtbl
     {
@@ -3071,35 +3071,35 @@ EXTERN_C const IID IID_IRowset;
 #ifdef COBJMACROS
 
 
-#define IRowset_QueryInterface(This,riid,ppvObject)	\
+#define IRowset_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowset_AddRef(This)	\
+#define IRowset_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowset_Release(This)	\
+#define IRowset_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowset_AddRefRows(This,cRows,rghRows,rgRefCounts,rgRowStatus)	\
+#define IRowset_AddRefRows(This,cRows,rghRows,rgRefCounts,rgRowStatus)    \
     (This)->lpVtbl -> AddRefRows(This,cRows,rghRows,rgRefCounts,rgRowStatus)
 
-#define IRowset_GetData(This,hRow,hAccessor,pData)	\
+#define IRowset_GetData(This,hRow,hAccessor,pData)    \
     (This)->lpVtbl -> GetData(This,hRow,hAccessor,pData)
 
-#define IRowset_GetNextRows(This,hReserved,lRowsOffset,cRows,pcRowsObtained,prghRows)	\
+#define IRowset_GetNextRows(This,hReserved,lRowsOffset,cRows,pcRowsObtained,prghRows)    \
     (This)->lpVtbl -> GetNextRows(This,hReserved,lRowsOffset,cRows,pcRowsObtained,prghRows)
 
-#define IRowset_ReleaseRows(This,cRows,rghRows,rgRowOptions,rgRefCounts,rgRowStatus)	\
+#define IRowset_ReleaseRows(This,cRows,rghRows,rgRowOptions,rgRefCounts,rgRowStatus)    \
     (This)->lpVtbl -> ReleaseRows(This,cRows,rghRows,rgRowOptions,rgRefCounts,rgRowStatus)
 
-#define IRowset_RestartPosition(This,hReserved)	\
+#define IRowset_RestartPosition(This,hReserved)    \
     (This)->lpVtbl -> RestartPosition(This,hReserved)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -3177,7 +3177,7 @@ void __RPC_STUB IRowset_RestartPosition_Stub(
 
 
 
-#endif 	/* __IRowset_INTERFACE_DEFINED__ */
+#endif     /* __IRowset_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowsetInfo_INTERFACE_DEFINED__
@@ -3212,7 +3212,7 @@ EXTERN_C const IID IID_IRowsetInfo;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetInfoVtbl
     {
@@ -3260,29 +3260,29 @@ EXTERN_C const IID IID_IRowsetInfo;
 #ifdef COBJMACROS
 
 
-#define IRowsetInfo_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetInfo_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetInfo_AddRef(This)	\
+#define IRowsetInfo_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetInfo_Release(This)	\
+#define IRowsetInfo_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetInfo_GetProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)	\
+#define IRowsetInfo_GetProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)    \
     (This)->lpVtbl -> GetProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)
 
-#define IRowsetInfo_GetReferencedRowset(This,iOrdinal,riid,ppReferencedRowset)	\
+#define IRowsetInfo_GetReferencedRowset(This,iOrdinal,riid,ppReferencedRowset)    \
     (This)->lpVtbl -> GetReferencedRowset(This,iOrdinal,riid,ppReferencedRowset)
 
-#define IRowsetInfo_GetSpecification(This,riid,ppSpecification)	\
+#define IRowsetInfo_GetSpecification(This,riid,ppSpecification)    \
     (This)->lpVtbl -> GetSpecification(This,riid,ppSpecification)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -3332,7 +3332,7 @@ void __RPC_STUB IRowsetInfo_RemoteGetSpecification_Stub(
 
 
 
-#endif 	/* __IRowsetInfo_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetInfo_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowsetLocate_INTERFACE_DEFINED__
@@ -3345,11 +3345,11 @@ typedef DWORD DBCOMPARE;
 
 
 enum DBCOMPAREENUM
-    {	DBCOMPARE_LT	= 0,
-	DBCOMPARE_EQ	= DBCOMPARE_LT + 1,
-	DBCOMPARE_GT	= DBCOMPARE_EQ + 1,
-	DBCOMPARE_NE	= DBCOMPARE_GT + 1,
-	DBCOMPARE_NOTCOMPARABLE	= DBCOMPARE_NE + 1
+    {    DBCOMPARE_LT    = 0,
+    DBCOMPARE_EQ    = DBCOMPARE_LT + 1,
+    DBCOMPARE_GT    = DBCOMPARE_EQ + 1,
+    DBCOMPARE_NE    = DBCOMPARE_GT + 1,
+    DBCOMPARE_NOTCOMPARABLE    = DBCOMPARE_NE + 1
     } ;
 
 EXTERN_C const IID IID_IRowsetLocate;
@@ -3396,7 +3396,7 @@ EXTERN_C const IID IID_IRowsetLocate;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetLocateVtbl
     {
@@ -3497,48 +3497,48 @@ EXTERN_C const IID IID_IRowsetLocate;
 #ifdef COBJMACROS
 
 
-#define IRowsetLocate_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetLocate_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetLocate_AddRef(This)	\
+#define IRowsetLocate_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetLocate_Release(This)	\
+#define IRowsetLocate_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetLocate_AddRefRows(This,cRows,rghRows,rgRefCounts,rgRowStatus)	\
+#define IRowsetLocate_AddRefRows(This,cRows,rghRows,rgRefCounts,rgRowStatus)    \
     (This)->lpVtbl -> AddRefRows(This,cRows,rghRows,rgRefCounts,rgRowStatus)
 
-#define IRowsetLocate_GetData(This,hRow,hAccessor,pData)	\
+#define IRowsetLocate_GetData(This,hRow,hAccessor,pData)    \
     (This)->lpVtbl -> GetData(This,hRow,hAccessor,pData)
 
-#define IRowsetLocate_GetNextRows(This,hReserved,lRowsOffset,cRows,pcRowsObtained,prghRows)	\
+#define IRowsetLocate_GetNextRows(This,hReserved,lRowsOffset,cRows,pcRowsObtained,prghRows)    \
     (This)->lpVtbl -> GetNextRows(This,hReserved,lRowsOffset,cRows,pcRowsObtained,prghRows)
 
-#define IRowsetLocate_ReleaseRows(This,cRows,rghRows,rgRowOptions,rgRefCounts,rgRowStatus)	\
+#define IRowsetLocate_ReleaseRows(This,cRows,rghRows,rgRowOptions,rgRefCounts,rgRowStatus)    \
     (This)->lpVtbl -> ReleaseRows(This,cRows,rghRows,rgRowOptions,rgRefCounts,rgRowStatus)
 
-#define IRowsetLocate_RestartPosition(This,hReserved)	\
+#define IRowsetLocate_RestartPosition(This,hReserved)    \
     (This)->lpVtbl -> RestartPosition(This,hReserved)
 
 
-#define IRowsetLocate_Compare(This,hReserved,cbBookmark1,pBookmark1,cbBookmark2,pBookmark2,pComparison)	\
+#define IRowsetLocate_Compare(This,hReserved,cbBookmark1,pBookmark1,cbBookmark2,pBookmark2,pComparison)    \
     (This)->lpVtbl -> Compare(This,hReserved,cbBookmark1,pBookmark1,cbBookmark2,pBookmark2,pComparison)
 
-#define IRowsetLocate_GetRowsAt(This,hReserved1,hReserved2,cbBookmark,pBookmark,lRowsOffset,cRows,pcRowsObtained,prghRows)	\
+#define IRowsetLocate_GetRowsAt(This,hReserved1,hReserved2,cbBookmark,pBookmark,lRowsOffset,cRows,pcRowsObtained,prghRows)    \
     (This)->lpVtbl -> GetRowsAt(This,hReserved1,hReserved2,cbBookmark,pBookmark,lRowsOffset,cRows,pcRowsObtained,prghRows)
 
-#define IRowsetLocate_GetRowsByBookmark(This,hReserved,cRows,rgcbBookmarks,rgpBookmarks,rghRows,rgRowStatus)	\
+#define IRowsetLocate_GetRowsByBookmark(This,hReserved,cRows,rgcbBookmarks,rgpBookmarks,rghRows,rgRowStatus)    \
     (This)->lpVtbl -> GetRowsByBookmark(This,hReserved,cRows,rgcbBookmarks,rgpBookmarks,rghRows,rgRowStatus)
 
-#define IRowsetLocate_Hash(This,hReserved,cBookmarks,rgcbBookmarks,rgpBookmarks,rgHashedValues,rgBookmarkStatus)	\
+#define IRowsetLocate_Hash(This,hReserved,cBookmarks,rgcbBookmarks,rgpBookmarks,rgHashedValues,rgBookmarkStatus)    \
     (This)->lpVtbl -> Hash(This,hReserved,cBookmarks,rgcbBookmarks,rgpBookmarks,rgHashedValues,rgBookmarkStatus)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -3613,7 +3613,7 @@ void __RPC_STUB IRowsetLocate_Hash_Stub(
 
 
 
-#endif 	/* __IRowsetLocate_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetLocate_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowsetResynch_INTERFACE_DEFINED__
@@ -3645,7 +3645,7 @@ EXTERN_C const IID IID_IRowsetResynch;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetResynchVtbl
     {
@@ -3689,26 +3689,26 @@ EXTERN_C const IID IID_IRowsetResynch;
 #ifdef COBJMACROS
 
 
-#define IRowsetResynch_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetResynch_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetResynch_AddRef(This)	\
+#define IRowsetResynch_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetResynch_Release(This)	\
+#define IRowsetResynch_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetResynch_GetVisibleData(This,hRow,hAccessor,pData)	\
+#define IRowsetResynch_GetVisibleData(This,hRow,hAccessor,pData)    \
     (This)->lpVtbl -> GetVisibleData(This,hRow,hAccessor,pData)
 
-#define IRowsetResynch_ResynchRows(This,cRows,rghRows,pcRowsResynched,prghRowsResynched,prgRowStatus)	\
+#define IRowsetResynch_ResynchRows(This,cRows,rghRows,pcRowsResynched,prghRowsResynched,prgRowStatus)    \
     (This)->lpVtbl -> ResynchRows(This,cRows,rghRows,pcRowsResynched,prghRowsResynched,prgRowStatus)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -3743,7 +3743,7 @@ void __RPC_STUB IRowsetResynch_ResynchRows_Stub(
 
 
 
-#endif 	/* __IRowsetResynch_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetResynch_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowsetScroll_INTERFACE_DEFINED__
@@ -3779,7 +3779,7 @@ EXTERN_C const IID IID_IRowsetScroll;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetScrollVtbl
     {
@@ -3898,55 +3898,55 @@ EXTERN_C const IID IID_IRowsetScroll;
 #ifdef COBJMACROS
 
 
-#define IRowsetScroll_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetScroll_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetScroll_AddRef(This)	\
+#define IRowsetScroll_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetScroll_Release(This)	\
+#define IRowsetScroll_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetScroll_AddRefRows(This,cRows,rghRows,rgRefCounts,rgRowStatus)	\
+#define IRowsetScroll_AddRefRows(This,cRows,rghRows,rgRefCounts,rgRowStatus)    \
     (This)->lpVtbl -> AddRefRows(This,cRows,rghRows,rgRefCounts,rgRowStatus)
 
-#define IRowsetScroll_GetData(This,hRow,hAccessor,pData)	\
+#define IRowsetScroll_GetData(This,hRow,hAccessor,pData)    \
     (This)->lpVtbl -> GetData(This,hRow,hAccessor,pData)
 
-#define IRowsetScroll_GetNextRows(This,hReserved,lRowsOffset,cRows,pcRowsObtained,prghRows)	\
+#define IRowsetScroll_GetNextRows(This,hReserved,lRowsOffset,cRows,pcRowsObtained,prghRows)    \
     (This)->lpVtbl -> GetNextRows(This,hReserved,lRowsOffset,cRows,pcRowsObtained,prghRows)
 
-#define IRowsetScroll_ReleaseRows(This,cRows,rghRows,rgRowOptions,rgRefCounts,rgRowStatus)	\
+#define IRowsetScroll_ReleaseRows(This,cRows,rghRows,rgRowOptions,rgRefCounts,rgRowStatus)    \
     (This)->lpVtbl -> ReleaseRows(This,cRows,rghRows,rgRowOptions,rgRefCounts,rgRowStatus)
 
-#define IRowsetScroll_RestartPosition(This,hReserved)	\
+#define IRowsetScroll_RestartPosition(This,hReserved)    \
     (This)->lpVtbl -> RestartPosition(This,hReserved)
 
 
-#define IRowsetScroll_Compare(This,hReserved,cbBookmark1,pBookmark1,cbBookmark2,pBookmark2,pComparison)	\
+#define IRowsetScroll_Compare(This,hReserved,cbBookmark1,pBookmark1,cbBookmark2,pBookmark2,pComparison)    \
     (This)->lpVtbl -> Compare(This,hReserved,cbBookmark1,pBookmark1,cbBookmark2,pBookmark2,pComparison)
 
-#define IRowsetScroll_GetRowsAt(This,hReserved1,hReserved2,cbBookmark,pBookmark,lRowsOffset,cRows,pcRowsObtained,prghRows)	\
+#define IRowsetScroll_GetRowsAt(This,hReserved1,hReserved2,cbBookmark,pBookmark,lRowsOffset,cRows,pcRowsObtained,prghRows)    \
     (This)->lpVtbl -> GetRowsAt(This,hReserved1,hReserved2,cbBookmark,pBookmark,lRowsOffset,cRows,pcRowsObtained,prghRows)
 
-#define IRowsetScroll_GetRowsByBookmark(This,hReserved,cRows,rgcbBookmarks,rgpBookmarks,rghRows,rgRowStatus)	\
+#define IRowsetScroll_GetRowsByBookmark(This,hReserved,cRows,rgcbBookmarks,rgpBookmarks,rghRows,rgRowStatus)    \
     (This)->lpVtbl -> GetRowsByBookmark(This,hReserved,cRows,rgcbBookmarks,rgpBookmarks,rghRows,rgRowStatus)
 
-#define IRowsetScroll_Hash(This,hReserved,cBookmarks,rgcbBookmarks,rgpBookmarks,rgHashedValues,rgBookmarkStatus)	\
+#define IRowsetScroll_Hash(This,hReserved,cBookmarks,rgcbBookmarks,rgpBookmarks,rgHashedValues,rgBookmarkStatus)    \
     (This)->lpVtbl -> Hash(This,hReserved,cBookmarks,rgcbBookmarks,rgpBookmarks,rgHashedValues,rgBookmarkStatus)
 
 
-#define IRowsetScroll_GetApproximatePosition(This,hReserved,cbBookmark,pBookmark,pulPosition,pcRows)	\
+#define IRowsetScroll_GetApproximatePosition(This,hReserved,cbBookmark,pBookmark,pulPosition,pcRows)    \
     (This)->lpVtbl -> GetApproximatePosition(This,hReserved,cbBookmark,pBookmark,pulPosition,pcRows)
 
-#define IRowsetScroll_GetRowsAtRatio(This,hReserved1,hReserved2,ulNumerator,ulDenominator,cRows,pcRowsObtained,prghRows)	\
+#define IRowsetScroll_GetRowsAtRatio(This,hReserved1,hReserved2,ulNumerator,ulDenominator,cRows,pcRowsObtained,prghRows)    \
     (This)->lpVtbl -> GetRowsAtRatio(This,hReserved1,hReserved2,ulNumerator,ulDenominator,cRows,pcRowsObtained,prghRows)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -3985,7 +3985,7 @@ void __RPC_STUB IRowsetScroll_GetRowsAtRatio_Stub(
 
 
 
-#endif 	/* __IRowsetScroll_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetScroll_INTERFACE_DEFINED__ */
 
 
 /* interface __MIDL_itf_oledb_0273 */
@@ -4023,7 +4023,7 @@ EXTERN_C const IID IID_IChapteredRowset;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IChapteredRowsetVtbl
     {
@@ -4063,26 +4063,26 @@ EXTERN_C const IID IID_IChapteredRowset;
 #ifdef COBJMACROS
 
 
-#define IChapteredRowset_QueryInterface(This,riid,ppvObject)	\
+#define IChapteredRowset_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IChapteredRowset_AddRef(This)	\
+#define IChapteredRowset_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IChapteredRowset_Release(This)	\
+#define IChapteredRowset_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IChapteredRowset_AddRefChapter(This,hChapter,pcRefCount)	\
+#define IChapteredRowset_AddRefChapter(This,hChapter,pcRefCount)    \
     (This)->lpVtbl -> AddRefChapter(This,hChapter,pcRefCount)
 
-#define IChapteredRowset_ReleaseChapter(This,hChapter,pcRefCount)	\
+#define IChapteredRowset_ReleaseChapter(This,hChapter,pcRefCount)    \
     (This)->lpVtbl -> ReleaseChapter(This,hChapter,pcRefCount)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -4115,7 +4115,7 @@ void __RPC_STUB IChapteredRowset_RemoteReleaseChapter_Stub(
 
 
 
-#endif 	/* __IChapteredRowset_INTERFACE_DEFINED__ */
+#endif     /* __IChapteredRowset_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowsetFind_INTERFACE_DEFINED__
@@ -4147,7 +4147,7 @@ EXTERN_C const IID IID_IRowsetFind;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetFindVtbl
     {
@@ -4190,23 +4190,23 @@ EXTERN_C const IID IID_IRowsetFind;
 #ifdef COBJMACROS
 
 
-#define IRowsetFind_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetFind_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetFind_AddRef(This)	\
+#define IRowsetFind_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetFind_Release(This)	\
+#define IRowsetFind_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetFind_FindNextRow(This,hChapter,hAccessor,pFindValue,CompareOp,cbBookmark,pBookmark,lRowsOffset,cRows,pcRowsObtained,prghRows)	\
+#define IRowsetFind_FindNextRow(This,hChapter,hAccessor,pFindValue,CompareOp,cbBookmark,pBookmark,lRowsOffset,cRows,pcRowsObtained,prghRows)    \
     (This)->lpVtbl -> FindNextRow(This,hChapter,hAccessor,pFindValue,CompareOp,cbBookmark,pBookmark,lRowsOffset,cRows,pcRowsObtained,prghRows)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -4232,7 +4232,7 @@ void __RPC_STUB IRowsetFind_FindNextRow_Stub(
 
 
 
-#endif 	/* __IRowsetFind_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetFind_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowPosition_INTERFACE_DEFINED__
@@ -4245,10 +4245,10 @@ typedef DWORD DBPOSITIONFLAGS;
 
 
 enum DBPOSITIONFLAGSENUM
-    {	DBPOSITION_OK	= 0,
-	DBPOSITION_NOROW	= DBPOSITION_OK + 1,
-	DBPOSITION_BOF	= DBPOSITION_NOROW + 1,
-	DBPOSITION_EOF	= DBPOSITION_BOF + 1
+    {    DBPOSITION_OK    = 0,
+    DBPOSITION_NOROW    = DBPOSITION_OK + 1,
+    DBPOSITION_BOF    = DBPOSITION_NOROW + 1,
+    DBPOSITION_EOF    = DBPOSITION_BOF + 1
     } ;
 
 EXTERN_C const IID IID_IRowPosition;
@@ -4280,7 +4280,7 @@ EXTERN_C const IID IID_IRowPosition;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowPositionVtbl
     {
@@ -4334,35 +4334,35 @@ EXTERN_C const IID IID_IRowPosition;
 #ifdef COBJMACROS
 
 
-#define IRowPosition_QueryInterface(This,riid,ppvObject)	\
+#define IRowPosition_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowPosition_AddRef(This)	\
+#define IRowPosition_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowPosition_Release(This)	\
+#define IRowPosition_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowPosition_ClearRowPosition(This)	\
+#define IRowPosition_ClearRowPosition(This)    \
     (This)->lpVtbl -> ClearRowPosition(This)
 
-#define IRowPosition_GetRowPosition(This,phChapter,phRow,pdwPositionFlags)	\
+#define IRowPosition_GetRowPosition(This,phChapter,phRow,pdwPositionFlags)    \
     (This)->lpVtbl -> GetRowPosition(This,phChapter,phRow,pdwPositionFlags)
 
-#define IRowPosition_GetRowset(This,riid,ppRowset)	\
+#define IRowPosition_GetRowset(This,riid,ppRowset)    \
     (This)->lpVtbl -> GetRowset(This,riid,ppRowset)
 
-#define IRowPosition_Initialize(This,pRowset)	\
+#define IRowPosition_Initialize(This,pRowset)    \
     (This)->lpVtbl -> Initialize(This,pRowset)
 
-#define IRowPosition_SetRowPosition(This,hChapter,hRow,dwPositionFlags)	\
+#define IRowPosition_SetRowPosition(This,hChapter,hRow,dwPositionFlags)    \
     (This)->lpVtbl -> SetRowPosition(This,hChapter,hRow,dwPositionFlags)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -4436,7 +4436,7 @@ void __RPC_STUB IRowPosition_RemoteSetRowPosition_Stub(
 
 
 
-#endif 	/* __IRowPosition_INTERFACE_DEFINED__ */
+#endif     /* __IRowPosition_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowPositionChange_INTERFACE_DEFINED__
@@ -4461,7 +4461,7 @@ EXTERN_C const IID IID_IRowPositionChange;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowPositionChangeVtbl
     {
@@ -4497,23 +4497,23 @@ EXTERN_C const IID IID_IRowPositionChange;
 #ifdef COBJMACROS
 
 
-#define IRowPositionChange_QueryInterface(This,riid,ppvObject)	\
+#define IRowPositionChange_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowPositionChange_AddRef(This)	\
+#define IRowPositionChange_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowPositionChange_Release(This)	\
+#define IRowPositionChange_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowPositionChange_OnRowPositionChange(This,eReason,ePhase,fCantDeny)	\
+#define IRowPositionChange_OnRowPositionChange(This,eReason,ePhase,fCantDeny)    \
     (This)->lpVtbl -> OnRowPositionChange(This,eReason,ePhase,fCantDeny)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -4533,7 +4533,7 @@ void __RPC_STUB IRowPositionChange_RemoteOnRowPositionChange_Stub(
 
 
 
-#endif 	/* __IRowPositionChange_INTERFACE_DEFINED__ */
+#endif     /* __IRowPositionChange_INTERFACE_DEFINED__ */
 
 
 #ifndef __IViewRowset_INTERFACE_DEFINED__
@@ -4562,7 +4562,7 @@ EXTERN_C const IID IID_IViewRowset;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IViewRowsetVtbl
     {
@@ -4603,26 +4603,26 @@ EXTERN_C const IID IID_IViewRowset;
 #ifdef COBJMACROS
 
 
-#define IViewRowset_QueryInterface(This,riid,ppvObject)	\
+#define IViewRowset_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IViewRowset_AddRef(This)	\
+#define IViewRowset_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IViewRowset_Release(This)	\
+#define IViewRowset_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IViewRowset_GetSpecification(This,riid,ppObject)	\
+#define IViewRowset_GetSpecification(This,riid,ppObject)    \
     (This)->lpVtbl -> GetSpecification(This,riid,ppObject)
 
-#define IViewRowset_OpenViewRowset(This,pUnkOuter,riid,ppRowset)	\
+#define IViewRowset_OpenViewRowset(This,pUnkOuter,riid,ppRowset)    \
     (This)->lpVtbl -> OpenViewRowset(This,pUnkOuter,riid,ppRowset)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -4656,7 +4656,7 @@ void __RPC_STUB IViewRowset_RemoteOpenViewRowset_Stub(
 
 
 
-#endif 	/* __IViewRowset_INTERFACE_DEFINED__ */
+#endif     /* __IViewRowset_INTERFACE_DEFINED__ */
 
 
 #ifndef __IViewChapter_INTERFACE_DEFINED__
@@ -4684,7 +4684,7 @@ EXTERN_C const IID IID_IViewChapter;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IViewChapterVtbl
     {
@@ -4724,26 +4724,26 @@ EXTERN_C const IID IID_IViewChapter;
 #ifdef COBJMACROS
 
 
-#define IViewChapter_QueryInterface(This,riid,ppvObject)	\
+#define IViewChapter_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IViewChapter_AddRef(This)	\
+#define IViewChapter_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IViewChapter_Release(This)	\
+#define IViewChapter_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IViewChapter_GetSpecification(This,riid,ppRowset)	\
+#define IViewChapter_GetSpecification(This,riid,ppRowset)    \
     (This)->lpVtbl -> GetSpecification(This,riid,ppRowset)
 
-#define IViewChapter_OpenViewChapter(This,hSource,phViewChapter)	\
+#define IViewChapter_OpenViewChapter(This,hSource,phViewChapter)    \
     (This)->lpVtbl -> OpenViewChapter(This,hSource,phViewChapter)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -4776,7 +4776,7 @@ void __RPC_STUB IViewChapter_RemoteOpenViewChapter_Stub(
 
 
 
-#endif 	/* __IViewChapter_INTERFACE_DEFINED__ */
+#endif     /* __IViewChapter_INTERFACE_DEFINED__ */
 
 
 #ifndef __IViewSort_INTERFACE_DEFINED__
@@ -4806,7 +4806,7 @@ EXTERN_C const IID IID_IViewSort;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IViewSortVtbl
     {
@@ -4848,26 +4848,26 @@ EXTERN_C const IID IID_IViewSort;
 #ifdef COBJMACROS
 
 
-#define IViewSort_QueryInterface(This,riid,ppvObject)	\
+#define IViewSort_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IViewSort_AddRef(This)	\
+#define IViewSort_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IViewSort_Release(This)	\
+#define IViewSort_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IViewSort_GetSortOrder(This,pcValues,prgColumns,prgOrders)	\
+#define IViewSort_GetSortOrder(This,pcValues,prgColumns,prgOrders)    \
     (This)->lpVtbl -> GetSortOrder(This,pcValues,prgColumns,prgOrders)
 
-#define IViewSort_SetSortOrder(This,cValues,rgColumns,rgOrders)	\
+#define IViewSort_SetSortOrder(This,cValues,rgColumns,rgOrders)    \
     (This)->lpVtbl -> SetSortOrder(This,cValues,rgColumns,rgOrders)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -4902,7 +4902,7 @@ void __RPC_STUB IViewSort_RemoteSetSortOrder_Stub(
 
 
 
-#endif 	/* __IViewSort_INTERFACE_DEFINED__ */
+#endif     /* __IViewSort_INTERFACE_DEFINED__ */
 
 
 #ifndef __IViewFilter_INTERFACE_DEFINED__
@@ -4938,7 +4938,7 @@ EXTERN_C const IID IID_IViewFilter;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IViewFilterVtbl
     {
@@ -4987,29 +4987,29 @@ EXTERN_C const IID IID_IViewFilter;
 #ifdef COBJMACROS
 
 
-#define IViewFilter_QueryInterface(This,riid,ppvObject)	\
+#define IViewFilter_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IViewFilter_AddRef(This)	\
+#define IViewFilter_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IViewFilter_Release(This)	\
+#define IViewFilter_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IViewFilter_GetFilter(This,hAccessor,pcRows,pCompareOps,pCriteriaData)	\
+#define IViewFilter_GetFilter(This,hAccessor,pcRows,pCompareOps,pCriteriaData)    \
     (This)->lpVtbl -> GetFilter(This,hAccessor,pcRows,pCompareOps,pCriteriaData)
 
-#define IViewFilter_GetFilterBindings(This,pcBindings,prgBindings)	\
+#define IViewFilter_GetFilterBindings(This,pcBindings,prgBindings)    \
     (This)->lpVtbl -> GetFilterBindings(This,pcBindings,prgBindings)
 
-#define IViewFilter_SetFilter(This,hAccessor,cRows,CompareOps,pCriteriaData)	\
+#define IViewFilter_SetFilter(This,hAccessor,cRows,CompareOps,pCriteriaData)    \
     (This)->lpVtbl -> SetFilter(This,hAccessor,cRows,CompareOps,pCriteriaData)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -5058,7 +5058,7 @@ void __RPC_STUB IViewFilter_SetFilter_Stub(
 
 
 
-#endif 	/* __IViewFilter_INTERFACE_DEFINED__ */
+#endif     /* __IViewFilter_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowsetView_INTERFACE_DEFINED__
@@ -5089,7 +5089,7 @@ EXTERN_C const IID IID_IRowsetView;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetViewVtbl
     {
@@ -5132,26 +5132,26 @@ EXTERN_C const IID IID_IRowsetView;
 #ifdef COBJMACROS
 
 
-#define IRowsetView_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetView_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetView_AddRef(This)	\
+#define IRowsetView_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetView_Release(This)	\
+#define IRowsetView_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetView_CreateView(This,pUnkOuter,riid,ppView)	\
+#define IRowsetView_CreateView(This,pUnkOuter,riid,ppView)    \
     (This)->lpVtbl -> CreateView(This,pUnkOuter,riid,ppView)
 
-#define IRowsetView_GetView(This,hChapter,riid,phChapterSource,ppView)	\
+#define IRowsetView_GetView(This,hChapter,riid,phChapterSource,ppView)    \
     (This)->lpVtbl -> GetView(This,hChapter,riid,phChapterSource,ppView)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -5187,7 +5187,7 @@ void __RPC_STUB IRowsetView_RemoteGetView_Stub(
 
 
 
-#endif 	/* __IRowsetView_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetView_INTERFACE_DEFINED__ */
 
 
 /* interface __MIDL_itf_oledb_0282 */
@@ -5226,7 +5226,7 @@ EXTERN_C const IID IID_IRowsetExactScroll;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetExactScrollVtbl
     {
@@ -5353,59 +5353,59 @@ EXTERN_C const IID IID_IRowsetExactScroll;
 #ifdef COBJMACROS
 
 
-#define IRowsetExactScroll_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetExactScroll_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetExactScroll_AddRef(This)	\
+#define IRowsetExactScroll_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetExactScroll_Release(This)	\
+#define IRowsetExactScroll_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetExactScroll_AddRefRows(This,cRows,rghRows,rgRefCounts,rgRowStatus)	\
+#define IRowsetExactScroll_AddRefRows(This,cRows,rghRows,rgRefCounts,rgRowStatus)    \
     (This)->lpVtbl -> AddRefRows(This,cRows,rghRows,rgRefCounts,rgRowStatus)
 
-#define IRowsetExactScroll_GetData(This,hRow,hAccessor,pData)	\
+#define IRowsetExactScroll_GetData(This,hRow,hAccessor,pData)    \
     (This)->lpVtbl -> GetData(This,hRow,hAccessor,pData)
 
-#define IRowsetExactScroll_GetNextRows(This,hReserved,lRowsOffset,cRows,pcRowsObtained,prghRows)	\
+#define IRowsetExactScroll_GetNextRows(This,hReserved,lRowsOffset,cRows,pcRowsObtained,prghRows)    \
     (This)->lpVtbl -> GetNextRows(This,hReserved,lRowsOffset,cRows,pcRowsObtained,prghRows)
 
-#define IRowsetExactScroll_ReleaseRows(This,cRows,rghRows,rgRowOptions,rgRefCounts,rgRowStatus)	\
+#define IRowsetExactScroll_ReleaseRows(This,cRows,rghRows,rgRowOptions,rgRefCounts,rgRowStatus)    \
     (This)->lpVtbl -> ReleaseRows(This,cRows,rghRows,rgRowOptions,rgRefCounts,rgRowStatus)
 
-#define IRowsetExactScroll_RestartPosition(This,hReserved)	\
+#define IRowsetExactScroll_RestartPosition(This,hReserved)    \
     (This)->lpVtbl -> RestartPosition(This,hReserved)
 
 
-#define IRowsetExactScroll_Compare(This,hReserved,cbBookmark1,pBookmark1,cbBookmark2,pBookmark2,pComparison)	\
+#define IRowsetExactScroll_Compare(This,hReserved,cbBookmark1,pBookmark1,cbBookmark2,pBookmark2,pComparison)    \
     (This)->lpVtbl -> Compare(This,hReserved,cbBookmark1,pBookmark1,cbBookmark2,pBookmark2,pComparison)
 
-#define IRowsetExactScroll_GetRowsAt(This,hReserved1,hReserved2,cbBookmark,pBookmark,lRowsOffset,cRows,pcRowsObtained,prghRows)	\
+#define IRowsetExactScroll_GetRowsAt(This,hReserved1,hReserved2,cbBookmark,pBookmark,lRowsOffset,cRows,pcRowsObtained,prghRows)    \
     (This)->lpVtbl -> GetRowsAt(This,hReserved1,hReserved2,cbBookmark,pBookmark,lRowsOffset,cRows,pcRowsObtained,prghRows)
 
-#define IRowsetExactScroll_GetRowsByBookmark(This,hReserved,cRows,rgcbBookmarks,rgpBookmarks,rghRows,rgRowStatus)	\
+#define IRowsetExactScroll_GetRowsByBookmark(This,hReserved,cRows,rgcbBookmarks,rgpBookmarks,rghRows,rgRowStatus)    \
     (This)->lpVtbl -> GetRowsByBookmark(This,hReserved,cRows,rgcbBookmarks,rgpBookmarks,rghRows,rgRowStatus)
 
-#define IRowsetExactScroll_Hash(This,hReserved,cBookmarks,rgcbBookmarks,rgpBookmarks,rgHashedValues,rgBookmarkStatus)	\
+#define IRowsetExactScroll_Hash(This,hReserved,cBookmarks,rgcbBookmarks,rgpBookmarks,rgHashedValues,rgBookmarkStatus)    \
     (This)->lpVtbl -> Hash(This,hReserved,cBookmarks,rgcbBookmarks,rgpBookmarks,rgHashedValues,rgBookmarkStatus)
 
 
-#define IRowsetExactScroll_GetApproximatePosition(This,hReserved,cbBookmark,pBookmark,pulPosition,pcRows)	\
+#define IRowsetExactScroll_GetApproximatePosition(This,hReserved,cbBookmark,pBookmark,pulPosition,pcRows)    \
     (This)->lpVtbl -> GetApproximatePosition(This,hReserved,cbBookmark,pBookmark,pulPosition,pcRows)
 
-#define IRowsetExactScroll_GetRowsAtRatio(This,hReserved1,hReserved2,ulNumerator,ulDenominator,cRows,pcRowsObtained,prghRows)	\
+#define IRowsetExactScroll_GetRowsAtRatio(This,hReserved1,hReserved2,ulNumerator,ulDenominator,cRows,pcRowsObtained,prghRows)    \
     (This)->lpVtbl -> GetRowsAtRatio(This,hReserved1,hReserved2,ulNumerator,ulDenominator,cRows,pcRowsObtained,prghRows)
 
 
-#define IRowsetExactScroll_GetExactPosition(This,hChapter,cbBookmark,pBookmark,pulPosition,pcRows)	\
+#define IRowsetExactScroll_GetExactPosition(This,hChapter,cbBookmark,pBookmark,pulPosition,pcRows)    \
     (This)->lpVtbl -> GetExactPosition(This,hChapter,cbBookmark,pBookmark,pulPosition,pcRows)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -5426,7 +5426,7 @@ void __RPC_STUB IRowsetExactScroll_GetExactPosition_Stub(
 
 
 
-#endif 	/* __IRowsetExactScroll_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetExactScroll_INTERFACE_DEFINED__ */
 
 
 /* interface __MIDL_itf_oledb_0283 */
@@ -5473,7 +5473,7 @@ EXTERN_C const IID IID_IRowsetChange;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetChangeVtbl
     {
@@ -5523,29 +5523,29 @@ EXTERN_C const IID IID_IRowsetChange;
 #ifdef COBJMACROS
 
 
-#define IRowsetChange_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetChange_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetChange_AddRef(This)	\
+#define IRowsetChange_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetChange_Release(This)	\
+#define IRowsetChange_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetChange_DeleteRows(This,hReserved,cRows,rghRows,rgRowStatus)	\
+#define IRowsetChange_DeleteRows(This,hReserved,cRows,rghRows,rgRowStatus)    \
     (This)->lpVtbl -> DeleteRows(This,hReserved,cRows,rghRows,rgRowStatus)
 
-#define IRowsetChange_SetData(This,hRow,hAccessor,pData)	\
+#define IRowsetChange_SetData(This,hRow,hAccessor,pData)    \
     (This)->lpVtbl -> SetData(This,hRow,hAccessor,pData)
 
-#define IRowsetChange_InsertRow(This,hReserved,hAccessor,pData,phRow)	\
+#define IRowsetChange_InsertRow(This,hReserved,hAccessor,pData,phRow)    \
     (This)->lpVtbl -> InsertRow(This,hReserved,hAccessor,pData,phRow)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -5594,7 +5594,7 @@ void __RPC_STUB IRowsetChange_InsertRow_Stub(
 
 
 
-#endif 	/* __IRowsetChange_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetChange_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowsetUpdate_INTERFACE_DEFINED__
@@ -5607,11 +5607,11 @@ typedef DWORD DBPENDINGSTATUS;
 
 
 enum DBPENDINGSTATUSENUM
-    {	DBPENDINGSTATUS_NEW	= 0x1,
-	DBPENDINGSTATUS_CHANGED	= 0x2,
-	DBPENDINGSTATUS_DELETED	= 0x4,
-	DBPENDINGSTATUS_UNCHANGED	= 0x8,
-	DBPENDINGSTATUS_INVALIDROW	= 0x10
+    {    DBPENDINGSTATUS_NEW    = 0x1,
+    DBPENDINGSTATUS_CHANGED    = 0x2,
+    DBPENDINGSTATUS_DELETED    = 0x4,
+    DBPENDINGSTATUS_UNCHANGED    = 0x8,
+    DBPENDINGSTATUS_INVALIDROW    = 0x10
     } ;
 
 EXTERN_C const IID IID_IRowsetUpdate;
@@ -5658,7 +5658,7 @@ EXTERN_C const IID IID_IRowsetUpdate;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetUpdateVtbl
     {
@@ -5747,45 +5747,45 @@ EXTERN_C const IID IID_IRowsetUpdate;
 #ifdef COBJMACROS
 
 
-#define IRowsetUpdate_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetUpdate_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetUpdate_AddRef(This)	\
+#define IRowsetUpdate_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetUpdate_Release(This)	\
+#define IRowsetUpdate_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetUpdate_DeleteRows(This,hReserved,cRows,rghRows,rgRowStatus)	\
+#define IRowsetUpdate_DeleteRows(This,hReserved,cRows,rghRows,rgRowStatus)    \
     (This)->lpVtbl -> DeleteRows(This,hReserved,cRows,rghRows,rgRowStatus)
 
-#define IRowsetUpdate_SetData(This,hRow,hAccessor,pData)	\
+#define IRowsetUpdate_SetData(This,hRow,hAccessor,pData)    \
     (This)->lpVtbl -> SetData(This,hRow,hAccessor,pData)
 
-#define IRowsetUpdate_InsertRow(This,hReserved,hAccessor,pData,phRow)	\
+#define IRowsetUpdate_InsertRow(This,hReserved,hAccessor,pData,phRow)    \
     (This)->lpVtbl -> InsertRow(This,hReserved,hAccessor,pData,phRow)
 
 
-#define IRowsetUpdate_GetOriginalData(This,hRow,hAccessor,pData)	\
+#define IRowsetUpdate_GetOriginalData(This,hRow,hAccessor,pData)    \
     (This)->lpVtbl -> GetOriginalData(This,hRow,hAccessor,pData)
 
-#define IRowsetUpdate_GetPendingRows(This,hReserved,dwRowStatus,pcPendingRows,prgPendingRows,prgPendingStatus)	\
+#define IRowsetUpdate_GetPendingRows(This,hReserved,dwRowStatus,pcPendingRows,prgPendingRows,prgPendingStatus)    \
     (This)->lpVtbl -> GetPendingRows(This,hReserved,dwRowStatus,pcPendingRows,prgPendingRows,prgPendingStatus)
 
-#define IRowsetUpdate_GetRowStatus(This,hReserved,cRows,rghRows,rgPendingStatus)	\
+#define IRowsetUpdate_GetRowStatus(This,hReserved,cRows,rghRows,rgPendingStatus)    \
     (This)->lpVtbl -> GetRowStatus(This,hReserved,cRows,rghRows,rgPendingStatus)
 
-#define IRowsetUpdate_Undo(This,hReserved,cRows,rghRows,pcRowsUndone,prgRowsUndone,prgRowStatus)	\
+#define IRowsetUpdate_Undo(This,hReserved,cRows,rghRows,pcRowsUndone,prgRowsUndone,prgRowStatus)    \
     (This)->lpVtbl -> Undo(This,hReserved,cRows,rghRows,pcRowsUndone,prgRowsUndone,prgRowStatus)
 
-#define IRowsetUpdate_Update(This,hReserved,cRows,rghRows,pcRows,prgRows,prgRowStatus)	\
+#define IRowsetUpdate_Update(This,hReserved,cRows,rghRows,pcRows,prgRows,prgRowStatus)    \
     (This)->lpVtbl -> Update(This,hReserved,cRows,rghRows,pcRows,prgRows,prgRowStatus)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -5869,7 +5869,7 @@ void __RPC_STUB IRowsetUpdate_Update_Stub(
 
 
 
-#endif 	/* __IRowsetUpdate_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetUpdate_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowsetIdentity_INTERFACE_DEFINED__
@@ -5893,7 +5893,7 @@ EXTERN_C const IID IID_IRowsetIdentity;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetIdentityVtbl
     {
@@ -5928,23 +5928,23 @@ EXTERN_C const IID IID_IRowsetIdentity;
 #ifdef COBJMACROS
 
 
-#define IRowsetIdentity_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetIdentity_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetIdentity_AddRef(This)	\
+#define IRowsetIdentity_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetIdentity_Release(This)	\
+#define IRowsetIdentity_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetIdentity_IsSameRow(This,hThisRow,hThatRow)	\
+#define IRowsetIdentity_IsSameRow(This,hThisRow,hThatRow)    \
     (This)->lpVtbl -> IsSameRow(This,hThisRow,hThatRow)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -5963,7 +5963,7 @@ void __RPC_STUB IRowsetIdentity_RemoteIsSameRow_Stub(
 
 
 
-#endif 	/* __IRowsetIdentity_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetIdentity_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowsetNotify_INTERFACE_DEFINED__
@@ -6006,7 +6006,7 @@ EXTERN_C const IID IID_IRowsetNotify;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetNotifyVtbl
     {
@@ -6062,29 +6062,29 @@ EXTERN_C const IID IID_IRowsetNotify;
 #ifdef COBJMACROS
 
 
-#define IRowsetNotify_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetNotify_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetNotify_AddRef(This)	\
+#define IRowsetNotify_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetNotify_Release(This)	\
+#define IRowsetNotify_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetNotify_OnFieldChange(This,pRowset,hRow,cColumns,rgColumns,eReason,ePhase,fCantDeny)	\
+#define IRowsetNotify_OnFieldChange(This,pRowset,hRow,cColumns,rgColumns,eReason,ePhase,fCantDeny)    \
     (This)->lpVtbl -> OnFieldChange(This,pRowset,hRow,cColumns,rgColumns,eReason,ePhase,fCantDeny)
 
-#define IRowsetNotify_OnRowChange(This,pRowset,cRows,rghRows,eReason,ePhase,fCantDeny)	\
+#define IRowsetNotify_OnRowChange(This,pRowset,cRows,rghRows,eReason,ePhase,fCantDeny)    \
     (This)->lpVtbl -> OnRowChange(This,pRowset,cRows,rghRows,eReason,ePhase,fCantDeny)
 
-#define IRowsetNotify_OnRowsetChange(This,pRowset,eReason,ePhase,fCantDeny)	\
+#define IRowsetNotify_OnRowsetChange(This,pRowset,eReason,ePhase,fCantDeny)    \
     (This)->lpVtbl -> OnRowsetChange(This,pRowset,eReason,ePhase,fCantDeny)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -6139,7 +6139,7 @@ void __RPC_STUB IRowsetNotify_RemoteOnRowsetChange_Stub(
 
 
 
-#endif 	/* __IRowsetNotify_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetNotify_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowsetIndex_INTERFACE_DEFINED__
@@ -6152,36 +6152,36 @@ typedef DWORD DBSEEK;
 
 
 enum DBSEEKENUM
-    {	DBSEEK_INVALID	= 0,
-	DBSEEK_FIRSTEQ	= 0x1,
-	DBSEEK_LASTEQ	= 0x2,
-	DBSEEK_AFTEREQ	= 0x4,
-	DBSEEK_AFTER	= 0x8,
-	DBSEEK_BEFOREEQ	= 0x10,
-	DBSEEK_BEFORE	= 0x20
+    {    DBSEEK_INVALID    = 0,
+    DBSEEK_FIRSTEQ    = 0x1,
+    DBSEEK_LASTEQ    = 0x2,
+    DBSEEK_AFTEREQ    = 0x4,
+    DBSEEK_AFTER    = 0x8,
+    DBSEEK_BEFOREEQ    = 0x10,
+    DBSEEK_BEFORE    = 0x20
     } ;
-#define	DBSEEK_GE	DBSEEK_AFTEREQ
-#define	DBSEEK_GT	DBSEEK_AFTER
-#define	DBSEEK_LE	DBSEEK_BEFOREEQ
-#define	DBSEEK_LT	DBSEEK_BEFORE
+#define    DBSEEK_GE    DBSEEK_AFTEREQ
+#define    DBSEEK_GT    DBSEEK_AFTER
+#define    DBSEEK_LE    DBSEEK_BEFOREEQ
+#define    DBSEEK_LT    DBSEEK_BEFORE
 typedef DWORD DBRANGE;
 
 
 enum DBRANGEENUM
-    {	DBRANGE_INCLUSIVESTART	= 0,
-	DBRANGE_INCLUSIVEEND	= 0,
-	DBRANGE_EXCLUSIVESTART	= 0x1,
-	DBRANGE_EXCLUSIVEEND	= 0x2,
-	DBRANGE_EXCLUDENULLS	= 0x4,
-	DBRANGE_PREFIX	= 0x8,
-	DBRANGE_MATCH	= 0x10
+    {    DBRANGE_INCLUSIVESTART    = 0,
+    DBRANGE_INCLUSIVEEND    = 0,
+    DBRANGE_EXCLUSIVESTART    = 0x1,
+    DBRANGE_EXCLUSIVEEND    = 0x2,
+    DBRANGE_EXCLUDENULLS    = 0x4,
+    DBRANGE_PREFIX    = 0x8,
+    DBRANGE_MATCH    = 0x10
     } ;
 //@@@+ V2.0
 #if( OLEDBVER >= 0x0200 )
 
 enum DBRANGEENUM20
-    {	DBRANGE_MATCH_N_SHIFT	= 0x18,
-	DBRANGE_MATCH_N_MASK	= 0xff
+    {    DBRANGE_MATCH_N_SHIFT    = 0x18,
+    DBRANGE_MATCH_N_MASK    = 0xff
     } ;
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
@@ -6216,7 +6216,7 @@ EXTERN_C const IID IID_IRowsetIndex;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetIndexVtbl
     {
@@ -6269,29 +6269,29 @@ EXTERN_C const IID IID_IRowsetIndex;
 #ifdef COBJMACROS
 
 
-#define IRowsetIndex_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetIndex_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetIndex_AddRef(This)	\
+#define IRowsetIndex_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetIndex_Release(This)	\
+#define IRowsetIndex_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetIndex_GetIndexInfo(This,pcKeyColumns,prgIndexColumnDesc,pcIndexPropertySets,prgIndexPropertySets)	\
+#define IRowsetIndex_GetIndexInfo(This,pcKeyColumns,prgIndexColumnDesc,pcIndexPropertySets,prgIndexPropertySets)    \
     (This)->lpVtbl -> GetIndexInfo(This,pcKeyColumns,prgIndexColumnDesc,pcIndexPropertySets,prgIndexPropertySets)
 
-#define IRowsetIndex_Seek(This,hAccessor,cKeyValues,pData,dwSeekOptions)	\
+#define IRowsetIndex_Seek(This,hAccessor,cKeyValues,pData,dwSeekOptions)    \
     (This)->lpVtbl -> Seek(This,hAccessor,cKeyValues,pData,dwSeekOptions)
 
-#define IRowsetIndex_SetRange(This,hAccessor,cStartKeyColumns,pStartData,cEndKeyColumns,pEndData,dwRangeOptions)	\
+#define IRowsetIndex_SetRange(This,hAccessor,cStartKeyColumns,pStartData,cEndKeyColumns,pEndData,dwRangeOptions)    \
     (This)->lpVtbl -> SetRange(This,hAccessor,cStartKeyColumns,pStartData,cEndKeyColumns,pEndData,dwRangeOptions)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -6343,7 +6343,7 @@ void __RPC_STUB IRowsetIndex_SetRange_Stub(
 
 
 
-#endif 	/* __IRowsetIndex_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetIndex_INTERFACE_DEFINED__ */
 
 
 #ifndef __ICommand_INTERFACE_DEFINED__
@@ -6376,7 +6376,7 @@ EXTERN_C const IID IID_ICommand;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ICommandVtbl
     {
@@ -6422,29 +6422,29 @@ EXTERN_C const IID IID_ICommand;
 #ifdef COBJMACROS
 
 
-#define ICommand_QueryInterface(This,riid,ppvObject)	\
+#define ICommand_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ICommand_AddRef(This)	\
+#define ICommand_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ICommand_Release(This)	\
+#define ICommand_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ICommand_Cancel(This)	\
+#define ICommand_Cancel(This)    \
     (This)->lpVtbl -> Cancel(This)
 
-#define ICommand_Execute(This,pUnkOuter,riid,pParams,pcRowsAffected,ppRowset)	\
+#define ICommand_Execute(This,pUnkOuter,riid,pParams,pcRowsAffected,ppRowset)    \
     (This)->lpVtbl -> Execute(This,pUnkOuter,riid,pParams,pcRowsAffected,ppRowset)
 
-#define ICommand_GetDBSession(This,riid,ppSession)	\
+#define ICommand_GetDBSession(This,riid,ppSession)    \
     (This)->lpVtbl -> GetDBSession(This,riid,ppSession)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -6499,7 +6499,7 @@ void __RPC_STUB ICommand_RemoteGetDBSession_Stub(
 
 
 
-#endif 	/* __ICommand_INTERFACE_DEFINED__ */
+#endif     /* __ICommand_INTERFACE_DEFINED__ */
 
 
 #ifndef __IMultipleResults_INTERFACE_DEFINED__
@@ -6512,9 +6512,9 @@ typedef DB_LRESERVE DBRESULTFLAG;
 
 
 enum DBRESULTFLAGENUM
-    {	DBRESULTFLAG_DEFAULT	= 0,
-	DBRESULTFLAG_ROWSET	= 1,
-	DBRESULTFLAG_ROW	= 2
+    {    DBRESULTFLAG_DEFAULT    = 0,
+    DBRESULTFLAG_ROWSET    = 1,
+    DBRESULTFLAG_ROW    = 2
     } ;
 
 EXTERN_C const IID IID_IMultipleResults;
@@ -6534,7 +6534,7 @@ EXTERN_C const IID IID_IMultipleResults;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IMultipleResultsVtbl
     {
@@ -6572,23 +6572,23 @@ EXTERN_C const IID IID_IMultipleResults;
 #ifdef COBJMACROS
 
 
-#define IMultipleResults_QueryInterface(This,riid,ppvObject)	\
+#define IMultipleResults_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IMultipleResults_AddRef(This)	\
+#define IMultipleResults_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IMultipleResults_Release(This)	\
+#define IMultipleResults_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IMultipleResults_GetResult(This,pUnkOuter,lResultFlag,riid,pcRowsAffected,ppRowset)	\
+#define IMultipleResults_GetResult(This,pUnkOuter,lResultFlag,riid,pcRowsAffected,ppRowset)    \
     (This)->lpVtbl -> GetResult(This,pUnkOuter,lResultFlag,riid,pcRowsAffected,ppRowset)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -6610,7 +6610,7 @@ void __RPC_STUB IMultipleResults_RemoteGetResult_Stub(
 
 
 
-#endif 	/* __IMultipleResults_INTERFACE_DEFINED__ */
+#endif     /* __IMultipleResults_INTERFACE_DEFINED__ */
 
 
 #ifndef __IConvertType_INTERFACE_DEFINED__
@@ -6623,16 +6623,16 @@ typedef DWORD DBCONVERTFLAGS;
 
 
 enum DBCONVERTFLAGSENUM
-    {	DBCONVERTFLAGS_COLUMN	= 0,
-	DBCONVERTFLAGS_PARAMETER	= 0x1
+    {    DBCONVERTFLAGS_COLUMN    = 0,
+    DBCONVERTFLAGS_PARAMETER    = 0x1
     } ;
 //@@@+ V2.0
 #if( OLEDBVER >= 0x0200 )
 
 enum DBCONVERTFLAGSENUM20
-    {	DBCONVERTFLAGS_ISLONG	= 0x2,
-	DBCONVERTFLAGS_ISFIXEDLENGTH	= 0x4,
-	DBCONVERTFLAGS_FROMVARIANT	= 0x8
+    {    DBCONVERTFLAGS_ISLONG    = 0x2,
+    DBCONVERTFLAGS_ISFIXEDLENGTH    = 0x4,
+    DBCONVERTFLAGS_FROMVARIANT    = 0x8
     } ;
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
@@ -6652,7 +6652,7 @@ EXTERN_C const IID IID_IConvertType;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IConvertTypeVtbl
     {
@@ -6688,23 +6688,23 @@ EXTERN_C const IID IID_IConvertType;
 #ifdef COBJMACROS
 
 
-#define IConvertType_QueryInterface(This,riid,ppvObject)	\
+#define IConvertType_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IConvertType_AddRef(This)	\
+#define IConvertType_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IConvertType_Release(This)	\
+#define IConvertType_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IConvertType_CanConvert(This,wFromType,wToType,dwConvertFlags)	\
+#define IConvertType_CanConvert(This,wFromType,wToType,dwConvertFlags)    \
     (This)->lpVtbl -> CanConvert(This,wFromType,wToType,dwConvertFlags)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -6724,7 +6724,7 @@ void __RPC_STUB IConvertType_RemoteCanConvert_Stub(
 
 
 
-#endif 	/* __IConvertType_INTERFACE_DEFINED__ */
+#endif     /* __IConvertType_INTERFACE_DEFINED__ */
 
 
 #ifndef __ICommandPrepare_INTERFACE_DEFINED__
@@ -6749,7 +6749,7 @@ EXTERN_C const IID IID_ICommandPrepare;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ICommandPrepareVtbl
     {
@@ -6786,26 +6786,26 @@ EXTERN_C const IID IID_ICommandPrepare;
 #ifdef COBJMACROS
 
 
-#define ICommandPrepare_QueryInterface(This,riid,ppvObject)	\
+#define ICommandPrepare_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ICommandPrepare_AddRef(This)	\
+#define ICommandPrepare_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ICommandPrepare_Release(This)	\
+#define ICommandPrepare_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ICommandPrepare_Prepare(This,cExpectedRuns)	\
+#define ICommandPrepare_Prepare(This,cExpectedRuns)    \
     (This)->lpVtbl -> Prepare(This,cExpectedRuns)
 
-#define ICommandPrepare_Unprepare(This)	\
+#define ICommandPrepare_Unprepare(This)    \
     (This)->lpVtbl -> Unprepare(This)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -6835,7 +6835,7 @@ void __RPC_STUB ICommandPrepare_RemoteUnprepare_Stub(
 
 
 
-#endif 	/* __ICommandPrepare_INTERFACE_DEFINED__ */
+#endif     /* __ICommandPrepare_INTERFACE_DEFINED__ */
 
 
 #ifndef __ICommandProperties_INTERFACE_DEFINED__
@@ -6865,7 +6865,7 @@ EXTERN_C const IID IID_ICommandProperties;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ICommandPropertiesVtbl
     {
@@ -6907,26 +6907,26 @@ EXTERN_C const IID IID_ICommandProperties;
 #ifdef COBJMACROS
 
 
-#define ICommandProperties_QueryInterface(This,riid,ppvObject)	\
+#define ICommandProperties_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ICommandProperties_AddRef(This)	\
+#define ICommandProperties_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ICommandProperties_Release(This)	\
+#define ICommandProperties_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ICommandProperties_GetProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)	\
+#define ICommandProperties_GetProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)    \
     (This)->lpVtbl -> GetProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)
 
-#define ICommandProperties_SetProperties(This,cPropertySets,rgPropertySets)	\
+#define ICommandProperties_SetProperties(This,cPropertySets,rgPropertySets)    \
     (This)->lpVtbl -> SetProperties(This,cPropertySets,rgPropertySets)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -6963,7 +6963,7 @@ void __RPC_STUB ICommandProperties_RemoteSetProperties_Stub(
 
 
 
-#endif 	/* __ICommandProperties_INTERFACE_DEFINED__ */
+#endif     /* __ICommandProperties_INTERFACE_DEFINED__ */
 
 
 #ifndef __ICommandText_INTERFACE_DEFINED__
@@ -6991,7 +6991,7 @@ EXTERN_C const IID IID_ICommandText;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ICommandTextVtbl
     {
@@ -7047,36 +7047,36 @@ EXTERN_C const IID IID_ICommandText;
 #ifdef COBJMACROS
 
 
-#define ICommandText_QueryInterface(This,riid,ppvObject)	\
+#define ICommandText_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ICommandText_AddRef(This)	\
+#define ICommandText_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ICommandText_Release(This)	\
+#define ICommandText_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ICommandText_Cancel(This)	\
+#define ICommandText_Cancel(This)    \
     (This)->lpVtbl -> Cancel(This)
 
-#define ICommandText_Execute(This,pUnkOuter,riid,pParams,pcRowsAffected,ppRowset)	\
+#define ICommandText_Execute(This,pUnkOuter,riid,pParams,pcRowsAffected,ppRowset)    \
     (This)->lpVtbl -> Execute(This,pUnkOuter,riid,pParams,pcRowsAffected,ppRowset)
 
-#define ICommandText_GetDBSession(This,riid,ppSession)	\
+#define ICommandText_GetDBSession(This,riid,ppSession)    \
     (This)->lpVtbl -> GetDBSession(This,riid,ppSession)
 
 
-#define ICommandText_GetCommandText(This,pguidDialect,ppwszCommand)	\
+#define ICommandText_GetCommandText(This,pguidDialect,ppwszCommand)    \
     (This)->lpVtbl -> GetCommandText(This,pguidDialect,ppwszCommand)
 
-#define ICommandText_SetCommandText(This,rguidDialect,pwszCommand)	\
+#define ICommandText_SetCommandText(This,rguidDialect,pwszCommand)    \
     (This)->lpVtbl -> SetCommandText(This,rguidDialect,pwszCommand)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -7109,7 +7109,7 @@ void __RPC_STUB ICommandText_RemoteSetCommandText_Stub(
 
 
 
-#endif 	/* __ICommandText_INTERFACE_DEFINED__ */
+#endif     /* __ICommandText_INTERFACE_DEFINED__ */
 
 
 #ifndef __ICommandWithParameters_INTERFACE_DEFINED__
@@ -7126,7 +7126,7 @@ typedef struct tagDBPARAMBINDINFO
     DBPARAMFLAGS dwFlags;
     BYTE bPrecision;
     BYTE bScale;
-    } 	DBPARAMBINDINFO;
+    }     DBPARAMBINDINFO;
 
 
 EXTERN_C const IID IID_ICommandWithParameters;
@@ -7154,7 +7154,7 @@ EXTERN_C const IID IID_ICommandWithParameters;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ICommandWithParametersVtbl
     {
@@ -7202,29 +7202,29 @@ EXTERN_C const IID IID_ICommandWithParameters;
 #ifdef COBJMACROS
 
 
-#define ICommandWithParameters_QueryInterface(This,riid,ppvObject)	\
+#define ICommandWithParameters_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ICommandWithParameters_AddRef(This)	\
+#define ICommandWithParameters_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ICommandWithParameters_Release(This)	\
+#define ICommandWithParameters_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ICommandWithParameters_GetParameterInfo(This,pcParams,prgParamInfo,ppNamesBuffer)	\
+#define ICommandWithParameters_GetParameterInfo(This,pcParams,prgParamInfo,ppNamesBuffer)    \
     (This)->lpVtbl -> GetParameterInfo(This,pcParams,prgParamInfo,ppNamesBuffer)
 
-#define ICommandWithParameters_MapParameterNames(This,cParamNames,rgParamNames,rgParamOrdinals)	\
+#define ICommandWithParameters_MapParameterNames(This,cParamNames,rgParamNames,rgParamOrdinals)    \
     (This)->lpVtbl -> MapParameterNames(This,cParamNames,rgParamNames,rgParamOrdinals)
 
-#define ICommandWithParameters_SetParameterInfo(This,cParams,rgParamOrdinals,rgParamBindInfo)	\
+#define ICommandWithParameters_SetParameterInfo(This,cParams,rgParamOrdinals,rgParamBindInfo)    \
     (This)->lpVtbl -> SetParameterInfo(This,cParams,rgParamOrdinals,rgParamBindInfo)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -7276,7 +7276,7 @@ void __RPC_STUB ICommandWithParameters_RemoteSetParameterInfo_Stub(
 
 
 
-#endif 	/* __ICommandWithParameters_INTERFACE_DEFINED__ */
+#endif     /* __ICommandWithParameters_INTERFACE_DEFINED__ */
 
 
 #ifndef __IColumnsRowset_INTERFACE_DEFINED__
@@ -7309,7 +7309,7 @@ EXTERN_C const IID IID_IColumnsRowset;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IColumnsRowsetVtbl
     {
@@ -7354,26 +7354,26 @@ EXTERN_C const IID IID_IColumnsRowset;
 #ifdef COBJMACROS
 
 
-#define IColumnsRowset_QueryInterface(This,riid,ppvObject)	\
+#define IColumnsRowset_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IColumnsRowset_AddRef(This)	\
+#define IColumnsRowset_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IColumnsRowset_Release(This)	\
+#define IColumnsRowset_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IColumnsRowset_GetAvailableColumns(This,pcOptColumns,prgOptColumns)	\
+#define IColumnsRowset_GetAvailableColumns(This,pcOptColumns,prgOptColumns)    \
     (This)->lpVtbl -> GetAvailableColumns(This,pcOptColumns,prgOptColumns)
 
-#define IColumnsRowset_GetColumnsRowset(This,pUnkOuter,cOptColumns,rgOptColumns,riid,cPropertySets,rgPropertySets,ppColRowset)	\
+#define IColumnsRowset_GetColumnsRowset(This,pUnkOuter,cOptColumns,rgOptColumns,riid,cPropertySets,rgPropertySets,ppColRowset)    \
     (This)->lpVtbl -> GetColumnsRowset(This,pUnkOuter,cOptColumns,rgOptColumns,riid,cPropertySets,rgPropertySets,ppColRowset)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -7413,7 +7413,7 @@ void __RPC_STUB IColumnsRowset_RemoteGetColumnsRowset_Stub(
 
 
 
-#endif 	/* __IColumnsRowset_INTERFACE_DEFINED__ */
+#endif     /* __IColumnsRowset_INTERFACE_DEFINED__ */
 
 
 #ifndef __IColumnsInfo_INTERFACE_DEFINED__
@@ -7443,7 +7443,7 @@ EXTERN_C const IID IID_IColumnsInfo;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IColumnsInfoVtbl
     {
@@ -7485,26 +7485,26 @@ EXTERN_C const IID IID_IColumnsInfo;
 #ifdef COBJMACROS
 
 
-#define IColumnsInfo_QueryInterface(This,riid,ppvObject)	\
+#define IColumnsInfo_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IColumnsInfo_AddRef(This)	\
+#define IColumnsInfo_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IColumnsInfo_Release(This)	\
+#define IColumnsInfo_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IColumnsInfo_GetColumnInfo(This,pcColumns,prgInfo,ppStringsBuffer)	\
+#define IColumnsInfo_GetColumnInfo(This,pcColumns,prgInfo,ppStringsBuffer)    \
     (This)->lpVtbl -> GetColumnInfo(This,pcColumns,prgInfo,ppStringsBuffer)
 
-#define IColumnsInfo_MapColumnIDs(This,cColumnIDs,rgColumnIDs,rgColumns)	\
+#define IColumnsInfo_MapColumnIDs(This,cColumnIDs,rgColumnIDs,rgColumns)    \
     (This)->lpVtbl -> MapColumnIDs(This,cColumnIDs,rgColumnIDs,rgColumns)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -7542,7 +7542,7 @@ void __RPC_STUB IColumnsInfo_RemoteMapColumnIDs_Stub(
 
 
 
-#endif 	/* __IColumnsInfo_INTERFACE_DEFINED__ */
+#endif     /* __IColumnsInfo_INTERFACE_DEFINED__ */
 
 
 #ifndef __IDBCreateCommand_INTERFACE_DEFINED__
@@ -7567,7 +7567,7 @@ EXTERN_C const IID IID_IDBCreateCommand;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IDBCreateCommandVtbl
     {
@@ -7603,23 +7603,23 @@ EXTERN_C const IID IID_IDBCreateCommand;
 #ifdef COBJMACROS
 
 
-#define IDBCreateCommand_QueryInterface(This,riid,ppvObject)	\
+#define IDBCreateCommand_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IDBCreateCommand_AddRef(This)	\
+#define IDBCreateCommand_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IDBCreateCommand_Release(This)	\
+#define IDBCreateCommand_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IDBCreateCommand_CreateCommand(This,pUnkOuter,riid,ppCommand)	\
+#define IDBCreateCommand_CreateCommand(This,pUnkOuter,riid,ppCommand)    \
     (This)->lpVtbl -> CreateCommand(This,pUnkOuter,riid,ppCommand)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -7639,7 +7639,7 @@ void __RPC_STUB IDBCreateCommand_RemoteCreateCommand_Stub(
 
 
 
-#endif 	/* __IDBCreateCommand_INTERFACE_DEFINED__ */
+#endif     /* __IDBCreateCommand_INTERFACE_DEFINED__ */
 
 
 #ifndef __IDBCreateSession_INTERFACE_DEFINED__
@@ -7664,7 +7664,7 @@ EXTERN_C const IID IID_IDBCreateSession;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IDBCreateSessionVtbl
     {
@@ -7700,23 +7700,23 @@ EXTERN_C const IID IID_IDBCreateSession;
 #ifdef COBJMACROS
 
 
-#define IDBCreateSession_QueryInterface(This,riid,ppvObject)	\
+#define IDBCreateSession_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IDBCreateSession_AddRef(This)	\
+#define IDBCreateSession_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IDBCreateSession_Release(This)	\
+#define IDBCreateSession_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IDBCreateSession_CreateSession(This,pUnkOuter,riid,ppDBSession)	\
+#define IDBCreateSession_CreateSession(This,pUnkOuter,riid,ppDBSession)    \
     (This)->lpVtbl -> CreateSession(This,pUnkOuter,riid,ppDBSession)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -7736,7 +7736,7 @@ void __RPC_STUB IDBCreateSession_RemoteCreateSession_Stub(
 
 
 
-#endif 	/* __IDBCreateSession_INTERFACE_DEFINED__ */
+#endif     /* __IDBCreateSession_INTERFACE_DEFINED__ */
 
 
 #ifndef __ISourcesRowset_INTERFACE_DEFINED__
@@ -7749,15 +7749,15 @@ typedef DWORD DBSOURCETYPE;
 
 
 enum DBSOURCETYPEENUM
-    {	DBSOURCETYPE_DATASOURCE	= 1,
-	DBSOURCETYPE_ENUMERATOR	= 2
+    {    DBSOURCETYPE_DATASOURCE    = 1,
+    DBSOURCETYPE_ENUMERATOR    = 2
     } ;
 //@@@+ V2.0
 #if( OLEDBVER >= 0x0200 )
 
 enum DBSOURCETYPEENUM20
-    {	DBSOURCETYPE_DATASOURCE_TDP	= 1,
-	DBSOURCETYPE_DATASOURCE_MDP	= 3
+    {    DBSOURCETYPE_DATASOURCE_TDP    = 1,
+    DBSOURCETYPE_DATASOURCE_MDP    = 3
     } ;
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
@@ -7765,7 +7765,7 @@ enum DBSOURCETYPEENUM20
 #if( OLEDBVER >= 0x0250 )
 
 enum DBSOURCETYPEENUM25
-    {	DBSOURCETYPE_BINDER	= 4
+    {    DBSOURCETYPE_BINDER    = 4
     } ;
 #endif // OLEDBVER >= 0x0250
 //@@@- V2.5
@@ -7787,7 +7787,7 @@ EXTERN_C const IID IID_ISourcesRowset;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ISourcesRowsetVtbl
     {
@@ -7825,23 +7825,23 @@ EXTERN_C const IID IID_ISourcesRowset;
 #ifdef COBJMACROS
 
 
-#define ISourcesRowset_QueryInterface(This,riid,ppvObject)	\
+#define ISourcesRowset_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ISourcesRowset_AddRef(This)	\
+#define ISourcesRowset_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ISourcesRowset_Release(This)	\
+#define ISourcesRowset_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ISourcesRowset_GetSourcesRowset(This,pUnkOuter,riid,cPropertySets,rgProperties,ppSourcesRowset)	\
+#define ISourcesRowset_GetSourcesRowset(This,pUnkOuter,riid,cPropertySets,rgProperties,ppSourcesRowset)    \
     (This)->lpVtbl -> GetSourcesRowset(This,pUnkOuter,riid,cPropertySets,rgProperties,ppSourcesRowset)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -7865,7 +7865,7 @@ void __RPC_STUB ISourcesRowset_RemoteGetSourcesRowset_Stub(
 
 
 
-#endif 	/* __ISourcesRowset_INTERFACE_DEFINED__ */
+#endif     /* __ISourcesRowset_INTERFACE_DEFINED__ */
 
 
 #ifndef __IDBProperties_INTERFACE_DEFINED__
@@ -7902,7 +7902,7 @@ EXTERN_C const IID IID_IDBProperties;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IDBPropertiesVtbl
     {
@@ -7952,29 +7952,29 @@ EXTERN_C const IID IID_IDBProperties;
 #ifdef COBJMACROS
 
 
-#define IDBProperties_QueryInterface(This,riid,ppvObject)	\
+#define IDBProperties_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IDBProperties_AddRef(This)	\
+#define IDBProperties_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IDBProperties_Release(This)	\
+#define IDBProperties_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IDBProperties_GetProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)	\
+#define IDBProperties_GetProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)    \
     (This)->lpVtbl -> GetProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)
 
-#define IDBProperties_GetPropertyInfo(This,cPropertyIDSets,rgPropertyIDSets,pcPropertyInfoSets,prgPropertyInfoSets,ppDescBuffer)	\
+#define IDBProperties_GetPropertyInfo(This,cPropertyIDSets,rgPropertyIDSets,pcPropertyInfoSets,prgPropertyInfoSets,ppDescBuffer)    \
     (This)->lpVtbl -> GetPropertyInfo(This,cPropertyIDSets,rgPropertyIDSets,pcPropertyInfoSets,prgPropertyInfoSets,ppDescBuffer)
 
-#define IDBProperties_SetProperties(This,cPropertySets,rgPropertySets)	\
+#define IDBProperties_SetProperties(This,cPropertySets,rgPropertySets)    \
     (This)->lpVtbl -> SetProperties(This,cPropertySets,rgPropertySets)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -8031,7 +8031,7 @@ void __RPC_STUB IDBProperties_RemoteSetProperties_Stub(
 
 
 
-#endif 	/* __IDBProperties_INTERFACE_DEFINED__ */
+#endif     /* __IDBProperties_INTERFACE_DEFINED__ */
 
 
 #ifndef __IDBInitialize_INTERFACE_DEFINED__
@@ -8055,7 +8055,7 @@ EXTERN_C const IID IID_IDBInitialize;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IDBInitializeVtbl
     {
@@ -8091,26 +8091,26 @@ EXTERN_C const IID IID_IDBInitialize;
 #ifdef COBJMACROS
 
 
-#define IDBInitialize_QueryInterface(This,riid,ppvObject)	\
+#define IDBInitialize_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IDBInitialize_AddRef(This)	\
+#define IDBInitialize_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IDBInitialize_Release(This)	\
+#define IDBInitialize_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IDBInitialize_Initialize(This)	\
+#define IDBInitialize_Initialize(This)    \
     (This)->lpVtbl -> Initialize(This)
 
-#define IDBInitialize_Uninitialize(This)	\
+#define IDBInitialize_Uninitialize(This)    \
     (This)->lpVtbl -> Uninitialize(This)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -8139,7 +8139,7 @@ void __RPC_STUB IDBInitialize_RemoteUninitialize_Stub(
 
 
 
-#endif 	/* __IDBInitialize_INTERFACE_DEFINED__ */
+#endif     /* __IDBInitialize_INTERFACE_DEFINED__ */
 
 
 #ifndef __IDBInfo_INTERFACE_DEFINED__
@@ -8152,41 +8152,41 @@ typedef DWORD DBLITERAL;
 
 
 enum DBLITERALENUM
-    {	DBLITERAL_INVALID	= 0,
-	DBLITERAL_BINARY_LITERAL	= 1,
-	DBLITERAL_CATALOG_NAME	= 2,
-	DBLITERAL_CATALOG_SEPARATOR	= 3,
-	DBLITERAL_CHAR_LITERAL	= 4,
-	DBLITERAL_COLUMN_ALIAS	= 5,
-	DBLITERAL_COLUMN_NAME	= 6,
-	DBLITERAL_CORRELATION_NAME	= 7,
-	DBLITERAL_CURSOR_NAME	= 8,
-	DBLITERAL_ESCAPE_PERCENT	= 9,
-	DBLITERAL_ESCAPE_UNDERSCORE	= 10,
-	DBLITERAL_INDEX_NAME	= 11,
-	DBLITERAL_LIKE_PERCENT	= 12,
-	DBLITERAL_LIKE_UNDERSCORE	= 13,
-	DBLITERAL_PROCEDURE_NAME	= 14,
-	DBLITERAL_QUOTE	= 15,
-	DBLITERAL_SCHEMA_NAME	= 16,
-	DBLITERAL_TABLE_NAME	= 17,
-	DBLITERAL_TEXT_COMMAND	= 18,
-	DBLITERAL_USER_NAME	= 19,
-	DBLITERAL_VIEW_NAME	= 20
+    {    DBLITERAL_INVALID    = 0,
+    DBLITERAL_BINARY_LITERAL    = 1,
+    DBLITERAL_CATALOG_NAME    = 2,
+    DBLITERAL_CATALOG_SEPARATOR    = 3,
+    DBLITERAL_CHAR_LITERAL    = 4,
+    DBLITERAL_COLUMN_ALIAS    = 5,
+    DBLITERAL_COLUMN_NAME    = 6,
+    DBLITERAL_CORRELATION_NAME    = 7,
+    DBLITERAL_CURSOR_NAME    = 8,
+    DBLITERAL_ESCAPE_PERCENT    = 9,
+    DBLITERAL_ESCAPE_UNDERSCORE    = 10,
+    DBLITERAL_INDEX_NAME    = 11,
+    DBLITERAL_LIKE_PERCENT    = 12,
+    DBLITERAL_LIKE_UNDERSCORE    = 13,
+    DBLITERAL_PROCEDURE_NAME    = 14,
+    DBLITERAL_QUOTE    = 15,
+    DBLITERAL_SCHEMA_NAME    = 16,
+    DBLITERAL_TABLE_NAME    = 17,
+    DBLITERAL_TEXT_COMMAND    = 18,
+    DBLITERAL_USER_NAME    = 19,
+    DBLITERAL_VIEW_NAME    = 20
     } ;
 //@@@+ V2.0
 #if( OLEDBVER >= 0x0200 )
 #define DBLITERAL_QUOTE_PREFIX DBLITERAL_QUOTE
 
 enum DBLITERALENUM20
-    {	DBLITERAL_CUBE_NAME	= 21,
-	DBLITERAL_DIMENSION_NAME	= 22,
-	DBLITERAL_HIERARCHY_NAME	= 23,
-	DBLITERAL_LEVEL_NAME	= 24,
-	DBLITERAL_MEMBER_NAME	= 25,
-	DBLITERAL_PROPERTY_NAME	= 26,
-	DBLITERAL_SCHEMA_SEPARATOR	= 27,
-	DBLITERAL_QUOTE_SUFFIX	= 28
+    {    DBLITERAL_CUBE_NAME    = 21,
+    DBLITERAL_DIMENSION_NAME    = 22,
+    DBLITERAL_HIERARCHY_NAME    = 23,
+    DBLITERAL_LEVEL_NAME    = 24,
+    DBLITERAL_MEMBER_NAME    = 25,
+    DBLITERAL_PROPERTY_NAME    = 26,
+    DBLITERAL_SCHEMA_SEPARATOR    = 27,
+    DBLITERAL_QUOTE_SUFFIX    = 28
     } ;
 #endif // OLEDBVER >= 0x0200
 //@@@- V2.0
@@ -8196,8 +8196,8 @@ enum DBLITERALENUM20
 #define DBLITERAL_ESCAPE_UNDERSCORE_PREFIX DBLITERAL_ESCAPE_UNDERSCORE
 
 enum DBLITERALENUM21
-    {	DBLITERAL_ESCAPE_PERCENT_SUFFIX	= 29,
-	DBLITERAL_ESCAPE_UNDERSCORE_SUFFIX	= 30
+    {    DBLITERAL_ESCAPE_PERCENT_SUFFIX    = 29,
+    DBLITERAL_ESCAPE_UNDERSCORE_SUFFIX    = 30
     } ;
 #endif // OLEDBVER >= 0x0210
 //@@@- V2.1
@@ -8209,7 +8209,7 @@ typedef struct tagDBLITERALINFO
     DBLITERAL lt;
     BOOL fSupported;
     ULONG cchMaxLen;
-    } 	DBLITERALINFO;
+    }     DBLITERALINFO;
 
 
 EXTERN_C const IID IID_IDBInfo;
@@ -8232,7 +8232,7 @@ EXTERN_C const IID IID_IDBInfo;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IDBInfoVtbl
     {
@@ -8274,26 +8274,26 @@ EXTERN_C const IID IID_IDBInfo;
 #ifdef COBJMACROS
 
 
-#define IDBInfo_QueryInterface(This,riid,ppvObject)	\
+#define IDBInfo_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IDBInfo_AddRef(This)	\
+#define IDBInfo_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IDBInfo_Release(This)	\
+#define IDBInfo_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IDBInfo_GetKeywords(This,ppwszKeywords)	\
+#define IDBInfo_GetKeywords(This,ppwszKeywords)    \
     (This)->lpVtbl -> GetKeywords(This,ppwszKeywords)
 
-#define IDBInfo_GetLiteralInfo(This,cLiterals,rgLiterals,pcLiteralInfo,prgLiteralInfo,ppCharBuffer)	\
+#define IDBInfo_GetLiteralInfo(This,cLiterals,rgLiterals,pcLiteralInfo,prgLiteralInfo,ppCharBuffer)    \
     (This)->lpVtbl -> GetLiteralInfo(This,cLiterals,rgLiterals,pcLiteralInfo,prgLiteralInfo,ppCharBuffer)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -8332,7 +8332,7 @@ void __RPC_STUB IDBInfo_RemoteGetLiteralInfo_Stub(
 
 
 
-#endif 	/* __IDBInfo_INTERFACE_DEFINED__ */
+#endif     /* __IDBInfo_INTERFACE_DEFINED__ */
 
 
 #ifndef __IDBDataSourceAdmin_INTERFACE_DEFINED__
@@ -8372,7 +8372,7 @@ EXTERN_C const IID IID_IDBDataSourceAdmin;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IDBDataSourceAdminVtbl
     {
@@ -8426,32 +8426,32 @@ EXTERN_C const IID IID_IDBDataSourceAdmin;
 #ifdef COBJMACROS
 
 
-#define IDBDataSourceAdmin_QueryInterface(This,riid,ppvObject)	\
+#define IDBDataSourceAdmin_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IDBDataSourceAdmin_AddRef(This)	\
+#define IDBDataSourceAdmin_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IDBDataSourceAdmin_Release(This)	\
+#define IDBDataSourceAdmin_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IDBDataSourceAdmin_CreateDataSource(This,cPropertySets,rgPropertySets,pUnkOuter,riid,ppDBSession)	\
+#define IDBDataSourceAdmin_CreateDataSource(This,cPropertySets,rgPropertySets,pUnkOuter,riid,ppDBSession)    \
     (This)->lpVtbl -> CreateDataSource(This,cPropertySets,rgPropertySets,pUnkOuter,riid,ppDBSession)
 
-#define IDBDataSourceAdmin_DestroyDataSource(This)	\
+#define IDBDataSourceAdmin_DestroyDataSource(This)    \
     (This)->lpVtbl -> DestroyDataSource(This)
 
-#define IDBDataSourceAdmin_GetCreationProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertyInfoSets,prgPropertyInfoSets,ppDescBuffer)	\
+#define IDBDataSourceAdmin_GetCreationProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertyInfoSets,prgPropertyInfoSets,ppDescBuffer)    \
     (This)->lpVtbl -> GetCreationProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertyInfoSets,prgPropertyInfoSets,ppDescBuffer)
 
-#define IDBDataSourceAdmin_ModifyDataSource(This,cPropertySets,rgPropertySets)	\
+#define IDBDataSourceAdmin_ModifyDataSource(This,cPropertySets,rgPropertySets)    \
     (This)->lpVtbl -> ModifyDataSource(This,cPropertySets,rgPropertySets)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -8521,7 +8521,7 @@ void __RPC_STUB IDBDataSourceAdmin_RemoteModifyDataSource_Stub(
 
 
 
-#endif 	/* __IDBDataSourceAdmin_INTERFACE_DEFINED__ */
+#endif     /* __IDBDataSourceAdmin_INTERFACE_DEFINED__ */
 
 
 /* interface __MIDL_itf_oledb_0304 */
@@ -8568,7 +8568,7 @@ EXTERN_C const IID IID_IDBAsynchNotify;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IDBAsynchNotifyVtbl
     {
@@ -8618,29 +8618,29 @@ EXTERN_C const IID IID_IDBAsynchNotify;
 #ifdef COBJMACROS
 
 
-#define IDBAsynchNotify_QueryInterface(This,riid,ppvObject)	\
+#define IDBAsynchNotify_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IDBAsynchNotify_AddRef(This)	\
+#define IDBAsynchNotify_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IDBAsynchNotify_Release(This)	\
+#define IDBAsynchNotify_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IDBAsynchNotify_OnLowResource(This,dwReserved)	\
+#define IDBAsynchNotify_OnLowResource(This,dwReserved)    \
     (This)->lpVtbl -> OnLowResource(This,dwReserved)
 
-#define IDBAsynchNotify_OnProgress(This,hChapter,eOperation,ulProgress,ulProgressMax,eAsynchPhase,pwszStatusText)	\
+#define IDBAsynchNotify_OnProgress(This,hChapter,eOperation,ulProgress,ulProgressMax,eAsynchPhase,pwszStatusText)    \
     (This)->lpVtbl -> OnProgress(This,hChapter,eOperation,ulProgress,ulProgressMax,eAsynchPhase,pwszStatusText)
 
-#define IDBAsynchNotify_OnStop(This,hChapter,eOperation,hrStatus,pwszStatusText)	\
+#define IDBAsynchNotify_OnStop(This,hChapter,eOperation,hrStatus,pwszStatusText)    \
     (This)->lpVtbl -> OnStop(This,hChapter,eOperation,hrStatus,pwszStatusText)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -8689,7 +8689,7 @@ void __RPC_STUB IDBAsynchNotify_RemoteOnStop_Stub(
 
 
 
-#endif 	/* __IDBAsynchNotify_INTERFACE_DEFINED__ */
+#endif     /* __IDBAsynchNotify_INTERFACE_DEFINED__ */
 
 
 #ifndef __IDBAsynchStatus_INTERFACE_DEFINED__
@@ -8721,7 +8721,7 @@ EXTERN_C const IID IID_IDBAsynchStatus;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IDBAsynchStatusVtbl
     {
@@ -8765,26 +8765,26 @@ EXTERN_C const IID IID_IDBAsynchStatus;
 #ifdef COBJMACROS
 
 
-#define IDBAsynchStatus_QueryInterface(This,riid,ppvObject)	\
+#define IDBAsynchStatus_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IDBAsynchStatus_AddRef(This)	\
+#define IDBAsynchStatus_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IDBAsynchStatus_Release(This)	\
+#define IDBAsynchStatus_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IDBAsynchStatus_Abort(This,hChapter,eOperation)	\
+#define IDBAsynchStatus_Abort(This,hChapter,eOperation)    \
     (This)->lpVtbl -> Abort(This,hChapter,eOperation)
 
-#define IDBAsynchStatus_GetStatus(This,hChapter,eOperation,pulProgress,pulProgressMax,peAsynchPhase,ppwszStatusText)	\
+#define IDBAsynchStatus_GetStatus(This,hChapter,eOperation,pulProgress,pulProgressMax,peAsynchPhase,ppwszStatusText)    \
     (This)->lpVtbl -> GetStatus(This,hChapter,eOperation,pulProgress,pulProgressMax,peAsynchPhase,ppwszStatusText)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -8821,7 +8821,7 @@ void __RPC_STUB IDBAsynchStatus_RemoteGetStatus_Stub(
 
 
 
-#endif 	/* __IDBAsynchStatus_INTERFACE_DEFINED__ */
+#endif     /* __IDBAsynchStatus_INTERFACE_DEFINED__ */
 
 
 /* interface __MIDL_itf_oledb_0306 */
@@ -8861,7 +8861,7 @@ EXTERN_C const IID IID_ISessionProperties;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ISessionPropertiesVtbl
     {
@@ -8903,26 +8903,26 @@ EXTERN_C const IID IID_ISessionProperties;
 #ifdef COBJMACROS
 
 
-#define ISessionProperties_QueryInterface(This,riid,ppvObject)	\
+#define ISessionProperties_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ISessionProperties_AddRef(This)	\
+#define ISessionProperties_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ISessionProperties_Release(This)	\
+#define ISessionProperties_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ISessionProperties_GetProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)	\
+#define ISessionProperties_GetProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)    \
     (This)->lpVtbl -> GetProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)
 
-#define ISessionProperties_SetProperties(This,cPropertySets,rgPropertySets)	\
+#define ISessionProperties_SetProperties(This,cPropertySets,rgPropertySets)    \
     (This)->lpVtbl -> SetProperties(This,cPropertySets,rgPropertySets)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -8959,7 +8959,7 @@ void __RPC_STUB ISessionProperties_RemoteSetProperties_Stub(
 
 
 
-#endif 	/* __ISessionProperties_INTERFACE_DEFINED__ */
+#endif     /* __ISessionProperties_INTERFACE_DEFINED__ */
 
 
 #ifndef __IIndexDefinition_INTERFACE_DEFINED__
@@ -8992,7 +8992,7 @@ EXTERN_C const IID IID_IIndexDefinition;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IIndexDefinitionVtbl
     {
@@ -9037,26 +9037,26 @@ EXTERN_C const IID IID_IIndexDefinition;
 #ifdef COBJMACROS
 
 
-#define IIndexDefinition_QueryInterface(This,riid,ppvObject)	\
+#define IIndexDefinition_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IIndexDefinition_AddRef(This)	\
+#define IIndexDefinition_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IIndexDefinition_Release(This)	\
+#define IIndexDefinition_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IIndexDefinition_CreateIndex(This,pTableID,pIndexID,cIndexColumnDescs,rgIndexColumnDescs,cPropertySets,rgPropertySets,ppIndexID)	\
+#define IIndexDefinition_CreateIndex(This,pTableID,pIndexID,cIndexColumnDescs,rgIndexColumnDescs,cPropertySets,rgPropertySets,ppIndexID)    \
     (This)->lpVtbl -> CreateIndex(This,pTableID,pIndexID,cIndexColumnDescs,rgIndexColumnDescs,cPropertySets,rgPropertySets,ppIndexID)
 
-#define IIndexDefinition_DropIndex(This,pTableID,pIndexID)	\
+#define IIndexDefinition_DropIndex(This,pTableID,pIndexID)    \
     (This)->lpVtbl -> DropIndex(This,pTableID,pIndexID)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -9096,7 +9096,7 @@ void __RPC_STUB IIndexDefinition_RemoteDropIndex_Stub(
 
 
 
-#endif 	/* __IIndexDefinition_INTERFACE_DEFINED__ */
+#endif     /* __IIndexDefinition_INTERFACE_DEFINED__ */
 
 
 #ifndef __ITableDefinition_INTERFACE_DEFINED__
@@ -9139,7 +9139,7 @@ EXTERN_C const IID IID_ITableDefinition;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ITableDefinitionVtbl
     {
@@ -9196,32 +9196,32 @@ EXTERN_C const IID IID_ITableDefinition;
 #ifdef COBJMACROS
 
 
-#define ITableDefinition_QueryInterface(This,riid,ppvObject)	\
+#define ITableDefinition_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ITableDefinition_AddRef(This)	\
+#define ITableDefinition_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ITableDefinition_Release(This)	\
+#define ITableDefinition_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ITableDefinition_CreateTable(This,pUnkOuter,pTableID,cColumnDescs,rgColumnDescs,riid,cPropertySets,rgPropertySets,ppTableID,ppRowset)	\
+#define ITableDefinition_CreateTable(This,pUnkOuter,pTableID,cColumnDescs,rgColumnDescs,riid,cPropertySets,rgPropertySets,ppTableID,ppRowset)    \
     (This)->lpVtbl -> CreateTable(This,pUnkOuter,pTableID,cColumnDescs,rgColumnDescs,riid,cPropertySets,rgPropertySets,ppTableID,ppRowset)
 
-#define ITableDefinition_DropTable(This,pTableID)	\
+#define ITableDefinition_DropTable(This,pTableID)    \
     (This)->lpVtbl -> DropTable(This,pTableID)
 
-#define ITableDefinition_AddColumn(This,pTableID,pColumnDesc,ppColumnID)	\
+#define ITableDefinition_AddColumn(This,pTableID,pColumnDesc,ppColumnID)    \
     (This)->lpVtbl -> AddColumn(This,pTableID,pColumnDesc,ppColumnID)
 
-#define ITableDefinition_DropColumn(This,pTableID,pColumnID)	\
+#define ITableDefinition_DropColumn(This,pTableID,pColumnID)    \
     (This)->lpVtbl -> DropColumn(This,pTableID,pColumnID)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -9294,7 +9294,7 @@ void __RPC_STUB ITableDefinition_RemoteDropColumn_Stub(
 
 
 
-#endif 	/* __ITableDefinition_INTERFACE_DEFINED__ */
+#endif     /* __ITableDefinition_INTERFACE_DEFINED__ */
 
 
 #ifndef __IOpenRowset_INTERFACE_DEFINED__
@@ -9323,7 +9323,7 @@ EXTERN_C const IID IID_IOpenRowset;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IOpenRowsetVtbl
     {
@@ -9363,23 +9363,23 @@ EXTERN_C const IID IID_IOpenRowset;
 #ifdef COBJMACROS
 
 
-#define IOpenRowset_QueryInterface(This,riid,ppvObject)	\
+#define IOpenRowset_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IOpenRowset_AddRef(This)	\
+#define IOpenRowset_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IOpenRowset_Release(This)	\
+#define IOpenRowset_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IOpenRowset_OpenRowset(This,pUnkOuter,pTableID,pIndexID,riid,cPropertySets,rgPropertySets,ppRowset)	\
+#define IOpenRowset_OpenRowset(This,pUnkOuter,pTableID,pIndexID,riid,cPropertySets,rgPropertySets,ppRowset)    \
     (This)->lpVtbl -> OpenRowset(This,pUnkOuter,pTableID,pIndexID,riid,cPropertySets,rgPropertySets,ppRowset)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -9405,7 +9405,7 @@ void __RPC_STUB IOpenRowset_RemoteOpenRowset_Stub(
 
 
 
-#endif 	/* __IOpenRowset_INTERFACE_DEFINED__ */
+#endif     /* __IOpenRowset_INTERFACE_DEFINED__ */
 
 
 #ifndef __IDBSchemaRowset_INTERFACE_DEFINED__
@@ -9460,17 +9460,17 @@ void __RPC_STUB IOpenRowset_RemoteOpenRowset_Stub(
 //@@@- V2.0
 //@@@+ V2.1
 #if( OLEDBVER >= 0x0210 )
-#define CRESTRICTIONS_DBSCHEMA_TRUSTEE		                  4
+#define CRESTRICTIONS_DBSCHEMA_TRUSTEE                          4
 #endif // OLEDBVER >= 0x0210
 //@@@- V2.1
 //@@@+ V2.6
 #if( OLEDBVER >= 0x0260 )
 #define CRESTRICTIONS_DBSCHEMA_TABLE_STATISTICS                7
 #define CRESTRICTIONS_DBSCHEMA_CHECK_CONSTRAINTS_BY_TABLE      6
-#define CRESTRICTIONS_MDSCHEMA_FUNCTIONS						  4
-#define CRESTRICTIONS_MDSCHEMA_ACTIONS						  8
-#define CRESTRICTIONS_MDSCHEMA_COMMANDS					      5
-#define CRESTRICTIONS_MDSCHEMA_SETS							  5
+#define CRESTRICTIONS_MDSCHEMA_FUNCTIONS                          4
+#define CRESTRICTIONS_MDSCHEMA_ACTIONS                          8
+#define CRESTRICTIONS_MDSCHEMA_COMMANDS                          5
+#define CRESTRICTIONS_MDSCHEMA_SETS                              5
 #endif // OLEDBVER >= 0x0260
 //@@@- V2.6
 
@@ -9499,7 +9499,7 @@ EXTERN_C const IID IID_IDBSchemaRowset;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IDBSchemaRowsetVtbl
     {
@@ -9546,26 +9546,26 @@ EXTERN_C const IID IID_IDBSchemaRowset;
 #ifdef COBJMACROS
 
 
-#define IDBSchemaRowset_QueryInterface(This,riid,ppvObject)	\
+#define IDBSchemaRowset_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IDBSchemaRowset_AddRef(This)	\
+#define IDBSchemaRowset_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IDBSchemaRowset_Release(This)	\
+#define IDBSchemaRowset_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IDBSchemaRowset_GetRowset(This,pUnkOuter,rguidSchema,cRestrictions,rgRestrictions,riid,cPropertySets,rgPropertySets,ppRowset)	\
+#define IDBSchemaRowset_GetRowset(This,pUnkOuter,rguidSchema,cRestrictions,rgRestrictions,riid,cPropertySets,rgPropertySets,ppRowset)    \
     (This)->lpVtbl -> GetRowset(This,pUnkOuter,rguidSchema,cRestrictions,rgRestrictions,riid,cPropertySets,rgPropertySets,ppRowset)
 
-#define IDBSchemaRowset_GetSchemas(This,pcSchemas,prgSchemas,prgRestrictionSupport)	\
+#define IDBSchemaRowset_GetSchemas(This,pcSchemas,prgSchemas,prgRestrictionSupport)    \
     (This)->lpVtbl -> GetSchemas(This,pcSchemas,prgSchemas,prgRestrictionSupport)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -9607,7 +9607,7 @@ void __RPC_STUB IDBSchemaRowset_RemoteGetSchemas_Stub(
 
 
 
-#endif 	/* __IDBSchemaRowset_INTERFACE_DEFINED__ */
+#endif     /* __IDBSchemaRowset_INTERFACE_DEFINED__ */
 
 
 /* interface __MIDL_itf_oledb_0311 */
@@ -9663,7 +9663,7 @@ EXTERN_C const IID IID_IMDDataset;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IMDDatasetVtbl
     {
@@ -9724,35 +9724,35 @@ EXTERN_C const IID IID_IMDDataset;
 #ifdef COBJMACROS
 
 
-#define IMDDataset_QueryInterface(This,riid,ppvObject)	\
+#define IMDDataset_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IMDDataset_AddRef(This)	\
+#define IMDDataset_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IMDDataset_Release(This)	\
+#define IMDDataset_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IMDDataset_FreeAxisInfo(This,cAxes,rgAxisInfo)	\
+#define IMDDataset_FreeAxisInfo(This,cAxes,rgAxisInfo)    \
     (This)->lpVtbl -> FreeAxisInfo(This,cAxes,rgAxisInfo)
 
-#define IMDDataset_GetAxisInfo(This,pcAxes,prgAxisInfo)	\
+#define IMDDataset_GetAxisInfo(This,pcAxes,prgAxisInfo)    \
     (This)->lpVtbl -> GetAxisInfo(This,pcAxes,prgAxisInfo)
 
-#define IMDDataset_GetAxisRowset(This,pUnkOuter,iAxis,riid,cPropertySets,rgPropertySets,ppRowset)	\
+#define IMDDataset_GetAxisRowset(This,pUnkOuter,iAxis,riid,cPropertySets,rgPropertySets,ppRowset)    \
     (This)->lpVtbl -> GetAxisRowset(This,pUnkOuter,iAxis,riid,cPropertySets,rgPropertySets,ppRowset)
 
-#define IMDDataset_GetCellData(This,hAccessor,ulStartCell,ulEndCell,pData)	\
+#define IMDDataset_GetCellData(This,hAccessor,ulStartCell,ulEndCell,pData)    \
     (This)->lpVtbl -> GetCellData(This,hAccessor,ulStartCell,ulEndCell,pData)
 
-#define IMDDataset_GetSpecification(This,riid,ppSpecification)	\
+#define IMDDataset_GetSpecification(This,riid,ppSpecification)    \
     (This)->lpVtbl -> GetSpecification(This,riid,ppSpecification)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -9828,7 +9828,7 @@ void __RPC_STUB IMDDataset_GetSpecification_Stub(
 
 
 
-#endif 	/* __IMDDataset_INTERFACE_DEFINED__ */
+#endif     /* __IMDDataset_INTERFACE_DEFINED__ */
 
 
 #ifndef __IMDFind_INTERFACE_DEFINED__
@@ -9861,7 +9861,7 @@ EXTERN_C const IID IID_IMDFind;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IMDFindVtbl
     {
@@ -9906,26 +9906,26 @@ EXTERN_C const IID IID_IMDFind;
 #ifdef COBJMACROS
 
 
-#define IMDFind_QueryInterface(This,riid,ppvObject)	\
+#define IMDFind_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IMDFind_AddRef(This)	\
+#define IMDFind_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IMDFind_Release(This)	\
+#define IMDFind_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IMDFind_FindCell(This,ulStartingOrdinal,cMembers,rgpwszMember,pulCellOrdinal)	\
+#define IMDFind_FindCell(This,ulStartingOrdinal,cMembers,rgpwszMember,pulCellOrdinal)    \
     (This)->lpVtbl -> FindCell(This,ulStartingOrdinal,cMembers,rgpwszMember,pulCellOrdinal)
 
-#define IMDFind_FindTuple(This,ulAxisIdentifier,ulStartingOrdinal,cMembers,rgpwszMember,pulTupleOrdinal)	\
+#define IMDFind_FindTuple(This,ulAxisIdentifier,ulStartingOrdinal,cMembers,rgpwszMember,pulTupleOrdinal)    \
     (This)->lpVtbl -> FindTuple(This,ulAxisIdentifier,ulStartingOrdinal,cMembers,rgpwszMember,pulTupleOrdinal)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -9961,7 +9961,7 @@ void __RPC_STUB IMDFind_FindTuple_Stub(
 
 
 
-#endif 	/* __IMDFind_INTERFACE_DEFINED__ */
+#endif     /* __IMDFind_INTERFACE_DEFINED__ */
 
 
 #ifndef __IMDRangeRowset_INTERFACE_DEFINED__
@@ -9990,7 +9990,7 @@ EXTERN_C const IID IID_IMDRangeRowset;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IMDRangeRowsetVtbl
     {
@@ -10030,23 +10030,23 @@ EXTERN_C const IID IID_IMDRangeRowset;
 #ifdef COBJMACROS
 
 
-#define IMDRangeRowset_QueryInterface(This,riid,ppvObject)	\
+#define IMDRangeRowset_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IMDRangeRowset_AddRef(This)	\
+#define IMDRangeRowset_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IMDRangeRowset_Release(This)	\
+#define IMDRangeRowset_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IMDRangeRowset_GetRangeRowset(This,pUnkOuter,ulStartCell,ulEndCell,riid,cPropertySets,rgPropertySets,ppRowset)	\
+#define IMDRangeRowset_GetRangeRowset(This,pUnkOuter,ulStartCell,ulEndCell,riid,cPropertySets,rgPropertySets,ppRowset)    \
     (This)->lpVtbl -> GetRangeRowset(This,pUnkOuter,ulStartCell,ulEndCell,riid,cPropertySets,rgPropertySets,ppRowset)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -10069,7 +10069,7 @@ void __RPC_STUB IMDRangeRowset_GetRangeRowset_Stub(
 
 
 
-#endif 	/* __IMDRangeRowset_INTERFACE_DEFINED__ */
+#endif     /* __IMDRangeRowset_INTERFACE_DEFINED__ */
 
 
 #ifndef __IAlterTable_INTERFACE_DEFINED__
@@ -10101,7 +10101,7 @@ EXTERN_C const IID IID_IAlterTable;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IAlterTableVtbl
     {
@@ -10145,26 +10145,26 @@ EXTERN_C const IID IID_IAlterTable;
 #ifdef COBJMACROS
 
 
-#define IAlterTable_QueryInterface(This,riid,ppvObject)	\
+#define IAlterTable_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IAlterTable_AddRef(This)	\
+#define IAlterTable_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IAlterTable_Release(This)	\
+#define IAlterTable_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IAlterTable_AlterColumn(This,pTableId,pColumnId,dwColumnDescFlags,pColumnDesc)	\
+#define IAlterTable_AlterColumn(This,pTableId,pColumnId,dwColumnDescFlags,pColumnDesc)    \
     (This)->lpVtbl -> AlterColumn(This,pTableId,pColumnId,dwColumnDescFlags,pColumnDesc)
 
-#define IAlterTable_AlterTable(This,pTableId,pNewTableId,cPropertySets,rgPropertySets)	\
+#define IAlterTable_AlterTable(This,pTableId,pNewTableId,cPropertySets,rgPropertySets)    \
     (This)->lpVtbl -> AlterTable(This,pTableId,pNewTableId,cPropertySets,rgPropertySets)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -10199,7 +10199,7 @@ void __RPC_STUB IAlterTable_AlterTable_Stub(
 
 
 
-#endif 	/* __IAlterTable_INTERFACE_DEFINED__ */
+#endif     /* __IAlterTable_INTERFACE_DEFINED__ */
 
 
 #ifndef __IAlterIndex_INTERFACE_DEFINED__
@@ -10226,7 +10226,7 @@ EXTERN_C const IID IID_IAlterIndex;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IAlterIndexVtbl
     {
@@ -10264,23 +10264,23 @@ EXTERN_C const IID IID_IAlterIndex;
 #ifdef COBJMACROS
 
 
-#define IAlterIndex_QueryInterface(This,riid,ppvObject)	\
+#define IAlterIndex_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IAlterIndex_AddRef(This)	\
+#define IAlterIndex_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IAlterIndex_Release(This)	\
+#define IAlterIndex_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IAlterIndex_AlterIndex(This,pTableId,pIndexId,pNewIndexId,cPropertySets,rgPropertySets)	\
+#define IAlterIndex_AlterIndex(This,pTableId,pIndexId,pNewIndexId,cPropertySets,rgPropertySets)    \
     (This)->lpVtbl -> AlterIndex(This,pTableId,pIndexId,pNewIndexId,cPropertySets,rgPropertySets)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -10301,7 +10301,7 @@ void __RPC_STUB IAlterIndex_AlterIndex_Stub(
 
 
 
-#endif 	/* __IAlterIndex_INTERFACE_DEFINED__ */
+#endif     /* __IAlterIndex_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowsetChapterMember_INTERFACE_DEFINED__
@@ -10325,7 +10325,7 @@ EXTERN_C const IID IID_IRowsetChapterMember;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetChapterMemberVtbl
     {
@@ -10360,23 +10360,23 @@ EXTERN_C const IID IID_IRowsetChapterMember;
 #ifdef COBJMACROS
 
 
-#define IRowsetChapterMember_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetChapterMember_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetChapterMember_AddRef(This)	\
+#define IRowsetChapterMember_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetChapterMember_Release(This)	\
+#define IRowsetChapterMember_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetChapterMember_IsRowInChapter(This,hChapter,hRow)	\
+#define IRowsetChapterMember_IsRowInChapter(This,hChapter,hRow)    \
     (This)->lpVtbl -> IsRowInChapter(This,hChapter,hRow)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -10394,7 +10394,7 @@ void __RPC_STUB IRowsetChapterMember_IsRowInChapter_Stub(
 
 
 
-#endif 	/* __IRowsetChapterMember_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetChapterMember_INTERFACE_DEFINED__ */
 
 
 #ifndef __ICommandPersist_INTERFACE_DEFINED__
@@ -10428,7 +10428,7 @@ EXTERN_C const IID IID_ICommandPersist;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ICommandPersistVtbl
     {
@@ -10476,32 +10476,32 @@ EXTERN_C const IID IID_ICommandPersist;
 #ifdef COBJMACROS
 
 
-#define ICommandPersist_QueryInterface(This,riid,ppvObject)	\
+#define ICommandPersist_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ICommandPersist_AddRef(This)	\
+#define ICommandPersist_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ICommandPersist_Release(This)	\
+#define ICommandPersist_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ICommandPersist_DeleteCommand(This,pCommandID)	\
+#define ICommandPersist_DeleteCommand(This,pCommandID)    \
     (This)->lpVtbl -> DeleteCommand(This,pCommandID)
 
-#define ICommandPersist_GetCurrentCommand(This,ppCommandID)	\
+#define ICommandPersist_GetCurrentCommand(This,ppCommandID)    \
     (This)->lpVtbl -> GetCurrentCommand(This,ppCommandID)
 
-#define ICommandPersist_LoadCommand(This,pCommandID,dwFlags)	\
+#define ICommandPersist_LoadCommand(This,pCommandID,dwFlags)    \
     (This)->lpVtbl -> LoadCommand(This,pCommandID,dwFlags)
 
-#define ICommandPersist_SaveCommand(This,pCommandID,dwFlags)	\
+#define ICommandPersist_SaveCommand(This,pCommandID,dwFlags)    \
     (This)->lpVtbl -> SaveCommand(This,pCommandID,dwFlags)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -10556,7 +10556,7 @@ void __RPC_STUB ICommandPersist_SaveCommand_Stub(
 
 
 
-#endif 	/* __ICommandPersist_INTERFACE_DEFINED__ */
+#endif     /* __ICommandPersist_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowsetRefresh_INTERFACE_DEFINED__
@@ -10590,7 +10590,7 @@ EXTERN_C const IID IID_IRowsetRefresh;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetRefreshVtbl
     {
@@ -10636,26 +10636,26 @@ EXTERN_C const IID IID_IRowsetRefresh;
 #ifdef COBJMACROS
 
 
-#define IRowsetRefresh_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetRefresh_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetRefresh_AddRef(This)	\
+#define IRowsetRefresh_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetRefresh_Release(This)	\
+#define IRowsetRefresh_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetRefresh_RefreshVisibleData(This,hChapter,cRows,rghRows,fOverWrite,pcRowsRefreshed,prghRowsRefreshed,prgRowStatus)	\
+#define IRowsetRefresh_RefreshVisibleData(This,hChapter,cRows,rghRows,fOverWrite,pcRowsRefreshed,prghRowsRefreshed,prgRowStatus)    \
     (This)->lpVtbl -> RefreshVisibleData(This,hChapter,cRows,rghRows,fOverWrite,pcRowsRefreshed,prghRowsRefreshed,prgRowStatus)
 
-#define IRowsetRefresh_GetLastVisibleData(This,hRow,hAccessor,pData)	\
+#define IRowsetRefresh_GetLastVisibleData(This,hRow,hAccessor,pData)    \
     (This)->lpVtbl -> GetLastVisibleData(This,hRow,hAccessor,pData)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -10692,7 +10692,7 @@ void __RPC_STUB IRowsetRefresh_GetLastVisibleData_Stub(
 
 
 
-#endif 	/* __IRowsetRefresh_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetRefresh_INTERFACE_DEFINED__ */
 
 
 #ifndef __IParentRowset_INTERFACE_DEFINED__
@@ -10718,7 +10718,7 @@ EXTERN_C const IID IID_IParentRowset;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IParentRowsetVtbl
     {
@@ -10755,23 +10755,23 @@ EXTERN_C const IID IID_IParentRowset;
 #ifdef COBJMACROS
 
 
-#define IParentRowset_QueryInterface(This,riid,ppvObject)	\
+#define IParentRowset_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IParentRowset_AddRef(This)	\
+#define IParentRowset_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IParentRowset_Release(This)	\
+#define IParentRowset_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IParentRowset_GetChildRowset(This,pUnkOuter,iOrdinal,riid,ppRowset)	\
+#define IParentRowset_GetChildRowset(This,pUnkOuter,iOrdinal,riid,ppRowset)    \
     (This)->lpVtbl -> GetChildRowset(This,pUnkOuter,iOrdinal,riid,ppRowset)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -10791,7 +10791,7 @@ void __RPC_STUB IParentRowset_GetChildRowset_Stub(
 
 
 
-#endif 	/* __IParentRowset_INTERFACE_DEFINED__ */
+#endif     /* __IParentRowset_INTERFACE_DEFINED__ */
 
 
 /* interface __MIDL_itf_oledb_0320 */
@@ -10810,8 +10810,8 @@ extern RPC_IF_HANDLE __MIDL_itf_oledb_0320_v0_0_s_ifspec;
 /* interface IErrorRecords */
 /* [unique][uuid][object] */ 
 
-#define IDENTIFIER_SDK_MASK	0xF0000000
-#define IDENTIFIER_SDK_ERROR	0x10000000
+#define IDENTIFIER_SDK_MASK    0xF0000000
+#define IDENTIFIER_SDK_ERROR    0x10000000
 typedef struct tagERRORINFO
     {
     HRESULT hrError;
@@ -10819,7 +10819,7 @@ typedef struct tagERRORINFO
     CLSID clsid;
     IID iid;
     DISPID dispid;
-    } 	ERRORINFO;
+    }     ERRORINFO;
 
 
 EXTERN_C const IID IID_IErrorRecords;
@@ -10860,7 +10860,7 @@ EXTERN_C const IID IID_IErrorRecords;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IErrorRecordsVtbl
     {
@@ -10924,38 +10924,38 @@ EXTERN_C const IID IID_IErrorRecords;
 #ifdef COBJMACROS
 
 
-#define IErrorRecords_QueryInterface(This,riid,ppvObject)	\
+#define IErrorRecords_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IErrorRecords_AddRef(This)	\
+#define IErrorRecords_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IErrorRecords_Release(This)	\
+#define IErrorRecords_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IErrorRecords_AddErrorRecord(This,pErrorInfo,dwLookupID,pdispparams,punkCustomError,dwDynamicErrorID)	\
+#define IErrorRecords_AddErrorRecord(This,pErrorInfo,dwLookupID,pdispparams,punkCustomError,dwDynamicErrorID)    \
     (This)->lpVtbl -> AddErrorRecord(This,pErrorInfo,dwLookupID,pdispparams,punkCustomError,dwDynamicErrorID)
 
-#define IErrorRecords_GetBasicErrorInfo(This,ulRecordNum,pErrorInfo)	\
+#define IErrorRecords_GetBasicErrorInfo(This,ulRecordNum,pErrorInfo)    \
     (This)->lpVtbl -> GetBasicErrorInfo(This,ulRecordNum,pErrorInfo)
 
-#define IErrorRecords_GetCustomErrorObject(This,ulRecordNum,riid,ppObject)	\
+#define IErrorRecords_GetCustomErrorObject(This,ulRecordNum,riid,ppObject)    \
     (This)->lpVtbl -> GetCustomErrorObject(This,ulRecordNum,riid,ppObject)
 
-#define IErrorRecords_GetErrorInfo(This,ulRecordNum,lcid,ppErrorInfo)	\
+#define IErrorRecords_GetErrorInfo(This,ulRecordNum,lcid,ppErrorInfo)    \
     (This)->lpVtbl -> GetErrorInfo(This,ulRecordNum,lcid,ppErrorInfo)
 
-#define IErrorRecords_GetErrorParameters(This,ulRecordNum,pdispparams)	\
+#define IErrorRecords_GetErrorParameters(This,ulRecordNum,pdispparams)    \
     (This)->lpVtbl -> GetErrorParameters(This,ulRecordNum,pdispparams)
 
-#define IErrorRecords_GetRecordCount(This,pcRecords)	\
+#define IErrorRecords_GetRecordCount(This,pcRecords)    \
     (This)->lpVtbl -> GetRecordCount(This,pcRecords)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -11048,7 +11048,7 @@ void __RPC_STUB IErrorRecords_RemoteGetRecordCount_Stub(
 
 
 
-#endif 	/* __IErrorRecords_INTERFACE_DEFINED__ */
+#endif     /* __IErrorRecords_INTERFACE_DEFINED__ */
 
 
 #ifndef __IErrorLookup_INTERFACE_DEFINED__
@@ -11086,7 +11086,7 @@ EXTERN_C const IID IID_IErrorLookup;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IErrorLookupVtbl
     {
@@ -11137,29 +11137,29 @@ EXTERN_C const IID IID_IErrorLookup;
 #ifdef COBJMACROS
 
 
-#define IErrorLookup_QueryInterface(This,riid,ppvObject)	\
+#define IErrorLookup_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IErrorLookup_AddRef(This)	\
+#define IErrorLookup_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IErrorLookup_Release(This)	\
+#define IErrorLookup_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IErrorLookup_GetErrorDescription(This,hrError,dwLookupID,pdispparams,lcid,pbstrSource,pbstrDescription)	\
+#define IErrorLookup_GetErrorDescription(This,hrError,dwLookupID,pdispparams,lcid,pbstrSource,pbstrDescription)    \
     (This)->lpVtbl -> GetErrorDescription(This,hrError,dwLookupID,pdispparams,lcid,pbstrSource,pbstrDescription)
 
-#define IErrorLookup_GetHelpInfo(This,hrError,dwLookupID,lcid,pbstrHelpFile,pdwHelpContext)	\
+#define IErrorLookup_GetHelpInfo(This,hrError,dwLookupID,lcid,pbstrHelpFile,pdwHelpContext)    \
     (This)->lpVtbl -> GetHelpInfo(This,hrError,dwLookupID,lcid,pbstrHelpFile,pdwHelpContext)
 
-#define IErrorLookup_ReleaseErrors(This,dwDynamicErrorID)	\
+#define IErrorLookup_ReleaseErrors(This,dwDynamicErrorID)    \
     (This)->lpVtbl -> ReleaseErrors(This,dwDynamicErrorID)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -11212,7 +11212,7 @@ void __RPC_STUB IErrorLookup_RemoteReleaseErrors_Stub(
 
 
 
-#endif 	/* __IErrorLookup_INTERFACE_DEFINED__ */
+#endif     /* __IErrorLookup_INTERFACE_DEFINED__ */
 
 
 #ifndef __ISQLErrorInfo_INTERFACE_DEFINED__
@@ -11236,7 +11236,7 @@ EXTERN_C const IID IID_ISQLErrorInfo;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ISQLErrorInfoVtbl
     {
@@ -11271,23 +11271,23 @@ EXTERN_C const IID IID_ISQLErrorInfo;
 #ifdef COBJMACROS
 
 
-#define ISQLErrorInfo_QueryInterface(This,riid,ppvObject)	\
+#define ISQLErrorInfo_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ISQLErrorInfo_AddRef(This)	\
+#define ISQLErrorInfo_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ISQLErrorInfo_Release(This)	\
+#define ISQLErrorInfo_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ISQLErrorInfo_GetSQLInfo(This,pbstrSQLState,plNativeError)	\
+#define ISQLErrorInfo_GetSQLInfo(This,pbstrSQLState,plNativeError)    \
     (This)->lpVtbl -> GetSQLInfo(This,pbstrSQLState,plNativeError)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -11306,7 +11306,7 @@ void __RPC_STUB ISQLErrorInfo_RemoteGetSQLInfo_Stub(
 
 
 
-#endif 	/* __ISQLErrorInfo_INTERFACE_DEFINED__ */
+#endif     /* __ISQLErrorInfo_INTERFACE_DEFINED__ */
 
 
 #ifndef __IGetDataSource_INTERFACE_DEFINED__
@@ -11330,7 +11330,7 @@ EXTERN_C const IID IID_IGetDataSource;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IGetDataSourceVtbl
     {
@@ -11365,23 +11365,23 @@ EXTERN_C const IID IID_IGetDataSource;
 #ifdef COBJMACROS
 
 
-#define IGetDataSource_QueryInterface(This,riid,ppvObject)	\
+#define IGetDataSource_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IGetDataSource_AddRef(This)	\
+#define IGetDataSource_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IGetDataSource_Release(This)	\
+#define IGetDataSource_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IGetDataSource_GetDataSource(This,riid,ppDataSource)	\
+#define IGetDataSource_GetDataSource(This,riid,ppDataSource)    \
     (This)->lpVtbl -> GetDataSource(This,riid,ppDataSource)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -11400,7 +11400,7 @@ void __RPC_STUB IGetDataSource_RemoteGetDataSource_Stub(
 
 
 
-#endif 	/* __IGetDataSource_INTERFACE_DEFINED__ */
+#endif     /* __IGetDataSource_INTERFACE_DEFINED__ */
 
 
 #ifndef __ITransactionLocal_INTERFACE_DEFINED__
@@ -11429,7 +11429,7 @@ EXTERN_C const IID IID_ITransactionLocal;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ITransactionLocalVtbl
     {
@@ -11486,36 +11486,36 @@ EXTERN_C const IID IID_ITransactionLocal;
 #ifdef COBJMACROS
 
 
-#define ITransactionLocal_QueryInterface(This,riid,ppvObject)	\
+#define ITransactionLocal_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ITransactionLocal_AddRef(This)	\
+#define ITransactionLocal_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ITransactionLocal_Release(This)	\
+#define ITransactionLocal_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ITransactionLocal_Commit(This,fRetaining,grfTC,grfRM)	\
+#define ITransactionLocal_Commit(This,fRetaining,grfTC,grfRM)    \
     (This)->lpVtbl -> Commit(This,fRetaining,grfTC,grfRM)
 
-#define ITransactionLocal_Abort(This,pboidReason,fRetaining,fAsync)	\
+#define ITransactionLocal_Abort(This,pboidReason,fRetaining,fAsync)    \
     (This)->lpVtbl -> Abort(This,pboidReason,fRetaining,fAsync)
 
-#define ITransactionLocal_GetTransactionInfo(This,pinfo)	\
+#define ITransactionLocal_GetTransactionInfo(This,pinfo)    \
     (This)->lpVtbl -> GetTransactionInfo(This,pinfo)
 
 
-#define ITransactionLocal_GetOptionsObject(This,ppOptions)	\
+#define ITransactionLocal_GetOptionsObject(This,ppOptions)    \
     (This)->lpVtbl -> GetOptionsObject(This,ppOptions)
 
-#define ITransactionLocal_StartTransaction(This,isoLevel,isoFlags,pOtherOptions,pulTransactionLevel)	\
+#define ITransactionLocal_StartTransaction(This,isoLevel,isoFlags,pOtherOptions,pulTransactionLevel)    \
     (This)->lpVtbl -> StartTransaction(This,isoLevel,isoFlags,pOtherOptions,pulTransactionLevel)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -11549,7 +11549,7 @@ void __RPC_STUB ITransactionLocal_RemoteStartTransaction_Stub(
 
 
 
-#endif 	/* __ITransactionLocal_INTERFACE_DEFINED__ */
+#endif     /* __ITransactionLocal_INTERFACE_DEFINED__ */
 
 
 #ifndef __ITransactionJoin_INTERFACE_DEFINED__
@@ -11578,7 +11578,7 @@ EXTERN_C const IID IID_ITransactionJoin;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ITransactionJoinVtbl
     {
@@ -11619,26 +11619,26 @@ EXTERN_C const IID IID_ITransactionJoin;
 #ifdef COBJMACROS
 
 
-#define ITransactionJoin_QueryInterface(This,riid,ppvObject)	\
+#define ITransactionJoin_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ITransactionJoin_AddRef(This)	\
+#define ITransactionJoin_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ITransactionJoin_Release(This)	\
+#define ITransactionJoin_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ITransactionJoin_GetOptionsObject(This,ppOptions)	\
+#define ITransactionJoin_GetOptionsObject(This,ppOptions)    \
     (This)->lpVtbl -> GetOptionsObject(This,ppOptions)
 
-#define ITransactionJoin_JoinTransaction(This,punkTransactionCoord,isoLevel,isoFlags,pOtherOptions)	\
+#define ITransactionJoin_JoinTransaction(This,punkTransactionCoord,isoLevel,isoFlags,pOtherOptions)    \
     (This)->lpVtbl -> JoinTransaction(This,punkTransactionCoord,isoLevel,isoFlags,pOtherOptions)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -11672,7 +11672,7 @@ void __RPC_STUB ITransactionJoin_RemoteJoinTransaction_Stub(
 
 
 
-#endif 	/* __ITransactionJoin_INTERFACE_DEFINED__ */
+#endif     /* __ITransactionJoin_INTERFACE_DEFINED__ */
 
 
 #ifndef __ITransactionObject_INTERFACE_DEFINED__
@@ -11696,7 +11696,7 @@ EXTERN_C const IID IID_ITransactionObject;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ITransactionObjectVtbl
     {
@@ -11731,23 +11731,23 @@ EXTERN_C const IID IID_ITransactionObject;
 #ifdef COBJMACROS
 
 
-#define ITransactionObject_QueryInterface(This,riid,ppvObject)	\
+#define ITransactionObject_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ITransactionObject_AddRef(This)	\
+#define ITransactionObject_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ITransactionObject_Release(This)	\
+#define ITransactionObject_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ITransactionObject_GetTransactionObject(This,ulTransactionLevel,ppTransactionObject)	\
+#define ITransactionObject_GetTransactionObject(This,ulTransactionLevel,ppTransactionObject)    \
     (This)->lpVtbl -> GetTransactionObject(This,ulTransactionLevel,ppTransactionObject)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -11766,7 +11766,7 @@ void __RPC_STUB ITransactionObject_RemoteGetTransactionObject_Stub(
 
 
 
-#endif 	/* __ITransactionObject_INTERFACE_DEFINED__ */
+#endif     /* __ITransactionObject_INTERFACE_DEFINED__ */
 
 
 /* interface __MIDL_itf_oledb_0334 */
@@ -11778,48 +11778,48 @@ void __RPC_STUB ITransactionObject_RemoteGetTransactionObject_Stub(
 #if 0  // to get around a MIDL limitation
 typedef 
 enum _SE_OBJECT_TYPE
-    {	SE_UNKNOWN_OBJECT_TYPE	= 0,
-	SE_FILE_OBJECT	= SE_UNKNOWN_OBJECT_TYPE + 1,
-	SE_SERVICE	= SE_FILE_OBJECT + 1,
-	SE_PRINTER	= SE_SERVICE + 1,
-	SE_REGISTRY_KEY	= SE_PRINTER + 1,
-	SE_LMSHARE	= SE_REGISTRY_KEY + 1,
-	SE_KERNEL_OBJECT	= SE_LMSHARE + 1,
-	SE_WINDOW_OBJECT	= SE_KERNEL_OBJECT + 1,
-	SE_DS_OBJECT	= SE_WINDOW_OBJECT + 1,
-	SE_DS_OBJECT_ALL	= SE_DS_OBJECT + 1,
-	SE_PROVIDER_DEFINED_OBJECT	= SE_DS_OBJECT_ALL + 1,
-	SE_WMIGUID_OBJECT	= SE_PROVIDER_DEFINED_OBJECT + 1,
-	SE_REGISTRY_WOW64_32KEY	= SE_WMIGUID_OBJECT + 1
-    } 	SE_OBJECT_TYPE;
+    {    SE_UNKNOWN_OBJECT_TYPE    = 0,
+    SE_FILE_OBJECT    = SE_UNKNOWN_OBJECT_TYPE + 1,
+    SE_SERVICE    = SE_FILE_OBJECT + 1,
+    SE_PRINTER    = SE_SERVICE + 1,
+    SE_REGISTRY_KEY    = SE_PRINTER + 1,
+    SE_LMSHARE    = SE_REGISTRY_KEY + 1,
+    SE_KERNEL_OBJECT    = SE_LMSHARE + 1,
+    SE_WINDOW_OBJECT    = SE_KERNEL_OBJECT + 1,
+    SE_DS_OBJECT    = SE_WINDOW_OBJECT + 1,
+    SE_DS_OBJECT_ALL    = SE_DS_OBJECT + 1,
+    SE_PROVIDER_DEFINED_OBJECT    = SE_DS_OBJECT_ALL + 1,
+    SE_WMIGUID_OBJECT    = SE_PROVIDER_DEFINED_OBJECT + 1,
+    SE_REGISTRY_WOW64_32KEY    = SE_WMIGUID_OBJECT + 1
+    }     SE_OBJECT_TYPE;
 
 typedef 
 enum _TRUSTEE_TYPE
-    {	TRUSTEE_IS_UNKNOWN	= 0,
-	TRUSTEE_IS_USER	= TRUSTEE_IS_UNKNOWN + 1,
-	TRUSTEE_IS_GROUP	= TRUSTEE_IS_USER + 1,
-	TRUSTEE_IS_DOMAIN	= TRUSTEE_IS_GROUP + 1,
-	TRUSTEE_IS_ALIAS	= TRUSTEE_IS_DOMAIN + 1,
-	TRUSTEE_IS_WELL_KNOWN_GROUP	= TRUSTEE_IS_ALIAS + 1,
-	TRUSTEE_IS_DELETED	= TRUSTEE_IS_WELL_KNOWN_GROUP + 1,
-	TRUSTEE_IS_INVALID	= TRUSTEE_IS_DELETED + 1,
-	TRUSTEE_IS_COMPUTER	= TRUSTEE_IS_INVALID + 1
-    } 	TRUSTEE_TYPE;
+    {    TRUSTEE_IS_UNKNOWN    = 0,
+    TRUSTEE_IS_USER    = TRUSTEE_IS_UNKNOWN + 1,
+    TRUSTEE_IS_GROUP    = TRUSTEE_IS_USER + 1,
+    TRUSTEE_IS_DOMAIN    = TRUSTEE_IS_GROUP + 1,
+    TRUSTEE_IS_ALIAS    = TRUSTEE_IS_DOMAIN + 1,
+    TRUSTEE_IS_WELL_KNOWN_GROUP    = TRUSTEE_IS_ALIAS + 1,
+    TRUSTEE_IS_DELETED    = TRUSTEE_IS_WELL_KNOWN_GROUP + 1,
+    TRUSTEE_IS_INVALID    = TRUSTEE_IS_DELETED + 1,
+    TRUSTEE_IS_COMPUTER    = TRUSTEE_IS_INVALID + 1
+    }     TRUSTEE_TYPE;
 
 typedef 
 enum _TRUSTEE_FORM
-    {	TRUSTEE_IS_SID	= 0,
-	TRUSTEE_IS_NAME	= TRUSTEE_IS_SID + 1,
-	TRUSTEE_BAD_FORM	= TRUSTEE_IS_NAME + 1,
-	TRUSTEE_IS_OBJECTS_AND_SID	= TRUSTEE_BAD_FORM + 1,
-	TRUSTEE_IS_OBJECTS_AND_NAME	= TRUSTEE_IS_OBJECTS_AND_SID + 1
-    } 	TRUSTEE_FORM;
+    {    TRUSTEE_IS_SID    = 0,
+    TRUSTEE_IS_NAME    = TRUSTEE_IS_SID + 1,
+    TRUSTEE_BAD_FORM    = TRUSTEE_IS_NAME + 1,
+    TRUSTEE_IS_OBJECTS_AND_SID    = TRUSTEE_BAD_FORM + 1,
+    TRUSTEE_IS_OBJECTS_AND_NAME    = TRUSTEE_IS_OBJECTS_AND_SID + 1
+    }     TRUSTEE_FORM;
 
 typedef 
 enum _MULTIPLE_TRUSTEE_OPERATION
-    {	NO_MULTIPLE_TRUSTEE	= 0,
-	TRUSTEE_IS_IMPERSONATE	= NO_MULTIPLE_TRUSTEE + 1
-    } 	MULTIPLE_TRUSTEE_OPERATION;
+    {    NO_MULTIPLE_TRUSTEE    = 0,
+    TRUSTEE_IS_IMPERSONATE    = NO_MULTIPLE_TRUSTEE + 1
+    }     MULTIPLE_TRUSTEE_OPERATION;
 
 typedef struct _OBJECTS_AND_SID
     {
@@ -11827,7 +11827,7 @@ typedef struct _OBJECTS_AND_SID
     GUID ObjectTypeGuid;
     GUID InheritedObjectTypeGuid;
     SID *pSid;
-    } 	OBJECTS_AND_SID;
+    }     OBJECTS_AND_SID;
 
 typedef struct _OBJECTS_AND_SID *POBJECTS_AND_SID;
 
@@ -11838,7 +11838,7 @@ typedef struct _OBJECTS_AND_NAME_A
     LPSTR ObjectTypeName;
     LPSTR InheritedObjectTypeName;
     LPSTR ptstrName;
-    } 	OBJECTS_AND_NAME_A;
+    }     OBJECTS_AND_NAME_A;
 
 typedef struct _OBJECTS_AND_NAME_A *POBJECTS_AND_NAME_A;
 
@@ -11849,7 +11849,7 @@ typedef struct _OBJECTS_AND_NAME_W
     LPWSTR ObjectTypeName;
     LPWSTR InheritedObjectTypeName;
     LPWSTR ptstrName;
-    } 	OBJECTS_AND_NAME_W;
+    }     OBJECTS_AND_NAME_W;
 
 typedef struct _OBJECTS_AND_NAME_W *POBJECTS_AND_NAME_W;
 
@@ -11869,8 +11869,8 @@ typedef struct _TRUSTEE_A
         /* [case()] */ SID *pSid;
         /* [case()] */ OBJECTS_AND_SID *pObjectsAndSid;
         /* [case()] */ OBJECTS_AND_NAME_A *pObjectsAndName;
-        } 	;
-    } 	TRUSTEE_A;
+        }     ;
+    }     TRUSTEE_A;
 
 typedef struct _TRUSTEE_A *PTRUSTEE_A;
 
@@ -11890,8 +11890,8 @@ typedef struct _TRUSTEE_W
         /* [case()] */ SID *pSid;
         /* [case()] */ OBJECTS_AND_SID *pObjectsAndSid;
         /* [case()] */ OBJECTS_AND_NAME_W *pObjectsAndName;
-        } 	;
-    } 	TRUSTEE_W;
+        }     ;
+    }     TRUSTEE_W;
 
 typedef struct _TRUSTEE_W *PTRUSTEE_W;
 
@@ -11909,14 +11909,14 @@ typedef PTRUSTEEA PTRUSTEE;
 
 typedef 
 enum _ACCESS_MODE
-    {	NOT_USED_ACCESS	= 0,
-	GRANT_ACCESS	= NOT_USED_ACCESS + 1,
-	SET_ACCESS	= GRANT_ACCESS + 1,
-	DENY_ACCESS	= SET_ACCESS + 1,
-	REVOKE_ACCESS	= DENY_ACCESS + 1,
-	SET_AUDIT_SUCCESS	= REVOKE_ACCESS + 1,
-	SET_AUDIT_FAILURE	= SET_AUDIT_SUCCESS + 1
-    } 	ACCESS_MODE;
+    {    NOT_USED_ACCESS    = 0,
+    GRANT_ACCESS    = NOT_USED_ACCESS + 1,
+    SET_ACCESS    = GRANT_ACCESS + 1,
+    DENY_ACCESS    = SET_ACCESS + 1,
+    REVOKE_ACCESS    = DENY_ACCESS + 1,
+    SET_AUDIT_SUCCESS    = REVOKE_ACCESS + 1,
+    SET_AUDIT_FAILURE    = SET_AUDIT_SUCCESS + 1
+    }     ACCESS_MODE;
 
 typedef struct _EXPLICIT_ACCESS_A
     {
@@ -11924,7 +11924,7 @@ typedef struct _EXPLICIT_ACCESS_A
     ACCESS_MODE grfAccessMode;
     DWORD grfInheritance;
     TRUSTEE_A Trustee;
-    } 	EXPLICIT_ACCESS_A;
+    }     EXPLICIT_ACCESS_A;
 
 typedef struct _EXPLICIT_ACCESS_A *PEXPLICIT_ACCESS_A;
 
@@ -11938,7 +11938,7 @@ typedef struct _EXPLICIT_ACCESS_W
     ACCESS_MODE grfAccessMode;
     DWORD grfInheritance;
     TRUSTEE_W Trustee;
-    } 	EXPLICIT_ACCESS_W;
+    }     EXPLICIT_ACCESS_W;
 
 typedef struct _EXPLICIT_ACCESS_W *PEXPLICIT_ACCESS_W;
 
@@ -11970,7 +11970,7 @@ typedef struct _ACTRL_ACCESS_ENTRYA
     ACCESS_RIGHTS ProvSpecificAccess;
     INHERIT_FLAGS Inheritance;
     LPSTR lpInheritProperty;
-    } 	ACTRL_ACCESS_ENTRYA;
+    }     ACTRL_ACCESS_ENTRYA;
 
 typedef struct _ACTRL_ACCESS_ENTRYA *PACTRL_ACCESS_ENTRYA;
 
@@ -11982,7 +11982,7 @@ typedef struct _ACTRL_ACCESS_ENTRYW
     ACCESS_RIGHTS ProvSpecificAccess;
     INHERIT_FLAGS Inheritance;
     LPWSTR lpInheritProperty;
-    } 	ACTRL_ACCESS_ENTRYW;
+    }     ACTRL_ACCESS_ENTRYW;
 
 typedef struct _ACTRL_ACCESS_ENTRYW *PACTRL_ACCESS_ENTRYW;
 
@@ -11994,7 +11994,7 @@ typedef struct _ACTRL_ACCESS_ENTRY_LISTA
     {
     ULONG cEntries;
     /* [size_is] */ ACTRL_ACCESS_ENTRYA *pAccessList;
-    } 	ACTRL_ACCESS_ENTRY_LISTA;
+    }     ACTRL_ACCESS_ENTRY_LISTA;
 
 typedef struct _ACTRL_ACCESS_ENTRY_LISTA *PACTRL_ACCESS_ENTRY_LISTA;
 
@@ -12002,7 +12002,7 @@ typedef struct _ACTRL_ACCESS_ENTRY_LISTW
     {
     ULONG cEntries;
     /* [size_is] */ ACTRL_ACCESS_ENTRYW *pAccessList;
-    } 	ACTRL_ACCESS_ENTRY_LISTW;
+    }     ACTRL_ACCESS_ENTRY_LISTW;
 
 typedef struct _ACTRL_ACCESS_ENTRY_LISTW *PACTRL_ACCESS_ENTRY_LISTW;
 
@@ -12015,7 +12015,7 @@ typedef struct _ACTRL_PROPERTY_ENTRYA
     LPSTR lpProperty;
     PACTRL_ACCESS_ENTRY_LISTA pAccessEntryList;
     ULONG fListFlags;
-    } 	ACTRL_PROPERTY_ENTRYA;
+    }     ACTRL_PROPERTY_ENTRYA;
 
 typedef struct _ACTRL_PROPERTY_ENTRYA *PACTRL_PROPERTY_ENTRYA;
 
@@ -12024,7 +12024,7 @@ typedef struct _ACTRL_PROPERTY_ENTRYW
     LPWSTR lpProperty;
     PACTRL_ACCESS_ENTRY_LISTW pAccessEntryList;
     ULONG fListFlags;
-    } 	ACTRL_PROPERTY_ENTRYW;
+    }     ACTRL_PROPERTY_ENTRYW;
 
 typedef struct _ACTRL_PROPERTY_ENTRYW *PACTRL_PROPERTY_ENTRYW;
 
@@ -12036,7 +12036,7 @@ typedef struct _ACTRL_ALISTA
     {
     ULONG cEntries;
     /* [size_is] */ PACTRL_PROPERTY_ENTRYA pPropertyAccessList;
-    } 	ACTRL_ACCESSA;
+    }     ACTRL_ACCESSA;
 
 typedef struct _ACTRL_ALISTA *PACTRL_ACCESSA;
 
@@ -12048,7 +12048,7 @@ typedef struct _ACTRL_ALISTW
     {
     ULONG cEntries;
     /* [size_is] */ PACTRL_PROPERTY_ENTRYW pPropertyAccessList;
-    } 	ACTRL_ACCESSW;
+    }     ACTRL_ACCESSW;
 
 typedef struct _ACTRL_ALISTW *PACTRL_ACCESSW;
 
@@ -12070,7 +12070,7 @@ typedef struct _TRUSTEE_ACCESSA
     ACCESS_RIGHTS Access;
     ULONG fAccessFlags;
     ULONG fReturnedAccess;
-    } 	TRUSTEE_ACCESSA;
+    }     TRUSTEE_ACCESSA;
 
 typedef struct _TRUSTEE_ACCESSA *PTRUSTEE_ACCESSA;
 
@@ -12080,7 +12080,7 @@ typedef struct _TRUSTEE_ACCESSW
     ACCESS_RIGHTS Access;
     ULONG fAccessFlags;
     ULONG fReturnedAccess;
-    } 	TRUSTEE_ACCESSW;
+    }     TRUSTEE_ACCESSW;
 
 typedef struct _TRUSTEE_ACCESSW *PTRUSTEE_ACCESSW;
 
@@ -12096,10 +12096,10 @@ typedef struct _ACTRL_OVERLAPPED
         {
         PVOID Provider;
         ULONG Reserved1;
-        } 	;
+        }     ;
     ULONG Reserved2;
     HANDLE hEvent;
-    } 	ACTRL_OVERLAPPED;
+    }     ACTRL_OVERLAPPED;
 
 typedef struct _ACTRL_OVERLAPPED *PACTRL_OVERLAPPED;
 
@@ -12108,7 +12108,7 @@ typedef struct _ACTRL_ACCESS_INFOA
     {
     ULONG fAccessPermission;
     LPSTR lpAccessPermissionName;
-    } 	ACTRL_ACCESS_INFOA;
+    }     ACTRL_ACCESS_INFOA;
 
 typedef struct _ACTRL_ACCESS_INFOA *PACTRL_ACCESS_INFOA;
 
@@ -12116,7 +12116,7 @@ typedef struct _ACTRL_ACCESS_INFOW
     {
     ULONG fAccessPermission;
     LPWSTR lpAccessPermissionName;
-    } 	ACTRL_ACCESS_INFOW;
+    }     ACTRL_ACCESS_INFOW;
 
 typedef struct _ACTRL_ACCESS_INFOW *PACTRL_ACCESS_INFOW;
 
@@ -12128,7 +12128,7 @@ typedef struct _ACTRL_CONTROL_INFOA
     {
     LPSTR lpControlId;
     LPSTR lpControlName;
-    } 	ACTRL_CONTROL_INFOA;
+    }     ACTRL_CONTROL_INFOA;
 
 typedef struct _ACTRL_CONTROL_INFOA *PACTRL_CONTROL_INFOA;
 
@@ -12136,7 +12136,7 @@ typedef struct _ACTRL_CONTROL_INFOW
     {
     LPWSTR lpControlId;
     LPWSTR lpControlName;
-    } 	ACTRL_CONTROL_INFOW;
+    }     ACTRL_CONTROL_INFOW;
 
 typedef struct _ACTRL_CONTROL_INFOW *PACTRL_CONTROL_INFOW;
 
@@ -12146,19 +12146,19 @@ typedef PACTRL_CONTROL_INFOA PACTRL_CONTROL_INFO;
 
 typedef 
 enum _PROGRESS_INVOKE_SETTING
-    {	ProgressInvokeNever	= 1,
-	ProgressInvokeEveryObject	= ProgressInvokeNever + 1,
-	ProgressInvokeOnError	= ProgressInvokeEveryObject + 1,
-	ProgressCancelOperation	= ProgressInvokeOnError + 1,
-	ProgressRetryOperation	= ProgressCancelOperation + 1
-    } 	PROG_INVOKE_SETTING;
+    {    ProgressInvokeNever    = 1,
+    ProgressInvokeEveryObject    = ProgressInvokeNever + 1,
+    ProgressInvokeOnError    = ProgressInvokeEveryObject + 1,
+    ProgressCancelOperation    = ProgressInvokeOnError + 1,
+    ProgressRetryOperation    = ProgressCancelOperation + 1
+    }     PROG_INVOKE_SETTING;
 
 typedef enum _PROGRESS_INVOKE_SETTING *PPROG_INVOKE_SETTING;
 
 typedef struct _FN_OBJECT_MGR_FUNCTIONS
     {
     ULONG Placeholder;
-    } 	FN_OBJECT_MGR_FUNCTS;
+    }     FN_OBJECT_MGR_FUNCTS;
 
 typedef struct _FN_OBJECT_MGR_FUNCTIONS *PFN_OBJECT_MGR_FUNCTS;
 
@@ -12166,7 +12166,7 @@ typedef struct _INHERITED_FROMA
     {
     LONG GenerationGap;
     LPSTR AncestorName;
-    } 	INHERITED_FROMA;
+    }     INHERITED_FROMA;
 
 typedef struct _INHERITED_FROMA *PINHERITED_FROMA;
 
@@ -12174,7 +12174,7 @@ typedef struct _INHERITED_FROMW
     {
     LONG GenerationGap;
     LPWSTR AncestorName;
-    } 	INHERITED_FROMW;
+    }     INHERITED_FROMW;
 
 typedef struct _INHERITED_FROMW *PINHERITED_FROMW;
 
@@ -12231,7 +12231,7 @@ EXTERN_C const IID IID_ITrusteeAdmin;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ITrusteeAdminVtbl
     {
@@ -12290,35 +12290,35 @@ EXTERN_C const IID IID_ITrusteeAdmin;
 #ifdef COBJMACROS
 
 
-#define ITrusteeAdmin_QueryInterface(This,riid,ppvObject)	\
+#define ITrusteeAdmin_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ITrusteeAdmin_AddRef(This)	\
+#define ITrusteeAdmin_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ITrusteeAdmin_Release(This)	\
+#define ITrusteeAdmin_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ITrusteeAdmin_CompareTrustees(This,pTrustee1,pTrustee2)	\
+#define ITrusteeAdmin_CompareTrustees(This,pTrustee1,pTrustee2)    \
     (This)->lpVtbl -> CompareTrustees(This,pTrustee1,pTrustee2)
 
-#define ITrusteeAdmin_CreateTrustee(This,pTrustee,cPropertySets,rgPropertySets)	\
+#define ITrusteeAdmin_CreateTrustee(This,pTrustee,cPropertySets,rgPropertySets)    \
     (This)->lpVtbl -> CreateTrustee(This,pTrustee,cPropertySets,rgPropertySets)
 
-#define ITrusteeAdmin_DeleteTrustee(This,pTrustee)	\
+#define ITrusteeAdmin_DeleteTrustee(This,pTrustee)    \
     (This)->lpVtbl -> DeleteTrustee(This,pTrustee)
 
-#define ITrusteeAdmin_SetTrusteeProperties(This,pTrustee,cPropertySets,rgPropertySets)	\
+#define ITrusteeAdmin_SetTrusteeProperties(This,pTrustee,cPropertySets,rgPropertySets)    \
     (This)->lpVtbl -> SetTrusteeProperties(This,pTrustee,cPropertySets,rgPropertySets)
 
-#define ITrusteeAdmin_GetTrusteeProperties(This,pTrustee,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)	\
+#define ITrusteeAdmin_GetTrusteeProperties(This,pTrustee,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)    \
     (This)->lpVtbl -> GetTrusteeProperties(This,pTrustee,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -12392,7 +12392,7 @@ void __RPC_STUB ITrusteeAdmin_GetTrusteeProperties_Stub(
 
 
 
-#endif 	/* __ITrusteeAdmin_INTERFACE_DEFINED__ */
+#endif     /* __ITrusteeAdmin_INTERFACE_DEFINED__ */
 
 
 #ifndef __ITrusteeGroupAdmin_INTERFACE_DEFINED__
@@ -12435,7 +12435,7 @@ EXTERN_C const IID IID_ITrusteeGroupAdmin;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ITrusteeGroupAdminVtbl
     {
@@ -12493,35 +12493,35 @@ EXTERN_C const IID IID_ITrusteeGroupAdmin;
 #ifdef COBJMACROS
 
 
-#define ITrusteeGroupAdmin_QueryInterface(This,riid,ppvObject)	\
+#define ITrusteeGroupAdmin_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ITrusteeGroupAdmin_AddRef(This)	\
+#define ITrusteeGroupAdmin_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ITrusteeGroupAdmin_Release(This)	\
+#define ITrusteeGroupAdmin_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ITrusteeGroupAdmin_AddMember(This,pMembershipTrustee,pMemberTrustee)	\
+#define ITrusteeGroupAdmin_AddMember(This,pMembershipTrustee,pMemberTrustee)    \
     (This)->lpVtbl -> AddMember(This,pMembershipTrustee,pMemberTrustee)
 
-#define ITrusteeGroupAdmin_DeleteMember(This,pMembershipTrustee,pMemberTrustee)	\
+#define ITrusteeGroupAdmin_DeleteMember(This,pMembershipTrustee,pMemberTrustee)    \
     (This)->lpVtbl -> DeleteMember(This,pMembershipTrustee,pMemberTrustee)
 
-#define ITrusteeGroupAdmin_IsMember(This,pMembershipTrustee,pMemberTrustee,pfStatus)	\
+#define ITrusteeGroupAdmin_IsMember(This,pMembershipTrustee,pMemberTrustee,pfStatus)    \
     (This)->lpVtbl -> IsMember(This,pMembershipTrustee,pMemberTrustee,pfStatus)
 
-#define ITrusteeGroupAdmin_GetMembers(This,pMembershipTrustee,pcMembers,prgMembers)	\
+#define ITrusteeGroupAdmin_GetMembers(This,pMembershipTrustee,pcMembers,prgMembers)    \
     (This)->lpVtbl -> GetMembers(This,pMembershipTrustee,pcMembers,prgMembers)
 
-#define ITrusteeGroupAdmin_GetMemberships(This,pTrustee,pcMemberships,prgMemberships)	\
+#define ITrusteeGroupAdmin_GetMemberships(This,pTrustee,pcMemberships,prgMemberships)    \
     (This)->lpVtbl -> GetMemberships(This,pTrustee,pcMemberships,prgMemberships)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -12594,7 +12594,7 @@ void __RPC_STUB ITrusteeGroupAdmin_GetMemberships_Stub(
 
 
 
-#endif 	/* __ITrusteeGroupAdmin_INTERFACE_DEFINED__ */
+#endif     /* __ITrusteeGroupAdmin_INTERFACE_DEFINED__ */
 
 
 #ifndef __IObjectAccessControl_INTERFACE_DEFINED__
@@ -12637,7 +12637,7 @@ EXTERN_C const IID IID_IObjectAccessControl;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IObjectAccessControlVtbl
     {
@@ -12695,35 +12695,35 @@ EXTERN_C const IID IID_IObjectAccessControl;
 #ifdef COBJMACROS
 
 
-#define IObjectAccessControl_QueryInterface(This,riid,ppvObject)	\
+#define IObjectAccessControl_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IObjectAccessControl_AddRef(This)	\
+#define IObjectAccessControl_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IObjectAccessControl_Release(This)	\
+#define IObjectAccessControl_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IObjectAccessControl_GetObjectAccessRights(This,pObject,pcAccessEntries,prgAccessEntries)	\
+#define IObjectAccessControl_GetObjectAccessRights(This,pObject,pcAccessEntries,prgAccessEntries)    \
     (This)->lpVtbl -> GetObjectAccessRights(This,pObject,pcAccessEntries,prgAccessEntries)
 
-#define IObjectAccessControl_GetObjectOwner(This,pObject,ppOwner)	\
+#define IObjectAccessControl_GetObjectOwner(This,pObject,ppOwner)    \
     (This)->lpVtbl -> GetObjectOwner(This,pObject,ppOwner)
 
-#define IObjectAccessControl_IsObjectAccessAllowed(This,pObject,pAccessEntry,pfResult)	\
+#define IObjectAccessControl_IsObjectAccessAllowed(This,pObject,pAccessEntry,pfResult)    \
     (This)->lpVtbl -> IsObjectAccessAllowed(This,pObject,pAccessEntry,pfResult)
 
-#define IObjectAccessControl_SetObjectAccessRights(This,pObject,cAccessEntries,prgAccessEntries)	\
+#define IObjectAccessControl_SetObjectAccessRights(This,pObject,cAccessEntries,prgAccessEntries)    \
     (This)->lpVtbl -> SetObjectAccessRights(This,pObject,cAccessEntries,prgAccessEntries)
 
-#define IObjectAccessControl_SetObjectOwner(This,pObject,pOwner)	\
+#define IObjectAccessControl_SetObjectOwner(This,pObject,pOwner)    \
     (This)->lpVtbl -> SetObjectOwner(This,pObject,pOwner)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -12796,7 +12796,7 @@ void __RPC_STUB IObjectAccessControl_SetObjectOwner_Stub(
 
 
 
-#endif 	/* __IObjectAccessControl_INTERFACE_DEFINED__ */
+#endif     /* __IObjectAccessControl_INTERFACE_DEFINED__ */
 
 
 #ifndef __ISecurityInfo_INTERFACE_DEFINED__
@@ -12811,25 +12811,25 @@ typedef DWORD ACCESS_MASK;
 
 
 enum ACCESS_MASKENUM
-    {	PERM_EXCLUSIVE	= 0x200L,
-	PERM_READDESIGN	= 0x400L,
-	PERM_WRITEDESIGN	= 0x800L,
-	PERM_WITHGRANT	= 0x1000L,
-	PERM_REFERENCE	= 0x2000L,
-	PERM_CREATE	= 0x4000L,
-	PERM_INSERT	= 0x8000L,
-	PERM_DELETE	= 0x10000L,
-	PERM_READCONTROL	= 0x20000L,
-	PERM_WRITEPERMISSIONS	= 0x40000L,
-	PERM_WRITEOWNER	= 0x80000L,
-	PERM_MAXIMUM_ALLOWED	= 0x2000000L,
-	PERM_ALL	= 0x10000000L,
-	PERM_EXECUTE	= 0x20000000L,
-	PERM_READ	= 0x80000000L,
-	PERM_UPDATE	= 0x40000000L,
-	PERM_DROP	= 0x100L
+    {    PERM_EXCLUSIVE    = 0x200L,
+    PERM_READDESIGN    = 0x400L,
+    PERM_WRITEDESIGN    = 0x800L,
+    PERM_WITHGRANT    = 0x1000L,
+    PERM_REFERENCE    = 0x2000L,
+    PERM_CREATE    = 0x4000L,
+    PERM_INSERT    = 0x8000L,
+    PERM_DELETE    = 0x10000L,
+    PERM_READCONTROL    = 0x20000L,
+    PERM_WRITEPERMISSIONS    = 0x40000L,
+    PERM_WRITEOWNER    = 0x80000L,
+    PERM_MAXIMUM_ALLOWED    = 0x2000000L,
+    PERM_ALL    = 0x10000000L,
+    PERM_EXECUTE    = 0x20000000L,
+    PERM_READ    = 0x80000000L,
+    PERM_UPDATE    = 0x40000000L,
+    PERM_DROP    = 0x100L
     } ;
-#define PERM_DESIGN 							PERM_WRITEDESIGN
+#define PERM_DESIGN                             PERM_WRITEDESIGN
 #endif // OLEDBVER >= 0x0210
 //@@@- V2.1
 
@@ -12854,7 +12854,7 @@ EXTERN_C const IID IID_ISecurityInfo;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ISecurityInfoVtbl
     {
@@ -12898,29 +12898,29 @@ EXTERN_C const IID IID_ISecurityInfo;
 #ifdef COBJMACROS
 
 
-#define ISecurityInfo_QueryInterface(This,riid,ppvObject)	\
+#define ISecurityInfo_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ISecurityInfo_AddRef(This)	\
+#define ISecurityInfo_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ISecurityInfo_Release(This)	\
+#define ISecurityInfo_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ISecurityInfo_GetCurrentTrustee(This,ppTrustee)	\
+#define ISecurityInfo_GetCurrentTrustee(This,ppTrustee)    \
     (This)->lpVtbl -> GetCurrentTrustee(This,ppTrustee)
 
-#define ISecurityInfo_GetObjectTypes(This,cObjectTypes,rgObjectTypes)	\
+#define ISecurityInfo_GetObjectTypes(This,cObjectTypes,rgObjectTypes)    \
     (This)->lpVtbl -> GetObjectTypes(This,cObjectTypes,rgObjectTypes)
 
-#define ISecurityInfo_GetPermissions(This,ObjectType,pPermissions)	\
+#define ISecurityInfo_GetPermissions(This,ObjectType,pPermissions)    \
     (This)->lpVtbl -> GetPermissions(This,ObjectType,pPermissions)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -12963,7 +12963,7 @@ void __RPC_STUB ISecurityInfo_GetPermissions_Stub(
 
 
 
-#endif 	/* __ISecurityInfo_INTERFACE_DEFINED__ */
+#endif     /* __ISecurityInfo_INTERFACE_DEFINED__ */
 
 
 /* interface __MIDL_itf_oledb_0338 */
@@ -13002,7 +13002,7 @@ EXTERN_C const IID IID_ITableCreation;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ITableCreationVtbl
     {
@@ -13070,36 +13070,36 @@ EXTERN_C const IID IID_ITableCreation;
 #ifdef COBJMACROS
 
 
-#define ITableCreation_QueryInterface(This,riid,ppvObject)	\
+#define ITableCreation_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ITableCreation_AddRef(This)	\
+#define ITableCreation_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ITableCreation_Release(This)	\
+#define ITableCreation_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ITableCreation_CreateTable(This,pUnkOuter,pTableID,cColumnDescs,rgColumnDescs,riid,cPropertySets,rgPropertySets,ppTableID,ppRowset)	\
+#define ITableCreation_CreateTable(This,pUnkOuter,pTableID,cColumnDescs,rgColumnDescs,riid,cPropertySets,rgPropertySets,ppTableID,ppRowset)    \
     (This)->lpVtbl -> CreateTable(This,pUnkOuter,pTableID,cColumnDescs,rgColumnDescs,riid,cPropertySets,rgPropertySets,ppTableID,ppRowset)
 
-#define ITableCreation_DropTable(This,pTableID)	\
+#define ITableCreation_DropTable(This,pTableID)    \
     (This)->lpVtbl -> DropTable(This,pTableID)
 
-#define ITableCreation_AddColumn(This,pTableID,pColumnDesc,ppColumnID)	\
+#define ITableCreation_AddColumn(This,pTableID,pColumnDesc,ppColumnID)    \
     (This)->lpVtbl -> AddColumn(This,pTableID,pColumnDesc,ppColumnID)
 
-#define ITableCreation_DropColumn(This,pTableID,pColumnID)	\
+#define ITableCreation_DropColumn(This,pTableID,pColumnID)    \
     (This)->lpVtbl -> DropColumn(This,pTableID,pColumnID)
 
 
-#define ITableCreation_GetTableDefinition(This,pTableID,pcColumnDescs,prgColumnDescs,pcPropertySets,prgPropertySets,pcConstraintDescs,prgConstraintDescs,ppwszStringBuffer)	\
+#define ITableCreation_GetTableDefinition(This,pTableID,pcColumnDescs,prgColumnDescs,pcPropertySets,prgPropertySets,pcConstraintDescs,prgConstraintDescs,ppwszStringBuffer)    \
     (This)->lpVtbl -> GetTableDefinition(This,pTableID,pcColumnDescs,prgColumnDescs,pcPropertySets,prgPropertySets,pcConstraintDescs,prgConstraintDescs,ppwszStringBuffer)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -13123,7 +13123,7 @@ void __RPC_STUB ITableCreation_GetTableDefinition_Stub(
 
 
 
-#endif 	/* __ITableCreation_INTERFACE_DEFINED__ */
+#endif     /* __ITableCreation_INTERFACE_DEFINED__ */
 
 
 #ifndef __ITableDefinitionWithConstraints_INTERFACE_DEFINED__
@@ -13164,7 +13164,7 @@ EXTERN_C const IID IID_ITableDefinitionWithConstraints;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ITableDefinitionWithConstraintsVtbl
     {
@@ -13256,46 +13256,46 @@ EXTERN_C const IID IID_ITableDefinitionWithConstraints;
 #ifdef COBJMACROS
 
 
-#define ITableDefinitionWithConstraints_QueryInterface(This,riid,ppvObject)	\
+#define ITableDefinitionWithConstraints_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ITableDefinitionWithConstraints_AddRef(This)	\
+#define ITableDefinitionWithConstraints_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ITableDefinitionWithConstraints_Release(This)	\
+#define ITableDefinitionWithConstraints_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ITableDefinitionWithConstraints_CreateTable(This,pUnkOuter,pTableID,cColumnDescs,rgColumnDescs,riid,cPropertySets,rgPropertySets,ppTableID,ppRowset)	\
+#define ITableDefinitionWithConstraints_CreateTable(This,pUnkOuter,pTableID,cColumnDescs,rgColumnDescs,riid,cPropertySets,rgPropertySets,ppTableID,ppRowset)    \
     (This)->lpVtbl -> CreateTable(This,pUnkOuter,pTableID,cColumnDescs,rgColumnDescs,riid,cPropertySets,rgPropertySets,ppTableID,ppRowset)
 
-#define ITableDefinitionWithConstraints_DropTable(This,pTableID)	\
+#define ITableDefinitionWithConstraints_DropTable(This,pTableID)    \
     (This)->lpVtbl -> DropTable(This,pTableID)
 
-#define ITableDefinitionWithConstraints_AddColumn(This,pTableID,pColumnDesc,ppColumnID)	\
+#define ITableDefinitionWithConstraints_AddColumn(This,pTableID,pColumnDesc,ppColumnID)    \
     (This)->lpVtbl -> AddColumn(This,pTableID,pColumnDesc,ppColumnID)
 
-#define ITableDefinitionWithConstraints_DropColumn(This,pTableID,pColumnID)	\
+#define ITableDefinitionWithConstraints_DropColumn(This,pTableID,pColumnID)    \
     (This)->lpVtbl -> DropColumn(This,pTableID,pColumnID)
 
 
-#define ITableDefinitionWithConstraints_GetTableDefinition(This,pTableID,pcColumnDescs,prgColumnDescs,pcPropertySets,prgPropertySets,pcConstraintDescs,prgConstraintDescs,ppwszStringBuffer)	\
+#define ITableDefinitionWithConstraints_GetTableDefinition(This,pTableID,pcColumnDescs,prgColumnDescs,pcPropertySets,prgPropertySets,pcConstraintDescs,prgConstraintDescs,ppwszStringBuffer)    \
     (This)->lpVtbl -> GetTableDefinition(This,pTableID,pcColumnDescs,prgColumnDescs,pcPropertySets,prgPropertySets,pcConstraintDescs,prgConstraintDescs,ppwszStringBuffer)
 
 
-#define ITableDefinitionWithConstraints_AddConstraint(This,pTableID,pConstraintDesc)	\
+#define ITableDefinitionWithConstraints_AddConstraint(This,pTableID,pConstraintDesc)    \
     (This)->lpVtbl -> AddConstraint(This,pTableID,pConstraintDesc)
 
-#define ITableDefinitionWithConstraints_CreateTableWithConstraints(This,pUnkOuter,pTableID,cColumnDescs,rgColumnDescs,cConstraintDescs,rgConstraintDescs,riid,cPropertySets,rgPropertySets,ppTableID,ppRowset)	\
+#define ITableDefinitionWithConstraints_CreateTableWithConstraints(This,pUnkOuter,pTableID,cColumnDescs,rgColumnDescs,cConstraintDescs,rgConstraintDescs,riid,cPropertySets,rgPropertySets,ppTableID,ppRowset)    \
     (This)->lpVtbl -> CreateTableWithConstraints(This,pUnkOuter,pTableID,cColumnDescs,rgColumnDescs,cConstraintDescs,rgConstraintDescs,riid,cPropertySets,rgPropertySets,ppTableID,ppRowset)
 
-#define ITableDefinitionWithConstraints_DropConstraint(This,pTableID,pConstraintID)	\
+#define ITableDefinitionWithConstraints_DropConstraint(This,pTableID,pConstraintID)    \
     (This)->lpVtbl -> DropConstraint(This,pTableID,pConstraintID)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -13348,7 +13348,7 @@ void __RPC_STUB ITableDefinitionWithConstraints_DropConstraint_Stub(
 
 
 
-#endif 	/* __ITableDefinitionWithConstraints_INTERFACE_DEFINED__ */
+#endif     /* __ITableDefinitionWithConstraints_INTERFACE_DEFINED__ */
 
 
 /* interface __MIDL_itf_oledb_0339 */
@@ -13394,7 +13394,7 @@ EXTERN_C const IID IID_IRow;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowVtbl
     {
@@ -13444,29 +13444,29 @@ EXTERN_C const IID IID_IRow;
 #ifdef COBJMACROS
 
 
-#define IRow_QueryInterface(This,riid,ppvObject)	\
+#define IRow_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRow_AddRef(This)	\
+#define IRow_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRow_Release(This)	\
+#define IRow_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRow_GetColumns(This,cColumns,rgColumns)	\
+#define IRow_GetColumns(This,cColumns,rgColumns)    \
     (This)->lpVtbl -> GetColumns(This,cColumns,rgColumns)
 
-#define IRow_GetSourceRowset(This,riid,ppRowset,phRow)	\
+#define IRow_GetSourceRowset(This,riid,ppRowset,phRow)    \
     (This)->lpVtbl -> GetSourceRowset(This,riid,ppRowset,phRow)
 
-#define IRow_Open(This,pUnkOuter,pColumnID,rguidColumnType,dwBindFlags,riid,ppUnk)	\
+#define IRow_Open(This,pUnkOuter,pColumnID,rguidColumnType,dwBindFlags,riid,ppUnk)    \
     (This)->lpVtbl -> Open(This,pUnkOuter,pColumnID,rguidColumnType,dwBindFlags,riid,ppUnk)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -13515,7 +13515,7 @@ void __RPC_STUB IRow_Open_Stub(
 
 
 
-#endif 	/* __IRow_INTERFACE_DEFINED__ */
+#endif     /* __IRow_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowChange_INTERFACE_DEFINED__
@@ -13539,7 +13539,7 @@ EXTERN_C const IID IID_IRowChange;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowChangeVtbl
     {
@@ -13574,23 +13574,23 @@ EXTERN_C const IID IID_IRowChange;
 #ifdef COBJMACROS
 
 
-#define IRowChange_QueryInterface(This,riid,ppvObject)	\
+#define IRowChange_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowChange_AddRef(This)	\
+#define IRowChange_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowChange_Release(This)	\
+#define IRowChange_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowChange_SetColumns(This,cColumns,rgColumns)	\
+#define IRowChange_SetColumns(This,cColumns,rgColumns)    \
     (This)->lpVtbl -> SetColumns(This,cColumns,rgColumns)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -13608,7 +13608,7 @@ void __RPC_STUB IRowChange_SetColumns_Stub(
 
 
 
-#endif 	/* __IRowChange_INTERFACE_DEFINED__ */
+#endif     /* __IRowChange_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowSchemaChange_INTERFACE_DEFINED__
@@ -13638,7 +13638,7 @@ EXTERN_C const IID IID_IRowSchemaChange;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowSchemaChangeVtbl
     {
@@ -13685,30 +13685,30 @@ EXTERN_C const IID IID_IRowSchemaChange;
 #ifdef COBJMACROS
 
 
-#define IRowSchemaChange_QueryInterface(This,riid,ppvObject)	\
+#define IRowSchemaChange_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowSchemaChange_AddRef(This)	\
+#define IRowSchemaChange_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowSchemaChange_Release(This)	\
+#define IRowSchemaChange_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowSchemaChange_SetColumns(This,cColumns,rgColumns)	\
+#define IRowSchemaChange_SetColumns(This,cColumns,rgColumns)    \
     (This)->lpVtbl -> SetColumns(This,cColumns,rgColumns)
 
 
-#define IRowSchemaChange_DeleteColumns(This,cColumns,rgColumnIDs,rgdwStatus)	\
+#define IRowSchemaChange_DeleteColumns(This,cColumns,rgColumnIDs,rgdwStatus)    \
     (This)->lpVtbl -> DeleteColumns(This,cColumns,rgColumnIDs,rgdwStatus)
 
-#define IRowSchemaChange_AddColumns(This,cColumns,rgNewColumnInfo,rgColumns)	\
+#define IRowSchemaChange_AddColumns(This,cColumns,rgNewColumnInfo,rgColumns)    \
     (This)->lpVtbl -> AddColumns(This,cColumns,rgNewColumnInfo,rgColumns)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -13741,7 +13741,7 @@ void __RPC_STUB IRowSchemaChange_AddColumns_Stub(
 
 
 
-#endif 	/* __IRowSchemaChange_INTERFACE_DEFINED__ */
+#endif     /* __IRowSchemaChange_INTERFACE_DEFINED__ */
 
 
 #ifndef __IGetRow_INTERFACE_DEFINED__
@@ -13771,7 +13771,7 @@ EXTERN_C const IID IID_IGetRow;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IGetRowVtbl
     {
@@ -13813,26 +13813,26 @@ EXTERN_C const IID IID_IGetRow;
 #ifdef COBJMACROS
 
 
-#define IGetRow_QueryInterface(This,riid,ppvObject)	\
+#define IGetRow_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IGetRow_AddRef(This)	\
+#define IGetRow_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IGetRow_Release(This)	\
+#define IGetRow_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IGetRow_GetRowFromHROW(This,pUnkOuter,hRow,riid,ppUnk)	\
+#define IGetRow_GetRowFromHROW(This,pUnkOuter,hRow,riid,ppUnk)    \
     (This)->lpVtbl -> GetRowFromHROW(This,pUnkOuter,hRow,riid,ppUnk)
 
-#define IGetRow_GetURLFromHROW(This,hRow,ppwszURL)	\
+#define IGetRow_GetURLFromHROW(This,hRow,ppwszURL)    \
     (This)->lpVtbl -> GetURLFromHROW(This,hRow,ppwszURL)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -13865,7 +13865,7 @@ void __RPC_STUB IGetRow_GetURLFromHROW_Stub(
 
 
 
-#endif 	/* __IGetRow_INTERFACE_DEFINED__ */
+#endif     /* __IGetRow_INTERFACE_DEFINED__ */
 
 
 #ifndef __IBindResource_INTERFACE_DEFINED__
@@ -13896,7 +13896,7 @@ EXTERN_C const IID IID_IBindResource;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IBindResourceVtbl
     {
@@ -13938,23 +13938,23 @@ EXTERN_C const IID IID_IBindResource;
 #ifdef COBJMACROS
 
 
-#define IBindResource_QueryInterface(This,riid,ppvObject)	\
+#define IBindResource_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IBindResource_AddRef(This)	\
+#define IBindResource_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IBindResource_Release(This)	\
+#define IBindResource_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IBindResource_Bind(This,pUnkOuter,pwszURL,dwBindURLFlags,rguid,riid,pAuthenticate,pImplSession,pdwBindStatus,ppUnk)	\
+#define IBindResource_Bind(This,pUnkOuter,pwszURL,dwBindURLFlags,rguid,riid,pAuthenticate,pImplSession,pdwBindStatus,ppUnk)    \
     (This)->lpVtbl -> Bind(This,pUnkOuter,pwszURL,dwBindURLFlags,rguid,riid,pAuthenticate,pImplSession,pdwBindStatus,ppUnk)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -13981,7 +13981,7 @@ void __RPC_STUB IBindResource_RemoteBind_Stub(
 
 
 
-#endif 	/* __IBindResource_INTERFACE_DEFINED__ */
+#endif     /* __IBindResource_INTERFACE_DEFINED__ */
 
 
 #ifndef __IScopedOperations_INTERFACE_DEFINED__
@@ -13994,28 +13994,28 @@ typedef DWORD DBCOPYFLAGS;
 
 
 enum DBCOPYFLAGSENUM
-    {	DBCOPY_ASYNC	= 0x100,
-	DBCOPY_REPLACE_EXISTING	= 0x200,
-	DBCOPY_ALLOW_EMULATION	= 0x400,
-	DBCOPY_NON_RECURSIVE	= 0x800,
-	DBCOPY_ATOMIC	= 0x1000
+    {    DBCOPY_ASYNC    = 0x100,
+    DBCOPY_REPLACE_EXISTING    = 0x200,
+    DBCOPY_ALLOW_EMULATION    = 0x400,
+    DBCOPY_NON_RECURSIVE    = 0x800,
+    DBCOPY_ATOMIC    = 0x1000
     } ;
 typedef DWORD DBMOVEFLAGS;
 
 
 enum DBMOVEFLAGSENUM
-    {	DBMOVE_REPLACE_EXISTING	= 0x1,
-	DBMOVE_ASYNC	= 0x100,
-	DBMOVE_DONT_UPDATE_LINKS	= 0x200,
-	DBMOVE_ALLOW_EMULATION	= 0x400,
-	DBMOVE_ATOMIC	= 0x1000
+    {    DBMOVE_REPLACE_EXISTING    = 0x1,
+    DBMOVE_ASYNC    = 0x100,
+    DBMOVE_DONT_UPDATE_LINKS    = 0x200,
+    DBMOVE_ALLOW_EMULATION    = 0x400,
+    DBMOVE_ATOMIC    = 0x1000
     } ;
 typedef DWORD DBDELETEFLAGS;
 
 
 enum DBDELETEFLAGSENUM
-    {	DBDELETE_ASYNC	= 0x100,
-	DBDELETE_ATOMIC	= 0x1000
+    {    DBDELETE_ASYNC    = 0x100,
+    DBDELETE_ATOMIC    = 0x1000
     } ;
 
 EXTERN_C const IID IID_IScopedOperations;
@@ -14063,7 +14063,7 @@ EXTERN_C const IID IID_IScopedOperations;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IScopedOperationsVtbl
     {
@@ -14144,36 +14144,36 @@ EXTERN_C const IID IID_IScopedOperations;
 #ifdef COBJMACROS
 
 
-#define IScopedOperations_QueryInterface(This,riid,ppvObject)	\
+#define IScopedOperations_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IScopedOperations_AddRef(This)	\
+#define IScopedOperations_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IScopedOperations_Release(This)	\
+#define IScopedOperations_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IScopedOperations_Bind(This,pUnkOuter,pwszURL,dwBindURLFlags,rguid,riid,pAuthenticate,pImplSession,pdwBindStatus,ppUnk)	\
+#define IScopedOperations_Bind(This,pUnkOuter,pwszURL,dwBindURLFlags,rguid,riid,pAuthenticate,pImplSession,pdwBindStatus,ppUnk)    \
     (This)->lpVtbl -> Bind(This,pUnkOuter,pwszURL,dwBindURLFlags,rguid,riid,pAuthenticate,pImplSession,pdwBindStatus,ppUnk)
 
 
-#define IScopedOperations_Copy(This,cRows,rgpwszSourceURLs,rgpwszDestURLs,dwCopyFlags,pAuthenticate,rgdwStatus,rgpwszNewURLs,ppStringsBuffer)	\
+#define IScopedOperations_Copy(This,cRows,rgpwszSourceURLs,rgpwszDestURLs,dwCopyFlags,pAuthenticate,rgdwStatus,rgpwszNewURLs,ppStringsBuffer)    \
     (This)->lpVtbl -> Copy(This,cRows,rgpwszSourceURLs,rgpwszDestURLs,dwCopyFlags,pAuthenticate,rgdwStatus,rgpwszNewURLs,ppStringsBuffer)
 
-#define IScopedOperations_Move(This,cRows,rgpwszSourceURLs,rgpwszDestURLs,dwMoveFlags,pAuthenticate,rgdwStatus,rgpwszNewURLs,ppStringsBuffer)	\
+#define IScopedOperations_Move(This,cRows,rgpwszSourceURLs,rgpwszDestURLs,dwMoveFlags,pAuthenticate,rgdwStatus,rgpwszNewURLs,ppStringsBuffer)    \
     (This)->lpVtbl -> Move(This,cRows,rgpwszSourceURLs,rgpwszDestURLs,dwMoveFlags,pAuthenticate,rgdwStatus,rgpwszNewURLs,ppStringsBuffer)
 
-#define IScopedOperations_Delete(This,cRows,rgpwszURLs,dwDeleteFlags,rgdwStatus)	\
+#define IScopedOperations_Delete(This,cRows,rgpwszURLs,dwDeleteFlags,rgdwStatus)    \
     (This)->lpVtbl -> Delete(This,cRows,rgpwszURLs,dwDeleteFlags,rgdwStatus)
 
-#define IScopedOperations_OpenRowset(This,pUnkOuter,pTableID,pIndexID,riid,cPropertySets,rgPropertySets,ppRowset)	\
+#define IScopedOperations_OpenRowset(This,pUnkOuter,pTableID,pIndexID,riid,cPropertySets,rgPropertySets,ppRowset)    \
     (This)->lpVtbl -> OpenRowset(This,pUnkOuter,pTableID,pIndexID,riid,cPropertySets,rgPropertySets,ppRowset)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -14253,7 +14253,7 @@ void __RPC_STUB IScopedOperations_RemoteOpenRowset_Stub(
 
 
 
-#endif 	/* __IScopedOperations_INTERFACE_DEFINED__ */
+#endif     /* __IScopedOperations_INTERFACE_DEFINED__ */
 
 
 #ifndef __ICreateRow_INTERFACE_DEFINED__
@@ -14285,7 +14285,7 @@ EXTERN_C const IID IID_ICreateRow;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ICreateRowVtbl
     {
@@ -14328,23 +14328,23 @@ EXTERN_C const IID IID_ICreateRow;
 #ifdef COBJMACROS
 
 
-#define ICreateRow_QueryInterface(This,riid,ppvObject)	\
+#define ICreateRow_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ICreateRow_AddRef(This)	\
+#define ICreateRow_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ICreateRow_Release(This)	\
+#define ICreateRow_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ICreateRow_CreateRow(This,pUnkOuter,pwszURL,dwBindURLFlags,rguid,riid,pAuthenticate,pImplSession,pdwBindStatus,ppwszNewURL,ppUnk)	\
+#define ICreateRow_CreateRow(This,pUnkOuter,pwszURL,dwBindURLFlags,rguid,riid,pAuthenticate,pImplSession,pdwBindStatus,ppwszNewURL,ppUnk)    \
     (This)->lpVtbl -> CreateRow(This,pUnkOuter,pwszURL,dwBindURLFlags,rguid,riid,pAuthenticate,pImplSession,pdwBindStatus,ppwszNewURL,ppUnk)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -14372,7 +14372,7 @@ void __RPC_STUB ICreateRow_RemoteCreateRow_Stub(
 
 
 
-#endif 	/* __ICreateRow_INTERFACE_DEFINED__ */
+#endif     /* __ICreateRow_INTERFACE_DEFINED__ */
 
 
 #ifndef __IDBBinderProperties_INTERFACE_DEFINED__
@@ -14394,7 +14394,7 @@ EXTERN_C const IID IID_IDBBinderProperties;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IDBBinderPropertiesVtbl
     {
@@ -14447,33 +14447,33 @@ EXTERN_C const IID IID_IDBBinderProperties;
 #ifdef COBJMACROS
 
 
-#define IDBBinderProperties_QueryInterface(This,riid,ppvObject)	\
+#define IDBBinderProperties_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IDBBinderProperties_AddRef(This)	\
+#define IDBBinderProperties_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IDBBinderProperties_Release(This)	\
+#define IDBBinderProperties_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IDBBinderProperties_GetProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)	\
+#define IDBBinderProperties_GetProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)    \
     (This)->lpVtbl -> GetProperties(This,cPropertyIDSets,rgPropertyIDSets,pcPropertySets,prgPropertySets)
 
-#define IDBBinderProperties_GetPropertyInfo(This,cPropertyIDSets,rgPropertyIDSets,pcPropertyInfoSets,prgPropertyInfoSets,ppDescBuffer)	\
+#define IDBBinderProperties_GetPropertyInfo(This,cPropertyIDSets,rgPropertyIDSets,pcPropertyInfoSets,prgPropertyInfoSets,ppDescBuffer)    \
     (This)->lpVtbl -> GetPropertyInfo(This,cPropertyIDSets,rgPropertyIDSets,pcPropertyInfoSets,prgPropertyInfoSets,ppDescBuffer)
 
-#define IDBBinderProperties_SetProperties(This,cPropertySets,rgPropertySets)	\
+#define IDBBinderProperties_SetProperties(This,cPropertySets,rgPropertySets)    \
     (This)->lpVtbl -> SetProperties(This,cPropertySets,rgPropertySets)
 
 
-#define IDBBinderProperties_Reset(This)	\
+#define IDBBinderProperties_Reset(This)    \
     (This)->lpVtbl -> Reset(This)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -14489,7 +14489,7 @@ void __RPC_STUB IDBBinderProperties_Reset_Stub(
 
 
 
-#endif 	/* __IDBBinderProperties_INTERFACE_DEFINED__ */
+#endif     /* __IDBBinderProperties_INTERFACE_DEFINED__ */
 
 
 #ifndef __IColumnsInfo2_INTERFACE_DEFINED__
@@ -14518,7 +14518,7 @@ EXTERN_C const IID IID_IColumnsInfo2;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IColumnsInfo2Vtbl
     {
@@ -14570,30 +14570,30 @@ EXTERN_C const IID IID_IColumnsInfo2;
 #ifdef COBJMACROS
 
 
-#define IColumnsInfo2_QueryInterface(This,riid,ppvObject)	\
+#define IColumnsInfo2_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IColumnsInfo2_AddRef(This)	\
+#define IColumnsInfo2_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IColumnsInfo2_Release(This)	\
+#define IColumnsInfo2_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IColumnsInfo2_GetColumnInfo(This,pcColumns,prgInfo,ppStringsBuffer)	\
+#define IColumnsInfo2_GetColumnInfo(This,pcColumns,prgInfo,ppStringsBuffer)    \
     (This)->lpVtbl -> GetColumnInfo(This,pcColumns,prgInfo,ppStringsBuffer)
 
-#define IColumnsInfo2_MapColumnIDs(This,cColumnIDs,rgColumnIDs,rgColumns)	\
+#define IColumnsInfo2_MapColumnIDs(This,cColumnIDs,rgColumnIDs,rgColumns)    \
     (This)->lpVtbl -> MapColumnIDs(This,cColumnIDs,rgColumnIDs,rgColumns)
 
 
-#define IColumnsInfo2_GetRestrictedColumnInfo(This,cColumnIDMasks,rgColumnIDMasks,dwFlags,pcColumns,prgColumnIDs,prgColumnInfo,ppStringsBuffer)	\
+#define IColumnsInfo2_GetRestrictedColumnInfo(This,cColumnIDMasks,rgColumnIDMasks,dwFlags,pcColumns,prgColumnIDs,prgColumnInfo,ppStringsBuffer)    \
     (This)->lpVtbl -> GetRestrictedColumnInfo(This,cColumnIDMasks,rgColumnIDMasks,dwFlags,pcColumns,prgColumnIDs,prgColumnInfo,ppStringsBuffer)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -14619,7 +14619,7 @@ void __RPC_STUB IColumnsInfo2_RemoteGetRestrictedColumnInfo_Stub(
 
 
 
-#endif 	/* __IColumnsInfo2_INTERFACE_DEFINED__ */
+#endif     /* __IColumnsInfo2_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRegisterProvider_INTERFACE_DEFINED__
@@ -14654,7 +14654,7 @@ EXTERN_C const IID IID_IRegisterProvider;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRegisterProviderVtbl
     {
@@ -14702,29 +14702,29 @@ EXTERN_C const IID IID_IRegisterProvider;
 #ifdef COBJMACROS
 
 
-#define IRegisterProvider_QueryInterface(This,riid,ppvObject)	\
+#define IRegisterProvider_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRegisterProvider_AddRef(This)	\
+#define IRegisterProvider_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRegisterProvider_Release(This)	\
+#define IRegisterProvider_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRegisterProvider_GetURLMapping(This,pwszURL,dwReserved,pclsidProvider)	\
+#define IRegisterProvider_GetURLMapping(This,pwszURL,dwReserved,pclsidProvider)    \
     (This)->lpVtbl -> GetURLMapping(This,pwszURL,dwReserved,pclsidProvider)
 
-#define IRegisterProvider_SetURLMapping(This,pwszURL,dwReserved,rclsidProvider)	\
+#define IRegisterProvider_SetURLMapping(This,pwszURL,dwReserved,rclsidProvider)    \
     (This)->lpVtbl -> SetURLMapping(This,pwszURL,dwReserved,rclsidProvider)
 
-#define IRegisterProvider_UnregisterProvider(This,pwszURL,dwReserved,rclsidProvider)	\
+#define IRegisterProvider_UnregisterProvider(This,pwszURL,dwReserved,rclsidProvider)    \
     (This)->lpVtbl -> UnregisterProvider(This,pwszURL,dwReserved,rclsidProvider)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -14771,7 +14771,7 @@ void __RPC_STUB IRegisterProvider_UnregisterProvider_Stub(
 
 
 
-#endif 	/* __IRegisterProvider_INTERFACE_DEFINED__ */
+#endif     /* __IRegisterProvider_INTERFACE_DEFINED__ */
 
 
 /* interface __MIDL_itf_oledb_0349 */
@@ -14804,7 +14804,7 @@ EXTERN_C const IID IID_IGetSession;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IGetSessionVtbl
     {
@@ -14839,23 +14839,23 @@ EXTERN_C const IID IID_IGetSession;
 #ifdef COBJMACROS
 
 
-#define IGetSession_QueryInterface(This,riid,ppvObject)	\
+#define IGetSession_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IGetSession_AddRef(This)	\
+#define IGetSession_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IGetSession_Release(This)	\
+#define IGetSession_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IGetSession_GetSession(This,riid,ppSession)	\
+#define IGetSession_GetSession(This,riid,ppSession)    \
     (This)->lpVtbl -> GetSession(This,riid,ppSession)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -14873,7 +14873,7 @@ void __RPC_STUB IGetSession_GetSession_Stub(
 
 
 
-#endif 	/* __IGetSession_INTERFACE_DEFINED__ */
+#endif     /* __IGetSession_INTERFACE_DEFINED__ */
 
 
 #ifndef __IGetSourceRow_INTERFACE_DEFINED__
@@ -14897,7 +14897,7 @@ EXTERN_C const IID IID_IGetSourceRow;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IGetSourceRowVtbl
     {
@@ -14932,23 +14932,23 @@ EXTERN_C const IID IID_IGetSourceRow;
 #ifdef COBJMACROS
 
 
-#define IGetSourceRow_QueryInterface(This,riid,ppvObject)	\
+#define IGetSourceRow_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IGetSourceRow_AddRef(This)	\
+#define IGetSourceRow_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IGetSourceRow_Release(This)	\
+#define IGetSourceRow_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IGetSourceRow_GetSourceRow(This,riid,ppRow)	\
+#define IGetSourceRow_GetSourceRow(This,riid,ppRow)    \
     (This)->lpVtbl -> GetSourceRow(This,riid,ppRow)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -14966,7 +14966,7 @@ void __RPC_STUB IGetSourceRow_GetSourceRow_Stub(
 
 
 
-#endif 	/* __IGetSourceRow_INTERFACE_DEFINED__ */
+#endif     /* __IGetSourceRow_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowsetCurrentIndex_INTERFACE_DEFINED__
@@ -14992,7 +14992,7 @@ EXTERN_C const IID IID_IRowsetCurrentIndex;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetCurrentIndexVtbl
     {
@@ -15053,36 +15053,36 @@ EXTERN_C const IID IID_IRowsetCurrentIndex;
 #ifdef COBJMACROS
 
 
-#define IRowsetCurrentIndex_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetCurrentIndex_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetCurrentIndex_AddRef(This)	\
+#define IRowsetCurrentIndex_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetCurrentIndex_Release(This)	\
+#define IRowsetCurrentIndex_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetCurrentIndex_GetIndexInfo(This,pcKeyColumns,prgIndexColumnDesc,pcIndexPropertySets,prgIndexPropertySets)	\
+#define IRowsetCurrentIndex_GetIndexInfo(This,pcKeyColumns,prgIndexColumnDesc,pcIndexPropertySets,prgIndexPropertySets)    \
     (This)->lpVtbl -> GetIndexInfo(This,pcKeyColumns,prgIndexColumnDesc,pcIndexPropertySets,prgIndexPropertySets)
 
-#define IRowsetCurrentIndex_Seek(This,hAccessor,cKeyValues,pData,dwSeekOptions)	\
+#define IRowsetCurrentIndex_Seek(This,hAccessor,cKeyValues,pData,dwSeekOptions)    \
     (This)->lpVtbl -> Seek(This,hAccessor,cKeyValues,pData,dwSeekOptions)
 
-#define IRowsetCurrentIndex_SetRange(This,hAccessor,cStartKeyColumns,pStartData,cEndKeyColumns,pEndData,dwRangeOptions)	\
+#define IRowsetCurrentIndex_SetRange(This,hAccessor,cStartKeyColumns,pStartData,cEndKeyColumns,pEndData,dwRangeOptions)    \
     (This)->lpVtbl -> SetRange(This,hAccessor,cStartKeyColumns,pStartData,cEndKeyColumns,pEndData,dwRangeOptions)
 
 
-#define IRowsetCurrentIndex_GetIndex(This,ppIndexID)	\
+#define IRowsetCurrentIndex_GetIndex(This,ppIndexID)    \
     (This)->lpVtbl -> GetIndex(This,ppIndexID)
 
-#define IRowsetCurrentIndex_SetIndex(This,pIndexID)	\
+#define IRowsetCurrentIndex_SetIndex(This,pIndexID)    \
     (This)->lpVtbl -> SetIndex(This,pIndexID)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -15111,7 +15111,7 @@ void __RPC_STUB IRowsetCurrentIndex_SetIndex_Stub(
 
 
 
-#endif 	/* __IRowsetCurrentIndex_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetCurrentIndex_INTERFACE_DEFINED__ */
 
 
 /* interface __MIDL_itf_oledb_0353 */
@@ -15153,7 +15153,7 @@ EXTERN_C const IID IID_ICommandStream;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct ICommandStreamVtbl
     {
@@ -15195,26 +15195,26 @@ EXTERN_C const IID IID_ICommandStream;
 #ifdef COBJMACROS
 
 
-#define ICommandStream_QueryInterface(This,riid,ppvObject)	\
+#define ICommandStream_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define ICommandStream_AddRef(This)	\
+#define ICommandStream_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define ICommandStream_Release(This)	\
+#define ICommandStream_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define ICommandStream_GetCommandStream(This,piid,pguidDialect,ppCommandStream)	\
+#define ICommandStream_GetCommandStream(This,piid,pguidDialect,ppCommandStream)    \
     (This)->lpVtbl -> GetCommandStream(This,piid,pguidDialect,ppCommandStream)
 
-#define ICommandStream_SetCommandStream(This,riid,rguidDialect,pCommandStream)	\
+#define ICommandStream_SetCommandStream(This,riid,rguidDialect,pCommandStream)    \
     (This)->lpVtbl -> SetCommandStream(This,riid,rguidDialect,pCommandStream)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -15247,7 +15247,7 @@ void __RPC_STUB ICommandStream_SetCommandStream_Stub(
 
 
 
-#endif 	/* __ICommandStream_INTERFACE_DEFINED__ */
+#endif     /* __ICommandStream_INTERFACE_DEFINED__ */
 
 
 #ifndef __IRowsetBookmark_INTERFACE_DEFINED__
@@ -15272,7 +15272,7 @@ EXTERN_C const IID IID_IRowsetBookmark;
         
     };
     
-#else 	/* C style interface */
+#else     /* C style interface */
 
     typedef struct IRowsetBookmarkVtbl
     {
@@ -15308,23 +15308,23 @@ EXTERN_C const IID IID_IRowsetBookmark;
 #ifdef COBJMACROS
 
 
-#define IRowsetBookmark_QueryInterface(This,riid,ppvObject)	\
+#define IRowsetBookmark_QueryInterface(This,riid,ppvObject)    \
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IRowsetBookmark_AddRef(This)	\
+#define IRowsetBookmark_AddRef(This)    \
     (This)->lpVtbl -> AddRef(This)
 
-#define IRowsetBookmark_Release(This)	\
+#define IRowsetBookmark_Release(This)    \
     (This)->lpVtbl -> Release(This)
 
 
-#define IRowsetBookmark_PositionOnBookmark(This,hChapter,cbBookmark,pBookmark)	\
+#define IRowsetBookmark_PositionOnBookmark(This,hChapter,cbBookmark,pBookmark)    \
     (This)->lpVtbl -> PositionOnBookmark(This,hChapter,cbBookmark,pBookmark)
 
 #endif /* COBJMACROS */
 
 
-#endif 	/* C style interface */
+#endif     /* C style interface */
 
 
 
@@ -15343,7 +15343,7 @@ void __RPC_STUB IRowsetBookmark_PositionOnBookmark_Stub(
 
 
 
-#endif 	/* __IRowsetBookmark_INTERFACE_DEFINED__ */
+#endif     /* __IRowsetBookmark_INTERFACE_DEFINED__ */
 
 
 /* interface __MIDL_itf_oledb_0355 */
@@ -15424,30 +15424,30 @@ void __RPC_STUB IRowsetBookmark_PositionOnBookmark_Stub(
 //@@@- V2.0
 //@@@+ V2.1
 #if( OLEDBVER >= 0x0210 )
-// IID_ITrusteeAdmin				= {0c733aa1,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_ITrusteeGroupAdmin		= {0c733aa2,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_IObjectAccessControl		= {0c733aa3,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_ISecurityInfo				= {0c733aa4,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_IRow						= {0c733ab4,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_IRowChange				= {0c733ab5,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_IRowSchemaChange			= {0c733aae,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_IGetRow					= {0c733aaf,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_IScopedOperations			= {0c733ab0,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_IBindResource				= {0c733ab1,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_ICreateRow				= {0c733ab2,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_IDBResetProperties		= {0c733ab3,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_IColumnsInfo2				= {0c733ab8,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_IRegisterProvider 		= {0c733ab9,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_IGetSession		 		= {0c733aba,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_IGetSourceRow		 		= {0c733abb,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_ITableCreation	 		= {0c733abc,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_IRowsetCurrentIndex 		= {0c733abd,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_ITrusteeAdmin                = {0c733aa1,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_ITrusteeGroupAdmin        = {0c733aa2,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_IObjectAccessControl        = {0c733aa3,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_ISecurityInfo                = {0c733aa4,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_IRow                        = {0c733ab4,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_IRowChange                = {0c733ab5,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_IRowSchemaChange            = {0c733aae,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_IGetRow                    = {0c733aaf,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_IScopedOperations            = {0c733ab0,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_IBindResource                = {0c733ab1,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_ICreateRow                = {0c733ab2,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_IDBResetProperties        = {0c733ab3,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_IColumnsInfo2                = {0c733ab8,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_IRegisterProvider         = {0c733ab9,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_IGetSession                 = {0c733aba,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_IGetSourceRow                 = {0c733abb,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_ITableCreation             = {0c733abc,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_IRowsetCurrentIndex         = {0c733abd,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
 #endif // OLEDBVER >= 0x0210
 //@@@- V2.1
 //@@@+ V2.6
 #if( OLEDBVER >= 0x0260 )
-// IID_ICommandStream 			= {0x0c733ac0,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
-// IID_IRowsetBookmark 			= {0x0c733ac2,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_ICommandStream             = {0x0c733ac0,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
+// IID_IRowsetBookmark             = {0x0c733ac2,0x2a1c,0x11ce,{0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}
 #endif // OLEDBVER >= 0x0260
 //@@@- V2.6
 #include <poppack.h>     // restore original structure packing
