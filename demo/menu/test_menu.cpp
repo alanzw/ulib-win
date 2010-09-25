@@ -89,7 +89,7 @@ public:
             text << buffer;
 
             text << "\r\n";
-            
+
             ++idx;
         }
 

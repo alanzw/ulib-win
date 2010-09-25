@@ -192,8 +192,16 @@ BOOL UBaseWindow::onMessage(UINT uMessage, WPARAM wParam, LPARAM lParam)
         return this->onLButtonDown(wParam, lParam);
     case WM_LBUTTONUP:
         return this->onLButtonUp(wParam, lParam);
+    case WM_RBUTTONDOWN:
+        return this->onRButtonDown(wParam, lParam);
+    case WM_RBUTTONUP:
+        return this->onRButtonUp(wParam, lParam);
     case WM_MOUSEMOVE:
         return this->onMouseMove(wParam, lParam);
+	case WM_MBUTTONDOWN:
+		return this->onMButtonDown(wParam, lParam);
+	case WM_MBUTTONUP:
+		return this->onMButtonUp(wParam, lParam);
     case WM_CLOSE:
         return onClose();
     case WM_DESTROY:

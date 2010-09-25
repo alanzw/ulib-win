@@ -7,6 +7,8 @@ SUBDIRS = dlg_gdiplus      \
           win_gdiplus      \
           themometer       \
           button_gdiplus   \
+          weather_gdiplus  \
+          chart_gdiplus    \
 
 #
 all:

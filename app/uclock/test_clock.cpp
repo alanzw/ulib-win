@@ -28,6 +28,7 @@ public:
         //this->setMenu(MAKEINTRESOURCE(IDR_MENU_MAIN));
         this->setPos(0, 0, 512, 384);
         this->setStyles(WS_POPUP);
+        this->setExStyles(WS_EX_TOPMOST | WS_EX_TOOLWINDOW);
    }
 
    BOOL onCreate()
@@ -74,10 +75,10 @@ public:
         //urc.setFilledColor(huys::black);
         //urc.setFilledStyle(BS_SOLID);
         //urc.Draw(hdc);
-        static int index = 0;
+        static int index = -1;
         UPicture *p = 0;
 
-        index = (index < 6 ? (++index) : 1);
+        index = (index < 6 ? (++index) : 0);
 
         p = &pic[index];
 

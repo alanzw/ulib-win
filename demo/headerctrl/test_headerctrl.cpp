@@ -7,6 +7,8 @@
 #include "uheader.h"
 #include "udlgapp.h"
 
+#include "adt/uautoptr.h"
+
 using huys::UDialogBox;
 
 class MyDialog : public UDialogBox
@@ -17,11 +19,6 @@ class MyDialog : public UDialogBox
 public:
     MyDialog(HINSTANCE hInst, UINT nID)
         : UDialogBox(hInst, nID){}
-
-    ~MyDialog()
-    {
-        CHECK_PTR(m_pHeadCtrl);
-    }
 
     virtual BOOL onInit()
     {
@@ -34,7 +31,7 @@ public:
         return TRUE;
     }
 private:
-    UHeaderCtrl *m_pHeadCtrl;
+    huys::ADT::UAutoPtr<UHeaderCtrl> m_pHeadCtrl;
 };
 
 UDLGAPP_T(MyDialog, IDD_TEST);

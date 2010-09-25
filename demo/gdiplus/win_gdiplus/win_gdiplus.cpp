@@ -13,6 +13,8 @@
 
 #include "ubasewindow.h"
 #include "uwinapp.h"
+#include "udc.h"
+#include "ugdiplus.h"
 
 using namespace Gdiplus;
 
@@ -25,33 +27,36 @@ public:
         setTitle(_T("GDIPlus Window"));
     }
 
-    ~GDIPlusWindow()
-    {
-    }
-
     virtual BOOL onCreate()
     {
         this->setIconBig(IDI_APP);
-        startGDIPlus();
         return UBaseWindow::onCreate();
     }
 
     virtual BOOL onDestroy()
     {
-        stopGDIPlus();
         return UBaseWindow::onDestroy();
     }
 
     virtual void onDraw(HDC hdc)
     {
         Graphics graphics(hdc);
+        
+         USmartDC dc(hdc);
+         huys::URectL rect;
+         this->getClientRect(rect);
+  
+         //
+         LinearGradientBrush lgb(Point(0, 0), Point(rect.right(), rect.bottom()), Color::Blue, Color::Green);
+         //
+         graphics.FillRectangle(&lgb, 0, 0, rect.right(), rect.bottom());
 
         //
-        Pen      pen(Color(255, 0, 0, 255));
+        Pen      pen(Color(255, 255, 255, 255));
         graphics.DrawLine(&pen, 0, 0, 200, 100);
 
         //
-        Pen blackPen(Color(255, 0, 0, 0), 5);
+        Pen blackPen(Color(255, 255, 0, 0), 5);
         graphics.DrawRectangle(&blackPen, 290, 100, 100, 50);
 
         //
@@ -129,6 +134,18 @@ public:
         graphics.DrawLine(&penx, 0, 410, 200, 410);
         graphics.FillEllipse(&linGrBrush, 20, 360, 200, 400);
         graphics.FillRectangle(&linGrBrush, 30, 355, 200, 400);
+        
+        Point points[] =
+        {
+          Point(0, 0), Point(100, 200), Point(200, 0), Point(300, 200), Point(400, 00)
+        };
+        //
+        for (int i = 0; i < 4; i++)
+        {
+            graphics.DrawLine(&Pen(Color::White, 3), points[i], points[i + 1]);
+        }
+        //
+        graphics.DrawCurve(&Pen(Color::Red, 3), points, 5);
     }
 
     BOOL onChar(WPARAM wParam, LPARAM lParam)
@@ -142,20 +159,8 @@ public:
         }
     }
 
-private:
-    void startGDIPlus()
-    {
-        // Initialize GDI+.
-        GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
-    }
-
-    void stopGDIPlus()
-    {
-        GdiplusShutdown(gdiplusToken);
-    }
-
-    GdiplusStartupInput gdiplusStartupInput;
-    ULONG_PTR gdiplusToken;
+private:  
+    UGDIPlusHelper _helper;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)

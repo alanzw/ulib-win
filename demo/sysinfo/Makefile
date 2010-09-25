@@ -1,19 +1,14 @@
 #
-include ../../make.inc
+TOPDIR = ../..
+
+#
+include $(TOPDIR)/make.inc
 
 #
 CFLAGS =
-CXXFLAGS = -DHU_DEBUG
-INCS = -I"../../inc"
-LIBS = -L"../../lib" -luwin
-
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
+CXXFLAGS += -DHU_DEBUG -DBUILD_EXE
+INCS = -I"$(TOPDIR)/inc"
+LIBS = -L"$(TOPDIR)/lib" -luwin -lpsapi
 #
 OBJ = test_sys.o
 BIN = test_sys.exe
@@ -30,14 +25,6 @@ $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
 
-#
-test_sys.o : test_sys.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INCS)
-
-#
-#$(RES) : $(RC) resource.h
-#	$(WINDRES) -i $(RC) -o $(RES) -O coff -I"$(ICODIR)" -I"$(RESDIR)"
-    
 
 #
 .PHONY : test

@@ -17,9 +17,9 @@ using huys::UGLDialog;
 class MyGLDialog : public UGLDialog
 {
     enum {
-        MA_PAN = 1,    /* pan state bit */
-        MA_ROTATE,  /* rotate state bits */
-        MA_ZOOM        /* zoom state bit */
+        MA_PAN = 1,    /* pan state bit     */
+        MA_ROTATE,     /* rotate state bits */
+        MA_ZOOM        /* zoom state bit    */
     };
 
     GLfloat trans[3];    /* current translation */
@@ -161,6 +161,21 @@ public:
         state = 0;
         return UGLDialog::onRButtonUp(wParam, lParam);
     }
+    
+    virtual BOOL onMButtonDown(WPARAM wParam, LPARAM lParam)
+    {
+        ::SetCapture(m_hDlg);
+        state |= MA_ZOOM;
+        return UGLDialog::onMButtonDown(wParam, lParam);
+    }
+    
+    virtual BOOL onMButtonUp(WPARAM wParam, LPARAM lParam)
+    {
+        ::ReleaseCapture();
+        state = 0;
+        return UGLDialog::onMButtonUp(wParam, lParam);
+    }
+    
 private:
     void update(int state, int ox, int nx, int oy, int ny)
     {

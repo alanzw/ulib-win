@@ -22,6 +22,7 @@ public:
     } DBRecord;
 public:
     UFileDB(const char *sFilename = "default.bin");
+    
     ~UFileDB();
 
     bool read();

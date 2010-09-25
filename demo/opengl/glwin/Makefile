@@ -5,7 +5,7 @@ TOPDIR = ../../..
 include $(TOPDIR)/make.inc
 
 
-SUBDIRS = hello graph skybox tga jpeg cube
+SUBDIRS = hello graph skybox tga jpeg cube camera
 #
 all:
 	$(MAKEALL_SUBDIRS)

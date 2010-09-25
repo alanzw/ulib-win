@@ -153,17 +153,20 @@ public:
 
     virtual BOOL onRButtonUp(WPARAM wParam, LPARAM lParam)
     {
-        int xPos = GET_X_LPARAM(lParam);
-        int yPos = GET_Y_LPARAM(lParam);
+        //int xPos = GET_X_LPARAM(lParam);
+        //int yPos = GET_Y_LPARAM(lParam);
 
 
-        POINT point = {xPos, yPos};
-        ClientToScreen(m_hDlg, &point);
+        //POINT point = {xPos, yPos};
+        //ClientToScreen(m_hDlg, &point);
+        
+        POINT point;
+        ::GetCursorPos(&point);
 
         UMenu um;
         um.load(m_hInst, MAKEINTRESOURCE(IDR_MENU1));
         um.attach(m_hDlg);
-        um.trackSubPopup(1, TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y);
+        um.trackSubPopup(0, TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y);
 
         return FALSE;
     }

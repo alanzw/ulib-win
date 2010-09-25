@@ -143,8 +143,12 @@ public:
      */
     virtual BOOL onLButtonDown(WPARAM wParam, LPARAM lParam) {return FALSE;}
     virtual BOOL onLButtonUp(WPARAM wParam, LPARAM lParam) {return FALSE;}
+    virtual BOOL onRButtonDown(WPARAM wParam, LPARAM lParam) {return FALSE;}
+    virtual BOOL onRButtonUp(WPARAM wParam, LPARAM lParam) {return FALSE;}
     virtual BOOL onMouseMove(WPARAM wParam, LPARAM lParam) {return FALSE;}
-    /*
+	virtual BOOL onMButtonDown(WPARAM wParam, LPARAM lParam) {return FALSE;}
+	virtual BOOL onMButtonUp(WPARAM wParam, LPARAM lParam) {return FALSE;}
+	/*
      *
      */
     virtual BOOL onCommand(WPARAM wParam, LPARAM lParam) {return FALSE;}

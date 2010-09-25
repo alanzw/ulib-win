@@ -14,6 +14,8 @@
 
 #include "adt/uautoptr.h"
 
+#include "custom_treeview.h"
+
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
@@ -32,6 +34,7 @@ public:
         ::GetClientRect(m_hDlg, &rc);
 
         rc.right = rc.left + 200;
+        rc.bottom -= 300;
 
         m_pTreeCtrl = new UTreeView(m_hDlg, ID_TREECTRL, m_hInst);
         m_pTreeCtrl->setStyles(WS_BORDER|TVS_HASLINES| TVS_LINESATROOT | TVS_HASBUTTONS|TVS_CHECKBOXES);
@@ -55,6 +58,17 @@ public:
         item = m_pTreeCtrl->addTextRoot(str);
 
         m_pTreeCtrl->subclassProc();
+        
+        rc.top += 200;
+        rc.bottom += 300;
+		rc.right += 100;
+        
+        m_pTreeCtrlColorFont = new UCustomTreeView(m_hDlg, 1234, m_hInst);
+        m_pTreeCtrlColorFont->setStyles(WS_BORDER|TVS_HASLINES| TVS_LINESATROOT | TVS_HASBUTTONS|TVS_CHECKBOXES|WS_TABSTOP);
+        m_pTreeCtrlColorFont->setRect(&rc);
+        m_pTreeCtrlColorFont->create();
+
+		insertItems(m_pTreeCtrlColorFont);
 
         m_pChildDlg = new UDialogBox(m_hInst, IDD_CHILD, UDialogBox::DefaultDlgProc, m_hDlg);
         m_pChildDlg->create();
@@ -80,6 +94,12 @@ public:
                 break;
             }
         }
+
+		if (lpnmh->idFrom == 1234)
+		{
+
+		}
+
         return UDialogBox::onNotify(wParam, lParam);
     }
 
@@ -139,6 +159,7 @@ private:
     huys::ADT::UAutoPtr<UTreeView> m_pTreeCtrl;
     huys::ADT::UAutoPtr<UDialogBox> m_pChildDlg;
     huys::ADT::UAutoPtr<UImageList> m_uil;
+    huys::ADT::UAutoPtr<UCustomTreeView> m_pTreeCtrlColorFont;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

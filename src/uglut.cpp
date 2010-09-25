@@ -26,6 +26,7 @@
 #include <cstdio>
 
 #include "uglut.h"
+#include "umsg.h"
 
 namespace UGlut
 {
@@ -97,14 +98,14 @@ void ResizeScene(int nWidth, int nHeight)
     glLoadIdentity();
 }
 
-void ULIB_API switchToWireframe()
+void switchToWireframe()
 {
     // Turn on wireframe mode
     glPolygonMode(GL_FRONT, GL_LINE);
     glPolygonMode(GL_BACK, GL_LINE);
 }
 
-void ULIB_API switchToSolid()
+void switchToSolid()
 {
     // Turn off wireframe mode
     glPolygonMode(GL_FRONT, GL_FILL);
@@ -112,20 +113,50 @@ void ULIB_API switchToSolid()
 }
 
 
+BOOL check_fullscreen(BOOL &flag, int width, int height, int bits)
+{
+    if (!flag) return TRUE;
+    
+    DEVMODE dmScreenSettings;                               // Device Mode
+    ::ZeroMemory(&dmScreenSettings, sizeof(dmScreenSettings));    // Makes Sure Memory's Cleared
+    dmScreenSettings.dmSize = sizeof(dmScreenSettings);     // Size Of The Devmode Structure
+    dmScreenSettings.dmPelsWidth  = width;                  // Selected Screen Width
+    dmScreenSettings.dmPelsHeight = height;                 // Selected Screen Height
+    dmScreenSettings.dmBitsPerPel = bits;                   // Selected Bits Per Pixel
+    dmScreenSettings.dmFields = DM_BITSPERPEL|DM_PELSWIDTH|DM_PELSHEIGHT;
+
+    // Try To Set Selected Mode And Get Results.  NOTE: CDS_FULLSCREEN Gets Rid Of Start Bar.
+    if (ChangeDisplaySettings(&dmScreenSettings,CDS_FULLSCREEN)!=DISP_CHANGE_SUCCESSFUL)
+    {
+        // If The Mode Fails, Offer Two Options.  Quit Or Use Windowed Mode.
+        if (showYesNoMsgbox(_T("The Requested Fullscreen Mode Is Not Supported By\nYour Video Card.")
+                            _T("Use Windowed Mode Instead?"),_T("OpenGL"))==IDYES)
+        {
+            flag=FALSE;        // Windowed Mode Selected.  Fullscreen = FALSE
+        }
+        else
+        {
+            // Pop Up A Message Box Letting User Know The Program Is Closing.
+            showMsg(_T("Program Will Now Close."),_T("ERROR"));
+            return FALSE;                                    // Return FALSE
+        }
+    }
+    return TRUE;
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //                                        THE CCAMERA POSITION CAMERA
 /////////////////////////////////////////////////////////////////////////////////////////////////
-void UGLCamera::Position_Camera(float pos_x,  float pos_y,  float pos_z,
-                              float view_x, float view_y, float view_z,
-                              float up_x,   float up_y,   float up_z)
+void UGLCamera::Position_Camera( float pos_x,  float pos_y,  float pos_z,
+                                 float view_x, float view_y, float view_z,
+                                 float up_x,   float up_y,   float up_z)
 {
     UGLVector3 vPos    = UGLVector3(pos_x,  pos_y,  pos_z);
-    UGLVector3 vView = UGLVector3(view_x, view_y, view_z);
-    UGLVector3 vUp    = UGLVector3(up_x,   up_y,   up_z);
+    UGLVector3 vView   = UGLVector3(view_x, view_y, view_z);
+    UGLVector3 vUp     = UGLVector3(up_x,   up_y,   up_z);
 
     mPos  = vPos;                            // set the position
-    mView = vView;                            // set the view
+    mView = vView;                           // set the view
     mUp   = vUp;                            // set the up vector
 }
 
@@ -145,6 +176,13 @@ void UGLCamera::Move_Camera(float cameraspeed)
     mView.z = mView.z + vVector.z * cameraspeed;
 }
 
+
+void UGLCamera::Translate_View(float cx, float cy, float cz)
+{
+    mView.x += cx;
+    mView.y += cy;
+    mView.z += cz;
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //                                        THE CCAMERA ROTATE VIEW
@@ -375,13 +413,21 @@ void TGA_Texture(UINT textureArray[], LPSTR strFileName, int ID)
 
     tImageTGA *pBitMap = Load_TGA(strFileName);
 
-    if(pBitMap == NULL)    exit(0);
+    if(pBitMap == NULL) return;
 
     glGenTextures(1, &textureArray[ID]);
     glBindTexture(GL_TEXTURE_2D, textureArray[ID]);
     int textureType = GL_RGB;
     if(pBitMap->channels == 4)    textureType = GL_RGBA;
-    gluBuild2DMipmaps(GL_TEXTURE_2D, pBitMap->channels, pBitMap->size_x, pBitMap->size_y, textureType, GL_UNSIGNED_BYTE, pBitMap->data);
+    
+    gluBuild2DMipmaps( GL_TEXTURE_2D,
+                       pBitMap->channels, 
+                       pBitMap->size_x,
+                       pBitMap->size_y,
+                       textureType, 
+                       GL_UNSIGNED_BYTE,
+                       pBitMap->data );
+
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
 
@@ -389,9 +435,9 @@ void TGA_Texture(UINT textureArray[], LPSTR strFileName, int ID)
     {
         if (pBitMap->data)
         {
-            free(pBitMap->data);
+            delete pBitMap->data;
         }
-        free(pBitMap);
+        delete pBitMap;
     }
 }
 

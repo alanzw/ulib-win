@@ -52,9 +52,22 @@ void JPEG_Texture(UINT textureArray[], LPSTR strFileName, int ID)
 
     glGenTextures(1, &textureArray[ID]);
     glBindTexture(GL_TEXTURE_2D, textureArray[ID]);
-    gluBuild2DMipmaps(GL_TEXTURE_2D, 3, pBitMap->sizeX, pBitMap->sizeY, GL_RGB, GL_UNSIGNED_BYTE, pBitMap->data);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+
+    gluBuild2DMipmaps( GL_TEXTURE_2D,
+                       3,
+                       pBitMap->sizeX,
+                       pBitMap->sizeY,
+                       GL_RGB,
+                       GL_UNSIGNED_BYTE,
+                       pBitMap->data );
+
+    glTexParameteri( GL_TEXTURE_2D,
+                     GL_TEXTURE_MIN_FILTER,
+                     GL_LINEAR_MIPMAP_NEAREST );
+
+    glTexParameteri( GL_TEXTURE_2D,
+                     GL_TEXTURE_MAG_FILTER,
+                     GL_LINEAR_MIPMAP_LINEAR );
 
     if (pBitMap)
     {
@@ -128,12 +141,41 @@ void Decompress_JPEG(jpeg_decompress_struct* cInfo, tImageJPG *pImgData)
 
 class UGLWindow : public UBaseWindow
 {
+private:
+    enum {
+        MA_PAN = 1,    /* pan state bit     */
+        MA_ROTATE,     /* rotate state bits */
+        MA_ZOOM        /* zoom state bit    */
+    };
+
+    GLfloat trans[3];    /* current translation */
+    GLfloat rot[2];      /* current rotation */
+
+    int omx, omy, mx, my;
+    GLuint state;
+
+    GLboolean left;    /* left button currently down? */
+    GLboolean right;   /* right button currently down? */
+
+    //
+    float rotqube;
 public:
     UGLWindow(HINSTANCE hInst = ::GetModuleHandle(NULL))
     : UBaseWindow(NULL, hInst),
-      m_hdc(0), m_hrc(0), m_bFullscreen(FALSE), cnt1(0.0)
+      m_hdc(0), m_hrc(0), m_bFullscreen(FALSE)
     {
         setTitle(_T("OpenGL Window"));
+
+        trans[0] = 0.0f;
+        trans[1] = 0.0f;
+        trans[2] = -7.0f;
+        rot[0] = rot[1] = 0.0f;
+        state   = 0;
+        left  = GL_FALSE;
+        right = GL_FALSE;
+
+        //
+        rotqube = 0.0f;
     }
 
     BOOL onPreRegisterWindowClass(huys::UWindowClass &uwc)
@@ -248,6 +290,72 @@ public:
         ReSizeGLScene(LOWORD(lParam),HIWORD(lParam));
         return FALSE;
     }
+
+    virtual BOOL onMouseMove(WPARAM wParam, LPARAM lParam)
+    {
+        if (state) {
+            omx = mx;
+            omy = my;
+            mx = LOWORD(lParam);
+            my = HIWORD(lParam);
+            /* Win32 is pretty braindead about the x, y position that
+                it returns when the mouse is off the left or top edge
+                of the window (due to them being unsigned). therefore,
+                roll the Win32's 0..2^16 pointer co-ord range to the
+                more amenable (and useful) 0..+/-2^15. */
+            if(mx & 1 << 15) mx -= (1 << 16);
+            if(my & 1 << 15) my -= (1 << 16);
+            update(state, omx, mx, omy, my);
+            //PostMessage(hWnd, WM_PAINT, 0, 0);
+        }
+        return UBaseWindow::onMouseMove(wParam, lParam);
+    }
+
+    virtual BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
+    {
+        ::SetCapture(getHandle());
+        mx = LOWORD(lParam);
+        my = HIWORD(lParam);
+        state |= MA_PAN;
+        return UBaseWindow::onLButtonDown(wParam, lParam);
+    }
+
+    virtual BOOL onRButtonDown(WPARAM wParam, LPARAM lParam)
+    {
+        ::SetCapture(getHandle());
+        mx = LOWORD(lParam);
+        my = HIWORD(lParam);
+        state |= MA_ROTATE;
+        return UBaseWindow::onRButtonDown(wParam, lParam);
+    }
+
+    virtual BOOL onLButtonUp(WPARAM wParam, LPARAM lParam)
+    {
+        ::ReleaseCapture();
+        state = 0;
+        return UBaseWindow::onLButtonUp(wParam, lParam);
+    }
+
+    virtual BOOL onRButtonUp(WPARAM wParam, LPARAM lParam)
+    {
+        ::ReleaseCapture();
+        state = 0;
+        return UBaseWindow::onRButtonUp(wParam, lParam);
+    }
+
+    virtual BOOL onMButtonDown(WPARAM wParam, LPARAM lParam)
+    {
+        ::SetCapture(getHandle());
+        state |= MA_ZOOM;
+        return UBaseWindow::onMButtonDown(wParam, lParam);
+    }
+
+    virtual BOOL onMButtonUp(WPARAM wParam, LPARAM lParam)
+    {
+        ::ReleaseCapture();
+        state = 0;
+        return UBaseWindow::onMButtonUp(wParam, lParam);
+    }
 private:
     HDC m_hdc;
     HGLRC m_hrc;
@@ -255,20 +363,18 @@ private:
 
     BOOL m_bFullscreen;
 
-    GLfloat    cnt1;
-
     UINT TextureArray[1];
-private:
+public:
     BOOL initGL()
     {
         UGlut::EnableOpenGL(*this, m_hdc, m_hrc);
-        
-        glShadeModel(GL_SMOOTH);							// Enable Smooth Shading
-        glClearColor(0.0f, 0.0f, 0.0f, 0.5f);				// Black Background
-        glClearDepth(1.0f);									// Depth Buffer Setup
-        glEnable(GL_DEPTH_TEST);							// Enables Depth Testing
-        glDepthFunc(GL_LEQUAL);								// The Type Of Depth Testing To Do
-        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Really Nice Perspective Calculations
+
+        glShadeModel(GL_SMOOTH);                            // Enable Smooth Shading
+        glClearColor(0.0f, 0.0f, 0.0f, 0.5f);                // Black Background
+        glClearDepth(1.0f);                                    // Depth Buffer Setup
+        glEnable(GL_DEPTH_TEST);                            // Enables Depth Testing
+        glDepthFunc(GL_LEQUAL);                                // The Type Of Depth Testing To Do
+        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);    // Really Nice Perspective Calculations
 
         glEnable(GL_TEXTURE_2D);
 
@@ -304,7 +410,13 @@ private:
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        glTranslatef(0, 0,-5.0f);
+        glLoadIdentity();
+
+        glPushMatrix();
+
+        glTranslatef(trans[0], trans[1], trans[2]);
+        glRotatef(rot[0], 1.0f, 0.0f, 0.0f);
+        glRotatef(rot[1], 0.0f, 1.0f, 0.0f);
 
         glBindTexture(GL_TEXTURE_2D, TextureArray[0]);
 
@@ -323,13 +435,89 @@ private:
             glVertex3f(1, 1, 0);
         glEnd();
 
-        cnt1+=50.f;
+        glPopMatrix();
+        glFlush();
+
+        // !!!!!
+        SwapBuffers(m_hdc);
+    }
+ private:
+    void update(int state, int ox, int nx, int oy, int ny)
+    {
+        int dx = ox - nx;
+        int dy = ny - oy;
+
+        switch(state) {
+        case MA_PAN:
+            trans[0] -= dx / 100.0f;
+            trans[1] -= dy / 100.0f;
+            break;
+        case MA_ROTATE:
+            rot[0] += (dy * 180.0f) / 500.0f;
+            rot[1] -= (dx * 180.0f) / 500.0f;
+
+#define clamp(x) x = x > 360.0f ? x-360.0f : x < -360.0f ? x+=360.0f : x
+            clamp(rot[0]);
+            clamp(rot[1]);
+            break;
+        case MA_ZOOM:
+            trans[2] -= (dx+dy) / 100.0f;
+            break;
+        }
+    }
+};
+
+class UGLWinApp : public UWinApp
+{
+    BOOL m_bQuit;
+public:
+    UGLWinApp()
+    : m_bQuit(FALSE)
+    {}
+
+    BOOL run()
+    {
+        m_pMainWindow->show();
+        m_pMainWindow->update();
+
+        //BOOL bQuit = FALSE;
+        MSG msg;
+
+        while (!m_bQuit)
+        {
+            // check for messages
+            if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+            {
+                // handle or dispatch messages
+                if ( msg.message == WM_QUIT)
+                {
+                    m_bQuit = TRUE;
+                }
+                else
+                {
+                    TranslateMessage(&msg);
+                    DispatchMessage(&msg);
+                }
+            }
+            else
+            {
+                // OpenGL animation code goes here
+                static_cast<UGLWindow *>(m_pMainWindow)->render();
+                //m_pMainWindow->invalidate();
+                //SwapBuffers(m_hdc);
+            }
+        }
+        // shutdown OpenGL
+        //UGlut::DisableOpenGL( m_hDlg, m_hdc, m_hrc );
+        // destroy the window explicitly
+        m_pMainWindow->onDestroy();
+        return (msg.wParam);
     }
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
 {
-    UWinApp app;
+    UGLWinApp app;
 
     app.setMainWindow(new UGLWindow);
 

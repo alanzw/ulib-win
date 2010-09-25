@@ -23,9 +23,9 @@ public:
 
     BOOL initGL()
     {
-        RECT rc;
-        ::GetClientRect(m_hDlg, &rc);
-        UGlut::ResizeScene(rc.right-rc.left, rc.bottom-rc.top);
+        huys::URectL rect;
+        ::GetClientRect(m_hDlg, rect);
+        UGlut::ResizeScene(rect.width(), rect.height());
 
         glShadeModel(GL_SMOOTH);                             // Enable Smooth Shading
         glClearColor(0.0f, 0.0f, 0.0f, 0.5f);                // Black Background

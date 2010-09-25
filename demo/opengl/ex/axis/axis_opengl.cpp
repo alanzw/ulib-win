@@ -64,6 +64,17 @@ public:
 
 		return TRUE;
     }
+    
+    virtual BOOL onChar(WPARAM wParam, LPARAM lParam)
+    {
+        switch (wParam)
+        {
+        case VK_ESCAPE:
+            return UGLDialog::onCancel();
+        default:
+            return UGLDialog::onChar(wParam, lParam);
+        }
+    }
 };
 
 UDLGAPP_T(MyGLDialog, IDD_TEST);

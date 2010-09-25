@@ -20,6 +20,9 @@ SUBDIRS =          \
           portmap  \
           httpmt   \
           httpclient\
+          server   \
+          ftpclient \
+          chat     \
 
 #
 .PHONY: all

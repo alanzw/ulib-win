@@ -34,19 +34,19 @@ public:
         if (w <= h)
         {
             glOrtho(-0.0, 555.0, -0.0*(GLfloat)h/(GLfloat)w,
-				555.0*(GLfloat)h/(GLfloat)w, -5.0, 5.0);
+                555.0*(GLfloat)h/(GLfloat)w, -5.0, 5.0);
         }
-		else
+        else
         {
-        	glOrtho(-0.0*(GLfloat)w/(GLfloat)h,
+            glOrtho(-0.0*(GLfloat)w/(GLfloat)h,
                 555.0*(GLfloat)w/(GLfloat)h, -0.0, 555.0, -5.0, 5.0);
-		}
-		glMatrixMode(GL_MODELVIEW);
+        }
+        glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-        
+
         glClearColor (0, 0, 0, 0); // Clear to black
         glMatrixMode (GL_PROJECTION); // Projection view
-        //glOrtho(0, 512, 0, 512, 0, 0); // Define display coordinates (left, bottom, right, top) 
+        //glOrtho(0, 512, 0, 512, 0, 0); // Define display coordinates (left, bottom, right, top)
 
         return TRUE;
     }
@@ -61,7 +61,7 @@ public:
         const GLint X = 256;
         const GLint Y = 256;
         const GLint Radius = 120;
-        
+
         glClear (GL_COLOR_BUFFER_BIT);
         glPushMatrix();
         // Draw the outline
@@ -69,7 +69,7 @@ public:
 
         // Draw the filled circle
         glLineWidth (1);
-        glBegin(GL_POLYGON); 
+        glBegin(GL_POLYGON);
         GLfloat angle = 0.f;
         GLfloat colorgrad;
         for (angle = 0.; angle < pi * 2;  angle += 0.01)
@@ -77,11 +77,11 @@ public:
         {
             colorgrad = 0.2 - angle * 0.1;
             glColor3f (colorgrad, colorgrad, colorgrad);
-        
+
             glVertex2f (X + sin(angle) * Radius, Y + cos(angle) * Radius);
         }
         glEnd ();
-        
+
 
         // Speed marks
 
@@ -146,11 +146,11 @@ public:
 
         glPointSize (2);
         glColor3f (0.2, 0, 0);  // Dark Red
-        
+
         glEnable (GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glEnable (GL_POINT_SMOOTH);
-        
+
         glBegin(GL_POINTS);
         glVertex2f (X, Y);
         glEnd ();
