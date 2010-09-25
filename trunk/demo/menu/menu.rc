@@ -57,6 +57,10 @@ BEGIN
     BEGIN
         MENUITEM "&Copy", IDM_COPY
     END
+    POPUP "&Opts"
+    BEGIN
+        MENUITEM "&Global...", IDM_GLOBAL
+    END
     POPUP "&Help"
     BEGIN
        MENUITEM "&About", IDM_ABOUT

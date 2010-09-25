@@ -42,16 +42,21 @@ BOOL UTrackBar::setTPos(int nNewPos, BOOL bRedraw)
 
 int UTrackBar::getRangeMin()
 {
-    return (int)this->sendMsg(TBM_GETRANGEMIN);    
+    return (int)this->sendMsg(TBM_GETRANGEMIN);
 }
 
 int UTrackBar::getRangeMax()
 {
-    return (int)this->sendMsg(TBM_GETRANGEMAX);    
+    return (int)this->sendMsg(TBM_GETRANGEMAX);
 }
 
 void UTrackBar::getSelection( int &nMin, int &nMax )
 {
     nMin = (int)this->sendMsg(TBM_GETSELSTART);
-	nMax = (int)this->sendMsg(TBM_GETSELEND);   
+    nMax = (int)this->sendMsg(TBM_GETSELEND);
+}
+
+void UTrackBar::getThumbRect(LPRECT lpRect)
+{
+    this->sendMsg(TBM_GETTHUMBRECT, 0, (LPARAM)lpRect);
 }

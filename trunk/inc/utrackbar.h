@@ -20,6 +20,8 @@ public:
     int getRangeMax();
 
     void getSelection(int &nMin, int &nMax);
+
+    void getThumbRect(LPRECT lpRect);
 protected:
 private:
 

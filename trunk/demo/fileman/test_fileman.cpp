@@ -1,11 +1,10 @@
 #include "resource.h"
-
-#include "ufileman.h"
-
 #include <windows.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <tchar.h>
+
+#include "ufileman.h"
 
 void RefreshDirectory(LPCTSTR);
 void RefreshTree(LPCTSTR);

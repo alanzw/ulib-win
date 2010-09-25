@@ -1,24 +1,10 @@
 #
-include ../make.inc
-#
-SRCEXT = .cpp
-OBJEXT = .o
-BINEXT = .exe
+TOPDIR = ..
 
 #
-CFLAGS   =
-CXXFLAGS =
-INC      =
-LIB      =
-LDFLAGS  =
-#
-SRCDIR = ../src
-INCDIR = ../inc
-OBJDIR = ../obj
-BINDIR = ../bin
-LIBDIR = ../lib
-RESDIR = ../ico
+include $(TOPDIR)/make.inc
 
+#
 RC  = u.rc version.rc
 RES = ${RC:.rc=.res}
 #
@@ -29,7 +15,7 @@ all: $(RES)
 
 #
 %.res : %.rc
-	$(WINDRES) -i $< -o $@ -DMINGW_RC -O coff -I"$(RESDIR)" -I"$(INCDIR)"
+	$(WINDRES) -i $< -o $@ -DMINGW_RC -O coff -I"$(RESDIR)" -I"$(ICODIR)"
  
 .PHONY: clean
 clean:

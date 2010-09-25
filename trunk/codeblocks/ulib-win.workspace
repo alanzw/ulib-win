@@ -13,8 +13,10 @@
 		<Project filename="chart.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="combobox.cbp" />
-		<Project filename="commondlg.cbp" />
+		<Project filename="combobox.cbp" active="1" />
+		<Project filename="commondlg.cbp">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
 		<Project filename="console.cbp" />
 		<Project filename="contact.cbp">
 			<Depends filename="ulib-win.cbp" />
@@ -30,7 +32,7 @@
 		<Project filename="explorer.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="filesplit.cbp" active="1">
+		<Project filename="filesplit.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
 		<Project filename="floatwnd.cbp">

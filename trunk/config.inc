@@ -59,6 +59,7 @@ GRAPHIC_OBJS =    \
     urecttracker.o\
     uvisualstyle.o\
     upicture.o    \
+    ugdiplus.o    \
 
 
 CONFIG_OBJS  =    \

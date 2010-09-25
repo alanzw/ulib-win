@@ -14,12 +14,13 @@
 #define IDB_ICON2  115
 #define IDB_ICON3  116
 
-#define IDM_ICON1  121 
-#define IDM_ICON2  122 
-#define IDM_ICON3  123 
+#define IDM_ICON1  121
+#define IDM_ICON2  122
+#define IDM_ICON3  123
 
 #define IDR_MAINMENU 3000
 #define IDM_EXIT     3001
 #define IDM_COPY     3002
 #define IDM_ABOUT    3003
+#define IDM_GLOBAL   3004
 

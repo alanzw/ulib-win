@@ -13,6 +13,7 @@
 #include "ubasewindow.h"
 #include "uglut.h"
 #include "uicon.h"
+#include "umsg.h"
 
 #ifdef _MSC_VER
 #pragma comment(lib, "opengl32.lib")
@@ -174,7 +175,7 @@ class UGLWindow : public UBaseWindow
 {
 public:
     UGLWindow(HINSTANCE hInst = ::GetModuleHandle(NULL))
-    : UBaseWindow(NULL, hInst),
+    : UBaseWindow(NULL, hInst), m_bFullscreen(FALSE),
     m_hdc(0), m_hrc(0)
     {
         setTitle(_T("OpenGL Window"));
@@ -184,6 +185,65 @@ public:
     {
         uwc.setStyles(CS_OWNDC);
         return FALSE;
+    }
+
+    BOOL onPreCreateWindow()
+    {
+        if (IDYES == showYesNoMsgbox(_T("Fullscreen?"), _T("Start Fullscreen?")))
+        {
+            m_bFullscreen = TRUE;
+        }
+
+        int width= 640;
+        int height = 480;
+        int bits=16;
+
+        setPos(0, 0, width, height);
+
+        if (m_bFullscreen)
+        {
+            DEVMODE dmScreenSettings;                                // Device Mode
+            memset(&dmScreenSettings,0,sizeof(dmScreenSettings));    // Makes Sure Memory's Cleared
+            dmScreenSettings.dmSize=sizeof(dmScreenSettings);        // Size Of The Devmode Structure
+            dmScreenSettings.dmPelsWidth    = width;                // Selected Screen Width
+            dmScreenSettings.dmPelsHeight    = height;                // Selected Screen Height
+            dmScreenSettings.dmBitsPerPel    = bits;                    // Selected Bits Per Pixel
+            dmScreenSettings.dmFields=DM_BITSPERPEL|DM_PELSWIDTH|DM_PELSHEIGHT;
+
+            // Try To Set Selected Mode And Get Results.  NOTE: CDS_FULLSCREEN Gets Rid Of Start Bar.
+            if (ChangeDisplaySettings(&dmScreenSettings,CDS_FULLSCREEN)!=DISP_CHANGE_SUCCESSFUL)
+            {
+                // If The Mode Fails, Offer Two Options.  Quit Or Use Windowed Mode.
+                if (showYesNoMsgbox(_T("The Requested Fullscreen Mode Is Not Supported By\nYour Video Card.")
+                    _T("Use Windowed Mode Instead?"),_T("OpenGL"))==IDYES)
+                {
+                    m_bFullscreen=FALSE;        // Windowed Mode Selected.  Fullscreen = FALSE
+                }
+                else
+                {
+                    // Pop Up A Message Box Letting User Know The Program Is Closing.
+                    showMsg(_T("Program Will Now Close."),_T("ERROR"));
+                    return FALSE;                                    // Return FALSE
+                }
+            }
+
+        }
+
+        if (m_bFullscreen)
+        {
+            setStyles(WS_POPUP);
+            setExStyles(WS_EX_APPWINDOW);
+            ::ShowCursor(FALSE);
+        }
+        else
+        {
+            //setStyles(WS_OVERLAPPEDWINDOW);
+            setExStyles(WS_EX_APPWINDOW | WS_EX_WINDOWEDGE);
+        }
+
+        adjustWindowRectEx();
+
+        return TRUE;
     }
 
     BOOL onCreate()
@@ -250,6 +310,8 @@ private:
     HGLRC m_hrc;
     UIcon m_uico;
 
+    BOOL m_bFullscreen;
+
     UINT SkyboxTexture[6];        // We need 6 textures for our Skybox
     UGlut::UGLCamera objCamera;
 private:
@@ -302,7 +364,7 @@ private:
     JPEG_Texture(SkyboxTexture,"texture/right.jpg",  SKYRIGHT);
     JPEG_Texture(SkyboxTexture,"texture/up.jpg",     SKYUP);
     JPEG_Texture(SkyboxTexture,"texture/down.jpg",   SKYDOWN);
-    
+
         return TRUE;
     }
 

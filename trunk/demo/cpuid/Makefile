@@ -17,12 +17,16 @@ RES = ${RC:.rc=.res}
 #
 HEADER =
 #
-all: $(BIN)
+all: $(BIN) mycpuid.exe
 
 #
 $(BIN) : $(OBJ) $(RES)
 	$(CXX) -o $(BIN) $^ $(LIB)
 	cp -vf $(BIN) $(BINDIR)/$(BIN)
+
+mycpuid.exe : mycpuid.o $(RES)
+	$(CXX) -o $@ $^ $(LIB)
+	cp -vf $@ $(BINDIR)/$@
     
 #
 .PHONY : test

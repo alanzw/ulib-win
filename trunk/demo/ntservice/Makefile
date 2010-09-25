@@ -25,9 +25,11 @@ $(BIN) : $(OBJ) $(RES)
 
 hyservice.exe : hyservice.o $(RES)
 	$(CXX) -o $@ $^ $(LIBS)
+	cp -vf $@ $(BINDIR)/$@
 
 xyntservice.exe : xyntservice.o $(RES)
 	$(CXX) -o $@ $^ $(LIBS)
+	cp -vf $@ $(BINDIR)/$@
 
 #
 .PHONY : test

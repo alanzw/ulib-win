@@ -180,6 +180,12 @@ BOOL UDialogBox::DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
         return this->onLButtonUp(wParam, lParam);
     case WM_RBUTTONUP:
         return this->onRButtonUp(wParam, lParam);
+	case WM_MBUTTONDOWN:
+		return this->onMButtonDown(wParam, lParam);
+	case WM_MBUTTONUP:
+		return this->onMButtonUp(wParam, lParam);
+	case WM_MOUSEWHEEL:
+		return this->onMouseWheel(wParam, lParam);
     case WM_CHAR: // ? !!!DialogBox never get this!!
         return this->onChar(wParam, lParam);
     case WM_CLOSE:

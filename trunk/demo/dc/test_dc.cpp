@@ -9,9 +9,8 @@
 #include "udlgapp.h"
 #include "udc.h"
 
-#include "adt/uautoptr.h"
-
 #include "aui/aui_label.h"
+#include "aui/aui_button.h"
 
 int CaptureAnImage(HWND hWnd, LPCTSTR sFilename = _T("C:\\default_cap.bmp"));
 
@@ -128,7 +127,7 @@ public:
         return FALSE;
     }
 private:
-    huys::ADT::UAutoPtr<UButton> m_pBtn;
+    AUI::UButtonP m_pBtn;
     AUI::UTransLabelP m_pLabel;
 };
 

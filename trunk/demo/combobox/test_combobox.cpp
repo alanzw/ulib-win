@@ -11,6 +11,29 @@
 
 #include "adt/uautoptr.h"
 
+class UFlatComboBox : public UComboBox
+{
+public:
+    UFlatComboBox(HWND hParent, UINT nID, HINSTANCE hInstance)
+    : UComboBox(hParent, nID, hInstance)
+    {
+    }
+
+    void enableAutoCompletion(bool bEnable = true)
+    {
+        _bAutoCompletion = bEnable;
+    }
+
+private:
+    bool _bAutoCompletion;
+private:
+    void drawCombo()
+    {
+
+    }
+
+};
+
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
@@ -53,7 +76,7 @@ public:
             int nSel = m_pCombo->getCurSel();
             m_pCombo->getLBText(nSel, buf);
             //m_pStatic->setWindowText("");
-            //m_pStatic->invalidate();
+            //m_pStatic->invalidate(TRUE);
             m_pStatic->setWindowText(buf);
             m_pStatic->hide();
             m_pStatic->show();

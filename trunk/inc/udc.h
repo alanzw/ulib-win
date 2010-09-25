@@ -35,6 +35,9 @@ public:
     bool dettach();
 
     bool getDC(HWND hWnd);
+    
+    int saveDC();
+    BOOL restoreDC(int nSaveDC);
 
     huys::Color setPenColor(huys::Color clr);
     huys::Color setBrushColor(huys::Color clr);

@@ -44,13 +44,13 @@ public:
         m_pEditEx->setStyles( ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN |
                               ES_AUTOHSCROLL | WS_VSCROLL | WS_HSCROLL);
         m_pEditEx->create();
-        
+
         font.setFontFaceName(_T("SimHei"));
         font.setFontHeight(20);
         font.create();
-        
+
         m_pEditEx->setTextColor(huys::blue);
-        
+
         m_pEditEx->setFont(font);
         m_pEditEx->setWindowText(_T("ÖÐ¹ú"));
 

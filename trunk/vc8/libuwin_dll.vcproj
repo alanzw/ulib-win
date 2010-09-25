@@ -795,6 +795,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\upen.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\uprocessman.cpp"
 				>
 			</File>
@@ -921,6 +925,10 @@
 			</File>
 			<File
 				RelativePath="..\src\utooltip.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\utrackbar.cpp"
 				>
 			</File>
 			<File
@@ -1069,6 +1077,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\inc\upen.h"
+				>
+			</File>
+			<File
 				RelativePath="..\inc\uprocessman.h"
 				>
 			</File>
@@ -1114,6 +1126,10 @@
 			</File>
 			<File
 				RelativePath="..\inc\utooltip.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\utrackbar.h"
 				>
 			</File>
 			<File

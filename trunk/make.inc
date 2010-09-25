@@ -110,8 +110,6 @@ endif
     
 RCFLAGS  = -DMINGW_RC  -O coff -I"$(RESDIR)" -I"$(ICODIR)"
 
-
-
 #
 %.res : %.rc
 	$(WINDRES) -i $< -o $@ $(RCFLAGS)
@@ -126,7 +124,11 @@ BINDIR = $(TOPDIR)/bin
 DEMODIR= $(TOPDIR)/demo
 DOCDIR = $(TOPDIR)/doc
 LIBDIR = $(TOPDIR)/lib
+
 #
+GDIPLUS_DIR = D:\Progs\MinGW\include\gdiplus
+
+
 #
 %.o : %.cpp $(HEADERS)
 	$(CXX) -c -o $@ $< $(CXXFLAGS) $(INCS)

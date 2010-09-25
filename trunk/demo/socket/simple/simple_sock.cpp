@@ -16,7 +16,7 @@
  * =====================================================================================
  */
 #include "resource.h"
- 
+
 #include <windows.h>
 #include <stdio.h>
 #include "usocket.h"
@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
 
     us.cleanup();
 
+    printf("Press any key to continue...");
     getchar();
 
     return 0;

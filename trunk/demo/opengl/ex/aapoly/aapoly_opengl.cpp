@@ -10,7 +10,6 @@
 #include "udlgapp.h"
 #include "uglut.h"
 
-
 GLboolean polySmooth = GL_TRUE;
 
 #define NFACE 6
@@ -59,16 +58,16 @@ public:
 
     virtual BOOL initGL()
     {
-        RECT rc;
-        ::GetClientRect(m_hDlg, &rc);
-        int w = rc.right - rc.left;
-        int h = rc.bottom - rc.left;
-        glViewport(0, 0, (GLsizei) w, (GLsizei) h);
+        huys::URectL rect;
+        ::GetClientRect(m_hDlg, rect);
+        UGlut::ResizeScene(rect.width(), rect.height());
+        
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        gluPerspective(30.0, (GLfloat) w/(GLfloat) h, 1.0, 20.0);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
+        
+        gluLookAt (0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
         return TRUE;
     }
@@ -96,7 +95,7 @@ public:
         }
 
         glPushMatrix ();
-        glTranslatef (0.0, 0.0, -8.0);    
+        //glTranslatef (0.0, 0.0, -8.0);    
         glRotatef (30.0, 1.0, 0.0, 0.0);
         glRotatef (60.0, 0.0, 1.0, 0.0); 
         drawCube(-0.5, 0.5, -0.5, 0.5, -0.5, 0.5);

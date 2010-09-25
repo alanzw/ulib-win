@@ -142,17 +142,17 @@ public:
         TCHAR buf[512];
         DWORD u1;
         DWORD u2;
-        
+
         m_pStatusBar->setText(0, _T("Processes: "));
-        
+
         wsprintf(buf, _T("CPU Usage:  %d%%"), USystem::getCPUUsage());
         m_pStatusBar->setText(1, buf);
-        
+
         u1 = USystem::getPhysicMem();
         u2 = USystem::getPhysicMemAvail();
-		wsprintf(buf, _T("Memory Usage: %ld M / %ld M"), u1-u2, u1);
+        wsprintf(buf, _T("Memory Usage: %ld M / %ld M"), u1-u2, u1);
         m_pStatusBar->setText(2, buf);
-        
+
         setTimer(ID_TIMER_UPDATE, 1000);
 
         return TRUE;
@@ -203,18 +203,18 @@ public:
         }
         return UDialogBox::onNotify(wParam, lParam);
     }
-    
+
     BOOL onTimer(WPARAM wParam, LPARAM lParam)
     {
         if (ID_TIMER_UPDATE == wParam)
         {
             go_update();
-            
+
             return FALSE;
         }
         return UDialogBox::onTimer(wParam, lParam);
     }
-    
+
     BOOL onClose()
     {
         this->killTimer(ID_TIMER_UPDATE);
@@ -331,23 +331,23 @@ private:
 
         return FALSE;
     }
-    
+
     void go_update()
     {
         TCHAR buf[512];
         DWORD u1;
         DWORD u2;
-        
+
 
         m_pStatusBar->setText(0, _T("Processes: "));
-        
+
         wsprintf(buf, _T("CPU Usage:  %u%%"), USystem::getCPUUsage());
         m_pStatusBar->setText(1, buf);
-        
+
         u1 = USystem::getPhysicMem();
         u2 = USystem::getPhysicMemAvail();
-		wsprintf(buf, _T("Memory Usage: %ld M / %ld M"), u1-u2, u1);
-        m_pStatusBar->setText(2, buf);        
+        wsprintf(buf, _T("Memory Usage: %ld M / %ld M"), u1-u2, u1);
+        m_pStatusBar->setText(2, buf);
     }
 };
 

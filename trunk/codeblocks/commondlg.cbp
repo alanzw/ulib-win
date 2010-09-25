@@ -48,12 +48,12 @@
 			<Add library="user32" />
 			<Add library="kernel32" />
 		</Linker>
-		<Unit filename="..\demo\commondlg\resource.h" />
-		<Unit filename="..\demo\commondlg\test_commondlg.cpp" />
 		<Unit filename="..\demo\commondlg\commondlg.rc">
 			<Option compilerVar="WINDRES" />
 			<Option compiler="gcc" use="1" buildCommand="$rescomp -i $file -J rc -o $resource_output -O coff $res_includes -DMINGW_RC" />
 		</Unit>
+		<Unit filename="..\demo\commondlg\resource.h" />
+		<Unit filename="..\demo\commondlg\test_commondlg.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

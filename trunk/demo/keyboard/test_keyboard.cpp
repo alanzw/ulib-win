@@ -33,7 +33,8 @@ public:
     MyDialog(HINSTANCE hInst, UINT nID)
     : UDialogBox(hInst, nID) {}
 
-    virtual BOOL onInit() {
+    virtual BOOL onInit()
+    {
         RECT rc = {20, 20, 520, 220};
 
         m_pEdtTest = new UEdit(m_hDlg, ID_EDIT_TEST, m_hInst);
@@ -59,7 +60,7 @@ public:
         m_pLabelChar = new UStatic(m_hDlg, ID_LABEL_CHAR, m_hInst);
         m_pLabelChar->setPos(400, 300, 100, 50);
         m_pLabelChar->setText(_T(""));
-        m_pLabelChar->setStyles(WS_BORDER);
+        m_pLabelChar->setStyles(WS_BORDER|SS_SUNKEN);
         m_pLabelChar->create();
 
         return TRUE;
@@ -98,9 +99,11 @@ public:
     
     BOOL onChar(WPARAM wParam, LPARAM lParam)
     {
+        m_pLabelChar->setWindowText(_T(""));
+        m_pLabelChar->hide();
+        m_pLabelChar->show();
         _buf.format("%ld", wParam);
         m_pLabelChar->setWindowText(_buf);
-        
         
         return UDialogBox::onChar(wParam, lParam);
     }

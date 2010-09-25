@@ -65,6 +65,10 @@ public:
     virtual BOOL onRButtonDown(WPARAM wParam, LPARAM lParam) {return FALSE;}
     virtual BOOL onLButtonUp(WPARAM wParam, LPARAM lParam) {return FALSE;}
     virtual BOOL onRButtonUp(WPARAM wParam, LPARAM lParam) {return FALSE;}
+	virtual BOOL onMButtonDown(WPARAM wParam, LPARAM lParam) {return FALSE;}
+	virtual BOOL onMButtonUp(WPARAM wParam, LPARAM lParam) {return FALSE;}
+
+	virtual BOOL onMouseWheel(WPARAM wParam, LPARAM lParam) {return FALSE;}
 
     //!!! If an application processes this message, it should return zero.
     virtual BOOL onMouseMove(WPARAM wParam, LPARAM lParam)  {return FALSE;}

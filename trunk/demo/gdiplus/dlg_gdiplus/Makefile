@@ -5,10 +5,6 @@ TOPDIR = ../../..
 include $(TOPDIR)/make.inc
 
 #
-GDIPLUS_DIR = D:\GS\mingw4\include\gdiplus
-
-
-#
 
 INC = -I"$(INCDIR)" -I"$(GDIPLUS_DIR)"
 LIBS = -L"$(LIBDIR)" -mwindows -luwin -lgdiplus

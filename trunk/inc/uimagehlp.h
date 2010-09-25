@@ -24,7 +24,7 @@
 class ULIB_API UImageHelp
 {
 public:
-    UImageHelp()
+    UImageHelp();
     ~UImageHelp();
 protected:
 private:

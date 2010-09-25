@@ -54,6 +54,16 @@ bool UDevContext::getDC( HWND hWnd )
     return NULL != (m_hObj = ::GetDC(hWnd));
 }
 
+int UDevContext::saveDC()
+{
+    return ::SaveDC((HDC)m_hObj);
+}
+
+BOOL UDevContext::restoreDC(int nSaveDC)
+{
+    return ::RestoreDC((HDC)m_hObj, nSaveDC);
+}
+
 huys::Color UDevContext::setPenColor(huys::Color clr)
 {
     //    Select DC_PEN so you can change the color of the pen with

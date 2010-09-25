@@ -346,6 +346,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\src\ubrush.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\ubutton.cpp"
 				>
 				<FileConfiguration
@@ -437,6 +441,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\src\ucommondialog.cpp"
+				>
 			</File>
 			<File
 				RelativePath="..\src\uconf.cpp"
@@ -571,6 +579,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\src\ufile.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\ufont.cpp"
 				>
 			</File>
@@ -604,6 +616,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\src\ugdiplus.cpp"
+				>
 			</File>
 			<File
 				RelativePath="..\src\ugldialog.cpp"
@@ -758,6 +774,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\uprogressbar.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\urebar.cpp"
 				>
 				<FileConfiguration
@@ -787,6 +807,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\src\uregion.cpp"
+				>
 			</File>
 			<File
 				RelativePath="..\src\usplashwnd.cpp"
@@ -832,6 +856,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\uthread.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\utoolbar.cpp"
 				>
 				<FileConfiguration
@@ -867,6 +895,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\utreeview.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\uwinapp.cpp"
 				>
 			</File>
@@ -888,6 +920,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\inc\ubrush.h"
+				>
+			</File>
+			<File
 				RelativePath="..\inc\ubutton.h"
 				>
 			</File>
@@ -897,6 +933,10 @@
 			</File>
 			<File
 				RelativePath="..\inc\ucomboboxex.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\ucommondialog.h"
 				>
 			</File>
 			<File
@@ -924,11 +964,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\inc\ufile.h"
+				>
+			</File>
+			<File
 				RelativePath="..\inc\ufont.h"
 				>
 			</File>
 			<File
 				RelativePath="..\inc\ugdi.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\ugdiplus.h"
 				>
 			</File>
 			<File
@@ -976,7 +1024,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\inc\uprogressbar.h"
+				>
+			</File>
+			<File
 				RelativePath="..\inc\urebar.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\uregion.h"
 				>
 			</File>
 			<File
@@ -996,11 +1052,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\inc\uthread.h"
+				>
+			</File>
+			<File
 				RelativePath="..\inc\utoolbar.h"
 				>
 			</File>
 			<File
 				RelativePath="..\inc\utooltip.h"
+				>
+			</File>
+			<File
+				RelativePath="..\inc\utreeview.h"
 				>
 			</File>
 			<File

@@ -62,9 +62,37 @@ public:
 
 };
 
+class UTransGroupBox : public UGroupBox
+{
+public:
+    UTransGroupBox(HWND hParent, UINT nResource, HINSTANCE hInst)
+    : UGroupBox(hParent, nResource, hInst)
+    {
+    }
+
+    UTransGroupBox(UBaseWindow *pWndParent, UINT nID)
+    : UGroupBox(pWndParent, nID)
+    {
+    }
+
+    /* virtual */ BOOL create()
+    {
+        return (UGroupBox::create() && this->subclassProc());
+    }
+
+    /* virtual */ BOOL onCtrlColor(WPARAM wParam, LPARAM lParam)
+    {
+        HDC hdc = (HDC)wParam;
+        ::SetBkMode(hdc, TRANSPARENT);
+        return (BOOL)(HBRUSH)GetStockObject(NULL_BRUSH);
+    }
+
+};
+
 typedef huys::ADT::UAutoPtr<UButton> UButtonP;
 typedef huys::ADT::UAutoPtr<UTransRadioButton> UTransRadioButtonP;
 typedef huys::ADT::UAutoPtr<UTransCheckButton> UTransCheckButtonP;
+typedef huys::ADT::UAutoPtr<UTransGroupBox> UTransGroupBoxP;
 
 }; // namespace AUI
 

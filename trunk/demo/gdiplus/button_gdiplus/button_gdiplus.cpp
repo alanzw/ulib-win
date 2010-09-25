@@ -18,7 +18,6 @@
 #include "ubitmap.h"
 #include "uregion.h"
 
-
 #include "adt/uautoptr.h"
 
 #include "uglassbutton.h"
@@ -347,7 +346,7 @@ private:
     GdiplusStartupInput gdiplusStartupInput;
     ULONG_PTR gdiplusToken;
 
-	huys::ADT::UAutoPtr<UGDIPlusButton> m_pGDIPlusButton;
+    huys::ADT::UAutoPtr<UGDIPlusButton> m_pGDIPlusButton;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)

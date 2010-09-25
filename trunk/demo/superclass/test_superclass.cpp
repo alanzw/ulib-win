@@ -44,7 +44,7 @@ LRESULT APIENTRY EditWndProc( HWND hWnd,
             default:
                 break;
             }
-			return FALSE;
+            return FALSE;
         default:
             return ::CallWindowProc(oldWndProc, hWnd, uMsg, wParam, lParam);
     }

@@ -86,7 +86,7 @@ class UBitmapLabel : public UStatic
 {
 public:
     UBitmapLabel(HWND hParent, UINT nBitmap)
-    : UStatic(hParent, IDC_STATIC, ::GetModuleHandle(NULL))
+    : UStatic(hParent, -1, ::GetModuleHandle(NULL))
     {
         m_dwStyles &= ~SS_SIMPLE;
         m_dwStyles |= SS_NOTIFY;

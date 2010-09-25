@@ -1,4 +1,5 @@
-#define _WIN32_IE 0x0300
+#define _WIN32_IE 0x0400
+#define _WIN32_WINNT 0x0501
 
 #include "resource.h"
 
@@ -55,6 +56,9 @@ public:
         
         m_pMacSlider = new UMacSliderCtrl(m_hDlg, 1234, m_hInst);
         m_pMacSlider->setPos(260, 40, 150, 30);
+		m_pMacSlider->setThumbColor(huys::red);
+		m_pMacSlider->setSelectionColor(huys::babyblue);
+		m_pMacSlider->setChannelColor(huys::pink);
         m_pMacSlider->create();
         
         return TRUE;
@@ -78,6 +82,9 @@ private:
         LRESULT res = SendMessage(m_pTrackBar, TBM_GETPOS, 0, 0);
         //::SetLayeredWindowAttributes(m_hDlg, RGB(255, 0, 0), (BYTE) res, LWA_COLORKEY | LWA_ALPHA);
 #if defined(_MSC_VER) && (_MSC_VER > 1200)
+#ifndef WS_EX_LAYERED 
+#define WS_EX_LAYERED           0x00080000
+#endif
         this->modifyExStyles(WS_EX_LAYERED);
         ::SetLayeredWindowAttributes(m_hDlg, RGB(255, 0, 0), (BYTE) res, LWA_COLORKEY | LWA_ALPHA);
 #else

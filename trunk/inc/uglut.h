@@ -39,6 +39,9 @@ void ULIB_API switchToWireframe();
 ///
 void ULIB_API switchToSolid();
 
+///
+BOOL ULIB_API check_fullscreen(BOOL &flag, int width= 640, int height = 480, int bits=16);
+
 
 //////////////////////////////////////
 //The UGLVector3 Struct
@@ -164,12 +167,20 @@ public:
 
     // This function let you control the camera with the mouse
     void Mouse_Move();
+    
+    //
+    void Translate_View(float cx, float cy, float cz);
 
+    //
     void Rotate_View(float x, float y, float z);
+    
+    //
     void Move_Camera(float cameraspeed);
-    void Position_Camera(float pos_x, float pos_y,float pos_z,
+    
+    //
+    void Position_Camera( float pos_x, float pos_y,float pos_z,
                           float view_x, float view_y, float view_z,
-                         float up_x,   float up_y,   float up_z);
+                          float up_x,   float up_y,   float up_z);
 };
 
 
