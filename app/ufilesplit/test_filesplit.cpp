@@ -453,7 +453,7 @@ private:
         m_unit->disable();
 
         mode = MODE_MERGE;
-        
+
         m_lbOutput->hide();
         m_lbOutput->setWindowText(_T("Output Name"));
         m_lbOutput->show();
@@ -464,7 +464,7 @@ private:
     BOOL onMenuAbout()
     {
         //showMsg(_T("About UFileSplit 0.0.1"));
-        
+
         if (aboutDlg == 0)
         {
             aboutDlg = new AUI::UAboutDialog(this);
@@ -478,7 +478,7 @@ private:
         {
             aboutDlg->show();
         }
-        
+
         return FALSE;
     }
 };

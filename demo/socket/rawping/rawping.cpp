@@ -13,7 +13,6 @@ using namespace std;
 #include "rawping.h"
 #include "ip_checksum.h"
 
-
 //////////////////////////// setup_for_ping ////////////////////////////
 // Creates the Winsock structures necessary for sending and recieving
 // ping packets.  host can be either a dotted-quad IP address, or a

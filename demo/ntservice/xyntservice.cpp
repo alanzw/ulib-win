@@ -35,7 +35,8 @@ void WriteLog(char* pMsg)
         SYSTEMTIME oT;
         ::GetLocalTime(&oT);
         FILE* pLog = fopen(pLogFile,"a");
-        fprintf(pLog,"%02d/%02d/%04d, %02d:%02d:%02d\n    %s\n",oT.wMonth,oT.wDay,oT.wYear,oT.wHour,oT.wMinute,oT.wSecond,pMsg);
+        fprintf(pLog,"%02d/%02d/%04d, %02d:%02d:%02d\n    %s\n",
+            oT.wMonth,oT.wDay,oT.wYear,oT.wHour,oT.wMinute,oT.wSecond,pMsg);
         fclose(pLog);
     } catch(...) {}
     ::LeaveCriticalSection(&myCS);

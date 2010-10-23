@@ -25,19 +25,23 @@ public:
 
     BOOL onInit()
     {
-        RECT rc;
-        ::GetClientRect(m_hDlg, &rc);
+        UCmdLine ucmdline;
+        
+        int nArg  = 0;
+        LPTSTR *sArgv;
+        
+        huys::URectL rect;
+        ::GetClientRect(m_hDlg, rect);
+        
         m_pEdit = new UEdit(m_hDlg, IDC_ED_CMDLINE, m_hInst);
-        //m_pEdit->setPos(20, 20, 240, 80);
+        m_pEdit->setRect(rect);
         m_pEdit->setStyles( ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN |
                               ES_AUTOHSCROLL | WS_VSCROLL | WS_HSCROLL);
         m_pEdit->create();
-        m_pEdit->setPosition(&rc);
-        UCmdLine ucmdline;
-        int nArgs  = 0;
-        LPTSTR *sArgv = ucmdline.CommandLineToArgv(::GetCommandLine(), &nArgs);
+        
+        sArgv= ucmdline.CommandLineToArgv(::GetCommandLine(), &nArg);
 
-        for (int i=0; i<nArgs; ++i)
+        for (int i=0; i<nArg; ++i)
         {
             m_pEdit->addLine(sArgv[i]);
         }

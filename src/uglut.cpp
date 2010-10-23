@@ -43,8 +43,7 @@ int EnableOpenGL(HWND hWnd, HDC &hDC, HGLRC &hRC)
     ::ZeroMemory( &pfd, sizeof( pfd ) );
     pfd.nSize = sizeof( pfd );
     pfd.nVersion = 1;
-    pfd.dwFlags = PFD_DRAW_TO_WINDOW |
-        PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+    pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
     pfd.iPixelType = PFD_TYPE_RGBA;
     pfd.cColorBits = 24;
     pfd.cDepthBits = 16;
@@ -55,7 +54,7 @@ int EnableOpenGL(HWND hWnd, HDC &hDC, HGLRC &hRC)
         return 1;
     }
 
-    if (SetPixelFormat( hDC, iFormat, &pfd ) == FALSE)
+    if (::SetPixelFormat( hDC, iFormat, &pfd ) == FALSE)
     {
         return 1;
     }

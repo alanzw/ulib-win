@@ -7,10 +7,10 @@
 #include <winsock2.h>
 
 // ICMP packet types
-#define ICMP_ECHO_REPLY 0
-#define ICMP_DEST_UNREACH 3
-#define ICMP_TTL_EXPIRE 11
-#define ICMP_ECHO_REQUEST 8
+#define ICMP_ECHO_REPLY    0
+#define ICMP_DEST_UNREACH  3
+#define ICMP_TTL_EXPIRE    11
+#define ICMP_ECHO_REQUEST  8
 
 // Minimum ICMP packet size, in bytes
 #define ICMP_MIN 8

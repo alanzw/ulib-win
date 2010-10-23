@@ -71,6 +71,7 @@
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</EmbedManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</GenerateManifest>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -216,6 +217,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="..\src\ubrush.cpp" />
     <ClCompile Include="..\src\ubutton.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -274,6 +276,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="..\src\ufile.cpp" />
     <ClCompile Include="..\src\ufont.cpp" />
     <ClCompile Include="..\src\ugdi.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -283,6 +286,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="..\src\ugdiplus.cpp" />
     <ClCompile Include="..\src\ugldialog.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -301,6 +305,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="..\src\ulayout.cpp" />
     <ClCompile Include="..\src\ulib.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -322,6 +327,7 @@
     <ClCompile Include="..\src\uobject.cpp" />
     <ClCompile Include="..\src\upalette.cpp" />
     <ClCompile Include="..\src\upanel.cpp" />
+    <ClCompile Include="..\src\upicture.cpp" />
     <ClCompile Include="..\src\uprogressbar.cpp" />
     <ClCompile Include="..\src\upropsheet.cpp" />
     <ClCompile Include="..\src\urebar.cpp">
@@ -358,6 +364,7 @@
   <ItemGroup>
     <ClInclude Include="..\inc\ubasewindow.h" />
     <ClInclude Include="..\inc\ubitmap.h" />
+    <ClInclude Include="..\inc\ubrush.h" />
     <ClInclude Include="..\inc\ubutton.h" />
     <ClInclude Include="..\inc\ucombobox.h" />
     <ClInclude Include="..\inc\ucomboboxex.h" />
@@ -367,12 +374,15 @@
     <ClInclude Include="..\inc\udebug.h" />
     <ClInclude Include="..\inc\udialogx.h" />
     <ClInclude Include="..\inc\uedit.h" />
+    <ClInclude Include="..\inc\ufile.h" />
     <ClInclude Include="..\inc\ufont.h" />
     <ClInclude Include="..\inc\ugdi.h" />
+    <ClInclude Include="..\inc\ugdiplus.h" />
     <ClInclude Include="..\inc\ugldialog.h" />
     <ClInclude Include="..\inc\uglut.h" />
     <ClInclude Include="..\inc\uicon.h" />
     <ClInclude Include="..\inc\uimagelist.h" />
+    <ClInclude Include="..\inc\ulayout.h" />
     <ClInclude Include="..\inc\ulib.h" />
     <ClInclude Include="..\inc\ulistbox.h" />
     <ClInclude Include="..\inc\umenu.h" />
@@ -380,6 +390,7 @@
     <ClInclude Include="..\inc\uobject.h" />
     <ClInclude Include="..\inc\upalette.h" />
     <ClInclude Include="..\inc\upanel.h" />
+    <ClInclude Include="..\inc\upicture.h" />
     <ClInclude Include="..\inc\uprogressbar.h" />
     <ClInclude Include="..\inc\upropsheet.h" />
     <ClInclude Include="..\inc\urebar.h" />

@@ -143,6 +143,14 @@ BOOL UDevContext::bitBlt( int nXOriginDest,
         nXOriginSrc, nYOriginSrc, dwRop );
 }
 
+BOOL UDevContext::bitBlt(LPRECT lpRect, HDC hdcSrc, int nXOriginSrc, int nYOriginSrc, DWORD dwRop)
+{
+    return this->bitBlt(lpRect->left, lpRect->top,
+                        lpRect->right - lpRect->left,
+                        lpRect->bottom - lpRect->top,
+                        hdcSrc, nXOriginSrc, nYOriginSrc, dwRop);
+}
+
 BOOL UDevContext::patBlt( int nLeft,
                           int nTop,
                           int nWidth,

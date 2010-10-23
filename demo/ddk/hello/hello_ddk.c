@@ -17,13 +17,13 @@
  *   windbg.exe -k com:port=\\.pipe\com_1,baud=115200,pipe
  *
  * Cmd:
- *   net start first
+ *   net start HelloDDK
  *
  * Cmd:
- *   net stop first
+ *   net stop HelloDDK
  */
 
-// first.c
+// hello_ddk.c
 #ifdef __GNUC__
   #include <ddk/ntddk.h>
 #else

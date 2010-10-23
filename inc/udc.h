@@ -68,6 +68,7 @@ public:
         int nWidthSrc,
         int nHeightSrc,
         DWORD dwRop);
+
     BOOL bitBlt(
         int nXOriginDest,
         int nYOriginDest,
@@ -78,6 +79,8 @@ public:
         int nYOriginSrc,
         DWORD dwRop);
 
+    BOOL bitBlt(LPRECT lpRect, HDC hdcSrc, int nXOriginSrc, int nYOriginSrc, DWORD dwRop);
+        
     BOOL patBlt(
         int nLeft,
         int nTop,

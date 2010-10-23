@@ -23,6 +23,8 @@ SUBDIRS =          \
           server   \
           ftpclient \
           chat     \
+          serverui \
+          wshout   \
 
 #
 .PHONY: all

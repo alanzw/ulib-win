@@ -40,7 +40,8 @@ public:
     BOOL getClientRect(LPRECT lpRect);
     BOOL getWindowRect(LPRECT lpRect);
     void clientToDialog(HWND hDlg, LPRECT lpRect);
-
+    void screenToDialog(HWND hDlg, LPRECT lpRect);
+    
     //
     BOOL setPosition(const RECT *rect);
     BOOL setPositionEx(int x, int y, int nWidth, int nHeight, BOOL bRepaint = FALSE);
