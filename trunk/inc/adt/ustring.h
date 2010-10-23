@@ -442,7 +442,6 @@ inline UString<T, default_bufsize> operator + (const char* a, const UString<T, d
 typedef UString<char> UStringAnsi;
 typedef UString<wchar_t> UStringUnicode;
 
-
 }; // namespace ADT
 
 

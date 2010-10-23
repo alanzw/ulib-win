@@ -21,6 +21,7 @@
 #include "uhistogram.h"
 #include "uinfobar.h"
 #include "umeterctrl.h"
+#include "uhyperlink.h"
 
 
 using huys::UDialogBox;
@@ -89,28 +90,28 @@ public:
         setText(_T(""));
         //m_dwStyles |= SS_BITMAP | SS_REALSIZEIMAGE;
     }
-    
+
     virtual BOOL create()
     {
         BOOL bRet = UStatic::create();
         this->subclassProc();
         return  bRet;
     }
-    
+
     BOOL setBitmap(UINT nID, HINSTANCE hInst = ::GetModuleHandle(NULL))
     {
         //if (!_bmp.isNull())
         //{
         //    _bmp.destroyBitmap();
         //}
-        
+
         _bmp.loadFromResource(nID, hInst);
         //this->sendMsg(STM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)(HBITMAP)(_bmp));
         invalidate(TRUE);
 
         return TRUE;
     }
-    
+
     virtual BOOL onPaint()
     {
         PAINTSTRUCT ps;
@@ -310,7 +311,7 @@ public:
         m_pIconStatic->create();
         m_pIconStatic->setPosition(&ico_rc);
         m_pIconStatic->setIcon(IDI_HELP);
-        
+
         m_pBitmapStatic = new UBitmapStatic(m_hDlg, IDC_STATIC_BITMAP, m_hInst);
         m_pBitmapStatic->setPos(180, 60, 128, 128);
         m_pBitmapStatic->create();
@@ -327,7 +328,7 @@ public:
         m_pBevelLine = new UBevelLine(m_hDlg);
         m_pBevelLine->create();
         m_pBevelLine->setPosition(&rcLine);
-        
+
         m_pBevelLineVertical = new UBevelLine(m_hDlg);
         m_pBevelLineVertical->setPos(320, 20, 200, 30);
         m_pBevelLineVertical->create();
@@ -368,11 +369,17 @@ public:
         m_infobar->setPos(5, 350, 520, 120);
         //m_infobar->setStyles(WS_BORDER);
         m_infobar->create();
-        
+
         m_meter = new UMeterCtrl(m_hDlg);
         m_meter->setPos(200, 360, 100, 100);
         m_meter->create();
-
+        
+        m_link = new UHyperLink(m_hDlg, 3456);
+        m_link->setStyles(SS_SUNKEN);
+        m_link->setPos(400, 280, 100, 50);
+        m_link->create();
+        m_link->setWindowText(_T("url"));
+        
         return TRUE;
     }
 
@@ -432,8 +439,10 @@ public:
     huys::ADT::UAutoPtr<UHistogramCtrl> m_hist;
 
     huys::ADT::UAutoPtr<UInfoBar> m_infobar;
-    
+
     huys::ADT::UAutoPtr<UMeterCtrl> m_meter;
+    
+    huys::ADT::UAutoPtr<UHyperLink> m_link;
 
     HBRUSH m_hBkBrush;
 };

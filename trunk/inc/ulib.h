@@ -152,9 +152,6 @@ inline void checked_delete(T * x)
     delete x;
 }
 
-///
-#include "uwarnings.h"
-#include "uhelpers.h"
 
 /// VC Link Stuff
 #ifdef _MSC_VER
@@ -271,6 +268,10 @@ inline void checked_delete(T * x)
 #ifndef UCTCTRL
 #define UCTCTRL _T("HUCTCTRL")
 #endif
+
+///
+#include "uwarnings.h"
+#include "uhelpers.h"
 
 #endif // HUYS_ULIB_H
 

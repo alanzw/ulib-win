@@ -87,18 +87,9 @@ int main(int argc, char *argv[])
     }
 
     /* Create a socket. */
-    //sd = socket(AF_INET, SOCK_STREAM, ptrp->p_proto);
-    //if (sd < 0) {
-    //    fprintf(stderr, "Socket creation failed\n");
-    //    exit(1);
-    //}
     us.create(AF_INET, SOCK_STREAM, ptrp->p_proto);
 
     /* Connect the socket to the specified server. */
-    //if (connect(sd, (struct sockaddr *)&sad, sizeof(sad)) < 0) {
-    //    fprintf(stderr,"Connect failed\n");
-    //    exit(1);
-    //}
     if (SOCKET_ERROR == us.connect((struct sockaddr *)&sad))
     {
         exit(1);
@@ -107,8 +98,6 @@ int main(int argc, char *argv[])
     /* Repeatedly read data from user and send it to server. */
     text = fgets(buf, sizeof(buf), stdin);
     while (text != NULL) {
-        //send(sd, buf, strlen(buf), 0);
-        //n = recv(sd, buf, sizeof(buf), 0);
         us.send(buf, strlen(buf));
         printf("send: %s", buf);
         if (strncmp(buf, "quit", 4) == 0) break;
@@ -116,7 +105,6 @@ int main(int argc, char *argv[])
         n = us.recv(buf, sizeof(buf));
         buf[n] = '\0';
         printf("recv: %s", buf);
-        //write(1, buf, n);
         text = fgets(buf, sizeof(buf), stdin);
     }
 

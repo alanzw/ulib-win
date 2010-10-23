@@ -44,11 +44,6 @@ int main(int argc, char *argv[])
 
     int nState;
 
-//#ifdef WIN32
-//        WSADATA wsaData;
-//        WSAStartup(0x0101, &wsaData);
-//#endif
-
     USocket us;
     us.init();
 
@@ -78,58 +73,30 @@ int main(int argc, char *argv[])
     }
 
     /* Create a socket */
-    //sd = socket(AF_INET, SOCK_STREAM, ptrp->p_proto);
-    //if (sd < 0) {
-    //        fprintf(stderr, "Socket creation failed\n");
-    //        exit(1);
-    //}
     us.create(AF_INET, SOCK_STREAM, ptrp->p_proto);
 
     /* Eliminate "Address already in use" error from bind. */
-    //if (setsockopt(sd, SOL_SOCKET, SO_REUSEADDR,
-    //           (const void *)&optval , sizeof(int)) < 0)
-    //return -1;
     us.setsockopt(SOL_SOCKET, SO_REUSEADDR, (const char *)&optval , sizeof(int));
 
     /* Bind a local address to the socket */
-    //if (bind(sd, (struct sockaddr *)&sad, sizeof(sad)) < 0) {
-    //        fprintf(stderr,"Bind failed\n");
-    //        exit(1);
-    //}
     us.bind(port);
 
     /* Specify size of request queue */
-    //if (listen(sd, QLEN) < 0) {
-    //        fprintf(stderr,"Listen failed\n");
-    //        exit(1);
-    //}
     us.listen(QLEN);
 
     /* Main server loop - accept and handle requests */
     while (1) {
         alen = sizeof(cad);
-        //if ( (sd2 = accept(sd, (struct sockaddr *)&cad, &alen)) < 0) {
-        //        fprintf(stderr, "Accept failed\n");
-        //        exit(1);
-        //}
         if (INVALID_SOCKET == (sd2 = us.accept((struct sockaddr *)&cad, &alen) ))
         {
             fprintf(stderr, "Accept failed\n");
             exit(1);
         }
 
-
-        //n = recv(sd2, buf, sizeof(buf), 0);
-        //while (n > 0)
-        //{
-        //    send(sd2, buf, n, 0);
-        //    n = recv(sd2, buf, sizeof(buf), 0);
-        //}
         n = us.recv(sd2, buf, sizeof(buf
         printf("recv: %d -- %s\n", n, buf);
         while (n > 0)
         {
-            //write(1, buf, n);
             us.send(sd2, buf, n);
             buf[n] = '\0';
             printf("send: %d -- %s\n", n, buf);
@@ -140,8 +107,6 @@ int main(int argc, char *argv[])
         }
 
         if (strncmp(buf, "quit", 4) == 0) break;
-        
-        // closesocket(sd2);
     }
     us.close();
     us.cleanup();

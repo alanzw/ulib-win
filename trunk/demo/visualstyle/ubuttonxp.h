@@ -57,9 +57,11 @@ private:
     {
         TCHAR sCaption[512];
         this->getWindowText(sCaption, 512);
-        ::SetBkMode(hdc, TRANSPARENT);
-        ::SetTextColor(hdc, huys::blueviolet);
-        ::DrawText(hdc, sCaption, lstrlen(sCaption), lpRect, DT_SINGLELINE | DT_CENTER | DT_VCENTER );
+        
+        USmartDC dc(hdc);
+        dc.setBKMode(TRANSPARENT);
+        dc.setTextColor(huys::blueviolet);
+        dc.drawText(sCaption, lstrlen(sCaption), lpRect, DT_SINGLELINE | DT_CENTER | DT_VCENTER );
     }
 
     void drawButton(LPDRAWITEMSTRUCT lpDIS)
@@ -94,15 +96,14 @@ private:
         UMemDC memDC(dc);
         memDC.selectObj(pBitmap);
 
-        RECT rect= lpDIS->rcItem;
+        huys::URectL rect = lpDIS->rcItem;
 
         //
-        m_theme.drawBackgroud(dc, BP_PUSHBUTTON, iBnState, &rect);
+        m_theme.drawBackgroud(dc, BP_PUSHBUTTON, iBnState, rect);
         ////////////////////////////////////////////////
         // Changed the last parameter:
 
-        dc.bitBlt(rect.left, rect.top, rect.right-rect.left, rect.bottom - rect.top,
-            memDC, 0, 0, SRCAND);
+        dc.bitBlt(rect, memDC, 0, 0, SRCAND);
 
     }
 };

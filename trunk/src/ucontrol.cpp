@@ -296,6 +296,12 @@ void UControl::clientToDialog(HWND hDlg, LPRECT lpRect)
     ::ScreenToClient(hDlg, ((LPPOINT)lpRect)+1);
 }
 
+void UControl::screenToDialog(HWND hDlg, LPRECT lpRect)
+{
+    ::ScreenToClient(hDlg, (LPPOINT)lpRect);
+    ::ScreenToClient(hDlg, ((LPPOINT)lpRect)+1);
+}
+
 // TODO: fix me!
 UControl * UControl::fromHandle( HWND hwnd )
 {

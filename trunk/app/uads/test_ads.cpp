@@ -155,6 +155,17 @@ public:
         }
         return FALSE;
     }
+    
+    /* virtual */ BOOL onChar(WPARAM wParam, LPARAM lParam)
+    {
+        switch (wParam)
+        {
+        case VK_ESCAPE:
+            return UBaseWindow::onClose();
+        default:
+            return UBaseWindow::onChar(wParam, lParam);
+        }
+    }
 private:
     huys::ADT::UAutoPtr<UADSample> m_source[8];
     huys::ADT::UAutoPtr<UADSample> m_source2[8];

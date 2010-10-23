@@ -40,6 +40,12 @@ public:
     : _x(aPoint._x), _y(aPoint._y)
     {}
 
+	explicit UPoint(unsigned long dwPoint)
+	{
+		_x = (short)GET_X_LPARAM(dwPoint);
+		_y = (short)GET_Y_LPARAM(dwPoint);
+	}
+
     ~UPoint()
     {}
 
@@ -105,6 +111,13 @@ public:
       _bottom(lpRect->bottom)
     {}
 
+    URect(RECT rect)
+    : _left(rect.left),
+      _top(rect.top),
+      _right(rect.right),
+      _bottom(rect.bottom)
+    {}
+    
     ~URect()
     {}
 
@@ -114,6 +127,16 @@ public:
         _top = lpRect->top;
         _right = lpRect->right;
         _bottom = lpRect->bottom;
+
+        return *this;
+    }
+    
+    URect& operator= (RECT rect)
+    {
+        _left = rect.left;
+        _top = rect.top;
+        _right = rect.right;
+        _bottom = rect.bottom;
 
         return *this;
     }
