@@ -1,16 +1,4 @@
-/*
-
-  RESPHEAD.C
-  ==========
-  (c) Copyright Paul Griffiths 1999
-  Email: mail@paulgriffiths.net
-
-  Implementation of HTTP reponse header functions.
-
-*/
-
-
-#include <unistd.h>
+#include <windows.h>
 
 #include <stdio.h>
 
