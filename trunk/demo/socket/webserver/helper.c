@@ -22,7 +22,8 @@
 
 /*  Prints an error message and quits  */
 
-void Error_Quit(char const * msg) {
+void Error_Quit(char const * msg)
+{
     fprintf(stderr, "WEBSERV: %s\n", msg);
     exit(EXIT_FAILURE);
 }
@@ -30,8 +31,9 @@ void Error_Quit(char const * msg) {
 
 /*  Read a line from a socket  */
 
-ssize_t Readline(int sockd, void *vptr, size_t maxlen) {
-    ssize_t n, rc;
+ssize_t Readline(int sockd, void *vptr, size_t maxlen)
+{
+    size_t n, rc;
     char    c, *buffer;
 
     buffer = vptr;
