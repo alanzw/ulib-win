@@ -268,6 +268,22 @@ public:
         return -1;
     }
 
+    size_type findString(const T * str, size_type length)
+    {
+        if (length > m_nStrLength) return -1;
+
+        UString sub = *this;
+
+        for (size_type pos = 0; pos <= m_nStrLength - length ; ++pos)
+        {
+            sub = substr(pos, pos+length-1);
+            if (sub == str)
+                return pos;
+        }
+
+        return -1;
+    }
+
     size_type findCharSet(const T * chars, size_type n, size_type start = 0)
     {
         size_type pos = -1;
@@ -367,10 +383,10 @@ public:
             && ( lstrcmp(this->c_str(), str) == 0 );    // actual compare
     }
 
-	void update()
-	{
-		m_nStrLength = lstrlen(m_pBuf);
-	}
+    void update()
+    {
+        m_nStrLength = lstrlen(m_pBuf);
+    }
 private:
     T *m_pBuf;
     size_type m_nBufSize;

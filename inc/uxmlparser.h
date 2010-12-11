@@ -394,9 +394,55 @@ private:
         if (-1 != _buffer.find(' ', start, end))
         {
             end = _buffer.find(' ', start, end) - 1;
+            
+            extractAtrributes(end+2, _buffer.find('>', start) - 1);
         }
         return _buffer.substr(start, end);
     }
+    
+    void extractAtrributes(UXMLString::size_type s, UXMLString::size_type e)
+    {
+        if (e <= s)
+        {
+            printf("==== No attributes there!!!\n====");
+            return;
+        }
+        
+        UXMLString name;
+        UXMLString value;
+        
+        UXMLString::size_type ps, pe;
+
+        printf("-------------------------------------------------\n");
+        printf("name   value \n");
+        printf("==========================\n");
+        
+        while (-1 != _buffer.find('=', s, e) )
+        {
+            ps = _buffer.find('=', s, e) -1;
+            pe = _buffer.find(' ', ps+2, e);
+            
+            if (-1 == pe)
+            {
+                pe = e;
+            }
+            else
+            {
+                --pe;
+            }
+            
+            name = _buffer.substr(s, ps);
+            value = _buffer.substr(ps+2, pe);
+
+            printf("%s    %s\n", name.c_str(), value.c_str());
+            
+            s = pe+2;
+        }
+        
+        printf("-------------------------------------------------\n");
+    }
+    
+    
 
     bool isCommnent()
     {
@@ -495,7 +541,9 @@ public:
 
         _buffer.setLength(s);
 
-        printf(_buffer.c_str());
+        //printf(_buffer.c_str());
+        parse();
+        
         return true;
     }
 
@@ -516,11 +564,31 @@ private:
 
     bool parse()
     {
+        UXMLString temp;
+        UXMLString::size_type ps, pe;
+        
+        ps = _buffer.find('<');
+        pe = _buffer.find('>');
+        
+        while ( -1 != ps && -1 != pe)
+        {
+            if ( '/' != _buffer.at(ps+1) )
+            {
+                temp = _buffer.substr(ps, pe);
+        
+                _parser.parse(temp.c_str());
+            }
+            ps = _buffer.find('<', ps+1);
+            pe = _buffer.find('>', pe+1);
+        
+        }
+    
         return true;
     }
 
     bool writeNew()
     {
+       
         return true;
     }
 

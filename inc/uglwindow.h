@@ -8,6 +8,7 @@ class ULIB_API UGLWindow : public UBaseWindow
 public:
     typedef void (*InitFunc)();
     typedef void (*DisplayFunc)();
+    typedef void (*ReshapeFunc)(int,int);
 public:
     UGLWindow(HINSTANCE hInst = ::GetModuleHandle(NULL));
 
@@ -33,6 +34,11 @@ public:
 
     void setDisplay(DisplayFunc pf)
     { _disp_func = pf; }
+    
+    void setReshape(ReshapeFunc pf)
+    {
+        _reshape_func = pf;
+    }
 
     //
     void setInterval(UINT uInterval)
@@ -48,6 +54,7 @@ private:
 
     InitFunc _init_func;
     DisplayFunc _disp_func;
+    ReshapeFunc _reshape_func;
 
     enum { ID_TIMER_INTERNAL = 22 };
 private:

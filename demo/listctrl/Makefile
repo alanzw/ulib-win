@@ -15,9 +15,11 @@ BIN = test_listctrl.exe
 RC  = listctrl.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/ucontrol.h \
+HEADERS = $(INCDIR)/ucontrol.h \
 		 $(INCDIR)/ulistview.h \
-		 $(INCDIR)/udialogx.h
+		 $(INCDIR)/udialogx.h \
+		 custom_listctrl.h \
+
 #
 all: $(BIN)
 

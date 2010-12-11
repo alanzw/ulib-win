@@ -70,6 +70,8 @@ private:
         tfile.close();
 
         m_pEditContent->setWindowText(buf);
+
+        return FALSE;
     }
 
     BOOL onBnWrite()
@@ -80,6 +82,7 @@ private:
         m_pEditContent->getWindowText(buf, 511);
         tfile.write((LPBYTE)buf, lstrlen(buf)*sizeof(TCHAR));
         tfile.close();
+        return FALSE;
     }
 };
 

@@ -19,6 +19,155 @@
 
 #include "aui/aui_tracewin.h"
 
+struct dbwin_buffer {
+        DWORD   dwProcessId;
+        char    data[4096-sizeof(DWORD)];
+};
+
+DWORD WINAPI WinDebugMonitorThread(void *pData)
+{
+    return -1;
+}
+
+DWORD initialize_dbg()
+{
+    DWORD errorCode = 0;
+    BOOL bSuccessful = FALSE;
+
+    SetLastError(0);
+
+    // Mutex: DBWin
+    // ---------------------------------------------------------
+    LPCTSTR DBWinMutex = _T("DBWinMutex");
+    HANDLE m_hDBWinMutex = ::OpenMutex(
+        MUTEX_ALL_ACCESS,
+        FALSE,
+        DBWinMutex
+        );
+
+    if (m_hDBWinMutex == NULL) {
+        errorCode = GetLastError();
+        return errorCode;
+    }
+
+    // Event: buffer ready
+    // ---------------------------------------------------------
+    LPCTSTR DBWIN_BUFFER_READY = _T("DBWIN_BUFFER_READY");
+    HANDLE m_hEventBufferReady = ::OpenEvent(
+        EVENT_ALL_ACCESS,
+        FALSE,
+        DBWIN_BUFFER_READY
+        );
+
+    if (m_hEventBufferReady == NULL) {
+        m_hEventBufferReady = ::CreateEvent(
+            NULL,
+            FALSE,    // auto-reset
+            TRUE,    // initial state: signaled
+            DBWIN_BUFFER_READY
+            );
+
+        if (m_hEventBufferReady == NULL) {
+            errorCode = GetLastError();
+            return errorCode;
+        }
+    }
+
+    // Event: data ready
+    // ---------------------------------------------------------
+    LPCTSTR DBWIN_DATA_READY = _T("DBWIN_DATA_READY");
+    HANDLE m_hEventDataReady = ::OpenEvent(
+        SYNCHRONIZE,
+        FALSE,
+        DBWIN_DATA_READY
+        );
+
+    if (m_hEventDataReady == NULL) {
+        m_hEventDataReady = ::CreateEvent(
+            NULL,
+            FALSE,    // auto-reset
+            FALSE,    // initial state: nonsignaled
+            DBWIN_DATA_READY
+            );
+
+        if (m_hEventDataReady == NULL) {
+            errorCode = GetLastError();
+            return errorCode;
+        }
+    }
+
+    // Shared memory
+    // ---------------------------------------------------------
+    LPCTSTR DBWIN_BUFFER = _T("DBWIN_BUFFER");
+    HANDLE m_hDBMonBuffer = ::OpenFileMapping(
+        FILE_MAP_READ,
+        FALSE,
+        DBWIN_BUFFER
+        );
+
+    if (m_hDBMonBuffer == NULL) {
+        m_hDBMonBuffer = ::CreateFileMapping(
+            INVALID_HANDLE_VALUE,
+            NULL,
+            PAGE_READWRITE,
+            0,
+            sizeof(struct dbwin_buffer),
+            DBWIN_BUFFER
+            );
+
+        if (m_hDBMonBuffer == NULL) {
+            errorCode = GetLastError();
+            return errorCode;
+        }
+    }
+
+    struct dbwin_buffer * m_pDBBuffer = (struct dbwin_buffer *)::MapViewOfFile(
+        m_hDBMonBuffer,
+        SECTION_MAP_READ,
+        0,
+        0,
+        0
+        );
+
+    if (m_pDBBuffer == NULL) {
+        errorCode = GetLastError();
+        return errorCode;
+    }
+
+    // Monitoring thread
+    // ---------------------------------------------------------
+    BOOL m_bWinDebugMonStopped = FALSE;
+
+    HANDLE m_hWinDebugMonitorThread = ::CreateThread(
+        NULL,
+        0,
+        WinDebugMonitorThread,
+        NULL,
+        0,
+        NULL
+        );
+
+    if (m_hWinDebugMonitorThread == NULL) {
+        m_bWinDebugMonStopped = TRUE;
+        errorCode = GetLastError();
+        return errorCode;
+    }
+
+    // set monitor thread's priority to highest
+    // ---------------------------------------------------------
+    bSuccessful = ::SetPriorityClass(
+        ::GetCurrentProcess(),
+        REALTIME_PRIORITY_CLASS
+        );
+
+    bSuccessful = ::SetThreadPriority(
+        m_hWinDebugMonitorThread,
+        THREAD_PRIORITY_TIME_CRITICAL
+        );
+
+    return errorCode;
+}
+
 using huys::UDialogBox;
 
 class UDialogExt : public UDialogBox
@@ -28,6 +177,10 @@ class UDialogExt : public UDialogBox
         IDM_SAVE = 2001,
         IDM_PIN  = 2002,
         IDM_HELP = 2003
+    };
+
+    enum {
+        IDC_LISTBOX_DEBUG = 1001
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
@@ -42,6 +195,16 @@ public:
         addToolbar();
 
         this->setDlgIconBig(::LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_EYE)));
+
+        listbox = new UListBox(m_hDlg, IDC_LISTBOX_DEBUG, m_hInst);
+
+        huys::URectL rect;
+        ::GetClientRect(m_hDlg, rect);
+        //
+        rect.offsetY(32, 0);
+
+        listbox->setRect(rect);
+        listbox->create();
 
         return TRUE;
     }
@@ -129,6 +292,7 @@ private:
 private:
     AUI::UTraceWindowP win;
     huys::ADT::UAutoPtr<UToolBar> toolbar;
+    huys::ADT::UAutoPtr<UListBox> listbox;
 };
 
 UDLGAPP_T(UDialogExt, IDD_TEST);

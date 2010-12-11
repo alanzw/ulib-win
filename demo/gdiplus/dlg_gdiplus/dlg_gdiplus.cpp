@@ -13,6 +13,7 @@
 
 #include "udialogx.h"
 #include "udlgapp.h"
+#include "ugdiplus.h"
 
 using huys::UDialogBox;
 
@@ -26,37 +27,22 @@ class MyDialog : public UDialogBox
     };
 public:
     MyDialog(HINSTANCE hInst, UINT nID)
-        : UDialogBox(hInst, nID){}
-
-    ~MyDialog()
-    {
-    }
-
-    virtual BOOL onInit()
-    {
-        startGDIPlus();
-        return TRUE;
-    }
-
-    virtual BOOL onDestroy()
-    {
-        stopGDIPlus();
-        return UDialogBox::onDestroy();
-    }
+    : UDialogBox(hInst, nID){}
 
     virtual void onDraw(HDC hdc)
     {
         Graphics graphics(hdc);
-        Pen      pen(Color(255, 0, 0, 255));
+        
+        Pen pen(Color(255, 0, 0, 255));
         graphics.DrawLine(&pen, 0, 0, 200, 100);
 
         SolidBrush solidBrush(Color(255, 255, 0, 0));
         graphics.FillEllipse(&solidBrush, 0, 0, 100, 60);
 
-        SolidBrush  brush(Color(255, 0, 0, 255));
-        FontFamily  fontFamily(L"Times New Roman");
-        Font        font(&fontFamily, 24, FontStyleRegular, UnitPixel);
-        PointF      pointF(10.0f, 20.0f);
+        SolidBrush brush(Color(255, 0, 0, 255));
+        FontFamily fontFamily(L"Times New Roman");
+        Font font(&fontFamily, 24, FontStyleRegular, UnitPixel);
+        PointF pointF(10.0f, 20.0f);
 
         graphics.DrawString(L"Hello World!", -1, &font, pointF, &brush);
 
@@ -73,22 +59,20 @@ public:
         pen.SetStartCap(LineCapArrowAnchor);
         pen.SetEndCap(LineCapRoundAnchor);
         graphics.DrawLine(&pen, 20, 175, 300, 175);
+
+        Pen blackPen(Color(255, 0, 0, 0), 2);
+        //
+        PointF pt1(210.0f, 10.0f);
+        PointF pt2(210.0f, 100.0f);
+        PointF pt3(250.0f, 50.0f);
+        PointF pt4(210.0f, 10.0f);
+
+        PointF points[4] = {pt1, pt2, pt3, pt4};
+        graphics.DrawLines(&blackPen, points, 4);
     }
 
 private:
-    void startGDIPlus()
-    {
-        // Initialize GDI+.
-        GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
-    }
-
-    void stopGDIPlus()
-    {
-        GdiplusShutdown(gdiplusToken);
-    }
-
-    GdiplusStartupInput gdiplusStartupInput;
-    ULONG_PTR gdiplusToken;
+    UGDIPlusHelper _gh;
 };
 
 UDLGAPP_T(MyDialog, IDD_TEST);

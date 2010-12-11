@@ -15,11 +15,11 @@ typedef struct {
 } CONNECTSTRUCT, *LPCONNECTSTRUCT;
 
 #define HTTP_WAITING                0
-#define HTTP_OK                        1
-#define HTTP_ERROR                    2
-#define HTTP_CANCEL                    3
+#define HTTP_OK                     1
+#define HTTP_ERROR                  2
+#define HTTP_CANCEL                 3
 #define HTTP_TIMEOUT                4
-#define MAX_RECEIVABLE                80000
+#define MAX_RECEIVABLE              80000
 
 class UHTTPClient
 {

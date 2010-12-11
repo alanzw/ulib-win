@@ -9,9 +9,12 @@
 #include "colors.h"
 #include "ubitmap.h"
 //#include "udibapi.h"
+#include "udc.h"
+#include "adt/ustring.h"
 
 class UMyWindow : public UBaseWindow
 {
+    typedef huys::ADT::UStringAnsi UString;
 public:
     UMyWindow()
         : UBaseWindow(NULL, ::GetModuleHandle(NULL))
@@ -25,6 +28,22 @@ public:
         this->setIconBig(IDI_PEN);
 
         return UBaseWindow::onCreate();
+    }
+
+    /* virtual */ BOOL onMouseMove(WPARAM wParam, LPARAM lParam)
+    {
+        int xPos = GET_X_LPARAM(lParam);
+        int yPos = GET_Y_LPARAM(lParam);
+
+        UString str;
+
+        str.format("(%d, %d)", xPos, yPos);
+
+        UPrivateDC dc(this->getHandle());
+
+        dc.textOutEx(100, 100, str);
+
+        return FALSE;
     }
 
     //

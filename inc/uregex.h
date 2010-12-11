@@ -20,11 +20,12 @@ namespace URegex
 class ULIB_API URegExp
 {
 public:
-
     URegExp();
-
+    
+    ~URegExp();
+    
 private:
-
+    
 };
 
 }; // namespace URegex

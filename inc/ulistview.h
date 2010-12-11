@@ -59,6 +59,15 @@ public:
 
     BOOL deleteAllItems();
 
+	//
+	BOOL isItemChecked(int nItem);
+	void setItemChecked(int nItem, BOOL bChecked);
+
+	//
+	BOOL getItemRect(int nItem, LPRECT lpRect);
+	BOOL getSubItemRect(int nItem, int nSubItem, LPRECT lpRect);
+
+
     BOOL setBKColor(huys::Color clr);
     BOOL setTextColor(huys::Color clr);
     BOOL setTextBKColor(huys::Color clr);

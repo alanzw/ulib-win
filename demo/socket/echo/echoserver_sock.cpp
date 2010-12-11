@@ -85,7 +85,8 @@ int main(int argc, char *argv[])
     us.listen(QLEN);
 
     /* Main server loop - accept and handle requests */
-    while (1) {
+    while (1)
+    {
         alen = sizeof(cad);
         if (INVALID_SOCKET == (sd2 = us.accept((struct sockaddr *)&cad, &alen) ))
         {

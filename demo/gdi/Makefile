@@ -16,15 +16,15 @@ BIN = test_gdi.exe
 RC  = gdi.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/udialogx.h \
+HEADERS = $(INCDIR)/udialogx.h \
 		 $(INCDIR)/ucontrol.h \
-		 $(INCDIR)/ubutton.h
+		 $(INCDIR)/ugdi.h
 #
 all: $(BIN)
 
 #
 $(BIN) : $(OBJ) $(RES)
-	$(CXX) -o $(BIN) $^ $(LIB)
+	$(CXX) -o $(BIN) $^ $(LIBS)
 	cp -v $@ $(BINDIR)/$@
     
 #

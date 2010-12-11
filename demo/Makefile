@@ -138,6 +138,7 @@ SUBDIRS = \
           palette     \
           base64      \
           pen         \
+          color       \
 
 #
 all:

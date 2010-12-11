@@ -106,6 +106,9 @@ public:
     void setFont(HFONT hFont);
     HFONT getFont();
 
+	//
+	void setFocus();
+
     /// Functions for message reflection
     virtual BOOL onNotify(WPARAM wParam, LPARAM lParam) {return FALSE;}
     virtual BOOL onNotifyReflect(WPARAM wParam, LPARAM lParam) {return FALSE;}

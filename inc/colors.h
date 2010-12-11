@@ -30,8 +30,6 @@ inline BYTE BValue(Color clr)
     return GetBValue(clr);
 }
 
-
-
 const COLORREF red        = RGB(0xFF, 0x00, 0x00);
 const COLORREF green      = RGB(0x00, 0xFF, 0x00);
 const COLORREF blue       = RGB(0x00, 0x00, 0xFF);
@@ -96,6 +94,8 @@ const COLORREF seagreen       = RGB(0x2E, 0x8B, 0x57);
 
 const COLORREF royalblue      = RGB(0x41, 0x69, 0xE1);
 const COLORREF navy           = RGB(0x00, 0x00, 0x80);
+
+
 
 };
 

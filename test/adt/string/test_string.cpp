@@ -101,6 +101,13 @@ int main()
 	v.push_back("hello");
 
 	cout << "v's size : " << v.size() << endl;
+    
+    UString str = "123456";
+    
+    if (-1 != str.findString("456", 3))
+    {
+        cout << "find '456' in " << str.c_str() << endl;
+    }
 	
     return 0;
 }

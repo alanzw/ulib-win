@@ -55,6 +55,15 @@ public:
             
         graphics.DrawRectangle(&Pen(Color::Red, 1), rect.left()+20, rect.top()+30,
             rect.width()-40, rect.height()-50);
+        
+        SolidBrush brush(Color(255, 0, 255));
+        
+        FontFamily fontFamily(L"Arial");
+        Font font(&fontFamily, 24, FontStyleRegular, UnitPixel);
+        
+        PointF point(rect.width()/2, rect.height()/2);
+        
+        graphics.DrawString((const WCHAR *)L"Chart", -1, &font, point, &brush);
       }
 
     BOOL onChar(WPARAM wParam, LPARAM lParam)
@@ -106,7 +115,7 @@ private:
     }
     
 private:
-    UGDIPlusHelper _helper;
+    UGDIPlusHelper _gh;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)

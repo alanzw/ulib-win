@@ -12,8 +12,8 @@ CXXFLAGS += -DBUILD_EXE
 
 #
 OBJ = webserver.o
-BIN = webserver_sock.exe
-RC  = webserver_sock.rc
+BIN = webserver.exe
+RC  = webserver.rc
 RES = ${RC:.rc=.res}
 #
 HEADER =
@@ -22,11 +22,11 @@ HEADER =
 all: $(BIN) 
 
 #
-webserver: webserver.o helper.o servreq.o reqhead.o resphead.o resource.o
-	gcc -o webserv webserv.o helper.o servreq.o reqhead.o resphead.o resource.o -Wall
+webserver.exe: webserver.o helper.o servreq.o reqhead.o resphead.o resource.o
+	gcc -o webserver webserver.o helper.o servreq.o reqhead.o resphead.o resource.o -Wall -lws2_32
 
-webserv.o: webserv.c helper.h servreq.h
-	gcc -o webserv.o webserv.c -c -ansi -pedantic -Wall
+webserver.o: webserver.c helper.h servreq.h
+	gcc -o webserver.o webserver.c -c -ansi -pedantic -Wall
 
 helper.o: helper.c helper.h
 	gcc -o helper.o helper.c -c -ansi -pedantic -Wall
@@ -42,3 +42,8 @@ resphead.o: resphead.c resphead.h helper.h
 
 resource.o: resource.c resource.h
 	gcc -o resource.o resource.c -c -ansi -pedantic -Wall
+
+.PHONY : clean
+clean:
+	$(RM) *.o *.exe *.res
+
