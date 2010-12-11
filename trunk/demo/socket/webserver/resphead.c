@@ -8,7 +8,8 @@
 
 /*  Outputs HTTP response headers  */
 
-int Output_HTTP_Headers(int conn, struct ReqInfo * reqinfo) {
+int Output_HTTP_Headers(int conn, struct ReqInfo * reqinfo)
+{
 
     char buffer[100];
 

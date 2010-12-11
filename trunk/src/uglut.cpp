@@ -91,10 +91,13 @@ void ResizeScene(int nWidth, int nHeight)
     /*
         gluPerspective(GLdouble fovy,GLdouble aspect,GLdouble zNear,GLdouble zFar) 
     */
-    gluPerspective(45.0f,(GLfloat)nWidth/(GLfloat)nHeight, 0.1f, 100.0f);
+    gluPerspective(60.0f,(GLfloat)nWidth/(GLfloat)nHeight, 0.1f, 10.0f);
 
     glMatrixMode(GL_MODELVIEW);           // Select The Modelview Matrix
     glLoadIdentity();
+    
+
+    gluLookAt(0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 }
 
 void switchToWireframe()

@@ -181,3 +181,28 @@ BOOL UListView::setExStylesListView( DWORD dwStyle )
     return this->sendMsg(LVM_SETEXTENDEDLISTVIEWSTYLE, 0, dwStyle);
 }
 
+BOOL UListView::isItemChecked( int nItem )
+{
+	return ((this->sendMsg(LVM_GETITEMSTATE, (WPARAM)nItem, LVIS_STATEIMAGEMASK)>> 12) -1);
+}
+
+void UListView::setItemChecked( int nItem, BOOL bChecked )
+{
+	LVITEM lvi = {0};
+	lvi.stateMask = LVIS_STATEIMAGEMASK;
+	lvi.state = INDEXTOSTATEIMAGEMASK((bChecked)?2:1);
+	this->sendMsg(LVM_SETITEMSTATE, (WPARAM)nItem, (LPARAM)(LVITEM *)&lvi);
+}
+
+BOOL UListView::getItemRect(int nItem, LPRECT lpRect)
+{
+	lpRect->left = LVIR_BOUNDS;
+	return this->sendMsg(LVM_GETITEMRECT, (WPARAM)nItem, (LPARAM)lpRect);
+}
+
+BOOL UListView::getSubItemRect(int nItem, int nSubItem, LPRECT lpRect)
+{
+	lpRect->top = nSubItem;
+	lpRect->left = LVIR_BOUNDS;
+	return this->sendMsg(LVM_GETSUBITEMRECT, (WPARAM)nItem, (LPARAM)lpRect);
+}

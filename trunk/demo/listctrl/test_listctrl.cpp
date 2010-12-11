@@ -61,9 +61,10 @@ public:
 
 
         m_pListCustom = new UCustomListView(m_hDlg, ID_LIST_CUSTOM, m_hInst);
-        m_pListCustom->setPos(280, rc.top+10, 300, 200);
-        m_pListCustom->setStyles(LVS_REPORT | LVS_EDITLABELS);
+        m_pListCustom->setPos(280, rc.top+10, 450, 450);
+        m_pListCustom->setStyles(LVS_REPORT);
         m_pListCustom->create();
+		m_pListCustom->setExStylesListView(LVS_EX_GRIDLINES|LVS_EX_CHECKBOXES|LVS_EX_FULLROWSELECT);
 
         m_pListCustom->addColTextWidth(0, str, 100);
         m_pListCustom->addColTextWidth(1, str, 100);
@@ -74,16 +75,18 @@ public:
         m_pListCustom->addItemTextImage(2, str, 1);
         m_pListCustom->addItemTextImage(3, str, 1);
         m_pListCustom->addItemTextImage(4, str, 1);
+		m_pListCustom->addItemTextImage(5, str, 1);
         m_pListCustom->setItemText(0, 1, str);
         m_pListCustom->setItemText(0, 2, str);
         m_pListCustom->setItemText(0, 3, str);
+		m_pListCustom->setItemText(1, 1, str);
+		m_pListCustom->setItemText(1, 2, str);
+		m_pListCustom->setItemText(1, 3, "<=");
 
-
-//        TCHAR buf[512];
-//        ::GetCurrentDirectory(511, buf);
-//        lstrcat(buf, _T("\\back.jpg"));
-//        showMsg(buf);
-//        m_pListCustom->setBKImage(buf);
+        //TCHAR buf[512];
+        //::GetCurrentDirectory(511, buf);
+        //lstrcat(buf, _T("\\back.jpg"));
+        //m_pListCustom->setBKImage(buf);
 
         return TRUE;
     }
@@ -109,6 +112,25 @@ public:
         }
         return UDialogBox::onNotify(wParam, lParam);
     }
+
+	BOOL onCommand(WPARAM wParam, LPARAM lParam)
+	{
+		switch (LOWORD (wParam))
+		{
+		case IDOK:
+            {
+                this->m_pListCustom->endEdit();
+                return FALSE;
+            }
+		case IDCANCEL:
+			{
+				::SendMessage((HWND)lParam, WM_CHAR, VK_RETURN,0);
+				return FALSE;
+			}
+		default:
+			return UDialogBox::onCommand(wParam, lParam);
+		}
+	}
 private:
     huys::ADT::UAutoPtr<UListView> m_pListCtrl;
     huys::ADT::UAutoPtr<UListView> m_pListCtrlIcon;

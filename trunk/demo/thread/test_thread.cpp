@@ -27,12 +27,12 @@ unsigned __stdcall SecondThreadFunc( void* pArguments )
     // force the system to create the message queue
     ::PeekMessage(&msg, NULL, WM_USER, WM_USER, PM_NOREMOVE);
 
-    if(!SetEvent(hStartEvent)) //set thread start event 
+    if(!SetEvent(hStartEvent)) //set thread start event
     {
         printf("set start event failed,errno:%d\n",::GetLastError());
         return 1;
     }
-    
+
     while(true)
     {
         if(GetMessage(&msg,0,0,0)) // get message from the message queue
@@ -63,7 +63,7 @@ void test()
     unsigned threadID;
 
     printf( "Creating second thread...\n" );
-    
+
     hStartEvent = ::CreateEvent(0,FALSE,FALSE,0); //create thread start event
     if(hStartEvent == 0)
     {
@@ -74,7 +74,7 @@ void test()
 
     // Create the second thread.
     hThread = (HANDLE)_beginthreadex( NULL, 0, &SecondThreadFunc, NULL, 0, &threadID );
-    
+
     //wait thread start event to avoid PostThreadMessage return errno:1444
     ::WaitForSingleObject(hStartEvent,INFINITE);
     ::CloseHandle(hStartEvent);
@@ -86,14 +86,14 @@ void test()
     // 1000000 yet.
     //WaitForSingleObject( hThread, INFINITE );
     //printf( "Counter should be 1000000: it is-> %d\n", Counter );
-    
-    
+
+
     int count = 0;
     while(20 > count)
     {
         char* pInfo = new char[MAX_INFO_SIZE]; //create dynamic msg
         sprintf(pInfo,"msg_%d",++count);
-        
+
         if(!PostThreadMessage(threadID,MY_MESSAGE,(WPARAM)pInfo,0))//post thread msg
         {
             printf("post message failed,errno:%d\n",::GetLastError());
@@ -102,7 +102,7 @@ void test()
         ::Sleep(1000);
     }
 
-    
+
     // Destroy the thread object.
     CloseHandle( hThread );
 }

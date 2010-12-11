@@ -18,6 +18,7 @@ UGLWindow::UGLWindow(HINSTANCE hInst)
     
     _init_func = 0;
     _disp_func = 0;
+    _reshape_func = 0;
     
     m_uInterval = 100;
 }
@@ -83,7 +84,14 @@ BOOL UGLWindow::onPreCreateWindow()
         }
 
         adjustWindowRectEx();
-
+        if (0 != _reshape_func)
+        {
+            (*_reshape_func)(width, height);
+        }
+        else
+        {
+            UGlut::ResizeScene(width, height);
+        }
         return TRUE;
 }
 

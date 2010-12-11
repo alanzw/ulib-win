@@ -32,7 +32,8 @@ public:
 };
 
 
-class CDBSrvFactory : public IHyClassFactory {
+class CDBSrvFactory : public IClassFactory
+{
     // Interface
 public:
 

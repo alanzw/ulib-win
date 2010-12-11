@@ -173,6 +173,32 @@ public:
 
         return TRUE;
     }
+    
+    BOOL onRButtonDown(WPARAM wParam, LPARAM lParam)
+    {
+        POINT pt = {
+            GET_X_LPARAM(lParam),
+            GET_Y_LPARAM(lParam)
+        };
+        
+        if (PtInRect(&m_rcTitleSelf, pt))
+        {
+            if (m_bExpand)
+            {
+                this->setPosition(&m_rcTitle);
+                m_bExpand = FALSE;
+            }
+            else
+            {
+                this->setPosition(&m_rcWindow);
+                m_bExpand = TRUE;
+            }
+        }
+        
+        updateSubCtrl();
+        
+        return TRUE;
+    }
 
     BOOL onLButtonUp(WPARAM wParam, LPARAM lParam)
     {

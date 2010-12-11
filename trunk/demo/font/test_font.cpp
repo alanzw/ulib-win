@@ -85,8 +85,8 @@ public:
 
         //HDC hdc = GetDC(m_hDlg);
         UPrivateDC dc(m_hDlg);
-        
-        
+
+
         font.select(dc);
 
         // Display the text string.

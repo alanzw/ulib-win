@@ -68,6 +68,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "clock", "clock.vcxproj", "{
 		{30463FCE-93F2-4F31-BFB5-355DFFB5CC66} = {30463FCE-93F2-4F31-BFB5-355DFFB5CC66}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "listctrl", "listctrl.vcxproj", "{B55FDA18-F85B-49E7-98CC-0723B0DFD940}"
+	ProjectSection(ProjectDependencies) = postProject
+		{30463FCE-93F2-4F31-BFB5-355DFFB5CC66} = {30463FCE-93F2-4F31-BFB5-355DFFB5CC66}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -213,6 +218,12 @@ Global
 		{A4A64AAB-722E-4DB1-A22F-391FA4155230}.Debug-static|Win32.Build.0 = Debug|Win32
 		{A4A64AAB-722E-4DB1-A22F-391FA4155230}.Release|Win32.ActiveCfg = Release|Win32
 		{A4A64AAB-722E-4DB1-A22F-391FA4155230}.Release|Win32.Build.0 = Release|Win32
+		{B55FDA18-F85B-49E7-98CC-0723B0DFD940}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B55FDA18-F85B-49E7-98CC-0723B0DFD940}.Debug|Win32.Build.0 = Debug|Win32
+		{B55FDA18-F85B-49E7-98CC-0723B0DFD940}.Debug-static|Win32.ActiveCfg = Debug-static|Win32
+		{B55FDA18-F85B-49E7-98CC-0723B0DFD940}.Debug-static|Win32.Build.0 = Debug-static|Win32
+		{B55FDA18-F85B-49E7-98CC-0723B0DFD940}.Release|Win32.ActiveCfg = Release|Win32
+		{B55FDA18-F85B-49E7-98CC-0723B0DFD940}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

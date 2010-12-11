@@ -103,9 +103,9 @@ LIBS     =
 STATIC_LD = -static
 
 ifeq ($(USE_STATIC), yes)
-    LDFLAGS  = $(STATIC_LD)
+    LDFLAGS  = $(STATIC_LD) --enable-auto-import
 else
-    LDFLAGS  =
+    LDFLAGS  = --enable-auto-import
 endif
     
 RCFLAGS  = -DMINGW_RC  -O coff -I"$(RESDIR)" -I"$(ICODIR)"

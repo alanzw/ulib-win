@@ -74,7 +74,8 @@ LPTSTR *WINAPI CommandLineToArgv(LPCTSTR lpCmdLine, int *lpArgc)
         lpSrc++;
 
     // If command-line starts with null, there are no arguments
-    if (*lpSrc == 0) {
+    if (*lpSrc == 0)
+    {
         if (lpArgc)
             *lpArgc = 0;
         return 0;
@@ -88,9 +89,11 @@ LPTSTR *WINAPI CommandLineToArgv(LPCTSTR lpCmdLine, int *lpArgc)
     nNames = 0;
 
     // Count the number of arguments
-    while (nNames < 4) {
-        if (*lpSrc == 0 || (*lpSrc == _T(',') && nNames == 2) 
-                || ((*lpSrc == _T(' ') || *lpSrc == _T('\t')) && !bInQuotes)) {
+    while (nNames < 4)
+    {
+        if (*lpSrc == 0 || (*lpSrc == _T(',') && nNames == 2)
+                || ((*lpSrc == _T(' ') || *lpSrc == _T('\t')) && !bInQuotes))
+        {
             // Whitespace not enclosed in quotes signals the start of another argument
 
             argc++;
@@ -100,7 +103,8 @@ LPTSTR *WINAPI CommandLineToArgv(LPCTSTR lpCmdLine, int *lpArgc)
                 lpSrc++;
             if (*lpSrc == 0)
                 break;
-            if (nNames >= 3) {
+            if (nNames >= 3)
+            {
                 // Increment the count for the last argument
                 argc++;
                 break;
@@ -109,17 +113,20 @@ LPTSTR *WINAPI CommandLineToArgv(LPCTSTR lpCmdLine, int *lpArgc)
             bFirstChar = TRUE;
             continue;
         }
-        else if (*lpSrc == _T('\\')) {
+        else if (*lpSrc == _T('\\'))
+        {
             // Count consecutive backslashes
             nBSlash++;
             bFirstChar = FALSE;
         }
-        else if (*lpSrc == _T('\"') && !(nBSlash & 1)) {
+        else if (*lpSrc == _T('\"') && !(nBSlash & 1))
+        {
             // Open or close quotes
             bInQuotes = !bInQuotes;
             nBSlash = 0;
         }
-        else {
+        else
+        {
             // Some other character
             nBSlash = 0;
             if (bFirstChar && ((*lpSrc != _T('/') && nNames <= 1) || nNames > 1))
@@ -130,10 +137,10 @@ LPTSTR *WINAPI CommandLineToArgv(LPCTSTR lpCmdLine, int *lpArgc)
     }
 
     // Allocate space for the pointers in argv and the strings in one block
-    argv = (LPTSTR *)malloc(argc * sizeof(LPTSTR) + (_tcslen(lpArg) + 1) * sizeof
-            (TCHAR));
+    argv = (LPTSTR *)malloc(argc * sizeof(LPTSTR) + (_tcslen(lpArg) + 1) * sizeof(TCHAR));
 
-    if (!argv) {
+    if (!argv)
+    {
         // Memory allocation failed
         if (lpArgc)
             *lpArgc = 0;
@@ -149,9 +156,11 @@ LPTSTR *WINAPI CommandLineToArgv(LPCTSTR lpCmdLine, int *lpArgc)
     nNames = 0;
 
     // Fill the argument array
-    while (nNames < 4) {
-        if (*lpSrc == 0 || (*lpSrc == _T(',') && nNames == 2) || ((*lpSrc == _T
-                        (' ') || *lpSrc == _T('\t')) && !bInQuotes)) {
+    while (nNames < 4)
+    {
+        if (*lpSrc == 0 || (*lpSrc == _T(',') && nNames == 2)
+            || ((*lpSrc == _T(' ') || *lpSrc == _T('\t')) && !bInQuotes))
+        {
             // Whitespace not enclosed in quotes signals the start of another argument
 
             // Null-terminate argument
@@ -164,7 +173,8 @@ LPTSTR *WINAPI CommandLineToArgv(LPCTSTR lpCmdLine, int *lpArgc)
             if (*lpSrc == 0)
                 break;
             lpArg = lpDest;
-            if (nNames >= 3) {
+            if (nNames >= 3)
+            {
                 // Copy the rest of the command-line to the last argument
                 argv[argc++] = lpArg;
                 _tcscpy(lpArg,lpSrc);
@@ -174,7 +184,8 @@ LPTSTR *WINAPI CommandLineToArgv(LPCTSTR lpCmdLine, int *lpArgc)
             bFirstChar = TRUE;
             continue;
         }
-        else if (*lpSrc == _T('\\')) {
+        else if (*lpSrc == _T('\\'))
+        {
             *lpDest++ = _T('\\');
             lpSrc++;
 
@@ -182,14 +193,17 @@ LPTSTR *WINAPI CommandLineToArgv(LPCTSTR lpCmdLine, int *lpArgc)
             nBSlash++;
             bFirstChar = FALSE;
         }
-        else if (*lpSrc == _T('\"')) {
-            if (!(nBSlash & 1)) {
+        else if (*lpSrc == _T('\"'))
+        {
+            if (!(nBSlash & 1))
+            {
                 // If an even number of backslashes are before the quotes,
                 // the quotes don't go in the output
                 lpDest -= nBSlash / 2;
                 bInQuotes = !bInQuotes;
             }
-            else {
+            else
+            {
                 // If an odd number of backslashes are before the quotes,
                 // output a quote
                 lpDest -= (nBSlash + 1) / 2;
@@ -199,7 +213,8 @@ LPTSTR *WINAPI CommandLineToArgv(LPCTSTR lpCmdLine, int *lpArgc)
             lpSrc++;
             nBSlash = 0;
         }
-        else {
+        else
+        {
             // Copy other characters
             if (bFirstChar && ((*lpSrc != _T('/') && nNames <= 1) || nNames > 1))
                 nNames++;
@@ -410,11 +425,13 @@ int WINAPI WinMain(
         // Get address of unicode version of the dll function if it exists
         fnDllWinMainW = (DllWinMainW)GetProcAddress(hDll,lpFuncName);
         fnDllWinMainA = 0;
-        if (!fnDllWinMainW) {
+        if (!fnDllWinMainW)
+        {
             // If no unicode function was found, get the address of the non-unicode function
             lpFuncName[nStrLen] = 'A';
             fnDllWinMainA = (DllWinMainA)GetProcAddress(hDll,lpFuncName);
-            if (!fnDllWinMainA) {
+            if (!fnDllWinMainA)
+            {
                 // If first non-unicode function was not found, get the address
                 // of the other non-unicode function
                 lpFuncName[nStrLen] = 0;
@@ -425,13 +442,15 @@ int WINAPI WinMain(
         // Get address of non-unicode version of the dll function if it exists
         fnDllWinMainA = (DllWinMainA)GetProcAddress(hDll,lpFuncName);
         fnDllWinMainW = 0;
-        if (!fnDllWinMainA) {
+        if (!fnDllWinMainA)
+        {
             // If first non-unicode function was not found, get the address
             // of the other non-unicode function
             lpFuncName[nStrLen] = 'A';
             lpFuncName[nStrLen+1] = 0;
             fnDllWinMainA = (DllWinMainA)GetProcAddress(hDll,lpFuncName);
-            if (!fnDllWinMainA) {
+            if (!fnDllWinMainA)
+            {
                 // If non-unicode function was not found, get the address of the unicode function
                     lpFuncName[nStrLen] = 'W';
                 fnDllWinMainW = (DllWinMainW)GetProcAddress(hDll,lpFuncName);
@@ -491,7 +510,7 @@ int WINAPI WinMain(
         // The dll function has finished executing, so unload it
         FreeLibrary(hDll);
     }
-    else 
+    else
     {
         // The dll could not be loaded; display an error message
         GetModuleTitle();

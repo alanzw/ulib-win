@@ -9,6 +9,11 @@ SUBDIRS = dlg_gdiplus      \
           button_gdiplus   \
           weather_gdiplus  \
           chart_gdiplus    \
+          print_gdiplus    \
+          curve_gdiplus    \
+          contour_gdiplus  \
+          gradient_gdiplus \
+          colormap_gdiplus \
 
 #
 all:

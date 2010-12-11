@@ -70,7 +70,7 @@ public:
     {
     }
 
-    UTransGroupBox(UBaseWindow *pWndParent, UINT nID)
+    UTransGroupBox(UBaseWindow *pWndParent, UINT nID = -1)
     : UGroupBox(pWndParent, nID)
     {
     }

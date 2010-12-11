@@ -9,6 +9,40 @@
 #include "uprocessman.h"
 #include "uprocess.h"
 
+BOOL runProgram(char *programName /* = "notepad.exe" */, DWORD dwTimeout /* = 5000 */ )
+{
+    STARTUPINFO si;
+    PROCESS_INFORMATION pi;
+    BOOL bResult;
+
+    ::ZeroMemory( &si, sizeof(STARTUPINFO) );
+    si.cb = sizeof(si);
+    si.dwFlags=STARTF_USESHOWWINDOW;
+    si.wShowWindow=SW_HIDE;
+
+    ::ZeroMemory( &pi, sizeof(pi) );
+
+    bResult = ::CreateProcess(NULL,
+        programName,
+        NULL,
+        NULL,
+        TRUE,
+        NORMAL_PRIORITY_CLASS,
+        NULL,
+        NULL,
+        &si,
+        &pi);
+
+    if (!bResult) return FALSE;
+
+    ::WaitForSingleObject(pi.hProcess, dwTimeout);
+
+    ::CloseHandle(pi.hThread);
+    ::CloseHandle(pi.hProcess);
+
+    return TRUE;
+}
+
 void print_processes()
 {
     // Get the list of process identifiers.
@@ -33,6 +67,7 @@ void print_processes()
 
 int _tmain(int argc, char *argv[])
 {
+#if 0
     UProcess process;
     process.create("child.exe", 0);
 
@@ -68,7 +103,10 @@ int _tmain(int argc, char *argv[])
     printf("Exit Code : %d\n", process.getExitCode());
 
     getchar();
+#endif 
 
+    runProgram("run.bat", 5000);
+    
     return 0;
 }
 

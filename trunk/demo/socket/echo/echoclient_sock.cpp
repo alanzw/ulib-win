@@ -52,36 +52,47 @@ int main(int argc, char *argv[])
     /* Check command-line argument for protocol port and extract    */
     /* port number if one is specified.  Otherwise, use the default */
     /* port value given by constant PROTOPORT                       */
-    if (argc > 2) {                 /* if protocol port specified   */
+    if (argc > 2)
+    {                 /* if protocol port specified   */
         port = atoi(argv[2]);   /* convert to binary            */
-    } else {
+    }
+    else
+    {
         port = PROTOPORT;       /* use default port number      */
     }
     if (port > 0)                   /* test for legal value         */
+    {
         sad.sin_port = htons((u_short)port);
-    else {                          /* print error message and exit */
+    }
+    else
+    {                          /* print error message and exit */
         fprintf(stderr,"Bad port number %s\n",argv[2]);
         exit(1);
     }
 
     /* Check host argument and assign host name. */
-    if (argc > 1) {
+    if (argc > 1)
+    {
         host = argv[1];         /* if host argument specified   */
-    } else {
+    }
+    else
+    {
         host = localhost;
     }
 
     /* Convert host name to equivalent IP address and copy to sad. */
 
     ptrh = gethostbyname(host);
-    if ( ((char *)ptrh) == NULL ) {
+    if ( ((char *)ptrh) == NULL )
+    {
         fprintf(stderr,"Invalid host: %s\n", host);
         exit(1);
     }
     memcpy(&sad.sin_addr, ptrh->h_addr, ptrh->h_length);
 
     /* Map TCP transport protocol name to protocol number. */
-    if ( ((int)(ptrp = getprotobyname("tcp"))) == 0) {
+    if ( ((int)(ptrp = getprotobyname("tcp"))) == 0)
+    {
         fprintf(stderr, "Cannot map \"tcp\" to protocol number");
         exit(1);
     }
@@ -97,7 +108,8 @@ int main(int argc, char *argv[])
 
     /* Repeatedly read data from user and send it to server. */
     text = fgets(buf, sizeof(buf), stdin);
-    while (text != NULL) {
+    while (text != NULL)
+    {
         us.send(buf, strlen(buf));
         printf("send: %s", buf);
         if (strncmp(buf, "quit", 4) == 0) break;

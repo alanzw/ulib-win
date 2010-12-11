@@ -14,6 +14,14 @@ namespace UDebugger
  */
 void ULIB_API __cdecl odprintf(const char *format, ...);
 
+/*! \fn void __cdecl odprintf(const char *format, ...)
+ *  \brief .
+ *  \param format a string format.
+ *  \param ... rest arguments.
+ *  \return void.
+ */
+void UOutputDebugStringA(char * lpText);
+
 /*! \class UTrace
  *  \brief Trace Tool class.
  */

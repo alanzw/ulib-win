@@ -459,3 +459,7 @@ BOOL UControl::modifyExStyles( DWORD dwExStyle )
     return ::SetWindowLong(m_hSelf, GWL_EXSTYLE, dwNewExStyle);   
 }
 
+void UControl::setFocus()
+{
+	::SetFocus(m_hSelf);
+}

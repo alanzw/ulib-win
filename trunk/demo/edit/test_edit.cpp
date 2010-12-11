@@ -76,6 +76,10 @@ public:
             return this->setTopMost();
         case IDC_RADIO_NORMAL:
             return this->setNoTopMost();
+        case IDOK:
+            {
+                return FALSE;
+            }
         default:
             return UDialogBox::onCommand(wParam, lParam);
         }
