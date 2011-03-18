@@ -23,6 +23,7 @@
 #include "umsg.h"
 #include "ubrush.h"
 #include "udc.h"
+#include "ushell.h"
 
 class UHyperLink : public UStatic
 {
@@ -46,6 +47,8 @@ public:
         m_bVisited = FALSE;			// Hasn't been visited yet.
         
         m_bAdjustToFit = FALSE;
+
+		m_sUrl = "http://blog.csdn.net/fox000002";
     }
 
     BOOL create()
@@ -135,6 +138,16 @@ public:
 		}
 		return UStatic::onNotifyReflect(wParam, lParam);
 	}
+
+	/* virtual */ BOOL onLButtonDown(WPARAM wParam, LPARAM lParam)
+	{
+
+		//return this->onClicked();
+
+		this->goURL(m_sUrl);
+
+		return FALSE;
+	}
 public:
     void setBackground(huys::Color clr)
     {
@@ -164,11 +177,18 @@ private:
     UBrush _brBackgroud;
     
     BOOL m_bAdjustToFit;		// Adjust window size to fit text?
+
+	LPCTSTR m_sUrl;
 private:
 	BOOL onClicked()
 	{
 		showMsg("clicked!");
 		return TRUE;
+	}
+
+	void goURL(const char * url)
+	{
+		UShell::open(url);		
 	}
 
     ///////////////////////////////////////////////////////////////////////////////

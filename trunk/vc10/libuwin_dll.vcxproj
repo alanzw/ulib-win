@@ -104,7 +104,7 @@
       <AdditionalIncludeDirectories>..\res;..\ico;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;comctl32.lib;opengl32.lib;glu32.lib;msimg32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;comctl32.lib;opengl32.lib;glu32.lib;msimg32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>Debug\libuwin_debug.vc10.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -242,6 +242,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="..\src\ucommondialog.cpp" />
     <ClCompile Include="..\src\uconf.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -329,6 +330,7 @@
     <ClCompile Include="..\src\upalette.cpp" />
     <ClCompile Include="..\src\upanel.cpp" />
     <ClCompile Include="..\src\upicture.cpp" />
+    <ClCompile Include="..\src\uprocessman.cpp" />
     <ClCompile Include="..\src\uprogressbar.cpp" />
     <ClCompile Include="..\src\upropsheet.cpp" />
     <ClCompile Include="..\src\urebar.cpp">
@@ -350,6 +352,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="..\src\utabctrl.cpp" />
+    <ClCompile Include="..\src\uthread.cpp" />
     <ClCompile Include="..\src\utoolbar.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug-static|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -369,6 +372,7 @@
     <ClInclude Include="..\inc\ubutton.h" />
     <ClInclude Include="..\inc\ucombobox.h" />
     <ClInclude Include="..\inc\ucomboboxex.h" />
+    <ClInclude Include="..\inc\ucommondialog.h" />
     <ClInclude Include="..\inc\uconf.h" />
     <ClInclude Include="..\inc\ucontrol.h" />
     <ClInclude Include="..\inc\udc.h" />
@@ -393,6 +397,7 @@
     <ClInclude Include="..\inc\upalette.h" />
     <ClInclude Include="..\inc\upanel.h" />
     <ClInclude Include="..\inc\upicture.h" />
+    <ClInclude Include="..\inc\uprocessman.h" />
     <ClInclude Include="..\inc\uprogressbar.h" />
     <ClInclude Include="..\inc\upropsheet.h" />
     <ClInclude Include="..\inc\urebar.h" />
@@ -400,6 +405,7 @@
     <ClInclude Include="..\inc\usplashwnd.h" />
     <ClInclude Include="..\inc\ustatic.h" />
     <ClInclude Include="..\inc\utabctrl.h" />
+    <ClInclude Include="..\inc\uthread.h" />
     <ClInclude Include="..\inc\utoolbar.h" />
     <ClInclude Include="..\inc\utooltip.h" />
     <ClInclude Include="..\inc\uwarnings.h" />

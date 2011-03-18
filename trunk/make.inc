@@ -28,7 +28,8 @@ ifeq ($(PLATFORM), win32)
     MAKECLEAN_SUBDIRS = for /d %%X in ($(SUBDIRS)) do $(MAKE) clean -C %%X
 else
     SHELL = /bin/bash
-    WINE = LC_CTYPE="zh_CN.UTF-8" /opt/mybuild/bin/wine
+#    WINE = LC_CTYPE="zh_CN.UTF-8" /opt/mybuild/bin/wine
+    WINE = LC_CTYPE="zh_CN.UTF-8" wine
     CLEANUP = find . \( -name Thumbs.db -o -name *.aps \) -type f -print0 | xargs -0 /bin/rm -vf
     P7ZIP = 7z
     MAKEALL_SUBDIRS = for X in $(SUBDIRS);do (cd $$X && $(MAKE) all); done

@@ -25,6 +25,12 @@ int main()
     {
         cout << "2 is in table!" << endl;
     }
+    
+    cout << ic[2] << endl;
+    
+    ic.add(2, "aaaaa");
+    
+    
 
     return 0;
 }

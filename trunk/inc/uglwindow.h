@@ -9,8 +9,9 @@ public:
     typedef void (*InitFunc)();
     typedef void (*DisplayFunc)();
     typedef void (*ReshapeFunc)(int,int);
+    typedef void (*PostCreateWindow)(UBaseWindow * pWnd);
 public:
-    UGLWindow(HINSTANCE hInst = ::GetModuleHandle(NULL));
+    UGLWindow(HINSTANCE hInst = GetModuleHandle(NULL));
 
     BOOL onPreRegisterWindowClass(huys::UWindowClass &uwc);
 
@@ -41,6 +42,10 @@ public:
     }
 
     //
+    void setPostCreateWindow(PostCreateWindow pf)
+    { _post_create = pf; }
+    
+    //
     void setInterval(UINT uInterval)
     {
         m_uInterval = uInterval;
@@ -56,6 +61,8 @@ private:
     DisplayFunc _disp_func;
     ReshapeFunc _reshape_func;
 
+    PostCreateWindow _post_create;
+    
     enum { ID_TIMER_INTERNAL = 22 };
 private:
     void render();

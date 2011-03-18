@@ -17,6 +17,7 @@ struct CUSTOMVERTEX {
     FLOAT RHW;
     DWORD COLOR;
 };
+
 #define CUSTOMFVF (D3DFVF_XYZRHW | D3DFVF_DIFFUSE)
 
 class UDXWindow : public UBaseWindow

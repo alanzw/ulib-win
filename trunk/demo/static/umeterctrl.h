@@ -98,12 +98,12 @@ private:
             m_pMemDC->rectangle(lpRect);
 
             //
-            RECT rcLabel = {
-                lpRect->left + (lpRect->right-lpRect->left)/20,
-                lpRect->bottom - 10,
-                lpRect->right- (lpRect->right-lpRect->left)/20,
-                lpRect->bottom - (lpRect->right-lpRect->left)/20
-            };
+            //RECT rcLabel = {
+            //    lpRect->left + (lpRect->right-lpRect->left)/20,
+            //    lpRect->bottom - 10,
+            //    lpRect->right- (lpRect->right-lpRect->left)/20,
+            //    lpRect->bottom - (lpRect->right-lpRect->left)/20
+            //};
 
             //
             m_nBottomCX = (lpRect->left + lpRect->right)/2;
@@ -119,8 +119,8 @@ private:
 
             int nAngleIncrementDeg = 5;
 
-            double leftAngleRad = nEndAngleDeg * radPerdeg;
-            double rightAngleRad = nStartAngleDeg * radPerdeg;
+            //double leftAngleRad = nEndAngleDeg * radPerdeg;
+            //double rightAngleRad = nStartAngleDeg * radPerdeg;
 
             // meter face
             int nRef = 0;

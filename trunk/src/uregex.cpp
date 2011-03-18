@@ -9,4 +9,9 @@ namespace URegex
 URegExp::URegExp()
 {}
 
+bool URegExp::isMatch(const char *s)
+{
+    return true;
+}
+
 }; // namespace URegex

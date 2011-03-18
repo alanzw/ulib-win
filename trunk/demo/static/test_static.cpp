@@ -375,10 +375,10 @@ public:
         m_meter->create();
         
         m_link = new UHyperLink(m_hDlg, 3456);
-        m_link->setStyles(SS_SUNKEN);
+        //m_link->setStyles(SS_SUNKEN);
         m_link->setPos(400, 280, 100, 50);
         m_link->create();
-        m_link->setWindowText(_T("url"));
+        m_link->setWindowText(_T("Goto My Blog!!"));
         
         return TRUE;
     }

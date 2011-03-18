@@ -18,7 +18,7 @@ BIN = test_taskman.exe
 RC  = taskman.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/udialogx.h \
+HEADERS = $(INCDIR)/udialogx.h \
          utaskman.h \
          utabchild.h \
          uusagebar.h \

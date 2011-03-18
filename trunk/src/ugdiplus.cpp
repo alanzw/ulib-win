@@ -2,7 +2,7 @@
 #include <tchar.h>
 
 #ifdef __GNUC__
-#include <gdiplus/gdiPlus.h>
+#include <gdiplus/GdiPlus.h>
 #else
 #include <gdiPlus.h>
 #endif

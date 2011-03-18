@@ -47,7 +47,7 @@ public:
     {
         return m_st.wSecond;
     }
-protected:
+    
 private:
     SYSTEMTIME m_st;
 };

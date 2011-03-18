@@ -174,6 +174,11 @@ public:
     {
         _top = y;
     }
+    
+    void setRight(T x)
+    {
+        _right = x;
+    }
 
     operator LPRECT()
     {

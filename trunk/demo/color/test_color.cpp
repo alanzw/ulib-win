@@ -20,7 +20,7 @@ public:
     UMyWindow()
         : UBaseWindow()
     {
-        this->setTitle(_T("Test VisualStyles"));
+        this->setTitle(_T("Test Color"));
         this->setMenu(MAKEINTRESOURCE(IDR_MAINMENU));
         this->setStyles(WS_OVERLAPPEDWINDOW|WS_CLIPCHILDREN);
         //this->setExStyles(WS_EX_CLIENTEDGE);

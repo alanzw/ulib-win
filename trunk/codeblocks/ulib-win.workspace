@@ -13,11 +13,13 @@
 		<Project filename="chart.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="combobox.cbp" active="1" />
+		<Project filename="combobox.cbp">
+			<Depends filename="ulib-win.cbp" />
+		</Project>
 		<Project filename="commondlg.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="console.cbp" />
+		<Project filename="console.cbp" active="1" />
 		<Project filename="contact.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>

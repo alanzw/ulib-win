@@ -13,4 +13,17 @@
     FILEOS          VOS__WINDOWS32
     FILETYPE        VFT_UNKNOWN
 BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "0804fde9"
+        BEGIN
+            VALUE "CompanyName", "hu"
+            VALUE "FileVersion", "0.0.0.1"
+            VALUE "LegalCopyright", "2010 @ huys"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 2052, 65001
+    END
 END

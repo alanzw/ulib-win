@@ -177,7 +177,7 @@ public:
         right = GL_FALSE;
 
         //
-        //rotqube = 0.0f;
+        rotqube = 0.0f;
     }
 
     BOOL onPreRegisterWindowClass(huys::UWindowClass &uwc)
@@ -198,39 +198,9 @@ public:
         int bits=16;
 
         setPos(0, 0, width, height);
-/*
-        if (m_bFullscreen)
-        {
-            DEVMODE dmScreenSettings;                                // Device Mode
-            memset(&dmScreenSettings,0,sizeof(dmScreenSettings));    // Makes Sure Memory's Cleared
-            dmScreenSettings.dmSize=sizeof(dmScreenSettings);        // Size Of The Devmode Structure
-            dmScreenSettings.dmPelsWidth    = width;                // Selected Screen Width
-            dmScreenSettings.dmPelsHeight    = height;                // Selected Screen Height
-            dmScreenSettings.dmBitsPerPel    = bits;                    // Selected Bits Per Pixel
-            dmScreenSettings.dmFields=DM_BITSPERPEL|DM_PELSWIDTH|DM_PELSHEIGHT;
 
-            // Try To Set Selected Mode And Get Results.  NOTE: CDS_FULLSCREEN Gets Rid Of Start Bar.
-            if (ChangeDisplaySettings(&dmScreenSettings,CDS_FULLSCREEN)!=DISP_CHANGE_SUCCESSFUL)
-            {
-                // If The Mode Fails, Offer Two Options.  Quit Or Use Windowed Mode.
-                if (showYesNoMsgbox(_T("The Requested Fullscreen Mode Is Not Supported By\nYour Video Card.")
-                    _T("Use Windowed Mode Instead?"),_T("OpenGL"))==IDYES)
-                {
-                    m_bFullscreen=FALSE;        // Windowed Mode Selected.  Fullscreen = FALSE
-                }
-                else
-                {
-                    // Pop Up A Message Box Letting User Know The Program Is Closing.
-                    showMsg(_T("Program Will Now Close."),_T("ERROR"));
-                    return FALSE;                                    // Return FALSE
-                }
-            }
-
-        }
-*/
-        if (!UGlut::check_fullscreen(m_bFullscreen))
+        if (m_bFullscreen && !UGlut::check_fullscreen(m_bFullscreen))
             return FALSE;
-
 
         if (m_bFullscreen)
         {

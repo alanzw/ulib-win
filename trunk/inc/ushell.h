@@ -19,6 +19,8 @@ ULIB_API int execute( HWND hwnd,
                       LPCTSTR lpDirectory = NULL,
                       INT nShowCmd = SW_SHOWNORMAL
                  );
+                 
+ULIB_API int open(LPCTSTR url);
 
 ULIB_API BOOL executeEx( HWND hwnd,
                          LPCTSTR lpFile,

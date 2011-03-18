@@ -14,7 +14,8 @@ BIN = test_sigslot.exe
 RC  = sigslot.rc
 RES = ${RC:.rc=.res}
 #
-HEADER = $(INCDIR)/usigslot.h
+HEADERS = $(INCDIR)/usigslot.h
+
 #
 all: $(BIN)
 
@@ -24,8 +25,8 @@ $(BIN) : $(OBJ) $(RES)
 	cp -vf $(BIN) $(BINDIR)/$(BIN)
 
 #
-test_sigslot.o : test_sigslot.cpp $(HEADER)
-	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INC)
+test_sigslot.o : test_sigslot.cpp $(HEADERS)
+	$(CXX) -c -o $@ -DBUILD_EXE $< $(CXXFLAGS) $(INCS)
     
 #
 .PHONY : test

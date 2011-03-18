@@ -25,45 +25,50 @@ void my_init()
 }
 
 void my_disp()
-{   
+{
     rot_angle += 0.25;
 
     if( rot_angle > 360.0 )
-        rot_angle -= 360.0;
+    rot_angle -= 360.0;
 
     glClear(GL_COLOR_BUFFER_BIT);
 
     glPushMatrix();
-        glRotated(rot_angle, 1.0, 0.0, 0.0);
-        glRotated(rot_angle, 0.0, 1.0, 0.0);
-        glBegin(GL_TRIANGLE_STRIP);
-            glColor4f(1.0, 0.0, 0.0, 0.3);
-            glVertex3f(-1.0, -1.0, 1.0);
-            glVertex3f(1.0, -1.0, 1.0);
-            glVertex3f(-1.0, 1.0, 1.0);
-            glVertex3f(1.0, 1.0, 1.0);
-            glColor4f(0.0, 1.0, 0.0, 0.3);
-            glVertex3f(-1.0, 1.0, -1.0);
-            glVertex3f(1.0, 1.0, -1.0);
-            glColor4f(0.0, 0.0, 1.0, 0.3);
-            glVertex3f(-1.0, -1.0, -1.0);
-            glVertex3f(1.0, -1.0, -1.0);
-        glEnd();
-        glBegin(GL_TRIANGLE_STRIP);
-            glColor4f(1.0, 1.0, 0.0, 0.3);
-            glVertex3f(-1.0, 1.0, -1.0);
-            glVertex3f(-1.0, 1.0, 1.0);
-            glVertex3f(-1.0, -1.0, -1.0);
-            glVertex3f(-1.0, -1.0, 1.0);
-            glColor4f(0.0, 1.0, 1.0, 0.3);
-            glVertex3f(1.0, -1.0, -1.0);
-            glVertex3f(1.0, -1.0, 1.0);
-            glColor4f(1.0, 0.0, 1.0, 0.3);
-            glVertex3f(1.0, 1.0, -1.0);
-            glVertex3f(1.0, 1.0, 1.0);
-        glEnd();
+    glRotated(rot_angle, 1.0, 0.0, 0.0);
+    glRotated(rot_angle, 0.0, 1.0, 0.0);
+    glBegin(GL_TRIANGLE_STRIP);
+    glColor4f(1.0, 0.0, 0.0, 0.3);
+    glVertex3f(-1.0, -1.0, 1.0);
+    glVertex3f(1.0, -1.0, 1.0);
+    glVertex3f(-1.0, 1.0, 1.0);
+    glVertex3f(1.0, 1.0, 1.0);
+    glColor4f(0.0, 1.0, 0.0, 0.3);
+    glVertex3f(-1.0, 1.0, -1.0);
+    glVertex3f(1.0, 1.0, -1.0);
+    glColor4f(0.0, 0.0, 1.0, 0.3);
+    glVertex3f(-1.0, -1.0, -1.0);
+    glVertex3f(1.0, -1.0, -1.0);
+    glEnd();
+    glBegin(GL_TRIANGLE_STRIP);
+    glColor4f(1.0, 1.0, 0.0, 0.3);
+    glVertex3f(-1.0, 1.0, -1.0);
+    glVertex3f(-1.0, 1.0, 1.0);
+    glVertex3f(-1.0, -1.0, -1.0);
+    glVertex3f(-1.0, -1.0, 1.0);
+    glColor4f(0.0, 1.0, 1.0, 0.3);
+    glVertex3f(1.0, -1.0, -1.0);
+    glVertex3f(1.0, -1.0, 1.0);
+    glColor4f(1.0, 0.0, 1.0, 0.3);
+    glVertex3f(1.0, 1.0, -1.0);
+    glVertex3f(1.0, 1.0, 1.0);
+    glEnd();
     glPopMatrix();
 
+}
+
+void my_postcreate(UBaseWindow *pWnd)
+{
+    pWnd->setIconBig(IDI_APP);
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
@@ -75,7 +80,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdSh
     p->setInterval(10);
     p->setInit(&my_init);
     p->setDisplay(&my_disp);
-
+    p->setPostCreateWindow(&my_postcreate);
     app.setMainWindow(p);
 
     app.init(hInstance);

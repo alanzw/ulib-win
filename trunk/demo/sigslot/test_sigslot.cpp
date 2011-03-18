@@ -2,6 +2,8 @@
 #include <windows.h>
 #include <iostream>
 #include <cstdlib>
+#include <cstdio>
+
 #include "usigslot.h"
 
 class Light : public USigSlot::has_slots

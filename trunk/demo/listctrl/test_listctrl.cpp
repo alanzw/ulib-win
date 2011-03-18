@@ -106,7 +106,7 @@ public:
                 //m_pListCtrl->getSelectedItem(buffer);
                 //showMsgFormat("Notify", "From ID: %d -- %s", lpnmh->idFrom, buffer);
                 LPNMITEMACTIVATE lpnmitem = (LPNMITEMACTIVATE) lParam;
-                showMsgFormat("Notify", "From nIndex %d", lpnmitem->iItem);
+                showMsgFormatEx(m_hDlg, "Notify", "From nIndex %d", lpnmitem->iItem);
             }
             break;
         }
