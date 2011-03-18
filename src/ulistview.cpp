@@ -104,7 +104,12 @@ BOOL UListView::addItemTextImage( int nIndex, LPCSTR lpText, int iImage )
 BOOL UListView::getColumn( int iCol, LPLVCOLUMN lplvc )
 {
     assert(NULL != lplvc);
-    return this->sendMsg(LVM_INSERTCOLUMN, (WPARAM)iCol, (LPARAM)lplvc);
+    return this->sendMsg(LVM_GETCOLUMN, (WPARAM)iCol, (LPARAM)lplvc);
+}
+
+int UListView::getColumnWidth(int iCol)
+{
+    return (int)this->sendMsg(LVM_GETCOLUMNWIDTH, (WPARAM)iCol);
 }
 
 BOOL UListView::setItem(int nIndex, LVITEM *lplvi)

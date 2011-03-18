@@ -7,16 +7,16 @@ using namespace std;
 
 void Matrix::setMatrix(double* rmatr)
 {
-    for (int i=0;i<index*index;i++)
+    for (int i=0; i<index*index; i++)
     {
-        *(MatrixA+i)=rmatr[i];                //¾ØÕó³ÉÔ±¸³³õÖµ
+        *(MatrixA+i) = rmatr[i];
     }
 }
 
 Matrix::Matrix(int dims)
 {
-    index=dims;
-    MatrixA=new double[index*index];
+    index = dims;
+    MatrixA = new double[index*index];
 }
 
 Matrix::~Matrix()
@@ -24,16 +24,16 @@ Matrix::~Matrix()
     delete[] MatrixA;
 }
 
-
 void Matrix::printM()
 {
-    cout<<"The Matrix is:"<<endl;
-    for (int i=0;i<index;i++)
+    cout << "The Matrix is:" << endl;
+    for (int i=0; i<index; i++)
     {
-        for (int j=0;j<index;j++) {
-            cout<<*(MatrixA+i*index+j)<<" ";
+        for (int j=0; j<index; j++)
+		{
+            cout << *(MatrixA+i*index+j) << " ";
         }
-        cout<<endl;
+        cout << endl;
     }
 }
 
@@ -52,7 +52,7 @@ Linequ::~Linequ()
 void Linequ::setLinequ(double* a, double* b)
 {
     setMatrix(a);
-    for (int i=0;i<index;i++)
+    for (int i=0; i<index; i++)
     {
         sums[i]=b[i];
     }
@@ -60,22 +60,23 @@ void Linequ::setLinequ(double* a, double* b)
 
 void Linequ::printL()
 {
-    cout<<"The Line eqution is: AX=B"<<endl;
-    for (int i=0;i<index;i++)
+    cout << "The Line eqution is: AX=B" << endl;
+    for (int i=0; i<index; i++)
     {
-        for (int j=0;j<index;j++) {
-            cout<<*(MatrixA+i*index+j)<<" ";
+        for (int j=0; j<index; j++)
+		{
+            cout << *(MatrixA+i*index+j) << " ";
         }
-        cout<<"\t"<<sums[i]<<endl;
+        cout << "\t" << sums[i] <<endl;
     }
 }
 
 void Linequ::showX()
 {
-    cout<<"The Result is:"<<endl;
-    for (int i=0;i<index;i++)
+    cout << "The Result is:" << endl;
+    for (int i=0; i<index; i++)
     {
-        cout<<"X["<<i<<"]="<<solu[i]<<endl;
+        cout << "X[" << i << "]=" << solu[i] << endl;
     }
 }
 

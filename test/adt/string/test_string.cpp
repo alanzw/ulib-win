@@ -108,6 +108,11 @@ int main()
     {
         cout << "find '456' in " << str.c_str() << endl;
     }
-	
+    
+    if (str.compare_length("123321", 3))
+    {
+        cout << "equal" << endl;
+    }
+    
     return 0;
 }

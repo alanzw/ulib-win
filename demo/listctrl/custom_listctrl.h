@@ -244,6 +244,12 @@ public:
 			m_pEmEdit = new EmEdit(m_hSelf, 1234, m_hInstance);
 			huys::URectL rect;
 			this->getSubItemRect(m_row, m_col, rect);
+            
+            if (0 == m_col)
+            {
+                rect.setRight(this->getColumnWidth(0));
+            }
+            
 			m_pEmEdit->setRect(rect);
 			m_pEmEdit->create();
 			m_pEmEdit->setFont(this->getFont());

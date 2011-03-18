@@ -229,3 +229,119 @@ DWORD terminatePid(DWORD dwPID, DWORD dwTimeout)
      return dwRet;
 }
 
+
+
+struct pid_hwnd {
+    DWORD pid;
+    HWND hWnd;
+};
+
+BOOL CALLBACK EnumWindowsProc(HWND hWnd, DWORD lParam)
+{
+    pid_hwnd * pph = (pid_hwnd *)lParam;
+    
+    DWORD pid;
+    
+    if (!getWindowPid(hWnd, &pid) || (pid != pph->pid))
+    {
+        return TRUE;
+    }
+    else
+    {
+        pph->hWnd = hWnd;
+        return FALSE; // End Enum
+    }
+}
+
+HWND findWindowByPid(DWORD pid)
+{
+    pid_hwnd ph = { pid, NULL };
+    
+    ::EnumWindows((WNDENUMPROC)EnumWindowsProc, (LPARAM) &ph);   
+    
+    return ph.hWnd;
+}
+
+BOOL EnableDebugPrivilege()
+{
+    HANDLE hToken;
+    LUID DebugValue;
+    TOKEN_PRIVILEGES tkp;
+
+    //
+    // Retrieve a handle of the access token
+    //
+    if (!OpenProcessToken(GetCurrentProcess(),
+            TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY,
+            &hToken)) {
+        printf("OpenProcessToken failed with %d\n", GetLastError());
+        return FALSE;
+    }
+
+    //
+    // Enable the SE_DEBUG_NAME privilege
+    //
+    if (!LookupPrivilegeValue((LPSTR) NULL,
+            SE_DEBUG_NAME,
+            &DebugValue))
+    {
+        printf("LookupPrivilegeValue failed with %d\n", GetLastError());
+        return FALSE;
+    }
+
+    tkp.PrivilegeCount = 1;
+    tkp.Privileges[0].Luid = DebugValue;
+    tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+
+    AdjustTokenPrivileges(hToken,
+        FALSE,
+        &tkp,
+        sizeof(TOKEN_PRIVILEGES),
+        (PTOKEN_PRIVILEGES) NULL,
+        (PDWORD) NULL);
+
+    //
+    // The return value of AdjustTokenPrivileges can't be tested
+    //
+    if (GetLastError() != ERROR_SUCCESS)
+    {
+        printf("AdjustTokenPrivileges failed with %d\n", GetLastError());
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+BOOL KillProcess(DWORD pid, BOOL bForced /* = FALSE */)
+{
+    HANDLE hProcess;
+    HWND hWnd;
+    
+    hWnd = findWindowByPid(pid);
+    
+    if (bForced || !hWnd)
+    {
+        hProcess = OpenProcess( PROCESS_ALL_ACCESS, FALSE, pid );
+        if (hProcess) {
+            hProcess = OpenProcess( PROCESS_ALL_ACCESS, FALSE, pid );
+            if (hProcess == NULL) {
+                return FALSE;
+            }
+
+            if (!TerminateProcess( hProcess, 1 )) {
+                CloseHandle( hProcess );
+                return FALSE;
+            }
+
+            CloseHandle( hProcess );
+            return TRUE;
+        }
+    }
+
+    //
+    // kill the process
+    //
+    PostMessage( hWnd, WM_CLOSE, 0, 0 );
+
+    return TRUE;
+}

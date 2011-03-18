@@ -59,7 +59,12 @@ int execute( HWND hwnd,
     return (int)::ShellExecute(hwnd, _T("open"), lpFile, lpParameters, lpDirectory, nShowCmd);
 }
 
-ULIB_API BOOL executeEx( HWND hwnd,
+int open(LPCTSTR url)
+{
+    return (int)::ShellExecute(NULL, _T("open"), url, NULL, NULL, SW_NORMAL);
+}
+
+BOOL executeEx( HWND hwnd,
                          LPCTSTR lpFile,
                          LPCTSTR lpParameters /* = NULL */,
                          LPCTSTR lpDirectory /* = NULL */,

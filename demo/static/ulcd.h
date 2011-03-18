@@ -4,9 +4,9 @@
 // Make sure these messages are not used in your application already
 // If in doubt, use RegisterWindowMessages
 
-#define WM_OVERFLOW         (WM_USER + 1)
-#define WM_UNDERFLOW        (WM_USER + 2)
-#define WM_TCHANGE          (WM_USER + 3)
+#define WM_OVERFLOW         (WM_USER + 101)
+#define WM_UNDERFLOW        (WM_USER + 102)
+#define WM_TCHANGE          (WM_USER + 103)
 
 class ULCDCtrl : public UStatic
 {

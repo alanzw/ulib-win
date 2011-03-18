@@ -157,10 +157,7 @@ public:
 
 
     BOOL onInit()
-    {
-        m_ubmBack.loadFromResource(IDB_BACKGROUND, m_hInst);
-
-    }
+    {}
 
     virtual BOOL DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
     {
@@ -343,8 +340,6 @@ public:
         return TRUE;
     }
 */
-private:
-    UBitmap m_ubmBack;
 private:
     void draw(UBitmap &ubmz, RECT &rc)
     {

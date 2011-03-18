@@ -210,6 +210,8 @@ public:
         ulv.addColTextWidth(0, "Image Name", 125);
         ulv.addColTextWidth(1, "PID", 75);
         ulv.addColTextWidth(2, "User Name", 75);
+        ulv.addColTextWidth(3, "HWND", 75);
+        ulv.addColTextWidth(4, "Window Title", 125);
 
         ulv.addItemTextImage(0, "System Idle Process", 0);
         ulv.setItemText(0, 1, "0");

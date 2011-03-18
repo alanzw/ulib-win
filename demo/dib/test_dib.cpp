@@ -14,7 +14,7 @@ class UMyWindow : public UBaseWindow
 {
 public:
     UMyWindow()
-        : UBaseWindow(NULL, ::GetModuleHandle(NULL))
+    : UBaseWindow(NULL, ::GetModuleHandle(NULL))
     {
         this->setTitle(_T("UDIB Test 0.0.1"));
         this->setPos(0, 0, 600, 600);

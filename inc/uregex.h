@@ -24,6 +24,15 @@ public:
     
     ~URegExp();
     
+    bool isMatch(const char *s);
+    
+public:
+    class URegExpMatch
+    {
+    public:
+        URegExpMatch()
+        {}
+    };
 private:
     
 };

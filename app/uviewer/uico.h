@@ -110,5 +110,4 @@ BOOL IconImageFromBMPFile( LPCTSTR szFileName, LPICONIMAGE lpii, BOOL bStretchTo
 
 BOOL IconImageToBMPFile( LPCTSTR szFileName, LPICONIMAGE lpii );
 
-
 #endif // U_ICO_H

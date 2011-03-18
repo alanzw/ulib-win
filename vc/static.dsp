@@ -111,6 +111,10 @@ SOURCE=..\demo\static\uhistogram.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\demo\static\uhyperlink.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\demo\static\uinfobar.h
 # End Source File
 # Begin Source File

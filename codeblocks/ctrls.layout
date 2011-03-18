@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="..\app\uctrls\test_ctrls.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="2244" topLine="76" />
+	<File name="..\app\uctrls\test_ctrls.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2244" topLine="76" />
 	</File>
-	<File name="..\app\uctrls\ucollapse.h" open="0" top="0" tabpos="4">
-		<Cursor position="5422" topLine="181" />
+	<File name="..\app\uctrls\ucollapse.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="5422" topLine="181" />
 	</File>
-	<File name="..\app\uctrls\ucollapsepanel.h" open="0" top="0" tabpos="1">
-		<Cursor position="278" topLine="19" />
+	<File name="..\app\uctrls\ucollapsepanel.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="278" topLine="19" />
 	</File>
-	<File name="..\app\uctrls\uctrls.h" open="0" top="0" tabpos="1">
-		<Cursor position="0" topLine="56" />
+	<File name="..\app\uctrls\uctrls.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="56" />
 	</File>
 </CodeBlocks_layout_file>

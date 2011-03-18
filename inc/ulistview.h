@@ -36,6 +36,8 @@ public:
     virtual BOOL addColumn(int iCol, LPLVCOLUMN lplvc);
     //
     BOOL getColumn(int iCol, LPLVCOLUMN lplvc);
+    //
+    int getColumnWidth(int iCol);
 
     virtual BOOL addItem(LVITEM *lplvi);
     //

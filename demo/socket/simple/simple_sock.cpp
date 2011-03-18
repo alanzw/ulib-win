@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 
     // buf[strlen(buf)-2] = '\0';
 
-    printf("%s\n", buf);
+    printf("hostname : %s\n", buf);
 
     us.cleanup();
 

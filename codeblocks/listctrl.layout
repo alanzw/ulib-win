@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="..\demo\listctrl\custom_listctrl.h" open="0" top="0" tabpos="2">
-		<Cursor position="1556" topLine="0" />
+	<File name="..\demo\listctrl\custom_listctrl.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1556" topLine="0" />
 	</File>
-	<File name="..\demo\listctrl\resource.h" open="0" top="0" tabpos="3">
-		<Cursor position="0" topLine="0" />
+	<File name="..\demo\listctrl\resource.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
 	</File>
-	<File name="..\demo\listctrl\test_listctrl.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="2966" topLine="50" />
+	<File name="..\demo\listctrl\test_listctrl.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2966" topLine="50" />
 	</File>
 </CodeBlocks_layout_file>

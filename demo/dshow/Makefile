@@ -1,29 +1,18 @@
 #
-include ../../make.inc
+TOPDIR = ../..
 
 #
-CFLAGS =
-CXXFLAGS = 
-INC = -I"../../inc"
-LIB = -L"../../lib" -mwindows
+include $(TOPDIR)/make.inc
 
-#
-SRCDIR = ../../src
-INCDIR = ../../inc
-OBJDIR = ../../obj
-RESDIR = ../../res
-ICODIR = ../../ico
-BINDIR = ../../bin
 #
 SUBDIRS = dsplayer     \
+          ddraw        \
+          dsplayer     \
 
 #
 all:
 	$(MAKEALL_SUBDIRS)
-#
-.PHONY : test
-test :
-	$(WINE) $(BINDIR)/$(BIN)    
+  
 #
 .PHONY : clean
 clean :

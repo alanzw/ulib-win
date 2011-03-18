@@ -66,36 +66,37 @@ int main()
                                      (void **)&pCatInfo );
 
     //Increase ref count on interface
-    pCatInfo->AddRef ();
+    pCatInfo->AddRef();
 
     //IEnumGUID interface provides enumerator for
     //enumerating through the collection of com objects
-    IEnumGUID *pEnumGUID=NULL;
+    IEnumGUID *pEnumGUID = NULL;
 
     //We are intersted in finding out only controls
     //so put CATID_Control in the array
     CATID pcatidImpl[1];
     CATID pcatidReqd[1];
-    pcatidImpl[0]=CATID_Control;
+    pcatidImpl[0] = CATID_Control;
 
     //Now enumerate the classes i.e. com objects of this type.
     pCatInfo->EnumClassesOfCategories (1,pcatidImpl,0,pcatidReqd ,&pEnumGUID);
 
     //Enumerate as long as you get S_OK
     CLSID clsid;
-    while( (hr= pEnumGUID->Next( 1, &clsid, NULL ))==S_OK )
+    while ( (hr = pEnumGUID->Next( 1, &clsid, NULL )) == S_OK )
     {
         BSTR bstrClassName;
-
 
         //Get the information of class
         //This is what MSDN says about the parameters
         /*-----------------------------------------------
         USERCLASSTYPE_FULL     The full type name of the class.
-        USERCLASSTYPE_SHORT    A short name (maximum of 15 characters) that is used for popup menus and the Links dialog box.
-        USERCLASSTYPE_APPNAME  The name of the application servicing the class and is used in the Result text in dialog boxes.
+        USERCLASSTYPE_SHORT    A short name (maximum of 15 characters) 
+                               that is used for popup menus and the Links dialog box.
+        USERCLASSTYPE_APPNAME  The name of the application servicing the class
+                               and is used in the Result text in dialog boxes.
         -----------------------------------------------*/
-        OleRegGetUserType (clsid,USERCLASSTYPE_FULL,&bstrClassName);
+        OleRegGetUserType(clsid,USERCLASSTYPE_FULL,&bstrClassName);
         //CString strControlName(bstrClassName);
         //Add string in our listbox
         //m_list1.AddString (strControlName);
@@ -113,5 +114,5 @@ int main()
     ::CoUninitialize ();
 
     return 0;
-
 }
+

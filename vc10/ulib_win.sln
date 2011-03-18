@@ -73,6 +73,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "listctrl", "listctrl.vcxpro
 		{30463FCE-93F2-4F31-BFB5-355DFFB5CC66} = {30463FCE-93F2-4F31-BFB5-355DFFB5CC66}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "filesplit", "filesplit.vcxproj", "{DE9D9F7A-CAEB-459E-95EF-700814F244FF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{30463FCE-93F2-4F31-BFB5-355DFFB5CC66} = {30463FCE-93F2-4F31-BFB5-355DFFB5CC66}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -224,6 +229,12 @@ Global
 		{B55FDA18-F85B-49E7-98CC-0723B0DFD940}.Debug-static|Win32.Build.0 = Debug-static|Win32
 		{B55FDA18-F85B-49E7-98CC-0723B0DFD940}.Release|Win32.ActiveCfg = Release|Win32
 		{B55FDA18-F85B-49E7-98CC-0723B0DFD940}.Release|Win32.Build.0 = Release|Win32
+		{DE9D9F7A-CAEB-459E-95EF-700814F244FF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DE9D9F7A-CAEB-459E-95EF-700814F244FF}.Debug|Win32.Build.0 = Debug|Win32
+		{DE9D9F7A-CAEB-459E-95EF-700814F244FF}.Debug-static|Win32.ActiveCfg = Debug|Win32
+		{DE9D9F7A-CAEB-459E-95EF-700814F244FF}.Debug-static|Win32.Build.0 = Debug|Win32
+		{DE9D9F7A-CAEB-459E-95EF-700814F244FF}.Release|Win32.ActiveCfg = Release|Win32
+		{DE9D9F7A-CAEB-459E-95EF-700814F244FF}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

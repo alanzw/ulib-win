@@ -382,6 +382,13 @@ public:
         return ( this->length() == (unsigned int)lstrlen(str) )       // optimization on some platforms
             && ( lstrcmp(this->c_str(), str) == 0 );    // actual compare
     }
+    
+    bool compare_length(const T * str, int n)
+    {
+        return ( this->length() >= n && lstrlen(str) >= n )
+            && (_tcsncmp(this->c_str(), str, n) == 0 );
+    
+    }
 
     void update()
     {

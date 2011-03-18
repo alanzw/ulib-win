@@ -150,7 +150,7 @@ void UTable<K,D,H>::grow()
     */
     //buckets = (Bucket **)realloc( buckets, (sizeof( Bucket *) * number_buckets) );
     Bucket ** new_buckets = new Bucket *[2*number_buckets + 1];
-    ZeroMemory(buckets, sizeof(Bucket *)*(2*number_buckets + 1));
+    memset(buckets, 0, sizeof(Bucket *)*(2*number_buckets + 1));
     memcpy((void *)new_buckets, buckets, sizeof(Bucket*) * number_buckets);
     delete buckets;
     buckets = new_buckets;
@@ -190,7 +190,7 @@ UTable<K,D,H>::UTable( int starting_buckets )
     */
     //buckets = (typename Bucket **)calloc( typename Bucket * ), number_buckets );
     buckets = new Bucket*[number_buckets];
-    ZeroMemory(buckets, sizeof(Bucket *)*number_buckets);
+    memset(buckets, 0, sizeof(Bucket *)*number_buckets);
 }
 
 template <typename K, typename D, typename H>
@@ -206,10 +206,7 @@ UTable<K,D,H> &UTable<K,D,H>::add( const K &key, const D &data )
 
     number_entries++;
 
-    //Bucket *new_bucket = (Bucket *)malloc(sizeof(Bucket) );
     Bucket *new_bucket = new Bucket(key, data);
-    //new_bucket->key = key;
-    //new_bucket->data = data;
 
     /*
         If there are already buckets in the bucket list for the given hash

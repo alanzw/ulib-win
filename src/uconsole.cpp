@@ -59,7 +59,7 @@ BOOL PrintStderr(LPCTSTR pMsg)
 }
 
 BOOL ULIB_API PrintStdoutFormat(const TCHAR * szFormat, ...)
-{   
+{
     TCHAR   szBuffer [1024] ;
     va_list pArgList ;
 
@@ -96,13 +96,10 @@ BOOL ConsolePrompt ( LPCTSTR pPromptMsg,
         NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     EchoFlag = Echo ? ENABLE_ECHO_INPUT : 0;
     bSuccess =
-        SetConsoleMode (hStdIn, ENABLE_LINE_INPUT |
-        EchoFlag | ENABLE_PROCESSED_INPUT)
-        && SetConsoleMode (hStdOut,
-        ENABLE_WRAP_AT_EOL_OUTPUT | ENABLE_PROCESSED_OUTPUT)
+        SetConsoleMode (hStdIn, ENABLE_LINE_INPUT | EchoFlag | ENABLE_PROCESSED_INPUT)
+        && SetConsoleMode(hStdOut, ENABLE_WRAP_AT_EOL_OUTPUT | ENABLE_PROCESSED_OUTPUT)
         && PrintStrings (hStdOut, pPromptMsg, NULL)
-        && ReadConsole (hStdIn, pResponse,
-        MaxTchar, &TcharIn, NULL);
+        && ReadConsole (hStdIn, pResponse, MaxTchar, &TcharIn, NULL);
     if (bSuccess) pResponse [TcharIn - 2] = '\0';
     CloseHandle (hStdIn);
     CloseHandle (hStdOut);
@@ -238,7 +235,7 @@ BOOL Ascii2UnicodeOpt(LPCTSTR fIn, LPCTSTR fOut, BOOL bFailIfExists)
     return WriteOK;
 }
 
-POINT screensize;
+static POINT screensize;
 
 //
 // Clears the screen
@@ -364,7 +361,7 @@ void setCaret(CaretShape cs, HANDLE hOut)
 	CONSOLE_CURSOR_INFO info;
 	info.dwSize = 1;
 	info.bVisible = TRUE;
-    
+
 	switch (cs)
     {
     case CARET_NONE:

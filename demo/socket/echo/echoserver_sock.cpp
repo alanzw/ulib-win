@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
             exit(1);
         }
 
-        n = us.recv(sd2, buf, sizeof(buf
+        n = us.recv(sd2, buf, sizeof(buf));
         printf("recv: %d -- %s\n", n, buf);
         while (n > 0)
         {

@@ -318,12 +318,6 @@ private:
 
 };
 
-class ULIB_API UGLTexture
-{
-
-
-};
-
 #define TGA_RGB        2
 #define TGA_A          3
 #define TGA_RLE        10

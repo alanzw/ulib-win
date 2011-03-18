@@ -269,6 +269,9 @@ Package=<5>
 
 Package=<4>
 {{{
+    Begin Project Dependency
+    Project_Dep_Name libuwin_dll
+    End Project Dependency
 }}}
 
 ###############################################################################

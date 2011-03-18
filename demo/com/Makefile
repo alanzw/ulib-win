@@ -27,6 +27,9 @@ SUBDIRS = \
           rpc       \
           iimgctx   \
           webbrowser\
+          sstorage  \
+          bho       \
+          ado       \
           
 
 #

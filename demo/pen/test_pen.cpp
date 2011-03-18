@@ -5,12 +5,11 @@
 #include <tchar.h>
 
 #include "udialogx.h"
-#include "ubutton.h"
 #include "udlgapp.h"
 #include "udc.h"
 #include "ubrush.h"
 
-#include "adt/uautoptr.h"
+#include "aui/aui_button.h"
 
 using huys::UDialogBox;
 
@@ -91,7 +90,7 @@ public:
 
     }
 private:
-    huys::ADT::UAutoPtr<UButton> m_pBtn;
+    AUI::UButtonP m_pBtn;
     UBrush brush;
 };
 

@@ -29,6 +29,8 @@ class UTrace
 {
 public:
     UTrace();
+    
+    ~UTrace();
 };
 
 };  // namespace UDebugger

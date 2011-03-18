@@ -21,8 +21,6 @@ IDB_RESTORE_DEACTIVE    BITMAP  DISCARDABLE     "res_deactive.bmp"
 IDB_EXIT_FOCUS          BITMAP  DISCARDABLE     "exit_foc.bmp"
 IDB_EXIT_NORMAL         BITMAP  DISCARDABLE     "exit_nor.bmp"
 
-IDB_BACKGROUND          BITMAP  DISCARDABLE     "leafy.bmp"
-
 //
 // Dialog resources
 //

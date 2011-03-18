@@ -180,6 +180,7 @@ int PingHost(const char *sAddress, int MaxRoundTime, int RoundTrips)
 int main(int argc, char *argv[])
 {
     std::cout << "Response : " <<  PingHost("127.0.0.1", 10000, 10) << "s" << std::endl;
+    std::cout << "Response : " <<  PingHost("www.baidu.com", 10000, 10) << "s" << std::endl;
     return 0;
 }
 

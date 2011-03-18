@@ -25,12 +25,6 @@ public:
     }
 
     //
-
-private:
-    BOOL subClass()
-    {
-        return FALSE;
-    }
 private:
     HWND hTarget;
 };
