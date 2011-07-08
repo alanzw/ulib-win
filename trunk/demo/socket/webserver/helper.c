@@ -3,6 +3,9 @@
 #include <errno.h>
 #include <ctype.h>
 
+#include <windows.h>
+#include <winsock2.h>
+
 #include "helper.h"
 
 /*  Prints an error message and quits  */
@@ -22,9 +25,9 @@ ssize_t Readline(int sockd, void *vptr, size_t maxlen)
 
     for ( n = 1; n < maxlen; n++ )
     {
-
-        if ( (rc = read(sockd, &c, 1)) == 1 )
+        if ( (rc = recv(sockd, &c, 1, 0)) == 1 )
         {
+            printf("%c", c);
             *buffer++ = c;
             if ( c == '\n' )
             break;
@@ -62,13 +65,18 @@ ssize_t Writeline(int sockd, const void *vptr, size_t n)
     buffer = vptr;
     nleft  = n;
 
-    while ( nleft > 0 ) {
-        if ( (nwritten = write(sockd, buffer, nleft)) <= 0 )
+    while ( nleft > 0 )
+    {
+        if ( (nwritten = send(sockd, buffer, nleft, 0)) <= 0 )
         {
             if ( errno == EINTR )
-            nwritten = 0;
+            {
+                nwritten = 0;
+            }
             else
-            Error_Quit("Error in Writeline()");
+            {
+                Error_Quit("Error in Writeline()");
+            }
         }
         nleft  -= nwritten;
         buffer += nwritten;

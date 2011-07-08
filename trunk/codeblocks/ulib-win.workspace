@@ -19,7 +19,7 @@
 		<Project filename="commondlg.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="console.cbp" active="1" />
+		<Project filename="console.cbp" />
 		<Project filename="contact.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
@@ -29,7 +29,7 @@
 		<Project filename="customctrl.cbp">
 			<Depends filename="ulib-win.cbp" />
 		</Project>
-		<Project filename="debug.cbp" />
+		<Project filename="debug.cbp" active="1" />
 		<Project filename="edit.cbp" />
 		<Project filename="explorer.cbp">
 			<Depends filename="ulib-win.cbp" />

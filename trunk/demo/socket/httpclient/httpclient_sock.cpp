@@ -16,7 +16,7 @@
  * =====================================================================================
  */
 #include "resource.h"
- 
+
 #include <windows.h>
 #include <stdio.h>
 #include "usocket.h"
@@ -25,7 +25,9 @@
 
 int main(int argc, char *argv[])
 {
-    
+    UHTTPClient client;
+
+    client.request("www.baidu.com", "/index.php");
 
     printf("Press any key to continue...");
     getchar();

@@ -15,8 +15,7 @@ int Output_HTTP_Headers(int conn, struct ReqInfo * reqinfo)
 
     sprintf(buffer, "HTTP/1.0 %d OK\r\n", reqinfo->status);
     Writeline(conn, buffer, strlen(buffer));
-
-    Writeline(conn, "Server: PGWebServ v0.1\r\n", 24);
+    Writeline(conn, "Server: HYWebServer v0.1\r\n", 24);
     Writeline(conn, "Content-Type: text/html\r\n", 25);
     Writeline(conn, "\r\n", 2);
 

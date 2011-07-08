@@ -239,9 +239,9 @@ struct pid_hwnd {
 BOOL CALLBACK EnumWindowsProc(HWND hWnd, DWORD lParam)
 {
     pid_hwnd * pph = (pid_hwnd *)lParam;
-    
+
     DWORD pid;
-    
+
     if (!getWindowPid(hWnd, &pid) || (pid != pph->pid))
     {
         return TRUE;
@@ -256,9 +256,9 @@ BOOL CALLBACK EnumWindowsProc(HWND hWnd, DWORD lParam)
 HWND findWindowByPid(DWORD pid)
 {
     pid_hwnd ph = { pid, NULL };
-    
-    ::EnumWindows((WNDENUMPROC)EnumWindowsProc, (LPARAM) &ph);   
-    
+
+    ::EnumWindows((WNDENUMPROC)EnumWindowsProc, (LPARAM) &ph);
+
     return ph.hWnd;
 }
 
@@ -274,7 +274,7 @@ BOOL EnableDebugPrivilege()
     if (!OpenProcessToken(GetCurrentProcess(),
             TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY,
             &hToken)) {
-        printf("OpenProcessToken failed with %d\n", GetLastError());
+        printf("OpenProcessToken failed with %ld\n", GetLastError());
         return FALSE;
     }
 
@@ -285,7 +285,7 @@ BOOL EnableDebugPrivilege()
             SE_DEBUG_NAME,
             &DebugValue))
     {
-        printf("LookupPrivilegeValue failed with %d\n", GetLastError());
+        printf("LookupPrivilegeValue failed with %ld\n", GetLastError());
         return FALSE;
     }
 
@@ -305,7 +305,7 @@ BOOL EnableDebugPrivilege()
     //
     if (GetLastError() != ERROR_SUCCESS)
     {
-        printf("AdjustTokenPrivileges failed with %d\n", GetLastError());
+        printf("AdjustTokenPrivileges failed with %ld\n", GetLastError());
         return FALSE;
     }
 
@@ -316,9 +316,9 @@ BOOL KillProcess(DWORD pid, BOOL bForced /* = FALSE */)
 {
     HANDLE hProcess;
     HWND hWnd;
-    
+
     hWnd = findWindowByPid(pid);
-    
+
     if (bForced || !hWnd)
     {
         hProcess = OpenProcess( PROCESS_ALL_ACCESS, FALSE, pid );

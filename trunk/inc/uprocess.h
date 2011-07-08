@@ -67,7 +67,7 @@ protected:
     void listen();
     TCHAR command[MAX_LINE_LENGTH];
     HWND target;
-    HANDLE hreadFromChild;
+    HANDLE hReadFromChild;
     UINT pid;   // process ID assigned by caller
     TCHAR buffer[MAX_LINE_LENGTH+1];
     static TCHAR *spContent;

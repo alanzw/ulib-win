@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <winsock2.h>
 
 #include "reqhead.h"
 #include "servreq.h"
@@ -169,7 +170,7 @@ int Get_Request(int conn, struct ReqInfo * reqinfo)
 {
     char   buffer[MAX_REQ_LINE] = {0};
     int    rval;
-    /* fd_set fds; */
+    fd_set fds;
     struct timeval tv;
 
 
@@ -185,15 +186,15 @@ int Get_Request(int conn, struct ReqInfo * reqinfo)
     do {
 
         /*  Reset file descriptor set  */
-        /*
+        
         FD_ZERO(&fds);
         FD_SET (conn, &fds);
-        */
+        
 
         /*  Wait until the timeout to see if input is ready  */
 
-        /* rval = select(conn + 1, &fds, NULL, NULL, &tv); */
-
+        rval = select(conn + 1, &fds, NULL, NULL, &tv);
+		/*rval  = 1;*/
 
         /*  Take appropriate action based on return from select()  */
 

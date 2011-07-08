@@ -59,15 +59,20 @@ int main(int argc, char *argv[])
     } else {
         port = PROTOPORT;       /* use default port number      */
     }
-    if (port > 0)                   /* test for illegal value       */
-        sad.sin_port = htons((u_short)port);
-    else {                          /* print error message and exit */
+    
+	if (port > 0)                   /* test for illegal value       */
+    {
+		sad.sin_port = htons((u_short)port);
+    }
+	else
+	{                          /* print error message and exit */
         fprintf(stderr,"Bad port number %s\n",argv[1]);
         exit(1);
     }
 
     /* Map TCP transport protocol name to protocol number */
-    if ( ((int)(ptrp = getprotobyname("tcp"))) == 0) {
+    if ( ((int)(ptrp = getprotobyname("tcp"))) == 0)
+	{
         fprintf(stderr, "cannot map \"tcp\" to protocol number");
         exit(1);
     }

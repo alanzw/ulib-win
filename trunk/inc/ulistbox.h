@@ -30,8 +30,8 @@ public:
     int setColumnWidth(DWORD pixels);
 
     //
-    int getItemHeight();
-    BOOL setItemHeight(int nHeight);
+    int getItemHeight(int nIndex = 0);
+    BOOL setItemHeight(int nHeight, int nIndex = 0);
 protected:
 private:
 };

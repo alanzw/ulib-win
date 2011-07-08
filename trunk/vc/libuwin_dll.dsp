@@ -293,6 +293,10 @@ SOURCE=..\src\utooltip.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\utrayicon.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\uvisualstyle.cpp
 # End Source File
 # Begin Source File
@@ -498,6 +502,10 @@ SOURCE=..\inc\utoolbar.h
 # Begin Source File
 
 SOURCE=..\inc\utooltip.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\inc\utrayicon.h
 # End Source File
 # Begin Source File
 

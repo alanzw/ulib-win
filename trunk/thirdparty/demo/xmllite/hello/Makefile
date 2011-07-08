@@ -9,7 +9,7 @@ XMLLITE_INC = $(THIRDPARTY_DIR)/include/xmllite
 XMLLITE_LIB = -L$(THIRDPARTY_DIR)/lib -lxmllite
 #
 INC = -I"$(INCDIR)" -I"$(XMLLITE_INC)"
-LIBS = -L"$(LIBDIR)" $(XMLLITE_LIB) -lshlwapi
+LIBS = -L"$(LIBDIR)" $(XMLLITE_LIB) -lshlwapi -loleaut32
 CFLAGS += 
 CXXFLAGS += $(INC) -DBUILD_EXE
 LDFLAGS += $(LIBS)

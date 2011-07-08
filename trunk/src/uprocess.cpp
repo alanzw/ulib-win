@@ -133,13 +133,13 @@ UPipedProcess::UPipedProcess(char *cmd, HWND hwnd, UINT id)
 
 BOOL UPipedProcess::run()
 {
-    hreadFromChild = NULL;
+    hReadFromChild = NULL;
     HANDLE hwriteToParent = NULL;
     HANDLE hwriteToParent2 = NULL;
 
     SECURITY_ATTRIBUTES sa = {sizeof(SECURITY_ATTRIBUTES), NULL, TRUE }; // inheritable handle
 
-    if(!::CreatePipe(&hreadFromChild, &hwriteToParent, &sa, 0))
+    if(!::CreatePipe(&hReadFromChild, &hwriteToParent, &sa, 0))
     { /* pipe failed */
         // ::GetLastError() will reveal the cause
         delete this;
@@ -155,7 +155,7 @@ BOOL UPipedProcess::run()
         DUPLICATE_SAME_ACCESS))  // create duplicate access
     { /* duplicate failed */
         DWORD err = ::GetLastError();
-        ::CloseHandle(hreadFromChild);
+        ::CloseHandle(hReadFromChild);
         ::CloseHandle(hwriteToParent);
         ::SetLastError(err);
         delete this;
@@ -177,7 +177,7 @@ BOOL UPipedProcess::run()
     // We want a non-inherited read handle. DuplicateHandle with a
     // NULL target fixes the read side to be non-inheritable
     ::DuplicateHandle(::GetCurrentProcess(),    // in this process
-        hreadFromChild,           // child read handle
+        hReadFromChild,           // child read handle
         ::GetCurrentProcess(),    // to this process
         NULL,                     // modify existing handle
         0,                        // flags
@@ -205,7 +205,7 @@ BOOL UPipedProcess::run()
     { /* failed to start */
         DWORD err = ::GetLastError(); // preserve across CloseHandle calls
         showErrorByNum(err);
-        ::CloseHandle(hreadFromChild);
+        ::CloseHandle(hReadFromChild);
         ::CloseHandle(hwriteToParent);
         ::CloseHandle(hwriteToParent2);
         ::SetLastError(err);
@@ -237,7 +237,7 @@ BOOL UPipedProcess::run()
     { /* failed */
         DWORD err = ::GetLastError();
         ::PostMessage(target, UPM_FINISHED, (WPARAM)err, (LPARAM)pid);
-        ::CloseHandle(hreadFromChild);
+        ::CloseHandle(hReadFromChild);
         ::CloseHandle(hwriteToParent);
         ::CloseHandle(hwriteToParent2);
         delete this;
@@ -270,7 +270,7 @@ void UPipedProcess::listen()
 
     DWORD bytesRead;
 
-    while(::ReadFile(hreadFromChild, buffer, sizeof(buffer) - sizeof(TCHAR), &bytesRead, NULL))
+    while(::ReadFile(hReadFromChild, buffer, sizeof(buffer) - sizeof(TCHAR), &bytesRead, NULL))
     { /* got data */
         if(bytesRead == 0)
             break; // EOF condition
@@ -310,7 +310,7 @@ void UPipedProcess::listen()
     //assert(bytesRead!=0);
     DWORD err = ::GetLastError();
 
-    ::CloseHandle(hreadFromChild);
+    ::CloseHandle(hReadFromChild);
 
 
     if(strlen(spContent) > 0)

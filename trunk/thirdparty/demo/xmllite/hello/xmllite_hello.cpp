@@ -85,7 +85,12 @@ int _tmain(int argc, _TCHAR* argv[])
                             printf("Error reading attribute value, error %08.8lx", hr);
                             return -1;
                         }
-                        printf("Key \"foo\"'s value is \"%s\"", pValue);
+
+						huys::UCOM::BString bstr(pValue);
+						huys::UCOM::CString cstr(bstr);
+
+                        printf("Key \"foo\"'s value is \"%s\"", cstr.str());
+						//MessageBoxW(NULL, pValue, L"info", MB_OK);
                     }
                 }
             }

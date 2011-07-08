@@ -10,7 +10,7 @@
 int Service_Request(int conn)
 {
     struct ReqInfo  reqinfo;
-    int             resource = 0;
+    FILE *            resource = NULL;
 
     InitReqInfo(&reqinfo);
 
@@ -20,32 +20,37 @@ int Service_Request(int conn)
         return -1;
     }
 
+
     /*  Check whether resource exists, whether we have permission
     to access it, and update status code accordingly.          */
     if ( reqinfo.status == 200 )
     {
-    if ( (resource = Check_Resource(&reqinfo)) < 0 )
-    {
-        if ( errno == EACCES )
+        if ( (resource = Check_Resource(&reqinfo)) < 0 )
         {
-            reqinfo.status = 401;
-        }
-        else
-        {
-            reqinfo.status = 404;
+            if ( errno == EACCES )
+            {
+                reqinfo.status = 401;
+            }
+            else
+            {
+                reqinfo.status = 404;
+            }
         }
     }
-    }
-    
+
+
     /*  Output HTTP response headers if we have a full request  */
     if ( reqinfo.type == FULL )
     {
         Output_HTTP_Headers(conn, &reqinfo);
     }
 
+
     /*  Service the HTTP request  */
     if ( reqinfo.status == 200 )
     {
+        printf("**status : %d\n", reqinfo.status);
+
         if ( Return_Resource(conn, resource, &reqinfo) )
         {
             Error_Quit("Something wrong returning resource.");
@@ -55,15 +60,17 @@ int Service_Request(int conn)
     {
         Return_Error_Msg(conn, &reqinfo);
     }
-    
+
+    /*
     if ( resource > 0 )
     {
-        if ( close(resource) < 0 )
+        if ( closesocket(resource) < 0 )
         {
             Error_Quit("Error closing resource.");
         }
     }
-    
+    */
+
     FreeReqInfo(&reqinfo);
     return 0;
 }

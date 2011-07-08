@@ -32,7 +32,7 @@ public:
             NULL     : GlobalAddAtom((LPSTR) szTopic);
 
         fInInitiate = TRUE;
-        SendMessage((HWND) HWND_BROADCAST,     // broadcasts message
+        ::SendMessage((HWND) HWND_BROADCAST,     // broadcasts message
                 WM_DDE_INITIATE,               // initiates conversation
                 (WPARAM) m_hDlg,               // handle to client DDE window
                 MAKELONG(atomApplication,      // application-name atom

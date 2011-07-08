@@ -10,25 +10,43 @@
     the server will use, i.e. /index.html will translate
     here to /home/httpd/html/index.html                   */
 
+#ifdef _WIN32
+static char server_root[1000] = ".";
+#else
 static char server_root[1000] = "/home/httpd/html";
+#endif /* _WIN32 */
+
 
 /*  Returns a resource  */
-int Return_Resource(int conn, int resource, struct ReqInfo * reqinfo)
+int Return_Resource(int conn, FILE *resource, struct ReqInfo * reqinfo)
 {
-    char c;
     int  i;
+	int  n = 0;
+	char buf[10001] = {0};
 
-    while ( (i = read(resource, &c, 1)) )
-    {
+	while (!feof(resource))
+	{
+
+		memset(buf, 0, 10000);
+
+		n = fread(buf, 10000, 1, resource);
+
+		i = strlen(buf);
+
+		printf(buf);
+
         if ( i < 0 )
         {
             Error_Quit("Error reading from file.");
         }
-        if ( write(conn, &c, 1) < 1 )
+
+        if ( send(conn, buf, i, 0) < 1 )
         {
             Error_Quit("Error sending file.");
         }
     }
+
+	fclose(resource);
 
     return 0;
 }
@@ -38,19 +56,23 @@ int Return_Resource(int conn, int resource, struct ReqInfo * reqinfo)
     the return value to check for success, and then examine
     errno to determine the cause of failure if neceesary.    */
 
-int Check_Resource(struct ReqInfo * reqinfo)
+FILE* Check_Resource(struct ReqInfo * reqinfo)
 {
 
     /*  Resource name can contain urlencoded
     data, so clean it up just in case.    */
     CleanURL(reqinfo->resource);
-    
+
     /*  Concatenate resource name to server root, and try to open  */
     strcat(server_root, reqinfo->resource);
-    
+
     /* return open(server_root, O_RDONLY); */
-    
-    return 0;
+
+    printf("%s\n", server_root);
+
+    return fopen(server_root, "rb");
+
+    /* return 0; */
 }
 
 

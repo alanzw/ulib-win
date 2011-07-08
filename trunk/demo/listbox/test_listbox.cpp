@@ -19,6 +19,8 @@
 
 #include "adt/uautoptr.h"
 
+#include "multiline_listbox.h"
+
 using huys::UDialogBox;
 
 #define BUFFER MAX_PATH
@@ -33,14 +35,14 @@ public:
     {
         m_dwStyles |= LBS_OWNERDRAWVARIABLE | WS_VSCROLL | LBS_NOTIFY | LBS_HASSTRINGS;
 
-		// Default Item Height: 36
+        // Default Item Height: 36
         _nItemHeight = 36;
     }
 
     virtual BOOL create()
     {
-		// Drag-and-Drop is supported
-		return UListBox::createEx(WS_EX_ACCEPTFILES, _T("LISTBOX")) && this->subclassProc();
+        // Drag-and-Drop is supported
+        return UListBox::createEx(WS_EX_ACCEPTFILES, _T("LISTBOX")) && this->subclassProc();
     }
 
     virtual BOOL onMessage(UINT nMessage, WPARAM wParam, LPARAM lParam)
@@ -157,7 +159,7 @@ public:
 
             SetTextColor(lpdis->hDC, huys::xpblue);
             dc.textOut(XBITMAP + 6,
-                		y,
+                        y,
                         tchBuffer,
                         strlen(tchBuffer));
 
@@ -203,11 +205,11 @@ public:
         _nItemHeight = n;
     }
 
-	void addItem(LPCTSTR str, HBITMAP hbmp)
-	{
-		int nItem = this->addString(str);
-		this->setItemData(nItem, (LPARAM)hbmp);
-	}
+    void addItem(LPCTSTR str, HBITMAP hbmp)
+    {
+        int nItem = this->addString(str);
+        this->setItemData(nItem, (LPARAM)hbmp);
+    }
 
 private:
     BOOL onDropFiles(HDROP hDropInfo)
@@ -254,7 +256,8 @@ class UDialogExt : public UDialogBox
 {
     enum {
         ID_LISTBOX = 13333,
-        ID_ICON_LISTBOX = 13334
+        ID_ICON_LISTBOX = 13334,
+		ID_MULTILINE_LISTBOX = 13335
     };
 public:
     UDialogExt(HINSTANCE hInst, UINT nID)
@@ -271,7 +274,7 @@ public:
         //m_pListBox->setStyles(WS_BORDER | LVS_REPORT | LVS_EDITLABELS);
         m_pListBox->setStyles(WS_HSCROLL|WS_VSCROLL|LBS_DISABLENOSCROLL );
         m_pListBox->setPos(rect.left()+50, rect.top()+50,
-            150, rect.height()-100);
+            150, rect.height()-400);
         m_pListBox->create();
         m_pListBox->setColumnWidth(300);
         //
@@ -299,6 +302,13 @@ public:
         m_pIconListBox->addItem("fork", bmpFork);
 
         m_pIconListBox->setCurSel(-1);
+		
+		m_pMultiLineListBox = new UMultiLineListBox(m_hDlg, ID_MULTILINE_LISTBOX, m_hInst);
+        m_pMultiLineListBox->setStyles(WS_HSCROLL|WS_VSCROLL|LBS_DISABLENOSCROLL );
+		m_pMultiLineListBox->setPos(rect.left()+50, rect.top()+300,
+            200, 200);
+		m_pMultiLineListBox->create();
+		m_pMultiLineListBox->addString(str);
 
         TCHAR tchCurDir[MAX_PATH];
         ::GetCurrentDirectory(MAX_PATH, tchCurDir);
@@ -314,7 +324,7 @@ public:
             int index = m_pIconListBox->getCurSel();
             char buf[256] = {0};
             m_pIconListBox->getText(index, buf);
-            showMsgFormat("info", "%d -- %s", index, buf);
+            showMsgFormatEx(m_hDlg, "info", "%d -- %s", index, buf);
         }
         return UDialogBox::onCommand(wParam, lParam);
     }
@@ -322,6 +332,8 @@ public:
 private:
     huys::ADT::UAutoPtr<UListBox> m_pListBox;
     huys::ADT::UAutoPtr<UIconListBox> m_pIconListBox;
+	
+    huys::ADT::UAutoPtr<UMultiLineListBox> m_pMultiLineListBox;
 
     UBitmap bmpPencil, bmpCrayon, bmpMarker, bmpPen, bmpFork;
 };
