@@ -239,3 +239,13 @@ int USocket::setsockopt( int level, int optname, const char *optval, int optlen 
     return 0;
 }
 
+int USocket::write( const char *pack, int size )
+{
+	return this->send(pack, size);
+}
+
+int USocket::read( char *buf, int nLen )
+{
+	return this->recv(buf, nLen);
+}
+

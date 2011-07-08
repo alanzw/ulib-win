@@ -9,7 +9,6 @@
 typedef struct {
     int protocol;
     int port;
-
     char host[MAX_URL_LENGTH];
     char url[MAX_URL_LENGTH];
 } CONNECTSTRUCT, *LPCONNECTSTRUCT;
@@ -25,9 +24,9 @@ class UHTTPClient
 {
 public:
     UHTTPClient();
-    virtual ~UHTTPClient();
+    ~UHTTPClient();
 
-    void request(char *host, char *url);
+    void request(const char *host, const char *url);
 
     WSADATA WSAData;
 
@@ -37,7 +36,7 @@ public:
 
     BOOL _bReady;
     int HTTPsocket;
-    HANDLE RecvThread;
+    HANDLE hRecvThread;
     DWORD ThreadID;
     long basetime;
 

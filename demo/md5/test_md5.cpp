@@ -6,7 +6,7 @@ int main()
 {
     static const char *const test[7] = {
     "", /*d41d8cd98f00b204e9800998ecf8427e*/
-    "945399884.61923487334tuvga", /*0cc175b9c0f1b6a831c399e269772661*/
+    "945399884.61923487334tuvga", /*0cc175b9c0f1b6a831c399e269772661 --> 4d52535c7692376e7e7e205940a93ae9*/
     "abc", /*900150983cd24fb0d6963f7d28e17f72*/
     "message digest", /*f96b697d7cb7938d525a2f31aaf161d0*/
     "abcdefghijklmnopqrstuvwxyz", /*c3fcd3d76192e4007dfb496cca67e13b*/

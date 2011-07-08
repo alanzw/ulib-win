@@ -19,11 +19,11 @@ void MD5::init(int brokenEndian /* = 0*/)
     _ctx.bits[1] = 0;
 
     /*#ifdef WORDS_BIGENDIAN*/
-    if (brokenEndian) {
+    //if (brokenEndian) {
         _ctx.doByteReverse = 0;
-    } else {
-        _ctx.doByteReverse = 1;
-    }
+    //} else {
+    //    _ctx.doByteReverse = 1;
+    //}
     /*#else
     _ctx.doByteReverse = 0;
     #endif

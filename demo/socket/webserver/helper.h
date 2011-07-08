@@ -7,8 +7,8 @@ typedef signed int ssize_t;
 #endif /* HAS_SSIZE_T */
 
 /*  Function prototypes  */
-void Error_Quit(const char * msg);
-int Trim (char * buffer);
+void    Error_Quit(const char * msg);
+int     Trim (char * buffer);
 int     StrUpper  (char * buffer);
 void    CleanURL  (char * buffer);
 ssize_t Readline  (int sockd, void *vptr, size_t maxlen);

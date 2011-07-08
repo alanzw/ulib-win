@@ -4,7 +4,7 @@ TOPDIR = ../..
 include $(TOPDIR)/make.inc
 
 
-SUBDIRS = glut lua     \
+SUBDIRS = glut lua  sqlite   \
 
 #
 all:

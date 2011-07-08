@@ -31,7 +31,7 @@ echoclient_sock.exe : echoclient_sock.o $(RES)
 #
 .PHONY : test
 test :
-	echo Please run by yourself.
+	@echo !!!Please run by yourself.
 #	$(WINE) $(BINDIR)/$(BIN)
     
 #

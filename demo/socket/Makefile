@@ -25,6 +25,10 @@ SUBDIRS =          \
           chat     \
           serverui \
           wshout   \
+		  broadcast\
+		  keepalive\
+		  select   \
+		  smpd     \
 
 #
 .PHONY: all

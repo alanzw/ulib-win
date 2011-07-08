@@ -56,6 +56,10 @@ IDI_SWITCH ICON DISCARDABLE "switch.ico"
 
 IDI_WHEEL ICON DISCARDABLE "wheel.ico"
 
+#else
+
+IDI_APP ICON DISCARDABLE "google.ico"
+
 #endif
 
 IDI_ULIB ICON DISCARDABLE "ulib.ico"

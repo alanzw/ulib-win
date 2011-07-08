@@ -11,6 +11,8 @@
 #include "uedit.h"
 #include "colors.h"
 
+#include "utrayicon.h"
+
 #include "adt/uautoptr.h"
 
 #define  WM_SHELLNOTIFY  WM_USER+5
@@ -49,6 +51,8 @@ LRESULT APIENTRY EditWndProc( HWND hWnd,
         default:
             return ::CallWindowProc(oldWndProc, hWnd, uMsg, wParam, lParam);
     }
+
+	return 0;
 }
 
 

@@ -16,11 +16,14 @@
 	<File name="..\inc\ucommondialog.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="921" topLine="39" />
 	</File>
-	<File name="..\inc\uconsole.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\inc\uconsole.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="2257" topLine="78" />
 	</File>
 	<File name="..\inc\ucontrol.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="1588" topLine="51" />
+	</File>
+	<File name="..\inc\udc.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="517" topLine="15" />
 	</File>
 	<File name="..\inc\udialogx.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="2521" topLine="74" />
@@ -56,7 +59,7 @@
 		<Cursor1 position="265" topLine="45" />
 	</File>
 	<File name="..\inc\uobject.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="1188" topLine="63" />
+		<Cursor1 position="510" topLine="81" />
 	</File>
 	<File name="..\inc\upanel.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="0" topLine="0" />
@@ -124,7 +127,7 @@
 	<File name="..\src\ucommondialog.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="2749" topLine="84" />
 	</File>
-	<File name="..\src\uconsole.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\src\uconsole.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="6925" topLine="288" />
 	</File>
 	<File name="..\src\ucontrol.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -134,7 +137,7 @@
 		<Cursor1 position="2007" topLine="87" />
 	</File>
 	<File name="..\src\udebug.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="102" topLine="0" />
+		<Cursor1 position="714" topLine="30" />
 	</File>
 	<File name="..\src\udialogx.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="6822" topLine="218" />
@@ -173,7 +176,7 @@
 		<Cursor1 position="2246" topLine="98" />
 	</File>
 	<File name="..\src\uprocessman.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="4266" topLine="72" />
+		<Cursor1 position="6829" topLine="294" />
 	</File>
 	<File name="..\src\uprogressbar.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="1531" topLine="54" />

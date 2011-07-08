@@ -107,7 +107,6 @@ template<> struct compile_time_check<false>
     do {} while (0)
 #endif
 
-
 template <bool B>
 inline void STATIC_ASSERT_IMPL()
 {
@@ -155,6 +154,21 @@ inline void checked_delete(T * x)
 
 /// VC Link Stuff
 #ifdef _MSC_VER
+
+#ifndef WC_EDIT
+
+// Edit Class Name
+#define WC_EDITA                "Edit"
+#define WC_EDITW                L"Edit"
+
+#ifdef UNICODE
+#define WC_EDIT                 WC_EDITW
+#else
+#define WC_EDIT                 WC_EDITA
+#endif
+
+#endif
+
 
 #if !defined(BUILD_DLL) && !defined(WITHOUT_DLL)
   #if defined(BUILD_EXE)

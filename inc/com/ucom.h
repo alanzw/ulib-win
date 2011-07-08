@@ -329,7 +329,7 @@ public:
         }
         _str = var.bstrVal;
     }
-    BString (WCHAR * str)
+    BString (const WCHAR * str)
         :_str (::SysAllocString (str))
     {}
     ~BString ()
@@ -362,6 +362,8 @@ public:
     {
         return strcmp (str, _str) == 0;
     }
+
+	const char * str() const {return _str;}
 protected:
     char * _str;
     int    _len;

@@ -43,11 +43,14 @@ public:
     int connect(const char *szhost, int nPort);
 
     int send(SOCKET sock, const char *pack, int size);
-
     int send(const char *pack, int size);
 
     int recv(SOCKET sock, char *buf, int nLen);
     int recv(char *buf, int nLen);
+
+	//
+	int write(const char *pack, int size);
+	int read(char *buf, int nLen);
 
     SOCKET accept(struct sockaddr *s = 0, int *len = 0);
 
