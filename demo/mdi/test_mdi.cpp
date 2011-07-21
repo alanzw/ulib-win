@@ -23,10 +23,10 @@ LRESULT CALLBACK DefaultClientChildWindowProc(HWND hWnd, UINT uMessage, WPARAM w
         // so we'll asociate its handle with its AbstractWindow instance pointer
         LPCREATESTRUCT lpCS = (LPCREATESTRUCT)lParam;
         LPMDICREATESTRUCT lpMCS = (LPMDICREATESTRUCT)(lpCS->lpCreateParams);
-        ::SetWindowLong (hWnd, GWL_USERDATA, long(lpMCS->lParam));
+        ::SetWindowLongPtr (hWnd, GWLP_USERDATA, (LONG_PTR)(lpMCS->lParam));
     }
 
-    pBaseWnd = reinterpret_cast<UBaseWindow *>(::GetWindowLong(hWnd, GWL_USERDATA));
+    pBaseWnd = reinterpret_cast<UBaseWindow *>(::GetWindowLongPtr(hWnd, GWLP_USERDATA));
 
     if (pBaseWnd)
     {
@@ -223,10 +223,10 @@ LRESULT CALLBACK DefaultFrameWindowProc(HWND hWnd, UINT uMessage, WPARAM wParam,
     if (uMessage == WM_NCCREATE) {
         // if this nMessage gets sent then a new window has just been created,
         // so we'll asociate its handle with its AbstractWindow instance pointer
-        ::SetWindowLong (hWnd, GWL_USERDATA, long((LPCREATESTRUCT(lParam))->lpCreateParams));
+        ::SetWindowLongPtr (hWnd, GWLP_USERDATA, (LONG_PTR)((LPCREATESTRUCT(lParam))->lpCreateParams));
     }
 
-    pBaseWnd = reinterpret_cast<UBaseWindow *>(::GetWindowLong(hWnd, GWL_USERDATA));
+    pBaseWnd = reinterpret_cast<UBaseWindow *>(::GetWindowLongPtr(hWnd, GWLP_USERDATA));
 
     if (pBaseWnd)
     {

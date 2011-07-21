@@ -34,10 +34,10 @@ LRESULT CALLBACK DefaultUBaseWindowProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPA
     if (nMsg == WM_NCCREATE) {
         // if this nMessage gets sent then a new window has just been created,
         // so we'll asociate its handle with its AbstractWindow instance pointer
-        ::SetWindowLong (hWnd, GWL_USERDATA, long((LPCREATESTRUCT(lParam))->lpCreateParams));
+        ::SetWindowLongPtr (hWnd, GWLP_USERDATA, long((LPCREATESTRUCT(lParam))->lpCreateParams));
     }
 
-    pBaseWnd = reinterpret_cast<UBaseWindow *>(::GetWindowLong(hWnd, GWL_USERDATA));
+    pBaseWnd = reinterpret_cast<UBaseWindow *>(::GetWindowLongPtr(hWnd, GWLP_USERDATA));
 
     if (pBaseWnd)
     {
@@ -456,8 +456,7 @@ BOOL UBaseWindow::modifyStyles(DWORD dwStyle)
     if (dwOldStyle == dwNewStyle)
         return FALSE;
 
-//    return ::SetWindowLongPtr(m_hSelf, GWL_STYLE, dwNewStyle);
-    return ::SetWindowLong(m_hSelf, GWL_STYLE, dwNewStyle);
+    return ::SetWindowLongPtr(m_hSelf, GWL_STYLE, dwNewStyle);
 }
 
 BOOL UBaseWindow::modifyExStyles(DWORD dwStyle)
@@ -467,6 +466,5 @@ BOOL UBaseWindow::modifyExStyles(DWORD dwStyle)
     if (dwOldStyle == dwNewStyle)
         return FALSE;
 
-//    return ::SetWindowLongPtr(m_hSelf, GWL_STYLE, dwNewStyle);
-    return ::SetWindowLong(m_hSelf, GWL_EXSTYLE, dwNewStyle);
+    return ::SetWindowLongPtr(m_hSelf, GWL_STYLE, dwNewStyle);
 }

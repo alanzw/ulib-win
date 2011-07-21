@@ -43,7 +43,7 @@ public:
 
     virtual BOOL DialogProc(UINT, WPARAM, LPARAM);
 
-    static BOOL CALLBACK DefaultDlgProc(HWND hDlg, UINT message,
+    static INT_PTR CALLBACK DefaultDlgProc(HWND hDlg, UINT message,
         WPARAM wParam, LPARAM lParam);
 
     //

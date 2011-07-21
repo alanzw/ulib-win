@@ -123,24 +123,24 @@ BOOL UDialogBox::onClose()
 
 BOOL UDialogBox::modifyStyles(DWORD dwStyle)
 {
-    DWORD dwOldStyle = ::GetWindowLong(m_hDlg, GWL_STYLE);
+    DWORD dwOldStyle = ::GetWindowLongPtr(m_hDlg, GWL_STYLE);
     DWORD dwNewStyle = dwOldStyle | dwStyle;
     if (dwOldStyle == dwNewStyle)
         return FALSE;
 
 //    return ::SetWindowLongPtr(m_hSelf, GWL_STYLE, dwNewStyle);
-    return ::SetWindowLong(m_hDlg, GWL_STYLE, dwNewStyle);
+    return ::SetWindowLongPtr(m_hDlg, GWL_STYLE, dwNewStyle);
 }
 
 BOOL UDialogBox::modifyExStyles(DWORD dwStyle)
 {
-    DWORD dwOldStyle = ::GetWindowLong(m_hDlg, GWL_EXSTYLE);
+    DWORD dwOldStyle = ::GetWindowLongPtr(m_hDlg, GWL_EXSTYLE);
     DWORD dwNewStyle = dwOldStyle | dwStyle;
     if (dwOldStyle == dwNewStyle)
         return FALSE;
 
 //    return ::SetWindowLongPtr(m_hSelf, GWL_STYLE, dwNewStyle);
-    return ::SetWindowLong(m_hDlg, GWL_EXSTYLE, dwNewStyle);
+    return ::SetWindowLongPtr(m_hDlg, GWL_EXSTYLE, dwNewStyle);
 }
 
 BOOL UDialogBox::DialogProc(UINT message, WPARAM wParam, LPARAM lParam)
@@ -296,10 +296,10 @@ BOOL UDialogBox::postMsg(UINT message, WPARAM wParam/*=0*/, LPARAM lParam/*=lPar
 
 BOOL UDialogBox::setLong()
 {
-    return ::SetWindowLong(m_hDlg, GWL_USERDATA, LONG(this));
+    return ::SetWindowLongPtr(m_hDlg, GWLP_USERDATA, (LONG_PTR)this);
 }
 
-BOOL CALLBACK UDialogBox::DefaultDlgProc(HWND hDlg, UINT message,
+INT_PTR CALLBACK UDialogBox::DefaultDlgProc(HWND hDlg, UINT message,
                              WPARAM wParam, LPARAM lParam)
 {
     BOOL bRet;
@@ -336,12 +336,12 @@ BOOL CALLBACK UDialogBox::DefaultDlgProc(HWND hDlg, UINT message,
     {
         // if this nMessage gets sent then a new window has just been created,
         // so we'll asociate its handle with its AbstractWindow instance pointer
-        ::SetWindowLong (hDlg, GWL_USERDATA, long(lParam));
+        ::SetWindowLongPtr (hDlg, GWLP_USERDATA, (LONG_PTR)lParam);
         pDlg = (UDialogBox *)(lParam);
         pDlg->setHWND(hDlg);
     }
 
-    pDlg = reinterpret_cast<UDialogBox *>(::GetWindowLong(hDlg, GWL_USERDATA));
+    pDlg = reinterpret_cast<UDialogBox *>(::GetWindowLongPtr(hDlg, GWLP_USERDATA));
 
 
     if (!pDlg)
