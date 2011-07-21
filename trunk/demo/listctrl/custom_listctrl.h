@@ -43,13 +43,13 @@ public:
         // 1
         if (lplvcd->nmcd.dwDrawStage == CDDS_PREPAINT)
         {
-            ::SetWindowLong(m_hParent, DWL_MSGRESULT, (LONG)(CDRF_NOTIFYITEMDRAW));
+            ::SetWindowLongPtr(m_hParent, DWLP_MSGRESULT, (LONG_PTR)(CDRF_NOTIFYITEMDRAW));
         }
 
         // 2
         else if (lplvcd->nmcd.dwDrawStage == CDDS_ITEMPREPAINT)
         {
-            ::SetWindowLong(m_hParent, DWL_MSGRESULT, (LONG)(CDRF_NOTIFYSUBITEMDRAW));
+            ::SetWindowLongPtr(m_hParent, DWLP_MSGRESULT, (LONG_PTR)(CDRF_NOTIFYSUBITEMDRAW));
         }
         // 3
         else if (lplvcd->nmcd.dwDrawStage &  (CDDS_SUBITEM | CDDS_PREPAINT))
@@ -70,11 +70,11 @@ public:
             else
                 lplvcd->clrText = huys::green;
 
-            ::SetWindowLong(m_hParent, DWL_MSGRESULT, (LONG)(CDRF_NEWFONT));
+            ::SetWindowLongPtr(m_hParent, DWLP_MSGRESULT, (LONG_PTR)(CDRF_NEWFONT));
         }
         else
         {
-            ::SetWindowLong(m_hParent, DWL_MSGRESULT, (LONG)(CDRF_DODEFAULT));
+            ::SetWindowLongPtr(m_hParent, DWLP_MSGRESULT, (LONG_PTR)(CDRF_DODEFAULT));
         }
 
         return TRUE;

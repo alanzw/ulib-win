@@ -360,8 +360,8 @@ static LRESULT CALLBACK cbtProc(int nCode, WPARAM wParam, LPARAM lParam)
        else if (cbt.SubClass)
        {
            // Subclass the dialog to change the color of the background and text
-           cbt.MsgBoxProc = (FARPROC)SetWindowLong(cbt.hwndMsgBox, GWL_WNDPROC,
-                                                  (LONG)msgBoxSubClassProc);
+           cbt.MsgBoxProc = (FARPROC)SetWindowLongPtr(cbt.hwndMsgBox, GWLP_WNDPROC,
+                                                  (LONG_PTR)msgBoxSubClassProc);
            cbt.SubClass = FALSE;
        }
    }
@@ -369,7 +369,7 @@ static LRESULT CALLBACK cbtProc(int nCode, WPARAM wParam, LPARAM lParam)
    {
        // Reset the original window procedure when the message box is about to
        //   be destroyed.
-       SetWindowLong(cbt.hwndMsgBox, GWL_WNDPROC, (LONG)cbt.MsgBoxProc);
+       SetWindowLongPtr(cbt.hwndMsgBox, GWLP_WNDPROC, (LONG_PTR)cbt.MsgBoxProc);
        cbt.hwndMsgBox = NULL;
    }
    return 0;

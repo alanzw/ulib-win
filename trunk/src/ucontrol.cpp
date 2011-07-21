@@ -152,7 +152,7 @@ BOOL UControl::modifyStyles( DWORD dwStyle )
         return FALSE;
 
 //    return ::SetWindowLongPtr(m_hSelf, GWL_STYLE, dwNewStyle);
-    return ::SetWindowLong(m_hSelf, GWL_STYLE, dwNewStyle);
+    return ::SetWindowLongPtr(m_hSelf, GWL_STYLE, dwNewStyle);
     //::SetWindowPos(m_hSelf, NULL, 0, 0, 0, 0,
     //    SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
 
@@ -187,13 +187,13 @@ BOOL UControl::update()
 
 BOOL UControl::subclassProc()
 {
-    m_OriginProc =  (WNDPROC) SetWindowLong(m_hSelf, GWL_WNDPROC, (LONG) UControl::newControlProc);
+    m_OriginProc =  (WNDPROC) SetWindowLongPtr(m_hSelf, GWLP_WNDPROC, (LONG_PTR) UControl::newControlProc);
     return TRUE;
 }
 
 BOOL UControl::restoreProc()
 {
-    SetWindowLong(m_hSelf, GWL_WNDPROC, (LONG) m_OriginProc);
+    ::SetWindowLongPtr(m_hSelf, GWLP_WNDPROC, (LONG_PTR) m_OriginProc);
     return TRUE;
 }
 
@@ -210,13 +210,13 @@ BOOL UControl::sendMsg(UINT msg, WPARAM wParam, LPARAM lParam)
 
 BOOL UControl::setLong()
 {
-    return ::SetWindowLong(m_hSelf, GWL_USERDATA, LONG(this));
+    return ::SetWindowLongPtr(m_hSelf, GWLP_USERDATA, (LONG_PTR)this);
 }
 
 /*
 BOOL UControl::setUserData(DWORD dwUserData)
 {
-    return ::SetWindowLong(m_hSelf, GWL_USERDATA, dwUserData);
+    return ::SetWindowLongPtr(m_hSelf, GWLP_USERDATA, dwUserData);
 }
 */
 
@@ -342,7 +342,7 @@ LRESULT UControl::newControlProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
     UControl *pCtrl = 0;
 
     //if (uMsg == WM_NCCREATE) {
-    //    ::SetWindowLong (hwnd, GWL_USERDATA, long((LPCREATESTRUCT(lParam))->lpCreateParams));
+    //    ::SetWindowLongPtr (hwnd, GWL_USERDATA, (LONG_PTR)((LPCREATESTRUCT(lParam))->lpCreateParams));
     //}
 
     BOOL bRet;
@@ -362,7 +362,7 @@ LRESULT UControl::newControlProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
         }
     }
 
-    pCtrl = reinterpret_cast<UControl *> (::GetWindowLong (hwnd, GWL_USERDATA));
+    pCtrl = reinterpret_cast<UControl *> (::GetWindowLongPtr (hwnd, GWLP_USERDATA));
 
     bRet = pCtrl->onMessage(uMsg, wParam, lParam);
 
@@ -450,13 +450,12 @@ BOOL UControl::subclass( UINT nID, HWND hParent )
 
 BOOL UControl::modifyExStyles( DWORD dwExStyle )
 {
-    DWORD dwOldExStyle = ::GetWindowLong(m_hSelf, GWL_EXSTYLE);
+    DWORD dwOldExStyle = ::GetWindowLongPtr(m_hSelf, GWL_EXSTYLE);
     DWORD dwNewExStyle = dwOldExStyle | dwExStyle;
     if (dwOldExStyle == dwNewExStyle)
         return FALSE;
     
-    //    return ::SetWindowLongPtr(m_hSelf, GWL_STYLE, dwNewStyle);
-    return ::SetWindowLong(m_hSelf, GWL_EXSTYLE, dwNewExStyle);   
+    return ::SetWindowLongPtr(m_hSelf, GWL_STYLE, dwNewExStyle);
 }
 
 void UControl::setFocus()

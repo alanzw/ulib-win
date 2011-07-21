@@ -6,9 +6,9 @@
 //    by Mat Buckland aka fup
 //
 //-----------------------------------------------------------------------------------------------
-#include <stdlib.h>
-#include <time.h>
-#include <math.h>
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
 
 #include <iostream>
 #include <string>
