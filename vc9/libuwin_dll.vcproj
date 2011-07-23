@@ -174,13 +174,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib comctl32.lib opengl32.lib glu32.lib msimg32.lib"
-				OutputFile="Release/libuwin_release.vc8.dll"
+				OutputFile="Release/libuwin_release.vc9.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				ProgramDatabaseFile=".\Release/libuwin_release.vc8.pdb"
+				ProgramDatabaseFile=".\Release/libuwin_release.vc9.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="Release/libuwin_release.vc8.dll.lib"
+				ImportLibrary="Release/libuwin_release.vc9.dll.lib"
 				TargetMachine="1"
 			/>
 			<Tool

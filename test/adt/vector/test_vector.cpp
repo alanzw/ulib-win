@@ -83,6 +83,7 @@ int main()
     cout << "Size of v3 : " << v3.size() << endl;
     cout << v3;
 
+    cout << "Press any key to continue...";
     cin.ignore();
 
     return 0;

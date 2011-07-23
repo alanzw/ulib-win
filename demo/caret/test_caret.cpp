@@ -21,9 +21,6 @@ public:
         this->setTitle(_T("UCaret Test 0.0.1"));
    }
 
-   ~UMyWindow()
-   {}
-
    BOOL onCreate()
    {
        this->setIconBig(IDI_APP);
