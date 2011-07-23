@@ -3,7 +3,7 @@
  * DESCRIPTION:
  *   OpenMP Example - Sections Work-sharing - C Version
  *   In this example, the OpenMP SECTION directive is used to assign
- *   different array operations to each thread that executes a SECTION. 
+ *   different array operations to each thread that executes a SECTION.
  * AUTHOR: Blaise Barney  5/99
  * LAST REVISED: 07/16/07
  ******************************************************************************/
@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #define N     50
 
-int main (int argc, char *argv[]) 
+int main (int argc, char *argv[])
 {
     int i, nthreads, tid;
     float a[N], b[N], c[N], d[N];
@@ -58,7 +58,7 @@ int main (int argc, char *argv[])
 
         }  /* end of sections */
 
-        printf("Thread %d done.\n",tid); 
+        printf("Thread %d done.\n",tid);
 
     }  /* end of parallel section */
     return 0;

@@ -98,12 +98,12 @@ public:
         return *this;
     }
 
-    BOOL operator==(T * ptr) const
+    bool operator==(T * ptr) const
     {
         return _p == ptr;
     }
 
-    BOOL operator!=(T * ptr) const
+    bool operator!=(T * ptr) const
     {
         return _p != ptr;
     }

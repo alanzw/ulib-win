@@ -72,27 +72,7 @@ public:
     {
         size_type len = lstrlen(sText);
 
-        if (0 == len)
-        {
-            m_nStrLength = len;
-            memset((void *)m_pBuf, 0, sizeof(T)*(m_nBufSize+1));
-        }
-        else if (len < m_nBufSize)
-        {
-            memcpy((void *)m_pBuf, sText, sizeof(T)*len);
-            m_nStrLength = len;
-        }
-        else
-        {
-            delete [] m_pBuf;
-            m_nBufSize = len;
-            m_nStrLength = len;
-            m_pBuf = new T[m_nBufSize+1];
-            memcpy((void *)m_pBuf, sText, sizeof(T)*(m_nStrLength));
-        }
-
-        m_pBuf[m_nStrLength] = 0;
-        return *this;
+        return this->assign(sText, len);
     }
 
     UString & operator=(const UString &s)
@@ -149,6 +129,37 @@ public:
         }
         m_pBuf[m_nStrLength] = 0;
         return *this;
+    }
+    
+    UString & assign(const T * sText, size_type len)
+    {
+        if (!sText)
+        {
+            len = 0;
+        }
+    
+        if (0 == len)
+        {
+            m_nStrLength = len;
+            memset((void *)m_pBuf, 0, sizeof(T)*(m_nBufSize+1));
+        }
+        else if (len < m_nBufSize)
+        {
+            memcpy((void *)m_pBuf, sText, sizeof(T)*len);
+            m_nStrLength = len;
+        }
+        else
+        {
+            delete [] m_pBuf;
+            m_nBufSize = len;
+            m_nStrLength = len;
+            m_pBuf = new T[m_nBufSize+1];
+            memcpy((void *)m_pBuf, sText, sizeof(T)*(m_nStrLength));
+        }
+
+        m_pBuf[m_nStrLength] = 0;
+        
+        return *this; 
     }
 
     operator T *()
